@@ -39,6 +39,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/owl.transitions.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/style.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/responsive.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/global.css">
         
         <script src="${pageContext.request.contextPath }/resources/assets/js/modernizr-2.6.2.min.js"></script>
         <script src="${pageContext.request.contextPath }/resources/assets/js/jquery-1.10.2.min.js"></script> 
