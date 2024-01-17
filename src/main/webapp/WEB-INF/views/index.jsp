@@ -39,6 +39,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/owl.transitions.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/style.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/responsive.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/global.css">
     </head>
     <body>
 

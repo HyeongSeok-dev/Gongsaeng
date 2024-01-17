@@ -1,13 +1,11 @@
 html, body {
     width: 100%;
     overflow-x: hidden;
-    font-family: 'Noto Serif KR', serif;
+/*     font-family: 'Noto Serif KR', serif; */
 }
 
 body {
     height:100%;
-/*     font-family: 'Open Sans', sans-serif;  */
-  	font-family: 'Noto Serif KR', serif;
     font-weight: 300;
     padding:0;
     margin:0;
@@ -1085,12 +1083,14 @@ label small{
     text-transform: uppercase;color: #353535;
 	font-weight: 500;
 	text-shadow: 2px 2px 2px #fff;
+    font-family: 'Noto Serif KR', serif;
 }
 .slider-content p {
     font-size: 14px;
     margin-bottom: 60px;
     color: rgb(110, 110, 110);
     text-shadow: 1px 1px 1px #fff;
+    font-family: 'Noto Serif KR', serif;
 }
 
 .slider .owl-theme .owl-controls {
