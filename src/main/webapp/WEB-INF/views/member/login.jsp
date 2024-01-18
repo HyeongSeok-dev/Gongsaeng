@@ -94,13 +94,13 @@
 							<span class="input-group-addon"><i class="fa fa-user"></i></span> <input type="text" class="form-control" name="username"
 								placeholder="아이디">
 						</div>
-						<span class="help-block"></span>
+						<span class="omb_forgotPwd text-right" >아이디를 잊으셨나요?</span>
 
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-lock"></i></span> <input type="password" class="form-control"
 								name="password" placeholder="비밀번호">
 						</div>
-						<span class="help-block"></span>
+						<span class="omb_forgotPwd text-right">비밀번호를 잊으셨나요?</span>
 
 						<button class="btn btn-lg btn-success btn-block " type="submit">로그인</button>
 						<button class="btn btn-lg btn-info btn-block " type="button" onclick="javascript:location.href='joinAgree'">회원가입</button>
@@ -111,11 +111,6 @@
 				<div class="col-xs-12 col-sm-3">
 					<label class="checkbox"> <input type="checkbox" value="">아이디 기억하기
 					</label>
-				</div>
-				<div class="col-xs-12 col-sm-3">
-					<p class="omb_forgotPwd">
-						<a href="#">비밀번호를 잊으셨나요?</a>
-					</p>
 				</div>
 			</div>
 		</div>
