@@ -58,6 +58,10 @@ public class HomeController {
 		return "member/test";
 	}
 	
+	@GetMapping("admin")
+	public String admin() {
+		return "admin/dashboard";
+	}
 	
 
 }

@@ -1156,7 +1156,7 @@ label small{
 page-header
 ======================================================*/
 .page-head{
-    background: #494C53 url("../../${pageContext.request.contextPath }/resources/assets/img/page-header.jpg") 
+    background: #494C53 url("../img/page-header.jpg") 
         no-repeat scroll center top / cover;
     color:#FFF;
     position: relative;
@@ -1801,7 +1801,7 @@ proerty-th
     position: relative;
 }
 .proerty-th .proerty-item  .item-entry h5::after {
-    background: transparent url("../../${pageContext.request.contextPath }/resources/assets/img/chevron-down.png") no-repeat scroll center center;
+    background: transparent url("../img/chevron-down.png") no-repeat scroll center center;
     width: 15px;
     left: 20px;
     height: 7px;
@@ -2028,11 +2028,11 @@ single property page
     overflow: hidden;
 }
 .single-property-content .lSAction > .lSNext {
-    background-image: url("../../${pageContext.request.contextPath }/resources/assets/img/arrow-right.svg");
+    background-image: url("../img/arrow-right.svg");
     background-position: center center;
 }
 .single-property-content .lSAction > .lSPrev {
-    background-image: url("../../${pageContext.request.contextPath }/resources/assets/img/arrow-left.svg");
+    background-image: url("../img/arrow-left.svg");
     background-position: center center;
 }
 
@@ -2293,7 +2293,7 @@ single property page
 Welcom 
 ======================================*/
 .Welcome-area{
-    background: #F3F3F3 url("../../${pageContext.request.contextPath }/resources/assets/img/welcome-bg.png") no-repeat scroll left top;
+    background: #F3F3F3 url("../img/welcome-bg.png") no-repeat scroll left top;
     position: relative;
 
 
@@ -2642,13 +2642,13 @@ padding-bottom: 15px;
     border-radius: 50%;
     width: 60px;
     border: 2px solid #FFF;
-    background-image: url("../../${pageContext.request.contextPath }/resources/assets/img/icon-shearch.png");
+    background-image: url("../img/icon-shearch.png");
     position: relative;
     background-position: 2px -1px;
     height: 60px;
 }
 .home-lager-shearch .large-search .btn-lg-sheach:hover ,.home-lager-shearch .large-search .btn-lg-sheach:focus{
-    background-image: url("../../${pageContext.request.contextPath }/resources/assets/img/icon-shearch.png");
+    background-image: url("../img/icon-shearch.png");
     background-position: 2px -1px;
     background-color: #655D5D;
 } 
@@ -2869,7 +2869,7 @@ padding-bottom: 15px;
 /*FOOOTER*/
 .footer-area{
 border-top: 1px solid #D1D1D1;
-background: #555 url("../../${pageContext.request.contextPath }/resources/assets/img/bg-footer.jpg") repeat scroll 0% 0%;
+background: #555 url("../img/bg-footer.jpg") repeat scroll 0% 0%;
 color: #535353;
 }
 .footer{
