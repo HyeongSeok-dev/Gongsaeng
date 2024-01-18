@@ -1,4 +1,4 @@
-package kr.co.gongsang.controller;
+package kr.co.gongsaeng.controller;
 
 import java.text.DateFormat;
 import java.util.Date;

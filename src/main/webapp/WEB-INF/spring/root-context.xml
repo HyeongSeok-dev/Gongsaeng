@@ -49,7 +49,7 @@
 		<property name="configLocation"
 			value="classpath:/mybatis-config.xml"></property>
 		<property name="mapperLocations"
-			value="classpath:/kr/co/gongsang/mapper/*Mapper.xml"></property>
+			value="classpath:/kr/co/gongsaeng/mapper/*Mapper.xml"></property>
 	</bean>
 	
 	<!-- >>>>>>>>>>>>>>>>>>>>> 트랜잭션 설정 추가 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
@@ -62,7 +62,7 @@
 
 	<!-- 4. MyBatis 연동에 사용될 객체(클래스)들의 패키지 위치 지정(기본 루트 패키지 지정) -->
 	<mybatis-spring:scan
-		base-package="kr.co.gongsang" />
+		base-package="kr.co.gongsaeng" />
 
 
 </beans>
