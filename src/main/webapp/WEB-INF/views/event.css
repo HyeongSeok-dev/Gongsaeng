@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+tr {
+	width: 350px;
+}
+
+th {
+	height: 30px;
+	text-align: center;
+}
+
+td {
+	height: 50px;
+}
+
+.check_cal {
+	max-width: 40%;
+	max-height: 40%;
+	border: solid 1px;
+	border-radius: 5px;
+}
+
+.year_month_title {
+	display: flex;
+}
+
+.check_month{
+	margin: 0 10px;
+}
+.check_year {
+	margin: 0 10px;
+}
+.check_day {
+	font-size: 10px;
+	font-weight: 500;
+	text-align: right;	
+}
+.check_table {
+	display: flex;
+	align-items: flex-end;
+}
+
+h1 {
+	padding: 10px;
+	margin-top: 50px;
+}
+
+.check_container {
+	display: flex;
+	flex-direction: column;
+}
+
+.event_table{
+	text-align: center;
+}
+
+.event_num {
+	width: 10%;
+}
+
+.event_subject {
+	width: 70%;
+}
+
+.event_date {
+	width: 20%;
+}
