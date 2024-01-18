@@ -53,6 +53,10 @@ public class HomeController {
 	public String property() {
 		return "property-1";
 	}
+	@GetMapping("test")
+	public String test() {
+		return "member/test";
+	}
 	
 	
 
