@@ -3102,7 +3102,7 @@ padding: 10px;
     position:absolute;
     left:50%;  
     top:50%;  
-    background-image:url(../../${pageContext.request.contextPath }/resources/assets/img/preloader.gif);  
+    background-image:../img/preloader.gif);  
     background-repeat:no-repeat;
     background-position:center;
     margin:-100px 0 0 -100px; 

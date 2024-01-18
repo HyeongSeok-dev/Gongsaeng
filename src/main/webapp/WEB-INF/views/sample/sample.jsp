@@ -52,7 +52,7 @@
         
     </head>
     <body>
-
+	<jsp:include page="../inc/top.jsp"></jsp:include>
 
     </body>
 </html>
