@@ -9,7 +9,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>공생 | 공간을 생각하다</title>
+        <title>공생 | 공간에대한 생각</title>
         <meta name="description" content="GARO is a real-estate template">
         <meta name="author" content="Kimarotec">
         <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
@@ -61,7 +61,7 @@
 	                    <a id="navbar-brand" href="index"><img class="main_logo1" src="${pageContext.request.contextPath }/resources/assets/img/logo2 (2).png" alt=""></a>
 	                    <a id="navbar-brand" href="index"><img class="main_logo2" src="${pageContext.request.contextPath }/resources/assets/img/logo3.png" alt=""></a>
                     </div>
-                    <a id="navbar-brand" href="index"><img class="main_logo3" src="${pageContext.request.contextPath }/resources/assets/img/logo4.png" alt=""></a>
+<%--                     <a id="navbar-brand" href="index"><img class="main_logo3" src="${pageContext.request.contextPath }/resources/assets/img/logo4.png" alt=""></a> --%>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -92,6 +92,7 @@
                         </li>
 
                         <li class="wow fadeInDown" data-wow-delay="0.2s"><a class="" href="properties">반장님 찾기</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.3s"><a class="" href="event">이벤트</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.3s"><a class="" href="property">커뮤니티</a></li>
 <!--                         <li class="dropdown yamm-fw" data-wow-delay="0.4s"> -->
 <!--                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Template <b class="caret"></b></a> -->
