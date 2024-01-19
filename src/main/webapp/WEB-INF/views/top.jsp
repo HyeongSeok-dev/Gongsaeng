@@ -37,8 +37,8 @@
                 <span class="icon-bar"></span>
             </button>
             <div class="main_logo_div">
-				<a id="navbar-brand" href="index"><img class="main_logo1" src="${pageContext.request.contextPath}/resources/assets/img/logo2 (2).png" alt=""></a>
-				<a id="navbar-brand" href="index"><img class="main_logo2" src="${pageContext.request.contextPath}/resources/assets/img/logo3.png" alt=""></a>
+				<a id="navbar-brand" href="main"><img class="main_logo1" src="${pageContext.request.contextPath}/resources/assets/img/logo2 (2).png" alt=""></a>
+				<a id="navbar-brand" href="main"><img class="main_logo2" src="${pageContext.request.contextPath}/resources/assets/img/logo3.png" alt=""></a>
             </div>
         </div>
 
@@ -94,7 +94,8 @@
                 </li>
 
                 <li class="wow fadeInDown" data-wow-delay="0.2s"><a class="" href="properties">커뮤니티</a></li>
-                <li class="wow fadeInDown" data-wow-delay="0.3s"><a class="" href="event">고객센터</a></li>
+                <li class="wow fadeInDown" data-wow-delay="0.3s"><a class="" href="event">이벤트</a></li>
+                <li class="wow fadeInDown" data-wow-delay="0.3s"><a class="" href="ceo">고객센터</a></li>
             </ul>
         </div>
     </div>
