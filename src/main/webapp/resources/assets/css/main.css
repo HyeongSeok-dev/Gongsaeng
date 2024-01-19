@@ -100,6 +100,7 @@ img {
 /* 	width: 250px; */
 	width: 200px;
 	height: 70px;
+	margin-left: 10px;
 }
 /* ### */
 /* .navbar-header { */
@@ -794,6 +795,8 @@ label small{
 	/* ### */
 /*     padding-top: 10px; */
     padding-top: 20px;
+    
+    margin-right: 0px;
 }
 .nav-button {
     background-color: #c2c2c2;
@@ -3153,13 +3156,6 @@ padding: 10px;
 
 
 
-/* ### */
-.top_container {
-    padding-right: 170px;
-    padding-left: 170px;
-    margin-right: auto;
-    margin-left: auto;
-}
 
 /* 검색창 */
 .css-4f6urn {
@@ -3243,3 +3239,28 @@ padding: 10px;
 .css-7kp13n {
     display: inline-block;
 }
+
+/* ### */
+.container {
+    padding-right: 20px !important;
+    padding-left: 30px !important;
+    margin-right: auto;
+    margin-left: auto;
+}
+/* 반응형 */
+/* .top_container { */
+/* 	padding-right: 170px; */
+/* 	padding-left: 170px; */
+/* 	margin-right: auto; */
+/* 	margin-left: auto; */
+/* } */
+/* @media (min-width:768px) { */
+/* 	.top_container{width:750px} */
+/* } */
+/* @media (min-width:992px) { */
+/* 	.top_container{width:970px} */
+/* } */
+/* @media (min-width:1200px) { */
+/* 	.top_container{width:1170px} */
+/* } */
+
