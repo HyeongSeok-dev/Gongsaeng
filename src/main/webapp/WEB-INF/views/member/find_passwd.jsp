@@ -55,62 +55,38 @@
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 </head>
 <body>
-	<jsp:include page="../inc/top.jsp"></jsp:include>
 	<div class="container">
-		<div class="omb_login">
-			<h3 class="omb_authTitle">로그인</h3>
-			<div class="row omb_row-sm-offset-3 omb_socialButtons">
-				<div class="col-xs-4 col-sm-2">
-					<a href="#" class="btn btn-lg btn-block omb_btn-naver"> <img
-						src="${pageContext.request.contextPath }/resources/img/naver_logo.svg" class="visible-xs logo_link "></img> <span
-						class="hidden-xs">네이버</span>
-					</a>
-				</div>
-				<div class="col-xs-4 col-sm-2">
-					<a href="#" class="btn btn-lg btn-block omb_btn-kakao"> <img
-						src="${pageContext.request.contextPath }/resources/img/kakao_logo.png" class="visible-xs logo_link"></img> <span
-						class="hidden-xs">카카오</span>
-					</a>
-				</div>
-				<div class="col-xs-4 col-sm-2">
-					<a href="#" class="btn btn-lg btn-block omb_btn-google"> <i class="fa fa-google-plus visible-xs"></i> <span
-						class="hidden-xs"> 구글</span>
-					</a>
+		<h2 class="text-center">비밀번호 찾기</h2>
+		<form action="findPasswdPro" autocomplete="off" method="POST">
+			<div class="form-group">
+				<label for="name">이름</label> <input type="text" class="form-control" id="name" placeholder="이름을 입력해주세요" name="name">
+			</div>
+			<div class="form-group">
+				<label for="id">아이디</label> <input type="text" class="form-control" id="id" placeholder="아이디를 입력해주세요" name="id">
+			</div>
+			<div class="form-group">
+				<label for="email">이메일</label>
+				<div class="row">
+					<div class="col-xs-5">
+						<input type="text" class="form-control" id="email" placeholder="이메일을 입력해주세요" name="email">
+					</div>
+                    <div class="col-xs-1" ><h4>@</h4></div>
+					<div class="col-xs-4">
+						<select class="form-control" id="emailDomain">
+			                <option value="gmail.com">gmail.com</option>
+			                <option value="naver.com">naver.com</option>
+			                <option value="daum.net">daum.net</option>
+			                <option value="yahoo.com">yahoo.com</option>
+   			                <option value="">직접입력</option>
+						</select>
+					</div>
 				</div>
 			</div>
-
-			<div class="row omb_row-sm-offset-3 omb_loginOr">
-				<div class="col-xs-12 col-sm-6"></div>
-			</div>
-
-			<div class="row omb_row-sm-offset-3">
-				<div class="col-xs-12 col-sm-6">
-					<form class="omb_loginForm" action="loginPro" autocomplete="off" method="POST">
-						<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-user"></i></span> <input type="text" class="form-control" name="username"
-								placeholder="아이디">
-						</div>
-						<br>
-						<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-lock"></i></span> <input type="password" class="form-control"
-								name="password" placeholder="비밀번호">
-						</div>
-						<br>
-						<button class="btn btn-lg btn-success btn-block " type="submit">로그인</button>
-						<button class="btn btn-lg btn-info btn-block " type="button" onclick="javascript:location.href='joinAgree'">회원가입</button>
-					</form>
-				</div>
-			</div>
-			<div class="row omb_row-sm-offset-3 ">
-				<div class="col-xs-3 col-md-2">
-					<label class="checkbox"> <input type="checkbox" value="">아이디 기억하기
-					</label> 
-				</div>
-				
-				<div class="col-xs-3 col-md-2 text-right checkbox"><a onclick="javascript: window.open('findId', 'findId', 'width=500,height=300,top=50%, left=50%');" >아이디찾기</a></div>
-				<div class="col-xs-3 col-md-2 text-right radio"><a onclick="javascript: window.open('findPasswd', 'findPasswd', 'width=500,height=400,top=50%, left=50%');" >비밀번호 찾기</a></div>
-			</div>
-		</div>
+			<button type="submit" class="btn btn-default">비밀번호 찾기</button>
+		</form>
 	</div>
+
+
+
 </body>
 </html>

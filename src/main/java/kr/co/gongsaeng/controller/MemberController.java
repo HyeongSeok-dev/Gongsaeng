@@ -14,11 +14,25 @@ public class MemberController {
 	
 	@PostMapping("member/loginPro")
 	public String loginPro() {
-		return "redirect: index";
+		return "redirect: ../";
 	}
 	
 	@GetMapping("member/joinAgree")
 	public String joinAgree() {
 		return "member/join_agree";
+	}
+	
+	@GetMapping("member/findId")
+	public String findId() {
+		return "member/find_id";
+	}
+	
+	@GetMapping("member/findPasswd")
+	public String findPasswd() {
+		return "member/find_passwd";
+	}
+	@GetMapping("member/join")
+	public String join() {
+		return "member/join";
 	}
 }
