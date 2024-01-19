@@ -1,10 +1,10 @@
 @charset "UTF-8";
 
 tr {
-	width: 350px;
+	max-width: 200px;
 }
 
-th {
+.check_week {
 	height: 30px;
 	text-align: center;
 }
@@ -13,7 +13,7 @@ td {
 	height: 50px;
 }
 
-.check_cal {
+#check_cal {
 	max-width: 40%;
 	max-height: 40%;
 	border: solid 1px;
@@ -23,7 +23,9 @@ td {
 .year_month_title {
 	display: flex;
 }
-
+.nav-button.check_btn{
+	background-color: #494C53;
+}
 .check_month{
 	margin: 0 10px;
 }
@@ -33,7 +35,7 @@ td {
 .check_day {
 	font-size: 10px;
 	font-weight: 500;
-	text-align: right;	
+	text-align: left;	
 }
 .check_table {
 	display: flex;

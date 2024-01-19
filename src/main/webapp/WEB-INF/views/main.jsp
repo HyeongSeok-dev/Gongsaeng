@@ -601,10 +601,10 @@
 	
 	<!-- Footer area-->
 	<div class="footer-area">
-	
-	<jsp:include page="bottom.jsp"/>
-	
+		<jsp:include page="bottom.jsp"/>
 	</div>
+	
+	<!-- Footer area-->
 
 	<%-- js파일 --%>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/modernizr-2.6.2.min.js"></script>

@@ -24,14 +24,16 @@
 /*  src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.ttf') format('truetype'); */
 /* } */
 
- * {
+ html {
 /*  font-family: 'NanumBarunGothic', sans-serif; */
 
 /* 나눔스퀘어 네오 */
-font-family: 'NanumSquareNeoLight';
-font-family: 'NanumSquareNeo';
-font-family: 'NanumSquareNeoBold';
-font-family: 'NanumSquareNeoExtraBold';
-font-family: 'NanumSquareNeoHeavy';
-font-family: 'NanumSquareNeo-Variable';
+font-family: 'NanumSquareLight';
+font-family: 'NanumSquare';
+font-family: 'NanumSquareBold';
+font-family: 'NanumSquareExtraBold';
+font-family: 'NanumSquareAcb';
+font-family: 'NanumSquareAceb';
+font-family: 'NanumSquareAcl';
+font-family: 'NanumSquareAcr';
 }
