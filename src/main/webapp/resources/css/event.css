@@ -1,5 +1,64 @@
 @charset "UTF-8";
 
+/* 퍼옴 */
+
+/* 그냥 */
+.css-p4ywi4 {
+    position: relative;
+    flex: 1 1 0%;
+    justify-content: space-around;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(85, 89, 105);
+    font-size: 17px;
+    cursor: pointer;
+    height: 50px;
+    padding: 0px 4px;
+    border-bottom: 3px solid transparent;
+}
+/* 선택했을때 */
+.css-1yi93iz {
+    position: relative;
+    flex: 1 1 0%;
+    justify-content: space-around;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 17px;
+    cursor: pointer;
+    height: 50px;
+    padding: 0px 4px;
+    border-bottom: 3px solid rgb(48, 52, 65);
+    font-weight: 700;
+    color: rgb(48, 52, 65);
+}
+
+/* nav~ */
+.css-19vu3z9 {
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    z-index: 1;
+    position: sticky;
+    top: 0px;
+}
+
+.css-1m8o79i {
+    max-width: 1200px;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+
+.css-k008qs {
+	display: flex;
+}
+
+/* ------------------------------------------------- */
+.h {
+	color: #494C53;
+	margin: 10px 20px;
+	
+}
 tr {
 	max-width: 200px;
 }
@@ -13,9 +72,13 @@ td {
 	height: 50px;
 }
 
+.event_th {
+	text-align: center;
+}
+
 #check_cal {
-	max-width: 40%;
-	max-height: 40%;
+	width: 450px;
+	height: 350px;
 	border: solid 1px;
 	border-radius: 5px;
 }
@@ -25,6 +88,12 @@ td {
 }
 .nav-button.check_btn{
 	background-color: #494C53;
+	font-size: 16px;
+	
+}
+
+.checkBtn_div {
+	margin: 20px;
 }
 .check_month{
 	margin: 0 10px;
@@ -42,9 +111,8 @@ td {
 	align-items: flex-end;
 }
 
-h1 {
-	padding: 10px;
-	margin-top: 50px;
+h3 {
+	padding-left: 30px;
 }
 
 .check_container {
@@ -52,8 +120,16 @@ h1 {
 	flex-direction: column;
 }
 
+.event_container ,.check_container{
+	margin-top: 40px; 
+}
+
 .event_table{
 	text-align: center;
+}
+
+.event_td.event_num,.event_td.event_subject,.event_td.event_date {
+	vertical-align: middle;
 }
 
 .event_num {
