@@ -605,7 +605,9 @@
 	</div>
 	<!--  test 버튼-->
 	<button onclick="location.href='${pageContext.request.contextPath}/review/write'">리뷰쓰기</button>
-	<button onclick="location.href='${pageContext.request.contextPath}/payment'">결제하기</button>
+	<hr>
+	<button onclick="location.href='${pageContext.request.contextPath}/payment'">payment</button>
+	<button onclick="location.href='${pageContext.request.contextPath}/payment/agree'">payment/agree</button>
 	
 	<!--test 버튼  -->
 	<!-- Footer area-->
