@@ -603,7 +603,11 @@
 	<div class="footer-area">
 		<jsp:include page="bottom.jsp"/>
 	</div>
+	<!--  test 버튼-->
+	<button onclick="location.href='${pageContext.request.contextPath}/review/write'">리뷰쓰기</button>
+	<button onclick="location.href='${pageContext.request.contextPath}/payment'">결제하기</button>
 	
+	<!--test 버튼  -->
 	<!-- Footer area-->
 
 	<%-- js파일 --%>
