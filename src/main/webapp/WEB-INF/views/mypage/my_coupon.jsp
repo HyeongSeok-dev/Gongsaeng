@@ -89,7 +89,7 @@
 									<ul class="list-group">
 										<li class="list-group-item"><a href="bookmark">북마크</a></li>
 										<li class="list-group-item"><a href="following">팔로우</a></li>
-										<li class="list-group-item"><a href="recent">최근 본 강의</a></li>
+										<li class="list-group-item"><a href="recent">최근 본 클래스</a></li>
 									</ul>
 								</div></li>
 							<li class="list-group-item"><a data-toggle="collapse" href="#review">리뷰</a>
@@ -119,57 +119,68 @@
 			</div>
 			<!-- 우측 본문영역 -->
 			<div class="col-sm-9">
-				<section class="container">
-					<h2>쿠폰</h2>
-					<div class="row">
-						<article class="card fl-left">
-							<section class="date">
-								<time datetime="23th feb">
-									<span>23</span><span>feb</span>
-								</time>
-							</section>
-							<section class="card-cont">
-								<small>dj khaled</small>
-								<h3>live in sydney</h3>
-								<div class="even-date">
-									<i class="fa fa-calendar"></i>
-									<time>
-										<span>wednesday 28 december 2014</span> <span>08:55pm to 12:00 am</span>
-									</time>
-								</div>
-								<div class="even-info">
-									<i class="fa fa-map-marker"></i>
-									<p>nexen square for people australia, sydney</p>
-								</div>
-								<a href="#">tickets</a>
-							</section>
-						</article>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h2 class="panel-title">쿠폰</h2>
 					</div>
 					<div class="row">
-						<article class="card fl-left">
-							<section class="date">
-								<time datetime="23th feb">
-									<span>23</span><span>feb</span>
-								</time>
-							</section>
-							<section class="card-cont">
-								<small>dj khaled</small>
-								<h3>music kaboom festivel</h3>
-								<div class="even-date">
-									<i class="fa fa-calendar"></i>
-									<time>
-										<span>wednesday 28 december 2014</span> <span>08:55pm to 12:00 am</span>
-									</time>
+						<!-- 아래 col-md-6 div를 쿠폰 카드의 개수만큼 복사하여 붙여넣기 -->
+						<div class="col-md-6">
+							<div class="panel panel-default">
+								<div class="panel-body">
+									<div class="row">
+										<div class="col-xs-2">
+											<img src="thumbnail.jpg" alt="쿠폰 이미지" class="thumbnail">
+										</div>
+										<div class="col-xs-10">
+											<h4>신규회원 가입 쿠폰</h4>
+											<p>쿠폰 값: 5000원</p>
+											<p>15,000원 이상 구매시 사용 가능</p>
+											<p>29일 남음 (유효기간: 2024-01-23 ~ 2024-02-22)</p>
+											<button class="btn btn-default btn-block">적용 가능 작품 보기</button>
+										</div>
+									</div>
 								</div>
-								<div class="even-info">
-									<i class="fa fa-map-marker"></i>
-									<p>nexen square for people australia, sydney</p>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="panel panel-default">
+								<div class="panel-body">
+									<div class="row">
+										<div class="col-xs-2">
+											<img src="thumbnail.jpg" alt="쿠폰 이미지" class="thumbnail">
+										</div>
+										<div class="col-xs-10">
+											<h4>신규회원 가입 쿠폰</h4>
+											<p>쿠폰 값: 5000원</p>
+											<p>15,000원 이상 구매시 사용 가능</p>
+											<p>29일 남음 (유효기간: 2024-01-23 ~ 2024-02-22)</p>
+											<button class="btn btn-default btn-block">적용 가능 작품 보기</button>
+										</div>
+									</div>
 								</div>
-								<a href="#">booked</a>
-							</section>
-						</article>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="panel panel-default">
+								<div class="panel-body">
+									<div class="row">
+										<div class="col-xs-2">
+											<img src="thumbnail.jpg" alt="쿠폰 이미지" class="thumbnail">
+										</div>
+										<div class="col-xs-10">
+											<h4>신규회원 가입 쿠폰</h4>
+											<p>쿠폰 값: 5000원</p>
+											<p>15,000원 이상 구매시 사용 가능</p>
+											<p>29일 남음 (유효기간: 2024-01-23 ~ 2024-02-22)</p>
+											<button class="btn btn-default btn-block">적용 가능 작품 보기</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
-				</section>
+				</div>
 			</div>
 		</div>
 	</div>

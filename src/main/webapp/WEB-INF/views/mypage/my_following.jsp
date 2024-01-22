@@ -19,14 +19,12 @@
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/normalize.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/font-awesome.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/fontello.css">
-<link href="${pageContext.request.contextPath }/resources/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css"
-	rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/assets/fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/assets/css/animate.css" rel="stylesheet" media="screen">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/bootstrap-select.min.css">
@@ -90,7 +88,7 @@
 									<ul class="list-group">
 										<li class="list-group-item"><a href="bookmark">북마크</a></li>
 										<li class="list-group-item active "><a href="following">팔로우</a></li>
-										<li class="list-group-item"><a href="recent">최근 본 강의</a></li>
+										<li class="list-group-item"><a href="recent">최근 본 클래스</a></li>
 									</ul>
 								</div></li>
 							<li class="list-group-item"><a data-toggle="collapse" href="#review">리뷰</a>
@@ -120,9 +118,84 @@
 			</div>
 			<!-- 우측 본문영역 -->
 			<div class="col-sm-9">
-	
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">팔로우</h4>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-sm-2">
+								<img src="author.jpg" alt="작가 사진" class="img-responsive">
+							</div>
+							<div class="col-sm-5">
+								<h5>작가 이름</h5>
+								<p>작가 설명</p>
+								<button class="btn btn-default">팔로우 취소</button>
+							</div>
+							<div class="col-sm-5">
+								<div class="row">
+									<div class="col-xs-4">
+										<img src="work1.jpg" alt="작품 사진" class="img-responsive">
+									</div>
+									<div class="col-xs-4">
+										<img src="work2.jpg" alt="작품 사진" class="img-responsive">
+									</div>
+									<div class="col-xs-4">
+										<img src="work3.jpg" alt="작품 사진" class="img-responsive">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<img src="author.jpg" alt="작가 사진" class="img-responsive">
+							</div>
+							<div class="col-sm-5">
+								<h5>작가 이름</h5>
+								<p>작가 설명</p>
+								<button class="btn btn-default">팔로우 취소</button>
+							</div>
+							<div class="col-sm-5">
+								<div class="row">
+									<div class="col-xs-4">
+										<img src="work1.jpg" alt="작품 사진" class="img-responsive">
+									</div>
+									<div class="col-xs-4">
+										<img src="work2.jpg" alt="작품 사진" class="img-responsive">
+									</div>
+									<div class="col-xs-4">
+										<img src="work3.jpg" alt="작품 사진" class="img-responsive">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<img src="author.jpg" alt="작가 사진" class="img-responsive">
+							</div>
+							<div class="col-sm-5">
+								<h5>작가 이름</h5>
+								<p>작가 설명</p>
+								<button class="btn btn-default">팔로우 취소</button>
+							</div>
+							<div class="col-sm-5">
+								<div class="row">
+									<div class="col-xs-4">
+										<img src="work1.jpg" alt="작품 사진" class="img-responsive">
+									</div>
+									<div class="col-xs-4">
+										<img src="work2.jpg" alt="작품 사진" class="img-responsive">
+									</div>
+									<div class="col-xs-4">
+										<img src="work3.jpg" alt="작품 사진" class="img-responsive">
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- 위의 row div를 복사하여 붙여넣어 필요한 만큼의 작가 카드를 만들 수 있습니다. -->
+					</div>
+				</div>
 			</div>
-
 		</div>
 	</div>
 </body>

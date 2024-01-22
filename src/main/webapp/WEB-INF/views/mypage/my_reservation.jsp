@@ -19,14 +19,12 @@
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/normalize.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/font-awesome.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/fontello.css">
-<link href="${pageContext.request.contextPath }/resources/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css"
-	rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/assets/fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/assets/css/animate.css" rel="stylesheet" media="screen">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/bootstrap-select.min.css">
@@ -90,7 +88,7 @@
 									<ul class="list-group">
 										<li class="list-group-item"><a href="bookmark">북마크</a></li>
 										<li class="list-group-item"><a href="following">팔로우</a></li>
-										<li class="list-group-item"><a href="recent">최근 본 강의</a></li>
+										<li class="list-group-item"><a href="recent">최근 본 클래스</a></li>
 									</ul>
 								</div></li>
 							<li class="list-group-item"><a data-toggle="collapse" href="#review">리뷰</a>
@@ -122,32 +120,39 @@
 			<div class="col-sm-9">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<div class="row">
-							<div class="col-xs-6">
-								<strong>예약완료</strong><br> <small>결제 날짜: yyyy-mm-dd</small>
-							</div>
-							<div class="col-xs-6 text-right">
-								예약 금액: 00,000원<br><a href="reservationDetail"> 상세보기 ></a>
-							</div>
-						</div>
+						<h4 class="panel-title">예약 내역</h4>
 					</div>
-					<div class="panel-body">
-						<div class="row">
-							<div class="col-xs-10">
-								<div class="row">
-									<div class="col-xs-2">
-										<img src="thumbnail.jpg" alt="업체 사진" class="thumbnail">
-									</div>
-									<div class="col-xs-10">
-										<p>가게 이름</p>
-										<p>업주 이름</p>
-										<p>예약한 날짜: yyyy-mm-dd</p>
-									</div>
+					<br>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col-xs-6">
+									<strong>예약완료</strong><br> <small>결제 날짜: yyyy-mm-dd</small>
+								</div>
+								<div class="col-xs-6 text-right">
+									예약 금액: 00,000원<br>
+									<a href="reservationDetail"> 상세보기 ></a>
 								</div>
 							</div>
-							<div class="col-xs-2">
-								<button class="btn btn-default btn-block">메세지 문의</button>
-								<a href="reservationCancel"><button class="btn btn-danger btn-block">예약 취소</button></a>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-xs-10">
+									<div class="row">
+										<div class="col-xs-2">
+											<img src="thumbnail.jpg" alt="업체 사진" class="thumbnail">
+										</div>
+										<div class="col-xs-10">
+											<p>가게 이름</p>
+											<p>업주 이름</p>
+											<p>예약한 날짜: yyyy-mm-dd</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-2">
+									<button class="btn btn-default btn-block">메세지 문의</button>
+									<a href="reservationCancel"><button class="btn btn-danger btn-block">예약 취소</button></a>
+								</div>
 							</div>
 						</div>
 					</div>

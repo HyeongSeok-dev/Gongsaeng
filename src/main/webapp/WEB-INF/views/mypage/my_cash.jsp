@@ -19,14 +19,12 @@
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/normalize.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/font-awesome.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/fontello.css">
-<link href="${pageContext.request.contextPath }/resources/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css"
-	rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/assets/fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/assets/css/animate.css" rel="stylesheet" media="screen">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/bootstrap-select.min.css">
@@ -90,7 +88,7 @@
 									<ul class="list-group">
 										<li class="list-group-item"><a href="bookmark">북마크</a></li>
 										<li class="list-group-item"><a href="following">팔로우</a></li>
-										<li class="list-group-item"><a href="recent">최근 본 강의</a></li>
+										<li class="list-group-item"><a href="recent">최근 본 클래스</a></li>
 									</ul>
 								</div></li>
 							<li class="list-group-item"><a data-toggle="collapse" href="#review">리뷰</a>
@@ -120,7 +118,38 @@
 			</div>
 			<!-- 우측 본문영역 -->
 			<div class="col-sm-9">
-	
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">포인트</h4>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-sm-6">
+								<p>현재 포인트: 00,000포인트</p>
+							</div>
+							<div class="col-sm-6 text-right">
+								<button class="btn btn-primary">포인트 충전</button>
+							</div>
+						</div>
+						<table class="table">
+							<thead>
+								<tr>
+									<th>적립 내용</th>
+									<th>금액</th>
+									<th>발생 일시</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>적립 내용 예시</td>
+									<td>00,000원</td>
+									<td>yyyy-mm-dd hh:mm</td>
+								</tr>
+								<!-- 위의 tr을 복사하여 붙여넣어 필요한 만큼의 행을 만들 수 있습니다. -->
+							</tbody>
+						</table>
+					</div>
+				</div>
 			</div>
 
 		</div>

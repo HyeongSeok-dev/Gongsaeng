@@ -89,7 +89,7 @@
 									<ul class="list-group">
 										<li class="list-group-item"><a href="bookmark">북마크</a></li>
 										<li class="list-group-item"><a href="following">팔로우</a></li>
-										<li class="list-group-item"><a href="recent">최근 본 강의</a></li>
+										<li class="list-group-item"><a href="recent">최근 본 클래스</a></li>
 									</ul>
 								</div></li>
 							<li class="list-group-item"><a data-toggle="collapse" href="#review">리뷰</a>

@@ -19,14 +19,12 @@
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/normalize.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/font-awesome.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/fontello.css">
-<link href="${pageContext.request.contextPath }/resources/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css"
-	rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/assets/fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/assets/css/animate.css" rel="stylesheet" media="screen">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/bootstrap-select.min.css">
@@ -90,7 +88,7 @@
 									<ul class="list-group">
 										<li class="list-group-item"><a href="bookmark">북마크</a></li>
 										<li class="list-group-item"><a href="following">팔로우</a></li>
-										<li class="list-group-item"><a href="recent">최근 본 강의</a></li>
+										<li class="list-group-item"><a href="recent">최근 본 클래스</a></li>
 									</ul>
 								</div></li>
 							<li class="list-group-item "><a data-toggle="collapse" href="#review">리뷰</a>
@@ -119,9 +117,92 @@
 				</div>
 			</div>
 			<!-- 우측 본문영역 -->
-			<div class="col-sm-9">
-	
-			</div>
+			<form class="form-horizontal" role="form" action="modifyProfilePro" enctype="multipart/form-data">
+				<div class="col-sm-9">
+					<div class="container bootstrap snippets bootdey">
+						<hr>
+						<div class="row">
+							<!-- left column -->
+							<div class="col-md-3">
+								<div class="text-center">
+									<img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-circle img-thumbnail" alt="avatar">
+									<h6>사진을 첨부하세요</h6>
+
+									<input type="file" class="form-control">
+								</div>
+							</div>
+
+							<!-- edit form column -->
+							<div class="col-md-9 personal-info">
+								<h3 class="text-center">내 정보 수정</h3>
+								<br>
+								<div class="form-group">
+									<label class="col-lg-3 control-label">아이디 : </label>
+									<div class="col-lg-8">
+										<input class="form-control" type="text" value="아이디" placeholder="아이디">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-lg-3 control-label">비밀번호 : </label>
+									<div class="col-lg-8">
+										<input class="form-control" type="password" value="비밀번호" placeholder="비밀번호">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-lg-3 control-label">비밀번호 확인 : </label>
+									<div class="col-lg-8">
+										<input class="form-control" type="password" value="비밀번호확인" placeholder="비밀번호확인">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-lg-3 control-label">이름 : </label>
+									<div class="col-lg-8">
+										<input class="form-control" type="text" value="이름">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-lg-3 control-label">닉네임:</label>
+									<div class="col-lg-8">
+										<input class="form-control" type="text" value="닉네임">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-lg-3 control-label">이메일:</label>
+									<div class="col-lg-8">
+										<div class="col-sm-6" style="padding: 0 10px 0 0 !important; margin: 0 !important;">
+											<input type="text" id="u_email" name="user_email1" class="form-control" placeholder="이메일" maxlength="16">
+										</div>
+										<div class="col-sm-6" style="padding: 0 !important; margin: 0 !important;">
+											<input type="text" id="customEmail" class="form-control" name="user_email2" style="display: none;" placeholder="이메일을 입력하세요"
+												disabled="disabled"> <select id="u_email2" name="user_email2" class="form-control" onchange="checkOption(this)">
+												<option value="">선택하세요</option>
+												<option value="gmail.com">gmail.com</option>
+												<option value="naver.com">naver.com</option>
+												<option value="daum.net">daum.net</option>
+												<option value="yahoo.com">yahoo.com</option>
+												<option value="custom">직접입력</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-lg-3 control-label">전화번호:</label>
+									<div class="col-lg-8">
+										<input class="form-control" type="text" value="전화번호">
+									</div>
+								</div>
+								<br>
+								<div class="form-group">
+									<div class="col-lg-12">
+										<button type="submit" class="btn btn-primary">수정하기</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<hr>
+				</div>
+			</form>
 
 		</div>
 	</div>

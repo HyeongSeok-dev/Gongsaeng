@@ -62,15 +62,15 @@
 				<div class="form-group">
 					<label for="userId" class="col-sm-2 control-label">아이디</label>
 					<div class="col-sm-10">
-						<input type="text" id="userId" name="user_id" class="form-control" placeholder="아이디 (영문자, 숫자 조합 8~16자리 필수(한글, 특수문자 사용불가 )"
-							maxlength="100" /> <span id="checkIdResult"></span>
+						<input type="text" id="userId" name="user_id" class="form-control" placeholder="아이디 (영문자, 숫자 조합 8~16자리 필수(한글, 특수문자 사용불가 )" maxlength="100" /> <span
+							id="checkIdResult"></span>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="passwd" class="col-sm-2 control-label">비밀번호</label>
 					<div class="col-sm-10">
-						<input type="password" id="passwd" name="user_passwd" class="form-control" placeholder="비밀번호 (영문, 숫자, 특수문자 조합 8~16자리) 권장"
-							maxlength="16"> <span id="checkPasswdResult"></span>
+						<input type="password" id="passwd" name="user_passwd" class="form-control" placeholder="비밀번호 (영문, 숫자, 특수문자 조합 8~16자리) 권장" maxlength="16">
+						<span id="checkPasswdResult"></span>
 					</div>
 				</div>
 				<div class="form-group">
@@ -83,8 +83,7 @@
 				<div class="form-group">
 					<label for="u_nick" class="col-sm-2 control-label">닉네임</label>
 					<div class="col-sm-10">
-						<input type="text" id="u_nick" name="user_nick" class="form-control" placeholder="닉네임" maxlength="100"> <span
-							id="checkNickResult"></span>
+						<input type="text" id="u_nick" name="user_nick" class="form-control" placeholder="닉네임" maxlength="100"> <span id="checkNickResult"></span>
 					</div>
 				</div>
 				<div class="form-group">
@@ -105,8 +104,8 @@
 						<input type="text" id="u_email" name="user_email1" class="form-control" placeholder="이메일" maxlength="16">
 					</div>
 					<div class="col-sm-5">
-						<input type="text" id="customEmail" class="form-control" name="user_email2" style="display: none;" placeholder="이메일을 입력하세요"
-							disabled="disabled"> <select id="u_email2" name="user_email2" class="form-control" onchange="checkOption(this)">
+						<input type="text" id="customEmail" class="form-control" name="user_email2" style="display: none;" placeholder="이메일을 입력하세요" disabled="disabled">
+						<select id="u_email2" name="user_email2" class="form-control" onchange="checkOption(this)">
 							<option value="">선택하세요</option>
 							<option value="gmail.com">gmail.com</option>
 							<option value="naver.com">naver.com</option>
@@ -119,8 +118,8 @@
 				<div class="form-group">
 					<label for="u_phone" class="col-sm-2 control-label">전화번호</label>
 					<div class="col-sm-10">
-						<input type="text" id="u_phone" name="user_phone" class="form-control" placeholder="전화번호 (' - ' 를 빼고 입력)" maxlength="100">
-						<span id="checkPhoneResult"></span>
+						<input type="text" id="u_phone" name="user_phone" class="form-control" placeholder="전화번호 (' - ' 를 빼고 입력)" maxlength="100"> <span
+							id="checkPhoneResult"></span>
 					</div>
 				</div>
 				<div class="form-group">
