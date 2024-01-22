@@ -16,7 +16,7 @@
 	<main>
 	<div class="out_block">
 	
-	<h1>장바구니</h1><!-- 커밋오류 -->
+	<h1>장바구니</h1><!-- 커밋오류수정 -->
 	<br>
 	
 	<div class="choice">
