@@ -25,7 +25,60 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/responsive.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
 
-	
+<script>
+// $("#notificationButton").on('click', function(e) {
+// 	  var offset = $(this).offset();
+// 	  $("#notificationDropdown").css({
+// 	    top: offset.top + $(this).outerHeight(),
+// 	    left: offset.left
+// 	  }).toggle();
+// });
+
+$(document).ready(function(){
+	  $('[data-toggle="popover"]').popover();   
+});
+
+document.querySelector('.dropdown').addEventListener('click', function (event) {
+	  event.stopPropagation();
+	  this.querySelector('.dropdown-content').classList.toggle('show');
+});
+
+	window.addEventListener('click', function () {
+	  document.querySelector('.dropdown-content.show')?.classList.remove('show');
+});
+</script>
+
+
+<style>
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	min-width: 300px;
+	z-index: 1000000;
+	background-color: #fff;
+	border: 1px solid #000;
+	right: 150px;
+	margin-top: -8px;
+}
+
+.dropdown-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+</style>
+
+
 <nav class="navbar navbar-default ">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -45,16 +98,58 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse yamm" id="navigation">
             <div class="button navbar-right">
-                <button class="navbar-btn nav-button wow bounceInRight login" onclick=" window.open('member/login')" data-wow-delay="0.45s">로그인</button>
-                <button class="navbar-btn nav-button wow fadeInRight" onclick=" window.open('submit-property')" data-wow-delay="0.48s">회원가입</button>
+                <button class="navbar-btn nav-button_not" onclick=" window.open('member/login')" data-wow-delay="0.45s">admin님</button>
+
+
+
+		<div class="dropdown">
+			<button class="navbar-btn nav-button wow bounceInRight login">알림<span class="badge2">22</span></button>
+			<div class="dropdown-content">
+				  
+				<div style="justify-content: center;">
+					<button>알림</button>
+					<button>공지사항</button>
+					<button>이벤트</button>
+				</div>
+				  
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-sm-3" style="background-color:lavender; text-align:center;">.col-sm-4</div>
+						<div class="col-sm-3" style="background-color:lavenderblush; text-align:center;">.col-sm-4</div>
+						<div class="col-sm-3" style="background-color:lavender; text-align:center;">.col-sm-4</div>
+					</div>
+				
+					<div class="row">
+						<div class="col-sm-12" style="background-color:lavender;">.col-sm-4</div>
+					</div>
+				</div>
+				  
+				  
+				  
+<!-- 				    <a href="#">알림 1</a> -->
+<!-- 				    <a href="#">알림 2</a> -->
+<!-- 				    <a href="#">알림 3</a> -->
+			</div>
+		</div>
+                
+                
+                
+                
+                
+                
+                
+                
+                <button class="navbar-btn nav-button wow fadeInRight" onclick=" window.open('submit-property')" data-wow-delay="0.48s">장바구니</button>
+                <%-- 장바구니에 담은 상품이 있을 경우 --%>
+<!--                 <button class="navbar-btn nav-button wow bounceInRight login" onclick=" window.open('submit-property')" data-wow-delay="0.48s">장바구니(5)</button> -->
             </div>
             
             <ul class="main-nav nav navbar-nav navbar-right">
             	
             	<li class="wow fadeInDown" data-wow-delay="0.2s" id="not_li">
             		<%-- 검색창 --%>
-		            <form action="main_search" class="css-4f6urn e1vfdeb40">
-<!-- 		            <form action="class/list" class="css-4f6urn e1vfdeb40"> -->
+<!-- 		            <form role="search" class="css-4f6urn e1vfdeb40"> -->
+		            <form action="class/list" class="css-4f6urn e1vfdeb40">
 						<div class="css-cdrjiy eeek7io3">
 							<div class="e1vj7tvj0 css-yypaje eeek7io1">
 								<input data-testid="search-input" placeholder="키워드를 입력하세요" type="text" maxlength="50" autocomplete="off" autocorrect="off" autocapitalize="off" class="css-xv0cfn eeek7io2" value="">
