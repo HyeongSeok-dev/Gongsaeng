@@ -175,7 +175,7 @@ function toggleButtons() {
                             <div class="col-sm-6 col-md-3 p0">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="property-1" >
+                                        <a href="product/detail" >
                                         	<img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
 										</a>
 										
@@ -196,7 +196,7 @@ function toggleButtons() {
                                     </div>
 
                                     <div class="item-entry overflow">
-                                        <h5><a href="property-1">도배 기초</a></h5>
+                                        <h5><a href="product/detail">도배 기초</a></h5>
 <!--                                         <div class="dot-hr"></div> -->
                                         <span class="pull-left">인테리어 업체<br>부산진구 전포동</span>
                                         <span class="proerty-price pull-right">300,000원</span>

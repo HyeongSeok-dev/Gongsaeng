@@ -40,10 +40,7 @@ public class HomeController {
 	public String classList() {
 		return "class_list";
 	}
-	@GetMapping("property")
-	public String property() {
-		return "property-1";
-	}
+
 	@GetMapping("test")
 	public String test() {
 		return "member/test";
