@@ -39,7 +39,9 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/global.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/my_bookmark.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
 <script src="${pageContext.request.contextPath }/resources/assets/js/modernizr-2.6.2.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/jquery-1.10.2.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/bootstrap/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/bootstrap-select.min.js"></script>
