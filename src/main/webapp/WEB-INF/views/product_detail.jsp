@@ -36,6 +36,9 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/lightslider.min.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/style.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/responsive.css">
+        <!-- js  -->
+        <script src="${pageContext.request.contextPath }/resources/js/product_detail.js"></script>
+        
     </head>
     <body>
 
@@ -173,7 +176,7 @@
 <!--         </nav> -->
         <!-- End of nav bar -->
         
-        <jsp:include page="top.jsp"/>
+        <jsp:include page="./inc/top.jsp"/>
 
 
         <!-- End page header -->
@@ -244,7 +247,7 @@
 												</c:when>
 												<c:otherwise>
 													<div class="favor_off">
-<!-- 													<span class="favorite_button"> 좋아요 </span> -->
+													<span class="favorite_button"> 좋아요 </span>
 													</div>
 												</c:otherwise>
 											</c:choose>
@@ -261,96 +264,94 @@
                             
                             
 
-                            <div class="property-meta entry-meta clearfix ">   
+<!--                             <div class="property-meta entry-meta clearfix ">    -->
 
-                                <div class="col-xs-6 col-sm-3 col-md-3 p-b-15">
-                                    <span class="property-info-icon icon-tag">                                        
-                                        <img src="${pageContext.request.contextPath }/resources/assets/img/icon/sale-orange.png">
-                                    </span>
-                                    <span class="property-info-entry">
-                                        <span class="property-info-label">Status</span>
-                                        <span class="property-info-value">For Sale</span>
-                                    </span>
-                                </div>
+<!--                                 <div class="col-xs-6 col-sm-3 col-md-3 p-b-15"> -->
+<!--                                     <span class="property-info-icon icon-tag">                                         -->
+<%--                                         <img src="${pageContext.request.contextPath }/resources/assets/img/icon/sale-orange.png"> --%>
+<!--                                     </span> -->
+<!--                                     <span class="property-info-entry"> -->
+<!--                                         <span class="property-info-label">Status</span> -->
+<!--                                         <span class="property-info-value">For Sale</span> -->
+<!--                                     </span> -->
+<!--                                 </div> -->
 
-                                <div class="col-xs-6 col-sm-3 col-md-3 p-b-15">
-                                    <span class="property-info icon-area">
-                                        <img src="${pageContext.request.contextPath }/resources/assets/img/icon/room-orange.png">
-                                    </span>
-                                    <span class="property-info-entry">
-                                        <span class="property-info-label">Area</span>
-                                        <span class="property-info-value">3500<b class="property-info-unit">Sq Ft</b></span>
-                                    </span>
-                                </div>
+<!--                                 <div class="col-xs-6 col-sm-3 col-md-3 p-b-15"> -->
+<!--                                     <span class="property-info icon-area"> -->
+<%--                                         <img src="${pageContext.request.contextPath }/resources/assets/img/icon/room-orange.png"> --%>
+<!--                                     </span> -->
+<!--                                     <span class="property-info-entry"> -->
+<!--                                         <span class="property-info-label">Area</span> -->
+<!--                                         <span class="property-info-value">3500<b class="property-info-unit">Sq Ft</b></span> -->
+<!--                                     </span> -->
+<!--                                 </div> -->
 
-                                <div class="col-xs-6 col-sm-3 col-md-3 p-b-15">
-                                    <span class="property-info-icon icon-bed">
-                                        <img src="${pageContext.request.contextPath }/resources/assets/img/icon/bed-orange.png">
-                                    </span>
-                                    <span class="property-info-entry">
-                                        <span class="property-info-label">Bedrooms</span>
-                                        <span class="property-info-value">3</span>
-                                    </span>
-                                </div>
+<!--                                 <div class="col-xs-6 col-sm-3 col-md-3 p-b-15"> -->
+<!--                                     <span class="property-info-icon icon-bed"> -->
+<%--                                         <img src="${pageContext.request.contextPath }/resources/assets/img/icon/bed-orange.png"> --%>
+<!--                                     </span> -->
+<!--                                     <span class="property-info-entry"> -->
+<!--                                         <span class="property-info-label">Bedrooms</span> -->
+<!--                                         <span class="property-info-value">3</span> -->
+<!--                                     </span> -->
+<!--                                 </div> -->
 
-                                <div class="col-xs-6 col-sm-3 col-md-3 p-b-15">
-                                    <span class="property-info-icon icon-bed">
-                                        <img src="${pageContext.request.contextPath }/resources/assets/img/icon/cars-orange.png">
-                                    </span>
-                                    <span class="property-info-entry">
-                                        <span class="property-info-label">Car garages</span>
-                                        <span class="property-info-value">1</span>
-                                    </span>
-                                </div>
+<!--                                 <div class="col-xs-6 col-sm-3 col-md-3 p-b-15"> -->
+<!--                                     <span class="property-info-icon icon-bed"> -->
+<%--                                         <img src="${pageContext.request.contextPath }/resources/assets/img/icon/cars-orange.png"> --%>
+<!--                                     </span> -->
+<!--                                     <span class="property-info-entry"> -->
+<!--                                         <span class="property-info-label">Car garages</span> -->
+<!--                                         <span class="property-info-value">1</span> -->
+<!--                                     </span> -->
+<!--                                 </div> -->
 
-                                <div class="col-xs-6 col-sm-3 col-md-3 p-b-15">
-                                    <span class="property-info-icon icon-bath">
-                                        <img src="${pageContext.request.contextPath }/resources/assets/img/icon/os-orange.png">
-                                    </span>
-                                    <span class="property-info-entry">
-                                        <span class="property-info-label">Bathrooms</span>
-                                        <span class="property-info-value">3.5</span>
-                                    </span>
-                                </div>
+<!--                                 <div class="col-xs-6 col-sm-3 col-md-3 p-b-15"> -->
+<!--                                     <span class="property-info-icon icon-bath"> -->
+<%--                                         <img src="${pageContext.request.contextPath }/resources/assets/img/icon/os-orange.png"> --%>
+<!--                                     </span> -->
+<!--                                     <span class="property-info-entry"> -->
+<!--                                         <span class="property-info-label">Bathrooms</span> -->
+<!--                                         <span class="property-info-value">3.5</span> -->
+<!--                                     </span> -->
+<!--                                 </div> -->
 
-                                <div class="col-xs-6 col-sm-3 col-md-3 p-b-15">
-                                    <span class="property-info-icon icon-garage">
-                                        <img src="${pageContext.request.contextPath }/resources/assets/img/icon/room-orange.png">
-                                    </span>
-                                    <span class="property-info-entry">
-                                        <span class="property-info-label">Garages</span>
-                                        <span class="property-info-value">2</span>
-                                    </span>
-                                </div>
+<!--                                 <div class="col-xs-6 col-sm-3 col-md-3 p-b-15"> -->
+<!--                                     <span class="property-info-icon icon-garage"> -->
+<%--                                         <img src="${pageContext.request.contextPath }/resources/assets/img/icon/room-orange.png"> --%>
+<!--                                     </span> -->
+<!--                                     <span class="property-info-entry"> -->
+<!--                                         <span class="property-info-label">Garages</span> -->
+<!--                                         <span class="property-info-value">2</span> -->
+<!--                                     </span> -->
+<!--                                 </div> -->
                                 
-                                <div class="col-xs-6 col-sm-3 col-md-3 p-b-15">
-                                    <span class="property-info-icon icon-garage">
-                                        <img src="${pageContext.request.contextPath }/resources/assets/img/icon/shawer-orange.png">
-                                    </span>
-                                    <span class="property-info-entry">
-                                        <span class="property-info-label">Garages</span>
-                                        <span class="property-info-value">2</span>
-                                    </span>
-                                </div>
+<!--                                 <div class="col-xs-6 col-sm-3 col-md-3 p-b-15"> -->
+<!--                                     <span class="property-info-icon icon-garage"> -->
+<%--                                         <img src="${pageContext.request.contextPath }/resources/assets/img/icon/shawer-orange.png"> --%>
+<!--                                     </span> -->
+<!--                                     <span class="property-info-entry"> -->
+<!--                                         <span class="property-info-label">Garages</span> -->
+<!--                                         <span class="property-info-value">2</span> -->
+<!--                                     </span> -->
+<!--                                 </div> -->
 
 
-                            </div>
+<!--                             </div> -->
               
-
-
-
 
 
                         <div class="similar-post-section padding-top-40"> 
                             <div id="prop-smlr-slide_0"> 
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="property-1.html" ><img src="${pageContext.request.contextPath }/resources/assets/img/property-1/review1.png"></a>
+                                        <a href="property-1.html" ><img src="${pageContext.request.contextPath }/resources/assets/img/property-1/review1.png" style="width: 100%; height:auto;"></a>
                                     </div>
                                     <div class="item-entry overflow">
                                         <a href="">
-                                 	       <img src="${pageContext.request.contextPath }/resources/assets/img/client-face1.png" class="img-circle">
-                                        </a>>
+                                 	       <img src="${pageContext.request.contextPath }/resources/assets/img/client-face1.png" class="img-circle reviewProImg">
+                                        </a>
+	                                        <h5><a href="property-1.html"> Super nice villa </a></h5>
                                         <div class="dot-hr"></div>
                                         <span class="pull-left">여기는 리뷰를 나타내는 곳입니다~!</span>
                                         
@@ -362,7 +363,7 @@
                                     </div>
                                     <div class="item-entry overflow">
                                         <a href="">
-                                 	       <img src="${pageContext.request.contextPath }/resources/assets/img/client-face1.png" class="img-circle">
+                                 	       <img src="${pageContext.request.contextPath }/resources/assets/img/client-face1.png" class="img-circle reviewProImg">
                                         </a>
                                         <div class="dot-hr"></div>
                                         <span class="pull-left">여기는 리뷰를 나타내는 곳입니다~!</span>
@@ -371,11 +372,12 @@
                                 </div> 
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="property-1.html" ><img src="${pageContext.request.contextPath }/resources/assets/img/property-1/review2.png"></a>
+                                        <a href="property-1.html" >
+                                        	<img src="${pageContext.request.contextPath }/resources/assets/img/property-1/review2.png" style="width: 100%; height:auto;">										</a>
                                     </div>
                                     <div class="item-entry overflow">
                                         <a href="">
-                                 	       <img src="${pageContext.request.contextPath }/resources/assets/img/client-face1.png" class="img-circle">
+                                 	       <img src="${pageContext.request.contextPath }/resources/assets/img/client-face1.png" class="img-circle reviewProImg">
                                         </a>
                                         <div class="dot-hr"></div>
                                         <span class="pull-left">여기는 리뷰를 나타내는 곳입니다~!</span>
@@ -387,13 +389,18 @@
                                     </div>
                                     <div class="item-entry overflow">
                                         <a href="">
-                                 	       <img src="${pageContext.request.contextPath }/resources/assets/img/client-face1.png" class="img-circle">
+                                 	       <img src="${pageContext.request.contextPath }/resources/assets/img/client-face1.png" class="img-circle reviewProImg">
                                         </a>
                                         <div class="dot-hr"></div>
                                         <span class="pull-left">여기는 리뷰를 나타내는 곳입니다~!</span>
                                     </div>
                                 </div> 
                             </div>
+                            <div class="ReviewSection__LinkWrapper-h5kv09-1 dzAqdb">
+								<a class="ReviewSection__StyledLink-h5kv09-2 PIawM" href="../review/detail">3개 후기 더보기
+									<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' viewBox='0 0 12 12'%3E %3Cpath fill='%230075EF' fill-rule='evenodd' d='M3.97 1.72c.293-.293.767-.293 1.06 0L9.31 6l-4.28 4.28c-.293.293-.767.293-1.06 0-.293-.293-.293-.767 0-1.06L7.19 6 3.97 2.78c-.293-.293-.293-.767 0-1.06z' clip-rule='evenodd'/%3E %3C/svg%3E" alt="arrow-blue">
+								</a>
+							</div>
                         </div>
 
 
@@ -401,38 +408,37 @@
 <!--                            
                             <!-- End additional-details area  -->
 
-                            <div class="section property-features">      
+<!--                             <div class="section property-features">       -->
 
-                                <h4 class="s-property-title">Features</h4>                            
-                                <ul>
-                                    <li><a href="properties">Swimming Pool</a></li>   
-                                    <li><a href="properties">3 Stories</a></li>
-                                    <li><a href="properties">Central Cooling</a></li>
-                                    <li><a href="properties">Jog Path 2</a></li>
-                                    <li><a href="properties">2 Lawn</a></li>
-                                    <li><a href="properties">Bike Path</a></li>
-                                </ul>
+<!--                                 <h4 class="s-property-title">Features</h4>                             -->
+<!--                                 <ul> -->
+<!--                                     <li><a href="properties">Swimming Pool</a></li>    -->
+<!--                                     <li><a href="properties">3 Stories</a></li> -->
+<!--                                     <li><a href="properties">Central Cooling</a></li> -->
+<!--                                     <li><a href="properties">Jog Path 2</a></li> -->
+<!--                                     <li><a href="properties">2 Lawn</a></li> -->
+<!--                                     <li><a href="properties">Bike Path</a></li> -->
+<!--                                 </ul> -->
 
-                            </div>
-                            <!-- End features area  -->
-
+<!--                             </div> -->
+<!--                             End features area  -->
+							<!-- 클래스 소개 -->
                             <div class="section property-video"> 
-                                <h4 class="s-property-title">Property Video</h4> 
+                                <h4 class="s-property-title">클래스 소개</h4> 
                                 <div class="video-thumb">
                                     <a class="video-popup" href="yout" title="Virtual Tour">
-                                        <img src="${pageContext.request.contextPath }/resources/assets/img/property-video.jpg" class="img-responsive wp-post-image" alt="Exterior">            
+                                        <img src="${pageContext.request.contextPath }/resources/assets/img/detail4.webp" class="img-responsive wp-post-image" alt="Exterior">            
+                                        <img src="${pageContext.request.contextPath }/resources/assets/img/detail3.webp" class="img-responsive wp-post-image" alt="Exterior">            
+                                        <img src="${pageContext.request.contextPath }/resources/assets/img/detail1.webp" class="img-responsive wp-post-image" alt="Exterior">            
+                                        <img src="${pageContext.request.contextPath }/resources/assets/img/detail2.webp" class="img-responsive wp-post-image" alt="Exterior">            
                                     </a>
                                 </div>
                             </div>
-                            <!-- End video area  -->
-                            
-                            
-
-  
-                            <!-- End video area  -->
-                            
                         </div>
                     </div>
+                    
+                    
+                    
 
 
                     <div class="col-md-4 p0">
@@ -449,8 +455,8 @@
                                             </div>
                                             <div class="col-xs-8 col-sm-8 ">
                                                 <h3 class="dealer-name">
-                                                    <a href="">홍길동</a><br>
-                                                    <span>테이블 장인</span>        
+ 	                                               <!-- 업체이름 -->
+                                                    <a href="">땡땡이 공방</a><br>
                                                 </h3>
                                                 <div class="dealer-social-media">
                                                     <a class="twitter" target="_blank" href="">
@@ -500,29 +506,15 @@
 									  <input type="date" id="reservation-date" name="reservation-date">
 									  
 									  
-									  <div>
-									  <label for="reservation-date">인원 선택:</label><br>
-										  <button id="minusBtn">-</button>
-										  <input type="text" id="count" value="1">
-										  <button id="plusBtn">+</button>
-									</div>
+									  
+							<div class="persons-group">
+							    <p>예약 인원</p>
+							    <input type="number" id="persons" name="persons" value="${search.persons}" min="1" max="20">
+							</div>
 									
-									<script>
-									  var count = document.getElementById("count");
-									  var minusBtn = document.getElementById("minusBtn");
-									  var plusBtn = document.getElementById("plusBtn");
 									
-									  minusBtn.onclick = function() {
-									    if(count.value > 1) {
-									      count.value = parseInt(count.value) - 1;
-									    }
-									  }
-									
-									  plusBtn.onclick = function() {
-									    count.value = parseInt(count.value) + 1;
-									  }
-									</script>
-									
+
+									<button onclick="window.open(cart)"></button>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="장바구니 담기">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									<input type="submit" value="신청하기">
                                         
@@ -568,7 +560,7 @@
 
           <!-- Footer area-->
         <div class="footer-area">
-			<jsp:include page="bottom.jsp"/>
+			<jsp:include page="./inc/bottom.jsp"/>
 		</div>
 <!--         <div class="footer-area"> -->
 

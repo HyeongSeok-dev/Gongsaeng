@@ -48,7 +48,7 @@ function addResIdx(res_idx) {
 <!-- 수정 -->
 </head>
 <body>
-<jsp:include page="../top.jsp"/>
+<jsp:include page="../inc/top.jsp"/>
 	<article id="reviewWriteForm">
 	<div class="container">
 		<form action="reviewWritePro" name="reviewWriteForm" method="POST" enctype="multipart/form-data">

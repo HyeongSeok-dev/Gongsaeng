@@ -15,6 +15,14 @@ public class ReviewController {
 	public String report() {
 		return "review/review_report";
 	}
+	@GetMapping("review/detail")
+	public String detail() {
+		return "review/review_detail";
+	}
+	@GetMapping("review/modify")
+	public String modify() {
+		return "review/review_modify";
+	}
 	
 	@GetMapping("product/detail")
 	public String productDetail() {

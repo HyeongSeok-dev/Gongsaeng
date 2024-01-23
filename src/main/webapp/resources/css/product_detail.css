@@ -1,4 +1,7 @@
 @charset "UTF-8";
+.favor_off{
+	text-align: right;
+}
 body {
 	font-family: Apple SD Gothic Neo, Noto Sans KR, sans-serif;
 	letter-spacing: -.93px;
@@ -19,6 +22,11 @@ body {
 .reviewimg{
 	margin-bottom : 13px;
 	height : 50px;	
+}
+
+.reviewProImg{
+	margin-bottom : 12px;
+	height: 50px;
 }
 
 * {
