@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+
 body {
 	margin-top: 20px;
 }
@@ -11,6 +12,8 @@ h1 {
     margin: 10px;
     font-size: 30px;
     color: #333;
+  margin-top: 100px;
+  padding: 70px;
 }
 
 .btn-success{
@@ -18,15 +21,16 @@ h1 {
     border-color: #333 !important;
 }
 
+.btn-success:active {
+    background-color: gray !important;
+    border-color: gray !important;
+}
+
 /* 제목(장바구니) */
 .div_form_header{
   text-align: center;
-  padding: 70px;
-  margin-top: 50px;
 }
 
-/* 버튼눌렀을때 */
-/* .payment-button:active { */
-/*     background-color: gray !important; */
-/*     border-color: gray !important; */
-/* } */
+.btn-block {
+    display: block;
+}
