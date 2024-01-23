@@ -7,6 +7,7 @@
     <title>회원가입 이용약관동의</title>
     <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet">
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/payment_agree.css">
+	<script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
 	<script src="${pageContext.request.contextPath }/resources/js/join_agree.js"></script>
 
 <style type="text/css">
