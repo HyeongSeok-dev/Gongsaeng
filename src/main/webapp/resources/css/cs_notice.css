@@ -1,0 +1,59 @@
+@charset "EUC-KR";
+
+body {
+    padding-top: 30px;
+}
+
+.notice_point {
+	border: 1px solid #f5f5f5;
+	border-radius: 4px;
+	padding: 7px 13px;
+}
+
+/*====================================================
+page-header
+======================================================*/
+.page-head{
+    background: #494C53 url("../assets/img/page-header.jpg") 
+        no-repeat scroll center top / cover;
+    color:#FFF;
+    position: relative;
+    min-height: 140px;
+}
+.page-head-content {
+    padding-top: 52px;
+    padding-bottom: 52px;
+}
+.page-head-content .page-title {
+    margin: 0px;
+    padding: 10px 16px;
+    font-size: 30px;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.content-area{
+    background-color: #FCFCFC; padding-bottom: 55px;
+}
+
+
+.cs_notice {
+   background-color: #000000;
+   color: #FFFFFF;
+   padding: 0.2em 0.6em 0.2em;
+   border: 1px solid #000000;
+   border-radius: 3px;
+   font-weight: 500;
+   font-size: 13px;
+   text-transform: uppercase;
+	}
+.cs_event {
+	    background-color: #FFFFFF;
+	    color: #000000;
+	    padding: 0.2em 0.6em 0.2em;
+	    border: 1px solid #000000;
+	    border-radius: 3px;
+	    font-weight: 500;
+	    font-size: 13px;
+	    text-transform: uppercase;
+	}
