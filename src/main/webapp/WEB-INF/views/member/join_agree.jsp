@@ -51,7 +51,8 @@
 <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
-
+<script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/join_agree.js"></script>
 </head>
 <body>
 	<jsp:include page="../inc/top.jsp"></jsp:include>
@@ -310,14 +311,14 @@
 		</div>
 		<br>
 		<!-- 전체동의 -->
-		<div id="agree">
-			<div class="checkbox">
-				<label><input type="checkbox" name="check" id="checkAll">[전체동의] 유의사항에 전체 동의 합니다.</label>
+		<div id="agree" onclick="checkAll()">
+			<div class="checkbox" onclick="checkAll()">
+				<label onclick="checkAll()"><input type="checkbox" name="check" id="checkAll" onclick="checkAll()">[전체동의] 유의사항에 전체 동의 합니다.</label>
 			</div>
 		</div>
 		<br>
 		<div class="col-xs-24 col-sm-12">
-			<button type="button" class="btn btn-primary" id="next" style="width: 100%" onclick="javascript:location.href='join'">다음</button>
+			<button type="button" class="btn btn-primary" id="next" style="width: 100%" onclick="next()">다음</button>
 		</div>
 	</div>
 </body>

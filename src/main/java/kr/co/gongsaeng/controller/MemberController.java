@@ -14,7 +14,7 @@ public class MemberController {
 	
 	@PostMapping("member/loginPro")
 	public String loginPro() {
-		return "redirect: ../";
+		return "redirect: /";
 	}
 	
 	@GetMapping("member/findId")

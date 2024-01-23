@@ -1,14 +1,11 @@
-$(document).ready(function() {
-	$(".allCheck").click(function() {
-		console.log("dd");
-		var isChecked = $(this).prop("checked");
-		
-		$("#checkbox_agree1").prop('checked', isChecked);
-		$("#checkbox_agree2").prop('checked', isChecked);
-		$("#checkbox_agree3").prop('checked', isChecked);
-	});
-});
+function checkAll() {
+	console.log("ddd");
+	var isChecked = $("#checkAll").prop("checked");
 
+	$("#checkbox_agree1").prop('checked', isChecked);
+	$("#checkbox_agree2").prop('checked', isChecked);
+	$("#checkbox_agree3").prop('checked', isChecked);
+};
 //필수항목 체크 안하면 포커스 이동
 function next() {
 
