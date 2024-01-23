@@ -38,6 +38,40 @@ public class AdminController {
 		return "admin/cs";
 	}
 	
+	//---------------------------
+	@GetMapping("admin/dashboard2")
+	public String dashboard2() {
+		return "admin/dashboard2";
+	}
+	@GetMapping("admin/typography")
+	public String typography() {
+		return "admin/typography";
+	}
+	@GetMapping("admin/upgrade")
+	public String upgrade() {
+		return "admin/upgrade";
+	}
+	@GetMapping("admin/icons")
+	public String icons() {
+		return "admin/icons";
+	}
+	@GetMapping("admin/notifications")
+	public String notifications() {
+		return "admin/notifications";
+	}
+	@GetMapping("admin/tables")
+	public String tables() {
+		return "admin/tables";
+	}
+	@GetMapping("admin/user2")
+	public String user2() {
+		return "admin/user2";
+	}
+	@GetMapping("admin/map")
+	public String map() {
+		return "admin/map";
+	}
+	
 	
 			
 }

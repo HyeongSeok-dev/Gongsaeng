@@ -3913,11 +3913,17 @@ Created using IcoMoon - icomoon.io
   color: #FFFFFF;
 }
 
+/* 원본 */
 .sidebar .nav li.active>a,
 .off-canvas-sidebar .nav li.active>a {
   background-color: #FFFFFF;
   box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1);
 }
+/* 원본살리고 수정 */
+/* .sidebar .nav li>a:active { */
+/*   background-color: #FFFFFF; */
+/*   box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1); */
+/* } */
 
 .sidebar .nav p,
 .off-canvas-sidebar .nav p {
@@ -4104,11 +4110,16 @@ Created using IcoMoon - icomoon.io
 .off-canvas-sidebar[data-color="orange"]:after {
   background: #f96332;
 }
-
+/* 원본임 */
 .sidebar[data-color="orange"] .nav li.active>a:not([data-toggle="collapse"]),
 .off-canvas-sidebar[data-color="orange"] .nav li.active>a:not([data-toggle="collapse"]) {
   color: #f96332;
 }
+
+/* 원본 살리고 수정임 */
+/* .sidebar[data-color="orange"] .nav li>a:active{ */
+/*   color: #f96332; */
+/* } */
 
 .sidebar[data-color="orange"] .nav li.active>a:not([data-toggle="collapse"]) i,
 .off-canvas-sidebar[data-color="orange"] .nav li.active>a:not([data-toggle="collapse"]) i {
