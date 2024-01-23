@@ -25,7 +25,110 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/responsive.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
 
+<script>
+// $("#notificationButton").on('click', function(e) {
+// 	  var offset = $(this).offset();
+// 	  $("#notificationDropdown").css({
+// 	    top: offset.top + $(this).outerHeight(),
+// 	    left: offset.left
+// 	  }).toggle();
+// });
+
+// $(document).ready(function(){
+//     $('.dropdown > button').click(function(e) {
+//         e.stopPropagation();
+//         $(this).next('.dropdown-content').toggleClass('show');
+//     });
+//     $(window).click(function() {
+//         $('.dropdown-content.show').removeClass('show');
+//     });
+// });
+function toggleDropdownMenu(event) {
+    event.stopPropagation(); // 이벤트 버블링 방지
+    var dropdownContent = document.getElementById('dropdown-content');
+    if (dropdownContent.style.display === 'none' || dropdownContent.style.display === '') {
+        dropdownContent.style.display = 'block';
+    } else {
+        dropdownContent.style.display = 'none';
+    }
+}
+
+// 페이지를 클릭했을 때 드롭다운 메뉴 숨기기
+// window.onclick = function(event) {
+//     if (!event.target.matches('.navbar-btn')) {
+//         var dropdownContent = document.getElementById('dropdown-content');
+//         if (dropdownContent.style.display === 'block') {
+//             dropdownContent.style.display = 'none';
+//         }
+//     }
+// }
+
+function notify_button(value) {
+	alert(value + "눌렀따!");
 	
+	if(value == 1) {
+		console.log("value = " + value);
+	}
+	if(value == 2) {
+		console.log("value = " + value);
+	}
+	if(value == 3) {
+		console.log("value = " + value);
+	}
+}
+</script>
+
+
+<style>
+.dropdown {
+	position: relative !important;
+	display: inline-block;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	min-width: 300px;
+	z-index: 1000000;
+	background-color: #fff;
+	right: 150px;
+	margin-top: -5px;
+	border-radius: 5px;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 10px;
+ 	inset: 40px -50px auto auto;
+}
+
+.dropdown-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+
+.notify_button {
+	background-color: rgba(0,0,0,0);
+	margin-top: 15px;
+	color: #000;
+    font-weight: 400;
+}
+.notify_p {
+    margin-top: 10px;
+    width: 300px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #000;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #e6e6e6;
+}
+</style>
+
+
 <nav class="navbar navbar-default ">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -45,16 +148,77 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse yamm" id="navigation">
             <div class="button navbar-right">
-                <button class="navbar-btn nav-button wow bounceInRight login" onclick=" window.open('member/login')" data-wow-delay="0.45s">로그인</button>
-                <button class="navbar-btn nav-button wow fadeInRight" onclick=" window.open('submit-property')" data-wow-delay="0.48s">회원가입</button>
+                <button class="navbar-btn nav-button_not" onclick=" window.open('member/login')" data-wow-delay="0.45s">admin님</button>
+
+
+		<div class="dropdown">
+			<button class="navbar-btn nav-button wow bounceInRight login" onclick="toggleDropdownMenu(event)">
+				알림<span class="badge2">3</span>
+			</button>
+			
+			<div class="dropdown-content">
+				  
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-sm-4" style="text-align:center;">
+							<button onclick="notify_button(this.value)" value="1" class="notify_button">알림</button>
+						</div>
+						<div class="col-sm-4" style="text-align:center;">
+							<button onclick="notify_button(this.value)" value="2" class="notify_button">공지사항</button>
+						</div>
+						<div class="col-sm-4" style="text-align:center;">
+							<button onclick="notify_button(this.value)" value="3" class="notify_button">이벤트</button>
+						</div>
+					</div>
+					
+					<div class="notify_content">
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="notify_p" style="margin-top: 15px;">
+									<b>01-19 18:00</b><br>
+									[미드센츄리모든학개론] 수업은 어떠셨나요? 수강후기를 남기시면 500포인트가 적립됩니다.
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="notify_p">
+									<b>01- 17 11:00</b><br>
+									프로 얼죽아를 위한 유투버 XXX님의 [홈카페 인테리어의 AtoZ] 지금 신청하세요!
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="notify_p" style="margin-bottom: 15px;">
+									<b>01- 17 11:00</b><br>
+									프로 얼죽아를 위한 유투버 XXX님의 [홈카페 인테리어의 AtoZ] 지금 신청하세요!
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+                
+                
+                
+                
+                
+                
+                
+                
+                <button class="navbar-btn nav-button wow fadeInRight" onclick=" window.open('submit-property')" data-wow-delay="0.48s">장바구니</button>
+                <%-- 장바구니에 담은 상품이 있을 경우 --%>
+<!--                 <button class="navbar-btn nav-button wow bounceInRight login" onclick=" window.open('submit-property')" data-wow-delay="0.48s">장바구니(5)</button> -->
             </div>
             
             <ul class="main-nav nav navbar-nav navbar-right">
             	
             	<li class="wow fadeInDown" data-wow-delay="0.2s" id="not_li">
             		<%-- 검색창 --%>
-		            <form action="main_search" class="css-4f6urn e1vfdeb40">
-<!-- 		            <form action="class/list" class="css-4f6urn e1vfdeb40"> -->
+<!-- 		            <form role="search" class="css-4f6urn e1vfdeb40"> -->
+		            <form action="class/list" class="css-4f6urn e1vfdeb40">
 						<div class="css-cdrjiy eeek7io3">
 							<div class="e1vj7tvj0 css-yypaje eeek7io1">
 								<input data-testid="search-input" placeholder="키워드를 입력하세요" type="text" maxlength="50" autocomplete="off" autocorrect="off" autocapitalize="off" class="css-xv0cfn eeek7io2" value="">

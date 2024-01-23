@@ -173,7 +173,7 @@
 <!--         </nav> -->
         <!-- End of nav bar -->
         
-        <jsp:include page="top.jsp"/>
+        <jsp:include page="./inc/top.jsp"/>
 
 
         <!-- End page header -->
@@ -568,7 +568,7 @@
 
           <!-- Footer area-->
         <div class="footer-area">
-			<jsp:include page="bottom.jsp"/>
+			<jsp:include page="./inc/bottom.jsp"/>
 		</div>
 <!--         <div class="footer-area"> -->
 

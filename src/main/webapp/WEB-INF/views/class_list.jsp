@@ -42,9 +42,9 @@
 	
 	<%-- 상단바 삽입 --%>
 	<%-- 로그인 전 --%>
-	<jsp:include page="top.jsp"/>
+	<jsp:include page="./inc/top.jsp"/>
 	<%-- 로그인 후 --%>
-<%-- 	<jsp:include page="top2.jsp"/> --%>
+<%-- 	<jsp:include page="./inc/top2.jsp"/> --%>
 
 
         <div class="page-head"> 
@@ -518,7 +518,7 @@
 	<!-- Footer area -->
 	<!-- 하단바 삽입-->
 	<div class="footer-area">
-		<jsp:include page="bottom.jsp"/>
+		<jsp:include page="./inc/bottom.jsp"/>
 	</div>
 	<!-- Footer area -->
 
