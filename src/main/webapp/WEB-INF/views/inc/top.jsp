@@ -12,7 +12,7 @@
 				<!--  로고임!! -->
 				<div class="main_logo_div">
 					<a id="navbar-brand" href="index"><img class="main_logo1"
-						src="${pageContext.request.contextPath }/resources/assets/img/logo2 (2).png" alt=""></a> <a id="navbar-brand" href="index"><img
+						src="${pageContext.request.contextPath }/resources/assets/img/logo2 (2).png" alt=""></a> <a id="navbar-brand" href="${pageContext.request.contextPath}"><img
 						class="main_logo2" src="${pageContext.request.contextPath }/resources/assets/img/logo3.png" alt=""></a>
 				</div>
 				<a id="navbar-brand" href="index"><img class="main_logo3"
@@ -22,7 +22,7 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse yamm" id="navigation">
 				<div class="button navbar-right">
-					<button class="navbar-btn nav-button wow bounceInRight login" onclick=" window.open('member/login')" data-wow-delay="0.45s">Login</button>
+					<a href="${pageContext.request.contextPath}/member/login"><button class="navbar-btn nav-button wow bounceInRight login" data-wow-delay="0.45s">Login</button></a>
 					<button class="navbar-btn nav-button wow fadeInRight" onclick=" window.open('submit-property')" data-wow-delay="0.48s">고객센터</button>
 					<!--                     	<a href=""><img src="${pageContext.request.contextPath }/resources/assets/img/free-icon-chat-5356106.png" alt="chat" width="50"></a> -->
 				</div>

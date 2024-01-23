@@ -37,7 +37,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/responsive.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/global.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/login.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/mypage.css">
 
 <script src="${pageContext.request.contextPath }/resources/assets/js/modernizr-2.6.2.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/jquery-1.10.2.min.js"></script>
@@ -51,64 +51,42 @@
 <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/mypage.js"></script>
 
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 </head>
 <body>
-	<jsp:include page="../inc/top.jsp"></jsp:include>
 	<div class="container">
-		<div class="omb_login">
-			<h3 class="omb_authTitle">로그인</h3>
-			<div class="row omb_row-sm-offset-3 omb_socialButtons">
-				<div class="col-xs-4 col-sm-2">
-					<a href="#" class="btn btn-lg btn-block omb_btn-naver"> <img
-						src="${pageContext.request.contextPath }/resources/img/naver_logo.svg" class="visible-xs logo_link "></img> <span
-						class="hidden-xs">네이버</span>
-					</a>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">클래스 신고</h4>
+					</div>
+					<div class="panel-body">
+						<form>
+							<div class="form-group">
+								<label><strong>어떤 점이 불편하셨나요?</strong></label>
+								<div class="radio">
+									<label><input type="radio" name="reportReason" value="1">반장님이 불친절해요</label>
+								</div>
+								<div class="radio">
+									<label><input type="radio" name="reportReason" value="2">클래스 내용이 게시된 것과 달라요</label>
+								</div>
+								<div class="radio">
+									<label><input type="radio" name="reportReason" value="3">추가적인 요금을 요구했어요</label>
+								</div>
+								<div class="radio">
+									<label><input type="radio" name="reportReason" value="4">기타</label>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="reportContent"><strong>신고 내용을 작성하세요</strong></label>
+								<textarea class="form-control" id="reportContent" rows="3"></textarea>
+							</div>
+							<button type="submit" class="btn btn-default">신고하기</button>
+						</form>
+					</div>
 				</div>
-				<div class="col-xs-4 col-sm-2">
-					<a href="#" class="btn btn-lg btn-block omb_btn-kakao"> <img
-						src="${pageContext.request.contextPath }/resources/img/kakao_logo.png" class="visible-xs logo_link"></img> <span
-						class="hidden-xs">카카오</span>
-					</a>
-				</div>
-				<div class="col-xs-4 col-sm-2">
-					<a href="#" class="btn btn-lg btn-block omb_btn-google"> <i class="fa fa-google-plus visible-xs"></i> <span
-						class="hidden-xs"> 구글</span>
-					</a>
-				</div>
-			</div>
-
-			<div class="row omb_row-sm-offset-3 omb_loginOr">
-				<div class="col-xs-12 col-sm-6"></div>
-			</div>
-
-			<div class="row omb_row-sm-offset-3">
-				<div class="col-xs-12 col-sm-6">
-					<form class="omb_loginForm" action="loginPro" autocomplete="off" method="POST">
-						<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-user"></i></span> <input type="text" class="form-control" name="username"
-								placeholder="아이디">
-						</div>
-						<br>
-						<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-lock"></i></span> <input type="password" class="form-control"
-								name="password" placeholder="비밀번호">
-						</div>
-						<br>
-						<button class="btn btn-lg btn-success btn-block " type="submit">로그인</button>
-						<button class="btn btn-lg btn-info btn-block " type="button" onclick="javascript:location.href='joinAgree'">회원가입</button>
-					</form>
-				</div>
-			</div>
-			<div class="row omb_row-sm-offset-3 ">
-				<div class="col-xs-3 col-md-2">
-					<label class="checkbox"> <input type="checkbox" value="">아이디 기억하기
-					</label> 
-				</div>
-				
-				<div class="col-xs-3 col-md-2 text-right checkbox" style="cursor: pointer;"><a onclick="javascript: window.open('findId', 'findId', 'width=500,height=300,top=50%, left=50%');" >아이디찾기</a></div>
-				<div class="col-xs-3 col-md-2 text-right radio" style="cursor: pointer;"><a onclick="javascript: window.open('findPasswd', 'findPasswd', 'width=500,height=400,top=50%, left=50%');" >비밀번호 찾기</a></div>
 			</div>
 		</div>
 	</div>

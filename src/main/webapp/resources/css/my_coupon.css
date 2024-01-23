@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+.thumbnail {
+	width: 60px;
+	height: 60px;
+	object-fit: cover;
+}
+
+.btn-block {
+	margin-top: 10px;
+}
