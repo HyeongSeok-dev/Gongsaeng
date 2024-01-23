@@ -18,6 +18,13 @@ h1 {
     border-color: #333 !important;
 }
 
+/* 제목(장바구니) */
+.div_form_header{
+  text-align: center;
+  padding: 70px;
+  margin-top: 50px;
+}
+
 /* 버튼눌렀을때 */
 /* .payment-button:active { */
 /*     background-color: gray !important; */

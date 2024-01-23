@@ -691,6 +691,8 @@ function toggleButtons() {
 	<hr>
 	<button onclick="location.href='${pageContext.request.contextPath}/payment'">payment</button>
 	<button onclick="location.href='${pageContext.request.contextPath}/payment/agree'">payment/agree</button>
+	<button onclick="location.href='${pageContext.request.contextPath}/cart'">cart</button>
+	<hr>
 	<button onclick="location.href='${pageContext.request.contextPath}/mypage/main'">mypage/main</button>
 	<!-- Footer area -->
 
