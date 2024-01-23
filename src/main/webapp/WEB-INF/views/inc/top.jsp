@@ -11,11 +11,11 @@
 				<!--                     <a id="navbar-brand" href="index"><img class="main_logo" src="${pageContext.request.contextPath }/resources/assets/img/logo1 (3).png" alt=""></a> -->
 				<!--  로고임!! -->
 				<div class="main_logo_div">
-					<a id="navbar-brand" href="index"><img class="main_logo1"
+					<a id="navbar-brand" href="${pageContext.request.contextPath}"><img class="main_logo1"
 						src="${pageContext.request.contextPath }/resources/assets/img/logo2 (2).png" alt=""></a> <a id="navbar-brand" href="${pageContext.request.contextPath}"><img
 						class="main_logo2" src="${pageContext.request.contextPath }/resources/assets/img/logo3.png" alt=""></a>
 				</div>
-				<a id="navbar-brand" href="index"><img class="main_logo3"
+				<a id="navbar-brand" href="${pageContext.request.contextPath}"><img class="main_logo3"
 					src="${pageContext.request.contextPath }/resources/assets/img/logo4.png" alt=""></a>
 			</div>
 

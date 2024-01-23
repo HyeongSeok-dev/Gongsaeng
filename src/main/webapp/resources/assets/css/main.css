@@ -781,7 +781,8 @@ label small{
 }
 
 .navbar-nav.navbar-right:last-child{
-    margin-right: 20px;
+	/* ### */
+    margin-right: 120px;
 }
 #navbar-brand {
 	padding: 0;
@@ -794,7 +795,7 @@ label small{
 .button.navbar-right {
 	/* ### */
 /*     padding-top: 10px; */
-    padding-top: 20px;
+    padding-top: 22px;
     
     margin-right: 0px;
 }
@@ -812,6 +813,10 @@ label small{
     -moz-transition: all 0.4s ease;
     -ms-transition: all 0.4s ease;
     transition: all 0.4s ease;
+}
+/* ### */
+.nav-button_not{
+	background-color: #fff;
 }
 .nav-button.login{
     background-color: #494C53;
@@ -845,7 +850,7 @@ label small{
     border-left: none;
     border-right: none;
     /* ### */
-	border-color: #FFF;
+/* 	border-color: #fff; */
 }
 .nav-tabs > li > a{
     color: #666;
@@ -1067,40 +1072,93 @@ label small{
     margin-left: 0;
 }
 
-.slider-area{
+/* 슬라이더 */
+/* 메인 슬라이더 */
+/* ### */
+.slider-area {
     position: relative;
-    /* ### */
+/*     height: 50vh; */
+}
+#bg-slider .item1, #bg-slider .item2 {
+    height: 100%;
+    overflow: hidden;
+}
+#bg-slider .item1 img, #bg-slider .item2 img {
+    width: 100%;
+    height: auto;
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    background-color: black;
+}
+.slider_img_responsive {
+    width: 100%;
+    cursor: pointer;
+    height: auto;
+    display: flex;
+/*     max-width: 1740px; */
+    max-width: 100%;
+    max-height: 500px;
+    align-self: center;
+    object-fit: contain;
+    align-items: center;
+    justify-self: center;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/* 이벤트 슬라이더 */
+.event_slider-area {
+    position: relative;
+	/* ### */
 /*     height: 800px; */
     height: 400px;
 }
-
-#bg-slider .item,#bg-slider .item2 {
+#event-slider .item3, #event-slider .item4 {
 	 height: 800px;
 	 overflow: hidden;
 }
-#bg-slider .item img{
+#event-slider .item3 img {
 	/* ### */
 /*     width: 80%; */
-    width: 100%;
+    width: 75%;
 /*     height: auto; */
-    height: 45rem;
+    height: 35rem;
  	display: block;
     margin-left: auto;
     margin-right: auto;
-    padding-bottom: 60px; 
+    padding-bottom: 60px;
+    background-color: #FCFCFC;
 }
-#bg-slider .item2 img{
+#event-slider .item4 img {
 /* 	overflow: hidden; */
 	/* ### */
 /*     width: 80%; */
-    width: 100%;
+    width: 75%;
 /*     height: auto; */
-    height: 45rem;
+    height: 35rem;
  	display: block;
     margin-left: auto;
     margin-right: auto;
     position: relative;
     padding-bottom: 60px;
+    background-color: #FCFCFC;
+}
+.event_slider_img_responsive {
+    width: 75%;
+    cursor: pointer;
+    height: auto;
+    display: flex;
+/*     max-width: 1740px; */
+    max-width: 75%;
+    max-height: 35rem;
+    align-self: center;
+    object-fit: contain;
+    align-items: center;
+    justify-self: center;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #FCFCFC;
 }
 
 .slider-content{
@@ -1148,6 +1206,8 @@ label small{
 
 .icon {
 	padding: 10px 30px;
+	/* ### */
+	margin-bottom: -40px;
 }
 .category {
 	padding-top: 10px;
@@ -1211,6 +1271,10 @@ page-header
     text-transform: uppercase;
     letter-spacing: 2px;
 }
+/* ### */
+#page-title-left {
+	justify-content: flex-start;
+}
 .content-area{
     background-color: #FCFCFC; padding-bottom: 55px;
 }
@@ -1225,7 +1289,9 @@ page-header
     color:#494C53;
 }
 .layout-switcher {
-    padding: 0px 10px;
+	/* ### */
+/*     padding: 0px 10px; */
+    padding: 17px 10px;
     text-align: right;
 }
 .search-widget fieldset .largesearch-btn{
@@ -1805,6 +1871,8 @@ proerty-th
 .proerty-th .proerty-item{
     background-color: #FFF; 
     margin: 10px;
+    /* ### */
+    border-radius: 10px;
 }
 .proerty-th .proerty-item .item-thumb{
     position: relative;
@@ -1839,16 +1907,17 @@ proerty-th
     letter-spacing: 2px;
     position: relative;
 }
-.proerty-th .proerty-item  .item-entry h5::after {
-    background: transparent url("../img/chevron-down.png") no-repeat scroll center center;
-    width: 15px;
-    left: 20px;
-    height: 7px;
-    content: "";
-    position: absolute;
-    bottom: -16px;
-    display: block;
-}
+/* ### */
+/* .proerty-th .proerty-item  .item-entry h5::after { */
+/*     background: transparent url("../img/chevron-down.png") no-repeat scroll center center; */
+/*     width: 15px; */
+/*     left: 20px; */
+/*     height: 7px; */
+/*     content: ""; */
+/*     position: absolute; */
+/*     bottom: -16px; */
+/*     display: block; */
+/* } */
 
 .proerty-status{
     font-weight: 600;
@@ -1974,7 +2043,8 @@ proerty-th-list
     margin-bottom: 5px;
 }
 .page-subheader .sort-by-list li.active a {
-    padding-right: 20px;
+	/* ### */
+/*     padding-right: 20px; */
     border-color: #3F3F3F;
     background-color: #444343;
     color: #FFF;
@@ -3154,13 +3224,13 @@ padding-bottom: 15px;
 
 
 
-/* 검색창 */
+/* 검색창(상단바) */
 .css-4f6urn {
-	margin: 0px 40px;
+	margin: 0px 80px;
 	display: flex;
 	-webkit-box-pack: center;
 	justify-content: center;
-	width: 85%;
+	width: 100%;
 	position: relative;
 	font-size: 14px;
 	/* ### */
@@ -3261,3 +3331,75 @@ padding-bottom: 15px;
 /* 	.top_container{width:1170px} */
 /* } */
 
+/* ### */
+#bottom-nav {
+	float: float !important;
+	margin-left: -20px;
+	margin-top: -10px;
+}
+
+/* ### */
+/* 배지 */
+.badge {
+    display: inline-block;
+    min-width: 10px;
+    padding: 2px 5px;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #777;
+    border-radius: 10px;
+    margin-top: -4px
+}
+.badge2 {
+    display: inline-block;
+    min-width: 10px;
+    padding: 2px 5px;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #777;
+    border-radius: 20px;
+    margin-top: -8px;
+    position: absolute;
+}
+
+
+/* ### */
+/* 하트(찜) 오버레이 */
+.jss95 {
+    top: 10px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.6);
+    padding-top: 6px;
+    border-radius: 20px;
+}
+.jss146 {
+    color: rgba(233, 30, 99, 0.8);
+    top: 10px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.6);
+    padding-top: 6px;
+    border-radius: 20px;
+}
+
+
+/* ### */
+/* 알림드롭다운 */
+#notifyDropdown {
+	position: absolute;
+}

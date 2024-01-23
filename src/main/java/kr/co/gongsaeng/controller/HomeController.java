@@ -36,14 +36,11 @@ public class HomeController {
 	public String main() {
 		return "main";
 	}
-	@GetMapping("properties")
-	public String properties() {
-		return "properties-3";
+	@GetMapping("class/list")
+	public String classList() {
+		return "class_list";
 	}
-	@GetMapping("property")
-	public String property() {
-		return "property-1";
-	}
+
 	@GetMapping("test")
 	public String test() {
 		return "member/test";

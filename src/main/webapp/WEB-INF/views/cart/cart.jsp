@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<<<<<<< HEAD
 <title>Insert title here</title>
 <meta name="description" content="GARO is a real-estate template">
 	<meta name="author" content="Kimarotec">
@@ -43,6 +44,13 @@
 	
 	
 	
+=======
+<title>장바구니</title>
+<link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/cart.css">
+<script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script> 
+
+>>>>>>> branch 'master' of https://github.com/HyeongSeok-dev/Gongsaeng
 </head>
 <body>
 <div class="container">
