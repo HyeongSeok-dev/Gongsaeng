@@ -39,6 +39,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/cs_faq.css">
 
         <script src="${pageContext.request.contextPath }/resources/assets/js/modernizr-2.6.2.min.js"></script>
+        <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
         <script src="${pageContext.request.contextPath }/resources/assets/js/jquery-1.10.2.min.js"></script> 
         <script src="${pageContext.request.contextPath }/resources/bootstrap/js/bootstrap.min.js"></script>
         <script src="${pageContext.request.contextPath }/resources/assets/js/bootstrap-select.min.js"></script>
