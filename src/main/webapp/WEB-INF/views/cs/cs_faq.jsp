@@ -66,9 +66,9 @@
 		<br>
 		<br>
         <nav>
-			  <div class="container">
+			  <div class="container row" style="float: none; margin:100 auto;">
 			    <div class="faq_row">
-			        <div class="col-md-9 col-md-offset-3">
+			        <div class="col-md-12 col-md-offset-3">
 						<div>
 			                <form action="" name="">
 				                <div>

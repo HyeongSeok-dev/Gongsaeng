@@ -38,18 +38,18 @@
     	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/global.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/cs_notice.css">
        
-		<script src="assets/js/modernizr-2.6.2.min.js"></script>
-        <script src="assets/js/jquery-1.10.2.min.js"></script> 
-        <script src="bootstrap/js/bootstrap.min.js"></script>
-        <script src="assets/js/bootstrap-select.min.js"></script>
-        <script src="assets/js/bootstrap-hover-dropdown.js"></script>
-        <script src="assets/js/easypiechart.min.js"></script>
-        <script src="assets/js/jquery.easypiechart.min.js"></script>
-        <script src="assets/js/owl.carousel.min.js"></script>
-        <script src="assets/js/wow.js"></script>
-        <script src="assets/js/icheck.min.js"></script>
-        <script src="assets/js/price-range.js"></script>
-        <script src="assets/js/main.js"></script>
+		<script src="${pageContext.request.contextPath }/resources/assets/js/modernizr-2.6.2.min.js"></script>
+        <script src="${pageContext.request.contextPath }/resources/assets/js/jquery-1.10.2.min.js"></script> 
+        <script src="${pageContext.request.contextPath }/resources/bootstrap/js/bootstrap.min.js"></script>
+        <script src="${pageContext.request.contextPath }/resources/assets/js/bootstrap-select.min.js"></script>
+        <script src="${pageContext.request.contextPath }/resources/assets/js/bootstrap-hover-dropdown.js"></script>
+        <script src="${pageContext.request.contextPath }/resources/assets/js/easypiechart.min.js"></script>
+        <script src="${pageContext.request.contextPath }/resources/assets/js/jquery.easypiechart.min.js"></script>
+        <script src="${pageContext.request.contextPath }/resources/assets/js/owl.carousel.min.js"></script>
+        <script src="${pageContext.request.contextPath }/resources/assets/js/wow.js"></script>
+        <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
+        <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
+        <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
     </head>
     <body>
      <jsp:include page="../inc/top.jsp"></jsp:include>
