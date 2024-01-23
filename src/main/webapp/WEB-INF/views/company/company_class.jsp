@@ -93,7 +93,7 @@ a {
 </head>
 
 <body class="">
-  <div class="wrapper ">
+<!--   <div class="wrapper "> -->
     <div class="sidebar" data-color="orange">
             <jsp:include page="./sidebar_wrapper.jsp"/>
     </div>
@@ -208,7 +208,7 @@ a {
 <div>
 <a class="btn btn-primary" href="#"><i class="uil uil-filter"></i>초기화</a>
 <a class="btn btn-success ms-2" href="#"><i class="uil uil-cog"></i>검색</a>
-<a class="btn btn-success ms-2" href="#"><i class="uil uil-cog"></i>클래스 등록</a>
+<!-- <a class="btn btn-success ms-2" href="#"><i class="uil uil-cog"></i>클래스 등록</a> -->
 </div>
 </div>
 </div>

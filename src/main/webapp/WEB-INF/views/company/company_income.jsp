@@ -24,11 +24,11 @@
 </head>
 
 <body class="">
-  <div class="wrapper ">
+<!--   <div class="wrapper "> -->
     <div class="sidebar" data-color="orange">
-
-
-    </div>
+      <jsp:include page="./sidebar_wrapper.jsp"/>
+      </div>
+<!--     </div> -->
     <div class="main-panel" id="main-panel">
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">

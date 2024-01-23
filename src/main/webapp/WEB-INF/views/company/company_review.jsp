@@ -69,10 +69,9 @@
 </head>
 
 <body class="">
-  <div class="wrapper ">
+<!--   <div class="wrapper "> -->
     <div class="sidebar" data-color="orange">
-            <!-- Include sidebar_wrapper.jsp -->
-            <jsp:include page="./sidebar_wrapper.jsp"/>
+       <jsp:include page="./sidebar_wrapper.jsp"/>
     </div>
     <div class="main-panel" id="main-panel">
       <!-- Navbar -->

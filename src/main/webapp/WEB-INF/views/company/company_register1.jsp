@@ -106,69 +106,7 @@ $(".imgAdd").click(function(){
 <body class="클래스 등록">
   <div class="wrapper ">
     <div class="sidebar" data-color="orange">
-      <!--
-        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
-    -->
-      <div class="logo">
-        <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-          CT
-        </a>
-        <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-          Creative Tim
-        </a>
-      </div>
-      <div class="sidebar-wrapper" id="sidebar-wrapper">
-        <ul class="nav">
-          <li>
-            <a href="./dashboard.html">
-              <i class="now-ui-icons design_app"></i>
-              <p>Dashboard</p>
-            </a>
-          </li>
-          <li>
-            <a href="./icons.html">
-              <i class="now-ui-icons education_atom"></i>
-              <p>Icons</p>
-            </a>
-          </li>
-          <li>
-            <a href="./map.html">
-              <i class="now-ui-icons location_map-big"></i>
-              <p>Maps</p>
-            </a>
-          </li>
-          <li>
-            <a href="./notifications.html">
-              <i class="now-ui-icons ui-1_bell-53"></i>
-              <p>Notifications</p>
-            </a>
-          </li>
-          <li class="active ">
-            <a href="./user.html">
-              <i class="now-ui-icons users_single-02"></i>
-              <p>User Profile</p>
-            </a>
-          </li>
-          <li>
-            <a href="./tables.html">
-              <i class="now-ui-icons design_bullet-list-67"></i>
-              <p>Table List</p>
-            </a>
-          </li>
-          <li>
-            <a href="./typography.html">
-              <i class="now-ui-icons text_caps-small"></i>
-              <p>Typography</p>
-            </a>
-          </li>
-          <li class="active-pro">
-            <a href="./upgrade.html">
-              <i class="now-ui-icons arrows-1_cloud-download-93"></i>
-              <p>Upgrade to PRO</p>
-            </a>
-          </li>
-        </ul>
-      </div>
+            <jsp:include page="./sidebar_wrapper.jsp"/>
     </div>
     <div class="main-panel" id="main-panel">
       <!-- Navbar -->
@@ -242,7 +180,7 @@ $(".imgAdd").click(function(){
           <div class="col-md-8">
             <div class="card">
               <div class="card-header">
-                <h5 class="title">클래스 등록 (스케줄 및 부가정보)</h5>
+                <h5 class="title">클래스 등록 - 기본 정보</h5>
               </div>
               <div class="card-body">
                 <form>
@@ -259,18 +197,15 @@ $(".imgAdd").click(function(){
                     </div>
                     <div class="col-md-4 pr-1">
                       <div class="form-group">
-                        <label>클래스 소요 시간</label>
+                        <label>클래스 대분류</label>
                         <select class="form-control">
-                        	<option>1시간</option> 
-                        	<option>2시간</option> 
-                        	<option>3시간</option> 
-                        	<option>4시간</option> 
-                        	<option>5시간</option> 
-                        	<option>6시간</option> 
-                        	<option>7시간</option> 
-                        	<option>8시간</option> 
-                        	<option>9시간</option> 
-                        	<option>10시간</option> 
+                        	<option>바닥 시공</option> 
+                        	<option>벽/천장 시공</option> 
+                        	<option>부분 인테리어</option> 
+                        	<option>야외 시공</option> 
+                        	<option>종합 인테리어</option> 
+                        	<option>기타 홈인테리어</option> 
+                        	<option>기타 시공</option> 
                         </select>
 <!--                         <input type="text" class="form-control" placeholder="Company" value="Creative Code Inc."> -->
                       </div>
@@ -340,7 +275,7 @@ $(".imgAdd").click(function(){
               </div>
             </div>
             <button type="button" class="btn btn-danger">취소</button>
-            <button type="button" class="btn btn-default">다음</button>
+			<button type="button" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/company/class/register2'">다음</button>
           </div>
           <div class="col-md-4">
             <div class="card card-user">

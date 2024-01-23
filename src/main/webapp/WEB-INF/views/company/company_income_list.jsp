@@ -69,11 +69,13 @@
 </head>
 
 <body class="">
-  <div class="wrapper ">
+<!--   <div class="wrapper "> -->
     <div class="sidebar" data-color="orange">
-    		<jsp:include page="./sidebar_wrapper.jsp" />
-    
-   </div>
+      <!--
+        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
+    -->
+     <jsp:include page="./sidebar_wrapper.jsp"/>
+    </div>
     <div class="main-panel" id="main-panel">
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">

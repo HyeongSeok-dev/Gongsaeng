@@ -25,8 +25,7 @@
 
 <body class="">
     <div class="wrapper">
-<!--         <div class="sidebar" data-color="orange"> -->
-        <div class="sidebar" data-color="grey">
+        <div class="sidebar" data-color="orange">
             <!-- Include sidebar_wrapper.jsp -->
             <jsp:include page="./sidebar_wrapper.jsp"/>
         </div>

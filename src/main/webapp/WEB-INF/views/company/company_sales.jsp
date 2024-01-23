@@ -177,11 +177,11 @@ body {
 					<div class="card">
 						<div class="card-header"></div>
 						<div class="card-body">
-								<div class="btn-group">
-		  <button type="button" class="btn btn-primary">일간</button>
-		  <button type="button" class="btn btn-primary">주간</button>
-		  <button type="button" class="btn btn-primary">연간</button>
-		</div>
+							<div class="btn-group">
+								<button type="button" class="btn btn-primary">일간</button>
+								<button type="button" class="btn btn-primary">주간</button>
+								<button type="button" class="btn btn-primary">연간</button>
+							</div>
 							<div class="container">
 								<div class="row">
 									<div class="col-xl-12">

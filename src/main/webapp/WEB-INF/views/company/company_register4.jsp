@@ -45,13 +45,12 @@
 </script>
 </head>
 <body class="클래스 등록">
-	<div class="wrapper">
-		<div class="sidebar" data-color="orange">
-			<!--
-        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
-    -->
-    <jsp:include page="./sidebar_wrapper.jsp"/>
-		<div class="main-panel" id="main-panel">
+    <div class="wrapper">
+        <div class="sidebar" data-color="orange">
+            <!-- Include sidebar_wrapper.jsp -->
+            <jsp:include page="./sidebar_wrapper.jsp"/>
+        </div>
+        <div class="main-panel" id="main-panel">
 			<!-- Navbar -->
 			<nav
 				class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
@@ -149,7 +148,7 @@
 							</div>
 						</div>
 						<button type="button" class="btn btn-danger">취소</button>
-						<button type="button" class="btn btn-default">다음</button>
+						<button type="button" class="btn btn-default">검수 신청</button>
 					</div>
 					<div class="col-md-4">
 						<div class="card card-user">

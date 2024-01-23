@@ -101,6 +101,11 @@ public class CompanyController {
 		return "company/company_coupon";
 	}
 	
+	@GetMapping("company/profile")
+	public String company_profile() {
+		return "company/company_profile";
+	}
+	
 	
 	
 }

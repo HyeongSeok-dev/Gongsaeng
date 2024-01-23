@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 			<div class="logo">
 				<a href="http://www.creative-tim.com" class="simple-text logo-mini">
-					공생 |</a> <a href="http://www.creative-tim.com"
+					공생  |</a> <a href="http://www.creative-tim.com"
 					class="simple-text logo-normal"> 반장님 페이지</a>
 			</div>
 <div class="sidebar-wrapper" id="sidebar-wrapper">

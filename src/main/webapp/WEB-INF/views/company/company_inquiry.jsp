@@ -85,7 +85,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="#pablo">반장 커뮤니티</a>
+            <a class="navbar-brand" href="#pablo">반장 1:1문의</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -140,7 +140,7 @@
       <!-- End Navbar -->
       <div class="panel-header">
         <div class="header text-center">
-          <h2 class="title">반장 커뮤니티</h2>
+          <h2 class="title">반장 1:1문의</h2>
           <p class="category">Handcrafted by our friend <a target="_blank" href="https://github.com/mouse0270">Robert McIntosh</a>. Please checkout the <a href="http://bootstrap-notify.remabledesigns.com/" target="_blank">full documentation.</a></p>
         </div>
       </div>

@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
-<html>="en">
+<!-- <html>="en"> -->
 
 <head>
   <meta charset="utf-8" />
