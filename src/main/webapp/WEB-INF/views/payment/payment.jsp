@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>결제하기</title>
+
 <link href="${pageContext.request.contextPath }/resources/css/payment.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet" type="text/css">
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
@@ -14,6 +15,10 @@
 <!-- <script src="https://cdn.portone.io/v2/browser-sdk.js"></script> -->
 <script src="${pageContext.request.contextPath }/resources/js/payment.js"></script>
 <%-- <script src="${pageContext.request.contextPath }/resources/js/payment_API.js"></script> --%>
+
+
+
+
 <script type="text/javascript"> 
 	function paymentAgreeView() {
 			/* 팝업창 중앙 정렬 */
