@@ -1156,15 +1156,15 @@ label small{
 page-header
 ======================================================*/
 .page-head{
-    background: #494C53 url("../img/page-header.jpg") 
+    background: #494C53 
         no-repeat scroll center top / cover;
     color:#FFF;
     position: relative;
-    min-height: 140px;
+    min-height: 100px;
 }
 .page-head-content {
-    padding-top: 52px;
-    padding-bottom: 52px;
+    padding-top: 32px;
+    padding-bottom: 32px;
 }
 .page-head-content .page-title {
     margin: 0px;
@@ -2869,8 +2869,8 @@ padding-bottom: 15px;
 /*FOOOTER*/
 .footer-area{
 border-top: 1px solid #D1D1D1;
-background: #555 url("../img/bg-footer.jpg") repeat scroll 0% 0%;
-color: #535353;
+/* background: #555 url("../img/bg-footer.jpg") repeat scroll 0% 0%; */
+/* color: #535353; */
 }
 .footer{
 padding: 0px 0px 60px;

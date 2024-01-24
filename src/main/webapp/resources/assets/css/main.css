@@ -1256,15 +1256,15 @@ label small{
 page-header
 ======================================================*/
 .page-head{
-/*     background: #494C53; */
-    background: rgba( 73, 76, 83, 0.8 ); /* #494C53색상에 투명도 추가 */
+ 	background: #494C53 
+        no-repeat scroll center top / cover;
     color:#FFF;
     position: relative;
-    min-height: 38px;
+    min-height: 100px;
 }
 .page-head-content {
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 32px;
+    padding-bottom: 32px;
 }
 .page-head-content .page-title {
     margin: 0px;

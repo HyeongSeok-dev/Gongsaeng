@@ -17,9 +17,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<!-- 추가함 -->
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/event.css" type="text/css">
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
-		<link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square.css" rel="stylesheet">
 		
 		
 <!--         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'> -->
@@ -41,8 +38,11 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/owl.theme.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/owl.transitions.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/lightslider.min.css">
-<%--         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/style.css"> --%>
+        <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/style.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/responsive.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/event.css" type="text/css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
+		<link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square.css" rel="stylesheet">
     </head>
     <body>
 
@@ -51,18 +51,10 @@
         </div>
         
         <%-- 상단바 삽입 --%>
-		<jsp:include page="../top.jsp"/>
+		<jsp:include page="../inc/top.jsp"/>
 
 
 		<section>
-			<nav class="css-19vu3z9">
-				<div class="css-1m8o79i">
-					<div class="css-k008qs">
-						<div class="css-1yi93iz">출석체크 이벤트</div>
-						<div class="css-p4ywi4">공생 이벤트</div>
-					</div>
-				</div>
-			</nav>
 		
 	        <div class="page-head"> 
 	            <div class="container">
@@ -74,9 +66,17 @@
 	            </div>
 	        </div>
 	        <!-- End page header -->
+			<nav class="css-19vu3z9">
+				<div class="css-1m8o79i">
+					<div class="css-k008qs">
+						<div class="css-1yi93iz">출석체크 이벤트</div>
+						<div class="css-p4ywi4">공생 이벤트</div>
+					</div>
+				</div>
+			</nav>
 	
 	        <!-- property area -->
-	        <div class="content-area single-property" style="background-color: #FCFCFC;">&nbsp;
+	        <div class="content-area single-property">&nbsp;
 				<div class="container">
 					<h3 class="h">1월 출석 현황</h3>
 					<div class="check_container">
@@ -158,8 +158,8 @@
 								<h4 class="h">매일매일 출석체크 하세요!</h4>
 								<h5 class="h">출석체크 기간 : 매달 1일 ~ 말일</h5>
 								
-								<div>XXX님 출석 횟수</div>
-								<div>0회 출석체크중</div>
+								<h5 class="h">XXX님 출석 횟수</h5>
+								<div class="h">0회 출석체크중</div>
 								
 								<ul>
 									<li>출석 1회마다: 10P</li>	
@@ -175,17 +175,10 @@
 				</div>
 	        </div>
 			
-			<div class="page-head"> 
-	            <div class="container">
-	                <div class="row">
-	                    <div class="page-head-content">
-	                        <h1 class="page-title">공생 이벤트</h1> 
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
+			
 	        
 	        <div class="container">
+	        	<h2>공생 이벤트</h2>
 				<div class="event_container">
 					<table class="table table-hover event_table">
 						<thead>
@@ -201,6 +194,21 @@
 								<td class="event_td event_subject">이벤트</td>
 								<td class="event_td event_date">등록일</td>
 							</tr>
+							<tr>
+								<td class="event_td event_num">2</td>
+								<td class="event_td event_subject">이벤트</td>
+								<td class="event_td event_date">등록일</td>
+							</tr>
+							<tr>
+								<td class="event_td event_num">3</td>
+								<td class="event_td event_subject">이벤트</td>
+								<td class="event_td event_date">등록일</td>
+							</tr>
+							<tr>
+								<td class="event_td event_num">4</td>
+								<td class="event_td event_subject">이벤트</td>
+								<td class="event_td event_date">등록일</td>
+							</tr>
 						</tbody>	
 					</table>
 				</div>
@@ -210,7 +218,7 @@
 		</section>
           <!-- Footer area-->
         <div class="footer-area">
-            <jsp:include page="../bottom.jsp"/>
+            <jsp:include page="../inc/bottom.jsp"/>
         </div>
           
         
