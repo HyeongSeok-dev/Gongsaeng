@@ -32,10 +32,6 @@ public class HomeController {
 		return "main";
 	}
 	
-	@GetMapping("main")
-	public String main() {
-		return "main";
-	}
 	@GetMapping("class/list")
 	public String classList() {
 		return "class_list";

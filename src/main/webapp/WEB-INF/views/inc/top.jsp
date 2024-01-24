@@ -37,16 +37,16 @@
                 <span class="icon-bar"></span>
             </button>
             <div class="main_logo_div">
-				<a id="navbar-brand" href="main"><img class="main_logo1" src="${pageContext.request.contextPath}/resources/assets/img/logo2 (2).png" alt=""></a>
-				<a id="navbar-brand" href="main"><img class="main_logo2" src="${pageContext.request.contextPath}/resources/assets/img/logo3.png" alt=""></a>
+				<a id="navbar-brand" href="${pageContext.request.contextPath}"><img class="main_logo1" src="${pageContext.request.contextPath}/resources/assets/img/logo2 (2).png" alt=""></a>
+				<a id="navbar-brand" href="${pageContext.request.contextPath}"><img class="main_logo2" src="${pageContext.request.contextPath}/resources/assets/img/logo3.png" alt=""></a>
             </div>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse yamm" id="navigation">
             <div class="button navbar-right">
-                <button class="navbar-btn nav-button wow bounceInRight login" onclick=" window.open('member/login')" data-wow-delay="0.45s">로그인</button>
-                <button class="navbar-btn nav-button wow fadeInRight" onclick=" window.open('submit-property')" data-wow-delay="0.48s">회원가입</button>
+                <button class="navbar-btn nav-button wow bounceInRight login" onclick=" window.open('${pageContext.request.contextPath}/member/login')" data-wow-delay="0.45s">로그인</button>
+                <button class="navbar-btn nav-button wow fadeInRight" onclick=" window.open('${pageContext.request.contextPath}/member/join')" data-wow-delay="0.48s">회원가입</button>
             </div>
             
             <ul class="main-nav nav navbar-nav navbar-right">
@@ -100,9 +100,9 @@
                     </ul>
                 </li>
 
-                <li class="wow fadeInDown" data-wow-delay="0.2s"><a class="" href="properties">커뮤니티</a></li>
-                <li class="wow fadeInDown" data-wow-delay="0.3s"><a class="" href="event">이벤트</a></li>
-                <li class="wow fadeInDown" data-wow-delay="0.3s"><a class="" href="ceo">고객센터</a></li>
+                <li class="wow fadeInDown" data-wow-delay="0.2s"><a class="" href="${pageContext.request.contextPath}/community/together">커뮤니티</a></li>
+                <li class="wow fadeInDown" data-wow-delay="0.3s"><a class="" href="${pageContext.request.contextPath}/event">이벤트</a></li>
+                <li class="wow fadeInDown" data-wow-delay="0.3s"><a class="" href="${pageContext.request.contextPath}/cs/notice">고객센터</a></li>
             </ul>
         </div>
     </div>
