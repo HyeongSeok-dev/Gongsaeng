@@ -29,7 +29,7 @@
 <link href="${pageContext.request.contextPath }/resources/assets/css/animate.css" rel="stylesheet" media="screen">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/bootstrap-select.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/icheck.min_all.css">
+<%-- <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/icheck.min_all.css"> --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/price-range.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/owl.carousel.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/owl.theme.css">
@@ -48,10 +48,9 @@
 <script src="${pageContext.request.contextPath }/resources/assets/js/jquery.easypiechart.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/owl.carousel.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/wow.js"></script>
-<script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
+<%-- <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script> --%>
 <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
-<script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
-<script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
+<script src="${pageContext.request.contextPath }/resources/assets/js/main_noicheck.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/join_agree.js"></script>
 </head>
 <body>
@@ -253,8 +252,9 @@
 공고일자 : 2023년 12월 21일
 시행일자 : 2020년 1월 21일
 				</textarea>
-				<div class="checkbox">
-					<label><input type="checkbox" name="agree" id="checkbox_agree1">[필수]이용약관에 동의합니다.</label>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" name="agree" id="checkbox_agree1" style="width: 15px;"> <label
+						class="form-check-label" for="checkbox_agree1"> [필수] 이용약관에 동의합니다. </label>
 				</div>
 			</section>
 		</div>
@@ -283,8 +283,9 @@
 *서비스 제공을 위해서 반드시 필요한 최소한의 개인정보이므로 동의를 하셔야 서비스 이용이 가능합니다.
 *이 외 서비스 이용과정에서 별도 동의를 통해 추가정보 수집이 있을 수 있습니다.
 				</textarea>
-				<div class="checkbox">
-					<label><input type="checkbox" name="agree" id="checkbox_agree2">[필수]개인정보 수집 및 이용에 동의합니다.</label>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" name="agree" id="checkbox_agree2" style="width: 15px;"> <label
+						class="form-check-label" for="checkbox_agree2"> [필수]개인정보 수집 및 이용에 동의합니다. </label>
 				</div>
 			</section>
 		</div>
@@ -304,16 +305,18 @@
 *신동의 여부 및 자세한 설정은 마이페이지 > 광고성 정보수신 설정하기에서 언제든지 변경할 수 있으며, 수신동의를 철회할 경우, 광고성 정보를 발송하지 않습니다.
 				
 				</textarea>
-				<div class="checkbox">
-					<label><input type="checkbox" name="agree" id="checkbox_agree3">[선택]광고성 정보 수신에 동의합니다.</label>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" name="agree" id="checkbox_agree3" style="width: 15px;"> <label
+						class="form-check-label" for="checkbox_agree3"> [선택]광고성 정보 수신에 동의합니다. </label>
 				</div>
 			</section>
 		</div>
 		<br>
 		<!-- 전체동의 -->
-		<div id="agree" onclick="checkAll()">
-			<div class="checkbox" onclick="checkAll()">
-				<label onclick="checkAll()"><input type="checkbox" name="check" id="checkAll" onclick="checkAll()">[전체동의] 유의사항에 전체 동의 합니다.</label>
+		<div id="agree">
+			<div class="form-check">
+				<input class="form-check-input" type="checkbox" name="check" id="checkAll" style="width: 15px;"> <label
+					class="form-check-label" for="checkAll"> [전체동의] 유의사항에 전체 동의 합니다. </label>
 			</div>
 		</div>
 		<br>
