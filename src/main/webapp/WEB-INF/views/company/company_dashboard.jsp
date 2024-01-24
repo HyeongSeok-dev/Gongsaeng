@@ -71,19 +71,19 @@
                   </p>
                 </a>
               </li>
-              <li class="nav-item dropdown">
-               <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="now-ui-icons location_world"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Some Actions</span>
-                  </p>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </li>
+<!--               <li class="nav-item dropdown"> -->
+<!--                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
+<!--                   <i class="now-ui-icons location_world"></i> -->
+<!--                   <p> -->
+<!--                     <span class="d-lg-none d-md-block">Some Actions</span> -->
+<!--                   </p> -->
+<!--                 </a> -->
+<!--                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink"> -->
+<!--                   <a class="dropdown-item" href="#">Action</a> -->
+<!--                   <a class="dropdown-item" href="#">Another action</a> -->
+<!--                   <a class="dropdown-item" href="#">Something else here</a> -->
+<!--                 </div> -->
+<!--               </li> -->
               <li class="nav-item">
                 <a class="nav-link" href="#pablo">
                   <i class="now-ui-icons users_single-02"></i>
@@ -94,9 +94,6 @@
               </li>
             </ul>
           </div>
-          
-          
-          
         </div>
       </nav>
       <!-- End Navbar -->
@@ -125,7 +122,7 @@
               </div>
               <div class="card-body">
                 <div class="chart-area">
-                  <canvas id="lineChartExample"></canvas>
+<%--                   <canvas id="lineChartExample"></canvas> --%>
                 </div>
               </div>
               <div class="card-footer">
@@ -207,7 +204,7 @@
             <div class="card  card-tasks">
               <div class="card-header ">
                 <h5 class="card-category">~운영중인 클래스 수 설명~</h5>
-                <h4 class="card-title">운영중인<br>클래스 수</h4>
+                <h4 class="card-title">운영중인 클래스 수</h4>
               </div>
               <div class="card-body ">
                 <div class="table-full-width table-responsive">

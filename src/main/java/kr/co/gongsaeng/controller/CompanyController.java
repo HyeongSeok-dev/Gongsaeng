@@ -106,6 +106,21 @@ public class CompanyController {
 		return "company/company_profile";
 	}
 	
+	@GetMapping("company/profile2")
+	public String company_profile2() {
+		return "company/company_profile2";
+	}
+	
+	@GetMapping("company/profile3")
+	public String company_profile3() {
+		return "company/company_profile3";
+	}
+	
+	@GetMapping("company/banjang/register")
+	public String company_banjang_register() {
+		return "company/company_banjang_register";
+	}
+
 	
 	
 }

@@ -223,12 +223,14 @@ $(".imgAdd").click(function(){
 <!--                         <input type="text" class="form-control" placeholder="Company" value="Creative Code Inc."> -->
                       </div>
                     </div>
-                    <div class="col-md-6 px-1">
+<!--                     <div class="col-md-6 px-1"> / px: 패딩관련-->
+                    <div class="col-md-8 pr-7">
                       <div class="form-group">
                         <label>클래스 타이틀</label>
                         <input type="text" class="form-control" placeholder="클래스 이름을 입력해 주세요" value="">
                       </div>
                     </div>
+
                   </div>
                   <div class="row">
                     <div class="col-md-8 pr-7">
