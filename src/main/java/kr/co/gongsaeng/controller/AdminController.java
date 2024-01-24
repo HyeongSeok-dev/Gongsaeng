@@ -5,10 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class AdminController {
-	@GetMapping("admin/main")
-	public String main() {
+	@GetMapping("admin")
+	public String admin() {
 		return "admin/main";
 	}
+
 	@GetMapping("admin/dashboard")
 	public String dashboard() {
 		return "admin/dashboard";

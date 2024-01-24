@@ -4116,11 +4116,6 @@ Created using IcoMoon - icomoon.io
   color: #f96332;
 }
 
-/* 원본 살리고 수정임 */
-/* .sidebar[data-color="orange"] .nav li>a:active{ */
-/*   color: #f96332; */
-/* } */
-
 .sidebar[data-color="orange"] .nav li.active>a:not([data-toggle="collapse"]) i,
 .off-canvas-sidebar[data-color="orange"] .nav li.active>a:not([data-toggle="collapse"]) i {
   color: #f96332;

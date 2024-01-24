@@ -2,3 +2,12 @@
 .nav_ul>li>a>p {
 	margin-left: 30px;
 }
+
+.logo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.nav_drop_list {
+	margin-left: 30px;
+}

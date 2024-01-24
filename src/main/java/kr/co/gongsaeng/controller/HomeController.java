@@ -45,11 +45,4 @@ public class HomeController {
 	public String test() {
 		return "member/test";
 	}
-	
-	@GetMapping("admin")
-	public String admin() {
-		return "admin/dashboard";
-	}
-	
-
 }

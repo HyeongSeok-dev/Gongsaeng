@@ -10,7 +10,7 @@
   <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/admin_assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Now UI Dashboard by Creative Tim
+    공생|관리자 페이지
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -40,13 +40,14 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="#pablo">Dashboard</a>
+            <a class="navbar-brand" href="#pablo">공생</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
             <span class="navbar-toggler-bar navbar-kebab"></span>
             <span class="navbar-toggler-bar navbar-kebab"></span>
           </button>
+          <%-- search,홈페이지이동,채팅 --%>
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
             <form>
               <div class="input-group no-border">
@@ -59,17 +60,17 @@
               </div>
             </form>
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons media-2_sound-wave"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Stats</span>
-                  </p>
-                </a>
-              </li>
+<!--               <li class="nav-item"> -->
+<!--                 <a class="nav-link" href="#pablo"> -->
+<!--                   <i class="now-ui-icons media-2_sound-wave"></i> -->
+<!--                   <p> -->
+<!--                     <span class="d-lg-none d-md-block">Stats</span> -->
+<!--                   </p> -->
+<!--                 </a> -->
+<!--               </li> -->
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="now-ui-icons location_world"></i>
+                  <i class="now-ui-icons ui-1_send"></i>
                   <p>
                     <span class="d-lg-none d-md-block">Some Actions</span>
                   </p>
@@ -80,9 +81,10 @@
                   <a class="dropdown-item" href="#">Something else here</a>
                 </div>
               </li>
+              <%-- 공생 메인 홈페이지로 이동 --%>
               <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons users_single-02"></i>
+                <a class="nav-link" href="../">
+                  <i class="now-ui-icons shopping_shop"></i>
                   <p>
                     <span class="d-lg-none d-md-block">Account</span>
                   </p>
