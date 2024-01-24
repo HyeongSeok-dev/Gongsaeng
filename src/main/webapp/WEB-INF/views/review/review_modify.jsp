@@ -6,11 +6,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>공생 | 공간을 생각하다</title>
+<meta name="description" content="GARO is a real-estate template">
+<meta name="author" content="Kimarotec">
+<meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- CSS -->
 
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/normalize.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/font-awesome.min.css">
@@ -25,19 +33,15 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/owl.carousel.css">  
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/owl.theme.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/owl.transitions.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/lightslider.min.css">
-<link href="${pageContext.request.contextPath}/resources/css/review_modify.css" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/responsive.css">
-
-
-<link href="${pageContext.request.contextPath}/resources/css/review_modify.css" rel="stylesheet">
-<%-- <link href="${pageContext.request.contextPath}/resources/css/review_modify2.css" rel="stylesheet"> --%>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/global.css">
 <link href="${pageContext.request.contextPath}/resources/css/global.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+<link href="${pageContext.request.contextPath}/resources/css/review_modify.css" rel="stylesheet">
 <!-- Js -->
-<script src="${pageContext.request.contextPath}/resources/js/review_modify.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/review_modify.js"></script>
 <script type="text/javascript">
                  
 function deleteFile(review_num, review_img_1) {
@@ -97,6 +101,7 @@ function removePreview(review_img_1) {
 <!-- 수정 -->
 </head>
 <body>
+<jsp:include page="../inc/top.jsp"/>
 	<article id="reviewModifyForm">
 	<div class="container">
 		<div class="restaurant_info">
@@ -238,20 +243,20 @@ function removePreview(review_img_1) {
 			<div class="separator"></div>
 			<h2 style="text-align: center;">리뷰를 남겨주세요</h2>
 			<!-- 사진 추가 버튼 컨테이너 -->
-		<div class="photo_box">
-<!-- 		    <div class="file" id="fileItemArea1"> -->
-		    <div class="file" id="fileItemArea">
-		        <c:choose>
-		            <c:when test="${not empty review.review_img_1}">
-		                <div class="image_wrapper">
-		                    <img src="${pageContext.request.contextPath }/resources/upload/${review.review_img_1}" alt="Image Preview" class="imagePreview"/>
-		                    <!-- 수정된 removePreview 함수 호출 -->
-<%-- 		                    <div class="remove_btn" onclick="deleteFile(${review.review_num}, '${review.review_img_1}')">X</div> --%>
-		                    <div class="remove_btn" onclick="deleteFile(${review.review_num}, '${review.review_img_1}')">
-                		        <img src="${pageContext.request.contextPath}/resources/img/close2.png" style="width: 20px; height: 20px;" alt="Delete">
-		                    </div>
-		                </div>
-		            </c:when>
+			<div class="photo_box">
+	<!-- 		    <div class="file" id="fileItemArea1"> -->
+			    <div class="file" id="fileItemArea">
+			        <c:choose>
+			            <c:when test="${not empty review.review_img_1}">
+			                <div class="image_wrapper">
+			                    <img src="${pageContext.request.contextPath }/resources/upload/${review.review_img_1}" alt="Image Preview" class="imagePreview"/>
+			                    <!-- 수정된 removePreview 함수 호출 -->
+	<%-- 		                    <div class="remove_btn" onclick="deleteFile(${review.review_num}, '${review.review_img_1}')">X</div> --%>
+			                    <div class="remove_btn" onclick="deleteFile(${review.review_num}, '${review.review_img_1}')">
+	                		        <img src="${pageContext.request.contextPath}/resources/img/close2.png" style="width: 20px; height: 20px;" alt="Delete">
+			                    </div>
+			                </div>
+			            </c:when>
 			            <c:otherwise>
 						    <div class="photo_box">
 							    <div class="file" id="fileItemArea1">
@@ -263,32 +268,34 @@ function removePreview(review_img_1) {
 								    	<div class="image_wrapper">
 								      	  <img id="imagePreview" src="#" alt="Image Preview"/>
 								        	<div class="remove_btn" onclick="removePreview()">
-								            <img src="${pageContext.request.contextPath}/resources/img/close2.png" style="width: 20px; height: 20px;" alt="Delete">
-											        </div>
-											    </div>
-											</div>
-							            </div>
-							        </div>
+								           		<img src="${pageContext.request.contextPath}/resources/img/close2.png" style="width: 20px; height: 20px;" alt="Delete">
+									        </div>
+									    </div>
+									</div>
+					            </div>
+				    	    </div>
 			            </c:otherwise>
 			        </c:choose>
-					    </div>
-					</div>
 			    </div>
 			</div>
+    	</div>
+	</div>
 			<!-- ===================================================================== -->
 			<!-- 리뷰 텍스트 박스 -->
-		<div class="modify_bottom">
-			<textarea class="review_textarea" maxlength="500"
-				name="review_content" placeholder="업주와 다른 사용자들이 상처받지 않도록 좋은 표현을 사용해주세요.(500자수 제한)">${review.review_content }</textarea>
+	<div class="modify_bottom">
+		<textarea class="review_textarea" maxlength="500"
+			name="review_content" placeholder="업주와 다른 사용자들이 상처받지 않도록 좋은 표현을 사용해주세요.(500자수 제한)">${review.review_content }</textarea>
 <!-- 			<a class="caution_link" href="#" onclick="openPopup()">리뷰 작성 유의사항</a> -->
-			<button class="register_button" onclick="location.href='${pageContext.request.contextPath}/review/complete'">수정하기</button>
-			<section id="commandCell">
-			<div class="review_input_section">
-			</div>
-			</section>
+		<button class="register_button" onclick="location.href='${pageContext.request.contextPath}/review/complete'">수정하기</button>
+		<section id="commandCell">
+		<div class="review_input_section">
 		</div>
-			</div>	
-			</form>
+		</section>
+	</div>
+</form>
+	
+	<div class="footer-area">
+		<jsp:include page="../inc/bottom.jsp"/>
 	</div>
 	<!-- ===================================================================== -->
 	<!-- 팝업 창 -->

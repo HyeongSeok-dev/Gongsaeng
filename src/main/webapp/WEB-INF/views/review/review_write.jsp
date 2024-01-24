@@ -208,6 +208,9 @@ function addResIdx(res_idx) {
 		</div>
 	</form>
 	</div>
+	<div class="footer-area">
+		<jsp:include page="../inc/bottom.jsp"/>
+	</div>
 	<!-- ===================================================================== -->
 	<!-- 팝업 창 -->
 	<div id="popup">

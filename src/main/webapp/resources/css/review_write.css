@@ -197,7 +197,7 @@
 }
 
 .like_button.active {
-    color: black;  
+    color: #585858;  
 } 
 
 .like_button {
@@ -205,8 +205,8 @@
 }
 
 .like_button.active #heart {
-    fill: #3FAFFC; 
-    stroke: #3FAFFC; 
+    fill: #FE2E2E; 
+    stroke: #FE2E2E; 
 }
 
 /* ============================================================== */

@@ -108,7 +108,7 @@
 #review_etc_child_checkbox:checked + .checkbox_label, 
 #review_no_keyword_checkbox:checked + .checkbox_label 
 {
-	background-color: #3FAFFC;
+	background-color: #c2c2c2;
 	color: white; 
 }
 
@@ -122,7 +122,7 @@
     cursor: pointer;
     transition: color 0.3s ease, background-color 0.3s ease, fill 0.3s ease; 
     border-radius: 10px;
-    width: 150px;
+    width: 180px;
     margin: 5px;
 }
 
@@ -198,7 +198,7 @@
 }
 
 .like_button.active {
-    color: black;  
+    color: #585858;
 } 
 
 .like_button {
@@ -206,8 +206,8 @@
 }
 
 .like_button.active #heart {
-    fill: #3FAFFC; 
-    stroke: #3FAFFC; 
+    fill: #FE2E2E; 
+    stroke: #FE2E2E;
 }
 
 /* ============================================================== */
@@ -547,9 +547,9 @@ a:hover {
 
 
 .register_button {
-    background-color: #3FAFFC; /* 배경 색상 */
+    background-color: #C2C2C2; /* 배경 색상 */
     color: white; /* 텍스트 색상 */
-    padding: 10px 20px; /* 패딩 */
+    padding: 10px 10px; /* 패딩 */
     border: none; /* 테두리 없음 */
     border-radius: 10px; /* 테두리 둥글게 */
     font-size: 16px; /* 폰트 크기 */

@@ -23,6 +23,14 @@ public class ReviewController {
 	public String modify() {
 		return "review/review_modify";
 	}
+	@GetMapping("review/complete")
+	public String complete() {
+		return "review/review_complete";
+	}
+	@GetMapping("review/comment")
+	public String comment() {
+		return "review/review_comment";
+	}
 	
 	@GetMapping("product/detail")
 	public String productDetail() {

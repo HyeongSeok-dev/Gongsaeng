@@ -7,10 +7,17 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>공생 | 공간을 생각하다</title>
+<meta name="description" content="GARO is a real-estate template">
+<meta name="author" content="Kimarotec">
+<meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- CSS -->
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/normalize.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/font-awesome.min.css">
@@ -25,17 +32,32 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/owl.carousel.css">  
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/owl.theme.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/owl.transitions.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/lightslider.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/responsive.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/global.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/lightslider.min.css">
+<%-- <link rel="stylesheet"href="${pageContext.request.contextPath}/resources/css/review_report.css"> --%>
 
-<link rel="stylesheet"href="${pageContext.request.contextPath}/resources/css/review_write.css">
-<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css"> --%>
 <!-- Js -->
 <script src="${pageContext.request.contextPath}/resources/js/review_report.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/assets/js/modernizr-2.6.2.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script> 
+<script src="${pageContext.request.contextPath }/resources/assets/js/jquery-1.10.2.min.js"></script> 
+<script src="${pageContext.request.contextPath }/resources/bootstrap/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/assets/js/bootstrap-select.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/assets/js/bootstrap-hover-dropdown.js"></script>
+<script src="${pageContext.request.contextPath }/resources/assets/js/easypiechart.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/assets/js/jquery.easypiechart.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/assets/js/owl.carousel.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/assets/js/wow.js"></script>
+<script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
+<script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
+        
 </head>
 <body>
+<%-- <jsp:include page="../inc/top.jsp"></jsp:include> --%>
 <form action="reviewReportPro" name="reviewReportPro" method="POST" id="reviewReportPro">
     <input type="hidden" name="com_id" value="${comId}">
     <input type="hidden" name="review_num" value="${reviewNum}">

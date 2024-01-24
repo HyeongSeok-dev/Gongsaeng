@@ -17,9 +17,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
 
-
-        <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/product_detail.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/normalize.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/font-awesome.min.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/fontello.css">
@@ -36,9 +37,23 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/lightslider.min.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/style.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/responsive.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/product_detail.css">
+      
         <!-- js  -->
-        <script src="${pageContext.request.contextPath }/resources/js/product_detail.js"></script>
-        
+        <script src="${pageContext.request.contextPath }/resources/assets/js/modernizr-2.6.2.min.js"></script>
+        <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script> 
+<%--         <script src="${pageContext.request.contextPath }/resources/assets/js/jquery-1.10.2.min.js"></script>  --%>
+<%--         <script src="${pageContext.request.contextPath }/resources/bootstrap/js/bootstrap.min.js"></script> --%>
+<%--         <script src="${pageContext.request.contextPath }/resources/assets/js/bootstrap-select.min.js"></script> --%>
+<%--         <script src="${pageContext.request.contextPath }/resources/assets/js/bootstrap-hover-dropdown.js"></script> --%>
+<%--         <script src="${pageContext.request.contextPath }/resources/assets/js/easypiechart.min.js"></script> --%>
+<%--         <script src="${pageContext.request.contextPath }/resources/assets/js/jquery.easypiechart.min.js"></script> --%>
+<%--         <script src="${pageContext.request.contextPath }/resources/assets/js/owl.carousel.min.js"></script> --%>
+<%--         <script src="${pageContext.request.contextPath }/resources/assets/js/wow.js"></script> --%>
+<%--         <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script> --%>
+<%--         <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script> --%>
+<%--         <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script> --%>
+<%--         <script src="${pageContext.request.contextPath }/resources/js/product_detail.js"></script> --%>
     </head>
     <body>
 
@@ -198,8 +213,8 @@
                                     </div> 
 
                                     <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
-                                        <li data-thumb="${pageContext.request.contextPath }/resources/assets/img/property-1/table1.jpg"> 
-                                            <img src="${pageContext.request.contextPath }/resources/assets/img/property-1/table1.jpg" />
+                                        <li data-thumb="${pageContext.request.contextPath }/resources/assets/img/property-1/table1-1.png"> 
+                                            <img src="${pageContext.request.contextPath }/resources/assets/img/property-1/table1-1.png" />
                                         </li>
                                         <li data-thumb="${pageContext.request.contextPath }/resources/assets/img/property-1/table2.png"> 
                                             <img src="${pageContext.request.contextPath }/resources/assets/img/property-1/table2.png" />
@@ -207,8 +222,8 @@
                                         <li data-thumb="${pageContext.request.contextPath }/resources/assets/img/property-1/table3.png"> 
                                             <img src="${pageContext.request.contextPath }/resources/assets/img/property-1/table3.png" />
                                         </li>
-<%--                                         <li data-thumb="${pageContext.request.contextPath }/resources/assets/img/property-1/property4.jpg">  --%>
-<%--                                             <img src="${pageContext.request.contextPath }/resources/assets/img/property-1/property4.jpg" /> --%>
+<%--                                         <li data-thumb="${pageContext.request.contextPath }/resources/assets/img/property-1/다운로드.jpg">  --%>
+<%--                                             <img src="${pageContext.request.contextPath }/resources/assets/img/property-1/다운로드.jpg" /> --%>
 <!--                                         </li>                                          -->
                                     </ul>
                                 </div>
@@ -345,40 +360,40 @@
                             <div id="prop-smlr-slide_0"> 
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="property-1.html" ><img src="${pageContext.request.contextPath }/resources/assets/img/property-1/review1.png" style="width: 100%; height:auto;"></a>
+                                        <a href="property-1.html" ><img src="${pageContext.request.contextPath }/resources/assets/img/property-1/review1.png"></a>
                                     </div>
-                                    <div class="item-entry overflow">
-                                        <a href="">
-                                 	       <img src="${pageContext.request.contextPath }/resources/assets/img/client-face1.png" class="img-circle reviewProImg">
-                                        </a>
-	                                        <h5><a href="property-1.html"> Super nice villa </a></h5>
+                                    <div class="item-entry overflow abc">
+	                                        <a href="">
+	                                 	       <img src="${pageContext.request.contextPath }/resources/assets/img/client-face1.png" class="img-circle reviewProImg">
+	                                        </a>
+	                                        <h5><a href="property-1.html">작성자 닉네임</a></h5>
                                         <div class="dot-hr"></div>
                                         <span class="pull-left">여기는 리뷰를 나타내는 곳입니다~!</span>
-                                        
                                     </div>
                                 </div> 
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
                                         <a href="property-1.html" ><img src="${pageContext.request.contextPath }/resources/assets/img/property-1/review1.png"></a>
                                     </div>
-                                    <div class="item-entry overflow">
-                                        <a href="">
-                                 	       <img src="${pageContext.request.contextPath }/resources/assets/img/client-face1.png" class="img-circle reviewProImg">
-                                        </a>
+                                    <div class="item-entry overflow abc">
+	                                        <a href="">
+	                                 	       <img src="${pageContext.request.contextPath }/resources/assets/img/client-face1.png" class="img-circle reviewProImg">
+	                                        </a>
+	                                        <h5><a href="property-1.html">작성자 닉네임</a></h5>
                                         <div class="dot-hr"></div>
                                         <span class="pull-left">여기는 리뷰를 나타내는 곳입니다~!</span>
-
                                     </div>
                                 </div> 
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
                                         <a href="property-1.html" >
-                                        	<img src="${pageContext.request.contextPath }/resources/assets/img/property-1/review2.png" style="width: 100%; height:auto;">										</a>
+                                        	<img src="${pageContext.request.contextPath }/resources/assets/img/property-1/review2.png"></a>
                                     </div>
-                                    <div class="item-entry overflow">
-                                        <a href="">
-                                 	       <img src="${pageContext.request.contextPath }/resources/assets/img/client-face1.png" class="img-circle reviewProImg">
-                                        </a>
+                                    <div class="item-entry overflow abc">
+	                                        <a href="">
+	                                 	       <img src="${pageContext.request.contextPath }/resources/assets/img/client-face1.png" class="img-circle reviewProImg">
+	                                        </a>
+	                                        <h5><a href="property-1.html">작성자 닉네임</a></h5>
                                         <div class="dot-hr"></div>
                                         <span class="pull-left">여기는 리뷰를 나타내는 곳입니다~!</span>
                                     </div>
@@ -387,10 +402,11 @@
                                     <div class="item-thumb">
                                         <a href="property-1.html" ><img src="${pageContext.request.contextPath }/resources/assets/img/property-1/review2.png"></a>
                                     </div>
-                                    <div class="item-entry overflow">
-                                        <a href="">
-                                 	       <img src="${pageContext.request.contextPath }/resources/assets/img/client-face1.png" class="img-circle reviewProImg">
-                                        </a>
+                                    <div class="item-entry overflow abc">
+	                                        <a href="">
+	                                 	       <img src="${pageContext.request.contextPath }/resources/assets/img/client-face1.png" class="img-circle reviewProImg">
+	                                        </a>
+	                                        <h5><a href="property-1.html">작성자 닉네임</a></h5>
                                         <div class="dot-hr"></div>
                                         <span class="pull-left">여기는 리뷰를 나타내는 곳입니다~!</span>
                                     </div>
@@ -431,6 +447,7 @@
                                         <img src="${pageContext.request.contextPath }/resources/assets/img/detail3.webp" class="img-responsive wp-post-image" alt="Exterior">            
                                         <img src="${pageContext.request.contextPath }/resources/assets/img/detail1.webp" class="img-responsive wp-post-image" alt="Exterior">            
                                         <img src="${pageContext.request.contextPath }/resources/assets/img/detail2.webp" class="img-responsive wp-post-image" alt="Exterior">            
+                                        <img src="${pageContext.request.contextPath }/resources/assets/img/detail5.png" class="img-responsive wp-post-image" alt="Exterior">            
                                     </a>
                                 </div>
                             </div>
@@ -442,8 +459,9 @@
 
 
                     <div class="col-md-4 p0">
+                    <div class="fixee">
                         <aside class="sidebar sidebar-property blog-asside-right">
-                            <div class="dealer-widget">
+                            <div class="dealer-widget backcolor">
                                 <div class="dealer-content">
                                     <div class="inner-wrapper">
 
@@ -552,6 +570,7 @@
 
                         </aside>
                     </div>
+                    </div>
                 </div>
 
             </div>
@@ -562,6 +581,12 @@
         <div class="footer-area">
 			<jsp:include page="./inc/bottom.jsp"/>
 		</div>
+			<button onclick="location.href='${pageContext.request.contextPath}/review/write'">리뷰쓰기</button>
+			<button onclick="location.href='${pageContext.request.contextPath}/review/report'">리뷰신고</button>
+			<button onclick="location.href='${pageContext.request.contextPath}/review/modify'">리뷰수정</button>
+			<button onclick="location.href='${pageContext.request.contextPath}/review/detail'">리뷰리스트</button>
+			<button onclick="location.href='${pageContext.request.contextPath}/review/complete'">리뷰성공</button>
+			<button onclick="location.href='${pageContext.request.contextPath}/review/comment'">리뷰대댓글</button>
 <!--         <div class="footer-area"> -->
 
 <!--             <div class=" footer"> -->
@@ -732,6 +757,23 @@
                 });
             });
         </script>
+        
+        <script>
+window.onload = function() {
+    var listItems = document.querySelectorAll('#image-gallery li');
+    
+    listItems.forEach(function(listItem) {
+        var dataThumb = listItem.getAttribute('data-thumb');
+        var img = new Image();
+        img.src = dataThumb;
+        img.width = 200;  // 원하는 너비를 설정하세요
+        img.height = 200; // 원하는 높이를 설정하세요
+        img.onload = function() {
+            listItem.appendChild(img);
+        }
+    });
+}
+</script>
 
     </body>
 </html>
