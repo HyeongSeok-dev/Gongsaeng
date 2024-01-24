@@ -1277,6 +1277,12 @@ page-header
 /* ### */
 #page-title-left {
 	justify-content: flex-start;
+    margin: 0px;
+    padding: 10px 16px;
+    font-size: 25px;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 .content-area{
     background-color: #FCFCFC; padding-bottom: 55px;
@@ -1877,9 +1883,11 @@ proerty-th
     background-color: #FFF; 
     margin: 10px;
     /* ### */
-    border-radius: 10px;
+/*     border-radius: 10px; */
+	min-height: 500px;
     max-height: 500px;
     padding: 10px;
+    border-color: #000;
 }
 .proerty-th .proerty-item .item-thumb{
     position: relative;
@@ -1899,7 +1907,7 @@ proerty-th
     min-height: 225px;
     max-height: 265px;
     /* ### */
-    border-radius: 10px;
+/*     border-radius: 10px; */
 }
 .proerty-th .proerty-item  .item-entry{
 	/* ### */

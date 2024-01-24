@@ -26,7 +26,7 @@
 	<link href="${pageContext.request.contextPath}/resources/assets/css/animate.css" rel="stylesheet" media="screen">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/bootstrap-select.min.css"> 
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/icheck.min_all.css">
+<%-- 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/icheck.min_all.css"> --%>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/price-range.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/owl.carousel.css">  
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/owl.theme.css">
@@ -255,162 +255,407 @@ function toggleButtons() {
                             <div class="col-sm-6 col-md-3 p0">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="property-1" ><img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-2.jpg"></a>
+                                        <a href="property-1" >
+                                        	<img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
+										</a>
+										
+										<%-- 찜표시 --%>
+                                    	<button id="button1" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u" tabindex="0" type="button">
+											<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss97 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteBorderRoundedIcon">
+												<path d="M19.66 3.99c-2.64-1.8-5.9-.96-7.66 1.1-1.76-2.06-5.02-2.91-7.66-1.1-1.4.96-2.28 2.58-2.34 4.29-.14 3.88 3.3 6.99 8.55 11.76l.1.09c.76.69 1.93.69 2.69-.01l.11-.1c5.25-4.76 8.68-7.87 8.55-11.75-.06-1.7-.94-3.32-2.34-4.28zM12.1 18.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"></path>
+											</svg>
+											<span class="MuiTouchRipple-root css-w0pj6f"></span>
+										</button>
+										
+										<button id="button2" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss146 css-1j7qk7u" tabindex="0" type="button">
+											<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss147 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
+												<path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
+											</svg>
+											<span class="MuiTouchRipple-root css-w0pj6f"></span>
+										</button>
                                     </div>
 
                                     <div class="item-entry overflow">
-                                        <h5><a href="property-1"> Super nice villa </a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> 120m </span>
-                                        <span class="proerty-price pull-right"> $ 300,000</span>
-                                        <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                        <div class="property-icon">
-                                            <img src="img/icon/bed.png">(5)|
-                                            <img src="img/icon/shawer.png">(2)|
-                                            <img src="img/icon/cars.png">(1)  
-                                        </div>
+										<div class="container-fluid">
+											<div class="row">
+												<div class="col-sm-6" style="padding: 0px;">
+													<h6><a href="">인테리어 업체명</a></h6>
+												</div>
+												<div class="col-sm-6" style="padding: 0px; text-align: right;">
+													<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss14 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
+														<path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
+													</svg>
+													32
+												</div>
+											</div>
+											
+											<div class="row">
+												<div class="col-sm-12" style="padding: 0px;">
+			                                        <h5><a href="property-1">도배 기초</a></h5>
+			                                        <div class="dot-hr"></div>
+			                                       	<div class="item_p">
+				                                        <span class="pull-left">
+			                                        		설명 블라블라블라븝랄르븨븨르ㅢㅏㅢ라아아아아아ㅏㅏㅏ
+				                                        </span>
+			                                       	</div>
+			                                       	<br>
+			                                        <span class="proerty-price pull-right">300,000원</span>
+												</div>
+											</div>
+										</div>
                                     </div>
-
-
+                                    
+                                    
                                 </div>
                             </div>
                             
                             <div class="col-sm-6 col-md-3 p0">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="property-1" ><img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg"></a>
+                                        <a href="property-1" >
+                                        	<img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
+										</a>
+										
+										<%-- 찜표시 --%>
+                                    	<button id="button1" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u" tabindex="0" type="button">
+											<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss97 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteBorderRoundedIcon">
+												<path d="M19.66 3.99c-2.64-1.8-5.9-.96-7.66 1.1-1.76-2.06-5.02-2.91-7.66-1.1-1.4.96-2.28 2.58-2.34 4.29-.14 3.88 3.3 6.99 8.55 11.76l.1.09c.76.69 1.93.69 2.69-.01l.11-.1c5.25-4.76 8.68-7.87 8.55-11.75-.06-1.7-.94-3.32-2.34-4.28zM12.1 18.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"></path>
+											</svg>
+											<span class="MuiTouchRipple-root css-w0pj6f"></span>
+										</button>
+										
+										<button id="button2" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss146 css-1j7qk7u" tabindex="0" type="button">
+											<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss147 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
+												<path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
+											</svg>
+											<span class="MuiTouchRipple-root css-w0pj6f"></span>
+										</button>
                                     </div>
 
                                     <div class="item-entry overflow">
-                                        <h5><a href="property-1"> Super nice villa </a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> 120m </span>
-                                        <span class="proerty-price pull-right"> $ 300,000</span>
-                                        <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                        <div class="property-icon">
-                                            <img src="img/icon/bed.png">(5)|
-                                            <img src="img/icon/shawer.png">(2)|
-                                            <img src="img/icon/cars.png">(1)  
-                                        </div>
+										<div class="container-fluid">
+											<div class="row">
+												<div class="col-sm-6" style="padding: 0px;">
+													<h6><a href="">인테리어 업체명</a></h6>
+												</div>
+												<div class="col-sm-6" style="padding: 0px; text-align: right;">
+													<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss14 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
+														<path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
+													</svg>
+													32
+												</div>
+											</div>
+											
+											<div class="row">
+												<div class="col-sm-12" style="padding: 0px;">
+			                                        <h5><a href="property-1">도배 기초</a></h5>
+			                                        <div class="dot-hr"></div>
+			                                       	<div class="item_p">
+				                                        <span class="pull-left">
+			                                        		설명 블라블라블라븝랄르븨븨르ㅢㅏㅢ아ㅣ르아ㅡ아아아아아아ㅏㅇ테스트테스트테스
+			                                        		테스테트세트테ㅡㅅ테ㅡ테ㅡ테ㅡ텐렁ㄴ라아아아아아ㅏㅏㅏ
+				                                        </span>
+			                                       	</div>
+			                                       	<br>
+			                                        <span class="proerty-price pull-right">300,000원</span>
+												</div>
+											</div>
+										</div>
                                     </div>
-
-
-                                </div>
-                            </div> 
-
-                            <div class="col-sm-6 col-md-3 p0">
-                                <div class="box-two proerty-item">
-                                    <div class="item-thumb">
-                                        <a href="property-1" ><img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-2.jpg"></a>
-                                    </div>
-
-                                    <div class="item-entry overflow">
-                                        <h5><a href="property-1"> Super nice villa </a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> 120m </span>
-                                        <span class="proerty-price pull-right"> $ 300,000</span>
-                                        <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                        <div class="property-icon">
-                                            <img src="img/icon/bed.png">(5)|
-                                            <img src="img/icon/shawer.png">(2)|
-                                            <img src="img/icon/cars.png">(1)  
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div> 
-
-                            <div class="col-sm-6 col-md-3 p0">
-                                <div class="box-two proerty-item">
-                                    <div class="item-thumb">
-                                        <a href="property-1" ><img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-1.jpg"></a>
-                                    </div>
-
-                                    <div class="item-entry overflow">
-                                        <h5><a href="property-1"> Super nice villa </a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> 120m </span>
-                                        <span class="proerty-price pull-right"> $ 300,000</span>
-                                        <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                        <div class="property-icon">
-                                            <img src="img/icon/bed.png">(5)|
-                                            <img src="img/icon/shawer.png">(2)|
-                                            <img src="img/icon/cars.png">(1)  
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div> 
-                            
-                            <div class="col-sm-6 col-md-3 p0">
-                                <div class="box-two proerty-item">
-                                    <div class="item-thumb">
-                                        <a href="property-1" ><img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg"></a>
-                                    </div>
-
-                                    <div class="item-entry overflow">
-                                        <h5><a href="property-1"> Super nice villa </a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> 120m </span>
-                                        <span class="proerty-price pull-right"> $ 300,000</span>
-                                        <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                        <div class="property-icon">
-                                            <img src="img/icon/bed.png">(5)|
-                                            <img src="img/icon/shawer.png">(2)|
-                                            <img src="img/icon/cars.png">(1)  
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div> 
-
-                            <div class="col-sm-6 col-md-3 p0">
-                                <div class="box-two proerty-item">
-                                    <div class="item-thumb">
-                                        <a href="property-1" ><img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-2.jpg"></a>
-                                    </div>
-
-                                    <div class="item-entry overflow">
-                                        <h5><a href="property-1"> Super nice villa </a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> 120m </span>
-                                        <span class="proerty-price pull-right"> $ 300,000</span>
-                                        <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                        <div class="property-icon">
-                                            <img src="img/icon/bed.png">(5)|
-                                            <img src="img/icon/shawer.png">(2)|
-                                            <img src="img/icon/cars.png">(1)  
-                                        </div>
-                                    </div>
-
-
+                                    
+                                    
                                 </div>
                             </div>
 
                             <div class="col-sm-6 col-md-3 p0">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="property-1" ><img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-2.jpg"></a>
+                                        <a href="property-1" >
+                                        	<img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
+										</a>
+										
+										<%-- 찜표시 --%>
+                                    	<button id="button1" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u" tabindex="0" type="button">
+											<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss97 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteBorderRoundedIcon">
+												<path d="M19.66 3.99c-2.64-1.8-5.9-.96-7.66 1.1-1.76-2.06-5.02-2.91-7.66-1.1-1.4.96-2.28 2.58-2.34 4.29-.14 3.88 3.3 6.99 8.55 11.76l.1.09c.76.69 1.93.69 2.69-.01l.11-.1c5.25-4.76 8.68-7.87 8.55-11.75-.06-1.7-.94-3.32-2.34-4.28zM12.1 18.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"></path>
+											</svg>
+											<span class="MuiTouchRipple-root css-w0pj6f"></span>
+										</button>
+										
+										<button id="button2" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss146 css-1j7qk7u" tabindex="0" type="button">
+											<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss147 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
+												<path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
+											</svg>
+											<span class="MuiTouchRipple-root css-w0pj6f"></span>
+										</button>
                                     </div>
 
                                     <div class="item-entry overflow">
-                                        <h5><a href="property-1"> Super nice villa </a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left"><b> Area :</b> 120m </span>
-                                        <span class="proerty-price pull-right"> $ 300,000</span>
-                                        <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-                                        <div class="property-icon">
-                                            <img src="img/icon/bed.png">(5)|
-                                            <img src="img/icon/shawer.png">(2)|
-                                            <img src="img/icon/cars.png">(1)  
-                                        </div>
+										<div class="container-fluid">
+											<div class="row">
+												<div class="col-sm-6" style="padding: 0px;">
+													<h6><a href="">인테리어 업체명</a></h6>
+												</div>
+												<div class="col-sm-6" style="padding: 0px; text-align: right;">
+													<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss14 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
+														<path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
+													</svg>
+													32
+												</div>
+											</div>
+											
+											<div class="row">
+												<div class="col-sm-12" style="padding: 0px;">
+			                                        <h5><a href="property-1">도배 기초</a></h5>
+			                                        <div class="dot-hr"></div>
+			                                       	<div class="item_p">
+				                                        <span class="pull-left">
+			                                        		설명 블라블라블라븝랄르븨븨르ㅢㅏㅢ아ㅣ르아ㅡ아아아아아아ㅏㅇ테스트테스트테스
+			                                        		테스테트세트테ㅡㅅ테ㅡ테ㅡ테ㅡ텐렁ㄴ라아아아아아ㅏㅏㅏ
+				                                        </span>
+			                                       	</div>
+			                                       	<br>
+			                                        <span class="proerty-price pull-right">300,000원</span>
+												</div>
+											</div>
+										</div>
+                                    </div>
+                                    
+                                    
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-md-3 p0">
+                                <div class="box-two proerty-item">
+                                    <div class="item-thumb">
+                                        <a href="property-1" >
+                                        	<img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
+										</a>
+										
+										<%-- 찜표시 --%>
+                                    	<button id="button1" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u" tabindex="0" type="button">
+											<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss97 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteBorderRoundedIcon">
+												<path d="M19.66 3.99c-2.64-1.8-5.9-.96-7.66 1.1-1.76-2.06-5.02-2.91-7.66-1.1-1.4.96-2.28 2.58-2.34 4.29-.14 3.88 3.3 6.99 8.55 11.76l.1.09c.76.69 1.93.69 2.69-.01l.11-.1c5.25-4.76 8.68-7.87 8.55-11.75-.06-1.7-.94-3.32-2.34-4.28zM12.1 18.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"></path>
+											</svg>
+											<span class="MuiTouchRipple-root css-w0pj6f"></span>
+										</button>
+										
+										<button id="button2" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss146 css-1j7qk7u" tabindex="0" type="button">
+											<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss147 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
+												<path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
+											</svg>
+											<span class="MuiTouchRipple-root css-w0pj6f"></span>
+										</button>
                                     </div>
 
-
+                                    <div class="item-entry overflow">
+										<div class="container-fluid">
+											<div class="row">
+												<div class="col-sm-6" style="padding: 0px;">
+													<h6><a href="">인테리어 업체명</a></h6>
+												</div>
+												<div class="col-sm-6" style="padding: 0px; text-align: right;">
+													<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss14 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
+														<path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
+													</svg>
+													32
+												</div>
+											</div>
+											
+											<div class="row">
+												<div class="col-sm-12" style="padding: 0px;">
+			                                        <h5><a href="property-1">도배 기초</a></h5>
+			                                        <div class="dot-hr"></div>
+			                                       	<div class="item_p">
+				                                        <span class="pull-left">
+			                                        		설명 블라블라블라븝랄르븨븨르ㅢㅏㅢ아ㅣ르아ㅡ아아아아아아ㅏㅇ테스트테스트테스
+			                                        		테스테트세트테ㅡㅅ테ㅡ테ㅡ테ㅡ텐렁ㄴ라아아아아아ㅏㅏㅏ
+				                                        </span>
+			                                       	</div>
+			                                       	<br>
+			                                        <span class="proerty-price pull-right">300,000원</span>
+												</div>
+											</div>
+										</div>
+                                    </div>
+                                    
+                                    
                                 </div>
                             </div> 
+                            
+                            <div class="col-sm-6 col-md-3 p0">
+                                <div class="box-two proerty-item">
+                                    <div class="item-thumb">
+                                        <a href="property-1" >
+                                        	<img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
+										</a>
+										
+										<%-- 찜표시 --%>
+                                    	<button id="button1" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u" tabindex="0" type="button">
+											<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss97 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteBorderRoundedIcon">
+												<path d="M19.66 3.99c-2.64-1.8-5.9-.96-7.66 1.1-1.76-2.06-5.02-2.91-7.66-1.1-1.4.96-2.28 2.58-2.34 4.29-.14 3.88 3.3 6.99 8.55 11.76l.1.09c.76.69 1.93.69 2.69-.01l.11-.1c5.25-4.76 8.68-7.87 8.55-11.75-.06-1.7-.94-3.32-2.34-4.28zM12.1 18.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"></path>
+											</svg>
+											<span class="MuiTouchRipple-root css-w0pj6f"></span>
+										</button>
+										
+										<button id="button2" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss146 css-1j7qk7u" tabindex="0" type="button">
+											<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss147 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
+												<path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
+											</svg>
+											<span class="MuiTouchRipple-root css-w0pj6f"></span>
+										</button>
+                                    </div>
+
+                                    <div class="item-entry overflow">
+										<div class="container-fluid">
+											<div class="row">
+												<div class="col-sm-6" style="padding: 0px;">
+													<h6><a href="">인테리어 업체명</a></h6>
+												</div>
+												<div class="col-sm-6" style="padding: 0px; text-align: right;">
+													<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss14 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
+														<path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
+													</svg>
+													32
+												</div>
+											</div>
+											
+											<div class="row">
+												<div class="col-sm-12" style="padding: 0px;">
+			                                        <h5><a href="property-1">도배 기초</a></h5>
+			                                        <div class="dot-hr"></div>
+			                                       	<div class="item_p">
+				                                        <span class="pull-left">
+			                                        		설명 블라블라블라븝랄르븨븨르ㅢㅏㅢ아ㅣ르아ㅡ아아아아아아ㅏㅇ테스트테스트테스
+			                                        		테스테트세트테ㅡㅅ테ㅡ테ㅡ테ㅡ텐렁ㄴ라아아아아아ㅏㅏㅏ
+				                                        </span>
+			                                       	</div>
+			                                       	<br>
+			                                        <span class="proerty-price pull-right">300,000원</span>
+												</div>
+											</div>
+										</div>
+                                    </div>
+                                    
+                                    
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-md-3 p0">
+                                <div class="box-two proerty-item">
+                                    <div class="item-thumb">
+                                        <a href="property-1" >
+                                        	<img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
+										</a>
+										
+										<%-- 찜표시 --%>
+                                    	<button id="button1" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u" tabindex="0" type="button">
+											<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss97 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteBorderRoundedIcon">
+												<path d="M19.66 3.99c-2.64-1.8-5.9-.96-7.66 1.1-1.76-2.06-5.02-2.91-7.66-1.1-1.4.96-2.28 2.58-2.34 4.29-.14 3.88 3.3 6.99 8.55 11.76l.1.09c.76.69 1.93.69 2.69-.01l.11-.1c5.25-4.76 8.68-7.87 8.55-11.75-.06-1.7-.94-3.32-2.34-4.28zM12.1 18.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"></path>
+											</svg>
+											<span class="MuiTouchRipple-root css-w0pj6f"></span>
+										</button>
+										
+										<button id="button2" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss146 css-1j7qk7u" tabindex="0" type="button">
+											<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss147 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
+												<path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
+											</svg>
+											<span class="MuiTouchRipple-root css-w0pj6f"></span>
+										</button>
+                                    </div>
+
+                                    <div class="item-entry overflow">
+										<div class="container-fluid">
+											<div class="row">
+												<div class="col-sm-6" style="padding: 0px;">
+													<h6><a href="">인테리어 업체명</a></h6>
+												</div>
+												<div class="col-sm-6" style="padding: 0px; text-align: right;">
+													<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss14 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
+														<path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
+													</svg>
+													32
+												</div>
+											</div>
+											
+											<div class="row">
+												<div class="col-sm-12" style="padding: 0px;">
+			                                        <h5><a href="property-1">도배 기초</a></h5>
+			                                        <div class="dot-hr"></div>
+			                                       	<div class="item_p">
+				                                        <span class="pull-left">
+			                                        		설명 블라블라블라븝랄르븨븨르ㅢㅏㅢ아ㅣ르아ㅡ아아아아아아ㅏㅇ테스트테스트테스
+			                                        		테스테트세트테ㅡㅅ테ㅡ테ㅡ테ㅡ텐렁ㄴ라아아아아아ㅏㅏㅏ
+				                                        </span>
+			                                       	</div>
+			                                       	<br>
+			                                        <span class="proerty-price pull-right">300,000원</span>
+												</div>
+											</div>
+										</div>
+                                    </div>
+                                    
+                                    
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-md-3 p0">
+                                <div class="box-two proerty-item">
+                                    <div class="item-thumb">
+                                        <a href="property-1" >
+                                        	<img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
+										</a>
+										
+										<%-- 찜표시 --%>
+                                    	<button id="button1" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u" tabindex="0" type="button">
+											<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss97 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteBorderRoundedIcon">
+												<path d="M19.66 3.99c-2.64-1.8-5.9-.96-7.66 1.1-1.76-2.06-5.02-2.91-7.66-1.1-1.4.96-2.28 2.58-2.34 4.29-.14 3.88 3.3 6.99 8.55 11.76l.1.09c.76.69 1.93.69 2.69-.01l.11-.1c5.25-4.76 8.68-7.87 8.55-11.75-.06-1.7-.94-3.32-2.34-4.28zM12.1 18.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"></path>
+											</svg>
+											<span class="MuiTouchRipple-root css-w0pj6f"></span>
+										</button>
+										
+										<button id="button2" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss146 css-1j7qk7u" tabindex="0" type="button">
+											<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss147 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
+												<path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
+											</svg>
+											<span class="MuiTouchRipple-root css-w0pj6f"></span>
+										</button>
+                                    </div>
+
+                                    <div class="item-entry overflow">
+										<div class="container-fluid">
+											<div class="row">
+												<div class="col-sm-6" style="padding: 0px;">
+													<h6><a href="">인테리어 업체명</a></h6>
+												</div>
+												<div class="col-sm-6" style="padding: 0px; text-align: right;">
+													<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss14 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
+														<path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
+													</svg>
+													32
+												</div>
+											</div>
+											
+											<div class="row">
+												<div class="col-sm-12" style="padding: 0px;">
+			                                        <h5><a href="property-1">도배 기초</a></h5>
+			                                        <div class="dot-hr"></div>
+			                                       	<div class="item_p">
+				                                        <span class="pull-left">
+			                                        		설명 블라블라블라븝랄르븨븨르ㅢㅏㅢ아ㅣ르아ㅡ아아아아아아ㅏㅇ테스트테스트테스
+			                                        		테스테트세트테ㅡㅅ테ㅡ테ㅡ테ㅡ텐렁ㄴ라아아아아아ㅏㅏㅏ
+				                                        </span>
+			                                       	</div>
+			                                       	<br>
+			                                        <span class="proerty-price pull-right">300,000원</span>
+												</div>
+											</div>
+										</div>
+                                    </div>
+                                    
+                                    
+                                </div>
+                            </div>
 
                         </div>
                     </div>
@@ -739,6 +984,6 @@ function toggleButtons() {
 	<script src="${pageContext.request.contextPath}/resources/assets/js/price-range.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/main.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/assets/js/icheck.min.js"></script>
+<%-- 	<script src="${pageContext.request.contextPath}/resources/assets/js/icheck.min.js"></script> --%>
 </body>
 </html>

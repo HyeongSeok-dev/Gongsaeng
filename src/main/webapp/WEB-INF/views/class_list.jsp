@@ -46,12 +46,11 @@
 	<%-- 로그인 후 --%>
 <%-- 	<jsp:include page="./inc/top2.jsp"/> --%>
 
-
         <div class="page-head"> 
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title" id="page-title-left">검색결과</h1>               
+                        <h1 id="page-title-left">검색결과</h1>               
                     </div>
                 </div>
             </div>
