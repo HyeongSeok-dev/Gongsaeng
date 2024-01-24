@@ -1,5 +1,23 @@
 @charset "UTF-8";
 
+/* #payAgree{ */
+/* 	width: 50px; */
+/* } */
+.page-head {
+    background: #494C53 no-repeat scroll center top / cover;
+    color: #FFF;
+    position: relative;
+    min-height: 100px;
+}
+
+input[type="checkbox"] {
+    width: 50px;
+}
+
+input[type="radio"] {
+    width: 50px;
+}
+
 main {
 	height: 1400px;
 }
@@ -76,7 +94,7 @@ main {
     padding: 30px; 
 }
 
-h1, h2, h3 {
+h2, h3 {
     color: #333;
     margin: 0 auto;
 }
@@ -140,11 +158,26 @@ h2 {
 	margin-left: 0px;
 }
 
+.pay_result {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 0px;
+}
+
 .point_available {
 	color: gray;
 	font-size: 14px;
 }
 .point_to_use {
+	width: 68%;
+	height: 40px;
+	/* 스타일1 */
+	padding-right: 15px;
+	text-align: right;
+	margin: 5px;
+}
+
+.pay_to_use {
 	width: 68%;
 	height: 40px;
 	/* 스타일1 */

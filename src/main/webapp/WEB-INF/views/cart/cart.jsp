@@ -59,6 +59,17 @@
 		<jsp:include page="../inc/top.jsp"></jsp:include>
 	</header>
 	
+	<!-- 제목 -->
+	<div class="page-head">  
+         <div class="container">
+             <div class="row">
+                 <div class="page-head-content">
+                     <h1 class="page-title">장바구니</h1>               
+                 </div>
+             </div>
+         </div>
+     </div>
+	
 <div class="container">
 	<div class="row justify-content-center">
 	<!-- 중간에 오게하기이해 div추가 -->
@@ -67,9 +78,6 @@
 		<div class="col-xs-12">
 			<div class="panel panel-info">
 			
-				<div class="div_form_header">
-					<h1>장바구니</h1>
-				</div>
 				
 				<div class="panel-body">
 					<div class="row">

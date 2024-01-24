@@ -27,12 +27,12 @@
 	<link href="${pageContext.request.contextPath}/resources/assets/css/animate.css" rel="stylesheet" media="screen">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/bootstrap-select.min.css"> 
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/icheck.min_all.css">
+<%-- 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/icheck.min_all.css"> --%>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/price-range.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/owl.carousel.css">  
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/owl.theme.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/owl.transitions.css">
-<%-- 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/style.css"> --%>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/style.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/responsive.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
@@ -50,12 +50,11 @@
         <script src="${pageContext.request.contextPath }/resources/assets/js/jquery.easypiechart.min.js"></script>
         <script src="${pageContext.request.contextPath }/resources/assets/js/owl.carousel.min.js"></script>
         <script src="${pageContext.request.contextPath }/resources/assets/js/wow.js"></script>
-        <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
+<%--         <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script> --%>
         <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
-        <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
+        <script src="${pageContext.request.contextPath }/resources/assets/js/main_noicheck.js"></script>
 <!-- <script src="https://cdn.iamport.kr/v1/iamport.js"></script> -->
 <!-- <script src="https://cdn.portone.io/v2/browser-sdk.js"></script> -->
-<script src="${pageContext.request.contextPath }/resources/js/payment.js"></script>
 <%-- <script src="${pageContext.request.contextPath }/resources/js/payment_API.js"></script> --%>
 
 	<script src="${pageContext.request.contextPath }/resources/js/payment.js"></script>
@@ -77,12 +76,19 @@
 		<jsp:include page="../inc/top.jsp"></jsp:include>
 	</header>
 	<main>
+		<!-- 제목 -->
+		<div class="page-head">  
+            <div class="container">
+                <div class="row">
+                    <div class="page-head-content">
+                        <h1 class="page-title">결제하기</h1>               
+                    </div>
+                </div>
+            </div>
+        </div>
 		<form action="paymentPro" name="payForm" method="POST" id="payForm">
 			<div class="div_outter">
 			
-				<div class="div_form_header">
-					<span><h1>결제하기</h1></span>
-				</div>
 				
 				<div class="div_inner">
 					<div class="div_left_box">
@@ -150,6 +156,39 @@
 						</div>
 				</section>
 				
+				<!-- 0페이============================================================ -->
+				<section id="leftSec03" class="section_box">
+					<h2>0페이</h2>
+						<div class="pay">
+							<div class="pay_result">
+<!-- 									<span class="font_stlye">포인트</span>  -->
+								<span class="pay_available">
+									&nbsp;&nbsp;사용가능페이금액&nbsp;
+									<span id="useablePay">
+											${map.paymentInfo.totalPoint}
+									</span>
+									원
+									 &nbsp; <span><a id="useAllPoint">전액사용</a></span>
+								</span>
+							</div>
+							<input type="text" value="" placeholder="사용할 0페이를 입력해 주세요" class="pay_to_use" name="payToUse" style="width: 250px;"/><span class="won">원</span>
+							
+							<button id="chargePay" class="use_button charge"  type="button" onclick="authAccount()">충전하기</button>
+							<!-- member_id유무에 따른 버튼 출력 -->
+<%-- 							<c:choose> --%>
+<%-- 								없을때(계좌등록) --%>
+<%-- 								<c:when test="${empty sessionScope. }">  --%>
+<!-- 									<button id="chargePay" class="use_button charge"  type="button" onclick="authAccount()">충전하기</button> -->
+<%-- 								</c:when> --%>
+<%-- 								있을때(사용) --%>
+<%-- 								<c:when test="${empty sessionScope. }">  --%>
+<!-- 									<button id="usePay" class="use_button"  type="button">사용하기</button> -->
+<%-- 								</c:when> --%>
+<%-- 							</c:choose> --%>
+							
+						</div>
+				</section>
+				
 				<!-- 결제수단================================================= -->
 				<section id="leftSec04" class="section_box">
 					<h2>결제수단</h2>
@@ -157,17 +196,17 @@
 <!-- 						<div> -->
 <!-- 							<input type="radio" name="pay_on_sit" value="2" id="onSitePayment"><span class="font_stlye"> 메뉴만 현장결제</span> -->
 <!-- 						</div>	 -->
-						<div>
+						<div style="display: flex; align-items: center;">
 							<input type="radio" name="pay_method" value="1" id="kakaoPay">&nbsp;
 							<img src="${pageContext.request.contextPath }/resources/img/kakaoPay_png.png" width="65" id="kakao">
 							<span class="font_stlye"> </span>
 						</div>
 						<br>
-						<div>
+						<div style="display: flex; align-items: center;">
 							<input type="radio" name="pay_method" value="2" id="creditCardPayment"><span class="font_stlye"> 카드결제</span>
 						</div>
 						<br>
-						<div>	
+						<div style="display: flex; align-items: center;">	
 							<input type="radio" name="pay_method" value="3" id="mobilePhonePayment"><span class="font_stlye"> 휴대폰결제</span>
 						</div>
 					</div>
@@ -180,9 +219,9 @@
 					<div class="agree_top">
 						<!-- 이용약관동의 -->
 						<div class="agree_main">
-							<span>
+							<span style="display: flex; align-items: center;">
 								<input type="checkbox" id="payAgree" name="agreement" class="agree">
-								<span class="each_agree">
+								<span class="each_agree" style="width: 300px;">
 									<span class="agree_font">[필수]</span> 
 									결제이용 약관 동의 합니다.
 								</span>
@@ -193,8 +232,8 @@
 						</div>	
 						<!-- 환불정책동의 -->
 						<div class="agree_main">
-							<span>
-								<input type="checkbox" id="payAgree" name="agreement" class="agree">
+							<span style="display: flex; align-items: center;">
+								<input type="checkbox" id="payBackAgree" name="agreement" class="agree">
 								<span class="each_agree">
 									<span class="agree_font">[필수]</span> 
 									환불정책 약관 동의 합니다.
@@ -206,7 +245,7 @@
 						</div>	
 						<!-- 정보동의 -->
 						<div class="agree_main">
-							<span>
+							<span style="display: flex; align-items: center;">
 								<input type="checkbox" name="per_info_consent" class="agree">
 								<span class="each_agree">
 									<span class="agree_font">[선택]</span> 
@@ -219,7 +258,7 @@
 						</div>
 						<!-- 전체동의 -->
 						<div class="agree_main">
-						<span>
+						<span style="display: flex; align-items: center;">
 							<input type="checkbox" name="checkAllAgree" value="전체동의" class="agree" id="checkAllAgree">
 							<span class="each_agree">
 								<span class="all_agree">[전체동의]</span>
@@ -326,8 +365,8 @@
 			<input type="hidden" value="" name="preOrderTotalPrice"  id="preOrderTotalPrice"/>
 		</form>
 	</main>
-	<footer>
+<!-- 	<footer> -->
 <%-- 		<jsp:include page="../inc/bottom.jsp"></jsp:include> --%>
-	</footer> 
+<!-- 	</footer>  -->
 </body>
 </html>

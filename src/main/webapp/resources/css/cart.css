@@ -1,6 +1,10 @@
 @charset "UTF-8";
-
-/*커밋오류*/
+/* .page-head { */
+/*     background: #494C53 no-repeat scroll center top / cover; */
+/*     color: #FFF; */
+/*     position: relative; */
+/*     min-height: 100px; */
+/* } */
 body {
 	margin-top: 20px;
 }
@@ -11,7 +15,7 @@ h1 {
     padding: 10px;
     margin: 10px;
     font-size: 30px;
-    color: #333;
+/*     color: #333; */
   margin-top: 100px;
   padding: 70px;
 }

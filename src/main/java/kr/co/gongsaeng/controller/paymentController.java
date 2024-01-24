@@ -18,6 +18,18 @@ public class paymentController {
 		return "payment/payment_agree";
 	}
 	
+	//페이충전
+	@GetMapping("charge")
+	public String charge() {
+		return "payment/charge";
+	}
+	
+	//페이충전-계좌선택
+	@GetMapping("charge/account")
+	public String chargeAccount() {
+		return "payment/charge_account";
+	}
+	
 }//paymentController
 
 
