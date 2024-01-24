@@ -4068,11 +4068,11 @@ Created using IcoMoon - icomoon.io
 
 .sidebar:after,
 .off-canvas-sidebar:after {
-  background: #888;
-  background: -webkit-linear-gradient(#888 0%, #000 80%);
-  background: -o-linear-gradient(#888 0%, #000 80%);
-  background: -moz-linear-gradient(#888 0%, #000 80%);
-  background: linear-gradient(#888 0%, #000 80%);
+  background: #494C53;
+/*   background: -webkit-linear-gradient(#888 0%, #000 80%); */
+/*   background: -o-linear-gradient(#888 0%, #000 80%); */
+/*   background: -moz-linear-gradient(#888 0%, #000 80%); */
+/*   background: linear-gradient(#888 0%, #000 80%); */
   z-index: 3;
 }
 
@@ -4217,10 +4217,10 @@ Created using IcoMoon - icomoon.io
   height: 260px;
   padding-top: 80px;
   padding-bottom: 45px;
-  background: #141E30;
+  background: #494C53;
   /* fallback for old browsers */
-  background: -webkit-gradient(linear, left top, right top, from(#0c2646), color-stop(60%, #204065), to(#2a5788));
-  background: linear-gradient(to right, #0c2646 0%, #204065 60%, #2a5788 100%);
+/*   background: -webkit-gradient(linear, left top, right top, from(#0c2646), color-stop(60%, #204065), to(#2a5788)); */
+/*   background: linear-gradient(to right, #0c2646 0%, #204065 60%, #2a5788 100%); */
   position: relative;
   overflow: hidden;
 }

@@ -2,13 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
   <link href="${pageContext.request.contextPath }/resources/admin_assets/css/admin_sidebar.css" rel="stylesheet" />
-<div class="sidebar" data-color="blue">
+<div class="sidebar" data-color="dark">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
       <div class="logo">
-		<a id="navbar-brand" href="admin/main"><img class="main_logo1" src="${pageContext.request.contextPath}/resources/assets/img/logo2 (2).png" alt="" width="100"></a>
-		<a id="navbar-brand" href="admin/main"><img class="main_logo2" src="${pageContext.request.contextPath}/resources/assets/img/logo3.png" alt="" width="100"></a>
+		<a id="navbar-brand" href="admin/main"><img class="main_logo1" src="${pageContext.request.contextPath}/resources/admin_assets/img/logoW-1.png" alt="" width="100"></a>
+		<a id="navbar-brand" href="admin/main"><img class="main_logo2" src="${pageContext.request.contextPath}/resources/admin_assets/img/logoW-2.png" alt="" width="100"></a>
       </div>
       <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
