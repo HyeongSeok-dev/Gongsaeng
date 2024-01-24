@@ -58,7 +58,7 @@
 
 </head>
 <body>
-	<jsp:include page="../inc/top.jsp"></jsp:include>
+	<jsp:include page="../inc/top2.jsp"></jsp:include>
 	<br>
 	<div class="container">
 		<div class="row">
@@ -71,11 +71,11 @@
 					<div class="panel-body">
 						<ul class="list-group">
 							<li class="list-group-item active"><a href="reservation">예약 내역</a></li>
-							<li class="list-group-item "><a data-toggle="collapse" href="#alert">알림/메세지</a>
+							<li class="list-group-item "><a data-toggle="collapse" href="#alert">알림/메시지</a>
 								<div id="alert" class="panel-collapse collapse">
 									<ul class="list-group">
 										<li class="list-group-item"><a href="alert">알림</a></li>
-										<li class="list-group-item"><a href="messages">메세지</a></li>
+										<li class="list-group-item"><a href="messages">메시지</a></li>
 									</ul>
 								</div></li>
 							<li class="list-group-item "><a data-toggle="collapse" href="#offer">혜택</a>
@@ -136,7 +136,7 @@
 						<div class="row">
 							<div class="col-xs-9">업체 이름</div>
 							<div class="col-xs-3 text-right">
-								<button class="btn btn-default">메세지 문의</button>
+								<button class="btn btn-default">메시지 문의</button>
 							</div>
 						</div>
 					</div>

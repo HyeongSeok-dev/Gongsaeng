@@ -57,7 +57,7 @@
 
 </head>
 <body>
-	<jsp:include page="../inc/top.jsp"></jsp:include>
+	<jsp:include page="../inc/top2.jsp"></jsp:include>
 	<br>
 	<div class="container">
 		<div class="row">
@@ -70,11 +70,11 @@
 					<div class="panel-body">
 						<ul class="list-group">
 							<li class="list-group-item "><a href="reservation">예약 내역</a></li>
-							<li class="list-group-item "><a data-toggle="collapse" href="#alert">알림/메세지</a>
+							<li class="list-group-item "><a data-toggle="collapse" href="#alert">알림/메시지</a>
 								<div id="alert" class="panel-collapse collapse in">
 									<ul class="list-group">
 										<li class="list-group-item"><a href="alert">알림</a></li>
-										<li class="list-group-item active"><a href="messages">메세지</a></li>
+										<li class="list-group-item active"><a href="messages">메시지</a></li>
 									</ul>
 								</div></li>
 							<li class="list-group-item "><a data-toggle="collapse" href="#offer">혜택</a>
@@ -121,7 +121,7 @@
 			<!-- 우측 본문영역 -->
 			<div class="col-sm-9">
 				<div class="container">
-					<h3 class=" text-center">메세지</h3>
+					<h3 class=" text-center">메시지</h3>
 					<div class="messaging">
 						<div class="inbox_msg">
 							<div class="inbox_people">
@@ -199,7 +199,7 @@
 								
 								<div class="type_msg">
 									<div class="input_msg_write">
-										<input type="text" class="write_msg" placeholder="메세지를 입력하세요" />
+										<input type="text" class="write_msg" placeholder="메시지를 입력하세요" />
 										<button class="msg_send_btn" type="button">
 											<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
 										</button>

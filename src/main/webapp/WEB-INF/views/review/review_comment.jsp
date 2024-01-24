@@ -56,7 +56,7 @@ function reReplyWrite() {
 		dataType: "text",
 		success: function(result) {
 			// 대댓글 등록 요청 결과 처리
-			// => 성공 시 화면 갱신, 실패 시 오류 메세지 출력
+			// => 성공 시 화면 갱신, 실패 시 오류 메시지 출력
 			if(result == "true") {
 				location.reload(); // 페이지 갱신
 //					location.href = location.href;

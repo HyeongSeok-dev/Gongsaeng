@@ -58,7 +58,7 @@
 
 </head>
 <body>
-	<jsp:include page="../inc/top.jsp"></jsp:include>
+	<jsp:include page="../inc/top2.jsp"></jsp:include>
 	<br>
 	<div class="container">
 		<div class="row">
@@ -71,11 +71,11 @@
 					<div class="panel-body">
 						<ul class="list-group">
 							<li class="list-group-item "><a href="reservation">예약 내역</a></li>
-							<li class="list-group-item "><a data-toggle="collapse" href="#alert">알림/메세지</a>
+							<li class="list-group-item "><a data-toggle="collapse" href="#alert">알림/메시지</a>
 								<div id="alert" class="panel-collapse collapse">
 									<ul class="list-group">
 										<li class="list-group-item"><a href="alert">알림</a></li>
-										<li class="list-group-item"><a href="messages">메세지</a></li>
+										<li class="list-group-item"><a href="messages">메시지</a></li>
 									</ul>
 								</div></li>
 							<li class="list-group-item"><a data-toggle="collapse" href="#offer">혜택</a>
@@ -149,12 +149,12 @@
 					<div class="panel-body">주문내역 내용</div>
 				</div>
 
-				<!-- 안 읽은 메세지, 안 읽은 알림 섹션 -->
+				<!-- 안 읽은 메시지, 안 읽은 알림 섹션 -->
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="panel panel-default">
-							<div class="panel-heading">안 읽은 메세지</div>
-							<div class="panel-body">메세지 내용</div>
+							<div class="panel-heading">안 읽은 메시지</div>
+							<div class="panel-body">메시지 내용</div>
 						</div>
 					</div>
 					<div class="col-sm-6">
