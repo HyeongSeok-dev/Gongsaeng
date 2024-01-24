@@ -40,28 +40,7 @@ body {
     font-weight: normal;
 }
 
-/*====================================================
-page-header
-======================================================*/
-.page-head{
-    background: #494C53 url("../assets/img/page-header.jpg") 
-        no-repeat scroll center top / cover;
-    color:#FFF;
-    position: relative;
-    min-height: 140px;
-}
-.page-head-content {
-    padding-top: 52px;
-    padding-bottom: 52px;
-}
-.page-head-content .page-title {
-    margin: 0px;
-    padding: 10px 16px;
-    font-size: 30px;
-    font-weight: 300;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
+
 .content-area {
     background-color: #FCFCFC; padding-bottom: 55px;
 }
@@ -80,5 +59,10 @@ page-header
 	    padding: 5px 15px;
 	    border-radius: 3px;
       	}
+      	
+.bottom  {
+    border-top: 1px solid #D1D1D1;
+    color: #535353;
+}     	
       	
       	

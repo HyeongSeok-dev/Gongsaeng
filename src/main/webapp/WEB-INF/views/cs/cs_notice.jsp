@@ -15,11 +15,10 @@
         <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-        <link rel="icon" href="favicon.ico" type="image/x-icon">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/normalize.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/font-awesome.min.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/fontello.css">
@@ -54,20 +53,10 @@
     </head>
     <body>
      <jsp:include page="../inc/top.jsp"></jsp:include>
-     <br>
-         <div class="page-head"> 
+     	<br>
             <div class="container">
-                <div class="row">
-                    <div class="page-head-content">
-                        <h1 class="page-title">공지사항</h1>               
-                    </div>
-                </div>
-            </div>
-        </div>
+              	<h3 class="page-title">공지사항</h3>               
 		<br>
-		<br>
-        <nav>
-		<div class="container ">
 	        <span>
 	        	<button type="button" class="notice_point" onclick=>전체</button>
 	        	<button type="button" class="notice_point" onclick=>공지</button>
@@ -143,12 +132,13 @@
 		                </div>
 		            </div>
 		        </div>
-		        
 		    </div>
 		    <!--/panel-group-->
 		</div>
-		</nav>
-
-
+		<!-- Footer area -->
+		<!-- 하단바 삽입-->
+		<div class="bottom">
+			<jsp:include page="../inc/bottom.jsp"/>
+		</div>
     </body>
 </html>

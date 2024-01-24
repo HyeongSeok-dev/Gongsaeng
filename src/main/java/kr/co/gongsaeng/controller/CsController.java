@@ -20,16 +20,5 @@ public class CsController {
 	public String qna() {
 		return "cs/cs_qna";
 	}
-	
-	@GetMapping("chat/detail")
-	public String detail() {
-		return "chat/chat_detail";
-	}
-	
-	@GetMapping("chat/list")
-	public String list() {
-		return "chat/chat_list";
-	}
-	
 
 }

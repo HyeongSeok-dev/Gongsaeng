@@ -95,53 +95,53 @@
 									</div>
 								</div>
 							</div>
-							<div class="mesgs">
-								<div class="msg_history">
-									<div class="incoming_msg">
-										<div class="incoming_msg_img">
-											<img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
-										</div>
-										<div class="received_msg">
-											<div class="received_withd_msg">
-												<p>ㄱㄱ?</p>
-												<span class="time_date"> 11:01 오전 | 1월 21일</span>
-											</div>
-										</div>
-									</div>
-									<div class="outgoing_msg">
-										<div class="sent_msg">
-											<p>ㄴㄴ</p>
-												<span class="time_date"> 11:02 오전 | 1월 21일</span>
-										</div>
-									</div>
-									<div class="incoming_msg">
-										<div class="incoming_msg_img">
-											<img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
-										</div>
-										<div class="received_msg">
-											<div class="received_withd_msg">
-												<p>ㄱㄱ?</p>
-												<span class="time_date"> 11:04 오전 | 1월 21일</span>
-											</div>
-										</div>
-									</div>
-									<div class="outgoing_msg">
-										<div class="sent_msg">
-											<p>ㄱㄱ</p>
-												<span class="time_date"> 11:08 오전 | 오늘</span>
-										</div>
-									</div>
-								</div>
+<!-- 							<div class="mesgs"> -->
+<!-- 								<div class="msg_history"> -->
+<!-- 									<div class="incoming_msg"> -->
+<!-- 										<div class="incoming_msg_img"> -->
+<!-- 											<img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> -->
+<!-- 										</div> -->
+<!-- 										<div class="received_msg"> -->
+<!-- 											<div class="received_withd_msg"> -->
+<!-- 												<p>ㄱㄱ?</p> -->
+<!-- 												<span class="time_date"> 11:01 오전 | 1월 21일</span> -->
+<!-- 											</div> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 									<div class="outgoing_msg"> -->
+<!-- 										<div class="sent_msg"> -->
+<!-- 											<p>ㄴㄴ</p> -->
+<!-- 												<span class="time_date"> 11:02 오전 | 1월 21일</span> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 									<div class="incoming_msg"> -->
+<!-- 										<div class="incoming_msg_img"> -->
+<!-- 											<img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> -->
+<!-- 										</div> -->
+<!-- 										<div class="received_msg"> -->
+<!-- 											<div class="received_withd_msg"> -->
+<!-- 												<p>ㄱㄱ?</p> -->
+<!-- 												<span class="time_date"> 11:04 오전 | 1월 21일</span> -->
+<!-- 											</div> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 									<div class="outgoing_msg"> -->
+<!-- 										<div class="sent_msg"> -->
+<!-- 											<p>ㄱㄱ</p> -->
+<!-- 												<span class="time_date"> 11:08 오전 | 오늘</span> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
 								
-								<div class="type_msg">
-									<div class="input_msg_write">
-										<input type="text" class="write_msg" placeholder="메시지를 입력하세요" />
-										<button class="msg_send_btn" type="button">
-											<i class="fa fa-paper-plane-o" aria-hidden="true"></i>
-										</button>
-									</div>
-								</div>
-							</div>
+<!-- 								<div class="type_msg"> -->
+<!-- 									<div class="input_msg_write"> -->
+<!-- 										<input type="text" class="write_msg" placeholder="메시지를 입력하세요" /> -->
+<!-- 										<button class="msg_send_btn" type="button"> -->
+<!-- 											<i class="fa fa-paper-plane-o" aria-hidden="true"></i> -->
+<!-- 										</button> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
 						</div>
 					</div>
 				</div>

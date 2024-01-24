@@ -15,11 +15,10 @@
         <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' >
-
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-        <link rel="icon" href="favicon.ico" type="image/x-icon">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/normalize.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/font-awesome.min.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/fontello.css">
@@ -55,21 +54,15 @@
     <body>
     <jsp:include page="../inc/top.jsp"></jsp:include>
     <br>
-         <div class="page-head"> 
             <div class="container">
-                <div class="row">
-                    <div class="page-head-content">
-                        <h1 class="page-title">자주 묻는 질문</h1>               
-                    </div>
-                </div>
+                <h3 class="page-title">자주 묻는 질문</h3>               
             </div>
-        </div>
 		<br>
 		<br>
         <nav>
 			  <div class="container row" style="float: none; margin:100 auto;">
 			    <div class="faq_row">
-			        <div class="col-md-12 col-md-offset-3">
+			        <div class="col-lg-12 col-lg-offset-2">
 						<div>
 			                <form action="" name="">
 				                <div>
@@ -344,8 +337,12 @@
 			            </div>
 			          </div>
 			        </div>
-			    </div>
+			    </div>s
 		</nav>
-
+		<!-- Footer area -->
+		<!-- 하단바 삽입-->
+		<div class="bottom">
+			<jsp:include page="../inc/bottom.jsp"/>
+		</div>
     </body>
 </html>
