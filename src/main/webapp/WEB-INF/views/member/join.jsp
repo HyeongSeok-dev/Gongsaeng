@@ -51,6 +51,7 @@
 <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/join.js"></script>
 
 </head>
 <body>
@@ -62,65 +63,89 @@
 			<form id="loginForm" method="POST" action="MemberJoinPro" name="joinForm" class="form-horizontal">
 				<div class="form-group">
 					<label for="userId" class="col-sm-2 control-label">아이디</label>
-					<div class="col-sm-10">
-						<input type="text" id="userId" name="user_id" class="form-control" placeholder="아이디 (영문자, 숫자 조합 8~16자리 필수(한글, 특수문자 사용불가 )" maxlength="100" /> <span
-							id="checkIdResult"></span>
+					<div class="col-sm-8">
+						<input type="text" id="userId" name="user_id" class="form-control" placeholder="아이디 (영문자, 숫자 조합 8~16자리 필수(한글, 특수문자 사용불가 )"
+							maxlength="100" />
+					</div>
+					<div class="col-sm-2">
+						<span id="checkIdResult"></span>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="passwd" class="col-sm-2 control-label">비밀번호</label>
-					<div class="col-sm-10">
-						<input type="password" id="passwd" name="user_passwd" class="form-control" placeholder="비밀번호 (영문, 숫자, 특수문자 조합 8~16자리) 권장" maxlength="16">
+					<div class="col-sm-8">
+						<input type="password" id="passwd" name="user_passwd" class="form-control" placeholder="비밀번호 (영문, 숫자, 특수문자 조합 8~16자리) 권장"
+							maxlength="16">
+					</div>
+					<div class="col-sm-2">
 						<span id="checkPasswdResult"></span>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="passwd2" class="col-sm-2 control-label">비밀번호 확인</label>
-					<div class="col-sm-10">
-						<input type="password" id="passwd2" name="passwd2" class="form-control" placeholder="비밀번호 확인" maxlength="16"> <span
-							id="checkPasswd2Result"></span>
+					<div class="col-sm-8">
+						<input type="password" id="passwd2" name="passwd2" class="form-control" placeholder="비밀번호 확인" maxlength="16">
+					</div>
+					<div class="col-sm-2">
+						<span id="checkPasswd2Result"></span>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="u_nick" class="col-sm-2 control-label">닉네임</label>
-					<div class="col-sm-10">
-						<input type="text" id="u_nick" name="user_nick" class="form-control" placeholder="닉네임" maxlength="100"> <span id="checkNickResult"></span>
+					<div class="col-sm-8">
+						<input type="text" id="u_nick" name="user_nick" class="form-control" placeholder="닉네임" maxlength="100">
+					</div>
+					<div class="col-sm-2">
+						<span id="checkNickResult"></span>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="u_name" class="col-sm-2 control-label">이름</label>
-					<div class="col-sm-10">
+					<div class="col-sm-8">
 						<input type="text" id="u_name" name="user_name" class="form-control" placeholder="이름" maxlength="16">
+					</div>
+					<div class="col-sm-2">
+						<span id="checkNameResult"></span>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="com_birth" class="col-sm-2 control-label">생년월일</label>
-					<div class="col-sm-10">
-						<input type="date" id="com_birth" name="user_birth" class="form-control" maxlength="16">
+					<div class="col-sm-8">
+						<input type="date" id="com_birth" name="user_birth" class="form-control">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="u_email" class="col-sm-2 control-label">이메일</label>
-					<div class="col-sm-5">
-						<input type="text" id="u_email" name="user_email1" class="form-control" placeholder="이메일" maxlength="16">
+					<div class="col-sm-4">
+						<div class="input-group">
+							<input type="text" id="u_email" name="user_email1" class="form-control" placeholder="이메일" maxlength="16">
+							<div class="input-group-addon">@</div>
+						</div>
 					</div>
-					<div class="col-sm-5">
-						<input type="text" id="customEmail" class="form-control" name="user_email2" style="display: none;" placeholder="이메일을 입력하세요" disabled="disabled">
-						<select id="u_email2" name="user_email2" class="form-control" onchange="checkOption(this)">
-							<option value="">선택하세요</option>
-							<option value="gmail.com">gmail.com</option>
-							<option value="naver.com">naver.com</option>
-							<option value="daum.net">daum.net</option>
-							<option value="yahoo.com">yahoo.com</option>
-							<option value="custom">직접입력</option>
-						</select>
+
+					<div class="col-sm-4">
+						<input type="text" id="customEmail" class="form-control" name="user_email2" style="display: none;" placeholder="이메일을 입력하세요"
+							disabled="disabled">
+						<div id="emailSelectBox">
+							<select id="u_email2" name="user_email2" class="form-control" onchange="checkOption(this)">
+								<option value="">선택하세요</option>
+								<option value="gmail.com">gmail.com</option>
+								<option value="naver.com">naver.com</option>
+								<option value="daum.net">daum.net</option>
+								<option value="yahoo.com">yahoo.com</option>
+								<option value="custom">직접입력</option>
+							</select>
+						</div>
 					</div>
+					<div class="col-sm-2" id="customEmailSelectBox"></div>
 				</div>
 				<div class="form-group">
 					<label for="u_phone" class="col-sm-2 control-label">전화번호</label>
-					<div class="col-sm-10">
-						<input type="text" id="u_phone" name="user_phone" class="form-control" placeholder="전화번호 (' - ' 를 빼고 입력)" maxlength="100"> <span
-							id="checkPhoneResult"></span>
+					<div class="col-sm-8">
+						<input type="text" id="u_phone" name="user_phone" class="form-control" placeholder="전화번호 (' - ' 를 빼고 입력)" maxlength="100">
+					</div>
+					<div class="col-sm-2">
+						<span id="checkPhoneResult"></span>
 					</div>
 				</div>
 				<div class="form-group">
