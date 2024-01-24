@@ -50,28 +50,6 @@ function toggleButtons() {
 }
 </script>
 
-<style type="text/css">
-.item img {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-}
-.item_p {
-	text-align: left;
-	font-size: 13px;
-	line-height: 1.5;
-}
-
-.item-entry h6 {
-	text-align: left;
-	font-size: 14px;
-	margin: 0px;
-}
-.item-entry h6 a {
-	font-weight: normal;
-}
-</style>
-
 </head>
 <body>
 	<div id="preloader">
@@ -233,7 +211,7 @@ function toggleButtons() {
 											</div>
 											
 											<div class="row">
-												<div class="col-sm-12" style="min-height:100px; max-height:100px; padding: 0px;">
+												<div class="col-sm-12 col_className">
 			                                        <h5><a href="property-1">도배 기초</a></h5>
 			                                        <div class="dot-hr"></div>
 			                                       	<div class="item_p">
@@ -248,7 +226,7 @@ function toggleButtons() {
 											</div>
 											
 											<div class="row">
-												<div class="col-sm-12" style="min-height: 20px; max-height: 20px; padding: 0px; margin-top: 15px;">
+												<div class="col-sm-12 col_classPrice">
 													<div class="item_p">
 				                                        <span class="proerty-price pull-right">300,000원</span>
 			                                        </div>

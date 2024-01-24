@@ -2036,7 +2036,11 @@ proerty-th-list
     border: none;
 }
 .properties-page .box-two { 
-    overflow: hidden !important; 
+	overflow: hidden !important;
+	/* ### */
+	background-color: #FFF;
+	padding: 10px;
+	border-color: #000;
 } 
 .proerty-th-list  .proerty-item .item-entry h5 {
     text-transform: uppercase;
@@ -3458,8 +3462,93 @@ padding-bottom: 15px;
 	margin-top: 3px;
 }
 
+.proerty-th-list .jss95 {
+    top: 10px;
+	top: 205px;
+    left: 400px;
+    height: 32px;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.6);
+    padding-top: 6px;
+    border-radius: 20px;
+}
+.proerty-th-list .jss146 {
+    color: rgba(233, 30, 99, 0.8);
+	top: 205px;
+    left: 400px;
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.6);
+    padding-top: 6px;
+    border-radius: 20px;
+}
+
+
 /* ### */
 /* 알림드롭다운 */
 #notifyDropdown {
 	position: absolute;
 }
+
+/* ### */
+/* 클래스 카드 */
+.col_className {
+	min-height:100px;
+	max-height:100px;
+	padding: 0px;
+}
+
+.col_classPrice {
+	min-height: 20px;
+	max-height: 20px;
+	padding: 0px;
+	margin-top: 15px;
+}
+.item img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+.item_p {
+	text-align: left;
+	font-size: 13px;
+	line-height: 1.5;
+}
+
+.item-entry h6 {
+	text-align: left;
+	font-size: 14px;
+	margin: 0px;
+}
+.item-entry h6 a {
+	font-weight: normal;
+}
+
+/* 카드 레이아웃 - 그리드형식 */
+.proerty-th-list .col_className {
+    min-height: 150px;
+    max-height: 150px;
+    padding: 0px;
+}
+.proerty-th-list .col_classPrice {
+    min-height: 35px;
+    max-height: 35px;
+    padding: 0px;
+    margin-top: 15px;
+}
+.proerty-th-list .item_p {
+	text-align: left;
+	font-size: 15px;
+	line-height: 1.5;
+}
+.proerty-th-list .item-entry h6 {
+	text-align: left;
+	font-size: 15px;
+    margin: 5px 0px;
+}
+.proerty-th-list .item-entry h5 {
+	font-size: 20px;
+    margin: 20px 0px;
+}
+
