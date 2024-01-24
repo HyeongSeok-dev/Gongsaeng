@@ -1542,11 +1542,10 @@ Asside widgets CSS
     padding-top: 55px;
     display: flex;
 }
-
-/* ### */
 .page-title-icon {
     padding-top: 55px;
     display: flex;
+    /* ### */
     justify-content: center;
 }
 .page-title h5{
@@ -1889,8 +1888,10 @@ proerty-th
     margin: 10px;
     /* ### */
 /*     border-radius: 10px; */
-	min-height: 500px;
-    max-height: 500px;
+	/* 클래스 카드 사이즈 제한 ↓ */
+    min-height: 420px;
+    max-height: 420px;
+	/* 클래스 카드 사이즈 제한 ↑ */
     padding: 10px;
     border-color: #000;
 }
@@ -1923,6 +1924,8 @@ proerty-th
 .properties-page .proerty-th .proerty-price{
     font-weight: 600;
     color: #494C53;
+	/* ### */
+    font-size: 15px;
 }
 .proerty-th .proerty-item  .item-entry h5{
     text-transform: uppercase;
@@ -1944,6 +1947,16 @@ proerty-th
 /*     bottom: -16px; */
 /*     display: block; */
 /* } */
+
+/* ### */
+/* 클래스 카드 설명 길이 제한 */
+.pull-left_plus {
+	float: left!important;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	overflow: hidden;
+}
 
 .proerty-status{
     font-weight: 600;

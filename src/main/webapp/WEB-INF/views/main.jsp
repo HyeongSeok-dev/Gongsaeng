@@ -201,6 +201,7 @@ function toggleButtons() {
 										</a>
 										
 										<%-- 찜표시 --%>
+										<%-- 찜하기 전 --%>
                                     	<button id="button1" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u" tabindex="0" type="button">
 											<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss97 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteBorderRoundedIcon">
 												<path d="M19.66 3.99c-2.64-1.8-5.9-.96-7.66 1.1-1.76-2.06-5.02-2.91-7.66-1.1-1.4.96-2.28 2.58-2.34 4.29-.14 3.88 3.3 6.99 8.55 11.76l.1.09c.76.69 1.93.69 2.69-.01l.11-.1c5.25-4.76 8.68-7.87 8.55-11.75-.06-1.7-.94-3.32-2.34-4.28zM12.1 18.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"></path>
@@ -208,6 +209,7 @@ function toggleButtons() {
 											<span class="MuiTouchRipple-root css-w0pj6f"></span>
 										</button>
 										
+										<%-- 찜한 후 --%>
 										<button id="button2" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss146 css-1j7qk7u" tabindex="0" type="button">
 											<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss147 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
 												<path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
@@ -231,25 +233,33 @@ function toggleButtons() {
 											</div>
 											
 											<div class="row">
-												<div class="col-sm-12" style="padding: 0px;">
+												<div class="col-sm-12" style="min-height:100px; max-height:100px; padding: 0px;">
 			                                        <h5><a href="property-1">도배 기초</a></h5>
 			                                        <div class="dot-hr"></div>
 			                                       	<div class="item_p">
-				                                        <span class="pull-left">
-			                                        		설명 블라블라블라븝랄르븨븨르ㅢㅏㅢ아ㅣ르아ㅡ아아아아아아ㅏㅇ테스트테스트테스
-			                                        		테스테트세트테ㅡㅅ테ㅡ테ㅡ테ㅡ텐렁ㄴ라아아아아아ㅏㅏㅏ
+				                                        <span class="pull-left_plus">
+			                                        		3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+			                                        		3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+			                                        		3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+			                                        		3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
 				                                        </span>
 			                                       	</div>
-			                                       	<br>
-			                                        <span class="proerty-price pull-right">300,000원</span>
 												</div>
 											</div>
+											
+											<div class="row">
+												<div class="col-sm-12" style="min-height: 20px; max-height: 20px; padding: 0px; margin-top: 15px;">
+													<div class="item_p">
+				                                        <span class="proerty-price pull-right">300,000원</span>
+			                                        </div>
+												</div>
+											</div>
+											
 										</div>
                                     </div>
                                     
-                                    
                                 </div>
-                            </div> 
+                            </div>
                             <%-- 클래스 카드 area --%>
                             
                             <div class="col-sm-6 col-md-3 p0">
@@ -290,21 +300,30 @@ function toggleButtons() {
 											</div>
 											
 											<div class="row">
-												<div class="col-sm-12" style="padding: 0px;">
+												<div class="col-sm-12" style="min-height:100px; max-height:100px; padding: 0px;">
 			                                        <h5><a href="property-1">도배 기초</a></h5>
 			                                        <div class="dot-hr"></div>
 			                                       	<div class="item_p">
-				                                        <span class="pull-left">
-			                                        		설명 블라블라블라븝랄르븨븨르ㅢㅏㅢ라아아아아아ㅏㅏㅏ
+				                                        <span class="pull-left_plus">
+			                                        		3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+			                                        		3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+			                                        		3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+			                                        		3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
 				                                        </span>
 			                                       	</div>
-			                                       	<br>
-			                                        <span class="proerty-price pull-right">300,000원</span>
 												</div>
 											</div>
+											
+											<div class="row">
+												<div class="col-sm-12" style="min-height: 20px; max-height: 20px; padding: 0px; margin-top: 15px;">
+													<div class="item_p">
+				                                        <span class="proerty-price pull-right">300,000원</span>
+			                                        </div>
+												</div>
+											</div>
+											
 										</div>
                                     </div>
-                                    
                                     
                                 </div>
                             </div>
@@ -347,22 +366,30 @@ function toggleButtons() {
 											</div>
 											
 											<div class="row">
-												<div class="col-sm-12" style="padding: 0px;">
+												<div class="col-sm-12" style="min-height:100px; max-height:100px; padding: 0px;">
 			                                        <h5><a href="property-1">도배 기초</a></h5>
 			                                        <div class="dot-hr"></div>
 			                                       	<div class="item_p">
-				                                        <span class="pull-left">
-			                                        		설명 블라블라블라븝랄르븨븨르ㅢㅏㅢ아ㅣ르아ㅡ아아아아아아ㅏㅇ테스트테스트테스
-			                                        		테스테트세트테ㅡㅅ테ㅡ테ㅡ테ㅡ텐렁ㄴ라아아아아아ㅏㅏㅏ
+				                                        <span class="pull-left_plus">
+			                                        		3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+			                                        		3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+			                                        		3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+			                                        		3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
 				                                        </span>
 			                                       	</div>
-			                                       	<br>
-			                                        <span class="proerty-price pull-right">300,000원</span>
 												</div>
 											</div>
+											
+											<div class="row">
+												<div class="col-sm-12" style="min-height: 20px; max-height: 20px; padding: 0px; margin-top: 15px;">
+													<div class="item_p">
+				                                        <span class="proerty-price pull-right">300,000원</span>
+			                                        </div>
+												</div>
+											</div>
+											
 										</div>
                                     </div>
-                                    
                                     
                                 </div>
                             </div>
@@ -405,22 +432,30 @@ function toggleButtons() {
 											</div>
 											
 											<div class="row">
-												<div class="col-sm-12" style="padding: 0px;">
+												<div class="col-sm-12" style="min-height:100px; max-height:100px; padding: 0px;">
 			                                        <h5><a href="property-1">도배 기초</a></h5>
 			                                        <div class="dot-hr"></div>
 			                                       	<div class="item_p">
-				                                        <span class="pull-left">
-			                                        		설명 블라블라블라븝랄르븨븨르ㅢㅏㅢ아ㅣ르아ㅡ아아아아아아ㅏㅇ테스트테스트테스
-			                                        		테스테트세트테ㅡㅅ테ㅡ테ㅡ테ㅡ텐렁ㄴ라아아아아아ㅏㅏㅏ
+				                                        <span class="pull-left_plus">
+			                                        		3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+			                                        		3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+			                                        		3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+			                                        		3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
 				                                        </span>
 			                                       	</div>
-			                                       	<br>
-			                                        <span class="proerty-price pull-right">300,000원</span>
 												</div>
 											</div>
+											
+											<div class="row">
+												<div class="col-sm-12" style="min-height: 20px; max-height: 20px; padding: 0px; margin-top: 15px;">
+													<div class="item_p">
+				                                        <span class="proerty-price pull-right">300,000원</span>
+			                                        </div>
+												</div>
+											</div>
+											
 										</div>
                                     </div>
-                                    
                                     
                                 </div>
                             </div>
@@ -463,25 +498,33 @@ function toggleButtons() {
 											</div>
 											
 											<div class="row">
-												<div class="col-sm-12" style="padding: 0px;">
+												<div class="col-sm-12" style="min-height:100px; max-height:100px; padding: 0px;">
 			                                        <h5><a href="property-1">도배 기초</a></h5>
 			                                        <div class="dot-hr"></div>
 			                                       	<div class="item_p">
-				                                        <span class="pull-left">
-			                                        		설명 블라블라블라븝랄르븨븨르ㅢㅏㅢ아ㅣ르아ㅡ아아아아아아ㅏㅇ테스트테스트테스
-			                                        		테스테트세트테ㅡㅅ테ㅡ테ㅡ테ㅡ텐렁ㄴ라아아아아아ㅏㅏㅏ
+				                                        <span class="pull-left_plus">
+			                                        		3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+			                                        		3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+			                                        		3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+			                                        		3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
 				                                        </span>
 			                                       	</div>
-			                                       	<br>
-			                                        <span class="proerty-price pull-right">300,000원</span>
 												</div>
 											</div>
+											
+											<div class="row">
+												<div class="col-sm-12" style="min-height: 20px; max-height: 20px; padding: 0px; margin-top: 15px;">
+													<div class="item_p">
+				                                        <span class="proerty-price pull-right">300,000원</span>
+			                                        </div>
+												</div>
+											</div>
+											
 										</div>
                                     </div>
                                     
-                                    
                                 </div>
-                            </div> 
+                            </div>
                             
                             <div class="col-sm-6 col-md-3 p0">
                                 <div class="box-two proerty-item">
@@ -521,22 +564,30 @@ function toggleButtons() {
 											</div>
 											
 											<div class="row">
-												<div class="col-sm-12" style="padding: 0px;">
+												<div class="col-sm-12" style="min-height:100px; max-height:100px; padding: 0px;">
 			                                        <h5><a href="property-1">도배 기초</a></h5>
 			                                        <div class="dot-hr"></div>
 			                                       	<div class="item_p">
-				                                        <span class="pull-left">
-			                                        		설명 블라블라블라븝랄르븨븨르ㅢㅏㅢ아ㅣ르아ㅡ아아아아아아ㅏㅇ테스트테스트테스
-			                                        		테스테트세트테ㅡㅅ테ㅡ테ㅡ테ㅡ텐렁ㄴ라아아아아아ㅏㅏㅏ
+				                                        <span class="pull-left_plus">
+			                                        		3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+			                                        		3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+			                                        		3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+			                                        		3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
 				                                        </span>
 			                                       	</div>
-			                                       	<br>
-			                                        <span class="proerty-price pull-right">300,000원</span>
 												</div>
 											</div>
+											
+											<div class="row">
+												<div class="col-sm-12" style="min-height: 20px; max-height: 20px; padding: 0px; margin-top: 15px;">
+													<div class="item_p">
+				                                        <span class="proerty-price pull-right">300,000원</span>
+			                                        </div>
+												</div>
+											</div>
+											
 										</div>
                                     </div>
-                                    
                                     
                                 </div>
                             </div>
@@ -579,22 +630,30 @@ function toggleButtons() {
 											</div>
 											
 											<div class="row">
-												<div class="col-sm-12" style="padding: 0px;">
+												<div class="col-sm-12" style="min-height:100px; max-height:100px; padding: 0px;">
 			                                        <h5><a href="property-1">도배 기초</a></h5>
 			                                        <div class="dot-hr"></div>
 			                                       	<div class="item_p">
-				                                        <span class="pull-left">
-			                                        		설명 블라블라블라븝랄르븨븨르ㅢㅏㅢ아ㅣ르아ㅡ아아아아아아ㅏㅇ테스트테스트테스
-			                                        		테스테트세트테ㅡㅅ테ㅡ테ㅡ테ㅡ텐렁ㄴ라아아아아아ㅏㅏㅏ
+				                                        <span class="pull-left_plus">
+			                                        		3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+			                                        		3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+			                                        		3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+			                                        		3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
 				                                        </span>
 			                                       	</div>
-			                                       	<br>
-			                                        <span class="proerty-price pull-right">300,000원</span>
 												</div>
 											</div>
+											
+											<div class="row">
+												<div class="col-sm-12" style="min-height: 20px; max-height: 20px; padding: 0px; margin-top: 15px;">
+													<div class="item_p">
+				                                        <span class="proerty-price pull-right">300,000원</span>
+			                                        </div>
+												</div>
+											</div>
+											
 										</div>
                                     </div>
-                                    
                                     
                                 </div>
                             </div>
@@ -637,22 +696,30 @@ function toggleButtons() {
 											</div>
 											
 											<div class="row">
-												<div class="col-sm-12" style="padding: 0px;">
+												<div class="col-sm-12" style="min-height:100px; max-height:100px; padding: 0px;">
 			                                        <h5><a href="property-1">도배 기초</a></h5>
 			                                        <div class="dot-hr"></div>
 			                                       	<div class="item_p">
-				                                        <span class="pull-left">
-			                                        		설명 블라블라블라븝랄르븨븨르ㅢㅏㅢ아ㅣ르아ㅡ아아아아아아ㅏㅇ테스트테스트테스
-			                                        		테스테트세트테ㅡㅅ테ㅡ테ㅡ테ㅡ텐렁ㄴ라아아아아아ㅏㅏㅏ
+				                                        <span class="pull-left_plus">
+			                                        		3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+			                                        		3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+			                                        		3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+			                                        		3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
 				                                        </span>
 			                                       	</div>
-			                                       	<br>
-			                                        <span class="proerty-price pull-right">300,000원</span>
 												</div>
 											</div>
+											
+											<div class="row">
+												<div class="col-sm-12" style="min-height: 20px; max-height: 20px; padding: 0px; margin-top: 15px;">
+													<div class="item_p">
+				                                        <span class="proerty-price pull-right">300,000원</span>
+			                                        </div>
+												</div>
+											</div>
+											
 										</div>
                                     </div>
-                                    
                                     
                                 </div>
                             </div>
@@ -680,14 +747,13 @@ function toggleButtons() {
 
 
 
-
-
+	<%-- 마감임박순 class area --%>
     <div class="content-area recent-property" style="padding-bottom: 60px; background-color: rgb(252, 252, 252);">
         <div class="container">   
             <div class="row">
                 <div class="col-md-12  padding-top-40 properties-page">
                     <div class="col-md-12 "> 
-			<h2>마감임박순</h2>
+						<h2>마감임박순</h2>
                     </div>
 
                     <div class="col-md-12 "> 
@@ -791,6 +857,7 @@ function toggleButtons() {
             </div>
         </div>
     </div>
+   	<%-- 마감임박순 class area --%>
 
 	<%-- event area --%>
 <!-- 	<div class="event_slider-area"> -->
@@ -803,28 +870,26 @@ function toggleButtons() {
 <!-- 	</div> -->
 
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
-	<ol class="carousel-indicators">
-		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-		<li data-target="#myCarousel" data-slide-to="1"></li>
-		<li data-target="#myCarousel" data-slide-to="2"></li>
-	</ol>
+		<ol class="carousel-indicators">
+			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+			<li data-target="#myCarousel" data-slide-to="1"></li>
+			<li data-target="#myCarousel" data-slide-to="2"></li>
+		</ol>
 
-	<!-- Wrapper for slides -->
-	<div class="carousel-inner">
-		<div class="item active">
-			<img src="${pageContext.request.contextPath}/resources/assets/img/kelly-sikkema-4l2Ml8-MLUg-unsplash_3.jpg" alt="Los Angeles">
+		<div class="carousel-inner">
+			<div class="item active">
+				<img src="${pageContext.request.contextPath}/resources/assets/img/kelly-sikkema-4l2Ml8-MLUg-unsplash_3.jpg" alt="Los Angeles">
+			</div>
+			
+			<div class="item">
+				<img src="${pageContext.request.contextPath}/resources/assets/img/nathan-dumlao-Wr3comVZJxU-unsplash_3.jpg" alt="Chicago">
+			</div>
+			
+			<div class="item">
+				<img src="${pageContext.request.contextPath}/resources/assets/img/kelly-sikkema-4l2Ml8-MLUg-unsplash_3.jpg" alt="Los Angeles">
+			</div>
 		</div>
-		
-		<div class="item">
-			<img src="${pageContext.request.contextPath}/resources/assets/img/nathan-dumlao-Wr3comVZJxU-unsplash_3.jpg" alt="Chicago">
-		</div>
-		
-		<div class="item">
-			<img src="${pageContext.request.contextPath}/resources/assets/img/kelly-sikkema-4l2Ml8-MLUg-unsplash_3.jpg" alt="Los Angeles">
-		</div>
-	</div>
 
-	<!-- Left and right controls -->
 		<a class="left carousel-control" href="#myCarousel" data-slide="prev">
 			<span class="glyphicon glyphicon-chevron-left"></span>
 			<span class="sr-only">Previous</span>
@@ -836,7 +901,7 @@ function toggleButtons() {
 	</div>
 	<%-- event area --%>
 
-    <!-- property area -->
+    <!-- 최근 리뷰 area -->
     <div class="content-area recent-property" style="padding-bottom: 60px; background-color: rgb(252, 252, 252);">
         <div class="container">   
             <div class="row">
@@ -949,16 +1014,17 @@ function toggleButtons() {
             </div>
         </div>
     </div>
-	
+    <!-- 최근 리뷰 area -->
+    
 	<!-- Footer area -->
 	<!-- 하단바 삽입-->
 	<div class="footer-area">
 		<jsp:include page="./inc/bottom.jsp"/>
 	</div>
-	
-	
-	
-	
+
+
+
+
 	
 	<!-- test 버튼 -->
 	<button onclick="location.href='${pageContext.request.contextPath}/review/write'">리뷰쓰기</button>
