@@ -98,10 +98,39 @@
                         </li>
                     </ul>
                 </li>
+                
+            	<li class="dropdown ymm-sw " data-wow-delay="0.2s">
+                    <a href="index" class="dropdown-toggle active" data-toggle="dropdown" data-hover="dropdown" data-delay="200">커뮤니티<b class="caret"></b></a>
+                    <ul class="dropdown-menu navbar-nav">
+                        <li>
+                            <a href="${pageContext.request.contextPath}/community/question">궁금해요</a>
+                        </li>
+                        <li>
+                            <a href="${pageContext.request.contextPath}/community/together">함께해요</a>
+                        </li>
+                        <li>
+                            <a href="${pageContext.request.contextPath}/community/myHome">집들이</a>
+                        </li>
+                    </ul>
+                </li>
 
-                <li class="wow fadeInDown" data-wow-delay="0.2s"><a class="" href="${pageContext.request.contextPath}/community/together">커뮤니티</a></li>
                 <li class="wow fadeInDown" data-wow-delay="0.3s"><a class="" href="${pageContext.request.contextPath}/event">이벤트</a></li>
-                <li class="wow fadeInDown" data-wow-delay="0.3s"><a class="" href="${pageContext.request.contextPath}/cs/notice">고객센터</a></li>
+
+                <li class="dropdown ymm-sw " data-wow-delay="0.3s">
+                    <a href="index" class="dropdown-toggle active" data-toggle="dropdown" data-hover="dropdown" data-delay="200">고객센터<b class="caret"></b></a>
+                    <ul class="dropdown-menu navbar-nav">
+                        <li>
+                            <a href="${pageContext.request.contextPath}/cs/notice">공지사항</a>
+                        </li>
+                        <li>
+                            <a href="${pageContext.request.contextPath}/cs/faq">자주 묻는 질문</a>
+                        </li>
+                        <li>
+                            <a href="${pageContext.request.contextPath}/cs/qna">1:1 문의</a>
+                        </li>
+                    </ul>
+                </li>
+                
             </ul>
         </div>
     </div>
