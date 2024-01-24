@@ -200,7 +200,7 @@ function toggleButtons() {
 										<div class="container-fluid">
 											<div class="row">
 												<div class="col-sm-6" style="padding: 0px;">
-													<h6><a href="">인테리어 업체명</a></h6>
+													<h6><a href="${pageContext.request.contextPath}/company/profile">인테리어 사업체명</a></h6>
 												</div>
 												<div class="col-sm-6" style="padding: 0px; text-align: right;">
 													<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss14 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">

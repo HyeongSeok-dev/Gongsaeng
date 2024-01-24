@@ -854,7 +854,19 @@ label small{
     border-right: none;
     /* ### */
 /* 	border-color: #fff; */
+	/* 상단바 고정 */
+	position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+/* ### */
+/* 상단바 고정에 따른 상단바 밑 간격 조정 */
+.navbar-spacing {
+	height: 125px; /* 상단바 높이에 맞게 조절 */
+}
+
 .nav-tabs > li > a{
     color: #666;
     font-weight: 300;
@@ -2038,9 +2050,14 @@ proerty-th-list
 .properties-page .box-two { 
 	overflow: hidden !important;
 	/* ### */
-	background-color: #FFF;
-	padding: 10px;
-	border-color: #000;
+	/* 클래스카드 테두리있는 버전  */
+/* 	background-color: #FFF; */
+/* 	padding: 10px; */
+/* 	border-color: #000; */
+	/* 클래스카드 테두리없는 버전  */
+    background-color: #FCFCFC;
+    padding: 10px;
+    border: none;
 } 
 .proerty-th-list  .proerty-item .item-entry h5 {
     text-transform: uppercase;
@@ -3551,4 +3568,9 @@ padding-bottom: 15px;
 	font-size: 20px;
     margin: 20px 0px;
 }
+/* 클래스리스트 클래스 카드 배경색 설정 (메인과 다름) */
+#class_list_item {
+    background-color: #FFF;	
+}
+
 

@@ -266,7 +266,7 @@ function toggleButtons() {
 	                
 	                	<%-- 클래스 카드 area --%>
 						<div class="col-sm-6 col-md-3 p0">
-						    <div class="box-two proerty-item">
+						    <div class="box-two proerty-item" id="class_list_item">
 						        <div class="item-thumb">
 						            <a href="property-1" >
 						            	<img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
@@ -335,7 +335,7 @@ function toggleButtons() {
 	                    <%-- 클래스 카드 area --%> 
 	
 						<div class="col-sm-6 col-md-3 p0">
-						    <div class="box-two proerty-item">
+						    <div class="box-two proerty-item" id="class_list_item">
 						        <div class="item-thumb">
 						            <a href="property-1" >
 						            	<img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
@@ -404,14 +404,14 @@ function toggleButtons() {
 	
 						<%-- 광고 area --%>
 	                    <div class="col-sm-6 col-md-3 p0">
-	                        <div class="box-two proerty-item proerty-item-ads">
+	                        <div class="box-two proerty-item proerty-item-ads" id="class_list_item">
 	                            <a href="" ><img src="${pageContext.request.contextPath}/resources/assets/img/pro-ads.jpg"></a>
 	                        </div>
 	                    </div> 
 						<%-- 광고 area --%>
 						
 						<div class="col-sm-6 col-md-3 p0">
-						    <div class="box-two proerty-item">
+						    <div class="box-two proerty-item" id="class_list_item">
 						        <div class="item-thumb">
 						            <a href="property-1" >
 						            	<img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
@@ -479,7 +479,7 @@ function toggleButtons() {
 						</div>
 	
 						<div class="col-sm-6 col-md-3 p0">
-						    <div class="box-two proerty-item">
+						    <div class="box-two proerty-item" id="class_list_item">
 						        <div class="item-thumb">
 						            <a href="property-1" >
 						            	<img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
@@ -547,7 +547,7 @@ function toggleButtons() {
 						</div>
 	
 						<div class="col-sm-6 col-md-3 p0">
-						    <div class="box-two proerty-item">
+						    <div class="box-two proerty-item" id="class_list_item">
 						        <div class="item-thumb">
 						            <a href="property-1" >
 						            	<img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
@@ -615,7 +615,7 @@ function toggleButtons() {
 						</div>
 	
 						<div class="col-sm-6 col-md-3 p0">
-						    <div class="box-two proerty-item">
+						    <div class="box-two proerty-item" id="class_list_item">
 						        <div class="item-thumb">
 						            <a href="property-1" >
 						            	<img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
@@ -683,7 +683,7 @@ function toggleButtons() {
 						</div>
 	
 						<div class="col-sm-6 col-md-3 p0">
-						    <div class="box-two proerty-item">
+						    <div class="box-two proerty-item" id="class_list_item">
 						        <div class="item-thumb">
 						            <a href="property-1" >
 						            	<img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
@@ -751,7 +751,7 @@ function toggleButtons() {
 						</div> 
 	
 						<div class="col-sm-6 col-md-3 p0">
-						    <div class="box-two proerty-item">
+						    <div class="box-two proerty-item" id="class_list_item">
 						        <div class="item-thumb">
 						            <a href="property-1" >
 						            	<img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
@@ -820,14 +820,14 @@ function toggleButtons() {
 	                    
 	                    <%-- 광고 area --%>
 	                    <div class="col-sm-6 col-md-3 p0">
-	                        <div class="box-two proerty-item proerty-item-ads">
+	                        <div class="box-two proerty-item proerty-item-ads" id="class_list_item">
 	                            <a href="" ><img src="${pageContext.request.contextPath}/resources/assets/img/pro-ads.jpg"></a>
 	                        </div>
 	                    </div>
 	                    <%-- 광고 area --%>
 	
 						<div class="col-sm-6 col-md-3 p0">
-						    <div class="box-two proerty-item">
+						    <div class="box-two proerty-item" id="class_list_item">
 						        <div class="item-thumb">
 						            <a href="property-1" >
 						            	<img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
@@ -895,7 +895,7 @@ function toggleButtons() {
 						</div>
 	
 						<div class="col-sm-6 col-md-3 p0">
-						    <div class="box-two proerty-item">
+						    <div class="box-two proerty-item" id="class_list_item">
 						        <div class="item-thumb">
 						            <a href="property-1" >
 						            	<img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">

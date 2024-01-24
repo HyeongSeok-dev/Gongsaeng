@@ -217,7 +217,6 @@ function notify_button(value) {
             	
             	<li class="wow fadeInDown" data-wow-delay="0.2s" id="not_li">
             		<%-- 검색창 --%>
-<!-- 		            <form role="search" class="css-4f6urn e1vfdeb40"> -->
 		            <form action="class/list" class="css-4f6urn e1vfdeb40">
 						<div class="css-cdrjiy eeek7io3">
 							<div class="e1vj7tvj0 css-yypaje eeek7io1">
@@ -271,4 +270,5 @@ function notify_button(value) {
         </div>
     </div>
 </nav>
-	
+
+<div class="navbar-spacing"></div>

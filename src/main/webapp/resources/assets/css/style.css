@@ -808,9 +808,10 @@ label small{
     border-radius: 4px;
     box-shadow: none;
 }
-.navbar .container{
-    padding-top: 15px
-}
+/* ### */
+/* .navbar .container{ */
+/*     padding-top: 15px; */
+/* } */
 .navbar-default {
     background-image: none;
     background-color: #FFF;
