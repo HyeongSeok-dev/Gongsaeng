@@ -1542,10 +1542,11 @@ Asside widgets CSS
     padding-top: 55px;
     display: flex;
 }
+
+/* ### */
 .page-title-icon {
     padding-top: 55px;
     display: flex;
-    /* ### */
     justify-content: center;
 }
 .page-title h5{

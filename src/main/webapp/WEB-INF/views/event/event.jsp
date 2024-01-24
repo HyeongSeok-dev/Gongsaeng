@@ -40,9 +40,9 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/lightslider.min.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/style.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/responsive.css">
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/event.css" type="text/css">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
 		<link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square.css" rel="stylesheet">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/event.css" type="text/css">
     </head>
     <body>
 
@@ -60,7 +60,7 @@
 	            <div class="container">
 	                <div class="row">
 	                    <div class="page-head-content">
-	                        <h1 class="page-title">출석체크 이벤트</h1>               
+	                        <h1 class="page-title">이벤트</h1>               
 	                    </div>
 	                </div>
 	            </div>
@@ -77,7 +77,7 @@
 	
 	        <!-- property area -->
 	        <div class="content-area single-property">&nbsp;
-				<div class="container">
+				<div class="container a" id="containera">
 					<h3 class="h">1월 출석 현황</h3>
 					<div class="check_container">
 	<!-- 					<div class="container year_month_title"> -->
@@ -85,104 +85,110 @@
 	<!-- 						<span class="check_year"><h2>2024</h2></span> -->
 	<!-- 					</div> -->
 						<div class="container check_table">
-							<table class="table" id="check_cal">
-								<thead>
-									<tr>
-										<th class="check_week">월</th>
-										<th class="check_week">화</th>
-										<th class="check_week">수</th>
-										<th class="check_week">목</th>
-										<th class="check_week">금</th>
-										<th class="check_week">토</th>
-										<th class="check_week">일</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td class="check_day">1</td>
-										<td class="check_day">2</td>
-										<td class="check_day">3</td>
-										<td class="check_day">4</td>
-										<td class="check_day">5</td>
-										<td class="check_day">6</td>
-										<td class="check_day">7</td>
-									</tr>
-									<tr>
-										<td class="check_day">8</td>
-										<td class="check_day">9</td>
-										<td class="check_day">10</td>
-										<td class="check_day">11</td>
-										<td class="check_day">12</td>
-										<td class="check_day">13</td>
-										<td class="check_day">14</td>
-									</tr>
-									<tr>
-										<td class="check_day">15</td>
-										<td class="check_day">16</td>
-										<td class="check_day">17</td>
-										<td class="check_day">18</td>
-										<td class="check_day">19</td>
-										<td class="check_day">20</td>
-										<td class="check_day">21</td>
-									</tr>
-									<tr>
-										<td class="check_day">22</td>
-										<td class="check_day">23</td>
-										<td class="check_day">24</td>
-										<td class="check_day">25</td>
-										<td class="check_day">26</td>
-										<td class="check_day">27</td>
-										<td class="check_day">28</td>
-									</tr>
-									<tr>
-										<td class="check_day">29</td>
-										<td class="check_day">30</td>
-										<td class="check_day">31</td>
-										<td class="check_day">1</td>
-										<td class="check_day">2</td> 
-										<td class="check_day">3</td>
-										<td class="check_day">4</td>
-									</tr>
-									<tr>
-										<td class="check_day">5</td>
-										<td class="check_day">6</td>
-										<td class="check_day">7</td>
-										<td class="check_day">8</td>
-										<td class="check_day">9</td>
-										<td class="check_day">10</td>
-										<td class="check_day">11</td>
-									</tr>
-								</tbody>
-							</table>
-							<div class="check_content">
-								<h4 class="h">매일매일 출석체크 하세요!</h4>
-								<h5 class="h">출석체크 기간 : 매달 1일 ~ 말일</h5>
-								
-								<h5 class="h">XXX님 출석 횟수</h5>
-								<div class="h">0회 출석체크중</div>
-								
-								<ul>
-									<li>출석 1회마다: 10P</li>	
-									<li>출석 10회마다: 룰렛응모권 1개(임시)</li>	
-								</ul>
-							</div>
-							<div class="checkBtn_div">
-								<button class="nav-button navbar-btn check_btn" >출석하기</button>
-								<button class="nav-button navbar-btn check_btn" >룰렛 응모하기</button>
+							<div class="row">
+  								<div class="col-md-5 text-center" >
+									<table class="table" id="check_cal">
+										<thead>
+											<tr>
+												<th class="check_week">월</th>
+												<th class="check_week">화</th>
+												<th class="check_week">수</th>
+												<th class="check_week">목</th>
+												<th class="check_week">금</th>
+												<th class="check_week">토</th>
+												<th class="check_week">일</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td class="check_day">1</td>
+												<td class="check_day">2</td>
+												<td class="check_day">3</td>
+												<td class="check_day">4</td>
+												<td class="check_day">5</td>
+												<td class="check_day">6</td>
+												<td class="check_day">7</td>
+											</tr>
+											<tr>
+												<td class="check_day">8</td>
+												<td class="check_day">9</td>
+												<td class="check_day">10</td>
+												<td class="check_day">11</td>
+												<td class="check_day">12</td>
+												<td class="check_day">13</td>
+												<td class="check_day">14</td>
+											</tr>
+											<tr>
+												<td class="check_day">15</td>
+												<td class="check_day">16</td>
+												<td class="check_day">17</td>
+												<td class="check_day">18</td>
+												<td class="check_day">19</td>
+												<td class="check_day">20</td>
+												<td class="check_day">21</td>
+											</tr>
+											<tr>
+												<td class="check_day">22</td>
+												<td class="check_day">23</td>
+												<td class="check_day">24</td>
+												<td class="check_day">25</td>
+												<td class="check_day">26</td>
+												<td class="check_day">27</td>
+												<td class="check_day">28</td>
+											</tr>
+											<tr>
+												<td class="check_day">29</td>
+												<td class="check_day">30</td>
+												<td class="check_day">31</td>
+												<td class="check_day">1</td>
+												<td class="check_day">2</td> 
+												<td class="check_day">3</td>
+												<td class="check_day">4</td>
+											</tr>
+											<tr>
+												<td class="check_day">5</td>
+												<td class="check_day">6</td>
+												<td class="check_day">7</td>
+												<td class="check_day">8</td>
+												<td class="check_day">9</td>
+												<td class="check_day">10</td>
+												<td class="check_day">11</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="col-md-4 text-center" style="display: flex; align-items: center; justify-content: center;">
+									<div class="check_content">
+										<div class="check_center">
+											<div class="check_member_info"><span class="member_name">XXX님</span>&nbsp;&nbsp;&nbsp;<span class="check_coment">출석 횟수</span></div>
+											<div class="check_member_info"><span class="check_count">0회</span>&nbsp;&nbsp;&nbsp;<span class="check_coment">출석 체크</span></div>
+										</div>
+										<br>
+										<h4 class="h do_ckeck">매일매일 출석체크 하세요!</h4>
+										<h5 class="h">출석체크 기간 : 매달 1일 ~ 말일</h5>
+										<ul>
+											<li>출석 1회마다: 10P</li>	
+											<li>출석 10회마다: 룰렛응모권 1개(임시)</li>	
+										</ul>
+									</div>
+								</div>
+								<div class="col-md-2 text-center" style="display: flex; align-items: center; justify-content: center;">
+									<div class="checkBtn_div">
+										<button class="nav-button navbar-btn check_btn" >출석하기</button>
+<!-- 										<button class="nav-button navbar-btn check_btn" >룰렛 응모하기</button> -->
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-	        </div>
-			
-			
-	        
-	        <div class="container">
-	        	<h2>공생 이벤트</h2>
+			 
+	        <div class="container b">
+	        	<h2 class="h">공생 이벤트</h2>
 				<div class="event_container">
 					<table class="table table-hover event_table">
 						<thead>
-							<tr>
+							<tr class="event_subject_tr">
 								<th class="event_th event_num">번호</th>
 								<th class="event_th event_subject">이벤트</th>
 								<th class="event_th event_date">등록일</th>
@@ -213,9 +219,8 @@
 					</table>
 				</div>
 			</div>
-	        
-	        
-		</section>
+        </div>
+		</section>	        
           <!-- Footer area-->
         <div class="footer-area">
             <jsp:include page="../inc/bottom.jsp"/>
