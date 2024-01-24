@@ -131,7 +131,7 @@ function toggleButtons() {
 	<div class="content-area home-area-1 recent-property" style="background-color: #FCFCFC; padding-bottom: 55px;">
 	    <div class="container">
 	        <div class="row">
-	            <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
+	            <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title-icon">
 		            <a class="icon">
 		            	<img src="${pageContext.request.contextPath}/resources/assets/img/free-icon-house-design-4861170.png" width="50">
 		            	<div class="category">건축 설계</div>
