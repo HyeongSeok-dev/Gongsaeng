@@ -51,7 +51,7 @@
 <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/join.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/member_join_agree.js"></script>
 
 </head>
 <body>
