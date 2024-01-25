@@ -69,6 +69,20 @@
 			var top = Math.ceil((window.screen.height - popupH)/2);
 			window.open('${pageContext.request.contextPath }/payment/agree','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 		}
+	
+	//계좌인증
+	function authAccount() {
+		// 새 창을 사용하여 사용자 인증 페이지 요청
+		let requestUri = "https://testapi.openbanking.or.kr/oauth/2.0/authorize?"
+							+ "response_type=code"
+							+ "&client_id=4066d795-aa6e-4720-9383-931d1f60d1a9"
+							+ "&redirect_uri=http://localhost:8081/gongsaeng/callback"
+							+ "&scope=login inquiry transfer"
+							+ "&state=${sessionScope.state}"
+							+ "&auth_type=0";
+		window.open(requestUri, "authWindow", "width=600, height=800");
+	}
+	
 </script>
 </head>
 <body>
@@ -173,7 +187,7 @@
 							</div>
 							<input type="text" value="" placeholder="사용할 0페이를 입력해 주세요" class="pay_to_use" name="payToUse" style="width: 250px;"/><span class="won">원</span>
 							
-							<button id="chargePay" class="use_button charge"  type="button" onclick="authAccount()">충전하기</button>
+							<button id="chargePay" class="use_button charge" type="button" onclick="alert('계좌를 인증해주세요.'); authAccount();">충전하기</button>
 							<!-- member_id유무에 따른 버튼 출력 -->
 <%-- 							<c:choose> --%>
 <%-- 								없을때(계좌등록) --%>
@@ -181,7 +195,7 @@
 <!-- 									<button id="chargePay" class="use_button charge"  type="button" onclick="authAccount()">충전하기</button> -->
 <%-- 								</c:when> --%>
 <%-- 								있을때(사용) --%>
-<%-- 								<c:when test="${empty sessionScope. }">  --%>
+<%-- 								<c:when test="${not empty sessionScope. }">  --%>
 <!-- 									<button id="usePay" class="use_button"  type="button">사용하기</button> -->
 <%-- 								</c:when> --%>
 <%-- 							</c:choose> --%>
@@ -196,16 +210,19 @@
 <!-- 						<div> -->
 <!-- 							<input type="radio" name="pay_on_sit" value="2" id="onSitePayment"><span class="font_stlye"> 메뉴만 현장결제</span> -->
 <!-- 						</div>	 -->
+						<!-- 카카오페이 -->
 						<div style="display: flex; align-items: center;">
 							<input type="radio" name="pay_method" value="1" id="kakaoPay">&nbsp;
 							<img src="${pageContext.request.contextPath }/resources/img/kakaoPay_png.png" width="65" id="kakao">
 							<span class="font_stlye"> </span>
 						</div>
 						<br>
+						<!-- 카드결제 -->
 						<div style="display: flex; align-items: center;">
 							<input type="radio" name="pay_method" value="2" id="creditCardPayment"><span class="font_stlye"> 카드결제</span>
 						</div>
 						<br>
+						<!-- 휴대폰결제 -->
 						<div style="display: flex; align-items: center;">	
 							<input type="radio" name="pay_method" value="3" id="mobilePhonePayment"><span class="font_stlye"> 휴대폰결제</span>
 						</div>
