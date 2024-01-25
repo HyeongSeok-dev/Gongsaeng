@@ -271,7 +271,10 @@ function toggleButtons() {
 						            <a href="property-1" >
 						            	<img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
 									</a>
-						
+									
+									<%-- 클래스 기간형식 --%>
+									<span class="jss162">원데이 클래스</span>
+														
 									<%-- 찜표시 --%>
 									<%-- 찜하기 전 --%>
 									<button id="button1" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u" tabindex="0" type="button">
@@ -340,7 +343,10 @@ function toggleButtons() {
 						            <a href="property-1" >
 						            	<img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
 									</a>
-						
+									
+									<%-- 클래스 기간형식 --%>
+									<span class="jss162">정규모집</span>
+									
 									<%-- 찜표시 --%>
 									<%-- 찜하기 전 --%>
 									<button id="button1" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u" tabindex="0" type="button">
@@ -416,7 +422,10 @@ function toggleButtons() {
 						            <a href="property-1" >
 						            	<img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
 									</a>
-						
+									
+									<%-- 클래스 기간형식 --%>
+									<span class="jss162">원데이 클래스</span>
+									
 									<%-- 찜표시 --%>
 									<%-- 찜하기 전 --%>
 									<button id="button1" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u" tabindex="0" type="button">
@@ -484,7 +493,10 @@ function toggleButtons() {
 						            <a href="property-1" >
 						            	<img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
 									</a>
-						
+									
+									<%-- 클래스 기간형식 --%>
+									<span class="jss162">원데이 클래스</span>
+									
 									<%-- 찜표시 --%>
 									<%-- 찜하기 전 --%>
 									<button id="button1" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u" tabindex="0" type="button">
@@ -552,7 +564,10 @@ function toggleButtons() {
 						            <a href="property-1" >
 						            	<img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
 									</a>
-						
+									
+									<%-- 클래스 기간형식 --%>
+									<span class="jss162">원데이 클래스</span>
+									
 									<%-- 찜표시 --%>
 									<%-- 찜하기 전 --%>
 									<button id="button1" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u" tabindex="0" type="button">
@@ -620,7 +635,10 @@ function toggleButtons() {
 						            <a href="property-1" >
 						            	<img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
 									</a>
-						
+									
+									<%-- 클래스 기간형식 --%>
+									<span class="jss162">원데이 클래스</span>
+									
 									<%-- 찜표시 --%>
 									<%-- 찜하기 전 --%>
 									<button id="button1" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u" tabindex="0" type="button">
@@ -688,7 +706,10 @@ function toggleButtons() {
 						            <a href="property-1" >
 						            	<img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
 									</a>
-						
+									
+									<%-- 클래스 기간형식 --%>
+									<span class="jss162">원데이 클래스</span>
+									
 									<%-- 찜표시 --%>
 									<%-- 찜하기 전 --%>
 									<button id="button1" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u" tabindex="0" type="button">
@@ -756,7 +777,10 @@ function toggleButtons() {
 						            <a href="property-1" >
 						            	<img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
 									</a>
-						
+									
+									<%-- 클래스 기간형식 --%>
+									<span class="jss162">원데이 클래스</span>
+									
 									<%-- 찜표시 --%>
 									<%-- 찜하기 전 --%>
 									<button id="button1" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u" tabindex="0" type="button">
@@ -832,7 +856,10 @@ function toggleButtons() {
 						            <a href="property-1" >
 						            	<img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
 									</a>
-						
+									
+									<%-- 클래스 기간형식 --%>
+									<span class="jss162">정규모집</span>
+									
 									<%-- 찜표시 --%>
 									<%-- 찜하기 전 --%>
 									<button id="button1" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u" tabindex="0" type="button">
@@ -900,7 +927,10 @@ function toggleButtons() {
 						            <a href="property-1" >
 						            	<img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
 									</a>
-						
+									
+									<%-- 클래스 기간형식 --%>
+									<span class="jss162">원데이 클래스</span>
+									
 									<%-- 찜표시 --%>
 									<%-- 찜하기 전 --%>
 									<button id="button1" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u" tabindex="0" type="button">

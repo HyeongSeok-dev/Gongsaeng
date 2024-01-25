@@ -2104,7 +2104,7 @@ proerty-th-list
 /* 	border-color: #000; */
 	/* 클래스카드 테두리없는 버전  */
     background-color: #FCFCFC;
-    padding: 10px;
+/*     padding: 10px; */
     border: none;
 } 
 .proerty-th-list  .proerty-item .item-entry h5 {
@@ -3528,7 +3528,7 @@ padding-bottom: 15px;
 }
 
 .proerty-th-list .jss95 {
-    top: 10px;
+/*     top: 10px; */
 	top: 205px;
     left: 400px;
     height: 32px;
@@ -3547,6 +3547,32 @@ padding-bottom: 15px;
     background: rgba(255, 255, 255, 0.6);
     padding-top: 6px;
     border-radius: 20px;
+}
+
+/* ### */
+/* 클래스 기간형식 */
+.jss162 {
+    top: 10px;
+    left: 12px;
+    color: rgba(81, 91, 96, 1);
+    padding: 2px 10px;
+    position: absolute;
+    font-size: 13px;
+    background: rgba(255, 255, 255, 0.7);
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.proerty-th-list .jss162 {
+	top: 27px;
+    left: 22px;
+    color: rgba(81, 91, 96, 1);
+    padding: 2px 10px;
+    position: absolute;
+    font-size: 13px;
+    background: rgba(255, 255, 255, 0.7);
+    box-sizing: border-box;
+    border-radius: 5px;
 }
 
 
