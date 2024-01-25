@@ -52,6 +52,7 @@
 <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/member_find.js"></script>
 
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 </head>
@@ -68,26 +69,33 @@
 			<div class="form-group">
 				<label for="email">이메일</label>
 				<div class="row">
-					<div class="col-xs-5">
-						<input type="text" class="form-control" id="email" placeholder="이메일을 입력해주세요" name="email">
-					</div>
-                    <div class="col-xs-1" ><h4>@</h4></div>
 					<div class="col-xs-4">
-						<select class="form-control" id="emailDomain">
-			                <option value="gmail.com">gmail.com</option>
-			                <option value="naver.com">naver.com</option>
-			                <option value="daum.net">daum.net</option>
-			                <option value="yahoo.com">yahoo.com</option>
-   			                <option value="">직접입력</option>
-						</select>
+						<div class="input-group">
+							<input type="text" id="u_email" required name="user_email1" class="form-control" placeholder="이메일" maxlength="16">
+							<div class="input-group-addon">@</div>
+						</div>
 					</div>
+					<div class="col-xs-4">
+						<input type="text" id="customEmail" required class="form-control" name="user_email2" style="display: none;"
+							placeholder="이메일을 입력하세요" disabled="disabled">
+						<div id="emailSelectBox">
+							<select id="u_email2" name="user_email2" class="form-control">
+								<option value="">선택하세요</option>
+								<option value="gmail.com">gmail.com</option>
+								<option value="naver.com">naver.com</option>
+								<option value="daum.net">daum.net</option>
+								<option value="yahoo.com">yahoo.com</option>
+								<option value="custom">직접입력</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-xs-4" id="customEmailSelectBox"></div>
 				</div>
 			</div>
-			<button type="submit" class="btn btn-default">비밀번호 찾기</button>
+			<div class="col text-center">
+				<button type="submit" class="btn btn-default">비밀번호 찾기</button>
+			</div>
 		</form>
 	</div>
-
-
-
 </body>
 </html>

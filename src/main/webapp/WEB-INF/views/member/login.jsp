@@ -52,6 +52,7 @@
 <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/member_login.js"></script>
 
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 </head>
@@ -89,12 +90,12 @@
 					<form class="omb_loginForm" action="loginPro" autocomplete="off" method="POST">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-user"></i></span> <input type="text" class="form-control" name="username"
-								placeholder="아이디">
+								placeholder="아이디" required>
 						</div>
 						<br>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-lock"></i></span> <input type="password" class="form-control"
-								name="password" placeholder="비밀번호">
+								name="password" placeholder="비밀번호" required>
 						</div>
 						<br>
 						<button class="btn btn-lg btn-success btn-block " type="submit">로그인</button>
@@ -104,12 +105,16 @@
 			</div>
 			<div class="row omb_row-sm-offset-3 ">
 				<div class="col-xs-3 col-md-2">
-					<label class="checkbox"> <input type="checkbox" value="">아이디 기억하기
-					</label> 
+					<label class="checkbox"> <input type="checkbox" value="" name = "rememberId">아이디 기억하기
+					</label>
 				</div>
-				
-				<div class="col-xs-3 col-md-2 text-right checkbox" style="cursor: pointer;"><a onclick="javascript: window.open('findId', 'findId', 'width=500,height=300,top=50%, left=50%');" >아이디찾기</a></div>
-				<div class="col-xs-3 col-md-2 text-right radio" style="cursor: pointer;"><a onclick="javascript: window.open('findPasswd', 'findPasswd', 'width=500,height=400,top=50%, left=50%');" >비밀번호 찾기</a></div>
+
+				<div class="col-xs-3 col-md-2 text-right checkbox" style="cursor: pointer;">
+					<a onclick="javascript: window.open('findId', 'findId', 'width=500,height=300,top=50%, left=50%');">아이디찾기</a>
+				</div>
+				<div class="col-xs-3 col-md-2 text-right radio" style="cursor: pointer;">
+					<a onclick="javascript: window.open('findPasswd', 'findPasswd', 'width=500,height=400,top=50%, left=50%');">비밀번호 찾기</a>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -53,6 +53,7 @@
 <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/mypage.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/my_modify_member.js"></script>
 
 </head>
 <body>
@@ -64,53 +65,55 @@
 			<div class="col-sm-3">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h4 class="panel-title text-center">마이페이지</h4>
+						<h4 class="panel-title text-center cursor" onclick="javascript:location.href='main'">마이페이지</h4>
 					</div>
 					<div class="panel-body">
 						<ul class="list-group">
-							<li class="list-group-item "><a href="reservation">예약 내역</a></li>
-							<li class="list-group-item "><a data-toggle="collapse" href="#alert">알림/메시지</a>
+							<li class="list-group-item cursor" onclick="javascript:location.href='reservation'">예약 내역</li>
+							<li class="list-group-item cursor" data-toggle="collapse" href="#alert">알림/메시지
 								<div id="alert" class="panel-collapse collapse">
 									<ul class="list-group">
-										<li class="list-group-item"><a href="alert">알림</a></li>
-										<li class="list-group-item"><a href="messages">메시지</a></li>
+										<li class="list-group-item cursor" onclick="javascript:location.href='alert'">알림</li>
+										<li class="list-group-item cursor"><a href="messages">메시지</a></li>
 									</ul>
-								</div></li>
-							<li class="list-group-item"><a data-toggle="collapse" href="#offer">혜택</a>
+								</div>
+							</li>
+							<li class="list-group-item cursor" data-toggle="collapse" href="#offer">혜택
 								<div id="offer" class="panel-collapse collapse">
 									<ul class="list-group">
-										<li class="list-group-item"><a href="coupon">쿠폰</a></li>
-										<li class="list-group-item"><a href="cash">캐쉬</a></li>
-										<li class="list-group-item"><a href="point">포인트</a></li>
+										<li class="list-group-item cursor"><a href="coupon">쿠폰</a></li>
+										<li class="list-group-item cursor"><a href="cash">캐쉬</a></li>
+										<li class="list-group-item cursor"><a href="point">포인트</a></li>
 									</ul>
-								</div></li>
-							<li class="list-group-item"><a data-toggle="collapse" href="#favorList">관심리스트</a>
+								</div>
+							</li>
+							<li class="list-group-item cursor"><a data-toggle="collapse" href="#favorList">관심리스트</a>
 								<div id="favorList" class="panel-collapse collapse">
 									<ul class="list-group">
-										<li class="list-group-item"><a href="bookmark">북마크</a></li>
-										<li class="list-group-item"><a href="following">팔로우</a></li>
-										<li class="list-group-item"><a href="recent">최근 본 클래스</a></li>
+										<li class="list-group-item cursor"><a href="bookmark">북마크</a></li>
+										<li class="list-group-item cursor"><a href="following">팔로우</a></li>
+										<li class="list-group-item cursor"><a href="recent">최근 본 클래스</a></li>
 									</ul>
 								</div></li>
 							<li class="list-group-item "><a data-toggle="collapse" href="#review">리뷰</a>
 								<div id="review" class="panel-collapse collapse">
 									<ul class="list-group">
-										<li class="list-group-item"><a href="reviewWrite">리뷰 쓰기</a></li>
-										<li class="list-group-item"><a href="reviewList">내가 쓴 리뷰</a></li>
+										<li class="list-group-item cursor"><a href="reviewWrite">리뷰 쓰기</a></li>
+										<li class="list-group-item cursor"><a href="reviewList">내가 쓴 리뷰</a></li>
 									</ul>
 								</div></li>
 							<li class="list-group-item "><a data-toggle="collapse" href="#community">커뮤니티</a>
 								<div id="community" class="panel-collapse collapse">
 									<ul class="list-group">
-										<li class="list-group-item"><a href="community">내가 쓴 글</a></li>
-										<li class="list-group-item"><a href="communityRecent">최근 본 글</a></li>
+										<li class="list-group-item cursor"><a href="community">내가 쓴 글</a></li>
+										<li class="list-group-item cursor"><a href="communityRecent">최근 본 글</a></li>
 									</ul>
 								</div></li>
 							<li class="list-group-item "><a data-toggle="collapse" href="#info">내 정보</a>
 								<div id="info" class="panel-collapse collapse in">
 									<ul class="list-group">
-										<li class="list-group-item active"><a href="modifyProfile">내 정보 수정</a></li>
-										<li class="list-group-item"><a href="#">반장회원 신청</a></li>
+										<li class="list-group-item cursor active"><a href="modifyProfile">내 정보 수정</a></li>
+										<li class="list-group-item cursor"><a href="#">반장회원 신청</a></li>
 									</ul>
 								</div></li>
 						</ul>
@@ -118,7 +121,7 @@
 				</div>
 			</div>
 			<!-- 우측 본문영역 -->
-			<form class="form-horizontal" role="form" action="modifyProfilePro" enctype="multipart/form-data">
+			<form class="form-horizontal" role="form" method="post" action="modifyProfilePro" enctype="multipart/form-data">
 				<div class="col-sm-9">
 					<div class="container bootstrap snippets bootdey">
 						<hr>
@@ -126,56 +129,59 @@
 							<!-- left column -->
 							<div class="col-md-3">
 								<div class="text-center">
-									<img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-circle img-thumbnail" alt="avatar">
-									<h6>사진을 첨부하세요</h6>
-
-									<input type="file" class="form-control">
+									<img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-circle img-thumbnail" alt="avatar"> <br>
+									<br> <input type="file" class="form-control profileImg" accept="image/*">
 								</div>
 							</div>
 
 							<!-- edit form column -->
-							<div class="col-md-9 personal-info">
+							<div class="col-md-6 personal-info">
 								<h3 class="text-center">내 정보 수정</h3>
 								<br>
 								<div class="form-group">
 									<label class="col-lg-3 control-label">아이디 : </label>
-									<div class="col-lg-8">
-										<input class="form-control" type="text" value="아이디" placeholder="아이디">
+									<div class="col-lg-9">
+										<input class="form-control" required type="text" value="아이디" placeholder="아이디">
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-lg-3 control-label">비밀번호 : </label>
-									<div class="col-lg-8">
-										<input class="form-control" type="password" value="비밀번호" placeholder="비밀번호">
+									<div class="col-lg-9">
+										<input class="form-control"  type="password" value="비밀번호" placeholder="비밀번호">
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-lg-3 control-label">비밀번호 확인 : </label>
-									<div class="col-lg-8">
+									<div class="col-lg-9">
 										<input class="form-control" type="password" value="비밀번호확인" placeholder="비밀번호확인">
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-lg-3 control-label">이름 : </label>
-									<div class="col-lg-8">
-										<input class="form-control" type="text" value="이름">
+									<div class="col-lg-9">
+										<input class="form-control" required type="text" value="이름">
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-lg-3 control-label">닉네임:</label>
-									<div class="col-lg-8">
-										<input class="form-control" type="text" value="닉네임">
+									<div class="col-lg-9">
+										<input class="form-control" required type="text" value="닉네임">
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-lg-3 control-label">이메일:</label>
-									<div class="col-lg-8">
-										<div class="col-sm-6" style="padding: 0 10px 0 0 !important; margin: 0 !important;">
-											<input type="text" id="u_email" name="user_email1" class="form-control" placeholder="이메일" maxlength="16">
+									<label for="u_email" class="col-lg-3 control-label">이메일:</label>
+									<div class="col-lg-3">
+										<div class="input-group">
+											<input type="text" id="u_email" required name="user_email1" class="form-control" placeholder="이메일" maxlength="16">
+											<div class="input-group-addon">@</div>
 										</div>
-										<div class="col-sm-6" style="padding: 0 !important; margin: 0 !important;">
-											<input type="text" id="customEmail" class="form-control" name="user_email2" style="display: none;" placeholder="이메일을 입력하세요"
-												disabled="disabled"> <select id="u_email2" name="user_email2" class="form-control" onchange="checkOption(this)">
+									</div>
+
+									<div class="col-lg-3">
+										<input type="text" id="customEmail" required class="form-control" name="user_email2" style="display: none;"
+											placeholder="이메일을 입력하세요" disabled="disabled">
+										<div id="emailSelectBox">
+											<select id="u_email2" name="user_email2" class="form-control">
 												<option value="">선택하세요</option>
 												<option value="gmail.com">gmail.com</option>
 												<option value="naver.com">naver.com</option>
@@ -185,17 +191,21 @@
 											</select>
 										</div>
 									</div>
+									<div class="col-lg-3" id="customEmailSelectBox"></div>
 								</div>
 								<div class="form-group">
 									<label class="col-lg-3 control-label">전화번호:</label>
-									<div class="col-lg-8">
-										<input class="form-control" type="text" value="전화번호">
+									<div class="col-lg-9">
+										<input class="form-control" required type="text" value="전화번호">
 									</div>
 								</div>
 								<br>
 								<div class="form-group">
-									<div class="col-lg-12">
-										<button type="submit" class="btn btn-primary">수정하기</button>
+									<div class="col-xs-9 text-left">
+										<button type="submit" class="btn btn-info" id="modify">수정하기</button>
+									</div>
+									<div class="col-xs-3 text-left">
+										<button type="button" class="btn btn-warning" onclick="withdraw()">탈퇴하기</button>
 									</div>
 								</div>
 							</div>
@@ -204,7 +214,6 @@
 					<hr>
 				</div>
 			</form>
-
 		</div>
 	</div>
 </body>

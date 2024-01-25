@@ -51,7 +51,7 @@
 <%-- <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script> --%>
 <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/main_noicheck.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/join_agree.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/member_join_agree.js"></script>
 </head>
 <body>
 	<jsp:include page="../inc/top.jsp"></jsp:include>
