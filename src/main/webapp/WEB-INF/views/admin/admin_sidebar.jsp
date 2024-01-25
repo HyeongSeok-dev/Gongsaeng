@@ -14,8 +14,8 @@
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
     <div class="logo">
-    	<a id="navbar-brand" href="admin/main"><img class="main_logo2" src="${pageContext.request.contextPath}/resources/admin_assets/img/logoW-2.png" alt="" width="100"></a>
-    	<a href="${pageContext.request.contextPath}/admin/dashboard"class="simple-text logo-normal" style="font-size: 18px;"> 관리자 페이지</a>
+    	<a id="navbar-brand" href="${pageContext.request.contextPath}/admin"><img class="main_logo2" src="${pageContext.request.contextPath}/resources/admin_assets/img/logoW-2.png" alt="" width="100"></a>
+    	<a href="${pageContext.request.contextPath}/admin"class="simple-text logo-normal" style="font-size: 18px;"> 관리자 페이지</a>
 	</div>
 	<div class="sidebar-wrapper" id="sidebar-wrapper">
 	    <ul class="nav">
@@ -27,24 +27,18 @@
 	            </a>
 	            <div id="dashboard" class="collapse" aria-labelledby="dashboard" data-parent="#sidebar-wrapper">
 	                <ul class="nav">
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/class/register1">회원</a></li>
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/class">사업체</a></li>
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/coupon">매출</a></li>
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/dashboard/member">회원</a></li>
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/dashboard/company">사업체</a></li>
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/dashboard/sale">매출</a></li>
 	                </ul>
 	            </div>
 	        </li>
 	        <!-- 회원 드롭다운 메뉴-->
 	        <li class="nav-item">
-	            <a class="nav-link" data-toggle="collapse" aria-expanded="false">
+	            <a href="${pageContext.request.contextPath}/admin/member">
 	                <i class="now-ui-icons  users_single-02"></i>
 	                <p>회원</p>
 	            </a>
-<!-- 	            <div id="salesDropdown" class="collapse" aria-labelledby="salesDropdown" data-parent="#sidebar-wrapper"> -->
-<!-- 	                <ul class="nav"> -->
-<%-- 	                    <li><a href="${pageContext.request.contextPath}/admin/sales">일반 회원</a></li> --%>
-<%-- 	                    <li><a href="${pageContext.request.contextPath}/admin/income">반장 회원</a></li> --%>
-<!-- 	                </ul> -->
-<!-- 	            </div> -->
 	        </li>
 	        <!-- 사업체 드롭다운 메뉴-->
 	        <li class="nav-item">
@@ -54,22 +48,22 @@
 	            </a>
 	            <div id="company" class="collapse" aria-labelledby="company" data-parent="#sidebar-wrapper">
 	                <ul class="nav">
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/sales">클래스</a></li>
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/income">거래 내역</a></li>
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/company">사업체 목록</a></li>
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/company/class">클래스 목록</a></li>
 <%-- 	                    <li><a href="${pageContext.request.contextPath}/admin/income/list"></a></li> --%>
 	                </ul>
 	            </div>
 	        </li>
 	        <!-- 계좌관리 드롭다운 메뉴 -->
 	        <li class="nav-item">
-	            <a href="#acoount" class="nav-link" data-toggle="collapse" aria-expanded="false">
+	            <a href="#account" class="nav-link" data-toggle="collapse" aria-expanded="false">
 	                <i class="now-ui-icons  business_money-coins"></i>
 	                <p>계좌<b class="caret"></b></p>
 	            </a>
-	            <div id="acoount" class="collapse" aria-labelledby="acoount" data-parent="#sidebar-wrapper">
+	            <div id="account" class="collapse" aria-labelledby="acoount" data-parent="#sidebar-wrapper">
 	                <ul class="nav">
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/member">회원 계좌</a></li>
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/review">반장 계좌</a></li>
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/account/member">회원 계좌</a></li>
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/account/BMember">반장 계좌</a></li>
 	                </ul>
 	            </div>
 	        </li>
@@ -82,8 +76,8 @@
 	            <div id="pay" class="collapse" aria-labelledby="pay" data-parent="#sidebar-wrapper">
 	                <ul class="nav">
 <%-- 	                    <li><a href="${pageContext.request.contextPath}/admin/community"></a></li> --%>
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/notification">충전환급관리</a></li>
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/inquiry">수익지출관리</a></li>
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/pay/">충전환급관리</a></li>
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/pay/">수익지출관리</a></li>
 	                </ul>
 	            </div>
 	        </li>
@@ -95,8 +89,8 @@
 	            </a>
 	            <div id="marketing" class="collapse" aria-labelledby="marketing" data-parent="#sidebar-wrapper">
 	                <ul class="nav">
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/community">이벤트</a></li>
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/notification">쿠폰</a></li>
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/marketing/event">이벤트</a></li>
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/marketing/coupon">쿠폰</a></li>
 	                </ul>
 	            </div>
 	        </li>
@@ -108,8 +102,8 @@
 	            </a>
 	            <div id="report" class="collapse" aria-labelledby="report" data-parent="#sidebar-wrapper">
 	                <ul class="nav">
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/community">클래스 신고</a></li>
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/notification">리뷰 신고</a></li>
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/report/class">클래스 신고</a></li>
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/report/review">리뷰 신고</a></li>
 	                </ul>
 	            </div>
 	        </li>
@@ -121,9 +115,9 @@
 	            </a>
 	            <div id="cs" class="collapse" aria-labelledby="cs" data-parent="#sidebar-wrapper">
 	                <ul class="nav">
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/community">공지사항</a></li>
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/notification">FAQ</a></li>
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/notification">1:1 채팅문의</a></li>
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/cs/notice">공지사항</a></li>
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/cs/faq">FAQ</a></li>
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/cs/chat">1:1 채팅문의</a></li>
 	                </ul>
 	            </div>
 	        </li>
