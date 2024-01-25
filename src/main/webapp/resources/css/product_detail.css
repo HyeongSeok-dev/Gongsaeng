@@ -118,7 +118,7 @@ body {
 * {
 	margin: 0;
 	padding: 0;
-	font-family: Apple SD Gothic Neo, Noto Sans KR, sans-serif;
+/* 	font-family: Apple SD Gothic Neo, Noto Sans KR, sans-serif; */
 	letter-spacing: -.93px;
 	outline: 0;
 	box-sizing: border-box;
