@@ -3,67 +3,31 @@ $(window).load(function () { // makes sure the whole site is loaded
     $('#preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website.
     $('body').delay(350).css({'overflow': 'visible'});
 })
+
 $(document).ready(function () {
-
-    $('input').iCheck({
-        checkboxClass: 'icheckbox_square-yellow',
-        radioClass: 'iradio_square-yellow',
-        increaseArea: '20%' // optional
-    });
-
-    $('.layout-grid').on('click', function () {
-      
-        $('.layout-grid').addClass('active');
-        $('.layout-list').removeClass('active');
-
-        $('#list-type').removeClass('proerty-th-list');
-        $('#list-type').addClass('proerty-th');
-
-        alert("grid 선택!!!!!!!!!!");
-    });
-
-    $('.layout-list').on('click', function () {
-		
-        $('.layout-grid').removeClass('active');
-        $('.layout-list').addClass('active');
-
-        $('#list-type').addClass('proerty-th-list');
-        $('#list-type').removeClass('proerty-th');
-
-        alert("list 선택!!!!!!!!!!");
-    });
-
-});
-$(document).ready(function () {
+	// 메인 광고 슬라이더
     $("#bg-slider").owlCarousel({
-        navigation: false, // Show next and prev buttons
-        slideSpeed: 100,
-        autoPlay: 5000,
-        paginationSpeed: 100,
-        singleItem: true,
-        mouseDrag: false,
-        transitionStyle: "fade"
-                // "singleItem:true" is a shortcut for:
-                // items : 1, 
-                // itemsDesktop : false,
-                // itemsDesktopSmall : false,
-                // itemsTablet: false,
-                // itemsMobile : false 
+        navigation: true, // Show next and prev buttons
+        smartSpeed: 500,
+        autoplay: true,
+        autoplayTimeout: 5000,
+		items : 1,
+        mouseDrag: true,
+        center: true,
+        loop: true
     });
+    // 메인 이벤트 슬라이더
     $("#event-slider").owlCarousel({
-        navigation: false, // Show next and prev buttons
-        slideSpeed: 100,
-        autoPlay: 5000,
-        paginationSpeed: 100,
-        singleItem: true,
-        mouseDrag: false,
-        transitionStyle: "fade"
-                // "singleItem:true" is a shortcut for:
-                // items : 1, 
-                // itemsDesktop : false,
-                // itemsDesktopSmall : false,
-                // itemsTablet: false,
-                // itemsMobile : false 
+        navigation: true, // Show next and prev buttons
+        smartSpeed: 500,
+        autoplay: true,
+        autoplayTimeout: 5000,
+		items : 1,
+        mouseDrag: true,
+        center: true,
+        loop: true,
+        animateOut: 'fadeOut',
+    	animateIn: 'fadeIn'
     });
     $("#prop-smlr-slide_0").owlCarousel({
         navigation: false, // Show next and prev buttons
@@ -80,6 +44,32 @@ $(document).ready(function () {
         paginationSpeed: 100,
         items: 3
     });
+    
+    
+    // 메인 클래스카드(마감임박순) 슬라이더
+    $("#deadlineClass-slider").owlCarousel({
+	    navigation: true, // Show next and prev buttons
+	    smartSpeed: 500,
+	    autoplay: true,
+	    autoplayTimeout: 5000,
+		items : 3,
+	    mouseDrag: true,
+//	    center: true,
+	    loop: true
+    });
+    
+    // 메인 리뷰카드(최신순) 슬라이더
+    $("#recentReview-slider").owlCarousel({
+	    navigation: true, // Show next and prev buttons
+	    smartSpeed: 500,
+	    autoplay: true,
+	    autoplayTimeout: 5000,
+		items : 3,
+	    mouseDrag: true,
+//	    center: true,
+	    loop: true
+    });
+    
 
     $('#price-range').slider();
     $('#property-geo').slider();
@@ -138,6 +128,39 @@ $(document).ready(function () {
     }
 
 })
+
+// iCheck 순서를 밑으로(메인에서 iCheck 이벤트를 쓰지 않기 때문)
+// class_list.jsp (체크박스 이벤트, 카드 레이아웃 선택)
+$(document).ready(function () {
+    $('input').iCheck({
+        checkboxClass: 'icheckbox_square-yellow',
+        radioClass: 'iradio_square-yellow',
+        increaseArea: '20%' // optional
+    });
+
+    $('.layout-grid').on('click', function () {
+      
+        $('.layout-grid').addClass('active');
+        $('.layout-list').removeClass('active');
+
+        $('#list-type').removeClass('proerty-th-list');
+        $('#list-type').addClass('proerty-th');
+
+        alert("grid 선택!!!!!!!!!!");
+    });
+
+    $('.layout-list').on('click', function () {
+		
+        $('.layout-grid').removeClass('active');
+        $('.layout-list').addClass('active');
+
+        $('#list-type').addClass('proerty-th-list');
+        $('#list-type').removeClass('proerty-th');
+
+        alert("list 선택!!!!!!!!!!");
+    });
+
+});
 
 // Initializing WOW.JS
 

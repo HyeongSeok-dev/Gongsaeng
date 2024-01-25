@@ -859,7 +859,7 @@ label small{
     top: 0;
     width: 100%;
     z-index: 9000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1)
 }
 /* ### */
 /* 상단바 고정에 따른 상단바 밑 간격 조정 */
@@ -1093,7 +1093,39 @@ label small{
 .slider-area {
     position: relative;
 /*     height: 50vh; */
+    background: #FCFCFC;
 }
+/* ### */
+.owl-theme .owl-nav.disabled+.owl-dots {
+    margin-top: -30px;
+    position: relative;
+    z-index: 9;
+}
+.owl-theme .owl-dots .owl-dot span {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 1px;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: #0009;
+    background-color: rgba(0,0,0,0);
+    border: 1px solid #fff;
+    border-radius: 10px;
+}
+.owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+    width: 12px;
+    height: 12px;
+    margin: 0;
+    background-color: #fff;
+}
+.owl-theme .owl-dots .owl-dot {
+    display: inline-block;
+    zoom: 1;
+    /* dot 간격 조정 */
+    margin: 0px 5px;
+}
+
 #bg-slider .item1, #bg-slider .item2 {
     height: 100%;
     overflow: hidden;
@@ -1106,6 +1138,7 @@ label small{
     margin: 0 auto;
     background-color: black;
 }
+
 .slider_img_responsive {
     width: 100%;
     cursor: pointer;
@@ -1175,6 +1208,14 @@ label small{
     justify-content: center;
     background-color: #FCFCFC;
 }
+/* ### */
+#event-slider.owl-theme .owl-nav.disabled+.owl-dots {
+/*     position: static; */
+/*     display: none; */
+    position: static !important;
+    z-index: 0 !important;
+}
+
 
 .slider-content{
     position: absolute;
@@ -1745,6 +1786,9 @@ padding: 0 0 0.5em;
 /*Tools CSS*/
 .p0{
     padding: 0px;
+    /* ### */
+    /* 클래스카드 가로로 늘린 버전 */
+    width: 383px;
 }
 .overflow{
     overflow: hidden;
@@ -1897,7 +1941,8 @@ proerty-th
 }
 .proerty-th .proerty-item{
     background-color: #FFF; 
-    margin: 10px;
+    /* ### */
+/*     margin: 10px; */
     /* ### */
 /*     border-radius: 10px; */
 	/* 클래스 카드 사이즈 제한 ↓ */
@@ -1923,7 +1968,10 @@ proerty-th
     width:100%;
     opacity: 0.7;
     min-height: 225px;
-    max-height: 265px;
+    /* ### */
+    /* 클래스카드 가로로 늘린 버전 */
+/*     max-height: 265px; */
+    max-height: 225px;
     /* ### */
 /*     border-radius: 10px; */
 }
@@ -3526,6 +3574,9 @@ padding-bottom: 15px;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
+	/* ### */
+	/* 캐러셀 사이즈 조절 */
+	width: 1150px !important;
 }
 .item_p {
 	text-align: left;
@@ -3572,5 +3623,4 @@ padding-bottom: 15px;
 #class_list_item {
     background-color: #FFF;	
 }
-
 
