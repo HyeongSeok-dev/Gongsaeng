@@ -14,10 +14,10 @@
 <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- CSS -->
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
+<!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'> -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
+<!-- <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet"> -->
 
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/normalize.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/font-awesome.min.css">
@@ -30,13 +30,15 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/icheck.min_all.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/price-range.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/owl.carousel.css">  
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/owl.theme.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/owl.theme.css">x
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/owl.transitions.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/responsive.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/global.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/lightslider.min.css">
-<%-- <link rel="stylesheet"href="${pageContext.request.contextPath}/resources/css/review_report.css"> --%>
+<link rel="stylesheet"href="${pageContext.request.contextPath}/resources/css/review_report.css">
+<link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">
+
 
 <!-- Js -->
 <script src="${pageContext.request.contextPath}/resources/js/review_report.js"></script>
@@ -74,7 +76,7 @@
 				</div>
 			</div>
 		</header>
-		<main id="main" class="">
+<!-- 		<main id="main" class=""> -->
 			<br>
 			<section class="section">
 				<div class="container reason">
@@ -161,7 +163,7 @@
 					</div>
 			</section>
 			<hr class="space">
-		</main>
+<!-- 		</main> -->
 		<div class="sticky_bottom_btns">
 			<a href="${pageContext.request.contextPath}/review/redetail?com_id=${comId}" class="btn btn-lg btn-outline" id="cancelButton">취소</a>
 			<button class="btn btn-lg btn-red" id="reportButton" type="submit">신고하기</button>

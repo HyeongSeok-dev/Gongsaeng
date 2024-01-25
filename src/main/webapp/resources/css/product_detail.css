@@ -19,6 +19,70 @@ body {
 	margin: 0 auto !important;
 }
 
+
+/*test  */
+.hZQCDJ {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 14px;
+    line-height: 24px;
+}
+.gVwBVO {
+    display: flex;
+    flex-flow: column;
+}
+.hZQCDJ {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 14px;
+    line-height: 24px;
+}
+.ixjLkJ {
+    display: flex;
+    width: 100%;
+}
+.hEglGi {
+    margin-right: 20px;
+    overflow: hidden;
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    border-radius: 28px;
+}
+.gDuKGF {
+    min-height: 1px;
+}
+.bUFcfh {
+    display: none !important;
+}
+.koasSX {
+    width: auto;
+    height: auto;
+    transition: opacity 200ms ease-in-out 0s;
+    display: none;
+    opacity: 0;
+    min-width: 0px;
+    min-height: 1px;
+}
+
+
+
+.payButton{
+	font-size: 20px;
+	background-color: #494c53;
+	font-weight: 500;
+	border-radius: 4px;
+	text-align: center;
+	color: #fff;
+	padding: 15px 42px;
+}
+
 /* #image-gallery img { */
 /*   width: 200px;  원하는 너비를 설정하세요 */
 /*   height: 200px; 원하는 높이를 설정하세요 */
@@ -27,7 +91,7 @@ body {
 
 .ProfileImg{
 	width: 100px; 
-	height: 95px;
+	height: 90px;
 	object-fit: cover;
 }
 
@@ -118,7 +182,6 @@ body {
 * {
 	margin: 0;
 	padding: 0;
-/* 	font-family: Apple SD Gothic Neo, Noto Sans KR, sans-serif; */
 	letter-spacing: -.93px;
 	outline: 0;
 	box-sizing: border-box;
