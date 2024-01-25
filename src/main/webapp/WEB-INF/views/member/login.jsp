@@ -52,6 +52,8 @@
 <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.6.0/kakao.min.js" integrity="sha384-6MFdIr0zOira1CHQkedUqJVql0YtcZA1P0nbPrQYJXVJZUkTk/oX4U9GhUIs3/z8"
+	crossorigin="anonymous"></script>
 <script src="${pageContext.request.contextPath }/resources/js/member_login.js"></script>
 
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -64,20 +66,20 @@
 			<h3 class="omb_authTitle">로그인</h3>
 			<div class="row omb_row-sm-offset-3 omb_socialButtons">
 				<div class="col-xs-4 col-sm-2">
-					<a href="#" class="btn btn-lg btn-block omb_btn-naver"> <img
-						src="${pageContext.request.contextPath }/resources/img/naver_logo.svg" class="visible-xs logo_link "></img> <span
-						class="hidden-xs">네이버</span>
+					<a href="#" class="btn btn-lg btn-block omb_btn-naver"> <img src="${pageContext.request.contextPath }/resources/img/naver_logo.svg"
+						class="visible-xs logo_link "></img> <span class="hidden-xs">네이버</span>
 					</a>
 				</div>
 				<div class="col-xs-4 col-sm-2">
-					<a href="#" class="btn btn-lg btn-block omb_btn-kakao"> <img
-						src="${pageContext.request.contextPath }/resources/img/kakao_logo.png" class="visible-xs logo_link"></img> <span
-						class="hidden-xs">카카오</span>
+					<a href="#" class="btn btn-lg btn-block "> 
+						<img src="${pageContext.request.contextPath }/resources/img/kakao_login_large_narrow.png" class="hidden-xs">
+					</a>
+					<a href="#" class="btn btn-lg btn-block "> 
+						<img src="${pageContext.request.contextPath }/resources/img/kakao_login_large.png" class="visible-xs">
 					</a>
 				</div>
 				<div class="col-xs-4 col-sm-2">
-					<a href="#" class="btn btn-lg btn-block omb_btn-google"> <i class="fa fa-google-plus visible-xs"></i> <span
-						class="hidden-xs"> 구글</span>
+					<a href="#" class="btn btn-lg btn-block omb_btn-google"> <i class="fa fa-google-plus visible-xs"></i> <span class="hidden-xs"> 구글</span>
 					</a>
 				</div>
 			</div>
@@ -90,13 +92,11 @@
 				<div class="col-xs-12 col-sm-6">
 					<form class="omb_loginForm" action="loginPro" autocomplete="off" method="POST">
 						<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-user"></i></span> <input type="text" class="form-control" name="username"
-								placeholder="아이디" required>
+							<span class="input-group-addon"><i class="fa fa-user"></i></span> <input type="text" class="form-control" name="username" placeholder="아이디" required>
 						</div>
 						<br>
 						<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-lock"></i></span> <input type="password" class="form-control"
-								name="password" placeholder="비밀번호" required>
+							<span class="input-group-addon"><i class="fa fa-lock"></i></span> <input type="password" class="form-control" name="password" placeholder="비밀번호" required>
 						</div>
 						<br>
 						<button class="btn btn-lg btn-success btn-block " type="submit">로그인</button>
@@ -106,7 +106,7 @@
 			</div>
 			<div class="row omb_row-sm-offset-3 ">
 				<div class="col-xs-3 col-md-2">
-					<label class="checkbox"> <input type="checkbox" value="" name = "rememberId">아이디 기억하기
+					<label class="checkbox"> <input type="checkbox" value="" name="rememberId">아이디 기억하기
 					</label>
 				</div>
 
