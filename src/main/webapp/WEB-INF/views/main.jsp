@@ -44,16 +44,16 @@
 
 <script type="text/javascript">
 function toggleButtons() {
-  var button1 = document.getElementById('button1');
-  var button2 = document.getElementById('button2');
-  
-  if (button1.style.display == 'none') {
-    button1.style.display = 'block';
-    button2.style.display = 'none';
-  } else {
-    button1.style.display = 'none';
-    button2.style.display = 'block';
-  }
+	var button1 = document.getElementById('button1');
+	var button2 = document.getElementById('button2');
+	
+	if (button1.style.display == 'none') {
+		button1.style.display = 'block';
+		button2.style.display = 'none';
+	} else {
+		button1.style.display = 'none';
+		button2.style.display = 'block';
+	}
 }
 </script>
 
