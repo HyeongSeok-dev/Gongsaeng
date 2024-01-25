@@ -39,6 +39,9 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/responsive.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/product_detail.css">
       
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
+		<link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">      
+      
         <!-- js  -->
         <script src="${pageContext.request.contextPath }/resources/assets/js/modernizr-2.6.2.min.js"></script>
         <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script> 
@@ -197,7 +200,7 @@
         <!-- End page header -->
 
         <!-- property area -->
-        <div class="content-area single-property" style="background-color: #FCFCFC;">&nbsp;
+        <div class="content-area single-property sticky" style="background-color: #FCFCFC;">&nbsp;
             <div class="container">   
 
                 <div class="clearfix padding-top-40" >
@@ -356,7 +359,7 @@
               
 
 
-                        <div class="similar-post-section padding-top-40"> 
+                        <div class="similar-post-section padding-top-40 gdIWGV" > 
                             <div id="prop-smlr-slide_0"> 
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
@@ -453,13 +456,8 @@
                             </div>
                         </div>
                     </div>
-                    
-                    
-                    
-
-
-                    <div class="col-md-4 p0">
-                    <div class="fixee">
+					<!-- side -->
+                    <div class="col-md-4 p0 fixed">
                         <aside class="sidebar sidebar-property blog-asside-right">
                             <div class="dealer-widget backcolor">
                                 <div class="dealer-content">
@@ -468,7 +466,7 @@
                                         <div class="clear">
                                             <div class="col-xs-4 col-sm-4 dealer-face">
                                                 <a href="">
-                                                    <img src="${pageContext.request.contextPath }/resources/assets/img/client-face1.png" class="img-circle">
+                                                    <img src="${pageContext.request.contextPath }/resources/assets/img/property-1/다운로드.jpg" class="img-circle ProfileImg">
                                                 </a>
                                             </div>
                                             <div class="col-xs-8 col-sm-8 ">
@@ -513,71 +511,67 @@
 
                            
 
-                            <div class="panel panel-default sidebar-menu wow fadeInRight animated" >
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">클래스 예약하기</h3>
-                                </div>
-                                <div class="panel-body search-widget">
-                                    <form action="" class=" form-inline"> 
-                                    
-									  <label for="reservation-date">예약 날짜:</label>
-									  <input type="date" id="reservation-date" name="reservation-date">
-									  
-									  
-									  
-							<div class="persons-group">
-							    <p>예약 인원</p>
-							    <input type="number" id="persons" name="persons" value="${search.persons}" min="1" max="20">
+							<div class="panel panel-default sidebar-menu wow fadeInRight animated" >
+								<div class="panel-heading">
+									<h3 class="panel-title">클래스 예약하기</h3>
+								</div>
+								<div class="panel-body search-widget">
+									<form action="" class=" form-inline"> 
+										<label for="reservation-date">예약 날짜:</label>
+										<input type="date" id="reservation-date" name="reservation-date">
+											<div class="persons-group">
+											    <p>예약 인원</p>
+											    <input type="number" id="persons" name="persons" value="${search.persons}" min="1" max="20">
+											</div>
+											<br>
+											<div>
+												<button type="button" class="payment" onclick="">장바구니</button>
+												<button type="button" class="payment" onclick="">결제하기</button>
+												
+												<button onclick="location.href='${pageContext.request.contextPath}/cart'">장바구니</button>
+												<a href="../cart" class="button">장바구니 담기</a> 
+												<input type="submit" value="장바구니 담기" href="../cart">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												<input type="submit" value="신청하기">
+			                                </div>   
+	<!--                                         <fieldset> -->
+	<!--                                             <div class="row"> -->
+	<!--                                                 <div class="col-xs-6"> -->
+	
+	<!--                                                     <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Select Your City"> -->
+	
+	<!--                                                         <option>New york, CA</option> -->
+	<!--                                                         <option>Paris</option> -->
+	<!--                                                         <option>Casablanca</option> -->
+	<!--                                                         <option>Tokyo</option> -->
+	<!--                                                         <option>Marraekch</option> -->
+	<!--                                                         <option>kyoto , shibua</option> -->
+	<!--                                                     </select> -->
+	<!--                                                 </div> -->
+	<!--                                                 <div class="col-xs-6"> -->
+	
+	<!--                                                     <select id="basic" class="selectpicker show-tick form-control"> -->
+	<!--                                                         <option> -Status- </option> -->
+	<!--                                                         <option>Rent </option> -->
+	<!--                                                         <option>Boy</option> -->
+	<!--                                                         <option>used</option>   -->
+	
+	<!--                                                     </select> -->
+	<!--                                                 </div> -->
+	<!--                                             </div> -->
+	<!--                                         </fieldset> -->
+	
+	                                                                 
+									</form>
+								</div>
 							</div>
-									
-									
-
-									<button onclick="window.open(cart)"></button>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="장바구니 담기">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<input type="submit" value="신청하기">
-                                        
-<!--                                         <fieldset> -->
-<!--                                             <div class="row"> -->
-<!--                                                 <div class="col-xs-6"> -->
-
-<!--                                                     <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Select Your City"> -->
-
-<!--                                                         <option>New york, CA</option> -->
-<!--                                                         <option>Paris</option> -->
-<!--                                                         <option>Casablanca</option> -->
-<!--                                                         <option>Tokyo</option> -->
-<!--                                                         <option>Marraekch</option> -->
-<!--                                                         <option>kyoto , shibua</option> -->
-<!--                                                     </select> -->
-<!--                                                 </div> -->
-<!--                                                 <div class="col-xs-6"> -->
-
-<!--                                                     <select id="basic" class="selectpicker show-tick form-control"> -->
-<!--                                                         <option> -Status- </option> -->
-<!--                                                         <option>Rent </option> -->
-<!--                                                         <option>Boy</option> -->
-<!--                                                         <option>used</option>   -->
-
-<!--                                                     </select> -->
-<!--                                                 </div> -->
-<!--                                             </div> -->
-<!--                                         </fieldset> -->
-
-                                                                 
-                                    </form>
-                                </div>
-                            </div>
-
-                        </aside>
-                    </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+						</aside>
+					</div>
+				</div>
+			</div>
+		</div>
 
 
-          <!-- Footer area-->
+        <!-- Footer area-->
         <div class="footer-area">
 			<jsp:include page="./inc/bottom.jsp"/>
 		</div>
