@@ -9,6 +9,10 @@ public class AdminController {
 	public String admin() {
 		return "admin/main";
 	}
+	@GetMapping("admin2")
+	public String admin2() {
+		return "admin/main2";
+	}
 
 	@GetMapping("admin/dashboard")
 	public String dashboard() {
@@ -18,13 +22,25 @@ public class AdminController {
 	public String member() {
 		return "admin/member";
 	}
+	@GetMapping("admin/member/detail")
+	public String memberDetail() {
+		return "admin/member_detail";
+	}
 	@GetMapping("admin/company")
 	public String company() {
 		return "admin/company";
 	}
-	@GetMapping("admin/account")
-	public String account() {
-		return "admin/account";
+	@GetMapping("admin/company/class")
+	public String companyClass() {
+		return "admin/class";
+	}
+	@GetMapping("admin/account/member")
+	public String accountMember() {
+		return "admin/account_member";
+	}
+	@GetMapping("admin/account/BMember")
+	public String accountBMember() {
+		return "admin/account_BMember";
 	}
 	@GetMapping("admin/report")
 	public String report() {
@@ -68,10 +84,10 @@ public class AdminController {
 	public String user2() {
 		return "admin/user2";
 	}
-	@GetMapping("admin/map")
-	public String map() {
-		return "admin/map";
-	}
+//	@GetMapping("admin/map")
+//	public String map() {
+//		return "admin/map";
+//	}
 	
 	
 			
