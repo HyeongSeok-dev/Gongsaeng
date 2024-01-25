@@ -24,6 +24,8 @@
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.css" rel="stylesheet" />
   <link href="${pageContext.request.contextPath }/resources/admin_assets/css/class.css" rel="stylesheet" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
+  <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">
 </head>
 
 <body class="">
@@ -79,7 +81,7 @@
               </li>
               <%-- 공생 메인 홈페이지로 이동 --%>
               <li class="nav-item">
-                <a class="nav-link" href="../">
+                <a class="nav-link" href="${pageContext.request.contextPath }/">
                   <i class="now-ui-icons shopping_shop"></i>
                   <p>
                     <span class="d-lg-none d-md-block">공식 홈</span>
@@ -139,26 +141,16 @@
 			            <tr>
 			                <th>등록일자</th>
 			                <th>아이디</th>
-			                <th>
-			                 	대분류
-			                </th>
-			                <th>
-			                	소분류
-			                </th>
-			                <th>클래스명</th>
-			                <th>신고수</th>
-			                <th>상태</th>
+			                <th>계좌번호</th>
+			                <th>은행명</th>
 			                <th>상세보기</th>
 			            </tr>
 			            <!-- 회원 데이터 로우 -->
 			            <tr>
 			                <td>등록일자</td>
-			                <td>사업체명</td>
-			                <td>대분류</td>
-			                <td>소분류</td>
-			                <td>클래스명</td>
-			                <td>신고수</td>
-			                <td>상태</td>
+			                <td>아이디</td>
+			                <td>계좌번호</td>
+			                <td>은행명</td>
 			                <td><button type="button" class="btn detail_btn" value="상세보기">상세보기</button></td>
 			            </tr>
 			    </table>

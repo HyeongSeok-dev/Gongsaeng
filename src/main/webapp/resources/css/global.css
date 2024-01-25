@@ -34,3 +34,8 @@
 body {
     font-family: 'NanumSquareNeo-Variable', sans-serif;
 }
+
+input[type="checkbox"] {
+	position: relative;
+	top: 1px;
+}

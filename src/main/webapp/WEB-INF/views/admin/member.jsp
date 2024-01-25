@@ -24,6 +24,8 @@
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.css" rel="stylesheet" />
   <link href="${pageContext.request.contextPath }/resources/admin_assets/css/member.css" rel="stylesheet" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
+  <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">
 </head>
 
 <body class="">
@@ -79,7 +81,7 @@
               </li>
               <%-- 공생 메인 홈페이지로 이동 --%>
               <li class="nav-item">
-                <a class="nav-link" href="../">
+                <a class="nav-link" href="${pageContext.request.contextPath }/">
                   <i class="now-ui-icons shopping_shop"></i>
                   <p>
                     <span class="d-lg-none d-md-block">공식 홈</span>

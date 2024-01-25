@@ -71,13 +71,13 @@
 	        <li class="nav-item">
 	            <a href="#pay" class="nav-link" data-toggle="collapse" aria-expanded="false">
 	                <i class="now-ui-icons shopping_credit-card"></i>
-	                <p>페이<b class="caret"></b></p>
+	                <p>0페이<b class="caret"></b></p>
 	            </a>
 	            <div id="pay" class="collapse" aria-labelledby="pay" data-parent="#sidebar-wrapper">
 	                <ul class="nav">
 <%-- 	                    <li><a href="${pageContext.request.contextPath}/admin/community"></a></li> --%>
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/pay/">충전환급관리</a></li>
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/pay/">수익지출관리</a></li>
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/OPay/deposit/withdraw">충전환급관리</a></li>
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/OPay/use">수익지출관리</a></li>
 	                </ul>
 	            </div>
 	        </li>

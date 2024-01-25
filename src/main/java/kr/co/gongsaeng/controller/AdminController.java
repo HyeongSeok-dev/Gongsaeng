@@ -42,6 +42,14 @@ public class AdminController {
 	public String accountBMember() {
 		return "admin/account_BMember";
 	}
+	@GetMapping("admin/OPay/deposit/withdraw")
+	public String OPayDepositWithdraw() {
+		return "admin/OPay_deposit_withdraw";
+	}
+	@GetMapping("admin/OPay/use")
+	public String OPayUse() {
+		return "admin/OPay_use";
+	}
 	@GetMapping("admin/report")
 	public String report() {
 		return "admin/report";
