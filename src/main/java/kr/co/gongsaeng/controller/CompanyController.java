@@ -6,6 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class CompanyController {
 	
+	@GetMapping("company/banjang/register")
+	public String company_banjang_register() {
+		return "company/company_banjang_register";
+	}
+
 	@GetMapping("company/dashboard")
 	public String ceo_dashboard() {
 		return "company/company_dashboard";
@@ -116,10 +121,11 @@ public class CompanyController {
 		return "company/company_profile3";
 	}
 	
-	@GetMapping("company/banjang/register")
-	public String company_banjang_register() {
-		return "company/company_banjang_register";
+	@GetMapping("company/example")
+	public String company_example() {
+		return "company/example_photo";
 	}
+
 
 	
 	

@@ -74,33 +74,102 @@ body
   cursor:pointer;
   font-size:15px;
 }
+
+.card label {
+    font-size: 20px!important;
+}
+
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
-$(".imgAdd").click(function(){
-	  $(this).closest(".row").find('.imgAdd').before('<div class="col-sm-2 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" class="uploadFile img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');
-	});
-	$(document).on("click", "i.del" , function() {
-		$(this).parent().remove();
-	});
-	$(function() {
-	    $(document).on("change",".uploadFile", function()
-	    {
-	    		var uploadFile = $(this);
-	        var files = !!this.files ? this.files : [];
-	        if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
+// ---------------- 부트스트랩 이미지 업로드 
+// $(".imgAdd").click(function(){
+// 	  $(this).closest(".row").find('.imgAdd').before('<div class="col-sm-2 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" class="uploadFile img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');
+// 	});
+// 	$(document).on("click", "i.del" , function() {
+// 		$(this).parent().remove();
+// 	});
+// 	$(function() {
+// 	    $(document).on("change",".uploadFile", function()
+// 	    {
+// 	    		var uploadFile = $(this);
+// 	        var files = !!this.files ? this.files : [];
+// 	        if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
 	 
-	        if (/^image/.test( files[0].type)){ // only image file
-	            var reader = new FileReader(); // instance of the FileReader
-	            reader.readAsDataURL(files[0]); // read the local file
+// 	        if (/^image/.test( files[0].type)){ // only image file
+// 	            var reader = new FileReader(); // instance of the FileReader
+// 	            reader.readAsDataURL(files[0]); // read the local file
 	 
-	            reader.onloadend = function(){ // set image data as background of div
-	                //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
-	uploadFile.closest(".imgUp").find('.imagePreview').css("background-image", "url("+this.result+")");
-	            }
-	        }
+// 	            reader.onloadend = function(){ // set image data as background of div
+// 	                //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
+// 	uploadFile.closest(".imgUp").find('.imagePreview').css("background-image", "url("+this.result+")");
+// 	            }
+// 	        }
 	      
-	    });
-	});
+// 	    });
+// 	});
+    
+    // 셀렉트 박스
+    document.addEventListener("DOMContentLoaded", function() {
+      document.getElementById('interior_type').addEventListener('change', function() {
+        var selectedType = this.value;
+        var subInteriorSelect = document.getElementById('sub_interior_type');
+        subInteriorSelect.innerHTML = ''; // 기존 옵션 초기화
+        
+        
+    switch(selectedType) {
+      case '1':
+        subInteriorSelect.innerHTML = 
+          `<option value="1">바닥재 시공</option>
+           <option value="2">장판 시공</option>
+           <option value="3">타일 시공</option>
+           <option value="4">마루 시공</option>
+           <option value="5">카페트 시공</option>`;
+        break;
+      case '2': 
+        subInteriorSelect.innerHTML = 
+        	`<option value="1">도배 시공</option>
+        	 <option value="2">칸막이 시공</option>
+        	 <option value="3">페인트 시공</option>
+        	 <option value="4">방음 시공</option>
+        	 <option value="5">단열 필름 시공</option>`;
+        break;
+      case '3': 
+        subInteriorSelect.innerHTML = 
+        	`<option value="1">샷시 설치 및 수리</option>
+        	 <option value="2">화장실 리모델링</option>
+        	 <option value="3">주방 리모델링</option>
+        	 <option value="4">가구 리폼</option>
+        	 <option value="5">붙박이장 시공</option>`;
+        break;
+      case '4': 
+        subInteriorSelect.innerHTML = 
+        	`<option value="1">조경 공사</option>
+        	 <option value="2">옥상 공사</option>
+        	 <option value="3">지붕 공사</option>
+        	 <option value="4">태양광 발전</option>
+        	 <option value="5">외벽 리모델링</option>`;
+        break;
+      case '5': 
+        subInteriorSelect.innerHTML = 
+        	`<option value="1">집 인테리어</option>
+        	 <option value="2">상업공간 인테리어</option>
+        	 <option value="3">주택 리모델링</option>
+        	 <option value="4">집 수리</option>
+        	 <option value="5">인테리어 소품</option>`;
+        break;
+      case '6': 
+        subInteriorSelect.innerHTML = 
+        	`<option value="1">줄눈 시공</option>
+        	 <option value="2">단열 시공</option>
+        	 <option value="3">미장 시공</option>`;
+        break;
+
+      default:
+        subInteriorSelect.innerHTML = '<option value="">소분류를 선택하세요</option>';
+    }
+  });
+});
 </script>
 </head>
 <body class="클래스 등록">
@@ -177,15 +246,15 @@ $(".imgAdd").click(function(){
       </div>
       <div class="content">
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-11">
             <div class="card">
               <div class="card-header">
                 <h5 class="title">클래스 등록 - 기본 정보</h5>
               </div>
+     		<form action="ClassRegisterPro" method="post" name="classRegisterForm">
               <div class="card-body">
-                <form>
                   <div class="row">
-                    <div class="col-md-4 pr-1">
+                    <div class="col-md-3 pr-1">
                       <div class="form-group">
                         <label>모집 유형</label>
                         <select class="form-control">
@@ -195,34 +264,30 @@ $(".imgAdd").click(function(){
 <!--                         <input type="text" class="form-control" placeholder="Company" value="Creative Code Inc."> -->
                       </div>
                     </div>
-                    <div class="col-md-4 pr-1">
+                    <div class="col-md-3 pr-1">
                       <div class="form-group">
                         <label>클래스 대분류</label>
-                        <select class="form-control">
-                        	<option>바닥 시공</option> 
-                        	<option>벽/천장 시공</option> 
-                        	<option>부분 인테리어</option> 
-                        	<option>야외 시공</option> 
-                        	<option>종합 인테리어</option> 
-                        	<option>기타 홈인테리어</option> 
-                        	<option>기타 시공</option> 
+						<select class="form-control" name="interior_type" id="interior_type">
+                        	<option value="">대분류를 선택하세요</option>
+                        	<option value="1">바닥 시공</option> 
+                        	<option value="2">벽/천장 시공</option> 
+                        	<option value="3">부분 인테리어</option> 
+                        	<option value="4">야외 시공</option> 
+                        	<option value="5">종합 인테리어</option> 
+                        	<option value="6">기타 시공</option> 
                         </select>
-<!--                         <input type="text" class="form-control" placeholder="Company" value="Creative Code Inc."> -->
                       </div>
                     </div>
-                    <div class="col-md-4 pr-1">
-                      <div class="form-group">
-                        <label>클래스 소분류</label>
-                        <select class="form-control">
-                        	<option>바닥재 시공</option> 
-                        	<option>장판 시공</option> 
-                        	<option>타일 시공</option> 
-                        	<option>마루 시공</option> 
-                        	<option>카페트 시공</option> 
-                        </select>
-<!--                         <input type="text" class="form-control" placeholder="Company" value="Creative Code Inc."> -->
-                      </div>
-                    </div>
+						<div class="col-md-3">
+						  <div class="form-group">
+						    <label>클래스 소분류</label>
+								<select class="form-control" name="sub_interior_type" id="sub_interior_type">
+						      <option value="">소분류를 선택하세요</option>
+						      <!-- 옵션은 JavaScript를 통해 동적으로 추가됩니다 -->
+						    </select>
+						  </div>
+						</div>
+
 <!--                     <div class="col-md-6 px-1"> / px: 패딩관련-->
                     <div class="col-md-8 pr-7">
                       <div class="form-group">
@@ -255,97 +320,35 @@ $(".imgAdd").click(function(){
                     </div>
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
-                        <label>기존 공방 주소</label>
-				        <div class="col-sm-5">
-				          <label><input type="radio" name="optradio" checked>기존 공방 주소</label>
+                        <label>&nbsp;&nbsp;&nbsp;기존 공방 주소</label>
+				        <div class="col-sm-8">
+				          <input type="radio" name="optradio" checked>  기존 공방 주소<br>
 				        </div>
-				        <div class="col-sm-5">
-				          <label><input type="radio" name="optradio">다른 주소 사용하기</label>
+				        <div class="col-sm-8">
+				          <input type="radio" name="optradio">  다른 주소 사용하기
 				        </div>
                       </div>
-                    </div>
-                     <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
+                      	<br><br>
                         <label>클래스 소개문</label>
                         <textarea rows="4" cols="80" class="form-control" placeholder="내용을 입력해주세요" value="Mike"></textarea>
                       </div>
                     </div>
+                    </div>
+                     <div class="row">
                   </div>
                   </div>
-                </form>
               </div>
             </div>
             <button type="button" class="btn btn-danger">취소</button>
 			<button type="button" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/company/class/register2'">다음</button>
+           </form>
           </div>
-          <div class="col-md-4">
-            <div class="card card-user">
-              <div class="image">
-                <img src="${pageContext.request.contextPath }/resources/admin_assets/img/bg5.jpg" alt="...">
-              </div>
-              <div class="card-body">
-                <div class="author">
-                  <a href="#">
-                    <img class="avatar border-gray" src="${pageContext.request.contextPath }/resources/admin_assets/img/mike.jpg" alt="...">
-                    <h5 class="title">클래스 선택한거 나타내고 싶은 창</h5>
-                  </a>
-                  <p class="description">
-                    michael24
-                  </p>
-                </div>
-                <p class="description text-center">
-                  "Lamborghini Mercy <br>
-                  Your chick she so thirsty <br>
-                  I'm in that two seat Lambo"
-                </p>
-              </div>
-              <hr>
-              <div class="button-container">
-                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
-                  <i class="fab fa-facebook-f"></i>
-                </button>
-                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
-                  <i class="fab fa-twitter"></i>
-                </button>
-                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
-                  <i class="fab fa-google-plus-g"></i>
-                </button>
-              </div>
             </div>
           </div>
         </div>
       </div>
-      <footer class="footer">
-        <div class=" container-fluid ">
-          <nav>
-            <ul>
-              <li>
-                <a href="https://www.creative-tim.com">
-                  Creative Tim
-                </a>
-              </li>
-              <li>
-                <a href="http://presentation.creative-tim.com">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="http://blog.creative-tim.com">
-                  Blog
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <div class="copyright" id="copyright">
-            &copy; <script>
-              document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
-            </script>, Designed by <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
-          </div>
-        </div>
-      </footer>
-    </div>
-  </div>
   <!--   Core JS Files   -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/popper.min.js"></script>
