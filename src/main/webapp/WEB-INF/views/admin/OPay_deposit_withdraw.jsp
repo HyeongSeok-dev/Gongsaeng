@@ -100,14 +100,14 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h5 class="title">0페이 충전환급 목록</h5>
+                <h5 class="title">0페이 충전송금 목록</h5>
               </div>
               <div class="card-body">
 	               <div class="card-body-header">
 	               		<div class="member_category_checkbox">
 			              	<input type="checkbox" value="전체선택" name="member_category"> 전체선택&nbsp;
-			              	<input type="checkbox" value="일반회원" name="member_category"> 충전&nbsp;
-			              	<input type="checkbox" value="반장회원" name="member_category"> 환급&nbsp;
+			              	<input type="checkbox" value="충전" name="member_category"> 충전&nbsp;
+			              	<input type="checkbox" value="송금" name="member_category"> 송금&nbsp;
 		              	</div>
 		              	<div>
 		              		<form action="" class="member_date">
@@ -125,15 +125,8 @@
 <!-- 			              		</div> -->
 			              		<div class="search_bar_admin">
 			              			<div>
-										<select>
-											<option>전체검색</option>
-											<option>아이디</option>
-											<option>계좌번호</option>
-										</select>
+					              		<input type="date" id="start_date">&nbsp;&nbsp;~&nbsp;&nbsp;<input type="date" id="end_date">
 					              	</div>
-			              			<div>
-			              				<input type="search">
-			              			</div>
 					              	<div>
 					              		<button type="submit" class="btn detail_btn" value="검색">검색</button>
 					              	</div>
@@ -153,10 +146,11 @@
 			            </tr>
 			            <!-- 회원 데이터 로우 -->
 			            <tr>
-			                <td>등록일자</td>
+			                <td>거래번호</td>
 			                <td>아이디</td>
-			                <td>계좌번호</td>
-			                <td>은행명</td>
+			                <td>금액</td>
+			                <td>거래유형</td>
+			                <td>날짜</td>
 			                <td><button type="button" class="btn detail_btn" value="상세보기">상세보기</button></td>
 			            </tr>
 			    </table>

@@ -76,8 +76,8 @@
 	            <div id="pay" class="collapse" aria-labelledby="pay" data-parent="#sidebar-wrapper">
 	                <ul class="nav">
 <%-- 	                    <li><a href="${pageContext.request.contextPath}/admin/community"></a></li> --%>
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/OPay/deposit/withdraw">충전환급관리</a></li>
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/OPay/use">수익지출관리</a></li>
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/OPay/deposit/withdraw">충전송금관리</a></li>
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/OPay/use">지출환불관리</a></li>
 	                </ul>
 	            </div>
 	        </li>
@@ -89,8 +89,10 @@
 	            </a>
 	            <div id="marketing" class="collapse" aria-labelledby="marketing" data-parent="#sidebar-wrapper">
 	                <ul class="nav">
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/marketing/event">이벤트</a></li>
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/marketing/coupon">쿠폰</a></li>
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/marketing/event">이벤트관리</a></li>
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/marketing/event/register">이벤트등록</a></li>
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/marketing/coupon">쿠폰관리</a></li>
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/marketing/coupon/register">쿠폰등록</a></li>
 	                </ul>
 	            </div>
 	        </li>

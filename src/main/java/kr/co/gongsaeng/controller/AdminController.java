@@ -54,9 +54,21 @@ public class AdminController {
 	public String report() {
 		return "admin/report";
 	}
-	@GetMapping("admin/event")
+	@GetMapping("admin/marketing/event")
 	public String event() {
 		return "admin/event";
+	}
+	@GetMapping("admin/marketing/event/register")
+	public String eventRegister() {
+		return "admin/event_register";
+	}
+	@GetMapping("admin/marketing/coupon")
+	public String coupon() {
+		return "admin/coupon";
+	}
+	@GetMapping("admin/marketing/coupon/register")
+	public String eventCoupon() {
+		return "admin/coupon_register";
 	}
 	@GetMapping("admin/cs")
 	public String cs() {
