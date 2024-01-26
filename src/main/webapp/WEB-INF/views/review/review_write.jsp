@@ -7,9 +7,18 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>공생 | 공간을 생각하다</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="GARO is a real-estate template">
+<meta name="author" content="Kimarotec">
+<meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- CSS -->
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/normalize.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/font-awesome.min.css">
@@ -46,7 +55,6 @@ function addResIdx(res_idx) {
 }
 
 </script>
-<title>리뷰 작성 페이지</title>
 <!-- 수정 -->
 </head>
 <body>
@@ -93,7 +101,7 @@ function addResIdx(res_idx) {
 		<div class="like_section" style="text-align: center;">
 			<div class="like_section_text">
 				<p>
-					이곳이 마음에 든다면,<br> '좋아요'를 눌러주세요<br>
+					클래스가 마음에 든다면,<br> '좋아요'를 눌러주세요<br>
 					<!-- 취향이 비슷한 사람을 추천받으세요. -->
 				</p>
 			</div>
@@ -181,7 +189,6 @@ function addResIdx(res_idx) {
 		<div class="review_input_section">
 			<div class="separator"></div>
 			<h2 style="text-align: center;">리뷰를 남겨주세요</h2>
-			
 			<!-- 사진 추가 버튼 컨테이너 -->
 			<div class="photo_box">
 		    <input type="file" id="photoInput" name="file1" accept="image/*" style="display: none;"/>
@@ -192,10 +199,10 @@ function addResIdx(res_idx) {
 		    	<div class="image_wrapper">
 		      	  <img id="imagePreview" src="#" alt="Image Preview"/>
 		        	<div class="remove_btn" onclick="removePreview()">
-		            <img src="${pageContext.request.contextPath}/resources/img/close2.png" style="width: 20px; height: 20px;" alt="Delete">
-		        </div>
-		    </div>
-		</div>
+		           		<img src="${pageContext.request.contextPath}/resources/img/close2.png" style="width: 20px; height: 20px;" alt="Delete">
+			        </div>
+			    </div>
+			</div>
 			
 			</div>
 			<!-- ===================================================================== -->
@@ -204,12 +211,13 @@ function addResIdx(res_idx) {
 				name="review_content" placeholder="업주와 다른 사용자들이 상처받지 않도록 좋은 표현을 사용해주세요.(500자수 제한)"></textarea>
 			<a class="caution_link" href="#" onclick="openPopup()">리뷰 작성 유의사항</a>
 			<section id="commandCell">
-			<button class="register_button" onclick="location.href='${pageContext.request.contextPath}/review/complete?com_id=${com_id}">등록하기</button>
+				<button class="register_button" onclick="location.href='${pageContext.request.contextPath}/review/complete?com_id=${com_id}">등록하기</button>
 <%-- 		    <a href="${pageContext.request.contextPath}/review/write?com_id=${param.com_id}"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a> --%>
 			</section>
 		</div>
 	</form>
 	</div>
+	<br><br><br>
 	<div class="footer-area">
 		<jsp:include page="../inc/bottom.jsp"/>
 	</div>

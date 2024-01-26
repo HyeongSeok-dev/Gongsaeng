@@ -27,10 +27,10 @@
 <link href="${pageContext.request.contextPath }/resources/assets/css/animate.css" rel="stylesheet" media="screen">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/bootstrap-select.min.css"> 
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/icheck.min_all.css">
+<%-- <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/icheck.min_all.css"> --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/price-range.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/owl.carousel.css">  
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/owl.theme.css">x
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/owl.theme.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/owl.transitions.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/responsive.css">
@@ -53,7 +53,7 @@
 <script src="${pageContext.request.contextPath }/resources/assets/js/jquery.easypiechart.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/owl.carousel.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/wow.js"></script>
-<script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
+<%-- <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script> --%>
 <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
         
@@ -97,6 +97,7 @@
 							</div>
 						</div>
 					</div>
+				</div>
 					<br>
 					<div class="form_block">
 						<h3 class="form_block_title">신고자 정보</h3>

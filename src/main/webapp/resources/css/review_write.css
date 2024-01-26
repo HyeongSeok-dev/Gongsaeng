@@ -352,12 +352,12 @@
     position: absolute;
     right: 0;
     bottom: 0;
-    background-color: #c2c2c2;
+    background-color: #494c53;
     color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 10px;
-    margin-right: -20px;
+/*     margin-right: -20px; */
     margin-bottom: -36px;
    	font-size: 16px;
 /*    	margin-top: -13px; */
