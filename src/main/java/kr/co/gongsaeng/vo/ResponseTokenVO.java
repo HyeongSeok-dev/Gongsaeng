@@ -9,8 +9,8 @@ import lombok.Data;
 public class ResponseTokenVO {
 	private String access_token;
 	private String token_type;
-	private String expires_in;
+	private String expires_in; //토큰만료시간
 	private String refresh_token;
-	private String scope;
+	private String scope; //토큰범위
 	private String user_seq_no;
 }

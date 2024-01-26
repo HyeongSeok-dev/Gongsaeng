@@ -14,8 +14,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- 	<link rel="preconnect" href="https://fonts.googleapis.com"> -->
+<!-- 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
 	
 	<%-- css 파일 --%>
@@ -35,7 +35,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/style.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/responsive.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
+	<link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">
 	
 <link href="${pageContext.request.contextPath }/resources/css/payment.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet" type="text/css">
@@ -185,7 +185,7 @@
 									 &nbsp; <span><a id="useAllPoint">전액사용</a></span>
 								</span>
 							</div>
-							<input type="text" value="" placeholder="사용할 0페이를 입력해 주세요" class="pay_to_use" name="payToUse" style="width: 250px;"/><span class="won">원</span>
+							<input type="text" value="" placeholder="사용할 0페이를 입력해 주세요" class="pay_to_use" name="payToUse" /><span class="won">원</span>
 							
 							<button id="chargePay" class="use_button charge" type="button" onclick="alert('계좌를 인증해주세요.'); authAccount();">충전하기</button>
 							<!-- member_id유무에 따른 버튼 출력 -->

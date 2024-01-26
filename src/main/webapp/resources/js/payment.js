@@ -38,8 +38,11 @@ $(document).ready(function() {
 	$("#payBtn").on("click",function(e) {
 		
 		// 라디오버튼에 따른 결제팝업 변경
+		var IMP = window.IMP;
+		IMP.init('imp05703412');
 		if($('input[name="pay_method"]:checked').length == 0) {
 					alert("결제수단을 선택해주세요.");
+					return;
 			} else if($('input[type=radio][value="1"]').is(':checked')) {//카카오페이
 					// V1방법 카카오페이 연동
 					console.log("kakao");
@@ -166,6 +169,7 @@ $(document).ready(function() {
 	    if (!$('#payBackAgree').is(':checked')) {
 	        alert('환불정책 약관을 동의해주세요');
 	        e.preventDefault();
+        	return; 
 	    }
          
 	}); //payBtn

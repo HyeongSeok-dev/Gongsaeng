@@ -5,6 +5,24 @@
 /*     position: relative; */
 /*     min-height: 100px; */
 /* } */
+
+/* 클래스대표 이미지 */
+.img-responsive {
+    width: 150px;
+    height: 150px;
+}
+
+table td {
+    vertical-align: middle;
+    height: 50px; /* 셀 높이 설정 */
+}
+
+table {
+    height: 100px; /* 테이블 높이 설정 */
+}
+
+
+
 body {
 	margin-top: 20px;
 }

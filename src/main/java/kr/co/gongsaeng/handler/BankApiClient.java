@@ -61,12 +61,45 @@ public class BankApiClient {
 	}
 
 	//==================================================================================
+	public ResponseTokenVO requestAccessTokenForAdmin(Map<String, String> authResponse) {
+		//금융결제원 오픈api요청 작업 처리
+		//post방식 요청을 수행하기위한 url정보생성
+		URI uri =  UriComponentsBuilder
+				.fromUriString("https://testapi.openbanking.or.kr/oauth/2.0/token") // 기본 주소
+				.encode()
+				.build() // UriComponents 객체 생성
+				.toUri();
+		//post방식이라 body에 포함시켜 전달
+		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+		
+		parameters.add("client_id", "4066d795-aa6e-4720-9383-931d1f60d1a9");
+		parameters.add("client_secret", "36b4a668-94ba-426d-a291-771405e498e4");
+		parameters.add("scope", "oob");
+		parameters.add("grant_type", "client_credentials");	
+		
+		HttpEntity<LinkedMultiValueMap<String, String>> httpEntity =
+				new HttpEntity<LinkedMultiValueMap<String,String>>(parameters);
+		
+		RestTemplate restTemplate = new RestTemplate();
+		
+		ResponseEntity<ResponseTokenVO> responseEntity = 
+				restTemplate.exchange(uri, HttpMethod.POST, httpEntity, ResponseTokenVO.class);
+		
+		//응답정보확인
+		logger.info("응답 코드 : " + responseEntity.getStatusCode());
+		logger.info("응답 헤더 : " + responseEntity.getHeaders());
+		logger.info("응답 본문 : " + responseEntity.getBody());
+		
+		return responseEntity.getBody();
+	}
+	
+	//==================================================================================
 	//사용자 정보조회 api요청
 	public Map<String, Object> requestUserInfo(Map<String, String> map) {
 		
 		HttpHeaders headers = new HttpHeaders();
 		//1. 사용자 정보 조회시 엑세스 토믄 값을 헤더에 담아 전송
-		headers.add("Authorization", "Bearer" + map.get("account_access_token"));
+		headers.add("Authorization", "Bearer" + map.get("access_token"));
 		//2. 헤더 정보를 갖는 객체 생성
 		HttpEntity<String> httpEntity = new HttpEntity<String>(headers);
 		//3. 요청에 필요한 URI정보 생성
@@ -87,10 +120,10 @@ public class BankApiClient {
 
 
 	//==================================================================================
-	//출금이체api
-	public Map<String, Object> requestAccountDetail(Map<String, String> map) {
-		return null;
-	}
+	//잔액조회 api요청
+//	public Map<String, Object> requestAccountDetail(Map<String, String> map) {
+//		return null;
+//	}
 	
 	
 }//BankApiClient
