@@ -8,3 +8,28 @@
 #header {
   background: url(https://images.unsplash.com/photo-1415795854641-f4a487a0fdc8?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80) center center / cover no-repeat ;
 }
+
+.cm_thumbnail {
+    display: block;
+    padding: 4px;
+    margin-bottom: 20px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border-radius: 4px;
+    -webkit-transition: border .2s ease-in-out;
+    -o-transition: border .2s ease-in-out;
+    transition: border .2s ease-in-out;
+    border-radius: 10px; 
+    width: 150px; 
+    height: 150px;
+}
+
+.h4_community {
+    font-size: 20px;
+    margin: 0 0 10px;
+    font-weight: bold;
+}
+
+.cm_text {
+	border-bottom: 0.0625rem solid #D1D1D1;
+}

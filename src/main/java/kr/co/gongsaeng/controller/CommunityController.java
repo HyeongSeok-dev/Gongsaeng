@@ -21,6 +21,11 @@ public class CommunityController {
 		return "community/cm_myHome";
 	}
 	
+	@GetMapping("community/myHomeDetail")
+	public String myHomeDetail() {
+		return "community/cm_myHomeDetail";
+	}
+	
 	@GetMapping("community/modify")
 	public String modify() {
 		return "community/cm_modify";

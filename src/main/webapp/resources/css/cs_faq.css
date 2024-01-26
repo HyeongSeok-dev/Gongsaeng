@@ -9,9 +9,8 @@ body {
 }
 
 .faq-cat-tabs li a {
-    padding: 15px 10px 15px 10px;
-    background-color: #ffffff;
-    border: 1px solid #dddddd;
+/*     padding: 15px 10px 15px 10px; */
+    background-color: #dddddd;
     color: #777777;
 }
 

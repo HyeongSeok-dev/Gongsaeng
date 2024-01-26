@@ -53,10 +53,17 @@
     </head>
     <body>
      <jsp:include page="../inc/top.jsp"></jsp:include>
+    	<div class="page-head"> 
+            <div class="container">
+                <div class="row">
+                    <div class="page-head-content">
+                        <h1 class="page-title">공지사항</h1>               
+                    </div>
+                </div>
+            </div>
+        </div>
      	<br>
             <div class="container">
-              	<h3 class="page-title">공지사항</h3>               
-		<br>
 	        <span>
 	        	<button type="button" class="notice_point" onclick=>전체</button>
 	        	<button type="button" class="notice_point" onclick=>공지</button>

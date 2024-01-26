@@ -105,11 +105,9 @@
 				    <div class="row mt-5">
 				        <div class="col-sm-9">
 				        	<p>궁금해요/서비스종류</p>
-				        	<a href="questionDetail" class="cm_context">
-					            <h4 class="h4_community">글제목</h4>
-					            <p class="text-truncate">여기에 글 내용이 들어갑니다. 이 글은 최대 50자까지만 표시됩니다. 더 많은 내용을 보려면 글을 클릭하세요.</p>
-					            <p><span class="glyphicon glyphicon-comment"S></span> 댓글 개수</p>
-				            </a>
+				            <h4 class="h4_community">글제목</h4>
+				            <p class="text-truncate">여기에 글 내용이 들어갑니다. 이 글은 최대 50자까지만 표시됩니다. 더 많은 내용을 보려면 글을 클릭하세요.</p>
+				            <p><span class="glyphicon glyphicon-comment"></span> 댓글 개수</p>
 				        </div>
 				        <div class="col-sm-3">
 				            <div class="cm_thumbnail">
