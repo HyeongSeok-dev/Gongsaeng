@@ -1,17 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="utf-8" />
 <link rel="apple-touch-icon" sizes="76x76"
 	href="${pageContext.request.contextPath }/resources/admin_assets/img/apple-icon.png">
 <%--   <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/admin_assets/img/favicon.png"> --%>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>공생 | 클래스 등록 - 기타 제공 사항</title>
+<title>공생 | 클래스 등록 - 스케줄 및 부가정보</title>
 <meta
 	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
 	name='viewport' />
@@ -34,44 +32,29 @@
 <link
 	href="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.css"
 	rel="stylesheet" />
-<!-- DatePicker -->
-<link rel="stylesheet"
-	href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- Global CSS -->
 <link
 	href="${pageContext.request.contextPath }/resources/css/global.css"
 	rel="stylesheet" />
+<!-- DatePicker -->
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <style type="text/css">
 .form-control {
   height: 50px; 
 }
 
-.custom-font-size {
-    font-size: 18px;
-}
-
-.card label {
-    font-size: 18px!important;
-}
-
-.register3_text {
-	font-size: 1.2em!important;
-		color: #000000;
-	
-}
 </style>
-<script type="text/javascript">
-</script>
 </head>
 <body class="클래스 등록">
 	<div class="wrapper ">
 		<div class="sidebar" data-color="orange">
+		 <!-- Include sidebar_wrapper.jsp -->
+            <jsp:include page="./sidebar_wrapper.jsp"/>
 			<!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
-    	  <jsp:include page="./sidebar_wrapper.jsp"/>
 		</div>
 		<div class="main-panel" id="main-panel">
 			<!-- Navbar -->
@@ -86,7 +69,7 @@
 									class="navbar-toggler-bar bar3"></span>
 							</button>
 						</div>
-						<a class="navbar-brand" href="#pablo">클래스 등록 (기타 제공 사항)</a>
+						<a class="navbar-brand" href="#pablo">클래스 등록 (스케줄 및 부가정보)</a>
 
 					</div>
 					<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -148,111 +131,124 @@
 					<div class="col-md-11">
 						<div class="card">
 							<div class="card-header">
-								<h5 class="title">클래스 등록 (기타 제공사항)</h5>
+								<h5 class="title">클래스 등록 (스케줄 및 부가정보)</h5>
 							</div>
 							<div class="card-body">
 								<form>
 									<div class="row">
-									    <div class="col-md-12">
-									        <div class="form-group">
-									            <label>기타 제공사항 선택</label><br>         
-									            <input type="checkbox" value="" id="workshop">&nbsp;<label for="workshop" class="register3_text_label">공방 보유</label>
-									            <input type="checkbox" value="" id="park">&nbsp;<label for="park" class="register3_text_label">주차 공간</label>
-									            <input type="checkbox" value="" id="wifi">&nbsp;<label for="wifi" class="register3_text_label">와이파이</label>
-									            <input type="checkbox" value="" id="coffee">&nbsp;<label for="coffee" class="register3_text_label">커피 별도구매</label>
-									            <input type="checkbox" value="" id="bus">&nbsp;<label for="bus" class="register3_text_label">대중교통 용이</label>
-									            <!-- <input type="checkbox" value="">&nbsp;공방 보유 -->
-<!-- 									            <input type="checkbox" value="">&nbsp;주차공간 -->
-<!-- 									            <input type="checkbox" value="">&nbsp;와이파이 -->
-<!-- 									            <input type="checkbox" value="">&nbsp;커피 별도구매 -->
-<!-- 									            <input type="checkbox" value="" >&nbsp;대중교통 용이 -->
-									        </div>
-									    </div>
+										<div class="col-md-4 pr-1">
+											<div class="form-group">
+												<label>- 클래스 회차</label> <select class="form-control">
+													<option>2회</option>
+													<option>3회</option>
+													<option>4회</option>
+													<option>5회</option>
+													<option>6회</option>
+													<option>7회</option>
+													<option>8회</option>
+													<option>9회</option>
+													<option>10회</option>
+												</select>
+											</div>
+										</div>
 									</div>
 									<div class="row">
-									    <div class="col-md-12">
-									        <div class="form-group">
-    								            <input type="checkbox" value="" id="taxi">&nbsp;<label for="taxi" class="register3_text_label">택시/자가용 추천</label>
-									        	<input type="checkbox" value="" id="snack">&nbsp;<label for="snack" class="register3_text_label">음료/간식 제공</label>
-									        
-<!-- 									            <input type="checkbox" value="" >&nbsp;택시/자가용 추천 -->
-<!-- 									            <input type="checkbox" value="" >&nbsp;음료/간식 제공 -->
-									        </div>
-									    </div>
+										<div class="col-md-7 pr-1">
+											<div class="form-group">
+												<label>- 일정 반복 기간</label><br>
+												<label class="checkbox-inline"><input type="checkbox" value="">월</label>
+												<label class="checkbox-inline"><input type="checkbox" value="">화</label>
+												<label class="checkbox-inline"><input type="checkbox" value="">수</label>
+												<label class="checkbox-inline"><input type="checkbox" value="">목</label>
+												<label class="checkbox-inline"><input type="checkbox" value="">금</label>
+												<label class="checkbox-inline"><input type="checkbox" value="">토</label>
+												<label class="checkbox-inline"><input type="checkbox" value="">일</label>
+											</div>
+										</div>
 									</div>
+									<div class="row">
+										<div class="col-md-7 pr-1">
+											<div class="form-group">
+<!-- 												<label>- </label><br> -->
+													<input type="date"> ~ <input type="date">
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-7 pr-1">
+											<div class="form-group">
+												<label>- 클래스 운영시간(한 타임당)</label><br> 
+													<input type="time"> ~ <input type="time"> 
+											</div>
+										</div>
+									</div>
+<!-- 									<div class="row"> -->
+<!-- 										<div class="col-md-4 pr-1"> -->
+<!-- 											<div class="form-group"> -->
+<!-- 												<label>- 클래스 소요시간(한 타임당)</label> <select class="form-control"> -->
+<!-- 													<option>1시간</option> -->
+<!-- 													<option>2시간</option> -->
+<!-- 													<option>3시간</option> -->
+<!-- 													<option>4시간</option> -->
+<!-- 													<option>5시간</option> -->
+<!-- 													<option>6시간</option> -->
+<!-- 													<option>7시간</option> -->
+<!-- 													<option>8시간</option> -->
+<!-- 													<option>9시간</option> -->
+<!-- 													<option>10시간</option> -->
+<!-- 												</select> -->
+<!-- 											</div> -->
+<!-- 										</div> -->
 <!-- 									</div> -->
-									<br>
 									<div class="row">
-										<div class="col-md-9 pr-7">
+										<div class="col-md-4 pr-1">
 											<div class="form-group">
-												<label>추가 제공사항 및 유의사항</label>
-												<!-- ========================================================================== -->
-												<br>
-												<div class="form-group">
-<!-- 													<label>시작일</label>  -->
-													<input type="text" class="form-control" placeholder="내용을 입력해주세요" >
-												</div>
+												<label>- 클래스 최대 인원(한 타임당)</label> <select class="form-control">
+													<option>1명</option>
+													<option>2명</option>
+													<option>3명</option>
+													<option>4명</option>
+													<option>5명</option>
+													<option>6명</option>
+													<option>7명</option>
+													<option>8명</option>
+													<option>9명</option>
+													<option>10명</option>
+												</select>
 											</div>
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-md-9 pr-7">
+										<div class="col-md-4 pr-7">
 											<div class="form-group">
-											<br>
-												<label>태그 입력</label>
+												<label>- 일정 등록(!!!달력 추가해야함!!!)</label>
 												<!-- ========================================================================== -->
 												<br>
 												<div class="form-group">
-													<input type="text" class="form-control" placeholder="검색에 사용되는 단어를 키워드로 등록해주세요" >
+													<label>시작일</label> 
+													<input type="date" class="form-control" id="datepicker1">
+													<label>종료일</label> 
+													<input type="date" class="form-control" id="datepicker2">
 												</div>
 											</div>
 										</div>
 									</div>
-									<br>
-									<div class="row">
-										<div class="col-md-9 pr-7">
-											<div class="form-group">
-												<label>자주 하는 질문(FAQ)</label>
-												<!-- ========================================================================== -->
-												<br>
-												<span class="register3_text">질문 1</span>
-												<div class="form-group">
-													<input type="text" class="form-control" placeholder="자주하는 질문을 입력해주세요" >
-												</div>
-												<span class="register3_text">답변 1</span>
-												<div class="form-group">
-													<input type="text" class="form-control" placeholder="자주하는 질문의 답변을 입력해주세요" >
-												</div>
-												<br>
-												<span class="register3_text">질문 2</span>
-												<div class="form-group">
-													<input type="text" class="form-control" placeholder="자주하는 질문을 입력해주세요" >
-												</div>
-												<span class="register3_text">답변 2</span>
-												<div class="form-group">
-													<input type="text" class="form-control" placeholder="자주하는 질문의 답변을 입력해주세요" >
-												</div>
-												<br>
-												<span class="register3_text">질문 3</span>
-												<div class="form-group">
-													<input type="text" class="form-control" placeholder="자주하는 질문을 입력해주세요" >
-												</div>
-												<span class="register3_text">답변 3</span>
-												<div class="form-group">
-													<input type="text" class="form-control" placeholder="자주하는 질문의 답변을 입력해주세요" >
-												</div>
-											</div>
-										</div>
+								<div class="col-md-4 pl-1">
+									  <div class="form-group">
+									    <label>- 판매가격</label>
+									    <div class="input-group">
+									      <input type="text" class="form-control" placeholder="ex) 100,000">
+									      <div class="input-group-append">
+									        <span class="input-group-text">원</span>
+									      </div>
+									    </div>
+									  </div>
 									</div>
 								</form>
 							</div>
 						</div>
-						</div>
-					<div class="submit_btn d-flex justify-content-end">
-						<button type="button" class="btn btn-danger btn-col-md-4 mr-2 custom-font-size">취소</button>
-						<button type="button" class="btn btn-default btn-col-md-4 mr-2 custom-font-size" onclick="location.href='${pageContext.request.contextPath}/company/class/register2'">이전</button>
-						<button type="button" class="btn btn-default btn-col-md-4 custom-font-size" onclick="location.href='${pageContext.request.contextPath}/company/class/register4'">다음</button>
-					</div>
+						<button type="button" class="btn btn-danger">취소</button>
+			<button type="button" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/company/class/register3'">다음</button>
 					</div>
 				</div>
 			</div>
@@ -277,7 +273,7 @@
 						, Designed by <a href="https://www.invisionapp.com"
 							target="_blank">Invision</a>. Coded by <a
 							href="https://www.creative-tim.com" target="_blank">Creative
-							Tim</a>
+							Tim</a>.
 					</div>
 				</div>
 			</footer>

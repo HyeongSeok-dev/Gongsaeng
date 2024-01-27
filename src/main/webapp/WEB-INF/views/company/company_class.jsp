@@ -90,6 +90,10 @@ a {
     margin-top: 0.25rem!important;
 }
     </style>
+<!-- Global CSS -->
+<link
+	href="${pageContext.request.contextPath }/resources/css/global.css"
+	rel="stylesheet" />    
 </head>
 
 <body class="">
@@ -178,12 +182,12 @@ a {
 <div class="candidate-list-widgets mb-4">
 <form action="#" class>
 <div class="g-2 row">
-<div class="col-lg-3">
+<div class="col-lg-3 mt-3">
 <div class="filler-job-form">
-<i class="uil uil-briefcase-alt"></i><input id="exampleFormControlInput1" placeholder="Job, Company name... " type="search" class="form-control filler-job-input-box form-control" />
+<i class="uil uil-briefcase-alt"></i><input id="exampleFormControlInput1" placeholder="클래스 이름,분류... " type="search" class="form-control filler-job-input-box form-control" />
 </div>
 </div>
-<div class="col-lg-3">
+<div class="col-lg-3 mt-3">
 <div class="filler-job-form">
 <i class="uil uil-location-point"></i>
 <select class="form-select selectForm__inner" data-trigger="true" name="choices-single-location" id="choices-single-location" aria-label="Default select example">
@@ -193,21 +197,24 @@ a {
 </select>
 </div>
 </div>
-<div class="col-lg-3">
+<div class="col-lg-3  mt-3">
 <div class="filler-job-form">
 <i class="uil uil-clipboard-notes"></i>
 <select class="form-select selectForm__inner" data-trigger="true" name="choices-single-categories" id="choices-single-categories" aria-label="Default select example">
-<option value="4">클래스 분류</option>
-<option value="1">IT &amp; 바닥시공</option>
-<option value="3">벽/천장 시공</option>
+<option value="7">클래스 분류</option>
+<option value="1">바닥 시공</option>
+<option value="2">벽/천장 시공</option>
+<option value="3">부분 인테리어</option>
+<option value="4">야외 시공</option>
 <option value="5">종합 인테리어</option>
+<option value="6">기타 시공</option>
 </select>
 </div>
 </div>
 <div class="col-lg-3">
-<div>
-<a class="btn btn-primary" href="#"><i class="uil uil-filter"></i>초기화</a>
-<a class="btn btn-success ms-2" href="#"><i class="uil uil-cog"></i>검색</a>
+<div >
+<a class="btn btn-primary ml-2" href="#"><i class="uil uil-filter"></i>초기화</a>
+<a class="btn btn-success" href="#"><i class="uil uil-cog"></i>검색</a>
 <!-- <a class="btn btn-success ms-2" href="#"><i class="uil uil-cog"></i>클래스 등록</a> -->
 </div>
 </div>
@@ -239,8 +246,8 @@ a {
 <div class="selection-widget mt-2 mt-lg-0">
 <select class="form-select" data-trigger="true" name="choices-candidate-page" id="choices-candidate-page" aria-label="Default select example">
 <option value="df">All</option>
-<option value="ne">8 per Page</option>
-<option value="ne">12 per Page</option>
+<option value="ne">8개씩 보기</option>
+<option value="ne">12개씩 보기</option>
 </select>
 </div>
 </div>

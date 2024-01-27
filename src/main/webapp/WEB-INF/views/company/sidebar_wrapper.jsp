@@ -23,7 +23,7 @@
                 <ul class="nav">
                     <li><a href="${pageContext.request.contextPath}/company/class/register1">클래스 등록</a></li>
                     <li><a href="${pageContext.request.contextPath}/company/class">클래스 내역</a></li>
-                    <li><a href="${pageContext.request.contextPath}/company/reservation">예약일정관리</a></li>
+                    <li><a href="${pageContext.request.contextPath}/company/reservation">클래스 일정 관리</a></li>
                     <li><a href="${pageContext.request.contextPath}/company/coupon">반장쿠폰관리</a></li>
                 </ul>
             </div>

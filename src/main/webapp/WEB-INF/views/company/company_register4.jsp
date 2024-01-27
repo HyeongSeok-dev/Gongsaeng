@@ -33,6 +33,10 @@
 <link
 	href="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.css"
 	rel="stylesheet" />
+<!-- Global CSS -->
+<link
+	href="${pageContext.request.contextPath }/resources/css/global.css"
+	rel="stylesheet" />	
 <!-- DatePicker -->
 <link rel="stylesheet"
 	href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -122,7 +126,7 @@
 			<div class="panel-header panel-header-sm"></div>
 			<div class="content">
 				<div class="row">
-					<div class="col-md-8">
+					<div class="col-md-11">
 						<div class="card">
 							<div class="card-header">
 								<h5 class="title">클래스 등록 (검수 요청 및 약관 동의)</h5>
@@ -149,44 +153,6 @@
 						</div>
 						<button type="button" class="btn btn-danger">취소</button>
 						<button type="button" class="btn btn-default">검수 신청</button>
-					</div>
-					<div class="col-md-4">
-						<div class="card card-user">
-							<div class="image">
-								<img
-									src="${pageContext.request.contextPath }/resources/admin_assets/img/bg5.jpg"
-									alt="...">
-							</div>
-							<div class="card-body">
-								<div class="author">
-									<a href="#"> <img class="avatar border-gray"
-										src="${pageContext.request.contextPath }/resources/admin_assets/img/mike.jpg"
-										alt="...">
-										<h5 class="title">클래스 선택한거 나타내고 싶은 창</h5>
-									</a>
-									<p class="description">michael24</p>
-								</div>
-								<p class="description text-center">
-									"Lamborghini Mercy <br> Your chick she so thirsty <br>
-									I'm in that two seat Lambo"
-								</p>
-							</div>
-							<hr>
-							<div class="button-container">
-								<button href="#"
-									class="btn btn-neutral btn-icon btn-round btn-lg">
-									<i class="fab fa-facebook-f"></i>
-								</button>
-								<button href="#"
-									class="btn btn-neutral btn-icon btn-round btn-lg">
-									<i class="fab fa-twitter"></i>
-								</button>
-								<button href="#"
-									class="btn btn-neutral btn-icon btn-round btn-lg">
-									<i class="fab fa-google-plus-g"></i>
-								</button>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>

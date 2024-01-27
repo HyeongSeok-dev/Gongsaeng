@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath }/resources/admin_assets/img/apple-icon.png">
@@ -21,94 +19,154 @@
   <link href="${pageContext.request.contextPath }/resources/admin_assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.css" rel="stylesheet" />
-<style type="text/css">
+  
+  <!-- 이미지 업로드 자바스크립트 -->
+ <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+ <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+ 
+ <style type="text/css">
+
+
+input, select {
+    border-radius: 10px!important; /* 원하는 반지름 값으로 설정 */
+} 
+ 
 body
 {
   background-color:#f5f5f5;
 }
-.imagePreview {
-    width: 100%;
-    height: 180px;
-    background-position: center center;
-  background:url(http://cliquecities.com/assets/no-image-e3699ae23f866f6cbdf8ba2443ee5c4e.jpg);
-  background-color:#fff;
-    background-size: cover;
-  background-repeat:no-repeat;
-    display: inline-block;
-  box-shadow:0px -3px 6px 2px rgba(0,0,0,0.2);
-}
-.btn-primary
-{
-  display:block;
-  border-radius:0px;
-  box-shadow:0px 4px 6px 2px rgba(0,0,0,0.2);
-  margin-top:-5px;
-}
-.imgUp
-{
-  margin-bottom:15px;
-}
-.del
-{
-  position:absolute;
-  top:0px;
-  right:15px;
-  width:30px;
-  height:30px;
-  text-align:center;
-  line-height:30px;
-  background-color:rgba(255,255,255,0.6);
-  cursor:pointer;
-}
-.imgAdd
-{
-  width:30px;
-  height:30px;
-  border-radius:50%;
-  background-color:#4bd7ef;
-  color:#fff;
-  box-shadow:0px 0px 2px 1px rgba(0,0,0,0.2);
-  text-align:center;
-  line-height:30px;
-  margin-top:0px;
-  cursor:pointer;
-  font-size:15px;
-}
+
 
 .card label {
     font-size: 20px!important;
 }
 
+.form-control {
+  height: 50px; 
+}
+
+	/* 이미지 미리보기 css */
+	#img_preview0, #img_preview1, #img_preview2, #img_preview3, #img_preview4, #img_preview5{
+		display: none;
+		position: relative;
+		
+		margin:5px;
+		
+		width: 150px;
+		height: 150px; 
+		
+/* 		border: 2px solid black; */
+	
+	}
+	/* 미리보기 삭제버튼 css */
+	#sum_style{
+		text-align:center;
+		width:75px;
+		height:20spx;
+	    position:absolute; 
+		font-size:12px;
+		outline:none;
+		border:none;
+		border-radius:15px;
+	    right:70px;
+	    bottom:130px;
+	    /* z-index:1; */
+	    background-color:rgba(0,0,0,0.5);
+	    color:white;
+	}
+	.chk_style{
+		vertical-align: middle;
+		text-align:center;
+		
+		width:28px;
+		height:28px;
+	    position:absolute; 
+		/* font-size:20px; */
+		outline:none;
+		border:none;
+		border-radius:18px;
+	    right:9px;
+	    bottom:115px;
+	    /* z-index:1; */
+	    background-color:rgba(0,0,0,0.5);
+	    color:#ffcccc;
+	}
+	
+		
+	/* 미리보기 삭제 css */
+	#del_img1, #del_img2, #del_img3, #del_img4, #del_img5,#del_sum{
+		cursor: pointer;
+		display: none;
+	}
+	
+	#imgup{
+		margin-top: 5px;
+	}
+	
+	/* 이미지 미리보기 css */
+	#imgup_1,#imgup_2, #imgup_3, #imgup_4, #imgup_5,#imgup_sum {
+		cursor: pointer;
+		display: none;
+	}
+	
+	
+	.input-tag:focus{
+		outline: none;
+		border: 1px solid black;
+	}
+
+	
+	/* 테이블 간의 간격 */
+	td {
+		width: 1020px;
+		padding: 0.8em 1.4em 0.5em 0.8em;
+	}
+	
+	.td1{
+		width: 20%;
+		vertical-align: top;
+	}
+	
+	.td2{
+		width: 80%;
+	}
+	#img_zone{
+		
+		/* background-color: black; */
+/* 		margin: auto;  */
+		width: 100%; 
+		min-height: 50px;
+		margin-bottom: 50px;
+	}
+	#img_intro{
+		
+		font-size:16px;
+		color : skyblue;
+		/* background-color: #ccffcc; */
+		margin: auto; 
+		width: 65%; 
+		min-height: 50px;
+	}
+	
+	/* 대표 사진 등록 */
+	.pic_instruction {
+		font-size: 14px;
+		color: lightgrey;
+	}
+	
+	.custom-font-size {
+    font-size: 18px;
+}
+	
 </style>
+<link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet" />
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
-// ---------------- 부트스트랩 이미지 업로드 
-// $(".imgAdd").click(function(){
-// 	  $(this).closest(".row").find('.imgAdd').before('<div class="col-sm-2 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" class="uploadFile img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');
-// 	});
-// 	$(document).on("click", "i.del" , function() {
-// 		$(this).parent().remove();
-// 	});
-// 	$(function() {
-// 	    $(document).on("change",".uploadFile", function()
-// 	    {
-// 	    		var uploadFile = $(this);
-// 	        var files = !!this.files ? this.files : [];
-// 	        if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
-	 
-// 	        if (/^image/.test( files[0].type)){ // only image file
-// 	            var reader = new FileReader(); // instance of the FileReader
-// 	            reader.readAsDataURL(files[0]); // read the local file
-	 
-// 	            reader.onloadend = function(){ // set image data as background of div
-// 	                //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
-// 	uploadFile.closest(".imgUp").find('.imagePreview').css("background-image", "url("+this.result+")");
-// 	            }
-// 	        }
-	      
-// 	    });
-// 	});
-    
+
     // 셀렉트 박스
     document.addEventListener("DOMContentLoaded", function() {
       document.getElementById('interior_type').addEventListener('change', function() {
@@ -170,6 +228,318 @@ body
     }
   });
 });
+  //<!-- 이미지 추가버튼 스크립트 -->--------------------
+	var preview_array  = [false, false, false];
+	
+	<!-- 이미지 등록시 미리보기 추가 작업 -->
+	function img_preview() {
+
+		for(var i=0; i<preview_array.length; i++){
+
+// 			for(var i=0; i<preview_array.length; i++){
+// 				if(i=[i]){
+// 					if(preview_array[i]==false){
+// 						send_[i]();
+// 						return;
+// 					}
+// 				}
+// 			}
+			
+			
+			/* i가 0일때 */
+			if(i==0){
+				/* 0번사진 비어있으면 */
+				if(preview_array[0]==false){
+					/* 섬네일사진 */
+					/* 0번사진 인풋태그 호출 */
+					send_0();
+					return;
+				}
+			}
+			
+			/* i가1일때 */
+			if(i==1){
+				/* 1번사진이 비어있으면 */
+				if(preview_array[1]==false){
+					/* 1번사진 인풋태그 호출 */
+					send_1();
+					return;
+				}
+			}
+			
+			/* i가 2일때 */
+			if(i==2){
+				/* 2번사진 비어있으면 */
+				if(preview_array[2]==false){
+					/* 2번사진 인풋태그 호출 */
+					send_2();
+					return;
+				}
+			}
+			
+
+		}/*  for end */
+		
+		alert("더이상 등록할 수 없습니다.");
+		return;
+		
+	}/* 프리뷰 end */
+
+//-----------------------------------------------------
+
+//<!-- 이미지 장수 표현 함수 -->-----------------------
+	function img_num() {
+		var img_number = 0;
+		
+		for(var i=0; i<preview_array.length; i++ ){
+			if(preview_array[i]==true){
+				img_number++;
+			}	
+		}
+		/* 이미지 장수 표시 */
+		$("#img_number").html('('+ img_number + '/3)');
+	}
+	
+	//-----------------------------------------------------------
+
+	
+	
+	function send_0() {
+		$("#sumimage").click();
+	}
+	
+	$(function(){
+		$("#sumimage").on('change',function(){
+			if( $("#sumimage")[0].files[0]==undefined) {
+				return;
+			}
+			imgcheck0(this);
+			
+		})
+		
+	});
+
+
+
+//<!-- 이미지 미리보기 -->-----------------------------------
+
+	function imgcheck0(input) {
+		
+		/* 이미지 확장자 파일체크 */
+		var file_kind = input.value.lastIndexOf('.');
+		var file_name = input.value.substring(file_kind+1,input.length);
+		var file_type = file_name.toLowerCase();
+
+		var check_array = new Array( 'jpg','png','jpeg' );
+
+		$('#sumimage').val();
+		
+		if(check_array.indexOf(file_type)==-1){
+			
+			/* 사용자에게 알려주고 */
+			alert('이미지 파일만 선택할 수 있습니다.');
+			/* 실제 업로드 되는 input태그 vlaue값 지우기 */
+			$('#sumimage').val('');
+			
+			return;
+		
+		} 
+
+		
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+	        reader.onload = function (e) {
+		        $('#imgup_sum').attr('src', e.target.result);
+		        
+		        $("#img_preview0").css("display","inline-block");
+				$("#imgup_sum").show();
+		        $("#del_sum").show();
+		       
+				preview_array[0] = true;
+				
+				/* 이미지넘버 변경 */
+				img_num();
+			
+			
+	        }
+	        
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
+	
+	
+	
+	/* 1번사진 */
+	
+	function send_1() {
+		$("#imageFile1").click();
+	}
+	
+	$(function(){
+		$("#imageFile1").on('change',function(){
+			/* 파일선택 취소했을때 */
+			if( $("#imageFile1")[0].files[0]==undefined) {
+				return;
+			}
+			imgcheck1(this);
+		})
+		
+	});
+	
+	function imgcheck1(input) {
+		
+		/* 이미지 확장자 파일체크 */
+		var file_kind = input.value.lastIndexOf('.');
+		var file_name = input.value.substring(file_kind+1,input.length);
+		var file_type = file_name.toLowerCase();
+
+		var check_array = new Array( 'jpg','png','jpeg' );
+
+		
+		if(check_array.indexOf(file_type)==-1){
+			
+			alert('이미지 파일만 선택할 수 있습니다.');
+			/* 실제 업로드 되는 input태그 vlaue값 지우기 */
+			$('#imageFile1').val('');
+			
+			return;
+		
+		} 
+		
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+	        reader.onload = function (e) {
+	        	        
+	        	$('#imgup_1').attr('src', e.target.result);
+	        	//배열에 트루값주기, 트루면 업로드 못함
+	        
+	        	$("#img_preview1").css("display","inline-block");
+	        	$("#imgup_1").show();
+	        	$("#del_img1").show();
+	        	
+	        	preview_array[1] = true;
+				
+	        	/* 이미지넘버 변경 */
+	        	img_num();
+	        }
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
+
+	/* 2번사진 */
+
+	function send_2() {
+		$("#imageFile2").click();
+	}
+	
+	$(function(){
+		$("#imageFile2").on('change',function(){
+			/* 파일선택 취소했을때 */
+			if( $("#imageFile2")[0].files[0]==undefined) {
+				return;
+			}
+			imgcheck2(this);
+		})
+		
+	});
+	
+	
+	
+	function imgcheck2(input) {
+		
+		/* 이미지 확장자 파일체크 */
+		var file_kind = input.value.lastIndexOf('.');
+		var file_name = input.value.substring(file_kind+1,input.length);
+		var file_type = file_name.toLowerCase();
+
+		var check_array = new Array( 'jpg','png','jpeg' );
+		
+		if(check_array.indexOf(file_type)==-1){
+			alert('이미지 파일만 선택할 수 있습니다.');
+			/* 실제 업로드 되는 input태그 vlaue값 지우기 */
+			$('#imageFile2').val('');
+			
+			return;
+		
+		} 
+		
+		
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+	        reader.onload = function (e) {
+				$('#imgup_2').attr('src', e.target.result);
+				
+				 $("#img_preview2").css("display","inline-block");
+				$("#imgup_2").show();
+				$("#del_img2").show();
+				
+				preview_array[2] = true;
+	        	/* 이미지넘버 변경 */
+				img_num();
+	       
+	        }
+	        
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
+	
+	//<!-- 이미지미리보기삭제 -->--------------------------------
+
+	function del_sum() {
+		/* alert('썸네일이미지 지움'); */
+		/* 실제 DB에 들어가는 input value 지움 */
+		$('#sumimage').val('');
+		
+      $("#img_preview0").css("display","none");
+		$('#imgup_sum').hide();
+		$("#del_sum").hide(); 
+		
+		/* 썸네일 비움 */
+		preview_array[0] = false;
+		
+		/* 이미지 넘버변경 */
+		img_num();
+		
+		return;
+	}
+
+
+	function del_img1() {
+		/* alert('1번이미지 지움'); */
+		
+		$('#imageFile1').val('');
+		
+		$("#img_preview1").css("display","none");
+		$('#imgup_1').hide();
+		$("#del_img1").hide();
+		
+		/* 1번사진 비움 */
+		preview_array[1] = false;
+		
+		/* 이미지 넘버변경 */
+		img_num();
+		
+		return;
+	}
+	
+	function del_img2() {
+		/* alert('2번이미지 지움'); */
+		
+		$('#imageFile2').val('');
+		
+		$("#img_preview2").css("display","none");
+		$('#imgup_2').hide();
+		$("#del_img2").hide();
+		
+		/* 2번사진 비움 */
+		preview_array[2] = false;
+		
+		/* 이미지 넘버변경 */
+		img_num();
+		
+		return;
+	}
+  
 </script>
 </head>
 <body class="클래스 등록">
@@ -251,7 +621,7 @@ body
               <div class="card-header">
                 <h5 class="title">클래스 등록 - 기본 정보</h5>
               </div>
-     		<form action="ClassRegisterPro" method="post" name="classRegisterForm">
+<!--      		<form action="ClassRegisterPro" method="post" name="classRegisterForm"> -->
               <div class="card-body">
                   <div class="row">
                     <div class="col-md-3 pr-1">
@@ -287,34 +657,69 @@ body
 						    </select>
 						  </div>
 						</div>
-
-<!--                     <div class="col-md-6 px-1"> / px: 패딩관련-->
+						<!--  <div class="col-md-6 px-1"> / px: 패딩관련-->
                     <div class="col-md-8 pr-7">
                       <div class="form-group">
                         <label>클래스 타이틀</label>
                         <input type="text" class="form-control" placeholder="클래스 이름을 입력해 주세요" value="">
                       </div>
                     </div>
-
                   </div>
                   <div class="row">
-                    <div class="col-md-8 pr-7">
+<!--                     <div class="col-md-8 pr-7"> -->
+                    <div class="col-md-12 pr-7">
                       <div class="form-group">
                         <label>대표 사진 등록</label>
+                        <span class="pro_info" id="img_number">(0/3)</span>
+                 		<div class="pic_instruction">
+ 							- 사진은 대표 이미지 포함 최대 3장까지 첨부할 수 있습니다.<br>
+ 							  &nbsp;&nbsp;(1:1 비율 권장 / 최소 800px 이상 / 한 장당 최대 10MB)<br>
+							- 등록된 사진은 공생 SNS, 광고 등 외부 채널에 클래스 홍보 목적으로 사용될 수 있습니다.<br>
+						</div>
 <!--                         <input type="text" class="form-control" placeholder="Company" value="Mike"> -->
                         <!-- ========================================================================== -->
-						<br>
-						<div class="container">
-						  <div class="row">
-						  <div class="col-sm-5 imgUp">
-						    <div class="imagePreview"></div>
-						<label class="btn btn-primary">
-						Upload<input type="file" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
-						</label>
-						  </div><!-- col-2 -->
-						  <i class="fa fa-plus imgAdd"></i>
-						 </div><!-- row -->
-						</div><!-- container -->
+	<!-- 파일업로드 용 폼 -->
+	<form enctype="multipart/form-data" id="imgform" method="post">
+		<input type="file" id="sumimage"   style="display: none;" accept=".jpg, .jpeg, .png">
+		<input type="file" id="imageFile1" style="display: none;" accept=".jpg, .jpeg, .png">
+		<input type="file" id="imageFile2" style="display: none;" accept=".jpg, .jpeg, .png">
+	</form>
+			<table style="margin-top: 30px;">
+				<tr>
+					<td class="td2" align="left">
+					
+						<!-- 이미지 등록 영역 -->
+						<div id="img_zone">
+							<div id="img_preview0" >
+								<input type="image" id="imgup_sum" onclick="send_0();"
+									src="" width="150px" height="150px">
+								<span id="sum_style" >대표 이미지</span>
+								<!-- 삭제버튼 -->
+								<span id="del_sum" class="chk_style"  onclick="del_sum();">x</span>
+							</div>
+							
+								
+							<div id="img_preview1" >
+								<input type="image" id="imgup_1" onclick="send_1();"
+									src="" width="150px" height="150px">
+								<!-- 삭제버튼 -->
+								<span id="del_img1" class="chk_style" onclick="del_img1();">x</span>
+							</div>
+							
+							<div id="img_preview2">
+								<input type="image" id="imgup_2" onclick="send_2();"
+									src="" width="150px" height="150px">
+								<span id="del_img2" class="chk_style" onclick="del_img2();">x</span>
+							</div>
+						</div>
+					</td>
+				</tr><!-- 이미지영역끝 -->
+				<tr>
+					<td class="td1" align="left" >
+						<input type="button" id="imgup" onclick="img_preview();" value="대표 이미지 업로드" style="width: 150px; height: 50px; border-radius: 10px; border: 1px solid; background-image: url('${ pageContext.request.contextPath }/resources/img/image_upload.png'); background-size: cover;">
+					</td>
+				</tr>	
+			</table>
                         <!-- ========================================================================== -->
                       </div>
                     </div>
@@ -322,7 +727,7 @@ body
                       <div class="form-group">
                         <label>&nbsp;&nbsp;&nbsp;기존 공방 주소</label>
 				        <div class="col-sm-8">
-				          <input type="radio" name="optradio" checked>  기존 공방 주소<br>
+				          <input type="radio" name="optradio" checked> 기존 공방 주소 출력하기 <br>
 				        </div>
 				        <div class="col-sm-8">
 				          <input type="radio" name="optradio">  다른 주소 사용하기
@@ -341,9 +746,9 @@ body
                   </div>
               </div>
             </div>
-            <button type="button" class="btn btn-danger">취소</button>
-			<button type="button" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/company/class/register2'">다음</button>
            </form>
+				<button type="button" class="btn btn-danger btn-col-md-4 mr-2 custom-font-size">취소</button>
+				<button type="button" class="btn btn-default btn-col-md-4 mr-2 custom-font-size" onclick="location.href='${pageContext.request.contextPath}/company/class/register2'">다음</button>
           </div>
             </div>
           </div>

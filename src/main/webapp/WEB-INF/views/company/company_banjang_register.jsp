@@ -133,8 +133,11 @@ body {
 .smaller-input {
     height: 38px; /* 높이 조정 */
 }
-
 </style>
+<!-- Global CSS -->
+<link
+	href="${pageContext.request.contextPath }/resources/css/global.css"
+	rel="stylesheet" />
 </head>
 <body>
 	<div class="centered-content">

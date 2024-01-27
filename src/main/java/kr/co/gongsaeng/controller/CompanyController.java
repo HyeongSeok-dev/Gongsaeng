@@ -46,12 +46,12 @@ public class CompanyController {
 		return "company/company_class";
 	}
 
-	@GetMapping("company/reservation")
-	public String company_reservation() {
-		return "company/company_reservation";
-	}
+//	@GetMapping("company/reservation")
+//	public String company_reservation() {
+//		return "company/company_reservation";
+//	}
 
-	@GetMapping("company/reservation2")
+	@GetMapping("company/reservation")
 	public String company_reservation2() {
 		return "company/company_reservation2";
 	}
@@ -124,6 +124,11 @@ public class CompanyController {
 	@GetMapping("company/example")
 	public String company_example() {
 		return "company/example_photo";
+	}
+	
+	@GetMapping("company/calendar")
+	public String company_calendar() {
+		return "company/example_calendar";
 	}
 
 

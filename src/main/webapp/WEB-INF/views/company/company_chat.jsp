@@ -65,7 +65,10 @@
     color: #605daf;
 }
 </style>  
-  
+<!-- Global CSS -->
+<link
+	href="${pageContext.request.contextPath }/resources/css/global.css"
+	rel="stylesheet" />  
 </head>
 
 <body class="">

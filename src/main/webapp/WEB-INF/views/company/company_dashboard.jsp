@@ -21,6 +21,10 @@
   <link href="${pageContext.request.contextPath }/resources/company_assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="${pageContext.request.contextPath }/resources/company_assets/demo/demo.css" rel="stylesheet" />
+<!-- Global CSS -->
+<link
+	href="${pageContext.request.contextPath }/resources/css/global.css"
+	rel="stylesheet" />
 </head>
 
 <body class="">

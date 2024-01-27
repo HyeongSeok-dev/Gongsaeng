@@ -213,8 +213,10 @@ margin-top: 10px;
 margin-left: 10px;
 }
     </style>
+    
     <!-- 부트스트랩 CSS 링크 -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet" />
     
 </head>
 <body>
@@ -229,7 +231,7 @@ margin-left: 10px;
 <div class="col-md-3">
 <div class="text-center border-end">
 <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="img-fluid avatar-xxl rounded-circle" alt>
-<h4 class="text-primary font-size-20 mt-3 mb-2">Jansh Wells</h4>
+<h4 class="text-primary font-size-20 mt-3 mb-2">강사이름</h4>
 <!-- <h5 class="text-muted font-size-13 mb-0">Web Designer</h5> -->
 </div>
 </div>
