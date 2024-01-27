@@ -123,6 +123,7 @@
 										<select>
 											<option>전체검색</option>
 											<option>아이디</option>
+											<option>은행명</option>
 											<option>계좌번호</option>
 										</select>
 					              	</div>
@@ -142,7 +143,16 @@
 			                <th>등록일자</th>
 			                <th>아이디</th>
 			                <th>계좌번호</th>
-			                <th>은행명</th>
+			                <th>
+			                	<select name="class_sub_category">
+					              	<option value="0">은행명</option>
+					              	<option value="1"></option>
+					              	<option value="2"></option>
+					              	<option value="3"></option>
+					              	<option value="4"></option>
+					              	<option value="5"></option>
+			              		</select>
+			                </th>
 			                <th>상세보기</th>
 			            </tr>
 			            <!-- 회원 데이터 로우 -->

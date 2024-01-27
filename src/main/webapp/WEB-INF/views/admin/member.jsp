@@ -154,15 +154,16 @@
 			                <th>가입일자</th>
 			                <th>아이디</th>
 			                <th>닉네임</th>
+<!-- 			                <th>반장등록여부</th> -->
 			                <th>
-			                    반장등록여부
-<!-- 							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#filterModal"> -->
-<!-- 						        필터 -->
-<!-- 						    </button> -->
+			                    <select name="class_state">
+					              	<option value="0">회원분류</option>
+					              	<option value="1">반장회원</option>
+					              	<option value="2">일반회원</option>
+			              		</select>
 			                </th>
-			                <th>
-			                    신고받은 수
-			                </th>
+			                
+			                <th>신고받은 수</th>
 			                <th>탈퇴일자</th>
 			                <th>상세보기</th>
 			            </tr>
@@ -171,12 +172,8 @@
 			                <td>가입일자</td>
 			                <td>아이디</td>
 			                <td>닉네임</td>
-			                <td>
-			                    반장등록여부
-			                </td>
-			                <td>
-			                    신고받은수
-			                </td>
+			                <td>회원분류</td>
+			                <td>신고받은수</td>
 			                <td>
 			                	탈퇴일자
 			                </td>

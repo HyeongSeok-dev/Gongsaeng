@@ -10,7 +10,7 @@
   <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/admin_assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    공생|관리자페이지 이벤트등록
+    공생|관리자페이지 이벤트관리
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -21,6 +21,9 @@
   <link href="${pageContext.request.contextPath }/resources/admin_assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.css" rel="stylesheet" />
+  <link href="${pageContext.request.contextPath }/resources/admin_assets/css/event.css" rel="stylesheet" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
+  <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">
 </head>
 
 <body class="user-profile">
@@ -38,7 +41,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand title" href="#pablo">0페이 관리</a>
+            <a class="navbar-brand title" href="#pablo">이벤트 관리</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -92,154 +95,125 @@
       </div>
       <div class="content">
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-6">
             <div class="card">
               <div class="card-header">
-                <h5 class="title">Edit Profile</h5>
+                <h5 class="title">이벤트 등록</h5>
               </div>
               <div class="card-body">
-                <form>
+                <form action="" method="post">
                   <div class="row">
-                    <div class="col-md-5 pr-1">
+                    <div class="col-md-12 pr-1">
                       <div class="form-group">
-                        <label>Company (disabled)</label>
-                        <input type="text" class="form-control" disabled="" placeholder="Company" value="Creative Code Inc.">
-                      </div>
-                    </div>
-                    <div class="col-md-3 px-1">
-                      <div class="form-group">
-                        <label>Username</label>
-                        <input type="text" class="form-control" placeholder="Username" value="michael23">
-                      </div>
-                    </div>
-                    <div class="col-md-4 pl-1">
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" placeholder="Email">
+                        <label>제목</label>
+                        <input type="text" class="form-control" name="board_subject">
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
-                        <label>First Name</label>
-                        <input type="text" class="form-control" placeholder="Company" value="Mike">
+                        <label>시작일</label>
+                        <input type="date" class="form-control" name="event_start">
                       </div>
                     </div>
                     <div class="col-md-6 pl-1">
                       <div class="form-group">
-                        <label>Last Name</label>
-                        <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
+                        <label>종료일</label>
+                        <input type="date" class="form-control" name="event_end">
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label>Address</label>
-                        <input type="text" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
+                        <label>이벤트 내용 이미지</label>
+                        <div class="file_div">
+	                        <input type="file"  class="form-control" name="board_content">
+	                        <button type="button" class="btn file_btn" id="uploadFileBtn">파일 선택</button>
+	                      	<span id="fileLabel">파일을 선택하세요.</span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-4 pr-1">
-                      <div class="form-group">
-                        <label>City</label>
-                        <input type="text" class="form-control" placeholder="City" value="Mike">
-                      </div>
-                    </div>
-                    <div class="col-md-4 px-1">
-                      <div class="form-group">
-                        <label>Country</label>
-                        <input type="text" class="form-control" placeholder="Country" value="Andrew">
-                      </div>
-                    </div>
-                    <div class="col-md-4 pl-1">
-                      <div class="form-group">
-                        <label>Postal Code</label>
-                        <input type="number" class="form-control" placeholder="ZIP Code">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>About Me</label>
-                        <textarea rows="4" cols="80" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
-                      </div>
-                    </div>
-                  </div>
+                 <button type="submit" class="btn register_btn">등록하기</button>
                 </form>
               </div>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="card card-user">
-              <div class="image">
-                <img src="${pageContext.request.contextPath }/resources/admin_assets/img/bg5.jpg" alt="...">
+          <div class="col-md-6">
+          	<div class="card"  style="height: 400px;">
+              <div class="card-header">
+                <h5 class="title">등록이벤트 미리보기</h5>
               </div>
               <div class="card-body">
-                <div class="author">
-                  <a href="#">
-                    <img class="avatar border-gray" src="${pageContext.request.contextPath }/resources/admin_assets/img/mike.jpg" alt="...">
-                    <h5 class="title">Mike Andrew</h5>
-                  </a>
-                  <p class="description">
-                    michael24
-                  </p>
-                </div>
-                <p class="description text-center">
-                  "Lamborghini Mercy <br>
-                  Your chick she so thirsty <br>
-                  I'm in that two seat Lambo"
-                </p>
-              </div>
-              <hr>
-              <div class="button-container">
-                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
-                  <i class="fab fa-facebook-f"></i>
-                </button>
-                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
-                  <i class="fab fa-twitter"></i>
-                </button>
-                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
-                  <i class="fab fa-google-plus-g"></i>
-                </button>
+              	<img src="" alt="">
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <footer class="footer">
-        <div class=" container-fluid ">
-          <nav>
-            <ul>
-              <li>
-                <a href="https://www.creative-tim.com">
-                  Creative Tim
-                </a>
-              </li>
-              <li>
-                <a href="http://presentation.creative-tim.com">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="http://blog.creative-tim.com">
-                  Blog
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <div class="copyright" id="copyright">
-            &copy; <script>
-              document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
-            </script>, Designed by <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
-          </div>
-        </div>
-      </footer>
-    </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                 <h5 class="title">이벤트 목록</h5>
+                </div>
+              <div class="card-body">
+	              <div class="card-body-header">
+	                 <div class="member_category_checkbox">
+		             </div>
+		             <div>
+	              		<form action="" class="member_date">
+	              			<div class="search_bar_admin">
+				              	<div>
+									<select>
+										<option>전체일자</option>
+										<option>등록일자</option>
+										<option>이벤트기한</option>
+									</select>
+				              	</div>
+				              	<div>
+				              		<input type="date" id="start_date">&nbsp;&nbsp;~&nbsp;&nbsp;<input type="date" id="end_date">
+				              	</div>
+		              		</div>
+		              		<div class="search_bar_admin">
+		              			<div>
+		              				<input type="search">
+		              			</div>
+				              	<div>
+				              		<button type="submit" class="btn detail_btn" value="검색">검색</button>
+				              	</div>
+		              		</div>	
+	              		</form>
+	              	  </div>
+	              	</div>
+	                <table class="table table-bordered">
+				            <tr>
+				                <th>번호</th>
+				                <th>제목</th>
+				                <th>등록일자</th>
+				                <th>이벤트기한</th>
+				                <th>상세보기</th>
+				            </tr>
+				            <!-- 회원 데이터 로우 -->
+				            <tr>
+				                <td>번호</td>
+				                <td>제목</td>
+				                <td>등록일자</td>
+				                <td>이벤트기한</td>
+				                <td><button type="button" class="btn detail_btn" value="상세보기">상세보기</button></td>
+				            </tr>
+				    </table>
+	         	 </div>
+	        </div>
+	      </div>
+	    </div>
+	 </div>
+     <footer class="footer">
+       <jsp:include page="admin_bottom.jsp"/>
+     </footer>
   </div>
+ </div>
   <!--   Core JS Files   -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/popper.min.js"></script>

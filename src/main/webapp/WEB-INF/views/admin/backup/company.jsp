@@ -121,7 +121,6 @@
 					              	<option value="2">영업중지</option>
 					              	<option value="2">보류</option>
 					              	<option value="2">승인거부</option>
-					              	<option value="2">폐업</option>
 			              	</select>
 		              	</div>
 		              	<div>
@@ -161,42 +160,26 @@
 			            <tr>
 			                <th>등록일자</th>
 			                <th>아이디</th>
-			                <th>사업체명</th>
 			                <th>
-			                  	<select name="class_main_category">
-					              	<option value="0">카테고리</option>
-					              	<option value="1">바닥 시공</option>
-					              	<option value="2">벽/천장 시공</option>
-					              	<option value="3">부분 인테리어</option>
-					              	<option value="4">야외 시공</option>
-					              	<option value="5">종합 인테리어</option>
-					              	<option value="6">기타 시공</option>
-			              		</select>
+			                   사업체명
 			                </th>
-<!-- 			                <th> -->
-<!-- 			                  	카테고리 -->
-<!-- 			                </th> -->
+			                <th>
+			                  	카테고리
+			                </th>
 			                <th>폐업일자</th>
-			                <th>
-								<select name="class_state">
-					              	<option value="0">상태</option>
-					              	<option value="1">정상</option>
-					              	<option value="2">승인대기</option>
-					              	<option value="2">영업중지</option>
-					              	<option value="2">보류</option>
-					              	<option value="2">승인거부</option>
-					              	<option value="2">폐업</option>
-			              		</select>
-			                </th>
-<!-- 			                <th>상태</th> -->
+			                <th>상태</th>
 			                <th>상세보기</th>
 			            </tr>
 			            <!-- 회원 데이터 로우 -->
 			            <tr>
 			                <td>등록일자</td>
 			                <td>아이디</td>
-			                <td>사업체명</td>
-			                <td>카테고리</td>
+			                <td>
+			                   사업체명
+			                </td>
+			                <td>
+			                   카테고리
+			                </td>
 			                <td>폐업일</td>
 			                <td>상태</td>
 			                <td><button type="button" class="btn detail_btn" value="상세보기">상세보기</button></td>

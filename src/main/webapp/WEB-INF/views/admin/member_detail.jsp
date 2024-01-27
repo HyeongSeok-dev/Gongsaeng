@@ -6,11 +6,13 @@
 
 <head>
   <meta charset="utf-8" />
+  <!--  -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath }/resources/admin_assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/admin_assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Now UI Dashboard by Creative Tim
+   공생|관리자페이지 회원
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -21,9 +23,12 @@
   <link href="${pageContext.request.contextPath }/resources/admin_assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.css" rel="stylesheet" />
+  <link href="${pageContext.request.contextPath }/resources/admin_assets/css/member.css" rel="stylesheet" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
+  <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">
 </head>
 
-<body class="user-profile">
+<body class="">
   <div class="wrapper ">
     <jsp:include page="admin_sidebar.jsp"/>
     <div class="main-panel" id="main-panel">
@@ -38,13 +43,14 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="#pablo">User Profile</a>
+            <a class="navbar-brand title" href="#pablo">회원관리</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
             <span class="navbar-toggler-bar navbar-kebab"></span>
             <span class="navbar-toggler-bar navbar-kebab"></span>
           </button>
+          <%-- search,홈페이지이동,채팅 --%>
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
             <form>
               <div class="input-group no-border">
@@ -59,30 +65,26 @@
             <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons media-2_sound-wave"></i>
+                  <i class="now-ui-icons ui-1_calendar-60"></i>
                   <p>
-                    <span class="d-lg-none d-md-block">Stats</span>
+                    <span class="d-lg-none d-md-block">달력</span>
                   </p>
                 </a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="now-ui-icons location_world"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Some Actions</span>
-                  </p>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons users_single-02"></i>
+                  <i class="now-ui-icons ui-2_chat-round"></i>
                   <p>
-                    <span class="d-lg-none d-md-block">Account</span>
+                    <span class="d-lg-none d-md-block">채팅</span>
+                  </p>
+                </a>
+              </li>
+              <%-- 공생 메인 홈페이지로 이동 --%>
+              <li class="nav-item">
+                <a class="nav-link" href="${pageContext.request.contextPath }/">
+                  <i class="now-ui-icons shopping_shop"></i>
+                  <p>
+                    <span class="d-lg-none d-md-block">공식 홈</span>
                   </p>
                 </a>
               </li>
@@ -95,154 +97,136 @@
       </div>
       <div class="content">
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h5 class="title">Edit Profile</h5>
+                <h5 class="title">회원 목록</h5>
               </div>
               <div class="card-body">
-                <form>
-                  <div class="row">
-                    <div class="col-md-5 pr-1">
-                      <div class="form-group">
-                        <label>Company (disabled)</label>
-                        <input type="text" class="form-control" disabled="" placeholder="Company" value="Creative Code Inc.">
-                      </div>
-                    </div>
-                    <div class="col-md-3 px-1">
-                      <div class="form-group">
-                        <label>Username</label>
-                        <input type="text" class="form-control" placeholder="Username" value="michael23">
-                      </div>
-                    </div>
-                    <div class="col-md-4 pl-1">
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" placeholder="Email">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6 pr-1">
-                      <div class="form-group">
-                        <label>First Name</label>
-                        <input type="text" class="form-control" placeholder="Company" value="Mike">
-                      </div>
-                    </div>
-                    <div class="col-md-6 pl-1">
-                      <div class="form-group">
-                        <label>Last Name</label>
-                        <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Address</label>
-                        <input type="text" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-4 pr-1">
-                      <div class="form-group">
-                        <label>City</label>
-                        <input type="text" class="form-control" placeholder="City" value="Mike">
-                      </div>
-                    </div>
-                    <div class="col-md-4 px-1">
-                      <div class="form-group">
-                        <label>Country</label>
-                        <input type="text" class="form-control" placeholder="Country" value="Andrew">
-                      </div>
-                    </div>
-                    <div class="col-md-4 pl-1">
-                      <div class="form-group">
-                        <label>Postal Code</label>
-                        <input type="number" class="form-control" placeholder="ZIP Code">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>About Me</label>
-                        <textarea rows="4" cols="80" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card card-user">
-              <div class="image">
-                <img src="${pageContext.request.contextPath }/resources/admin_assets/img/bg5.jpg" alt="...">
-              </div>
-              <div class="card-body">
-                <div class="author">
-                  <a href="#">
-                    <img class="avatar border-gray" src="${pageContext.request.contextPath }/resources/admin_assets/img/mike.jpg" alt="...">
-                    <h5 class="title">Mike Andrew</h5>
-                  </a>
-                  <p class="description">
-                    michael24
-                  </p>
-                </div>
-                <p class="description text-center">
-                  "Lamborghini Mercy <br>
-                  Your chick she so thirsty <br>
-                  I'm in that two seat Lambo"
-                </p>
-              </div>
-              <hr>
-              <div class="button-container">
-                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
-                  <i class="fab fa-facebook-f"></i>
-                </button>
-                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
-                  <i class="fab fa-twitter"></i>
-                </button>
-                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
-                  <i class="fab fa-google-plus-g"></i>
-                </button>
+	               <div class="card-body-header">
+		              	<div class="member_category_checkbox">
+			              	<div>
+				              	<input type="checkbox" value="전체선택" name="member_category"> 전체선택&nbsp;
+				              	<input type="checkbox" value="일반회원" name="member_category"> 일반회원&nbsp;
+				              	<input type="checkbox" value="반장회원" name="member_category"> 반장회원&nbsp;
+			              	</div>
+			              	<div>
+				              	<input type="checkbox" value="전체선택" name="member_static"> 전체선택&nbsp;
+				              	<input type="checkbox" value="정상회원" name="member_static"> 정상회원&nbsp;
+				              	<input type="checkbox" value="탈퇴회원" name="member_static"> 탈퇴회원&nbsp;
+			              	</div>
+		              	</div>
+		              	<div>
+		              		<form action="" class="member_date">
+		              			<div class="search_bar_admin">
+					              	<div>
+										<select>
+											<option>일자선택</option>
+											<option>가입일자</option>
+											<option>탈퇴일자</option>
+										</select>
+					              	</div>
+					              	<div>
+					              		<input type="date" id="start_date">&nbsp;&nbsp;~&nbsp;&nbsp;<input type="date" id="end_date">
+					              	</div>
+			              		</div>
+			              		<div class="search_bar_admin">
+			              			<div>
+										<select>
+											<option>전체검색</option>
+											<option>아이디</option>
+											<option>닉네임</option>
+										</select>
+					              	</div>
+			              			<div>
+			              				<input type="search">
+			              			</div>
+					              	<div>
+					              		<button type="submit" class="btn detail_btn" value="검색">검색</button>
+					              	</div>
+			              		</div>	
+		              		</form>
+		              	</div>
+	              	</div>
+	              	
+                <table class="table table-bordered">
+			            <tr>
+			                <th>가입일자</th>
+			                <th>아이디</th>
+			                <th>닉네임</th>
+<!-- 			                <th>반장등록여부</th> -->
+			                <th>
+			                    <select name="class_state">
+					              	<option value="0">회원분류</option>
+					              	<option value="1">반장회원</option>
+					              	<option value="2">일반회원</option>
+			              		</select>
+			                </th>
+			                
+			                <th>신고받은 수</th>
+			                <th>탈퇴일자</th>
+			                <th>상세보기</th>
+			            </tr>
+			            <!-- 회원 데이터 로우 -->
+			            <tr>
+			                <td>가입일자</td>
+			                <td>아이디</td>
+			                <td>닉네임</td>
+			                <td>회원분류</td>
+			                <td>신고받은수</td>
+			                <td>
+			                	탈퇴일자
+			                </td>
+			                <td><button type="button" class="btn detail_btn" value="상세보기">상세보기</button></td>
+			            </tr>
+			    </table>
               </div>
             </div>
           </div>
         </div>
       </div>
       <footer class="footer">
-        <div class=" container-fluid ">
-          <nav>
-            <ul>
-              <li>
-                <a href="https://www.creative-tim.com">
-                  Creative Tim
-                </a>
-              </li>
-              <li>
-                <a href="http://presentation.creative-tim.com">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="http://blog.creative-tim.com">
-                  Blog
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <div class="copyright" id="copyright">
-            &copy; <script>
-              document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
-            </script>, Designed by <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
-          </div>
-        </div>
       </footer>
     </div>
   </div>
+  
+   <!-- 모달 창 -->
+    <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="filterModalLabel">회원 유형 선택</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="allCheck">
+                        <label class="form-check-label" for="allCheck">
+                            전체 선택
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="leaderCheck">
+                        <label class="form-check-label" for="leaderCheck">
+                            반장 회원
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="generalCheck">
+                        <label class="form-check-label" for="generalCheck">
+                            일반 회원
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                    <button type="button" class="btn btn-primary">적용</button>
+                </div>
+            </div>
+        </div>
+    </div>
   <!--   Core JS Files   -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/popper.min.js"></script>
@@ -257,6 +241,18 @@
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.js"></script>
+	<script>
+        $(document).ready(function() {
+            // 필터 기능 구현
+            $('#leaderFilter, #withdrawalFilter').change(function() {
+                var leaderFilter = $('#leaderFilter').val();
+                var withdrawalFilter = $('#withdrawalFilter').val();
+                
+                // 로직에 따라 회원 데이터 필터링 및 표시
+            });
+        });
+    </script>
+
 </body>
 
 </html>

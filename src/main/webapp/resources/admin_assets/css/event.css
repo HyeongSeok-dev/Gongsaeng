@@ -1,0 +1,143 @@
+@charset "UTF-8";
+.navbar-brand.title {
+	font-size: 25px;
+}
+
+.btn.register_btn, .btn.file_btn{
+	font-size: 14px;
+	height: 30px; 
+	padding:5px 10px;
+	margin: 0;
+}
+
+
+.form-group>input[type=file] {
+	position: relative;
+	opacity: 1;
+	display: none;
+}
+
+form>.row {
+	margin: 10px;
+}
+
+.file_div {
+	background-color: transparent;
+    border: 1px solid #E3E3E3;
+    border-radius: 30px;
+    color: #2c2c2c;
+    line-height: normal;
+    height: auto;
+    font-size: 14px;
+    padding: 5px 15px 5px 15px;
+}
+
+select {
+	border-radius: 5px;
+	border: 1px solid #E3E3E3;	
+	height: 30px;
+	margin: 5px;
+}
+
+input {
+	border-radius: 5px;
+	border: 1px solid #E3E3E3;
+}
+.coupon_unit {
+	position: relative;
+	bottom: 39px;
+	left: 180px;
+	border: none;
+}
+
+/* ------------------------------------------------------ */
+/* member에서 */
+.class_category_select {
+	display: flex;
+	flex-direction: row;
+	margin: 10px;
+}
+
+.member_date {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+.search_bar_admin {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.card-body-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+/* ------------------------------------------------------ */
+
+.btn.detail_btn{
+	font-size: 14px;
+	height: 30px; 
+	padding:5px 10px;
+	margin: 0;
+}
+
+.search_bar_admin>div {
+	margin: 5px;
+}
+/* .search_bar_admin>div>select, .search_bar_admin>div>input{ */
+/* 	border-radius: 5px; */
+/* 	border: 1px solid rgb(148, 148, 148); */
+/* } */
+
+.search_bar_admin>div>select{
+	height: 25px;	
+}
+
+input[type="search"] {
+	width: 200px;
+}
+
+.shearch_bar {
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+}
+
+
+/*  ----- main에 적용된 css -------   */
+.now_total {
+	margin-left: 30px;
+	color: white;
+	font-size: 20px;
+	text-align: center;
+}
+.now_dateTime {
+	margin-top: 10px;
+	position: relative;
+	top: 10px;
+}
+.row.row_main {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center
+}
+
+.card {
+	text-align: center;
+}
+.card-header {
+	font-size: 18px;
+	font-weight: 600;
+	color: #494C53;
+}
+
+/* .card>hr{ */
+/* 	width: 40%; */
+/* 	margin-left : auto; */
+/* 	margin-right : auto; */
+/* 	margin-top: 10px; */
+/* 	margin-bottom: 10px; */
+/* 	background-color: #afb3b8; */
+/* } */

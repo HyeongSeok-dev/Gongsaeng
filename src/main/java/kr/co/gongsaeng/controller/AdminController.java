@@ -50,17 +50,17 @@ public class AdminController {
 	public String OPayUse() {
 		return "admin/OPay_use";
 	}
-	@GetMapping("admin/report")
-	public String report() {
-		return "admin/report";
+	@GetMapping("admin/report/class")
+	public String reportClass() {
+		return "admin/report_class";
+	}
+	@GetMapping("admin/report/review")
+	public String reportReview() {
+		return "admin/report_review";
 	}
 	@GetMapping("admin/marketing/event")
 	public String event() {
 		return "admin/event";
-	}
-	@GetMapping("admin/marketing/event/register")
-	public String eventRegister() {
-		return "admin/event_register";
 	}
 	@GetMapping("admin/marketing/coupon")
 	public String coupon() {
@@ -70,9 +70,17 @@ public class AdminController {
 	public String eventCoupon() {
 		return "admin/coupon_register";
 	}
-	@GetMapping("admin/cs")
-	public String cs() {
-		return "admin/cs";
+	@GetMapping("admin/cs/chat")
+	public String csChat() {
+		return "admin/cs_chat";
+	}
+	@GetMapping("admin/cs/faq")
+	public String csFaq() {
+		return "admin/cs_faq";
+	}
+	@GetMapping("admin/cs/notice")
+	public String csNotice() {
+		return "admin/cs_notice";
 	}
 	
 	//---------------------------

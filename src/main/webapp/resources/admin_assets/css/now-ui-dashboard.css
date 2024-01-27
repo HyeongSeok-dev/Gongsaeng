@@ -1328,7 +1328,7 @@ fieldset[disabled] .btn-link.active {
   color: #2c2c2c;
   line-height: normal;
   height: auto;
-  font-size: 0.8571em;
+  font-size: 14px;
   -webkit-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
   -moz-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
   -o-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
@@ -4689,7 +4689,7 @@ Created using IcoMoon - icomoon.io
 }
 
 .card label {
-  font-size: 0.8571em;
+  font-size: 16px;
   margin-bottom: 5px;
   color: #9A9A9A;
 }

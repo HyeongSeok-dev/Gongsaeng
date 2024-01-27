@@ -166,15 +166,39 @@
 			            <tr>
 			                <th>등록일자</th>
 			                <th>사업체명</th>
+<!-- 			                <th>대분류</th> -->
 			                <th>
-			                 	대분류
+			                 	<select name="class_main_category">
+					              	<option value="0">대분류</option>
+					              	<option value="1">바닥 시공</option>
+					              	<option value="2">벽/천장 시공</option>
+					              	<option value="3">부분 인테리어</option>
+					              	<option value="4">야외 시공</option>
+					              	<option value="5">종합 인테리어</option>
+					              	<option value="6">기타 시공</option>
+			              		</select>
 			                </th>
 			                <th>
-			                	소분류
+			                	<select name="class_sub_category">
+					              	<option value="0">소분류</option>
+					              	<option value="1"></option>
+					              	<option value="2"></option>
+					              	<option value="3"></option>
+					              	<option value="4"></option>
+					              	<option value="5"></option>
+			              		</select>
 			                </th>
+<!-- 			                <th>소분류</th> -->
 			                <th>클래스명</th>
 			                <th>신고수</th>
-			                <th>상태</th>
+<!-- 			                <th>상태</th> -->
+			                <th>
+			                	<select name="class_state">
+					              	<option value="0">상태</option>
+					              	<option value="1">모집중</option>
+					              	<option value="2">모집종료</option>
+		              			</select>
+			                </th>
 			                <th>상세보기</th>
 			            </tr>
 			            <!-- 회원 데이터 로우 -->
@@ -184,7 +208,7 @@
 			                <td>대분류</td>
 			                <td>소분류</td>
 			                <td>클래스명</td>
-			                <td>신고수</td>
+			                <td>신고받은 수</td>
 			                <td>상태</td>
 			                <td><button type="button" class="btn detail_btn" value="상세보기">상세보기</button></td>
 			            </tr>

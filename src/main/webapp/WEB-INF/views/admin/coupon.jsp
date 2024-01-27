@@ -6,13 +6,11 @@
 
 <head>
   <meta charset="utf-8" />
-  <!--  -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath }/resources/admin_assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/admin_assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-   공생|관리자페이지 계좌
+    공생|관리자페이지 마케팅센터
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -23,17 +21,17 @@
   <link href="${pageContext.request.contextPath }/resources/admin_assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.css" rel="stylesheet" />
-  <link href="${pageContext.request.contextPath }/resources/admin_assets/css/class.css" rel="stylesheet" />
+  <link href="${pageContext.request.contextPath }/resources/admin_assets/css/event.css" rel="stylesheet" />
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
   <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">
 </head>
 
-<body class="">
+<body class="user-profile">
   <div class="wrapper ">
     <jsp:include page="admin_sidebar.jsp"/>
     <div class="main-panel" id="main-panel">
       <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
+       <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
         <div class="container-fluid">
           <div class="navbar-wrapper">
             <div class="navbar-toggle">
@@ -43,7 +41,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand title" href="#pablo">회원 계좌 관리</a>
+            <a class="navbar-brand title" href="#pablo">쿠폰 관리</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -81,7 +79,7 @@
               </li>
               <%-- 공생 메인 홈페이지로 이동 --%>
               <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath }/">
+                <a class="nav-link" href="${pageContext.request.contextPath }">
                   <i class="now-ui-icons shopping_shop"></i>
                   <p>
                     <span class="d-lg-none d-md-block">공식 홈</span>
@@ -97,120 +95,130 @@
       </div>
       <div class="content">
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-4">
             <div class="card">
               <div class="card-header">
-                <h5 class="title">회원 계좌 목록</h5>
+                <h5 class="title">쿠폰 등록</h5>
               </div>
               <div class="card-body">
-	               <div class="card-body-header shearch_bar">
-		              	<div>
-		              		<form action="" class="member_date">
-<!-- 		              			<div class="search_bar_admin"> -->
-<!-- 					              	<div> -->
-<!-- 										<select> -->
-<!-- 											<option>일자선택</option> -->
-<!-- 											<option>가입일자</option> -->
-<!-- 											<option>탈퇴일자</option> -->
-<!-- 										</select> -->
-<!-- 					              	</div> -->
-<!-- 					              	<div> -->
-<!-- 					              		<input type="date" id="start_date">&nbsp;&nbsp;~&nbsp;&nbsp;<input type="date" id="end_date"> -->
-<!-- 					              	</div> -->
-<!-- 			              		</div> -->
-			              		<div class="search_bar_admin">
-			              			<div>
-										<select>
-											<option>전체검색</option>
-											<option>아이디</option>
-											<option>은행명</option>
-											<option>계좌번호</option>
-										</select>
-					              	</div>
-			              			<div>
-			              				<input type="search">
-			              			</div>
-					              	<div>
-					              		<button type="submit" class="btn detail_btn" value="검색">검색</button>
-					              	</div>
-			              		</div>	
-		              		</form>
-		              	</div>
-	              	</div>
-	              	
-                <table class="table table-bordered">
-			            <tr>
-			                <th>등록일자</th>
-			                <th>아이디</th>
-			                <th>계좌번호</th>
-			                <th>
-			                	<select name="class_sub_category">
-					              	<option value="0">은행명</option>
-					              	<option value="1"></option>
-					              	<option value="2"></option>
-					              	<option value="3"></option>
-					              	<option value="4"></option>
-					              	<option value="5"></option>
-			              		</select>
-			                </th>
-			                <th>상세보기</th>
-			            </tr>
-			            <!-- 회원 데이터 로우 -->
-			            <tr>
-			                <td>등록일자</td>
-			                <td>아이디</td>
-			                <td>계좌번호</td>
-			                <td>은행명</td>
-			                <td><button type="button" class="btn detail_btn" value="상세보기">상세보기</button></td>
-			            </tr>
-			    </table>
+                <form action="" method="post">
+                  <div class="row">
+                    <div class="col-md-12 pr-1">
+                      <div class="form-group">
+                        <label>쿠폰이름</label>
+                        <input type="text" class="form-control" name="board_subject">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 pr-1">
+                      <div class="form-group">
+                        <label>발행대상</label>
+                        <input type="text" class="form-control" name="board_subject">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label>유효시작일</label>
+                        <input type="date" class="form-control" name="event_start">
+                      </div>
+                    </div>
+                    <div class="col-md-6 pl-1">
+                      <div class="form-group">
+                        <label>유효종료일</label>
+                        <input type="date" class="form-control" name="event_end">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>할인금액/할인률</label>
+                        <div class="">
+                        	<input type="text" class="form-control">
+                        	<select class="coupon_unit">
+                        		<option value="원">원</option>
+                        		<option value="%">%</option>
+                        	</select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                 <button type="submit" class="btn register_btn">등록하기</button>
+                </form>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <footer class="footer">
-      </footer>
-    </div>
+          <div class="col-md-8">
+            <div class="card">
+              <div class="card-header">
+                 <h5 class="title">쿠폰 목록</h5>
+                </div>
+              <div class="card-body">
+	              <div class="card-body-header">
+	                 <div class="member_category_checkbox">
+	                 	<div>
+			              	<input type="checkbox" value="전체선택" name="member_category"> 전체선택&nbsp;
+			              	<input type="checkbox" value="반장발급" name="member_category"> 반장발급&nbsp;
+			              	<input type="checkbox" value="관리자발급" name="member_category"> 관리자발급&nbsp;
+		              	</div>
+		             </div>
+		             <div>
+	              		<form action="" class="member_date">
+	              			<div class="search_bar_admin">
+				              	<div>
+									<select>
+										<option>전체일자</option>
+										<option>발급일자</option>
+										<option>유효기간</option>
+									</select>
+				              	</div>
+				              	<div>
+				              		<input type="date" id="start_date">&nbsp;&nbsp;~&nbsp;&nbsp;<input type="date" id="end_date">
+				              	</div>
+		              		</div>
+		              		<div class="search_bar_admin">
+		              			<div>
+		              				<input type="search">
+		              			</div>
+				              	<div>
+				              		<button type="submit" class="btn detail_btn" value="검색">검색</button>
+				              	</div>
+		              		</div>	
+	              		</form>
+	              	  </div>
+	              	</div>
+	                <table class="table table-bordered">
+				            <tr>
+				                <th>발행일자</th>
+				                <th>발행대상</th>
+				                <th>쿠폰이름</th>
+				                <th>유효기간</th>
+				                <th>할인(금액/률)</th>
+<!-- 				                <th>상세보기</th> -->
+				            </tr>
+				            <!-- 회원 데이터 로우 -->
+				            <tr>
+				                <td>발급일</td>
+				                <td>발급자</td>
+				                <td>쿠폰이름</td>
+				                <td>유효기간</td>
+				                <td>할인(금액/률)</td>
+<!-- 				                <td><button type="button" class="btn detail_btn" value="상세보기">상세보기</button></td> -->
+				            </tr>
+				    </table>
+	         	 </div>
+	        </div>
+	      </div>
+	    </div>
+	 </div>
+     <footer class="footer">
+       <jsp:include page="admin_bottom.jsp"/>
+     </footer>
   </div>
-  
-   <!-- 모달 창 -->
-    <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="filterModalLabel">회원 유형 선택</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="allCheck">
-                        <label class="form-check-label" for="allCheck">
-                            전체 선택
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="leaderCheck">
-                        <label class="form-check-label" for="leaderCheck">
-                            반장 회원
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="generalCheck">
-                        <label class="form-check-label" for="generalCheck">
-                            일반 회원
-                        </label>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                    <button type="button" class="btn btn-primary">적용</button>
-                </div>
-            </div>
-        </div>
-    </div>
+ </div>
   <!--   Core JS Files   -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/popper.min.js"></script>
@@ -225,18 +233,6 @@
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.js"></script>
-	<script>
-        $(document).ready(function() {
-            // 필터 기능 구현
-            $('#leaderFilter, #withdrawalFilter').change(function() {
-                var leaderFilter = $('#leaderFilter').val();
-                var withdrawalFilter = $('#withdrawalFilter').val();
-                
-                // 로직에 따라 회원 데이터 필터링 및 표시
-            });
-        });
-    </script>
-
 </body>
 
 </html>

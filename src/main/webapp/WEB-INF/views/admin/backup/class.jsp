@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/admin_assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-   공생|관리자페이지 사업체
+   공생|관리자페이지 클래스
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -23,7 +23,7 @@
   <link href="${pageContext.request.contextPath }/resources/admin_assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.css" rel="stylesheet" />
-  <link href="${pageContext.request.contextPath }/resources/admin_assets/css/member.css" rel="stylesheet" />
+  <link href="${pageContext.request.contextPath }/resources/admin_assets/css/class.css" rel="stylesheet" />
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
   <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">
 </head>
@@ -43,7 +43,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand title" href="#pablo">사업체관리</a>
+            <a class="navbar-brand title" href="#pablo">클래스관리</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -100,13 +100,13 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h5 class="title">사업체 목록</h5>
+                <h5 class="title">클래스 목록</h5>
               </div>
               <div class="card-body">
 	               <div class="card-body-header">
 		              	<div class="class_category_select">
 		              		<select name="class_main_category">
-				              	<option value="0">카테고리</option>
+				              	<option value="0">대분류</option>
 				              	<option value="1">바닥 시공</option>
 				              	<option value="2">벽/천장 시공</option>
 				              	<option value="3">부분 인테리어</option>
@@ -114,15 +114,20 @@
 				              	<option value="5">종합 인테리어</option>
 				              	<option value="6">기타 시공</option>
 			              	</select>
-			              	<select name="class_state">
-					              	<option value="0">상태</option>
-					              	<option value="1">정상</option>
-					              	<option value="2">승인대기</option>
-					              	<option value="2">영업중지</option>
-					              	<option value="2">보류</option>
-					              	<option value="2">승인거부</option>
-					              	<option value="2">폐업</option>
+			              	<select name="class_sub_category">
+				              	<option value="0">소분류</option>
+				              	<option value="1"></option>
+				              	<option value="2"></option>
+				              	<option value="3"></option>
+				              	<option value="4"></option>
+				              	<option value="5"></option>
 			              	</select>
+			              	<!-- 클래스의 기간이 종료되면 모집종료로 표현되게 만들어야함 -->
+							<select name="class_state">
+				              	<option value="0">상태</option>
+				              	<option value="1">모집중</option>
+				              	<option value="2">모집종료</option>
+		              		</select>
 		              	</div>
 		              	<div>
 		              		<form action="" class="member_date">
@@ -141,9 +146,9 @@
 			              		<div class="search_bar_admin">
 			              			<div>
 										<select>
-											<option>전체 검색</option>
-											<option>아이디</option>
+											<option>전체검색</option>
 											<option>사업체명</option>
+											<option>클래스명</option>
 										</select>
 					              	</div>
 			              			<div>
@@ -160,44 +165,26 @@
                 <table class="table table-bordered">
 			            <tr>
 			                <th>등록일자</th>
-			                <th>아이디</th>
 			                <th>사업체명</th>
 			                <th>
-			                  	<select name="class_main_category">
-					              	<option value="0">카테고리</option>
-					              	<option value="1">바닥 시공</option>
-					              	<option value="2">벽/천장 시공</option>
-					              	<option value="3">부분 인테리어</option>
-					              	<option value="4">야외 시공</option>
-					              	<option value="5">종합 인테리어</option>
-					              	<option value="6">기타 시공</option>
-			              		</select>
+			                 	대분류
 			                </th>
-<!-- 			                <th> -->
-<!-- 			                  	카테고리 -->
-<!-- 			                </th> -->
-			                <th>폐업일자</th>
 			                <th>
-								<select name="class_state">
-					              	<option value="0">상태</option>
-					              	<option value="1">정상</option>
-					              	<option value="2">승인대기</option>
-					              	<option value="2">영업중지</option>
-					              	<option value="2">보류</option>
-					              	<option value="2">승인거부</option>
-					              	<option value="2">폐업</option>
-			              		</select>
+			                	소분류
 			                </th>
-<!-- 			                <th>상태</th> -->
+			                <th>클래스명</th>
+			                <th>신고수</th>
+			                <th>상태</th>
 			                <th>상세보기</th>
 			            </tr>
 			            <!-- 회원 데이터 로우 -->
 			            <tr>
 			                <td>등록일자</td>
-			                <td>아이디</td>
 			                <td>사업체명</td>
-			                <td>카테고리</td>
-			                <td>폐업일</td>
+			                <td>대분류</td>
+			                <td>소분류</td>
+			                <td>클래스명</td>
+			                <td>신고수</td>
 			                <td>상태</td>
 			                <td><button type="button" class="btn detail_btn" value="상세보기">상세보기</button></td>
 			            </tr>
