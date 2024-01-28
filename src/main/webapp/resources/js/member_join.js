@@ -37,34 +37,34 @@ $(document).ready(function() {
 		
 		let email2 = $("#u_email2").val();
 		let email3 = $("#customEmail").val();
-		//아이디가 양식에 맞지 않을 경우
-//		if (!isvalidIdLength) {
-//			alert("아이디가 양식에 맞지 않습니다.");
-//			return false;
-//		}
-//		//아이디 중복일 경우
-//		if (isDuplicateId) {
-//			alert("아이디 중복입니다.");
-//			return false;
-//		}
-//
-//		//비밀번호 불일치할 경우
-//		if (!isSamePasswd) {
-//			alert("비밀번호가 불일치 합니다.");
-//			return false;
-//		}
-//
-//		//비밀번호 안전도가 맞지 않을 경우
-//		if (!isPasswd) {
-//			alert("사용할수 없는 비밀번호 입니다.");
-//			return false;
-//		}
-//
-//		//닉네임 중복일 경우
-//		if (isDuplicateNick) {
-//			alert("닉네임 중복입니다.");
-//			return false;
-//		}
+//		아이디가 양식에 맞지 않을 경우
+		if (!isvalidIdLength) {
+			alert("아이디가 양식에 맞지 않습니다.");
+			return false;
+		}
+		//아이디 중복일 경우
+		if (isDuplicateId) {
+			alert("아이디 중복입니다.");
+			return false;
+		}
+
+		//비밀번호 불일치할 경우
+		if (!isSamePasswd) {
+			alert("비밀번호가 불일치 합니다.");
+			return false;
+		}
+
+		//비밀번호 안전도가 맞지 않을 경우
+		if (!isPasswd) {
+			alert("사용할수 없는 비밀번호 입니다.");
+			return false;
+		}
+
+		//닉네임 중복일 경우
+		if (isDuplicateNick) {
+			alert("닉네임 중복입니다.");
+			return false;
+		}
 
 		if (email2 == "") {
 			alert('이메일을 선택해 주세요');
@@ -168,26 +168,26 @@ $(document).ready(function() {
 
 
 	//ID중복및 입력양식 검증===============================
-	$("#userId").keyup(function() {
+	$("#memberId").keyup(function() {
 
 		//아이디 입력값 가져오기
-		let user_id = $("#userId").val();
+		let member_id = $("#memberId").val();
 
 		//아이디 입력값 검증(정규표현식)
 		// 요구사항 : 영문 대소문자,숫자를 포함하여 8~16자리 입력,  중복아이디 확인 (한글입력X)
 		//영문 대소문자 숫자포함 8~16자리, 특수문자 한글입력불가	
 		//		let regex = /^[a-zA-Z0-9]{8,16}$/;
 		let regex = /^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{8,16}$/;
-
-		if (!regex.exec(user_id)) { //입력값 검증 실패시
+		
+		if (!regex.exec(member_id)) { //입력값 검증 실패시
 			$("#checkIdResult").html("영문자, 숫자 조합 8~16자리 필수");
 			$("#checkIdResult").css("color", "red");
 		} else { //입력값 검증 성공시
 			isvalidIdLength = true;
 			$.ajax({
-				url: "MemberCheckDupId",
+				url: "CheckDupId",
 				data: {
-					user_id: user_id
+					member_id: member_id
 				},
 				dataType: "json",
 				success: function(checkDuplicateResult) {
@@ -208,11 +208,11 @@ $(document).ready(function() {
 
 	//전화번호 길이 제한=====================================
 	$("#u_phone").keyup(function() {
-		let user_phone = $("#u_phone").val();
+		let member_phone = $("#u_phone").val();
 
 		let regex = /^\d{11}$/;
 
-		if (!regex.test(user_phone)) {
+		if (!regex.test(member_phone)) {
 			$("#checkPhoneResult").html("- 를 뺀 숫자 11자리 필요");
 			$("#checkPhoneResult").css("color", "red");
 			Phone = true;
@@ -228,12 +228,12 @@ $(document).ready(function() {
 	$("#u_nick").blur(function() {
 
 		//닉네임 입력값 가져오기
-		let user_nick = $("#u_nick").val();
+		let member_nick = $("#u_nick").val();
 
 		$.ajax({
-			url: "MemberCheckDupNick",
+			url: "CheckDupNick",
 			data: {
-				user_nick: user_nick
+				member_nick: member_nick
 			},
 			dataType: "json",
 			success: function(checkDuplicateResult) {
@@ -254,12 +254,12 @@ $(document).ready(function() {
 	//이메일 중복확인==========================================
 	$("#u_email").blur(function() {
 
-		let user_email = $("#u_email").val();
+		let member_email = $("#u_email").val();
 
 		$.ajax({
 			url: "MemberCheckDupEmail",
 			data: {
-				user_email: user_email
+				member_email: member_email
 			},
 			dataType: "json",
 			success: function(checkDuplicateResult) {

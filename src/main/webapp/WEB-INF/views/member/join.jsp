@@ -51,7 +51,7 @@
 <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/member_join_agree.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/member_join.js"></script>
 
 </head>
 <body>
@@ -60,11 +60,11 @@
 		<h2 class="text-center">회원 가입</h2>
 		<br>
 		<div class="loginBox">
-			<form id="loginForm" method="POST" action="MemberJoinPro" name="joinForm" class="form-horizontal">
+			<form id="loginForm" method="POST" action="joinPro" name="joinForm" class="form-horizontal">
 				<div class="form-group">
-					<label for="userId" class="col-sm-1 control-label">아이디</label>
+					<label for="memberId" class="col-sm-1 control-label">아이디</label>
 					<div class="col-sm-8">
-						<input type="text" id="userId" required name="user_id" class="form-control" placeholder="아이디 (영문자, 숫자 조합 8~16자리 필수(한글, 특수문자 사용불가 )"
+						<input type="text" id="memberId" required name="member_id" class="form-control" placeholder="아이디 (영문자, 숫자 조합 8~16자리 필수(한글, 특수문자 사용불가 )"
 							maxlength="100" />
 					</div>
 					<div class="col-sm-3">
@@ -74,7 +74,7 @@
 				<div class="form-group">
 					<label for="passwd" class="col-sm-1 control-label">비밀번호</label>
 					<div class="col-sm-8">
-						<input type="password" id="passwd" required name="user_passwd" class="form-control" placeholder="비밀번호 (영문, 숫자, 특수문자 조합 8~16자리) 권장"
+						<input type="password" id="passwd" required name="member_passwd" class="form-control" placeholder="비밀번호 (영문, 숫자, 특수문자 조합 8~16자리) 권장"
 							maxlength="16">
 					</div>
 					<div class="col-sm-3">
@@ -82,7 +82,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="passwd2" class="col-sm-1 control-label">비밀번호 확인</label>
+					<label for="passwd2" class="col-sm-1 control-label">비밀번호<br>확인</label>
 					<div class="col-sm-8">
 						<input type="password" id="passwd2" required name="passwd2" class="form-control" placeholder="비밀번호 확인" maxlength="16">
 					</div>
@@ -93,7 +93,7 @@
 				<div class="form-group">
 					<label for="u_nick" class="col-sm-1 control-label">닉네임</label>
 					<div class="col-sm-8">
-						<input type="text" id="u_nick" required name="user_nick" class="form-control" placeholder="닉네임" maxlength="100">
+						<input type="text" id="u_nick" required name="member_nick" class="form-control" placeholder="닉네임" maxlength="100">
 					</div>
 					<div class="col-sm-3">
 						<span id="checkNickResult"></span>
@@ -102,7 +102,7 @@
 				<div class="form-group">
 					<label for="u_name" class="col-sm-1 control-label">이름</label>
 					<div class="col-sm-8">
-						<input type="text" id="u_name" required name="user_name" class="form-control" placeholder="이름" maxlength="16">
+						<input type="text" id="u_name" required name="member_name" class="form-control" placeholder="이름" maxlength="16">
 					</div>
 					<div class="col-sm-3">
 						<span id="checkNameResult"></span>
@@ -111,28 +111,28 @@
 				<div class="form-group">
 					<label for="com_birth" class="col-sm-1 control-label">생년월일</label>
 					<div class="col-sm-8">
-						<input type="date" id="com_birth" required name="user_birth" class="form-control">
+						<input type="date" id="com_birth" required name="member_birthday" class="form-control">
 					</div>
 					<div class="col-sm-3">
 						<label class="control-label pull-left margin">성별 &nbsp;&nbsp;</label>
-						<input type="radio" id="gender_m" name="user_gender" class="form-control" required><label for="gender_m" class="control-label">남&nbsp; </label>
-						<input type="radio" id="gender_f" name="user_gender" class="form-control" required><label for="gender_f" class="control-label">여&nbsp; </label>
+						<input type="radio" id="gender_m" name="member_gender" value="1" class="form-control" required><label for="gender_m" class="control-label">남&nbsp; </label>
+						<input type="radio" id="gender_f" name="member_gender" value="2" class="form-control" required><label for="gender_f" class="control-label">여&nbsp; </label>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="u_email" class="col-sm-1 control-label">이메일</label>
 					<div class="col-sm-4">
 						<div class="input-group">
-							<input type="text" id="u_email" required name="user_email1" class="form-control" placeholder="이메일" maxlength="16">
+							<input type="text" id="u_email" required name="member_email1" class="form-control" placeholder="이메일" maxlength="16">
 							<div class="input-group-addon">@</div>
 						</div>
 					</div>
 
 					<div class="col-sm-4">
-						<input type="text" id="customEmail" required class="form-control" name="user_email2" style="display: none;" placeholder="이메일을 입력하세요"
+						<input type="text" id="customEmail" required class="form-control" name="member_email2" style="display: none;" placeholder="이메일을 입력하세요"
 							disabled="disabled">
 						<div id="emailSelectBox">
-							<select id="u_email2" name="user_email2" class="form-control">
+							<select id="u_email2" name="member_email2" class="form-control">
 								<option value="">선택하세요</option>
 								<option value="gmail.com">gmail.com</option>
 								<option value="naver.com">naver.com</option>
@@ -147,7 +147,7 @@
 				<div class="form-group">
 					<label for="u_phone" class="col-sm-1 control-label">전화번호</label>
 					<div class="col-sm-8">
-						<input type="text" id="u_phone" required name="user_phone" class="form-control" placeholder="전화번호 (' - ' 를 빼고 입력)" maxlength="100">
+						<input type="text" id="u_phone" required name="member_phone" class="form-control" placeholder="전화번호 (' - ' 를 빼고 입력)" maxlength="100">
 					</div>
 					<div class="col-sm-3">
 						<span id="checkPhoneResult"></span>

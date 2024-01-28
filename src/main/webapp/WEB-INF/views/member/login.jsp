@@ -65,21 +65,14 @@
 		<div class="omb_login">
 			<h3 class="omb_authTitle">로그인</h3>
 			<div class="row omb_row-sm-offset-3 omb_socialButtons">
-				<div class="col-xs-4 col-sm-2">
-					<a href="#" class="btn btn-lg btn-block omb_btn-naver"> <img src="${pageContext.request.contextPath }/resources/img/naver_logo.svg"
-						class="visible-xs logo_link "></img> <span class="hidden-xs">네이버</span>
+				<div class="col-xs-6 col-sm-3">
+					<a href="#" class="btn btn-xs btn-block text-center" style="width: 65%; margin: 0 auto;"> 
+						<img src="${pageContext.request.contextPath }/resources/img/btnG_naver.png">
 					</a>
 				</div>
-				<div class="col-xs-4 col-sm-2">
-					<a href="#" class="btn btn-lg btn-block "> 
-						<img src="${pageContext.request.contextPath }/resources/img/kakao_login_large_narrow.png" class="hidden-xs">
-					</a>
-					<a href="#" class="btn btn-lg btn-block "> 
-						<img src="${pageContext.request.contextPath }/resources/img/kakao_login_large.png" class="visible-xs">
-					</a>
-				</div>
-				<div class="col-xs-4 col-sm-2">
-					<a href="#" class="btn btn-lg btn-block omb_btn-google"> <i class="fa fa-google-plus visible-xs"></i> <span class="hidden-xs"> 구글</span>
+				<div class="col-xs-6 col-sm-3">
+					<a href="#" class="btn btn-xs btn-block text-center" > 
+						<img src="${pageContext.request.contextPath }/resources/img/kakao_login.png" >
 					</a>
 				</div>
 			</div>
@@ -92,11 +85,11 @@
 				<div class="col-xs-12 col-sm-6">
 					<form class="omb_loginForm" action="loginPro" autocomplete="off" method="POST">
 						<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-user"></i></span> <input type="text" class="form-control" name="username" placeholder="아이디" required>
+							<span class="input-group-addon"><i class="fa fa-user"></i></span> <input type="text" class="form-control" name="member_id" placeholder="아이디" required>
 						</div>
 						<br>
 						<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-lock"></i></span> <input type="password" class="form-control" name="password" placeholder="비밀번호" required>
+							<span class="input-group-addon"><i class="fa fa-lock"></i></span> <input type="password" class="form-control" name="member_passwd" placeholder="비밀번호" required>
 						</div>
 						<br>
 						<button class="btn btn-lg btn-success btn-block " type="submit">로그인</button>
