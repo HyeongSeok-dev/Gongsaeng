@@ -100,7 +100,8 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h5 class="title">회원 계좌 목록</h5>
+                <h5 class="title">거래 상세 내역</h5>
+                <p class="title">회원아이디님 은행명 계좌번호</p>
               </div>
               <div class="card-body">
 	               <div class="card-body-header shearch_bar">
@@ -121,9 +122,9 @@
 			              		<div class="search_bar_admin">
 			              			<div>
 										<select>
-											<option>전체검색</option>
-											<option>아이디</option>
-											<option>은행명</option>
+											<option>거래유형</option>
+											<option>충전</option>
+											<option>금액</option>
 											<option>계좌번호</option>
 										</select>
 					              	</div>
@@ -140,28 +141,18 @@
 	              	
                 <table class="table table-bordered">
 			            <tr>
-			                <th>등록일자</th>
-			                <th>아이디</th>
-			                <th>계좌번호</th>
-			                <th>
-			                	<select name="class_sub_category">
-					              	<option value="0">은행명</option>
-					              	<option value="1"></option>
-					              	<option value="2"></option>
-					              	<option value="3"></option>
-					              	<option value="4"></option>
-					              	<option value="5"></option>
-			              		</select>
-			                </th>
-			                <th>상세보기</th>
+			                <th>거래번호</th>
+			                <th>날짜</th>
+			                <th>거래유형</th>
+			                <th>변동금액</th>
+			                <th>잔액</th>
 			            </tr>
-			            <!-- 회원 데이터 로우 -->
 			            <tr>
-			                <td>등록일자</td>
-			                <td>아이디</td>
-			                <td>계좌번호</td>
-			                <td>은행명</td>
-			                <td><button type="button" class="btn detail_btn" value="상세내역" onclick="location.href='${pageContext.request.contextPath }/admin/account/member/detail'">상세내역</button></td>
+			                <td>거래번호</td>
+			                <td>날짜</td>
+			                <td>거래유형</td>
+			                <td>변동금액</td>
+			                <td>잔액</td>
 			            </tr>
 			    </table>
               </div>

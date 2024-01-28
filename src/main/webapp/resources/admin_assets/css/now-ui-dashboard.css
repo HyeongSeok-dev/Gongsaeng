@@ -350,12 +350,33 @@ Copyright (c) 2015 Daniel Eden
   line-height: 1.35em;
   border: none;
   margin: 10px 1px;
-  border-radius: 0.1875rem;
-  padding: 11px 22px;
+  border-radius: 5px;
+  padding: 6px 12px;
   cursor: pointer;
   background-color: #888;
   color: #FFFFFF;
 }
+
+/* 추가 */
+
+input[type="text"], select {
+	border-radius: 5px;
+	border: 1px solid #888;
+	padding: 5px 5px;
+	font-size: 14px;
+}
+
+input[type="date"], input[type="search"] {
+	border-radius: 5px;
+	border: 1px solid #888;
+	padding: 3px 3px;
+	font-size: 14px;
+}
+
+th {
+	background: rgb(246, 246, 246);
+}
+
 
 .btn:hover,
 .btn:focus,
@@ -1830,13 +1851,13 @@ textarea.form-control:active {
   margin-top: 6px;
 }
 
-button,
-input,
-optgroup,
-select,
-textarea {
-  font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
-}
+/* button, */
+/* input, */
+/* optgroup, */
+/* select, */
+/* textarea { */
+/*   font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif; */
+/* } */
 
 h1,
 h2,

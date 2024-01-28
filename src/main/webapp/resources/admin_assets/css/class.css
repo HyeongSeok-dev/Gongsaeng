@@ -49,10 +49,6 @@
 	border: 1px solid rgb(148, 148, 148);
 }
 
-.search_bar_admin>div>select{
-	height: 25px;	
-}
-
 input[type="search"] {
 	width: 200px;
 }

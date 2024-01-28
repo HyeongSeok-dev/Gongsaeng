@@ -100,93 +100,159 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h5 class="title">회원 목록</h5>
+                <h5 class="title">회원 상세 정보</h5>
               </div>
               <div class="card-body">
-	               <div class="card-body-header">
-		              	<div class="member_category_checkbox">
-			              	<div>
-				              	<input type="checkbox" value="전체선택" name="member_category"> 전체선택&nbsp;
-				              	<input type="checkbox" value="일반회원" name="member_category"> 일반회원&nbsp;
-				              	<input type="checkbox" value="반장회원" name="member_category"> 반장회원&nbsp;
-			              	</div>
-			              	<div>
-				              	<input type="checkbox" value="전체선택" name="member_static"> 전체선택&nbsp;
-				              	<input type="checkbox" value="정상회원" name="member_static"> 정상회원&nbsp;
-				              	<input type="checkbox" value="탈퇴회원" name="member_static"> 탈퇴회원&nbsp;
-			              	</div>
-		              	</div>
-		              	<div>
-		              		<form action="" class="member_date">
-		              			<div class="search_bar_admin">
-					              	<div>
-										<select>
-											<option>일자선택</option>
-											<option>가입일자</option>
-											<option>탈퇴일자</option>
-										</select>
-					              	</div>
-					              	<div>
-					              		<input type="date" id="start_date">&nbsp;&nbsp;~&nbsp;&nbsp;<input type="date" id="end_date">
-					              	</div>
-			              		</div>
-			              		<div class="search_bar_admin">
-			              			<div>
-										<select>
-											<option>전체검색</option>
-											<option>아이디</option>
-											<option>닉네임</option>
-										</select>
-					              	</div>
-			              			<div>
-			              				<input type="search">
-			              			</div>
-					              	<div>
-					              		<button type="submit" class="btn detail_btn" value="검색">검색</button>
-					              	</div>
-			              		</div>	
-		              		</form>
-		              	</div>
-	              	</div>
-	              	
-                <table class="table table-bordered">
-			            <tr>
-			                <th>가입일자</th>
-			                <th>아이디</th>
-			                <th>닉네임</th>
-<!-- 			                <th>반장등록여부</th> -->
-			                <th>
-			                    <select name="class_state">
-					              	<option value="0">회원분류</option>
-					              	<option value="1">반장회원</option>
-					              	<option value="2">일반회원</option>
-			              		</select>
-			                </th>
-			                
-			                <th>신고받은 수</th>
-			                <th>탈퇴일자</th>
-			                <th>상세보기</th>
-			            </tr>
-			            <!-- 회원 데이터 로우 -->
-			            <tr>
-			                <td>가입일자</td>
-			                <td>아이디</td>
-			                <td>닉네임</td>
-			                <td>회원분류</td>
-			                <td>신고받은수</td>
-			                <td>
-			                	탈퇴일자
-			                </td>
-			                <td><button type="button" class="btn detail_btn" value="상세보기">상세보기</button></td>
-			            </tr>
-			    </table>
+	             <table class="table table-bordered">
+	             	<tr>
+	             		<th>가입일자</th>
+	             		<td>가입일자</td>
+	             	</tr>
+	             	<tr>
+	             		<th>탈퇴일자</th>
+	             		<td>탈퇴일자</td>
+	             	</tr>
+	             	<tr>
+	             		<th>이미지</th>
+	             		<td>
+	             		 여기 이미지옴<br>
+<!-- 	             		 	<input type="file"> -->
+	             		 	<button type="button" class="btn">파일선택</button>
+	             		 	<span>파일명</span>
+	             		</td>
+	             	</tr>
+	             	<tr>
+	             		<th>이름</th>
+	             		<td>이름</td>
+	             	</tr>
+	             	<tr>
+	             		<th>아이디</th>
+	             		<td>아이디</td>
+	             	</tr>
+	             	<tr>
+	             		<th>닉네임</th>
+	             		<td>닉네임</td>
+	             	</tr>
+	             	<tr>
+	             		<th>회원분류</th>
+	             		<td>
+							<select>
+								<option>일반</option>
+								<option>사업자(반장)</option>
+							</select>
+						</td>
+	             	</tr>
+	             	<!-- 반장회원일 경우 -->
+	             	<tr>
+	             		<th>등록사업체수</th>
+	             		<td>
+	             			<div class="td_align">
+		             			<span></span>
+		             			<span>0개</span>
+		             		 	<button type="button" class="btn" onclick="location.href='${pageContext.request.contextPath }/admin/member/detail/company'">더보기</button>
+	             			</div>
+						</td>
+	             	</tr>
+	             	<tr>
+	             		<th>등록클래스수</th>
+	             		<td>
+	             			<div class="td_align">
+								<span></span>
+		             			<span>0건</span>
+		             		 	<button type="button" class="btn" onclick="location.href='${pageContext.request.contextPath }/admin/member/detail/class'">더보기</button>
+	             			</div> 
+						</td>
+	             	</tr>
+	             	<!-- ----------- -->
+	             	<tr>
+	             		<th>생년월일</th>
+	             		<td>생년월일</td>
+	             	</tr>
+	             	<tr>
+	             		<th>이메일</th>
+	             		<td>
+	             			<input type="text"> @ <input type="text">
+	             			<span> (인증/비인증)</span>
+	             		</td>
+	             	</tr>
+	             	<tr>
+	             		<th>전화번호</th>
+	             		<td>
+							<input type="text"><!--  - <input type="text"> - <input type="text">  -->
+						</td>
+	             	</tr>
+	             	<tr>
+	             		<th>회원상태</th>
+	             		<td>
+							<select>
+								<option>정상</option>
+								<option>휴면</option>
+								<option>탈퇴</option>
+							</select>
+						</td>
+	             	</tr>
+	             	<tr>
+	             		<th>피신고건수</th>
+	             		<td>
+	             			<div class="td_align">
+		             			<span></span>
+		             			<span>0건</span>
+		             			<button type="button" class="btn">더보기</button>
+	             			</div>
+	             		</td>
+	             	</tr>
+	             	<tr>
+	             		<th>클래스 예약 내역</th>
+	             		<td>
+	             			<div class="td_align">
+								<span></span>
+		             			<span>0건</span>
+								<button type="button" class="btn">더보기</button>
+	             			</div>
+						</td>
+	             	</tr>
+	             	<tr>
+	             		<th>남긴리뷰수</th>
+	             		<td>
+	             			<div class="td_align">
+		             			<span></span>
+		             			<span>0건</span>
+		             			<button type="button" class="btn">더보기</button>
+	             			</div>
+	             		</td>
+	             	</tr>
+	             	<tr>
+	             		<th>계좌번호</th>
+	             		<td>
+	             			<span>은행</span>
+	             			<span>계좌번호(수정가능????)</span>
+	             			<span>
+								<select>
+									<option>비인증</option>
+									<option>인증</option>
+								</select>
+							</span>
+	             		</td>
+					</tr>	             	
+	             	<tr>
+	             		<th>알림수신상태</th>
+	             		<td>알림수신상태</td>
+	             	</tr>
+	             </table>	 	
               </div>
             </div>
           </div>
         </div>
+        <div class="row">
+        	<div class="col-md-12 btn_bottom">
+	        	<button type="button" class="btn">목록</button>&nbsp;&nbsp;
+	        	<button type="button" class="btn">변경저장</button>
+        	</div>
+        </div>
       </div>
       <footer class="footer">
-      </footer>
+       <jsp:include page="admin_bottom.jsp"/>
+     </footer>
     </div>
   </div>
   

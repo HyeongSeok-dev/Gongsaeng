@@ -210,7 +210,7 @@
 			                <td>클래스명</td>
 			                <td>신고받은 수</td>
 			                <td>상태</td>
-			                <td><button type="button" class="btn detail_btn" value="상세보기">상세보기</button></td>
+			                <td><button type="button" class="btn detail_btn" value="상세보기" onclick="location.href='${pageContext.request.contextPath }/admin/company/class/detail'">상세보기</button></td>
 			            </tr>
 			    </table>
               </div>
@@ -219,6 +219,7 @@
         </div>
       </div>
       <footer class="footer">
+       <jsp:include page="admin_bottom.jsp"/>
       </footer>
     </div>
   </div>
