@@ -109,6 +109,7 @@ public class MemberController {
 			return "fail_back";
 		}
 
+		
 	}
 
 	@ResponseBody // 응답 데이터를 body로 그대로 활용하기 위해 이 어노테이션을 적용!
