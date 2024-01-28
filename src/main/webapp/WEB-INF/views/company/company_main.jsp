@@ -40,13 +40,55 @@
 	background-color: #fff!important;
 }
 
+.main_hr {
+	border-color: #000;
+}
+
+p {
+	font-size: 18px;
+/* 	text-align: center; */
+}
+
+.card-body {
+	height: 200px!important;
+}
+
+.class_number {
+	font-size: 60px;
+}
+
+.class_per_case {
+	font-size: 35px;
+}
+
+.card_class_number {
+	text-align: center;
+}
+
+a {
+	color: #000!important;
+	text-decoration: none!important;
+}
+
+.main_text {
+	text-align: center;
+}
+
+.class_sales_text1 {
+	text-align: center;	
+}
+
+.class_sales_text2 {
+	text-align: center;	
+}
+
+
 </style>
 
 </head>
 
 
 <body class="">
-    <div class="wrapper">
         <div class="sidebar" data-color="orange">
             <!-- Include sidebar_wrapper.jsp -->
             <jsp:include page="./sidebar_wrapper.jsp"/>
@@ -92,25 +134,11 @@
                   </p>
                 </a>
               </li>
-<!--               <li class="nav-item dropdown"> -->
-<!--                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
-<!--                   <i class="now-ui-icons location_world"></i> -->
-<!--                   <p> -->
-<!--                     <span class="d-lg-none d-md-block">Some Actions</span> -->
-<!--                   </p> -->
-<!--                 </a> -->
-<!--                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink"> -->
-<!--                   <a class="dropdown-item" href="#">Action</a> -->
-<!--                   <a class="dropdown-item" href="#">Another action</a> -->
-<!--                   <a class="dropdown-item" href="#">Something else here</a> -->
-<!--                 </div> -->
-<!--               </li> -->
               <li class="nav-item">
                  <a class="nav-link" href="${pageContext.request.contextPath}/company/profile">
                   <i class="now-ui-icons users_single-02"></i>
                   </a>
                   <p>
-                  
                     <span class="d-lg-none d-md-block">Account</span>
                   </p>
                 </a>
@@ -121,6 +149,7 @@
       </nav>
       <!-- End Navbar -->
       <div class="panel-header panel-header-lg">
+        <p class="class_sales_text1">매출 통계 내역(월별)</p>
         <canvas id="bigDashboardChart"></canvas>
       </div>
       <div class="content">
@@ -131,28 +160,15 @@
                 <h5 class="card-category">전일 매출 설명하기</h5>
 <!--                 <h4 class="card-title">Shipped Products</h4> -->
                 <h4 class="card-title">전일 매출</h4>
-                <div class="dropdown">
-<!--                   <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown"> -->
-<!--                     <i class="now-ui-icons loader_gear"></i> -->
-<!--                   </button> -->
-<!--                   <div class="dropdown-menu dropdown-menu-right"> -->
-<!--                     <a class="dropdown-item" href="#">Action</a> -->
-<!--                     <a class="dropdown-item" href="#">Another action</a> -->
-<!--                     <a class="dropdown-item" href="#">Something else here</a> -->
-<!--                     <a class="dropdown-item text-danger" href="#">Remove Data</a> -->
-<!--                   </div> -->
-                </div>
+    			 <hr class="main_hr">
               </div>
               <div class="card-body">
-                <div class="chart-area">
-<%--                   <canvas id="lineChartExample"></canvas> --%>
-                </div>
+    			 <div class="card-body yesterday_sales">
+		            <p class="main_text">클래스 판매금액 : <b>0</b>원</p>
+		            <p class="main_text">할인쿠폰 : <b>0</b>원</p>
+<!-- 		            <p>신고 : <b>0</b>건</p> -->
+		        </div>
               </div>
-<!--               <div class="card-footer"> -->
-<!--                 <div class="stats"> -->
-<!--                   <i class="now-ui-icons arrows-1_refresh-69"></i> Just Updated -->
-<!--                 </div> -->
-<!--               </div> -->
             </div>
           </div>
           <div class="col-lg-3 col-md-4">
@@ -160,28 +176,15 @@
               <div class="card-header">
                 <h5 class="card-category">전일 클래스 활동 현황 설명하기</h5>
                 <h4 class="card-title">전일 클래스 활동 현황</h4>
-<!--                 <div class="dropdown"> -->
-<!--                   <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown"> -->
-<!--                     <i class="now-ui-icons loader_gear"></i> -->
-<!--                   </button> -->
-<!--                   <div class="dropdown-menu dropdown-menu-right"> -->
-<!--                     <a class="dropdown-item" href="#">Action</a> -->
-<!--                     <a class="dropdown-item" href="#">Another action</a> -->
-<!--                     <a class="dropdown-item" href="#">Something else here</a> -->
-<!--                     <a class="dropdown-item text-danger" href="#">Remove Data</a> -->
-<!--                   </div> -->
-<!--                 </div> -->
+                <hr class="main_hr">
               </div>
-              <div class="card-body">
-                <div class="chart-area">
-                  <canvas id="lineChartExampleWithNumbersAnd"></canvas>
-                </div>
+<!--               <div class="card-body"> -->
+    			 <div class="card-body yesterday_sales">
+		            <p class="main_text">클래스 즐겨찾기 수  : <b>0</b>건</p>
+		            <p class="main_text">리뷰 좋아요 수 : <b>0</b>건</p>
+		            <p class="main_text">조회수 : <b>0</b>회</p>
+<!-- 		        </div> -->
               </div>
-<!--               <div class="card-footer"> -->
-<!--                 <div class="stats"> -->
-<!--                   <i class="now-ui-icons arrows-1_refresh-69"></i> Just Updated -->
-<!--                 </div> -->
-<!--               </div> -->
             </div>
           </div>
           <div class="col-lg-3 col-md-4">
@@ -189,17 +192,11 @@
               <div class="card-header">
                 <h5 class="card-category">클래스 등록 설명하기</h5>
                 <h4 class="card-title">클래스 등록</h4>
+                <hr class="main_hr">
               </div>
-              <div class="card-body">
-                <div class="chart-area">
-                  <canvas id="barChartSimpleGradientsNumbers"></canvas>
-                </div>
+    			 <div class="card-body yesterday_sales">
+		            <p class="main_text">클래스 판매수 : <b>0</b>건</p>
               </div>
-<!--               <div class="card-footer"> -->
-<!--                 <div class="stats"> -->
-<!--                   <i class="now-ui-icons ui-2_time-alarm"></i> Last 7 days -->
-<!--                 </div> -->
-<!--               </div> -->
             </div>
           </div>
           <div class="col-lg-3 col-md-4">
@@ -207,17 +204,12 @@
               <div class="card-header">
                 <h5 class="card-category">취소 설명하기</h5>
                 <h4 class="card-title">취소 현황</h4>
+                <hr class="main_hr">
               </div>
-              <div class="card-body">
-                <div class="chart-area">
-                  <canvas id="barChartSimpleGradientsNumbers"></canvas>
-                </div>
-              </div>
-<!--               <div class="card-footer"> -->
-<!--                 <div class="stats"> -->
-<!--                   <i class="now-ui-icons ui-2_time-alarm"></i> Last 7 days -->
-<!--                 </div> -->
-<!--               </div> -->
+    			 <div class="card-body yesterday_sales">
+		            <p class="main_text">취소요청 : <b>0</b>건</p>
+		            <p class="main_text">환불완료 : <b>0</b>건</p>
+		        </div>
             </div>
           </div>
         </div>
@@ -227,179 +219,23 @@
               <div class="card-header ">
                 <h5 class="card-category">~운영중인 클래스 수 설명~</h5>
                 <h4 class="card-title">운영중인 클래스 수</h4>
+                <hr class="main_hr">
               </div>
-              <div class="card-body ">
-                <div class="table-full-width table-responsive">
-                  <table class="table">
-                    <tbody>
-                      <tr>
-                        <td>
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="checkbox" checked>
-                              <span class="form-check-sign"></span>
-                            </label>
-                          </div>
-                        </td>
-                        <td class="text-left">Sign contract for "What are conference organizers afraid of?"</td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" title="" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Edit Task">
-                            <i class="now-ui-icons ui-2_settings-90"></i>
-                          </button>
-                          <button type="button" rel="tooltip" title="" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Remove">
-                            <i class="now-ui-icons ui-1_simple-remove"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="checkbox">
-                              <span class="form-check-sign"></span>
-                            </label>
-                          </div>
-                        </td>
-                        <td class="text-left">Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" title="" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Edit Task">
-                            <i class="now-ui-icons ui-2_settings-90"></i>
-                          </button>
-                          <button type="button" rel="tooltip" title="" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Remove">
-                            <i class="now-ui-icons ui-1_simple-remove"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="checkbox" checked>
-                              <span class="form-check-sign"></span>
-                            </label>
-                          </div>
-                        </td>
-                        <td class="text-left">Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                        </td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" title="" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Edit Task">
-                            <i class="now-ui-icons ui-2_settings-90"></i>
-                          </button>
-                          <button type="button" rel="tooltip" title="" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Remove">
-                            <i class="now-ui-icons ui-1_simple-remove"></i>
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <div class="card-footer ">
-                <hr>
-                <div class="stats">
-                  <i class="now-ui-icons loader_refresh spin"></i> Updated 3 minutes ago
-                </div>
-              </div>
+              <div class="card_class_number">
+                <div class="card-body yesterday_sales">
+		            <a href="${pageContext.request.contextPath}/company/class"><span class="class_number">7</span><span class="class_per_case">건</span></a>
+		        </div>
+		      </div>  
             </div>
           </div>
 <!--           <div class="col-md-9"> -->
           <div class="col-lg-9">
             <div class="card">
               <div class="card-header">
-                <h5 class="card-category">All Persons List</h5>
                 <h4 class="card-title">작가 공지사항 | 자주 묻는 질문</h4>
+                <hr class="main_hr">
               </div>
               <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead class=" text-primary">
-                      <th>
-                        Name
-                      </th>
-                      <th>
-                        Country
-                      </th>
-                      <th>
-                        City
-                      </th>
-                      <th class="text-right">
-                        Salary
-                      </th>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                          Dakota Rice
-                        </td>
-                        <td>
-                          Niger
-                        </td>
-                        <td>
-                          Oud-Turnhout
-                        </td>
-                        <td class="text-right">
-                          $36,738
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Minerva Hooper
-                        </td>
-                        <td>
-                          Curaçao
-                        </td>
-                        <td>
-                          Sinaai-Waas
-                        </td>
-                        <td class="text-right">
-                          $23,789
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Sage Rodriguez
-                        </td>
-                        <td>
-                          Netherlands
-                        </td>
-                        <td>
-                          Baileux
-                        </td>
-                        <td class="text-right">
-                          $56,142
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Doris Greene
-                        </td>
-                        <td>
-                          Malawi
-                        </td>
-                        <td>
-                          Feldkirchen in Kärnten
-                        </td>
-                        <td class="text-right">
-                          $63,542
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Mason Porter
-                        </td>
-                        <td>
-                          Chile
-                        </td>
-                        <td>
-                          Gloucester
-                        </td>
-                        <td class="text-right">
-                          $78,615
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
               </div>
             </div>
           </div>

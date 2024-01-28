@@ -41,7 +41,7 @@ body {
 	-webkit-box-shadow: 1px 0 20px rgba(96, 93, 175, .05);
 	box-shadow: 1px 0 20px rgba(96, 93, 175, .05);
 	margin-bottom: 30px;
-	background-color: #DCDCDC!important;
+	background-color: #F1F3F5!important;
 	
 }
 
