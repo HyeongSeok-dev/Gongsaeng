@@ -81,7 +81,7 @@
               </li>
               <%-- 공생 메인 홈페이지로 이동 --%>
               <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath }/">
+                <a class="nav-link" href="${pageContext.request.contextPath }">
                   <i class="now-ui-icons shopping_shop"></i>
                   <p>
                     <span class="d-lg-none d-md-block">공식 홈</span>
@@ -177,7 +177,7 @@
 			                <td>
 			                	탈퇴일자
 			                </td>
-			                <td><button type="button" class="btn detail_btn" value="상세보기">상세보기</button></td>
+			                <td><button type="button" class="btn detail_btn" value="상세보기" onclick="location.href='${pageContext.request.contextPath }/admin/member/detail'">상세보기</button></td>
 			            </tr>
 			    </table>
               </div>
@@ -186,7 +186,8 @@
         </div>
       </div>
       <footer class="footer">
-      </footer>
+       <jsp:include page="admin_bottom.jsp"/>
+     </footer>
     </div>
   </div>
   

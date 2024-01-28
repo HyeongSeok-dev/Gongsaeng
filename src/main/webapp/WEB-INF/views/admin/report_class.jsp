@@ -181,6 +181,7 @@
         </div>
       </div>
       <footer class="footer">
+       <jsp:include page="admin_bottom.jsp"/>
       </footer>
     </div>
   </div>

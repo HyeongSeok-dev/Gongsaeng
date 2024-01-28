@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/admin_assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-   공생|관리자페이지 계좌
+   공생|관리자페이지 사업체
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -23,7 +23,7 @@
   <link href="${pageContext.request.contextPath }/resources/admin_assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.css" rel="stylesheet" />
-  <link href="${pageContext.request.contextPath }/resources/admin_assets/css/class.css" rel="stylesheet" />
+  <link href="${pageContext.request.contextPath }/resources/admin_assets/css/member.css" rel="stylesheet" />
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
   <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">
 </head>
@@ -43,7 +43,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand title" href="#pablo">회원 계좌 관리</a>
+            <a class="navbar-brand title" href="#pablo">사업체관리</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -100,78 +100,162 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h5 class="title">회원 계좌 목록</h5>
+                <h5 class="title">사업체 상세 정보</h5>
               </div>
               <div class="card-body">
-	               <div class="card-body-header shearch_bar">
-		              	<div>
-		              		<form action="" class="member_date">
-<!-- 		              			<div class="search_bar_admin"> -->
-<!-- 					              	<div> -->
-<!-- 										<select> -->
-<!-- 											<option>일자선택</option> -->
-<!-- 											<option>가입일자</option> -->
-<!-- 											<option>탈퇴일자</option> -->
-<!-- 										</select> -->
-<!-- 					              	</div> -->
-<!-- 					              	<div> -->
-<!-- 					              		<input type="date" id="start_date">&nbsp;&nbsp;~&nbsp;&nbsp;<input type="date" id="end_date"> -->
-<!-- 					              	</div> -->
-<!-- 			              		</div> -->
-			              		<div class="search_bar_admin">
-			              			<div>
-										<select>
-											<option>전체검색</option>
-											<option>아이디</option>
-											<option>은행명</option>
-											<option>계좌번호</option>
-										</select>
-					              	</div>
-			              			<div>
-			              				<input type="search">
-			              			</div>
-					              	<div>
-					              		<button type="submit" class="btn detail_btn" value="검색">검색</button>
-					              	</div>
-			              		</div>	
-		              		</form>
-		              	</div>
-	              	</div>
-	              	
-                <table class="table table-bordered">
-			            <tr>
-			                <th>등록일자</th>
-			                <th>아이디</th>
-			                <th>계좌번호</th>
-			                <th>
-			                	<select name="class_sub_category">
-					              	<option value="0">은행명</option>
-					              	<option value="1"></option>
-					              	<option value="2"></option>
-					              	<option value="3"></option>
-					              	<option value="4"></option>
-					              	<option value="5"></option>
-			              		</select>
-			                </th>
-			                <th>상세보기</th>
-			            </tr>
-			            <!-- 회원 데이터 로우 -->
-			            <tr>
-			                <td>등록일자</td>
-			                <td>아이디</td>
-			                <td>계좌번호</td>
-			                <td>은행명</td>
-			                <td><button type="button" class="btn detail_btn" value="상세내역" onclick="location.href='${pageContext.request.contextPath }/admin/account/member/detail'">상세내역</button></td>
-			            </tr>
-			    </table>
+	             <table class="table table-bordered">
+	             	<tr>
+	             		<th>사업체번호</th>
+	             		<td>사업체번호</td>
+	             	</tr>
+	             	<tr>
+	             		<th>등록일자</th>
+	             		<td>등록일자</td>
+	             	</tr>
+	             	<tr>
+	             		<th>폐업일자</th>
+	             		<td>폐업일자</td>
+	             	</tr>
+	             	<tr>
+	             		<th>이미지</th>
+	             		<td>
+	             		 여기 이미지옴<br>
+<!-- 	             		 	<input type="file"> -->
+	             		 	<button type="button" class="btn">파일선택</button>
+	             		 	<span>파일명</span>
+	             		</td>
+	             	</tr>
+	             	<tr>
+	             		<th>반장아이디</th>
+	             		<td>반장아이디</td>
+	             	</tr>
+	             	<tr>
+	             		<th>상호명</th>
+	             		<td>상호명</td>
+	             	</tr>
+	             	<tr>
+	             		<th>클래스카테고리</th>
+	             		<td>
+							<select>
+								<option></option>
+								<option></option>
+							</select>
+						</td>
+	             	</tr>
+<!-- 	             	<tr> -->
+<!-- 	             		<th>클래스카테고리</th> -->
+<!-- 	             		<td>클래스카테고리</td> -->
+<!-- 	             	</tr> -->
+	             	<!-- 반장회원일 경우 -->
+<!-- 	             	<tr> -->
+<!-- 	             		<th>등록사업체수</th> -->
+<!-- 	             		<td> -->
+<!-- 	             			<div class="td_align"> -->
+<!-- 		             			<span></span> -->
+<!-- 		             			<span>0개</span> -->
+<%-- 		             		 	<button type="button" class="btn" onclick="location.href='${pageContext.request.contextPath }/admin/member/detail/company'">더보기</button> --%>
+<!-- 	             			</div> -->
+<!-- 						</td> -->
+<!-- 	             	</tr> -->
+	             	<!-- ----------- -->
+	             	<tr>
+	             		<th>주소</th>
+	             		<td>
+	             			<input type="text">&nbsp;<button type="button" class="btn">우편번호찾기</button><br>
+	             			<input type="text"><br>
+	             			<input type="text">
+	             		</td>
+	             	</tr>
+	             	<tr>
+	             		<th>전화번호</th>
+	             		<td>
+							<input type="text"><!--  - <input type="text"> - <input type="text">  -->
+						</td>
+	             	</tr>
+	             	<tr>
+	             		<th>사업체상태</th>
+	             		<td>
+							<select>
+								<option>정상</option>
+								<option>승인대기</option>
+								<option>영업중지</option>
+								<option>보류</option>
+								<option>승인거부</option>
+							</select>
+						</td>
+	             	</tr>
+	             	<tr>
+	             		<th>반장 소개</th>
+	             		<td>소개</td>
+	             	</tr>
+	             	<tr>
+	             		<th>등록클래스수</th>
+	             		<td>
+	             			<div class="td_align">
+								<span></span>
+		             			<span>0건</span>
+		             		 	<button type="button" class="btn" onclick="location.href='${pageContext.request.contextPath }/admin/member/detail/class'">더보기</button>
+	             			</div> 
+						</td>
+	             	</tr>
+	             	<tr>
+	             		<th>남긴리뷰수</th>
+	             		<td>
+	             			<div class="td_align">
+		             			<span></span>
+		             			<span>0건</span>
+		             			<button type="button" class="btn">더보기</button>
+	             			</div>
+	             		</td>
+	             	</tr>
+	             	<tr>
+	             		<th>클래스 예약 내역</th>
+	             		<td>
+	             			<div class="td_align">
+								<span></span>
+		             			<span>0건</span>
+								<button type="button" class="btn">더보기</button>
+	             			</div>
+						</td>
+	             	</tr>
+	             	<tr>
+	             		<th>피신고건수</th>
+	             		<td>
+	             			<div class="td_align">
+		             			<span></span>
+		             			<span>0건</span>
+		             			<button type="button" class="btn">더보기</button>
+	             			</div>
+	             		</td>
+	             	</tr>
+	             	<tr>
+	             		<th>계좌번호</th>
+	             		<td>
+	             			<span>은행</span>
+	             			<span>계좌번호(수정가능????)</span>
+	             			<span>
+								<select>
+									<option>비인증</option>
+									<option>인증</option>
+								</select>
+							</span>
+	             		</td>
+					</tr>	             	
+	             </table>	 	
               </div>
             </div>
           </div>
         </div>
+        <div class="row">
+        	<div class="col-md-12 btn_bottom">
+	        	<button type="button" class="btn">목록</button>&nbsp;&nbsp;
+	        	<button type="button" class="btn">변경저장</button>
+        	</div>
+        </div>
       </div>
       <footer class="footer">
        <jsp:include page="admin_bottom.jsp"/>
-      </footer>
+     </footer>
     </div>
   </div>
   

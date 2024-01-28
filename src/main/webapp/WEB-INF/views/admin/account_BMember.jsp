@@ -161,7 +161,7 @@
 			                <td>아이디</td>
 			                <td>계좌번호</td>
 			                <td>은행명</td>
-			                <td><button type="button" class="btn detail_btn" value="상세보기">상세보기</button></td>
+			                <td><button type="button" class="btn detail_btn" value="상세내역" onclick="location.href='${pageContext.request.contextPath }/admin/account/BMember/detail'">상세내역</button></td>
 			            </tr>
 			    </table>
               </div>
@@ -170,6 +170,7 @@
         </div>
       </div>
       <footer class="footer">
+       <jsp:include page="admin_bottom.jsp"/>
       </footer>
     </div>
   </div>

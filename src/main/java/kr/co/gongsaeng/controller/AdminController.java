@@ -26,13 +26,30 @@ public class AdminController {
 	public String memberDetail() {
 		return "admin/member_detail";
 	}
+	@GetMapping("admin/member/detail/company")
+	public String memberDetailCompany() {
+		return "admin/member_detail_company";
+	}
+	@GetMapping("admin/member/detail/class")
+	public String memberDetailClass() {
+		return "admin/member_detail_class";
+	}
 	@GetMapping("admin/company")
 	public String company() {
 		return "admin/company";
 	}
+	@GetMapping("admin/company/detail")
+	public String companyDetail() {
+		return "admin/company_detail";
+	}
 	@GetMapping("admin/company/class")
 	public String companyClass() {
 		return "admin/class";
+	}
+		
+	@GetMapping("admin/company/class/detail")
+	public String companyClassDetail() {
+		return "admin/class_detail";
 	}
 	@GetMapping("admin/account/member")
 	public String accountMember() {
@@ -41,6 +58,14 @@ public class AdminController {
 	@GetMapping("admin/account/BMember")
 	public String accountBMember() {
 		return "admin/account_BMember";
+	}
+	@GetMapping("admin/account/member/detail")
+	public String accountMemberDetail() {
+		return "admin/account_member_detail";
+	}
+	@GetMapping("admin/account/BMember/detail")
+	public String accountBMemberDetail() {
+		return "admin/account_BMember_detail";
 	}
 	@GetMapping("admin/OPay/deposit/withdraw")
 	public String OPayDepositWithdraw() {
