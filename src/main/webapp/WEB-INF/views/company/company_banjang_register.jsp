@@ -62,7 +62,7 @@
 <style type="text/css">
 body {
 	margin-top: 20px;
-	background-color: #f2f3f8;
+	background-color: #DCDCDC!important;
 }
 
 .card {
@@ -133,6 +133,19 @@ body {
 .smaller-input {
     height: 38px; /* 높이 조정 */
 }
+
+input[type="checkbox"] {
+    position: relative!important;
+    top: -2px!important;
+    width: 30px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: gray!important;
+    border-color: gray!important;
+}
+
 </style>
 <!-- Global CSS -->
 <link
@@ -209,8 +222,7 @@ body {
 											<label><b>계좌 정보 입력</b></label>
 											<div class="form-group">
 												<!--   <label for="sel1">Select list:</label> -->
-												<select class="form-control small-input" id="sel1"
-													name="companyAccountBank" required>
+												<select class="form-control small-input" id="sel1" name="companyAccountBank" required>
 													<option disabled selected>은행명</option>
 													<option>산업은행</option>
 													<option>기업은행</option>
@@ -254,37 +266,37 @@ body {
 											<div class="form-check">
 												<label class="form-check-label"> 
 												<input type="checkbox" class="form-check-input" value="">
-												바닥 시공
+												&nbsp;바닥 시공
 												</label>
 											</div>
 											<div class="form-check">
 												<label class="form-check-label"> <input
 													type="checkbox" class="form-check-input" value="">
-													벽/천장 시공
+													&nbsp;벽/천장 시공
 												</label>
 											</div>
 											<div class="form-check">
 												<label class="form-check-label"> <input
 													type="checkbox" class="form-check-input" value="">
-													부분 인테리어
+													&nbsp;부분 인테리어
 												</label>
 											</div>
 											<div class="form-check">
 												<label class="form-check-label"> <input
 													type="checkbox" class="form-check-input" value="">
-													야외 시공
+													&nbsp;야외 시공
 												</label>
 											</div>
 											<div class="form-check">
 												<label class="form-check-label"> <input
 													type="checkbox" class="form-check-input" value="">
-													종합 인테리어
+													&nbsp;종합 인테리어
 												</label>
 											</div>
 											<div class="form-check">
-												<label class="form-check-label"> <input
-													type="checkbox" class="form-check-input" value="">
-													기타 홈 인테리어
+												<label class="form-check-label"> 
+												<input type="checkbox" class="form-check-input" value="">
+													&nbsp;기타 홈 인테리어
 												</label>
 											</div>
 										</div>

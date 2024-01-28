@@ -11,9 +11,9 @@ public class CompanyController {
 		return "company/company_banjang_register";
 	}
 
-	@GetMapping("company/dashboard")
-	public String ceo_dashboard() {
-		return "company/company_dashboard";
+	@GetMapping("company/main")
+	public String company_main() {
+		return "company/company_main";
 	}
 		
 	@GetMapping("company/class/register")
@@ -86,6 +86,11 @@ public class CompanyController {
 		return "company/company_review";
 	}
 	
+	@GetMapping("company/chat")
+	public String company_chat() {
+		return "company/company_chat";
+	}
+	
 	@GetMapping("company/community")
 	public String company_community() {
 		return "company/company_community";
@@ -104,6 +109,11 @@ public class CompanyController {
 	@GetMapping("company/coupon")
 	public String company_coupon() {
 		return "company/company_coupon";
+	}
+	
+	@GetMapping("company/coupon2")
+	public String company_coupon2() {
+		return "company/company_coupon2";
 	}
 	
 	@GetMapping("company/profile")

@@ -4,11 +4,20 @@
 .nav a {
    font-size: 18px !important; /* 원하는 크기로 조정 */
         }
+
+/* .now-ui-icons.design_app { */
+/* 	color: #000000!important; */
+/* } */
+
+.now-ui-icons,.simple-text {
+	color: #000000!important;
+}
+        
 </style>
 </head>
 <div class="logo">
-    <a href="${pageContext.request.contextPath}/company/dashboard" class="simple-text logo-mini">
-        공생 |</a> <a href="${pageContext.request.contextPath}/company/dashboard"
+    <a href="${pageContext.request.contextPath}/company/main" class="simple-text logo-mini">
+        공생 | </a> <a href="${pageContext.request.contextPath}/company/main"
         class="simple-text logo-normal"> 반장님 페이지</a>
 </div>
 <div class="sidebar-wrapper" id="sidebar-wrapper">
@@ -52,7 +61,7 @@
                 <ul class="nav">
                     <li><a href="${pageContext.request.contextPath}/company/member">회원 목록</a></li>
                     <li><a href="${pageContext.request.contextPath}/company/review">리뷰 목록</a></li>
-                    <li><a href="./member-activities.html">채팅 관리</a></li>
+                    <li><a href="${pageContext.request.contextPath}/company/chat">채팅 관리</a></li>
                 </ul>
             </div>
         </li>

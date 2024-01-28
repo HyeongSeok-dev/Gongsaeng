@@ -354,6 +354,7 @@ Copyright (c) 2015 Daniel Eden
   padding: 11px 22px;
   cursor: pointer;
   background-color: #888;
+/*   background-color: #FFFFFF; */
   color: #FFFFFF;
 }
 
@@ -610,7 +611,7 @@ fieldset[disabled] .btn-primary.focus,
 fieldset[disabled] .btn-primary:active,
 fieldset[disabled] .btn-primary.active {
   background-color: #f96332;
-  border-color: #f96332;
+/*   border-color: #f96332; */
 }
 
 .btn-primary.btn-link {
@@ -1615,11 +1616,13 @@ fieldset[disabled] .btn-link.active {
   color: #18ce0f;
 }
 
+/* input 버튼 조정 */
 .input-group-append .input-group-text,
 .input-group-prepend .input-group-text {
   background-color: transparent;
   border: 1px solid #E3E3E3;
-  border-radius: 30px;
+/*   border-radius: 30px; */
+  border-radius: 5px;
   color: #888;
   -webkit-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
   -moz-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
@@ -2275,9 +2278,10 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
   vertical-align: middle;
 }
 
+/* 상단바 작은 폰트 */ 
 .navbar a:not(.btn):not(.dropdown-item) {
-  color: #FFFFFF;
-  font-size: 3em;
+/*   color: #FFFFFF; */
+  color: #000;
 }
 
 .navbar a.dropdown-item {
@@ -3880,11 +3884,13 @@ Created using IcoMoon - icomoon.io
   margin-top: 7px;
 }
 
+/* 사이드바 폰트 색상 */
 .sidebar .nav li>a,
-.off-canvas-sidebar .nav li>a {
+.off-canvas-sidebar .nav li>a{
   margin: 10px 15px 0;
   border-radius: 30px;
-  color: #FFFFFF;
+/*   color: #FFFFFF; */ /* 원본 */
+  color: #000000;
   display: block;
   text-decoration: none;
   position: relative;
@@ -3894,6 +3900,12 @@ Created using IcoMoon - icomoon.io
   padding: 10px 8px;
   line-height: 1.625rem;
 }
+
+.now-ui-icons {
+  color: #000000;
+		
+}
+
 
 .sidebar .nav li:first-child>a,
 .off-canvas-sidebar .nav li:first-child>a {
@@ -3914,11 +3926,17 @@ Created using IcoMoon - icomoon.io
   color: #FFFFFF;
 }
 
+/* 원본 */
 .sidebar .nav li.active>a,
 .off-canvas-sidebar .nav li.active>a {
   background-color: #FFFFFF;
   box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1);
 }
+/* 원본살리고 수정 */
+/* .sidebar .nav li>a:active { */
+/*   background-color: #FFFFFF; */
+/*   box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1); */
+/* } */
 
 .sidebar .nav p,
 .off-canvas-sidebar .nav p {
@@ -4003,7 +4021,8 @@ Created using IcoMoon - icomoon.io
   right: 15px;
   height: 1px;
   width: calc(100% - 30px);
-  background-color: rgba(255, 255, 255, 0.5);
+/*   background-color: rgba(255, 255, 255, 0.5); */
+  background-color: black;
 }
 
 .sidebar .logo p,
@@ -4063,11 +4082,11 @@ Created using IcoMoon - icomoon.io
 
 .sidebar:after,
 .off-canvas-sidebar:after {
-  background: #888;
-  background: -webkit-linear-gradient(#888 0%, #000 80%);
-  background: -o-linear-gradient(#888 0%, #000 80%);
-  background: -moz-linear-gradient(#888 0%, #000 80%);
-  background: linear-gradient(#888 0%, #000 80%);
+  background: #494C53;
+/*   background: -webkit-linear-gradient(#888 0%, #000 80%); */
+/*   background: -o-linear-gradient(#888 0%, #000 80%); */
+/*   background: -moz-linear-gradient(#888 0%, #000 80%); */
+/*   background: linear-gradient(#888 0%, #000 80%); */
   z-index: 3;
 }
 
@@ -4101,11 +4120,13 @@ Created using IcoMoon - icomoon.io
   color: #18ce0f;
 }
 
+/* 사이드바 배경 */
 .sidebar[data-color="orange"]:after,
 .off-canvas-sidebar[data-color="orange"]:after {
-  background: #f96332;
+/*   background: #f96332; */
+  background: #DCDCDC;
 }
-
+/* 원본임 */
 .sidebar[data-color="orange"] .nav li.active>a:not([data-toggle="collapse"]),
 .off-canvas-sidebar[data-color="orange"] .nav li.active>a:not([data-toggle="collapse"]) {
   color: #f96332;
@@ -4196,27 +4217,31 @@ Created using IcoMoon - icomoon.io
   max-height: 100%;
 }
 
+/* 그림자 없애기 */
 @media (min-width: 991px) {
   .sidebar {
     display: block;
-    box-shadow: 0px 2px 22px 0 rgba(0, 0, 0, 0.2), 0px 2px 30px 0 rgba(0, 0, 0, 0.35);
+/*     box-shadow: 0px 2px 22px 0 rgba(0, 0, 0, 0.2), 0px 2px 30px 0 rgba(0, 0, 0, 0.35); */
   }
 }
+
+/* 상단 헤더 색상  */
 
 .panel-header {
   height: 260px;
   padding-top: 80px;
   padding-bottom: 45px;
-  background: #141E30;
+  background: #fff;
+/*   background: #494C53; */
   /* fallback for old browsers */
-  background: -webkit-gradient(linear, left top, right top, from(#0c2646), color-stop(60%, #204065), to(#2a5788));
-  background: linear-gradient(to right, #0c2646 0%, #204065 60%, #2a5788 100%);
+/*   background: -webkit-gradient(linear, left top, right top, from(#0c2646), color-stop(60%, #204065), to(#2a5788)); */
+/*   background: linear-gradient(to right, #0c2646 0%, #204065 60%, #2a5788 100%); */
   position: relative;
   overflow: hidden;
 }
 
 .panel-header .header .title {
-  color: #FFFFFF;
+  color: black;
 }
 
 .panel-header .header .category {
@@ -4235,7 +4260,8 @@ Created using IcoMoon - icomoon.io
 }
 
 .panel-header-lg {
-  height: 380px;
+  min-height: 200px;
+  max-height: 250px;
 }
 
 .footer {

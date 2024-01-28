@@ -40,6 +40,8 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
 	rel="stylesheet">
+  <!-- global CSS -->
+    <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet" />	
 <style type="text/css">
 body {
 	background: #f5f5f5;

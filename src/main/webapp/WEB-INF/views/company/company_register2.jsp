@@ -6,8 +6,8 @@
 <head>
 <meta charset="utf-8" />
 <link rel="apple-touch-icon" sizes="76x76"
-	href="${pageContext.request.contextPath }/resources/admin_assets/img/apple-icon.png">
-<%--   <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/admin_assets/img/favicon.png"> --%>
+	href="${pageContext.request.contextPath }/resources/company_assets/img/apple-icon.png">
+<%--   <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/company_assets/img/favicon.png"> --%>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <title>공생 | 클래스 등록 - 스케줄 및 부가정보</title>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
@@ -15,10 +15,10 @@
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <!-- CSS Files -->
-<link href="${pageContext.request.contextPath }/resources/admin_assets/css/bootstrap.min.css" rel="stylesheet" />
-<link href="${pageContext.request.contextPath }/resources/admin_assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
+<link href="${pageContext.request.contextPath }/resources/company_assets/css/bootstrap.min.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath }/resources/company_assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
 <!-- CSS Just for demo purpose, don't include it in your project -->
-<link href="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath }/resources/company_assets/demo/demo.css" rel="stylesheet" />
 <!-- Global CSS -->
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet" />
 <!-- DatePicker -->
@@ -30,19 +30,38 @@
 
 <style type="text/css">
 
+    /* FullCalendar 바탕색 변경 */
+    .fc {
+        background-color: white;
+        border: 1px solid #ddd; /* 옵션: 테두리 추가 */
+    }
+
+
+.card {
+	border: none;
+	-webkit-box-shadow: 1px 0 20px rgba(96, 93, 175, .05);
+	box-shadow: 1px 0 20px rgba(96, 93, 175, .05);
+	margin-bottom: 30px;
+	background-color: #DCDCDC!important;
+	
+}
 
 .card label {
     font-size: 21px!important;
 }
 
-  .form-control {
+.form-control {
     height: 50px;
     font-size: 16px; /* 원하는 폰트 크기로 설정 */
     /* 추가적인 스타일링 */
-  }
+    background-color: #fff;
+    border-radius: 0; /* 모서리를 각진 형태로 설정 */
+}
+
 
 .input-group {
   height: 50px!important; 
+  border-radius: 5px!important;
 }
 
 .day-checkbox {
@@ -74,8 +93,8 @@
 
    /* 체크박스 체크시 스타일 */
   .checkbox-label.checked {
-    background-color: #007bff;
-    color: white;
+    background-color: lightgray;
+    color: #fff;
   }
  
   #mon_checkbox,#tue_checkbox,#wed_checkbox,#thr_checkbox,#fri_checkbox,#sat_checkbox,#sun_checkbox {
@@ -94,7 +113,13 @@
   .modal_title {
   	margin-bottom: 20px;
   	font-size: 18px;
+  	color: #666A73!important;
   }
+  
+  label {
+  	color: #666A73!important;
+  }
+  
   
   @font-face {
     font-family: 'NanumSquareNeo-Variable';
@@ -112,7 +137,20 @@
 .custom-font-size {
     font-size: 18px;
 } 
- 
+
+
+.content {
+	background-color: #fff!important;
+} 
+
+.wrapper, .main-panel {
+	overflow-y: hidden!important; /* 가로 스크롤 숨김 */
+/* 	overflow-y: auto!important; /* 세로 스크롤 자동 조정 */ */
+}
+
+button {
+    font-family: 'NanumSquareNeo-Variable', sans-serif;
+}  
   
 </style>
 </head>
@@ -329,7 +367,6 @@
 										</div>
 									</div>
 								<div class="col-md-4 pl-1">
-									  <div class="form-group">
 									    <label>판매가격</label>
 									    <div class="input-group">
 									      <input type="text" class="form-control" placeholder="ex) 100,000">
@@ -342,10 +379,12 @@
 								</form>
 							</div>
 						</div>
+					<div class="col-md-11 pl-1">	
 					<div class="submit_btn d-flex justify-content-end">
 						<button type="button" class="btn btn-danger btn-col-md-4 mr-2 custom-font-size">취소</button>
 						<button type="button" class="btn btn-default btn-col-md-4 mr-2 custom-font-size" onclick="location.href='${pageContext.request.contextPath}/company/class/register1'">이전</button>
 						<button type="button" class="btn btn-default btn-col-md-4  custom-font-size" onclick="location.href='${pageContext.request.contextPath}/company/class/register3'">다음</button>
+					</div>
 					</div>
 					</div>
 				</div>
@@ -362,18 +401,18 @@
 
 <!--   Core JS Files   -->
 <!-- Popper.js, then Bootstrap JS -->
-<script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/popper.min.js"></script>
-<script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath }/resources/admin_assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/company_assets/js/core/popper.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/company_assets/js/core/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/company_assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 <!-- ... 나머지 스크립트 파일 ... -->
 	<!-- Chart JS -->
-	<script src="${pageContext.request.contextPath }/resources/admin_assets/js/plugins/chartjs.min.js"></script>
+	<script src="${pageContext.request.contextPath }/resources/company_assets/js/plugins/chartjs.min.js"></script>
 	<!--  Notifications Plugin    -->
-	<script src="${pageContext.request.contextPath }/resources/admin_assets/js/plugins/bootstrap-notify.js"></script>
+	<script src="${pageContext.request.contextPath }/resources/company_assets/js/plugins/bootstrap-notify.js"></script>
 	<!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-	<script src="${pageContext.request.contextPath }/resources/admin_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath }/resources/company_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script>
 	<!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
-	<script src="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.js"></script>
+	<script src="${pageContext.request.contextPath }/resources/company_assets/demo/demo.js"></script>
 	
 <script>
     $(document).ready(function() {

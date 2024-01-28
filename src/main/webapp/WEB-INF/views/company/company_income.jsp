@@ -2,12 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
-<html>="en">
-
+<html>
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath }/resources/admin_assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/admin_assets/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath }/resources/company_assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/company_assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     Now UI Dashboard by Creative Tim
@@ -17,10 +16,41 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <!-- CSS Files -->
-  <link href="${pageContext.request.contextPath }/resources/admin_assets/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="${pageContext.request.contextPath }/resources/admin_assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
+  <link href="${pageContext.request.contextPath }/resources/company_assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="${pageContext.request.contextPath }/resources/company_assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.css" rel="stylesheet" />
+  <link href="${pageContext.request.contextPath }/resources/company_assets/demo/demo.css" rel="stylesheet" />
+  <!-- global CSS -->
+    <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet" />
+    <style type="text/css">
+    @font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'NanumSquareNeo-Variable', sans-serif;
+    	background: #f5f5f5; 
+    
+}
+
+.card {
+	border: none;
+	-webkit-box-shadow: 1px 0 20px rgba(96, 93, 175, .05);
+	box-shadow: 1px 0 20px rgba(96, 93, 175, .05);
+	margin-bottom: 30px;
+	background-color: #DCDCDC!important;
+	
+}
+
+
+.content {
+	background-color: #fff!important;
+}
+    
+    </style>
 </head>
 
 <body class="">
@@ -97,34 +127,38 @@
       <div class="panel-header">
         <div class="header text-center">
           <h2 class="title">정산 신청</h2>
-          <p class="category">Handcrafted by our friend <a target="_blank" href="https://github.com/mouse0270">Robert McIntosh</a>. Please checkout the <a href="http://bootstrap-notify.remabledesigns.com/" target="_blank">full documentation.</a></p>
+<!--           <p class="category">Handcrafted by our friend <a target="_blank" href="https://github.com/mouse0270">Robert McIntosh</a>. Please checkout the <a href="http://bootstrap-notify.remabledesigns.com/" target="_blank">full documentation.</a></p> -->
         </div>
       </div>
-      <div class="content">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="card">
-              <div class="card-header">
-                <h4 class="card-title">정산 가능 금액</h4>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">1,000,000원</h5><button type="button" class="btn btn-danger">정산 신청</button>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card">
-              <div class="card-header">
-                <h4 class="card-title">정산 대기 금액</h4>
-              </div>
-              <div class="card-body">
-                <h5 class="card-title">1,000,000원</h5>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <footer class="footer">
+		<div class="content">
+			<div class="row">
+				<div class="col-md-6">
+					<h4 class="card-title">정산 가능 금액</h4>
+					<div class="card">
+						<div class="card-header"></div>
+						<div class="card-body">
+							<div
+								class="income_btn d-flex align-items-center justify-content-between">
+								<h5 class="card-title md-4">1,000,000원</h5>
+								<button type="button" class="btn btn-danger md-2">정산 신청</button>
+							</div>
+							<span class="account-number mt-2">국민은행</span><br>
+							<span class="account-number mt-2">11790204135187 조혜진</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<h4 class="card-title">정산 완료 금액</h4>
+					<div class="card">
+						<div class="card-header"></div>
+						<div class="card-body">
+							<h5 class="card-title">1,000,000원</h5>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<footer class="footer">
         <div class=" container-fluid ">
           <nav>
             <ul>
@@ -155,19 +189,19 @@
     </div>
   </div>
   <!--   Core JS Files   -->
-  <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/jquery.min.js"></script>
-  <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/popper.min.js"></script>
-  <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/bootstrap.min.js"></script>
-  <script src="${pageContext.request.contextPath }/resources/admin_assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath }/resources/company_assets/js/core/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath }/resources/company_assets/js/core/popper.min.js"></script>
+  <script src="${pageContext.request.contextPath }/resources/company_assets/js/core/bootstrap.min.js"></script>
+  <script src="${pageContext.request.contextPath }/resources/company_assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
   <!--  Google Maps Plugin    -->
   <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
   <!-- Chart JS -->
-  <script src="${pageContext.request.contextPath }/resources/admin_assets/js/plugins/chartjs.min.js"></script>
+  <script src="${pageContext.request.contextPath }/resources/company_assets/js/plugins/chartjs.min.js"></script>
   <!--  Notifications Plugin    -->
-  <script src="${pageContext.request.contextPath }/resources/admin_assets/js/plugins/bootstrap-notify.js"></script>
+  <script src="${pageContext.request.contextPath }/resources/company_assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="${pageContext.request.contextPath }/resources/admin_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
-  <script src="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.js"></script>
+  <script src="${pageContext.request.contextPath }/resources/company_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
+  <script src="${pageContext.request.contextPath }/resources/company_assets/demo/demo.js"></script>
 </body>
 
 </html>

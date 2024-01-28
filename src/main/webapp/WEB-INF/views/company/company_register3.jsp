@@ -8,8 +8,8 @@
 <head>
 <meta charset="utf-8" />
 <link rel="apple-touch-icon" sizes="76x76"
-	href="${pageContext.request.contextPath }/resources/admin_assets/img/apple-icon.png">
-<%--   <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/admin_assets/img/favicon.png"> --%>
+	href="${pageContext.request.contextPath }/resources/company_assets/img/apple-icon.png">
+<%--   <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/company_assets/img/favicon.png"> --%>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <title>공생 | 클래스 등록 - 기타 제공 사항</title>
 <meta
@@ -25,14 +25,14 @@
 	crossorigin="anonymous">
 <!-- CSS Files -->
 <link
-	href="${pageContext.request.contextPath }/resources/admin_assets/css/bootstrap.min.css"
+	href="${pageContext.request.contextPath }/resources/company_assets/css/bootstrap.min.css"
 	rel="stylesheet" />
 <link
-	href="${pageContext.request.contextPath }/resources/admin_assets/css/now-ui-dashboard.css?v=1.5.0"
+	href="${pageContext.request.contextPath }/resources/company_assets/css/now-ui-dashboard.css?v=1.5.0"
 	rel="stylesheet" />
 <!-- CSS Just for demo purpose, don't include it in your project -->
 <link
-	href="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.css"
+	href="${pageContext.request.contextPath }/resources/company_assets/demo/demo.css"
 	rel="stylesheet" />
 <!-- DatePicker -->
 <link rel="stylesheet"
@@ -44,6 +44,22 @@
 	href="${pageContext.request.contextPath }/resources/css/global.css"
 	rel="stylesheet" />
 <style type="text/css">
+@font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.card {
+	border: none;
+	-webkit-box-shadow: 1px 0 20px rgba(96, 93, 175, .05);
+	box-shadow: 1px 0 20px rgba(96, 93, 175, .05);
+	margin-bottom: 30px;
+	background-color: #DCDCDC!important;
+	
+}
+
 .form-control {
   height: 50px; 
 }
@@ -61,6 +77,48 @@
 		color: #000000;
 	
 }
+
+.content {
+	background-color: #fff!important;
+}
+
+.card label {
+	color: #666A73!important;
+}
+
+.card_small {
+	background-color: #fff;
+	border-radius: 10px;
+	padding: 5px;
+	
+}
+
+.form-control {
+	background-color: #fff!important;
+	font-size: 16px!important;
+	border-radius: 10px!important;
+	font-family: 'NanumSquareNeo-Variable';
+	color: #666A73;
+}
+
+.form-control:focus {
+    border: none!important; /* 테두리 제거 */
+    /* 필요에 따라 다른 스타일 속성 추가 */
+}
+
+ .main-panel { 
+      overflow-y: auto;  /* 필요에 따라 스크롤바가 나타남  */
+ } 
+
+.unnecessary-scroll-area {
+    overflow-y: hidden;
+}
+
+
+button {
+    font-family: 'NanumSquareNeo-Variable', sans-serif;
+}  
+
 </style>
 <script type="text/javascript">
 </script>
@@ -152,20 +210,16 @@
 							</div>
 							<div class="card-body">
 								<form>
+				            <label>기타 제공사항 선택</label><br>         
+								<div class="card_small">
 									<div class="row">
 									    <div class="col-md-12">
 									        <div class="form-group">
-									            <label>기타 제공사항 선택</label><br>         
 									            <input type="checkbox" value="" id="workshop">&nbsp;<label for="workshop" class="register3_text_label">공방 보유</label>
 									            <input type="checkbox" value="" id="park">&nbsp;<label for="park" class="register3_text_label">주차 공간</label>
 									            <input type="checkbox" value="" id="wifi">&nbsp;<label for="wifi" class="register3_text_label">와이파이</label>
 									            <input type="checkbox" value="" id="coffee">&nbsp;<label for="coffee" class="register3_text_label">커피 별도구매</label>
 									            <input type="checkbox" value="" id="bus">&nbsp;<label for="bus" class="register3_text_label">대중교통 용이</label>
-									            <!-- <input type="checkbox" value="">&nbsp;공방 보유 -->
-<!-- 									            <input type="checkbox" value="">&nbsp;주차공간 -->
-<!-- 									            <input type="checkbox" value="">&nbsp;와이파이 -->
-<!-- 									            <input type="checkbox" value="">&nbsp;커피 별도구매 -->
-<!-- 									            <input type="checkbox" value="" >&nbsp;대중교통 용이 -->
 									        </div>
 									    </div>
 									</div>
@@ -174,13 +228,10 @@
 									        <div class="form-group">
     								            <input type="checkbox" value="" id="taxi">&nbsp;<label for="taxi" class="register3_text_label">택시/자가용 추천</label>
 									        	<input type="checkbox" value="" id="snack">&nbsp;<label for="snack" class="register3_text_label">음료/간식 제공</label>
-									        
-<!-- 									            <input type="checkbox" value="" >&nbsp;택시/자가용 추천 -->
-<!-- 									            <input type="checkbox" value="" >&nbsp;음료/간식 제공 -->
 									        </div>
 									    </div>
 									</div>
-<!-- 									</div> -->
+								 </div>	
 									<br>
 									<div class="row">
 										<div class="col-md-9 pr-7">
@@ -248,10 +299,13 @@
 							</div>
 						</div>
 						</div>
+					<div class="col-md-11 pl-1">	
 					<div class="submit_btn d-flex justify-content-end">
 						<button type="button" class="btn btn-danger btn-col-md-4 mr-2 custom-font-size">취소</button>
 						<button type="button" class="btn btn-default btn-col-md-4 mr-2 custom-font-size" onclick="location.href='${pageContext.request.contextPath}/company/class/register2'">이전</button>
-						<button type="button" class="btn btn-default btn-col-md-4 custom-font-size" onclick="location.href='${pageContext.request.contextPath}/company/class/register4'">다음</button>
+						<button type="button" class="btn btn-default btn-col-md-4  custom-font-size" onclick="location.href='${pageContext.request.contextPath}/company/class/register4'">다음</button>
+					</div>
+					</div>
 					</div>
 					</div>
 				</div>
@@ -285,28 +339,28 @@
 	</div>
 	<!--   Core JS Files   -->
 	<script
-		src="${pageContext.request.contextPath }/resources/admin_assets/js/core/jquery.min.js"></script>
+		src="${pageContext.request.contextPath }/resources/company_assets/js/core/jquery.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath }/resources/admin_assets/js/core/popper.min.js"></script>
+		src="${pageContext.request.contextPath }/resources/company_assets/js/core/popper.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath }/resources/admin_assets/js/core/bootstrap.min.js"></script>
+		src="${pageContext.request.contextPath }/resources/company_assets/js/core/bootstrap.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath }/resources/admin_assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+		src="${pageContext.request.contextPath }/resources/company_assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 	<!--  Google Maps Plugin    -->
 	<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 	<!-- Chart JS -->
 	<script
-		src="${pageContext.request.contextPath }/resources/admin_assets/js/plugins/chartjs.min.js"></script>
+		src="${pageContext.request.contextPath }/resources/company_assets/js/plugins/chartjs.min.js"></script>
 	<!--  Notifications Plugin    -->
 	<script
-		src="${pageContext.request.contextPath }/resources/admin_assets/js/plugins/bootstrap-notify.js"></script>
+		src="${pageContext.request.contextPath }/resources/company_assets/js/plugins/bootstrap-notify.js"></script>
 	<!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
 	<script
-		src="${pageContext.request.contextPath }/resources/admin_assets/js/now-ui-dashboard.min.js?v=1.5.0"
+		src="${pageContext.request.contextPath }/resources/company_assets/js/now-ui-dashboard.min.js?v=1.5.0"
 		type="text/javascript"></script>
 	<!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
 	<script
-		src="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.js"></script>
+		src="${pageContext.request.contextPath }/resources/company_assets/demo/demo.js"></script>
 </body>
 
 </html>

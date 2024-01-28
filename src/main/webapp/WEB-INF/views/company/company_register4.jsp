@@ -7,8 +7,8 @@
 <head>
 <meta charset="utf-8" />
 <link rel="apple-touch-icon" sizes="76x76"
-	href="${pageContext.request.contextPath }/resources/admin_assets/img/apple-icon.png">
-<%--   <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/admin_assets/img/favicon.png"> --%>
+	href="${pageContext.request.contextPath }/resources/company_assets/img/apple-icon.png">
+<%--   <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/company_assets/img/favicon.png"> --%>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <title>공생 | 클래스 등록 - 검수 요청 및 약관 동의</title>
 <meta
@@ -24,14 +24,14 @@
 	crossorigin="anonymous">
 <!-- CSS Files -->
 <link
-	href="${pageContext.request.contextPath }/resources/admin_assets/css/bootstrap.min.css"
+	href="${pageContext.request.contextPath }/resources/company_assets/css/bootstrap.min.css"
 	rel="stylesheet" />
 <link
-	href="${pageContext.request.contextPath }/resources/admin_assets/css/now-ui-dashboard.css?v=1.5.0"
+	href="${pageContext.request.contextPath }/resources/company_assets/css/now-ui-dashboard.css?v=1.5.0"
 	rel="stylesheet" />
 <!-- CSS Just for demo purpose, don't include it in your project -->
 <link
-	href="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.css"
+	href="${pageContext.request.contextPath }/resources/company_assets/demo/demo.css"
 	rel="stylesheet" />
 <!-- Global CSS -->
 <link
@@ -44,6 +44,37 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <style type="text/css">
+.card {
+	border: none;
+	-webkit-box-shadow: 1px 0 20px rgba(96, 93, 175, .05);
+	box-shadow: 1px 0 20px rgba(96, 93, 175, .05);
+	margin-bottom: 30px;
+	background-color: #DCDCDC!important;
+	
+}
+
+.content {
+	background-color: #fff!important;
+}
+
+label {
+	font-size: 18px!important;
+	
+}
+
+
+button {
+    font-family: 'NanumSquareNeo-Variable', sans-serif;
+    font-size: 16px!important;
+}  
+
+.examination {
+	background-color: #fff;
+	color: #000;
+	border: 1px solid #000;
+}
+
+
 </style>
 <script type="text/javascript">
 </script>
@@ -137,13 +168,13 @@
 										<div class="col-md-7 pr-1">
 											<div class="form-group">
 												<div class="checkbox">
-												  <label><input type="checkbox" value="">서비스 이용약관 동의(필수)</label>
+												  <label><input type="checkbox" value="">&nbsp;&nbsp;서비스 이용약관 동의(필수)</label>
 												</div>
 												<div class="checkbox">
-												  <label><input type="checkbox" value="">서비스 개인정보 처리방침 동의(필수)</label>
+												  <label><input type="checkbox" value="">&nbsp;&nbsp;서비스 개인정보 처리방침 동의(필수)</label>
 												</div>
 												<div class="checkbox">
-												  <label><input type="checkbox" value="">솜씨당 환불 규정에 동의하기(필수)</label>
+												  <label><input type="checkbox" value="">&nbsp;&nbsp;공생 환불 규정에 동의(필수)</label>
 												</div>
 											</div>
 										</div>
@@ -151,8 +182,13 @@
 								</form>
 							</div>
 						</div>
-						<button type="button" class="btn btn-danger">취소</button>
-						<button type="button" class="btn btn-default">검수 신청</button>
+					</div>
+					<div class="col-md-11 pl-1">	
+					<div class="submit_btn d-flex justify-content-end">
+						<button type="button" class="btn btn-default btn-col-md-4 mr-2 custom-font-size" onclick="location.href='${pageContext.request.contextPath}/company/class/register3'">이전</button>
+						<button type="button" class="btn btn-col-md-4 mr-2 custom-font-size examination" >검수 신청</button>
+<%-- 						<button type="button" class="btn btn-default btn-col-md-4  custom-font-size" onclick="location.href='${pageContext.request.contextPath}/company/class/register4'">다음</button> --%>
+					</div>
 					</div>
 				</div>
 			</div>
@@ -185,28 +221,28 @@
 	</div>
 	<!--   Core JS Files   -->
 	<script
-		src="${pageContext.request.contextPath }/resources/admin_assets/js/core/jquery.min.js"></script>
+		src="${pageContext.request.contextPath }/resources/company_assets/js/core/jquery.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath }/resources/admin_assets/js/core/popper.min.js"></script>
+		src="${pageContext.request.contextPath }/resources/company_assets/js/core/popper.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath }/resources/admin_assets/js/core/bootstrap.min.js"></script>
+		src="${pageContext.request.contextPath }/resources/company_assets/js/core/bootstrap.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath }/resources/admin_assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+		src="${pageContext.request.contextPath }/resources/company_assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 	<!--  Google Maps Plugin    -->
 	<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 	<!-- Chart JS -->
 	<script
-		src="${pageContext.request.contextPath }/resources/admin_assets/js/plugins/chartjs.min.js"></script>
+		src="${pageContext.request.contextPath }/resources/company_assets/js/plugins/chartjs.min.js"></script>
 	<!--  Notifications Plugin    -->
 	<script
-		src="${pageContext.request.contextPath }/resources/admin_assets/js/plugins/bootstrap-notify.js"></script>
+		src="${pageContext.request.contextPath }/resources/company_assets/js/plugins/bootstrap-notify.js"></script>
 	<!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
 	<script
-		src="${pageContext.request.contextPath }/resources/admin_assets/js/now-ui-dashboard.min.js?v=1.5.0"
+		src="${pageContext.request.contextPath }/resources/company_assets/js/now-ui-dashboard.min.js?v=1.5.0"
 		type="text/javascript"></script>
 	<!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
 	<script
-		src="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.js"></script>
+		src="${pageContext.request.contextPath }/resources/company_assets/demo/demo.js"></script>
 </body>
 
 </html>

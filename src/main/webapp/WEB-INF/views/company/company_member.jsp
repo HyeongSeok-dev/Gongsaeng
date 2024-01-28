@@ -2,12 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
-<!-- <html>="en"> -->
+<html>
 
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath }/resources/admin_assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/admin_assets/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath }/resources/company_assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/company_assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     Now UI Dashboard by Creative Tim
@@ -17,22 +17,27 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <!-- CSS Files -->
-  <link href="${pageContext.request.contextPath }/resources/admin_assets/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="${pageContext.request.contextPath }/resources/admin_assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
+  <link href="${pageContext.request.contextPath }/resources/company_assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="${pageContext.request.contextPath }/resources/company_assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.css" rel="stylesheet" />
+  <link href="${pageContext.request.contextPath }/resources/company_assets/demo/demo.css" rel="stylesheet" />
   <!-- CSS(List) -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" rel="stylesheet">      
+  <!-- global CSS -->
+    <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet" />	
+
 <style type="text/css">
-    	body{
+ body{
     background:#f5f5f5;
 /*     margin-top:20px; */
 }
 .card {
-    border: none;
-    -webkit-box-shadow: 1px 0 20px rgba(96,93,175,.05);
-    box-shadow: 1px 0 20px rgba(96,93,175,.05);
-    margin-bottom: 30px;
+	border: none;
+	-webkit-box-shadow: 1px 0 20px rgba(96, 93, 175, .05);
+	box-shadow: 1px 0 20px rgba(96, 93, 175, .05);
+	margin-bottom: 30px;
+	background-color: #DCDCDC!important;
+	
 }
 .table th {
     font-weight: 500;
@@ -63,6 +68,48 @@
 .badge-soft-primary {
     background-color: rgba(96,93,175,.2);
     color: #605daf;
+}
+
+.content {
+	background-color: #fff!important;
+}
+
+/* 테이블 내 텍스트의 폰트 사이즈를 조정합니다. */
+.table th, .table td {
+  font-size: 14px!important; /* 원하는 폰트 사이즈로 조정하세요. */
+  text-align: center!important;
+}
+
+/* 제목의 폰트 사이즈를 줄입니다. */
+h2.title {
+/*   font-size: 24px; /* 원하는 폰트 사이즈로 조정하세요. */ */
+}
+
+th {
+font-size: 14px;
+}
+
+.table {
+  width: 100%!important; /* 테이블의 너비를 부모 요소의 100%로 설정 */
+}
+
+tbody {
+	background-color: #fff;
+	color: #000;
+}
+
+.form-control-plaintext {
+    margin-top: 25px;
+}
+
+.small-input {
+    font-size: 16px; /* 폰트 크기를 조정합니다 */
+    height: 40px; /* 높이를 조정합니다 */
+    /* 필요에 따라 padding도 조정할 수 있습니다 */
+}
+
+.member_btn {
+ 	margin-top: 23px;
 }
 </style>  
   
@@ -141,112 +188,128 @@
       <div class="panel-header">
         <div class="header text-center">
           <h2 class="title">회원 목록</h2>
-          <p class="category">Handcrafted by our friend <a target="_blank" href="https://github.com/mouse0270">Robert McIntosh</a>. Please checkout the <a href="http://bootstrap-notify.remabledesigns.com/" target="_blank">full documentation.</a></p>
+<!--           <p class="category">Handcrafted by our friend <a target="_blank" href="https://github.com/mouse0270">Robert McIntosh</a>. Please checkout the <a href="http://bootstrap-notify.remabledesigns.com/" target="_blank">full documentation.</a></p> -->
         </div>
       </div>
-      <div class="content">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-
-				<div class="col-md-5 pl-1">
-		<div class="dropdown">
-		  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">회원 정렬 메뉴
-		<!--   <span class="caret"></span> -->
-		  </button>
-		  <ul class="dropdown-menu">
-		    <li><a href="#">HTML</a></li>
-		    <li><a href="#">CSS</a></li>
-		    <li><a href="#">JavaScript</a></li>
-		  </ul>
+		<div class="content">
+			<div class="row">
+				<div class="col-xl-12">
+					<div class="card col-xl-12">
+						<div class="card-header"></div>
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-xl-12">
+									<div class="card">
+										<form>
+											<div class="form-row align-items-center">
+												<div class="col-xl-2">
+													<label for="purchaseDateStart">클래스 등록일 검색</label> <input
+														type="date" class="form-control" id="purchaseDateStart"
+														name="purchaseDateStart">
+												</div>
+												<div class="col-xs-1 text-center">
+													<span class="form-control-plaintext">~</span>
+												</div>
+												<div class="col-xl-2">
+													<label for="purchaseDateEnd"></label> <input type="date"
+														class="form-control" id="purchaseDateEnd"
+														name="purchaseDateEnd">
+												</div>
+												<!-- 추가 컨텐츠를 위한 공간 -->
+												<div class="form-group col-xl-7">
+													<input type="button" value="전체" class="btn btn-dark mt-5 ">
+													<input type="button" value="오늘" class="btn btn-dark mt-5">
+													<input type="button" value="1주일" class="btn btn-dark mt-5">
+													<input type="button" value="1개월" class="btn btn-dark mt-5">
+													<input type="button" value="3개월" class="btn btn-dark mt-5">
+													<input type="button" value="6개월" class="btn btn-dark mt-5">
+													<input type="button" value="&nbsp;&nbsp;1 년&nbsp;&nbsp;" class="btn btn-dark mt-5">
+												</div>
+												<!-- 새로운 버튼을 위한 새로운 form-row 추가 -->
+												<div class="form-row col-xl-12 mt-1">
+													<div class="col-xl-2">
+													<div class="form-group">
+													<label>클래스 진행 여부</label>
+														<select class="form-control small-input" id="sel1" name="memberClass">
+															<option>진행중</option>
+															<option>종료</option>
+														</select>									
+													</div>
+													</div>
+													<div class="col-xl-2">
+													</div>
+													<div class="col-xl-5">
+													<div class="form-row member_btn">
+														<input type="button" value="초기화" class="btn btn-info m-1">
+														<input type="button" value="검색" class="btn btn-info m-1">
+														<!-- 여기에 추가 버튼을 계속해서 추가할 수 있습니다. -->
+													</div>
+													</div>
+													<div class="col-xl-3"></div>
+												</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 		      			  <div class="row"> -->
+			<div class="col-md-12">
+				<div class="card col-md-12">
+					<div class="card-header"></div>
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-xl-12">
+								<div class="card">
+									<form>
+										<table class="table table-bordered">
+											<thead class="thead-dark">
+												<tr>
+													<th scope="col">#</th>
+													<th scope="col">클래스 진행 여부</th>
+													<th scope="col">회원아이디</th>
+													<th scope="col">회원명</th>
+													<th scope="col">클래스 등록일</th>
+													<th scope="col">클래스명</th>
+													<th scope="col">성별</th>
+													<th scope="col">관심정보</th>
+													<th scope="col">채팅</th>
+<!-- 													<th scope="col">포인트 사용 금액</th> -->
+<!-- 													<th scope="col">수수료</th> -->
+<!-- 													<th scope="col">정산신청</th> -->
+												</tr>
+											</thead>
+											<tbody>
+												<!-- 여기에 각 행을 추가하세요. 예를 들어: -->
+												<tr>
+													<th scope="row">1</th>
+													<td>진행중</td>
+													<td>lottegiants22</td>
+													<td>구승민</td>
+													<td>2024/12/25</td>
+													<td>인테리어 클래스</td>
+													<td>남</td>
+													<td>#인테리어</td>
+													<td><input type="button" value="채팅보내기"></td>
+<!-- 													<td>0</td> -->
+<!-- 													<td>50,000</td> -->
+<!-- 													<td><input type="button" value="정산신청"></td> -->
+												</tr>
+												<!-- 더 많은 행을 추가할 수 있습니다. -->
+											</tbody>
+										</table>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 		      </div> -->
 		</div>
-		  </div>
-              </div>
-              <div class="card-body">
-              <div class="container">
-<div class="row">
-<div class="col-xl-12">
-<div class="card">
-<div class="card-body">
-<h5 class="header-title pb-3 mt-0">회원 목록</h5>
-<div class="table-responsive">
-<table class="table table-hover mb-0">
-<thead>
-<tr class="align-self-center">
-<th>#</th>
-<th>회원명</th>
-<th>클래스 등록일</th>
-<th>클래스명</th>
-<th>성별</th>
-<th>관심정보</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>New Office Building</td>
-<td><img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt class="thumb-sm rounded-circle mr-2"> Frank M. Lyons</td>
-<td>Paypal</td>
-<td>15/7/2018</td>
-<td>$35,000</td>
-<td><span class="badge badge-boxed badge-soft-primary">Success</span></td>
-</tr>
-<tr>
-<td>Market Research</td>
-<td><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt class="thumb-sm rounded-circle mr-2"> Angelo Butler</td>
-<td>Pioneer</td>
-<td>30/9/2018</td>
-<td>$45,000</td>
-<td><span class="badge badge-boxed badge-soft-warning">Panding</span></td>
-</tr>
-<tr>
-<td>Website &amp; Blog</td>
-<td><img src="https://bootdey.com/img/Content/avatar/avatar4.png" alt class="thumb-sm rounded-circle mr-2"> Phillip Morse</td>
-<td>Paypal</td>
-<td>2/6/2018</td>
-<td>$70,000</td>
-<td><span class="badge badge-boxed badge-soft-warning">Success</span></td>
-</tr>
-<tr>
-<td>Product Devlopment</td>
-<td><img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt class="thumb-sm rounded-circle mr-2"> Kevin Heal</td>
-<td>Paypal</td>
-<td>5/8/2018</td>
-<td>$15,000</td>
-<td><span class="badge badge-boxed badge-soft-primary">panding</span></td>
-</tr>
-<tr>
-<td>New Office Building</td>
-<td><img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt class="thumb-sm rounded-circle mr-2"> Frank M. Lyons</td>
-<td>Paypal</td>
-<td>15/7/2018</td>
-<td>$35,000</td>
-<td><span class="badge badge-boxed badge-soft-primary">Success</span></td>
-</tr>
-<tr>
-<td>New Office Building</td>
-<td><img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt class="thumb-sm rounded-circle mr-2"> Frank M. Lyons</td>
-<td>Paypal</td>
-<td>15/7/2018</td>
-<td>$35,000</td>
-<td><span class="badge badge-boxed badge-soft-primary">Success</span></td>
-</tr>
-</tbody>
-</table>
-</div>
-
-<div class="pt-3 border-top text-right"><a href="#" class="text-primary">View all <i class="mdi mdi-arrow-right"></i></a></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <footer class="footer">
+		<footer class="footer">
         <div class=" container-fluid ">
           <nav>
             <ul>
@@ -277,19 +340,35 @@
     </div>
   </div>
   <!--   Core JS Files   -->
-  <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/jquery.min.js"></script>
-  <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/popper.min.js"></script>
-  <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/bootstrap.min.js"></script>
-  <script src="${pageContext.request.contextPath }/resources/admin_assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath }/resources/company_assets/js/core/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath }/resources/company_assets/js/core/popper.min.js"></script>
+  <script src="${pageContext.request.contextPath }/resources/company_assets/js/core/bootstrap.min.js"></script>
+  <script src="${pageContext.request.contextPath }/resources/company_assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
   <!--  Google Maps Plugin    -->
   <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
   <!-- Chart JS -->
-  <script src="${pageContext.request.contextPath }/resources/admin_assets/js/plugins/chartjs.min.js"></script>
+  <script src="${pageContext.request.contextPath }/resources/company_assets/js/plugins/chartjs.min.js"></script>
   <!--  Notifications Plugin    -->
-  <script src="${pageContext.request.contextPath }/resources/admin_assets/js/plugins/bootstrap-notify.js"></script>
+  <script src="${pageContext.request.contextPath }/resources/company_assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="${pageContext.request.contextPath }/resources/admin_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
-  <script src="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.js"></script>
+  <script src="${pageContext.request.contextPath }/resources/company_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
+  <script src="${pageContext.request.contextPath }/resources/company_assets/demo/demo.js"></script>
+  <script type="text/javascript">
+  // 드롭다운 메뉴의 모든 항목을 선택합니다.
+  var dropdownItems = document.querySelectorAll('.dropdown-item');
+
+  // 각 항목에 클릭 이벤트 리스너를 추가합니다.
+  dropdownItems.forEach(function(item) {
+    item.addEventListener('click', function() {
+      // 클릭된 항목의 텍스트를 가져옵니다.
+      var text = this.textContent;
+
+      // 버튼의 텍스트를 업데이트합니다.
+      document.getElementById('dropdownMenuButton').textContent = text;
+    });
+  });
+  
+  </script>
 </body>
 
 </html>
