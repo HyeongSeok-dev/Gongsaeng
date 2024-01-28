@@ -53,21 +53,21 @@
         
 </head>
 <body>
-	<header>
-		<jsp:include page="../inc/top.jsp"></jsp:include>
-	</header>
+<!-- 	<header> -->
+<%-- 		<jsp:include page="../inc/top.jsp"></jsp:include> --%>
+<!-- 	</header> -->
 	
 	<main>
 	<!-- 제목 -->
-	<div class="page-head">  
-          <div class="container">
-              <div class="row">
-                  <div class="page-head-content">
-                      <h1 class="page-title">포인트충전</h1>               
-                  </div>
-              </div>
-          </div>
-      </div>
+<!-- 	<div class="page-head">   -->
+<!--           <div class="container"> -->
+<!--               <div class="row"> -->
+<!--                   <div class="page-head-content"> -->
+<!--                       <h1 class="page-title">포인트충전</h1>                -->
+<!--                   </div> -->
+<!--               </div> -->
+<!--           </div> -->
+<!--       </div> -->
       
 	  
 	<div class="section_box">

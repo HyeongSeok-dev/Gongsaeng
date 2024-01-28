@@ -50,8 +50,8 @@ public class BankService {
 	
 	//============================================================================
 	//계좌 상세정보 조회 요청
-	public Map<String, Object> requestAccountDetail(Map<String, String> map){
-		return bankApiClient.requestAccountDetail(map);
-	}
+//	public Map<String, Object> requestAccountDetail(Map<String, String> map){
+//		return bankApiClient.requestAccountDetail(map);
+//	}
 	
 } //class BankService

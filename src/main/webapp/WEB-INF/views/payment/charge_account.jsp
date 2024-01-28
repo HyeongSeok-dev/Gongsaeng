@@ -70,29 +70,43 @@ h1 {
 	align-items: center;
 }
 
+table {
+        width: 100%;
+    }
+
 </style>
 
 </head>
 <body>
-	<header>
-		<jsp:include page="../inc/top.jsp"></jsp:include>
-	</header>
+<!-- 	<header> -->
+<%-- 		<jsp:include page="../inc/top.jsp"></jsp:include> --%>
+<!-- 	</header> -->
 	
 	<main>
 	<!-- 제목 -->
-	<div class="page-head">  
-          <div class="container">
-              <div class="row">
-                  <div class="page-head-content">
-                      <h1 class="page-title">포인트충전</h1>               
-                  </div>
-              </div>
-          </div>
-      </div>
+<!-- 	<div class="page-head">   -->
+<!--           <div class="container"> -->
+<!--               <div class="row"> -->
+<!--                   <div class="page-head-content"> -->
+<!--                       <h1 class="page-title">포인트충전</h1>                -->
+<!--                   </div> -->
+<!--               </div> -->
+<!--           </div> -->
+<!--       </div> -->
       
 	<div class="section_box">
-				<section class="sec05">
-					<h2>결제이용 약관 동의</h2>
+				<section class="sec05" >
+					<h2>계좌선택</h2>
+					<br>
+					<h5>0페이를 충전할 계좌를 선택하세요.</h5>
+					<br>
+					<table border="1">
+						<tr>
+							<td>계좌번호</td>
+							<td>계좌</td>
+							<td><input type="button" value="선택"></td>
+						</tr>
+					</table>
 				</section>
 	</div>
 									

@@ -35,6 +35,24 @@ public class paymentController {
 		return "payment/payment";
 	}
 	
+	//약관동의
+	@GetMapping("payment/agree")
+	public String paymentAgree() {
+		return "payment/payment_agree";
+	}
+	
+	//페이충전
+	@GetMapping("payment/charge")
+	public String charge() {
+		return "payment/charge";
+	}
+	
+	//페이충전-계좌선택
+	@GetMapping("payment/charge/account")
+	public String chargeAccount() {
+		return "payment/charge_account";
+	}
+	
 	//callback
 	@GetMapping("callback")
 	public String callback(@RequestParam Map<String, String> authResponse, HttpSession session, Model model) {
@@ -89,23 +107,6 @@ public class paymentController {
 	
 	
 	
-	//약관동의
-	@GetMapping("payment/agree")
-	public String paymentAgree() {
-		return "payment/payment_agree";
-	}
-	
-	//페이충전
-	@GetMapping("charge")
-	public String charge() {
-		return "payment/charge";
-	}
-	
-	//페이충전-계좌선택
-	@GetMapping("charge/account")
-	public String chargeAccount() {
-		return "payment/charge_account";
-	}
 	
 	
 }//paymentController

@@ -83,6 +83,11 @@
 		window.open(requestUri, "authWindow", "width=600, height=800");
 	}
 	
+	//충전하기
+	function charge(){
+	window.open("payment/charge", "authWindow", "width=600, height=800");	
+	}
+	
 </script>
 </head>
 <body>
@@ -187,7 +192,7 @@
 							</div>
 							<input type="text" value="" placeholder="사용할 0페이를 입력해 주세요" class="pay_to_use" name="payToUse" /><span class="won">원</span>
 							
-							<button id="chargePay" class="use_button charge" type="button" onclick="alert('계좌를 인증해주세요.'); authAccount();">충전하기</button>
+							<button id="chargePay" class="use_button charge" type="button" onclick="alert('계좌를 인증해주세요.'); authAccount();">계좌인증</button>
 							<!-- member_id유무에 따른 버튼 출력 -->
 <%-- 							<c:choose> --%>
 <%-- 								없을때(계좌등록) --%>
@@ -199,7 +204,9 @@
 <!-- 									<button id="usePay" class="use_button"  type="button">사용하기</button> -->
 <%-- 								</c:when> --%>
 <%-- 							</c:choose> --%>
-							
+							<%--충전하기 임시버튼 --%>
+							<br>
+							<button onclick="charge()">충전하기(임시버튼)</button>
 						</div>
 				</section>
 				
