@@ -43,7 +43,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand title" href="#pablo">클래스신고</a>
+            <a class="navbar-brand title" href="#pablo">클래스신고관리</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -172,7 +172,7 @@
 			                <td>클래스명</td>
 			                <td>신고자 아이디</td>
 			                <td>처리상태</td>
-			                <td><button type="button" class="btn detail_btn" value="상세보기">상세보기</button></td>
+			                <td><button type="button" class="btn detail_btn" value="상세보기" onclick="location.href='${pageContext.request.contextPath }/admin/report/class/detail'">상세보기</button></td>
 			            </tr>
 			    </table>
               </div>

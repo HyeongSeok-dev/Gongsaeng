@@ -46,7 +46,6 @@ public class AdminController {
 	public String companyClass() {
 		return "admin/class";
 	}
-		
 	@GetMapping("admin/company/class/detail")
 	public String companyClassDetail() {
 		return "admin/class_detail";
@@ -71,6 +70,10 @@ public class AdminController {
 	public String OPayDepositWithdraw() {
 		return "admin/OPay_deposit_withdraw";
 	}
+	@GetMapping("admin/OPay/deposit/withdraw/detail")
+	public String OPayDepositWithdrawDetail() {
+		return "admin/OPay_deposit_withdraw_detail";
+	}
 	@GetMapping("admin/OPay/use")
 	public String OPayUse() {
 		return "admin/OPay_use";
@@ -83,17 +86,29 @@ public class AdminController {
 	public String reportReview() {
 		return "admin/report_review";
 	}
+	@GetMapping("admin/report/class/detail")
+	public String reportClassDetail() {
+		return "admin/report_class_detail";
+	}
+	@GetMapping("admin/report/review/detail")
+	public String reportReviewDetail() {
+		return "admin/report_review_detail";
+	}
 	@GetMapping("admin/marketing/event")
 	public String event() {
 		return "admin/event";
+	}
+	@GetMapping("admin/marketing/event/detail")
+	public String eventDetail() {
+		return "admin/event_detail";
 	}
 	@GetMapping("admin/marketing/coupon")
 	public String coupon() {
 		return "admin/coupon";
 	}
-	@GetMapping("admin/marketing/coupon/register")
+	@GetMapping("admin/marketing/coupon/detail")
 	public String eventCoupon() {
-		return "admin/coupon_register";
+		return "admin/coupon_detail";
 	}
 	@GetMapping("admin/cs/chat")
 	public String csChat() {

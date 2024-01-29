@@ -24,7 +24,7 @@ form>.row {
 .file_div {
 	background-color: transparent;
     border: 1px solid #E3E3E3;
-    border-radius: 30px;
+    border-radius: 5px;
     color: #2c2c2c;
     line-height: normal;
     height: auto;
@@ -46,7 +46,7 @@ input {
 .coupon_unit {
 	position: relative;
 	bottom: 39px;
-	left: 180px;
+	left: 100px;
 	border: none;
 }
 
@@ -74,6 +74,11 @@ input {
 	align-items: center;
 	justify-content: space-between;
 }
+
+.card_overflow {
+	overflow: auto;
+}
+
 /* ------------------------------------------------------ */
 
 .btn.detail_btn{
@@ -85,14 +90,6 @@ input {
 
 .search_bar_admin>div {
 	margin: 5px;
-}
-/* .search_bar_admin>div>select, .search_bar_admin>div>input{ */
-/* 	border-radius: 5px; */
-/* 	border: 1px solid rgb(148, 148, 148); */
-/* } */
-
-.search_bar_admin>div>select{
-	height: 25px;	
 }
 
 input[type="search"] {

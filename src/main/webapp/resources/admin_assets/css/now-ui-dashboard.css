@@ -361,20 +361,34 @@ Copyright (c) 2015 Daniel Eden
 
 input[type="text"], select {
 	border-radius: 5px;
-	border: 1px solid #888;
+	border: 1px solid #E3E3E3;
 	padding: 5px 5px;
 	font-size: 14px;
 }
 
 input[type="date"], input[type="search"] {
 	border-radius: 5px;
-	border: 1px solid #888;
+	border: 1px solid #E3E3E3;
 	padding: 3px 3px;
 	font-size: 14px;
 }
 
 th {
-	background: rgb(246, 246, 246);
+/* 	background: #c0c0c0; */
+	background: #888;
+	color: #fff;
+}
+
+.tr_hover:hover{
+	background-color: #f0f0f0;
+}
+
+.modal-body {
+	text-align: center;
+}
+.modal-header{
+	display: flex;
+	align-items: flex-end;
 }
 
 
@@ -1640,7 +1654,7 @@ fieldset[disabled] .btn-link.active {
 .input-group-prepend .input-group-text {
   background-color: transparent;
   border: 1px solid #E3E3E3;
-  border-radius: 30px;
+  border-radius: 5px;
   color: #888;
   -webkit-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
   -moz-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
@@ -4712,7 +4726,7 @@ Created using IcoMoon - icomoon.io
 .card label {
   font-size: 16px;
   margin-bottom: 5px;
-  color: #9A9A9A;
+  color: #212529;
 }
 
 .card .card-footer {
