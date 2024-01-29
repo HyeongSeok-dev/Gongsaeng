@@ -21,6 +21,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap"
 	rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/normalize.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/font-awesome.min.css">
@@ -83,9 +84,9 @@
 			    <!-- 글쓰기 버튼 추가 -->
 				<div class="row">
 				    <div class="col-sm-12 text-right">
-				        <button class="btn btn-primary" id="writeButton">
-				            <span class="glyphicon glyphicon-pencil"></span> 글쓰기
-				        </button>
+				        <button class="btn btn-primary" id="writeButton" onclick="location.href='write';">
+						    <span class="glyphicon glyphicon-pencil"></span> 글쓰기
+						</button>
 				    </div>
 				</div>
 			    <br>
@@ -104,11 +105,13 @@
 				<div class="cm_text">
 				    <div class="row mt-5">
 				        <div class="col-sm-9">
-				        	<p>궁금해요/서비스종류</p>
-				        	<a href="questionDetail" class="cm_context">
-					            <h4 class="h4_community">글제목</h4>
-					            <p class="text-truncate">여기에 글 내용이 들어갑니다. 이 글은 최대 50자까지만 표시됩니다. 더 많은 내용을 보려면 글을 클릭하세요.</p>
-					            <p><span class="glyphicon glyphicon-comment"S></span> 댓글 개수</p>
+				            <p>궁금해요/서비스 종류</p>
+				            <a href="questionDetail" class="cm_context">
+				                <!-- 글제목 두껍게 -->
+				                <h4 class="h4_community" style="font-weight: bold;">글제목</h4>
+				                <!-- 글 내용과 댓글은 일반 두께로 -->
+				                <p class="text-truncate" style="font-weight: normal;">여기에 글 내용이 들어갑니다. 이 글은 최대 50자까지만 표시됩니다. 더 많은 내용을 보려면 글을 클릭하세요.</p>
+				                <p style="font-weight: normal;"><span class="fa fa-comment"></span> 댓글 개수</p>
 				            </a>
 				        </div>
 				        <div class="col-sm-3">
@@ -119,15 +122,19 @@
 				            </div>
 				        </div>
 				    </div>
-				</div>	
+				</div>
 				<br>  
 				<div class="cm_text">
 				    <div class="row mt-5">
 				        <div class="col-sm-9">
-				        	<p>궁금해요/서비스종류</p>
-				            <h4 class="h4_community">글제목</h4>
-				            <p class="text-truncate">여기에 글 내용이 들어갑니다. 이 글은 최대 50자까지만 표시됩니다. 더 많은 내용을 보려면 글을 클릭하세요.</p>
-				            <p><span class="glyphicon glyphicon-comment"></span> 댓글 개수</p>
+				            <p>궁금해요/서비스 종류</p>
+				            <a href="questionDetail" class="cm_context">
+				                <!-- 글제목 두껍게 -->
+				                <h4 class="h4_community" style="font-weight: bold;">글제목</h4>
+				                <!-- 글 내용과 댓글은 일반 두께로 -->
+				                <p class="text-truncate" style="font-weight: normal;">여기에 글 내용이 들어갑니다. 이 글은 최대 50자까지만 표시됩니다. 더 많은 내용을 보려면 글을 클릭하세요.</p>
+				                <p style="font-weight: normal;"><span class="fa fa-comment"></span> 댓글 개수</p>
+				            </a>
 				        </div>
 				        <div class="col-sm-3">
 				            <div class="cm_thumbnail">
@@ -137,15 +144,19 @@
 				            </div>
 				        </div>
 				    </div>
-				</div>	 
-				<br> 
+				</div>
+				<br>  
 				<div class="cm_text">
 				    <div class="row mt-5">
 				        <div class="col-sm-9">
-				        	<p>궁금해요/서비스종류</p>
-				            <h4 class="h4_community">글제목</h4>
-				            <p class="text-truncate">여기에 글 내용이 들어갑니다. 이 글은 최대 50자까지만 표시됩니다. 더 많은 내용을 보려면 글을 클릭하세요.</p>
-				            <p><span class="glyphicon glyphicon-comment"></span> 댓글 개수</p>
+				            <p>궁금해요/서비스 종류</p>
+				            <a href="questionDetail" class="cm_context">
+				                <!-- 글제목 두껍게 -->
+				                <h4 class="h4_community" style="font-weight: bold;">글제목</h4>
+				                <!-- 글 내용과 댓글은 일반 두께로 -->
+				                <p class="text-truncate" style="font-weight: normal;">여기에 글 내용이 들어갑니다. 이 글은 최대 50자까지만 표시됩니다. 더 많은 내용을 보려면 글을 클릭하세요.</p>
+				                <p style="font-weight: normal;"><span class="fa fa-comment"></span> 댓글 개수</p>
+				            </a>
 				        </div>
 				        <div class="col-sm-3">
 				            <div class="cm_thumbnail">
@@ -155,7 +166,7 @@
 				            </div>
 				        </div>
 				    </div>
-				</div>	  
+				</div>
 			</div>
         </div>
     </div>

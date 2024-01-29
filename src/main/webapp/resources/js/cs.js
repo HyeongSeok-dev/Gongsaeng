@@ -1,3 +1,20 @@
+
+
+/* 1:1 문의 사진 첨부 */
+window.onload = function() {
+    var fileInput = document.querySelector('.file-upload input[type=file]');
+    var cameraIcon = document.querySelector('.file-upload i');
+
+    cameraIcon.addEventListener('click', function() {
+        fileInput.click();
+    });
+
+    fileInput.addEventListener('change', function() {
+        var fileName = fileInput.value.split('\\').pop();
+        cameraIcon.title = fileName ? fileName : '';
+    });
+}
+
 $(".messages").animate({ scrollTop: $(document).height() }, "fast");
 
 $("#profile-img").click(function() {
@@ -53,3 +70,6 @@ $(window).on('keydown', function(e) {
     return false;
   }
 });
+
+
+

@@ -49,7 +49,7 @@
         <script src="${pageContext.request.contextPath }/resources/assets/js/wow.js"></script>
         <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
         <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
-        <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
+        <script src="${pageContext.request.contextPath }/resources/js/cs.js"></script>
     </head>
     <body>
      <jsp:include page="../inc/top.jsp"></jsp:include>

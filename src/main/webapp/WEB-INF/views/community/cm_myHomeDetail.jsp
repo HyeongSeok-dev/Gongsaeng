@@ -53,7 +53,7 @@
 <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
-<script src="${pageContext.request.contextPath }/resources/assets/js/community.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/community.js"></script>
 
 </head>
 <body>

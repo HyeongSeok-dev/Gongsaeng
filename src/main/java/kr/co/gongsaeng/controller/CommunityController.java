@@ -6,14 +6,29 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class CommunityController {
 	
+	@GetMapping("community/write")
+	public String write() {
+		return "community/cm_write";
+	}
+	
 	@GetMapping("community/together")
 	public String together() {
 		return "community/cm_together";
 	}
 	
+	@GetMapping("community/togetherDetail")
+	public String togetherDetail() {
+		return "community/cm_togetherDetail";
+	}
+
 	@GetMapping("community/question")
 	public String question() {
 		return "community/cm_question";
+	}
+	
+	@GetMapping("community/questionDetail")
+	public String questionDetail() {
+		return "community/cm_questionDetail";
 	}
 	
 	@GetMapping("community/myHome")
@@ -36,11 +51,6 @@ public class CommunityController {
 		return "community/cm_delete";
 	}
 	
-	@GetMapping("community/reply")
-	public String reply() {
-		return "community/cm_reply";
-	}
-
 
 }
 

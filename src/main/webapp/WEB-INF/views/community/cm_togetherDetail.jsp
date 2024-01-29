@@ -21,6 +21,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap"
 	rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/normalize.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/font-awesome.min.css">
@@ -41,6 +43,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/global.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/community.css">
 
+
 <script src="${pageContext.request.contextPath }/resources/assets/js/modernizr-2.6.2.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/jquery-1.10.2.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/bootstrap/js/bootstrap.min.js"></script>
@@ -54,107 +57,117 @@
 <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/mypage.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/community.js"></script>
 
 </head>
 <body>
     <jsp:include page="../inc/top.jsp"></jsp:include>
     <br>
     <div class="container">
-        <div class="row">
-            <!-- 좌측 메뉴바 -->
-            <div class="col-sm-3">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title text-center">커뮤니티</h4>
-                    </div>
-                    <div class="panel-body">
-                        <ul class="list-group">
-                            <li class="list-group-item"><a href="question">궁금해요</a></li>
-                            <li class="list-group-item"><a href="together">함께해요</a>
-                            <li class="list-group-item"><a href="myHome">집들이</a>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- 우측 본문 -->
-			<div class="col-sm-9">
-			    <!-- 글쓰기 버튼 추가 -->
-				<div class="row">
-				    <div class="col-sm-12 text-right">
-				        <button class="btn btn-primary" id="writeButton">
-				            <span class="glyphicon glyphicon-pencil"></span> 글쓰기
-				        </button>
-				    </div>
-				</div>
-			    <br>
-			    <div class="row">
-			        <div class="col-sm-12 text-left">
-			            <button class="btn btn-primary" id="resetButton" style="margin-right: 10px;">초기화</button>
-			            <select class="form-control" id="serviceType" style="display: inline-block; width: auto;">
-			                <option>서비스1</option>
-			                <option>서비스2</option>
-			                <option>서비스3</option>
-			                <option>서비스4</option>
-			            </select>
-			        </div>
-			    </div>
-				<br>
-				<div class="cm_text">
-				    <div class="row mt-5">
-				        <div class="col-sm-9">
-				        	<p>함께해요/서비스종류</p>
-				            <h4 class="h4_community">글제목</h4>
-				            <p class="text-truncate">여기에 글 내용이 들어갑니다. 이 글은 최대 50자까지만 표시됩니다. 더 많은 내용을 보려면 글을 클릭하세요.</p>
-				            <p><span class="glyphicon glyphicon-comment"></span> 댓글 개수</p>
-				        </div>
-				        <div class="col-sm-3">
-				            <div class="cm_thumbnail">
-				                <img src="${pageContext.request.contextPath }/resources/img/house.png"  alt="이미지">
-				                <div class="caption text-right">
-				                </div>
-				            </div>
-				        </div>
-				    </div>
-				</div>	
-				<br>  
-				<div class="cm_text">
-				    <div class="row mt-5">
-				        <div class="col-sm-9">
-				        	<p>함께해요/서비스종류</p>
-				            <h4 class="h4_community">글제목</h4>
-				            <p class="text-truncate">여기에 글 내용이 들어갑니다. 이 글은 최대 50자까지만 표시됩니다. 더 많은 내용을 보려면 글을 클릭하세요.</p>
-				            <p><span class="glyphicon glyphicon-comment"></span> 댓글 개수</p>
-				        </div>
-				        <div class="col-sm-3">
-				            <div class="cm_thumbnail">
-				                <img src="${pageContext.request.contextPath }/resources/img/house.png"  alt="이미지">
-				                <div class="caption text-right">
-				                </div>
-				            </div>
-				        </div>
-				    </div>
-				</div>	 
-				<br> 
-				<div class="cm_text">
-				    <div class="row mt-5">
-				        <div class="col-sm-9">
-				        	<p>함께해요/서비스종류</p>
-				            <h4 class="h4_community">글제목</h4>
-				            <p class="text-truncate">여기에 글 내용이 들어갑니다. 이 글은 최대 50자까지만 표시됩니다. 더 많은 내용을 보려면 글을 클릭하세요.</p>
-				            <p><span class="glyphicon glyphicon-comment"></span> 댓글 개수</p>
-				        </div>
-				        <div class="col-sm-3">
-				            <div class="cm_thumbnail">
-				                <img src="${pageContext.request.contextPath }/resources/img/house.png"  alt="이미지">
-				                <div class="caption text-right">
-				                </div>
-				            </div>
-				        </div>
-				    </div>
-				</div>	  
-			</div>
-        </div>
-    </div>
+			<div class="container bootstrap snippets bootdey">
+			    <div class="col-lg-8 col-lg-offset-2">
+			        <div class="panel panel-white post panel-shadow">
+			            <div class="post-heading">
+			                <div class="pull-left meta">
+			                    <div class="category h6" style="font-weight: normal;">
+			                        <p>커뮤니티 > 함께해요</p>
+			                    </div>
+			                    <div class="title h2" >
+			                    <div class="category h6" style="font-weight: normal;">
+			                    	<p> 서비스 종류 </p>
+			                    </div>
+			                       	<b>셀프페인팅 클래스 같이 들으실 분!</b>
+			                    </div>
+			                </div>
+			            </div>
+			            <br><br><br>
+			            <div class="post-heading" style="margin-top: 10px;"> 
+			                <div class="pull-left image">
+			                    <img src="${pageContext.request.contextPath }/resources/img/ddoong2.jpg" class="img-circle avatar" alt="user profile image">
+			                </div>
+			                <div class="pull-left meta">
+			                    <div class="title h5">
+			                        <b>냥냥펀치</b>
+			                    </div>
+			                    <h6 class="text-muted time" style="font-size: 13px">10분 전</h6>
+			                </div>
+			            </div>
+			            <div class="post-description"> 
+			                <p style="margin-top: 20px; margin-bottom: 20px">해가 뜨고 다시 지는 것에 연연하였던 나의 작은방 텅 빈 마음 노랠 불러봤자
+								누군가에겐 소음일 테니 꼭 다문 입 그 새로 삐져나온 보잘것없는 나의 한숨에
+								나 들으라고 내쉰 숨이 더냐 아버지 내게 물으시고 제 발 저려 난 답할 수 없었네
+								우리는 우리는 어째서 어른이 된 걸까 하루하루가 참 무거운 짐이야
+								더는 못 갈 거야 꿈과 책과 힘과 벽 사이를 눈치 보기에 바쁜 나날들
+								소년이여 야망을 가져라 무책임한 격언 따위에 저 바다를 호령하는 거야
+								어처구니없던 나의 어린 꿈 가질 수 없음을 알게 되던 날 두드러기처럼 돋은 심술이
+								끝내 그 이름 더럽히고 말았네</p>
+			                <div class="cm_img">
+			                	<a href="${pageContext.request.contextPath}/resources/img/house.png" target="_blank">
+								    <img src="${pageContext.request.contextPath}/resources/img/house.png" alt="이미지">
+								</a>
+			                </div>
+							    <span class="fa fa-eye"></span> 
+								<span id="viewCount" style="margin-right: 10px;">29</span>
+								<span class="fa fa-comment"></span> 
+							    <span id="commentCount">3</span>
+			            </div>
+			            <div class="post-footer">
+			                <div class="input-group"> 
+			                    <input class="form-control" placeholder="Add a comment" type="text">
+			                    <span class="input-group-addon">
+			                        <a href="#"><i class="fa fa-edit"></i></a>  
+			                    </span>
+		                </div>
+		                <ul class="comments-list">
+		                    <li class="comment">
+		                        <a class="pull-left" href="#">
+		                            <img class="avatar" src="https://bootdey.com/img/Content/user_1.jpg" alt="avatar">
+		                        </a>
+		                        <div class="comment-body">
+		                           	<div class="comment-heading">
+									    <h4 class="user">메롱</h4>
+									    <h5 class="time">5분 전 </h5>
+									    <i class="fa fa-reply"></i>
+									</div>
+		                            <p>시간대가 어떻게 되나요?</p>
+		                        </div>
+		                        <ul class="comments-list">
+		                            <li class="comment">
+		                                <a class="pull-left" href="#">
+		                                    <img class="avatar" src="${pageContext.request.contextPath }/resources/img/ddoong2.jpg" alt="avatar">
+		                                </a>
+		                                <div class="comment-body">
+		                                    <div class="comment-heading">
+		                                        <h4 class="user">냥냥펀치</h4>
+		                                        <h5 class="time">4분 전 </h5>
+		                                        <i class="fa fa-reply"></i>
+		                                    </div>
+		                                    <p>오전 10시 입니다.</p>
+		                                </div>
+		                            </li> 
+		                            <li class="comment">
+		                                <a class="pull-left" href="#">
+		                                    <img class="avatar" src="https://bootdey.com/img/Content/user_1.jpg" alt="avatar">
+		                                </a>
+		                                <div class="comment-body">
+		                                    <div class="comment-heading">
+		                                        <h4 class="user">메롱</h4>
+		                                        <h5 class="time">3분 전 </h5>
+		                                        <i class="fa fa-reply"></i>
+		                                    </div>
+		                                    <p>링크 부탁드려요</p>
+		                                </div>
+		                            </li> 
+		                        </ul>
+		                    </li>
+		                </ul>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+	</div>
 </body>
 <br>
 <!-- Footer area -->

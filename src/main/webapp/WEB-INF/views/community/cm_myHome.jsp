@@ -53,7 +53,7 @@
 <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
-<script src="${pageContext.request.contextPath }/resources/assets/js/community.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/community.js"></script>
 
 </head>
 <body>
@@ -69,9 +69,9 @@
 					</div>
 					<div class="panel-body">
 						<ul class="list-group">
-							<li class="list-group-item"><a href="question">궁금해요</a></li>
-							<li class="list-group-item"><a href="together">함께해요</a>
-							<li class="list-group-item"><a href="myHome">집들이</a>
+							<li class="list-group-item cursor"><a href="question">궁금해요</a></li>
+							<li class="list-group-item cursor"><a href="together">함께해요</a>
+							<li class="list-group-item cursor"><a href="myHome">집들이</a>
 						</ul>
 					</div>
 				</div>

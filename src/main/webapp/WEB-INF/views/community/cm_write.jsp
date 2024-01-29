@@ -39,6 +39,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/responsive.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/global.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/community.css">
 
 <script src="${pageContext.request.contextPath }/resources/assets/js/modernizr-2.6.2.min.js"></script>
@@ -54,106 +56,59 @@
 <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/mypage.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/community.js"></script>
 
 </head>
 <body>
     <jsp:include page="../inc/top.jsp"></jsp:include>
     <br>
-    <div class="container">
-        <div class="row">
-            <!-- 좌측 메뉴바 -->
-            <div class="col-sm-3">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title text-center">커뮤니티</h4>
+     <div class="container">
+        <form>
+        <div class="col-lg-8 col-lg-offset-2">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-3">
+                        <select class="form-control" id="subjectType">
+                            <option disabled selected>주제 선택</option>
+                            <option>궁금해요</option>
+                            <option>함께해요</option>
+                        </select>
                     </div>
-                    <div class="panel-body">
-                        <ul class="list-group">
-                            <li class="list-group-item"><a href="question">궁금해요</a></li>
-                            <li class="list-group-item"><a href="together">함께해요</a>
-                            <li class="list-group-item"><a href="myHome">집들이</a>
-                        </ul>
+                    <div class="col-md-3">
+                        <select class="form-control" id="serviceType">
+                            <option disabled selected>서비스 종류 선택</option>
+                            <option>서비스1</option>
+                            <option>서비스2</option>
+                        </select>
                     </div>
                 </div>
             </div>
-            <!-- 우측 본문 -->
-			<div class="col-sm-9">
-			    <!-- 글쓰기 버튼 추가 -->
-				<div class="row">
-				    <div class="col-sm-12 text-right">
-				        <button class="btn btn-primary" id="writeButton">
-				            <span class="glyphicon glyphicon-pencil"></span> 글쓰기
-				        </button>
-				    </div>
-				</div>
-			    <br>
-			    <div class="row">
-			        <div class="col-sm-12 text-left">
-			            <button class="btn btn-primary" id="resetButton" style="margin-right: 10px;">초기화</button>
-			            <select class="form-control" id="serviceType" style="display: inline-block; width: auto;">
-			                <option>서비스1</option>
-			                <option>서비스2</option>
-			                <option>서비스3</option>
-			                <option>서비스4</option>
-			            </select>
-			        </div>
-			    </div>
-				<br>
-				<div class="cm_text">
-				    <div class="row mt-5">
-				        <div class="col-sm-9">
-				        	<p>함께해요/서비스종류</p>
-				            <h4 class="h4_community">글제목</h4>
-				            <p class="text-truncate">여기에 글 내용이 들어갑니다. 이 글은 최대 50자까지만 표시됩니다. 더 많은 내용을 보려면 글을 클릭하세요.</p>
-				            <p><span class="glyphicon glyphicon-comment"></span> 댓글 개수</p>
-				        </div>
-				        <div class="col-sm-3">
-				            <div class="cm_thumbnail">
-				                <img src="${pageContext.request.contextPath }/resources/img/house.png"  alt="이미지">
-				                <div class="caption text-right">
-				                </div>
-				            </div>
-				        </div>
-				    </div>
-				</div>	
-				<br>  
-				<div class="cm_text">
-				    <div class="row mt-5">
-				        <div class="col-sm-9">
-				        	<p>함께해요/서비스종류</p>
-				            <h4 class="h4_community">글제목</h4>
-				            <p class="text-truncate">여기에 글 내용이 들어갑니다. 이 글은 최대 50자까지만 표시됩니다. 더 많은 내용을 보려면 글을 클릭하세요.</p>
-				            <p><span class="glyphicon glyphicon-comment"></span> 댓글 개수</p>
-				        </div>
-				        <div class="col-sm-3">
-				            <div class="cm_thumbnail">
-				                <img src="${pageContext.request.contextPath }/resources/img/house.png"  alt="이미지">
-				                <div class="caption text-right">
-				                </div>
-				            </div>
-				        </div>
-				    </div>
-				</div>	 
-				<br> 
-				<div class="cm_text">
-				    <div class="row mt-5">
-				        <div class="col-sm-9">
-				        	<p>함께해요/서비스종류</p>
-				            <h4 class="h4_community">글제목</h4>
-				            <p class="text-truncate">여기에 글 내용이 들어갑니다. 이 글은 최대 50자까지만 표시됩니다. 더 많은 내용을 보려면 글을 클릭하세요.</p>
-				            <p><span class="glyphicon glyphicon-comment"></span> 댓글 개수</p>
-				        </div>
-				        <div class="col-sm-3">
-				            <div class="cm_thumbnail">
-				                <img src="${pageContext.request.contextPath }/resources/img/house.png"  alt="이미지">
-				                <div class="caption text-right">
-				                </div>
-				            </div>
-				        </div>
-				    </div>
-				</div>	  
-			</div>
-        </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요">
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" id="content" rows="15" placeholder="내용을 입력하세요"></textarea>
+            </div>
+            <div class="form-group">
+ 			<div class="image-upload">
+                <label for="file-input">
+                    첨부파일 <i class="fa fa-camera"></i> <span class="file-count">(0/3)</span>
+                </label>
+                <input id="file-input" type="file" multiple />
+            </div>
+            <div class="image-preview" id="image-preview">
+                <div class="image-preview__image"></div>
+                <span class="image-preview__default-text"></span>
+            </div>
+            <div class="form-group btn-container">
+                <button type="submit" class="btn btn-primary">등록</button>
+                <button type="button" class="btn btn-default">취소</button>
+            </div>
+            </div>
+            </div>
+        </form>
     </div>
 </body>
 <br>
