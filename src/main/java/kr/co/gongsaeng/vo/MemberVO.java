@@ -19,5 +19,4 @@ public class MemberVO {
 	private int member_category;
 	private String member_alert_status;
 	private String member_reg_date;
-	
 }

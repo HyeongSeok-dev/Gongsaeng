@@ -158,6 +158,7 @@
 						<button type="submit" class="btn btn-primary" id="joinBtn">가입하기</button>
 					</div>
 				</div>
+				<input type="hidden" name="agreeAd" value="${agreeAd}">
 			</form>
 		</div>
 	</div>

@@ -2,12 +2,15 @@ package kr.co.gongsaeng.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.gongsaeng.service.MemberService;
@@ -19,6 +22,7 @@ public class MemberController {
 	@Autowired
 	MemberService service;
 
+	private static final Logger log = LoggerFactory.getLogger(MemberController.class);
 	@GetMapping("member/login")
 	public String login() {
 		return "member/login";
@@ -84,20 +88,27 @@ public class MemberController {
 	}
 
 	@GetMapping("member/join")
-	public String join() {
+	public String join(@RequestParam(defaultValue = "") String agreeAd, Model model) {
+		model.addAttribute("agreeAd", agreeAd);
+		log.info(agreeAd);
 		return "member/join";
 	}
 
 	@PostMapping("member/joinPro")
-	public String joinPro(MemberVO member, Model model) {
+	public String joinPro(@RequestParam(defaultValue = "") String agreeAd, MemberVO member, Model model) {
 
 		// 암호화
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String securePasswd = passwordEncoder.encode(member.getMember_passwd());
 		member.setMember_passwd(securePasswd);
-
-//	      member.setUser_category(1); //임시 - 일반회원(1) or 업주회원(2)
-
+		log.info(agreeAd);
+		
+		if(agreeAd.equals("on")) {
+			member.setMember_alert_status("11111");
+		}else {
+			member.setMember_alert_status("11101");
+		}
+		log.info(member.getMember_alert_status());
 		int insertCount = service.registMember(member);
 		if (insertCount > 0) { // 성공
 			model.addAttribute("msg", "회원가입이 완료되었습니다.");

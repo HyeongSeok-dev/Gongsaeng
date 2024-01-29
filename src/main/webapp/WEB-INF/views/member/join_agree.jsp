@@ -59,10 +59,12 @@
 	<div class="container">
 		<h3>회원약관</h3>
 		<br>
-		<div class="section_box">
-			<section>
-				<h2>공생 서비스 이용 동의</h2>
-				<textarea readonly="readonly" class="form-control" rows="15">제 1조 (목 적)
+		<form action="join" method="get">
+
+			<div class="section_box">
+				<section>
+					<h2>공생 서비스 이용 동의</h2>
+					<textarea readonly="readonly" class="form-control" rows="15">제 1조 (목 적)
 이 서비스 이용약관(이하 “약관”이라 합니다)은 공생㈜(이하 “회사”라 합니다)가 제공하는 서비스와 관련하여 회사와 이용 고객(또는 회원) 간에 서비스의 이용 조건 및 절차, 회사와 회원 간의 권리, 의무 및 책임 사항 기타 필요한 사항을 규정함을 목적으로 합니다.
 
 제 2 조 (용어의 정의)
@@ -252,17 +254,17 @@
 공고일자 : 2023년 12월 21일
 시행일자 : 2020년 1월 21일
 				</textarea>
-				<div class="form-check">
-					<input class="form-check-input" type="checkbox" name="agree" id="checkbox_agree1" style="width: 15px;"> <label
-						class="form-check-label" for="checkbox_agree1"> [필수] 이용약관에 동의합니다. </label>
-				</div>
-			</section>
-		</div>
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" id="checkbox_agree1" style="width: 15px;" required> <label class="form-check-label"
+							for="checkbox_agree1"> [필수] 이용약관에 동의합니다. </label>
+					</div>
+				</section>
+			</div>
 
-		<div class="section_box">
-			<section>
-				<h2>공생 개인정보 수집 및 이용 동의</h2>
-				<textarea readonly="readonly" class="form-control" rows="10">이용목적 및 보유기간
+			<div class="section_box">
+				<section>
+					<h2>공생 개인정보 수집 및 이용 동의</h2>
+					<textarea readonly="readonly" class="form-control" rows="10">이용목적 및 보유기간
 1)이용자 식별 및 본인여부 확인
 [항목]아이디, 이름, 생년월일, 비밀번호
 [보유기간]회원 탈퇴 시까지
@@ -283,46 +285,47 @@
 *서비스 제공을 위해서 반드시 필요한 최소한의 개인정보이므로 동의를 하셔야 서비스 이용이 가능합니다.
 *이 외 서비스 이용과정에서 별도 동의를 통해 추가정보 수집이 있을 수 있습니다.
 				</textarea>
-				<div class="form-check">
-					<input class="form-check-input" type="checkbox" name="agree" id="checkbox_agree2" style="width: 15px;"> <label
-						class="form-check-label" for="checkbox_agree2"> [필수]개인정보 수집 및 이용에 동의합니다. </label>
-				</div>
-			</section>
-		</div>
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" id="checkbox_agree2" style="width: 15px;" required> <label class="form-check-label"
+							for="checkbox_agree2"> [필수]개인정보 수집 및 이용에 동의합니다. </label>
+					</div>
+				</section>
+			</div>
 
-		<div class="section_box">
-			<section>
-				<h2>공생 선택적 개인정보 수집 및 이용 동의</h2>
-				<textarea readonly="readonly" class="form-control" rows="10">1)이용자 식별 및 본인여부 확인
+			<div class="section_box">
+				<section>
+					<h2>공생 선택적 개인정보 수집 및 이용 동의</h2>
+					<textarea readonly="readonly" class="form-control" rows="10">1)이용자 식별 및 본인여부 확인
 이용목적 및 보유기간
 
 이벤트 등 광고성 정보 전송
 [항목]이메일 주소, 휴대폰 번호
 [보유기간]회원 탈퇴 시까지
 
-*공생 에서 제공하는 이벤트 등 다양한 정보를 휴대전화(문자), 이메일로 받아보실 수 있습니다.
+*공생 에서 제공하는 이벤트 등 다양한 정보를 웹브라우저 알림, 휴대전화(문자), 이메일로 받아보실 수 있습니다.
 *중요 공지 및 알림 등은 설정에 관계없이 발송됩니다.
 *신동의 여부 및 자세한 설정은 마이페이지 > 광고성 정보수신 설정하기에서 언제든지 변경할 수 있으며, 수신동의를 철회할 경우, 광고성 정보를 발송하지 않습니다.
 				
 				</textarea>
-				<div class="form-check">
-					<input class="form-check-input" type="checkbox" name="agree" id="checkbox_agree3" style="width: 15px;"> <label
-						class="form-check-label" for="checkbox_agree3"> [선택]광고성 정보 수신에 동의합니다. </label>
-				</div>
-			</section>
-		</div>
-		<br>
-		<!-- 전체동의 -->
-		<div id="agree">
-			<div class="form-check">
-				<input class="form-check-input" type="checkbox" name="check" id="checkAll" style="width: 15px;"> <label
-					class="form-check-label" for="checkAll"> [전체동의] 유의사항에 전체 동의 합니다. </label>
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" name="agreeAd" id="checkbox_agree3" style="width: 15px;"> <label class="form-check-label"
+							for="checkbox_agree3"> [선택]광고성 정보 수신에 동의합니다. </label>
+					</div>
+				</section>
 			</div>
-		</div>
-		<br>
-		<div class="col-xs-24 col-sm-12">
-			<button type="button" class="btn btn-primary" id="next" style="width: 100%" onclick="next()">다음</button>
-		</div>
+			<br>
+			<!-- 전체동의 -->
+			<div id="agree">
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" id="checkAll" style="width: 15px;"> <label class="form-check-label" for="checkAll">
+						[전체동의] 유의사항에 전체 동의 합니다. </label>
+				</div>
+			</div>
+			<br>
+			<div class="col-xs-24 col-sm-12">
+				<button type="submit" class="btn btn-primary" id="next" style="width: 100%">다음</button>
+			</div>
+		</form>
 	</div>
 </body>
 </html>

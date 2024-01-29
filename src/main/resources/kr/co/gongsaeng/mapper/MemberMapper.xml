@@ -23,7 +23,7 @@
 			, 1
 			, 1
 			, now()
-			, 11111
+			, #{member_alert_status}
 			)
 		
 	</insert>
