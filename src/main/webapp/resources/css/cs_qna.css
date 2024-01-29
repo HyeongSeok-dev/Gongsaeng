@@ -12,7 +12,7 @@ body {
 }
 
 #frame {
-  width: 600px;
+  width: 550px;
   min-width: 360px;
   max-width: 1000px;
   height: 92vh;
@@ -23,7 +23,7 @@ body {
 
 @media screen and (max-width: 360px) {
   #frame {
-    width: 100%;
+    width: 550px;
     height: 100vh;
   }
 }
@@ -495,8 +495,7 @@ body {
   }
 }
 #frame .content {
-/*   float: right; */
-  width: 60%;
+  width: 550px;
   height: 100%;
   overflow: hidden;
   position: relative;
@@ -504,17 +503,17 @@ body {
 }
 @media screen and (max-width: 735px) {
   #frame .content {
-    width: calc(100% - 58px);
+    width: 550px;
     min-width: 300px !important;
   }
 }
 @media screen and (min-width: 900px) {
   #frame .content {
-    width: 600px;
+    width: 550px;
   }
 }
 #frame .content .contact-profile {
-  width: 100%;
+  width: 550px;
   height: 60px;
   line-height: 60px;
   background: #f5f5f5;
@@ -567,7 +566,7 @@ body {
   float: left;
   margin: 15px 15px 5px 15px;
   width: calc(100% - 25px);
-  font-size: 0.9em;
+  font-size: 13px;
 }
 #frame .content .messages ul li:nth-last-child(1) {
   margin-bottom: 20px;
@@ -597,7 +596,7 @@ body {
   display: inline-block;
   padding: 10px 15px;
   border-radius: 20px;
-  max-width: 205px;
+  max-width: 270px;
   line-height: 130%;
 }
 @media screen and (min-width: 735px) {
@@ -608,7 +607,7 @@ body {
 #frame .content .message-input {
   position: absolute;
   bottom: 0;
-  width: 100%;
+  width: 600px;
   z-index: 99;
   background-color: #ffffff;
 }
@@ -692,4 +691,10 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 .file-upload i {
     color: #000000;
     cursor: pointer;
+}
+
+.message-time {
+    right: 10px;
+    font-size: 0.8em;
+    color: gray;
 }

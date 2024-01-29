@@ -16,6 +16,7 @@ img{ max-width:100%;}
   border: 1px solid #c4c4c4;
   clear: both;
   overflow: hidden;
+  background: #f8f8f8;
 }
 
 .top_spac{ margin: 20px 0 0;}

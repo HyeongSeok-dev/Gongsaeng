@@ -86,8 +86,10 @@
 	  						[상담 운영 시간]<br>
 							평일 : 10:00~18:00<br>
 							주말·공휴일 휴무</p>
+						<span class="message-time">13:45</span>
 					</li>
 					<li class="replies">
+						<span class="message-time">13:45</span>
 						<img src="${pageContext.request.contextPath }/resources/img/ddoong2.jpg" alt="" />
 						<p>당일에 클래스 수업 시간 변경이 가능할까요?</p>
 					</li>

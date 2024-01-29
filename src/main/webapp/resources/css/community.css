@@ -182,6 +182,7 @@
 .btn-container {
     display: flex;
     justify-content: center;
+    margin-top: 30px;
 }
 
 .image-upload>input {
@@ -192,6 +193,7 @@
     font-weight: bold;
     cursor: pointer;
 }
+
 .image-preview {
     width: 100%;
     min-height: 100px;
@@ -202,13 +204,26 @@
     font-weight: bold;
     color: #CCCCCC;
 }
-.image-preview_image {
-    display: flex;
-    width: 100%;
+
+.image-preview__image {
+    display: flex;  
+    justify-content: start;  
+    flex-wrap: wrap;  
+    position: relative;
+    margin: 5px;
 }
+
+.image-preview__image img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
 .remove-image {
     cursor: pointer;
     color: red;
+	margin-right: 20px;
+	margin-left: 10px;
 }
-
 

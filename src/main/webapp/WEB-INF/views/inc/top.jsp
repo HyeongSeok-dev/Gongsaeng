@@ -24,6 +24,16 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/responsive.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
+<script>
+
+//1:1 문의창
+function openCenteredWindow(url, name, width, height) {
+    var left = (screen.width - width) / 2;
+    var top = (screen.height - height) / 2;
+
+    window.open(url, name, 'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top);
+}
+</script>
 	
 <nav class="navbar navbar-default ">
     <div class="container">
@@ -329,7 +339,7 @@
                     <ul class="dropdown-menu navbar-nav">
                         <li><a href="${pageContext.request.contextPath}/cs/notice">공지사항</a></li>
                         <li><a href="${pageContext.request.contextPath}/cs/faq">자주 묻는 질문</a></li>
-                        <li><a href="${pageContext.request.contextPath}/cs/qna">1:1 문의</a></li>
+                        <li><a href="javascript:void(0);" onclick="openCenteredWindow('${pageContext.request.contextPath}/cs/qna', 'newwindow', 570, 680); return false;">1:1 문의</a></li>
                     </ul>
                 </li>
                 

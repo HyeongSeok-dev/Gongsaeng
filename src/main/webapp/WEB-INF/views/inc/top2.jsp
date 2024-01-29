@@ -43,6 +43,15 @@
 //         $('.dropdown-content.show').removeClass('show');
 //     });
 // });
+
+// 1:1 문의창
+function openCenteredWindow(url, name, width, height) {
+    var left = (screen.width - width) / 2;
+    var top = (screen.height - height) / 2;
+
+    window.open(url, name, 'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top);
+}
+
 function toggleDropdownMenu(event) {
     event.stopPropagation(); // 이벤트 버블링 방지
     var notify_dropdownContent = document.getElementById('notify_dropdown-content');
@@ -319,7 +328,7 @@ function notify_button(value) {
                     <ul class="dropdown-menu navbar-nav">
                         <li><a href="${pageContext.request.contextPath}/cs/notice">공지사항</a></li>
                         <li><a href="${pageContext.request.contextPath}/cs/faq">자주 묻는 질문</a></li>
-                        <li><a href="${pageContext.request.contextPath}/cs/qna">1:1 문의</a></li>
+                        <li><a href="javascript:void(0);" onclick="openCenteredWindow('${pageContext.request.contextPath}/cs/qna', 'newwindow', 570, 680); return false;">1:1 문의</a></li>
                     </ul>
                 </li>
                 

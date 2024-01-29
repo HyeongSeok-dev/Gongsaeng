@@ -1,7 +1,8 @@
 
 
-/* 1:1 문의 사진 첨부 */
 window.onload = function() {
+
+/* 1:1 문의 사진 첨부 */
     var fileInput = document.querySelector('.file-upload input[type=file]');
     var cameraIcon = document.querySelector('.file-upload i');
 
@@ -13,7 +14,19 @@ window.onload = function() {
         var fileName = fileInput.value.split('\\').pop();
         cameraIcon.title = fileName ? fileName : '';
     });
+    
+//    let date = new Date();
+//let hours = date.getHours();
+//let minutes = date.getMinutes();
+//let ampm = hours >= 12 ? '오후' : '오전';
+//hours = hours % 12;
+//hours = hours ? hours : 12; 
+//minutes = minutes < 10 ? '0' + minutes : minutes;
+//let strTime = ampm + ' ' + hours + ':' + minutes;
+//    
+    
 }
+
 
 $(".messages").animate({ scrollTop: $(document).height() }, "fast");
 
@@ -72,4 +85,28 @@ $(window).on('keydown', function(e) {
 });
 
 
-
+//function sendMessage(content) {
+//  let date = new Date();
+//  let hours = date.getHours();
+//  let minutes = date.getMinutes();
+//  let ampm = hours >= 12 ? '오후' : '오전';
+//  hours = hours % 12;
+//  hours = hours ? hours : 12; 
+//  minutes = minutes < 10 ? '0' + minutes : minutes;
+//  let strTime = ampm + ' ' + hours + ':' + minutes;
+//
+//  let messageElement = document.createElement('li');
+//  messageElement.classList.add('sent');
+//
+//  let messageContent = document.createElement('p');
+//  messageContent.textContent = content;
+//
+//  let messageTime = document.createElement('span');
+//  messageTime.classList.add('message-time');
+//  messageTime.textContent = strTime;
+//
+//  messageElement.appendChild(messageContent);
+//  messageElement.appendChild(messageTime);
+//
+//  document.querySelector('.messages ul').appendChild(messageElement);
+//}
