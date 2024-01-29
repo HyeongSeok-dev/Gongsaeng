@@ -19,14 +19,21 @@
 <link href="${pageContext.request.contextPath }/resources/company_assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
 <!-- CSS Just for demo purpose, don't include it in your project -->
 <link href="${pageContext.request.contextPath }/resources/company_assets/demo/demo.css" rel="stylesheet" />
-<!-- Global CSS -->
-<link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet" />
 <!-- DatePicker -->
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- FullCalendar 필요한 라이브러리 추가 -->
 <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css' rel='stylesheet' />
+  <!-- 이미지 업로드 자바스크립트 -->
+ <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+ <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<!-- Global CSS -->
+<link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet" />
+
 
 <style type="text/css">
 
@@ -151,6 +158,125 @@ button {
     font-family: 'NanumSquareNeo-Variable', sans-serif;
 }  
   
+/* 커리큘럼 등록 */  
+ 	/* 이미지 미리보기 css */
+	#img_preview0, #img_preview1, #img_preview2, #img_preview3, #img_preview4, #img_preview5{
+		display: none;
+		position: relative;
+		
+		margin:5px;
+		
+		width: 150px;
+		height: 150px; 
+		
+/* 		border: 2px solid black; */
+	
+	}
+	/* 미리보기 삭제버튼 css */
+	#sum_style{
+		text-align:center;
+		width:75px;
+		height:20spx;
+	    position:absolute; 
+		font-size:12px;
+		outline:none;
+		border:none;
+		border-radius:15px;
+	    right:70px;
+	    bottom:130px;
+	    /* z-index:1; */
+	    background-color:rgba(0,0,0,0.5);
+	    color:white;
+	}
+	.chk_style{
+		vertical-align: middle;
+		text-align:center;
+		
+		width:28px;
+		height:28px;
+	    position:absolute; 
+		/* font-size:20px; */
+		outline:none;
+		border:none;
+		border-radius:18px;
+	    right:9px;
+	    bottom:115px;
+	    /* z-index:1; */
+	    background-color:rgba(0,0,0,0.5);
+	    color:#ffcccc;
+	}
+	
+		
+	/* 미리보기 삭제 css */
+	#del_img1, #del_img2, #del_img3, #del_img4, #del_img5,#del_sum{
+		cursor: pointer;
+		display: none;
+	}
+	
+	#imgup{
+		margin-top: 5px;
+	}
+	
+	/* 이미지 미리보기 css */
+	#imgup_1,#imgup_2, #imgup_3, #imgup_4, #imgup_5,#imgup_sum {
+		cursor: pointer;
+		display: none;
+	}
+	
+	
+	.input-tag:focus{
+		outline: none;
+		border: 1px solid black;
+	}
+
+	
+	/* 테이블 간의 간격 */
+/* 	td { */
+.curriculum-detail {
+		width: 1020px;
+		padding: 0.8em 1.4em 0.5em 0.8em;
+	}
+	
+	.td1{
+		width: 20%;
+		vertical-align: top;
+		
+	}
+	
+	.td2{
+		width: 80%;
+	}
+	
+	#img_zone{
+		
+		/* background-color: black; */
+/* 		margin: auto;  */
+		width: 100%; 
+		min-height: 50px;
+		margin-bottom: 50px;
+	}
+	#img_intro{
+		
+		font-size:16px;
+		color : skyblue;
+		/* background-color: #ccffcc; */
+		margin: auto; 
+		width: 65%; 
+		min-height: 50px;
+	}
+	
+	/* 대표 사진 등록 */
+	.pic_instruction {
+		font-size: 14px;
+		color: #666A73;
+	}
+	
+	.custom-font-size {
+    font-size: 18px;
+}
+  
+  
+  
 </style>
 </head>
 <body class="클래스 등록">
@@ -242,138 +368,247 @@ button {
 							</div>
 							<div class="card-body">
 								<form>
-								<div class="col-md-10 pl-1">
-									  <div class="form-group">
-									    <label for="modal_title">일정 설정</label>
-									    <!-- 새로운 div에 '일정 등록' 버튼 추가 -->
+									<div class="col-md-10 pl-1">
+										<div class="form-group">
+											<label for="modal_title">일정 설정</label>
+											<!-- 새로운 div에 '일정 등록' 버튼 추가 -->
 											<div class="row">
-											    <div class="col-md-12 text-right">
-											        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#scheduleModal">일정 등록</button>
-											    </div>
+												<div class="col-md-12 text-right">
+													<button type="button" class="btn btn-secondary"
+														data-toggle="modal" data-target="#scheduleModal">일정
+														등록</button>
+												</div>
 											</div>
-									        <div class="row">
-										        <div class="col-md-12">
-											            	<!-- 모달창 -->
-											            	<div class="modal fade" id="scheduleModal" tabindex="-1" role="dialog" aria-labelledby="scheduleModalLabel" aria-hidden="true">
-															  <div class="modal-dialog" role="document">
-															    <div class="modal-content">
-															      <div class="modal-header">
-															        <h5 class="modal-title" id="scheduleModalLabel">일정 등록</h5>
-															        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-															          <span aria-hidden="true">&times;</span>
-															        </button>
-															      </div>
-															    <div class="modal-body">
-																 <form>
-																	<div class="row">
-																		<div class="col-md-12 pr-1 mb-3">
-																			<div class="form-group">
-																			<span class="modal_title">요일</span><br>
-																				<!-- ====================================== -->
-																				<div class="modal_check">
-																				<input type="checkbox" id="mon_checkbox" onclick="updateCheckboxValue(this);">
-																				<label for="mon_checkbox" class="checkbox-label">월</label>
-																				<input type="hidden" name="class_day" value="1">
-																				
-																				<input type="checkbox" id="tue_checkbox" onclick="updateCheckboxValue(this);">
-																				<label for="tue_checkbox" class="checkbox-label">화</label>
-																				<input type="hidden" name="class_day" value="２1">
-																				
-																				<input type="checkbox" id="wed_checkbox" onclick="updateCheckboxValue(this);">
-																				<label for="wed_checkbox" class="checkbox-label">수</label>
-																				<input type="hidden" name="class_day" value="３1">
-																				
-																				<input type="checkbox" id="thr_checkbox" onclick="updateCheckboxValue(this);">
-																				<label for="thr_checkbox" class="checkbox-label">목</label>
-																				<input type="hidden" name="class_day" value="4">
-																				
-																				<input type="checkbox" id="fri_checkbox" onclick="updateCheckboxValue(this);">
-																				<label for="fri_checkbox" class="checkbox-label">금</label>
-																				<input type="hidden" name="class_day" value="5">
-																				
-																				<input type="checkbox" id="sat_checkbox" onclick="updateCheckboxValue(this);">
-																				<label for="sat_checkbox" class="checkbox-label">토</label>
-																				<input type="hidden" name="class_day" value="6">
-																				
-																				<input type="checkbox" id="sun_checkbox" onclick="updateCheckboxValue(this);">
-																				<label for="sun_checkbox" class="checkbox-label">일</label>
-																				<input type="hidden" name="class_day" value="0">
-																				<br>
-																				</div>
-																				<p class="modal_day_instruction">하나 이상의 운영요일이 선택되어야 합니다. </p>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="row">
-																		<div class="col-md-8 pr-1 mb-3">
-																			<span class="modal_title">날짜</span><br>
-																			<div class="modal_date">
-																			<div class="form-group">
-																				<input type="date">&nbsp; ~ &nbsp;<input type="date">
-																				<br>
-																			</div>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="row">
-																		<div class="col-md-8 pr-1 mb-3">
-																			<div class="form-group">
-																				<span class="modal_title">클래스 운영시간(한 타임당)</span><br> 
-																				<div class="modal_time">
-																					<input type="time">&nbsp; ~ &nbsp;<input type="time">
-																					<br> 
+											<div class="row">
+												<div class="col-md-12">
+													<!-- 모달창 -->
+													<div class="modal fade" id="scheduleModal" tabindex="-1"
+														role="dialog" aria-labelledby="scheduleModalLabel"
+														aria-hidden="true">
+														<div class="modal-dialog" role="document">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<h5 class="modal-title" id="scheduleModalLabel">일정
+																		등록</h5>
+																	<button type="button" class="close"
+																		data-dismiss="modal" aria-label="Close">
+																		<span aria-hidden="true">&times;</span>
+																	</button>
+																</div>
+																<div class="modal-body">
+																	<form>
+																		<div class="row">
+																			<div class="col-md-12 pr-1 mb-3">
+																				<div class="form-group">
+																					<span class="modal_title">요일</span><br>
+																					<!-- ====================================== -->
+																					<div class="modal_check">
+																						<input type="checkbox" id="mon_checkbox"
+																							onclick="updateCheckboxValue(this);"> <label
+																							for="mon_checkbox" class="checkbox-label">월</label>
+																						<input type="hidden" name="class_day" value="1">
+
+																						<input type="checkbox" id="tue_checkbox"
+																							onclick="updateCheckboxValue(this);"> <label
+																							for="tue_checkbox" class="checkbox-label">화</label>
+																						<input type="hidden" name="class_day" value="２1">
+
+																						<input type="checkbox" id="wed_checkbox"
+																							onclick="updateCheckboxValue(this);"> <label
+																							for="wed_checkbox" class="checkbox-label">수</label>
+																						<input type="hidden" name="class_day" value="３1">
+
+																						<input type="checkbox" id="thr_checkbox"
+																							onclick="updateCheckboxValue(this);"> <label
+																							for="thr_checkbox" class="checkbox-label">목</label>
+																						<input type="hidden" name="class_day" value="4">
+
+																						<input type="checkbox" id="fri_checkbox"
+																							onclick="updateCheckboxValue(this);"> <label
+																							for="fri_checkbox" class="checkbox-label">금</label>
+																						<input type="hidden" name="class_day" value="5">
+
+																						<input type="checkbox" id="sat_checkbox"
+																							onclick="updateCheckboxValue(this);"> <label
+																							for="sat_checkbox" class="checkbox-label">토</label>
+																						<input type="hidden" name="class_day" value="6">
+
+																						<input type="checkbox" id="sun_checkbox"
+																							onclick="updateCheckboxValue(this);"> <label
+																							for="sun_checkbox" class="checkbox-label">일</label>
+																						<input type="hidden" name="class_day" value="0">
+																						<br>
+																					</div>
+																					<p class="modal_day_instruction">하나 이상의 운영요일이
+																						선택되어야 합니다.</p>
 																				</div>
 																			</div>
 																		</div>
-																	</div>
-																	<div class="row">
-																		<div class="col-md-8 pr-1 mb-2">
-																			<div class="form-group">
-																				<span class="modal_title">클래스 최대 인원(한 타임당)</span> 
-																				<div class="modal_select">
-																					<select class="form-control">
-																						<option>1명</option>
-																						<option>2명</option>
-																						<option>3명</option>
-																						<option>4명</option>
-																						<option>5명</option>
-																						<option>6명</option>
-																						<option>7명</option>
-																						<option>8명</option>
-																						<option>9명</option>
-																						<option>10명</option>
-																					</select>
+																		<div class="row">
+																			<div class="col-md-8 pr-1 mb-3">
+																				<span class="modal_title">날짜</span><br>
+																				<div class="modal_date">
+																					<div class="form-group">
+																						<input type="date">&nbsp; ~ &nbsp;<input
+																							type="date"> <br>
+																					</div>
 																				</div>
 																			</div>
 																		</div>
-																	</div>
-															      </div>
-															    <!-- 모달 내부 -->
-																	<div class="modal-footer">
-<!-- 															        <button type="button" class="btn btn-primary">저장</button> -->
-<!-- 															        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button> -->
-																	    <button type="button" class="btn btn-primary" id="saveButton">저장</button>
-																	    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-																	</div>
-															    </div>
-															  </div>
+																		<div class="row">
+																			<div class="col-md-8 pr-1 mb-3">
+																				<div class="form-group">
+																					<span class="modal_title">클래스 운영시간(한 타임당)</span><br>
+																					<div class="modal_time">
+																						<input type="time">&nbsp; ~ &nbsp;<input
+																							type="time"> <br>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																		<div class="row">
+																			<div class="col-md-8 pr-1 mb-2">
+																				<div class="form-group">
+																					<span class="modal_title">클래스 최대 인원(한 타임당)</span>
+																					<div class="modal_select">
+																						<select class="form-control">
+																							<option>1명</option>
+																							<option>2명</option>
+																							<option>3명</option>
+																							<option>4명</option>
+																							<option>5명</option>
+																							<option>6명</option>
+																							<option>7명</option>
+																							<option>8명</option>
+																							<option>9명</option>
+																							<option>10명</option>
+																						</select>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																</div>
+																<!-- 모달 내부 -->
+																<div class="modal-footer">
+																	<!-- 															        <button type="button" class="btn btn-primary">저장</button> -->
+																	<!-- 															        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button> -->
+																	<button type="button" class="btn btn-primary"
+																		id="saveButton">저장</button>
+																	<button type="button" class="btn btn-secondary"
+																		data-dismiss="modal">닫기</button>
+																</div>
 															</div>
-										            	<!-- 달력을 표시할 div -->
-										            <div id="calendar"></div> 
-										            <br><br>
-										        </div>
-										    </div>
+														</div>
+													</div>
+													<!-- 달력을 표시할 div -->
+													<div id="calendar"></div>
+													<br> <br>
+												</div>
+											</div>
 										</div>
 									</div>
-								<div class="col-md-4 pl-1">
-									    <label>판매가격</label>
-									    <div class="input-group">
-									      <input type="text" class="form-control" placeholder="ex) 100,000">
-									      <div class="input-group-append">
-									        <span class="input-group-text">원</span>
-									      </div>
-									    </div>
-									  </div>
+									<!-- ============================================================= -->
+									<div class="col-md-12 pr-7">
+										<div class="form-group">
+											<label>커리큘럼 상세 사진등록</label> <span class="pro_info"
+												id="img_number">(0/3)</span>
+											<div class="pic_instruction">
+												- 사진은 대표 이미지 포함 최대 3장까지 첨부할 수 있습니다.<br>
+												&nbsp;&nbsp;(1:1 비율 권장 / 최소 800px 이상 / 한 장당 최대 10MB)<br>
+												- 등록된 사진은 공생 SNS, 광고 등 외부 채널에 클래스 홍보 목적으로 사용될 수 있습니다.<br>
+											</div>
+											<!--                         <input type="text" class="form-control" placeholder="Company" value="Mike"> -->
+											<!-- ========================================================================== -->
+											<!-- 파일업로드 용 폼 -->
+											<form enctype="multipart/form-data" id="imgform"
+												method="post">
+												<input type="file" id="sumimage" style="display: none;"
+													accept=".jpg, .jpeg, .png"> <input type="file"
+													id="imageFile1" style="display: none;"
+													accept=".jpg, .jpeg, .png"> <input type="file"
+													id="imageFile2" style="display: none;"
+													accept=".jpg, .jpeg, .png">
+											</form>
+											<table style="margin-top: 30px;">
+												<tr>
+													<!-- 								<td class="td2" align="left"> -->
+													<td class="td2 curriculum-detail" align="left">
+														<!-- 이미지 등록 영역 -->
+														<div id="img_zone">
+															<div id="img_preview0">
+																<input type="image" id="imgup_sum" onclick="send_0();"
+																	src="" width="150px" height="150px"> <span
+																	id="sum_style">대표 이미지</span>
+																<!-- 삭제버튼 -->
+																<span id="del_sum" class="chk_style"
+																	onclick="del_sum();">x</span>
+															</div>
+
+
+															<div id="img_preview1">
+																<input type="image" id="imgup_1" onclick="send_1();"
+																	src="" width="150px" height="150px">
+																<!-- 삭제버튼 -->
+																<span id="del_img1" class="chk_style"
+																	onclick="del_img1();">x</span>
+															</div>
+
+															<div id="img_preview2">
+																<input type="image" id="imgup_2" onclick="send_2();"
+																	src="" width="150px" height="150px"> <span
+																	id="del_img2" class="chk_style" onclick="del_img2();">x</span>
+															</div>
+														</div>
+													</td>
+												</tr>
+												<!-- 이미지영역끝 -->
+												<tr>
+													<td class="td1" align="left"><input type="button"
+														id="imgup" onclick="img_preview();" value="대표 이미지 업로드"
+														style="width: 150px; height: 50px; border-radius: 10px; border: 1px solid; background-image: url('${ pageContext.request.contextPath }/resources/img/image_upload.png'); background-size: cover;">
+													</td>
+												</tr>
+											</table>
+											<br> <br>
+											<!-- ========================================================================== -->
+											<div class="row">
+												<div class="col-md-12 pl-1">
+													<label>1단계) 상세 내용</label>
+													<div class="input-group">
+														<input type="text" class="form-control" placeholder="커리큘럼 1단계 상세내용을 입력해주세요">
+													</div>
+												</div>
+												<div class="col-md-12 pl-1">
+													<label>2단계) 상세 내용</label>
+													<div class="input-group">
+														<input type="text" class="form-control" placeholder="커리큘럼 2단계 상세내용을 입력해주세요">
+													</div>
+												</div>
+												<div class="col-md-12 pl-1">
+													<label>3단계) 상세 내용</label>
+													<div class="input-group">
+														<input type="text" class="form-control" placeholder="커리큘럼 3단계 상세내용을 입력해주세요">
+													</div>
+												</div>
+												<br><br>
+												<div class="col-md-4 pl-1">
+													<label>판매가격</label>
+													<div class="input-group">
+														<input type="text" class="form-control"
+															placeholder="ex) 100,000">
+														<div class="input-group-append">
+															<span class="input-group-text">원</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- ============================================================= -->
 									</div>
 								</form>
 							</div>
@@ -505,6 +740,326 @@ button {
           updateCheckboxValue(this);
         });
       });
+
+      
+      // -----------------------------------------
+      // 커리큘럼
+      
+       //<!-- 이미지 추가버튼 스크립트 -->--------------------
+	var preview_array  = [false, false, false];
+	
+	<!-- 이미지 등록시 미리보기 추가 작업 -->
+	function img_preview() {
+
+		for(var i=0; i<preview_array.length; i++){
+
+// 			for(var i=0; i<preview_array.length; i++){
+// 				if(i=[i]){
+// 					if(preview_array[i]==false){
+// 						send_[i]();
+// 						return;
+// 					}
+// 				}
+// 			}
+			
+			
+			/* i가 0일때 */
+			if(i==0){
+				/* 0번사진 비어있으면 */
+				if(preview_array[0]==false){
+					/* 섬네일사진 */
+					/* 0번사진 인풋태그 호출 */
+					send_0();
+					return;
+				}
+			}
+			
+			/* i가1일때 */
+			if(i==1){
+				/* 1번사진이 비어있으면 */
+				if(preview_array[1]==false){
+					/* 1번사진 인풋태그 호출 */
+					send_1();
+					return;
+				}
+			}
+			
+			/* i가 2일때 */
+			if(i==2){
+				/* 2번사진 비어있으면 */
+				if(preview_array[2]==false){
+					/* 2번사진 인풋태그 호출 */
+					send_2();
+					return;
+				}
+			}
+			
+
+		}/*  for end */
+		
+		alert("더이상 등록할 수 없습니다.");
+		return;
+		
+	}/* 프리뷰 end */
+
+//-----------------------------------------------------
+
+//<!-- 이미지 장수 표현 함수 -->-----------------------
+	function img_num() {
+		var img_number = 0;
+		
+		for(var i=0; i<preview_array.length; i++ ){
+			if(preview_array[i]==true){
+				img_number++;
+			}	
+		}
+		/* 이미지 장수 표시 */
+		$("#img_number").html('('+ img_number + '/3)');
+	}
+	
+	//-----------------------------------------------------------
+
+	
+	
+	function send_0() {
+		$("#sumimage").click();
+	}
+	
+	$(function(){
+		$("#sumimage").on('change',function(){
+			if( $("#sumimage")[0].files[0]==undefined) {
+				return;
+			}
+			imgcheck0(this);
+			
+		})
+		
+	});
+
+
+
+//<!-- 이미지 미리보기 -->-----------------------------------
+
+	function imgcheck0(input) {
+		
+		/* 이미지 확장자 파일체크 */
+		var file_kind = input.value.lastIndexOf('.');
+		var file_name = input.value.substring(file_kind+1,input.length);
+		var file_type = file_name.toLowerCase();
+
+		var check_array = new Array( 'jpg','png','jpeg' );
+
+		$('#sumimage').val();
+		
+		if(check_array.indexOf(file_type)==-1){
+			
+			/* 사용자에게 알려주고 */
+			alert('이미지 파일만 선택할 수 있습니다.');
+			/* 실제 업로드 되는 input태그 vlaue값 지우기 */
+			$('#sumimage').val('');
+			
+			return;
+		
+		} 
+
+		
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+	        reader.onload = function (e) {
+		        $('#imgup_sum').attr('src', e.target.result);
+		        
+		        $("#img_preview0").css("display","inline-block");
+				$("#imgup_sum").show();
+		        $("#del_sum").show();
+		       
+				preview_array[0] = true;
+				
+				/* 이미지넘버 변경 */
+				img_num();
+			
+			
+	        }
+	        
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
+	
+	
+	
+	/* 1번사진 */
+	
+	function send_1() {
+		$("#imageFile1").click();
+	}
+	
+	$(function(){
+		$("#imageFile1").on('change',function(){
+			/* 파일선택 취소했을때 */
+			if( $("#imageFile1")[0].files[0]==undefined) {
+				return;
+			}
+			imgcheck1(this);
+		})
+		
+	});
+	
+	function imgcheck1(input) {
+		
+		/* 이미지 확장자 파일체크 */
+		var file_kind = input.value.lastIndexOf('.');
+		var file_name = input.value.substring(file_kind+1,input.length);
+		var file_type = file_name.toLowerCase();
+
+		var check_array = new Array( 'jpg','png','jpeg' );
+
+		
+		if(check_array.indexOf(file_type)==-1){
+			
+			alert('이미지 파일만 선택할 수 있습니다.');
+			/* 실제 업로드 되는 input태그 vlaue값 지우기 */
+			$('#imageFile1').val('');
+			
+			return;
+		
+		} 
+		
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+	        reader.onload = function (e) {
+	        	        
+	        	$('#imgup_1').attr('src', e.target.result);
+	        	//배열에 트루값주기, 트루면 업로드 못함
+	        
+	        	$("#img_preview1").css("display","inline-block");
+	        	$("#imgup_1").show();
+	        	$("#del_img1").show();
+	        	
+	        	preview_array[1] = true;
+				
+	        	/* 이미지넘버 변경 */
+	        	img_num();
+	        }
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
+
+	/* 2번사진 */
+
+	function send_2() {
+		$("#imageFile2").click();
+	}
+	
+	$(function(){
+		$("#imageFile2").on('change',function(){
+			/* 파일선택 취소했을때 */
+			if( $("#imageFile2")[0].files[0]==undefined) {
+				return;
+			}
+			imgcheck2(this);
+		})
+		
+	});
+	
+	
+	
+	function imgcheck2(input) {
+		
+		/* 이미지 확장자 파일체크 */
+		var file_kind = input.value.lastIndexOf('.');
+		var file_name = input.value.substring(file_kind+1,input.length);
+		var file_type = file_name.toLowerCase();
+
+		var check_array = new Array( 'jpg','png','jpeg' );
+		
+		if(check_array.indexOf(file_type)==-1){
+			alert('이미지 파일만 선택할 수 있습니다.');
+			/* 실제 업로드 되는 input태그 vlaue값 지우기 */
+			$('#imageFile2').val('');
+			
+			return;
+		
+		} 
+		
+		
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+	        reader.onload = function (e) {
+				$('#imgup_2').attr('src', e.target.result);
+				
+				 $("#img_preview2").css("display","inline-block");
+				$("#imgup_2").show();
+				$("#del_img2").show();
+				
+				preview_array[2] = true;
+	        	/* 이미지넘버 변경 */
+				img_num();
+	       
+	        }
+	        
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
+	
+	//<!-- 이미지미리보기삭제 -->--------------------------------
+
+	function del_sum() {
+		/* alert('썸네일이미지 지움'); */
+		/* 실제 DB에 들어가는 input value 지움 */
+		$('#sumimage').val('');
+		
+      $("#img_preview0").css("display","none");
+		$('#imgup_sum').hide();
+		$("#del_sum").hide(); 
+		
+		/* 썸네일 비움 */
+		preview_array[0] = false;
+		
+		/* 이미지 넘버변경 */
+		img_num();
+		
+		return;
+	}
+
+
+	function del_img1() {
+		/* alert('1번이미지 지움'); */
+		
+		$('#imageFile1').val('');
+		
+		$("#img_preview1").css("display","none");
+		$('#imgup_1').hide();
+		$("#del_img1").hide();
+		
+		/* 1번사진 비움 */
+		preview_array[1] = false;
+		
+		/* 이미지 넘버변경 */
+		img_num();
+		
+		return;
+	}
+	
+	function del_img2() {
+		/* alert('2번이미지 지움'); */
+		
+		$('#imageFile2').val('');
+		
+		$("#img_preview2").css("display","none");
+		$('#imgup_2').hide();
+		$("#del_img2").hide();
+		
+		/* 2번사진 비움 */
+		preview_array[2] = false;
+		
+		/* 이미지 넘버변경 */
+		img_num();
+		
+		return;
+	}
+  
+      
+      
+      
 </script>
 </body>
 
