@@ -188,13 +188,13 @@
     display: none;
 }
 .image-upload .fa-camera {
-    font-size: 1.5em;
+    font-size: 15px;
+    font-weight: bold;
     cursor: pointer;
 }
 .image-preview {
     width: 100%;
     min-height: 100px;
-/*     border: 2px solid #dddddd; */
     margin-top: 15px;
     display: flex;
     justify-content: left;
@@ -203,7 +203,12 @@
     color: #CCCCCC;
 }
 .image-preview_image {
-    display: none;
-    width: 30%;
+    display: flex;
+    width: 100%;
 }
+.remove-image {
+    cursor: pointer;
+    color: red;
+}
+
 

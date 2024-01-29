@@ -66,7 +66,7 @@
     <br>
      <div class="container">
         <form>
-        <div class="col-lg-8 col-lg-offset-2">
+        <div class="col-lg-10 col-lg-offset-1">
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-3">
@@ -89,19 +89,20 @@
                 <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요">
             </div>
             <div class="form-group">
-                <textarea class="form-control" id="content" rows="15" placeholder="내용을 입력하세요"></textarea>
+                <textarea class="form-control" id="content" rows="25" placeholder="내용을 입력하세요"></textarea>
             </div>
             <div class="form-group">
  			<div class="image-upload">
-                <label for="file-input">
-                    첨부파일 <i class="fa fa-camera"></i> <span class="file-count">(0/3)</span>
-                </label>
-                <input id="file-input" type="file" multiple />
-            </div>
-            <div class="image-preview" id="image-preview">
-                <div class="image-preview__image"></div>
-                <span class="image-preview__default-text"></span>
-            </div>
+		    <label for="file-input">
+		        <i class="fa fa-camera">  첨부파일</i>
+		        <span class="file-count">(0/3)</span>
+		    </label>
+		    <input id="file-input" type="file" multiple />
+			</div>
+			<div class="image-preview" id="image-preview">
+			    <div class="image-preview__image"></div>
+			    <span class="image-preview__default-text"></span>
+			</div>
             <div class="form-group btn-container">
                 <button type="submit" class="btn btn-primary">등록</button>
                 <button type="button" class="btn btn-default">취소</button>
