@@ -38,21 +38,24 @@ $(document).ready(function() {
 	$("#payBtn").on("click",function(e) {
 		
 		// 라디오버튼에 따른 결제팝업 변경
+		
 		var IMP = window.IMP;
-		IMP.init('imp05703412');
-		if($('input[name="pay_method"]:checked').length == 0) {
-					alert("결제수단을 선택해주세요.");
-					return;
+		IMP.init('imp22106057');
+		
+		if($('input[name="pay_method"]:checked').length == 0) { //결제수단에서 라디오버튼 미 선택시 경고창 출력
+				alert("결제수단을 선택해주세요.");
+				return;
 			} else if($('input[type=radio][value="1"]').is(':checked')) {//카카오페이
 					// V1방법 카카오페이 연동
 					console.log("kakao");
 					IMP.request_pay({
 					  pg: "kakaopay",
-					  merchant_uid: $("#res_num").val(), // 상점에서 생성한 고유 주문번호
-					  name: "찜콩테이블 예약 - " + $("#com_name").val() +" "+ $("#res_person").val() + "명",
+					  merchant_uid: $("#res_num").val(), //주문번호
+					  name: "공생 클래스 수강 - " + $("#class_title").val() +" "+ $("#class_ctart_date").val() +
+					  	"" + $("#class_start_time") + "부터시작" + $("#res_person").val() + "명",
 					  amount: parseInt($("#totalPayment_text").text().trim().replace(/,/g, '')),
-					  buyer_email: $("#user_email").val(),
-					  buyer_name: $("#user_name").val(),
+					  buyer_email: $("#member_email").val(),
+					  buyer_name: $("#member_name").val(),
 					}, function (rsp) { 
 						console.log("function");
 						console.log("rsp : " + rsp);

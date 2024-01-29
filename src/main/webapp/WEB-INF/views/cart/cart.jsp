@@ -74,6 +74,7 @@
      </div>
 	
 <div class="container">
+<form action="">
 	<div class="row justify-content-center">
 	<!-- 중간에 오게하기이해 div추가 -->
 	<div class="col-12 col-8 offset-2">
@@ -180,6 +181,7 @@
 		</div>
 		</div><!-- 중간에오게하기위해 div추가 -->
 	</div>
+</form>
 </div>
 
 	<footer>

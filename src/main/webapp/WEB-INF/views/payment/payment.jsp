@@ -192,7 +192,7 @@
 							</div>
 							<input type="text" value="" placeholder="사용할 0페이를 입력해 주세요" class="pay_to_use" name="payToUse" /><span class="won">원</span>
 							
-							<button id="chargePay" class="use_button charge" type="button" onclick="alert('계좌를 인증해주세요.'); authAccount();">계좌인증</button>
+							<button id="chargePay" class="use_button charge" type="button" onclick="alert('계좌를 인증해주세요.'); authAccount();">사용하기</button>
 							<!-- member_id유무에 따른 버튼 출력 -->
 <%-- 							<c:choose> --%>
 <%-- 								없을때(계좌등록) --%>
@@ -297,6 +297,7 @@
 				<div class="div_submit">
 					<button type="button" class="pay_button" id="payBtn">결제</button> 
 				</div>
+				
 			</div>
 			<div class="div_right_box">
 				<div class="right_box_stiky">
