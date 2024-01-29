@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.gongsaeng.mapper.BankMapper">
+
+	<!-- 아이디 조회 -->
+	<select id="selectId" resultType="string">
+		SELECT member_id
+		FROM account
+		WHERE id = #{member_id}
+	</select>
+	
+	<!-- 엑세스 토큰 저장 - INSERT -->
+	<insert id="insertAccessToken">
+		INSERT INTO account
+		VALUES (
+			#{member_id}
+			, #{token.access_token}
+			, #{token.refresh_token}
+			, #{token.user_seq_no}
+			, null
+		)
+	</insert>
+	
+	<!-- 엑세스 토큰 업데이트 - UPDATE -->
+	<update id="updateAccessToken">
+		UPDATE account
+		SET
+			access_token = #{token.access_token}
+			, refresh_token = #{token.refresh_token}
+			, user_seq_no = #{token.user_seq_no}
+		WHERE id = #{member_id}
+	</update>
+	
+	<!-- 사용자 토큰 정보 조회 - SELECT -->
+	<select id="selectBankUserInfo" resultType="map">
+		SELECT *
+		FROM account
+		WHERE id = #{member_id}
+	</select>
+	
+</mapper>

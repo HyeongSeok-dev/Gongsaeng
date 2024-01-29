@@ -140,9 +140,16 @@
 			                <th>거래번호</th>
 			                <th>아이디</th>
 			                <th>금액</th>
-			                <th>거래유형</th>
+<!-- 			                <th>거래유형</th> -->
+			                <th>
+								<select>
+									<option>거래유형</option>
+									<option>충전</option>
+									<option>송금</option>
+								</select>
+							</th>
 			                <th>날짜</th>
-			                <th>상세보기</th>
+<!-- 			                <th>상세보기</th> -->
 			            </tr>
 			            <!-- 회원 데이터 로우 -->
 			            <tr>
@@ -151,7 +158,7 @@
 			                <td>금액</td>
 			                <td>거래유형</td>
 			                <td>날짜</td>
-			                <td><button type="button" class="btn detail_btn" value="상세보기">상세보기</button></td>
+<%-- 			                <td><button type="button" class="btn detail_btn" value="상세보기" onclick="location.href='${pageContext.request.contextPath }/admin/Opay/deposit/withdraw/detail'">상세보기</button></td> --%>
 			            </tr>
 			    </table>
               </div>

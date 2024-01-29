@@ -74,6 +74,11 @@ table {
         width: 100%;
     }
 
+.section_box {
+    width: 70%;  /* 원하는 너비로 설정하세요. */
+    margin: 0 auto;
+}
+
 </style>
 
 </head>
@@ -100,13 +105,22 @@ table {
 					<br>
 					<h5>0페이를 충전할 계좌를 선택하세요.</h5>
 					<br>
-					<table border="1">
+					<form action="">
+					<table>
 						<tr>
+							<td>은행명</td>
 							<td>계좌번호</td>
-							<td>계좌</td>
-							<td><input type="button" value="선택"></td>
+							<td>계좌번호</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>${accountDetail.bank_name}</td>
+							<td>${account_num_masked}</td>
+							<td>${account_num_masked}</td>
+							<td><input type="submit" value="선택"></td>
 						</tr>
 					</table>
+					</form>
 				</section>
 	</div>
 									

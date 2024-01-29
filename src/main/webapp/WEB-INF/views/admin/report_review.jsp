@@ -171,7 +171,7 @@
 			                <td>피신고자아이디</td>
 			                <td>신고사유</td>
 			                <td>처리상태</td>
-			                <td><button type="button" class="btn detail_btn" value="상세보기">상세보기</button></td>
+			                <td><button type="button" class="btn detail_btn" value="상세보기" onclick="location.href='${pageContext.request.contextPath }/admin/report/review/detail'">상세보기</button></td>
 			            </tr>
 			    </table>
               </div>

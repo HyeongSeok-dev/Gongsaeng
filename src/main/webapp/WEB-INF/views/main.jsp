@@ -6,7 +6,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>공생 | 공간에 대한 생각</title>
+	<title>공생 | 공간을 생각하다</title>
 	<meta name="description" content="GARO is a real-estate template">
 	<meta name="author" content="Kimarotec">
 	<meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
@@ -567,12 +567,12 @@ function toggleButtons() {
                         <div class="pull-right">
                             <div class="pagination">
                                 <ul>
-                                    <li><a href="#">Prev</a></li>
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">Next</a></li>
+<!--                                     <li><a href="#">Prev</a></li> -->
+<!--                                     <li><a href="#">1</a></li> -->
+<!--                                     <li><a href="#">2</a></li> -->
+<!--                                     <li><a href="#">3</a></li> -->
+<!--                                     <li><a href="#">4</a></li> -->
+                                    <li><a href="#">더보기</a></li>
                                 </ul>
                             </div>
                         </div>                

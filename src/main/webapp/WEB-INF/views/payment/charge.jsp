@@ -50,8 +50,21 @@
         <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
 <%--         <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script> --%>
         <script src="${pageContext.request.contextPath }/resources/assets/js/main_noicheck.js"></script>
-        
+      
+<style type="text/css">
+
+table {
+  width: 100%;
+}
+
+.section_box {
+    width: 70%;  /* 원하는 너비로 설정하세요. */
+    margin: 0 auto;
+}
+      
+</style>  
 </head>
+
 <body>
 <!-- 	<header> -->
 <%-- 		<jsp:include page="../inc/top.jsp"></jsp:include> --%>

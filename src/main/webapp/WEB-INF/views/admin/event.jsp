@@ -24,6 +24,17 @@
   <link href="${pageContext.request.contextPath }/resources/admin_assets/css/event.css" rel="stylesheet" />
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
   <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">
+<script>
+// 	function detailPopup() {
+			/* 팝업창 중앙 정렬 */
+// 			var popupW = 950;
+// 			var popupH = 700;
+// 			var left = Math.ceil((window.screen.width - popupW)/2);
+// 			var top = Math.ceil((window.screen.height - popupH)/2);
+// 			window.open('${pageContext.request.contextPath }/admin/marketing/event/detail','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
+		
+// 	}
+</script>
 </head>
 
 <body class="user-profile">
@@ -142,13 +153,15 @@
             </div>
           </div>
           <div class="col-md-6">
-          	<div class="card"  style="height: 400px;">
-              <div class="card-header">
-                <h5 class="title">등록이벤트 미리보기</h5>
-              </div>
-              <div class="card-body">
-              	<img src="" alt="">
-              </div>
+          	<div class="card"  style="height: 400px; width: 540px;">
+          		<div class="card_overflow">
+	              <div class="card-header">
+	                <h5 class="title">등록이벤트 미리보기</h5>
+	              </div>
+	              <div class="card-body">
+	              	<img src="" alt="">
+	              </div>
+            	</div>
             </div>
           </div>
         </div>
@@ -193,16 +206,16 @@
 				                <th>제목</th>
 				                <th>등록일자</th>
 				                <th>이벤트기한</th>
-				                <th>상세보기</th>
+<!-- 				                <th>상세보기</th> -->
 				            </tr>
 				            <!-- 회원 데이터 로우 -->
-				            <tr>
-				                <td>번호</td>
-				                <td>제목</td>
-				                <td>등록일자</td>
-				                <td>이벤트기한</td>
-				                <td><button type="button" class="btn detail_btn" value="상세보기">상세보기</button></td>
-				            </tr>
+					            <tr class="tr_hover" data-toggle="modal" data-target="#exampleModal">
+					                <td>번호</td>
+					                <td>제목</td>
+					                <td>등록일자</td>
+					                <td>이벤트기한</td>
+	<!-- 				                <td><button type="button" class="btn detail_btn" value="상세보기">상세보기</button></td> -->
+					            </tr>
 				    </table>
 	         	 </div>
 	        </div>
@@ -228,6 +241,35 @@
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.js"></script>
+  
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">이벤트 상세</h5>&nbsp;&nbsp;
+        <div>
+		    <span>XXX 이벤트</span>&nbsp;<span>기간 : 2024/02/12 ~ 2024/02/13</span>&nbsp;<span>진행예정</span>
+        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+<!--         <div> -->
+<!-- 	        <span>XXX 이벤트</span>&nbsp;<span>기간 : 2024/02/12 ~ 2024/02/13</span>&nbsp;<span>진행예정</span> -->
+<!--         </div> -->
+        <div>
+        	여기는 이벤트 이미지가옴
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+        <button type="button" class="btn btn-primary">저장</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 
 </html>
