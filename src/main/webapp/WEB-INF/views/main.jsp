@@ -64,10 +64,7 @@ function toggleButtons() {
 	</div>
 	
 	<%-- 상단바 삽입 --%>
-	<%-- 로그인 전 --%>
-<%-- 	<jsp:include page="./inc/top.jsp"/> --%>
-	<%-- 로그인 후 --%>
-	<jsp:include page="./inc/top2.jsp"/>
+	<jsp:include page="./inc/top.jsp"/>
 	
 	<%-- 캐러셀_광고 area --%>
 	<div class="slider-area">
@@ -591,7 +588,7 @@ function toggleButtons() {
 	        <div class="row">
 	            <div class="col-md-12  padding-top-40 properties-page">
 	                <div class="col-md-12 ">
-	                    <h2>마감임박순</h2>
+	                    <h2 class="class_card_h2">마감임박순</h2>
 	                </div>
 
 	                <div class="col-md-12 ">
@@ -954,7 +951,7 @@ function toggleButtons() {
             <div class="row">
                 <div class="col-md-12  padding-top-40 properties-page">
                     <div class="col-md-12 "> 
-					<h2>최신 리뷰</h2>
+					<h2 class="class_card_h2">최신 리뷰</h2>
                     </div>
 
 	                <div class="col-md-12 ">

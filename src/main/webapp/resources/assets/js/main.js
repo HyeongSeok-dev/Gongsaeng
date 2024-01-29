@@ -4,6 +4,7 @@ $(window).load(function () { // makes sure the whole site is loaded
     $('body').delay(350).css({'overflow': 'visible'});
 })
 
+// 슬라이더
 $(document).ready(function () {
 	// 메인 광고 슬라이더
     $("#bg-slider").owlCarousel({
@@ -69,9 +70,30 @@ $(document).ready(function () {
 //	    center: true,
 	    loop: true
     });
-    
+})
 
-    $('#price-range').slider();
+// 상단바 전체메뉴 멀티 드롭다운 이벤트
+$(document).ready(function () {
+    $(".submenu-container").each(function() {
+        let submenu = $(this).find('.dropdown-submenu');
+
+        $(this).hover(function() {
+            submenu.show();
+            $('#dropdown-submenu_event').css('min-width', '300px');
+            $('.dropdown-menu-toggle', this).css({'font-weight': 'bold'});
+        }, function() {
+            submenu.hide();
+            $('#dropdown-submenu_event').css('min-width', '160px');
+            $('.dropdown-menu-toggle', this).css({'font-weight': 'normal'});
+        });
+    });
+});
+
+
+/// 여기서부턴 class_list.jsp
+// 상세정보창
+$(document).ready(function () {
+	$('#price-range').slider();
     $('#property-geo').slider();
     $('#min-baths').slider();
     $('#min-bed').slider();
@@ -126,18 +148,16 @@ $(document).ready(function () {
 
         return r;
     }
+    
+	$('input').iCheck({
+		checkboxClass: 'icheckbox_square-yellow',
+		radioClass: 'iradio_square-yellow',
+		increaseArea: '20%' // optional
+    });
+});
 
-})
-
-// iCheck 순서를 밑으로(메인에서 iCheck 이벤트를 쓰지 않기 때문)
 // class_list.jsp (체크박스 이벤트, 카드 레이아웃 선택)
 $(document).ready(function () {
-    $('input').iCheck({
-        checkboxClass: 'icheckbox_square-yellow',
-        radioClass: 'iradio_square-yellow',
-        increaseArea: '20%' // optional
-    });
-
     $('.layout-grid').on('click', function () {
       
         $('.layout-grid').addClass('active');
@@ -159,6 +179,7 @@ $(document).ready(function () {
 
         alert("list 선택!!!!!!!!!!");
     });
+    
 
 });
 

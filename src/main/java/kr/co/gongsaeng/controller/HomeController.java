@@ -36,6 +36,11 @@ public class HomeController {
 	public String classList() {
 		return "class_list";
 	}
+	
+	@GetMapping("class/list2")
+	public String classList2() {
+		return "class_list2";
+	}
 
 	@GetMapping("test")
 	public String test() {

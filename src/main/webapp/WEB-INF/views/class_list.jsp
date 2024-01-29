@@ -72,168 +72,157 @@ function toggleButtons() {
 	    </div>
 	</div>
 
-	<div class="properties-area recent-property" style="background-color: #FFF;">
+	<div class="properties-area recent-property" style="background-color: #FCFCFC;">
 	    <div class="container"> 
-	        <div class="row  pr0 padding-top-40 properties-page">
+	        <div class="row_not  pr0 padding-top-40 properties-page">
 	        	
 	        	<%-- 상세검색 area --%>
 				<div class="col-md-12 padding-bottom-40 large-search"> 
 	                <div class="search-form wow pulse">
+	                
 	                    <form action="" class=" form-inline">
 	                        <div class="col-md-12">
+	                        	<button>원데이</button>
+	                        	<button>정규모집</button>
+	                        </div>
+	                        <div class="col-md-12" style="margin-bottom: 20px;">
 	                            <div class="col-md-4">
-	                                <input type="text" class="form-control" placeholder="Key word">
+	                                <input type="text" class="form-control" placeholder="클래스명">
 	                            </div>
 	                            <div class="col-md-4">                                   
-	                                <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Select your city">
-	                                    <option>New york, CA</option>
-	                                    <option>Paris</option>
-	                                    <option>Casablanca</option>
-	                                    <option>Tokyo</option>
-	                                    <option>Marraekch</option>
-	                                    <option>kyoto , shibua</option>
+	                                <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="카테고리">
+	                                    <optgroup label="바닥 시공">
+	                                    	<option>바닥 시공 전체</option>
+	                                    	<option>바닥재 시공</option>
+	                                    	<option>장판 시공</option>
+	                                    	<option>타일 시공</option>
+	                                    	<option>마루 시공</option>
+	                                    	<option>카페트 시공</option>
+	                                    </optgroup>
+	                                    <optgroup label="벽/천장 시공">
+	                                    	<option>벽/천장 시공 전체</option>
+	                                    	<option>도배 시공</option>
+	                                    	<option>칸막이 시공</option>
+	                                    	<option>페인트 시공</option>
+	                                    	<option>방음 시공</option>
+	                                    	<option>단열 필름 시공</option>
+	                                    </optgroup>
+	                                    <optgroup label="부분 인테리어">
+	                                    	<option>부분 인테리어 전체</option>
+	                                    	<option>샷시 설치 및 수리</option>
+	                                    	<option>화장실 리모델링</option>
+	                                    	<option>주방 리모델링</option>
+	                                    	<option>가구 리폼</option>
+	                                    	<option>붙박이장 시공</option>
+	                                    </optgroup>
+	                                    <optgroup label="야외 시공">
+	                                    	<option>야외 시공 전체</option>
+	                                    	<option>조경 공사</option>
+	                                    	<option>옥상 공사</option>
+	                                    	<option>지붕 공사</option>
+	                                    	<option>태양광 발전</option>
+	                                    	<option>외벽 리모델링</option>
+	                                    </optgroup>
+	                                    <optgroup label="종합 인테리어">
+	                                    	<option>종합 인테리어 전체</option>
+	                                    	<option>집 인테리어</option>
+	                                    	<option>상업공간 인테리어</option>
+	                                    	<option>주택 리모델링</option>
+	                                    	<option>집 수리</option>
+	                                    	<option>인테리어 소품</option>
+	                                    </optgroup>
+	                                    <optgroup label="기타 시공">
+	                                    	<option>기타 시공 전체</option>
+	                                    	<option>줄눈 시공</option>
+	                                    	<option>단열 시공</option>
+	                                    	<option>미장 시공</option>
+	                                    </optgroup>
 	                                </select>
 	                            </div>
+	                            
 	                            <div class="col-md-4">                                     
-	                                <select id="basic" class="selectpicker show-tick form-control">
-	                                    <option> -Status- </option>
-	                                    <option>Rent </option>
-	                                    <option>Boy</option>
-	                                    <option>used</option>  
-	
+	                                <select id="basic" class="selectpicker show-tick form-control" title="상태">
+	                                    <option>모집중</option>
+	                                    <option>마감</option>
+	                                    <option>종료</option>  
 	                                </select>
 	                            </div>
 	                        </div>
+	                        
 	                        <div class="col-md-12 ">
-	                            <div class="search-row">   
-	
-	                                <div class="col-sm-3">
-	                                    <label for="price-range">Price range ($):</label>
-	                                    <input type="text" class="span2" value="" data-slider-min="0" 
-	                                           data-slider-max="600" data-slider-step="5" 
-	                                           data-slider-value="[0,450]" id="price-range" ><br />
-	                                    <b class="pull-left color">2000$</b> 
-	                                    <b class="pull-right color">100000$</b>
-	                                </div>
-	                                <!-- End of  -->  
-	
-	                                <div class="col-sm-3">
-	                                    <label for="property-geo">Property geo (m2) :</label>
-	                                    <input type="text" class="span2" value="" data-slider-min="0" 
-	                                           data-slider-max="600" data-slider-step="5" 
-	                                           data-slider-value="[50,450]" id="property-geo" ><br />
-	                                    <b class="pull-left color">40m</b> 
-	                                    <b class="pull-right color">12000m</b>
-	                                </div>
-	                                <!-- End of  --> 
-	
-	                                <div class="col-sm-3">
-	                                    <label for="price-range">Min baths :</label>
-	                                    <input type="text" class="span2" value="" data-slider-min="0" 
-	                                           data-slider-max="600" data-slider-step="5" 
-	                                           data-slider-value="[250,450]" id="min-baths" ><br />
-	                                    <b class="pull-left color">1</b> 
-	                                    <b class="pull-right color">120</b>
-	                                </div>
-	                                <!-- End of  --> 
-	
-	                                <div class="col-sm-3">
-	                                    <label for="property-geo">Min bed :</label>
-	                                    <input type="text" class="span2" value="" data-slider-min="0" 
-	                                           data-slider-max="600" data-slider-step="5" 
-	                                           data-slider-value="[250,450]" id="min-bed" ><br />
-	                                    <b class="pull-left color">1</b> 
-	                                    <b class="pull-right color">120</b>
-	                                </div>
-	                                <!-- End of  --> 
-	
-	                            </div>
-	
+								<div class="col-md-4">
+									<select id="basic" class="selectpicker show-tick form-control" title="요일">
+										<option>평일</option>
+										<option>토요일</option>
+										<option>일요일</option>  
+									</select>
+								</div>
+								
+								<div class="col-sm-4 not_hover">
+									<label for="property-geo">시작시간 ~ 종료시간</label>
+									<input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[50,450]" id="property-geo"><br />
+									<b class="pull-left color">40m</b> 
+									<b class="pull-right color">12000m</b>
+								</div>
+
+								<div class="col-sm-4 not_hover">
+									<label for="price-range">금액</label>
+									<input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[0,450]" id="price-range"><br />
+									<b class="pull-left color">2000$</b>
+									<b class="pull-right color">100000$</b>
+								</div>
+	                        </div>	
+	                                
+
+	                        <div class="col-md-12 ">
 	                            <div class="search-row">  
+	                            
+	                                <div class="col-sm-3">
+	                                    <div class="checkbox">
+	                                        <label><input type="checkbox"> 공방 보유</label>
+	                                    </div>
+	                                </div>
+
+	                                <div class="col-sm-3">
+	                                    <div class="checkbox">
+	                                        <label><input type="checkbox"> 주차공간</label>
+	                                    </div>
+	                                </div>
+
+	                                <div class="col-sm-3">
+	                                    <div class="checkbox">
+	                                        <label><input type="checkbox"> 와이파이</label>
+	                                    </div>
+	                                </div>
 	
 	                                <div class="col-sm-3">
 	                                    <div class="checkbox">
-	                                        <label>
-	                                            <input type="checkbox"> Fire Place(3100)
-	                                        </label>
+	                                        <label><input type="checkbox"> 커피 별도 구매</label>
 	                                    </div>
 	                                </div>
-	                                <!-- End of  -->  
 	
 	                                <div class="col-sm-3">
 	                                    <div class="checkbox">
-	                                        <label>
-	                                            <input type="checkbox"> Dual Sinks(500)
-	                                        </label>
+	                                    	<label><input type="checkbox"> 대중교통 용이</label>
 	                                    </div>
 	                                </div>
-	                                <!-- End of  --> 
-	
+	                                
 	                                <div class="col-sm-3">
 	                                    <div class="checkbox">
-	                                        <label>
-	                                            <input type="checkbox"> Hurricane Shutters(99)
-	                                        </label>
+	                                    	<label><input type="checkbox"> 택시·자가용 추천</label>
 	                                    </div>
 	                                </div>
-	                                <!-- End of  -->  
-	
+	                                
 	                                <div class="col-sm-3">
 	                                    <div class="checkbox">
-	                                        <label>
-	                                            <input type="checkbox"> Swimming Pool(1190)
-	                                        </label>
+	                                    	<label><input type="checkbox"> 음료·간식 제공</label>
 	                                    </div>
 	                                </div>
-	                                <!-- End of  -->  
 	
-	                                <div class="col-sm-3">
-	                                    <div class="checkbox">
-	                                        <label>
-	                                            <input type="checkbox"> 2 Stories(4600)
-	                                        </label>
-	                                    </div>
-	                                </div>
-	                                <!-- End of  --> 
-	
-	                                <div class="col-sm-3">
-	                                    <div class="checkbox">
-	                                        <label>
-	                                            <input type="checkbox"> Emergency Exit(200)
-	                                        </label>
-	                                    </div>
-	                                </div>
-	                                <!-- End of  --> 
-	
-	                                <div class="col-sm-3">
-	                                    <div class="checkbox">
-	                                        <label>
-	                                            <input type="checkbox"> Laundry Room(10073)
-	                                        </label>
-	                                    </div>
-	                                </div>
-	                                <!-- End of  -->  
-	
-	                                <div class="col-sm-3">
-	                                    <div class="checkbox">
-	                                        <label>
-	                                            <input type="checkbox"> Jog Path(1503)
-	                                        </label>
-	                                    </div>
-	                                </div>
-	                                <!-- End of  --> 
-	
-	                                <div class="col-sm-3">
-	                                    <div class="checkbox">
-	                                        <label>
-	                                            <input type="checkbox"> 26' Ceilings(1200)
-	                                        </label>
-	                                    </div>
-	                                </div>
-	                                <!-- End of  --> 
 	                            </div>   
-	                        </div>                     
+	                        </div>
 	                    </form>
+	                    
 	                </div>
 	            </div>
 				<%-- 상세검색 area --%>
@@ -261,7 +250,7 @@ function toggleButtons() {
 	                </div><!--/ .layout-switcher-->
 	            </div>
 	
-	            <div class="col-md-12 clear "> 
+	            <div class="col-md-12 clear " style="padding-bottom: 100px;"> 
 	                <div id="list-type" class="proerty-th">
 	                
 	                	<%-- 클래스 카드 area --%>
@@ -274,6 +263,7 @@ function toggleButtons() {
 									
 									<%-- 클래스 기간형식 --%>
 									<span class="jss162">원데이 클래스</span>
+<!-- 									<span class="jss162">정규모집</span> -->
 														
 									<%-- 찜표시 --%>
 									<%-- 찜하기 전 --%>
@@ -409,11 +399,11 @@ function toggleButtons() {
 						</div>
 	
 						<%-- 광고 area --%>
-	                    <div class="col-sm-6 col-md-3 p0">
-	                        <div class="box-two proerty-item proerty-item-ads" id="class_list_item">
-	                            <a href="" ><img src="${pageContext.request.contextPath}/resources/assets/img/pro-ads.jpg"></a>
-	                        </div>
-	                    </div> 
+<!-- 	                    <div class="col-sm-6 col-md-3 p0"> -->
+<!-- 	                        <div class="box-two proerty-item proerty-item-ads" id="class_list_item"> -->
+<%-- 	                            <a href="" ><img src="${pageContext.request.contextPath}/resources/assets/img/pro-ads.jpg"></a> --%>
+<!-- 	                        </div> -->
+<!-- 	                    </div>  -->
 						<%-- 광고 area --%>
 						
 						<div class="col-sm-6 col-md-3 p0">
@@ -843,11 +833,11 @@ function toggleButtons() {
 						</div> 
 	                    
 	                    <%-- 광고 area --%>
-	                    <div class="col-sm-6 col-md-3 p0">
-	                        <div class="box-two proerty-item proerty-item-ads" id="class_list_item">
-	                            <a href="" ><img src="${pageContext.request.contextPath}/resources/assets/img/pro-ads.jpg"></a>
-	                        </div>
-	                    </div>
+<!-- 	                    <div class="col-sm-6 col-md-3 p0"> -->
+<!-- 	                        <div class="box-two proerty-item proerty-item-ads" id="class_list_item"> -->
+<%-- 	                            <a href="" ><img src="${pageContext.request.contextPath}/resources/assets/img/pro-ads.jpg"></a> --%>
+<!-- 	                        </div> -->
+<!-- 	                    </div> -->
 	                    <%-- 광고 area --%>
 	
 						<div class="col-sm-6 col-md-3 p0">
@@ -994,26 +984,28 @@ function toggleButtons() {
 						 
 					</div>
 	            </div>
-	
-	            <div class="col-md-12 clear"> 
-					<div class="pull-right">
-						<div class="pagination">
-							<ul>
-								<li><a href="#">Prev</a></li>
-								<li><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">Next</a></li>
-							</ul>
-						</div>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-					</div>
-	            </div>
+	            
+	            <%-- 페이지네이션 --%>
+<!-- 	            <div class="col-md-12 clear">  -->
+<!-- 					<div class="pull-right"> -->
+<!-- 						<div class="pagination"> -->
+<!-- 							<ul> -->
+<!-- 								<li><a href="#">Prev</a></li> -->
+<!-- 								<li><a href="#">1</a></li> -->
+<!-- 								<li><a href="#">2</a></li> -->
+<!-- 								<li><a href="#">3</a></li> -->
+<!-- 								<li><a href="#">4</a></li> -->
+<!-- 								<li><a href="#">Next</a></li> -->
+<!-- 							</ul> -->
+<!-- 						</div> -->
+<!-- 						<br> -->
+<!-- 						<br> -->
+<!-- 						<br> -->
+<!-- 						<br> -->
+<!-- 						<br> -->
+<!-- 					</div> -->
+<!-- 	            </div> -->
+
 			</div>                
 		</div>
 	</div>

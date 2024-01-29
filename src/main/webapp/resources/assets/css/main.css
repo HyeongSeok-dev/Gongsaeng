@@ -1,7 +1,15 @@
+@font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html, body {
     width: 100%;
     overflow-x: hidden;
 /*     font-family: 'Noto Serif KR', serif; */
+	font-family: 'NanumSquareNeo-Variable', sans-serif;
 }
 
 body {
@@ -143,6 +151,8 @@ input {
     font-size: 16px;
     padding: 5px 15px;
     border-radius: 3px;
+    /* ### */
+    font-family: 'NanumSquareNeo-Variable', sans-serif;
 }
 button {
     border-radius: 3px;
@@ -153,6 +163,9 @@ button {
     outline-offset: 0;
     border: none;
     overflow: visible;
+    /* ### */
+    font-family: 'NanumSquareNeo-Variable', sans-serif;
+    font-weight: normal;
 }  
 button,
 select {
@@ -798,7 +811,7 @@ label small{
 .button.navbar-right {
 	/* ### */
 /*     padding-top: 10px; */
-    padding-top: 22px;
+    padding-top: 25px;
     
     margin-right: 0px;
 }
@@ -1230,14 +1243,14 @@ label small{
     text-transform: uppercase;color: #494C53;
 	font-weight: 500;
 	text-shadow: 2px 2px 2px #fff;
-    font-family: 'Noto Serif KR', serif;
+/*     font-family: 'Noto Serif KR', serif; */
 }
 .slider-content p {
     font-size: 14px;
     margin-bottom: 60px;
     color: rgb(110, 110, 110);
     text-shadow: 1px 1px 1px #fff;
-    font-family: 'Noto Serif KR', serif;
+/*     font-family: 'Noto Serif KR', serif; */
 }
 
 .slider .owl-theme .owl-controls {
@@ -1321,7 +1334,9 @@ page-header
 }
 .page-head-content .page-title {
     margin: 0px;
-    padding: 10px 16px;
+    /* ### */
+/*     padding: 10px 16px; */
+    padding: 10px 30px;
     font-size: 25px;
     font-weight: 300;
     text-transform: uppercase;
@@ -1331,7 +1346,7 @@ page-header
 #page-title-left {
 	justify-content: flex-start;
     margin: 0px;
-    padding: 10px 16px;
+    padding: 10px 30px;
     font-size: 25px;
     font-weight: 300;
     text-transform: uppercase;
@@ -1581,7 +1596,7 @@ Asside widgets CSS
     font-size: 13px;
 }
 .panel.sidebar-menu.with-icons ul.nav li a:after {
-    font-family: 'FontAwesome';
+/*     font-family: 'FontAwesome'; */
     content: "\f105";
     position: relative;
     top: 0;
@@ -1599,7 +1614,7 @@ Asside widgets CSS
     padding-top: 55px;
     display: flex;
     /* ### */
-    justify-content: center;
+    justify-content: space-between;
 }
 .page-title h5{
     font-weight: 300;
@@ -1788,7 +1803,7 @@ padding: 0 0 0.5em;
     padding: 0px;
     /* ### */
     /* 클래스카드 가로로 늘린 버전 */
-    width: 383px;
+	width: 386px;
 }
 .overflow{
     overflow: hidden;
@@ -1937,7 +1952,10 @@ proerty-th
 ======================================*/
 
 .proerty-th {
-    margin-left: -9px;
+	/* ### */
+	/* 클래스 카드 영역 조정 */
+/*     margin-left: -9px; */
+    margin: 0px -9px;
 }
 .proerty-th .proerty-item{
     background-color: #FFF; 
@@ -2105,6 +2123,7 @@ proerty-th-list
 	/* 클래스카드 테두리없는 버전  */
     background-color: #FCFCFC;
 /*     padding: 10px; */
+/* 	padding: 0px 1px 0px 10px; */
     border: none;
 } 
 .proerty-th-list  .proerty-item .item-entry h5 {
@@ -2118,7 +2137,8 @@ proerty-th-list
 .proerty-th-list .proerty-price{
     font-weight: 600;
     color: #494C53;
-    font-size: 25px;
+    /* ### */
+    font-size: 20px;
 }
 .property-icon {
     clear: both;
@@ -2880,7 +2900,9 @@ padding-bottom: 15px;
     padding: 25px 25px 40px;
 }
 .large-search .search-form {
-    background-color: #FFF;
+	/* ### */
+/*     background-color: #FFF; */
+    background-color: #FCFCFC;
     border-radius: 1px;
     padding: 20px 0px;
     box-sizing: border-box;
@@ -2987,7 +3009,7 @@ padding-bottom: 15px;
     font-size: 16px;
     line-height: 24px;
     text-align: center;
-    font-family: "FontAwesome";
+/*     font-family: "FontAwesome"; */
     margin-right: 16px;
     cursor: pointer;
 
@@ -3478,20 +3500,24 @@ padding-bottom: 15px;
     margin-top: -4px
 }
 .badge2 {
-    display: inline-block;
-    min-width: 10px;
-    padding: 2px 5px;
-    font-size: 10px;
-    font-weight: 700;
-    line-height: 1;
-    color: #fff;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    background-color: #777;
-    border-radius: 20px;
-    margin-top: -8px;
-    position: absolute;
+	display: inline-block;
+	min-width: 20px;
+	padding: 0 5px;
+	font-size: 0.6rem;
+	font-weight: 600;
+	line-height: 18px;
+	color: #fff;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	background-color: #777;
+	border-radius: 10px;
+	margin-top: -10px;
+	position: absolute;
+	box-shadow: 0 1px 3px 0 rgba(0,0,0,.28);
+	border: 1px solid rgba(0,0,0,.04);
+	z-index: 10;
+	box-sizing: border-box;
 }
 
 
@@ -3589,7 +3615,6 @@ padding-bottom: 15px;
 	max-height:100px;
 	padding: 0px;
 }
-
 .col_classPrice {
 	min-height: 20px;
 	max-height: 20px;
@@ -3602,7 +3627,7 @@ padding-bottom: 15px;
 	margin-right: auto;
 	/* ### */
 	/* 캐러셀 사이즈 조절 */
-	width: 1150px !important;
+	width: 1140px !important;
 }
 .item_p {
 	text-align: left;
@@ -3617,6 +3642,21 @@ padding-bottom: 15px;
 }
 .item-entry h6 a {
 	font-weight: normal;
+}
+.class_card_h2 {
+	font-size: 20px;
+	font-weight: bold;
+	color: #000;
+	margin-bottom: 12px;
+}
+/* 검색결과가 없을경우 페이지 */
+.noResearchResult_h2 {
+    font-size: 20px;
+    font-weight: normal;
+    color: #000;
+    text-align: center;
+    line-height: 30px;
+    margin: 150px 0px 280px 0px;
 }
 
 /* 카드 레이아웃 - 그리드형식 */
@@ -3645,8 +3685,141 @@ padding-bottom: 15px;
 	font-size: 20px;
     margin: 20px 0px;
 }
-/* 클래스리스트 클래스 카드 배경색 설정 (메인과 다름) */
+/* 클래스리스트 클래스 카드 배경색 설정 */
 #class_list_item {
-    background-color: #FFF;	
+    background-color: #FCFCFC;	
 }
 
+
+/* 상단바 전체메뉴_하위메뉴 */
+/* .submenu-container { */
+/*     position: absolute; */
+/* /*     top: 0; */ */
+/* /*     left: 100%; */ */
+/* } */
+.submenu-container {
+    position: relative;
+}
+.dropdown-submenu {
+    position: absolute;
+    top: 13px;
+    left: 130px;
+    display: none;
+    margin: 0;
+    padding: 0;
+	width: 57%;
+	height: 95%;
+}
+.dropdown-submenu a > li {
+	font-weight: normal;
+	color: #000;
+}
+.dropdown-submenu>a:hover + .dropdown-submenu1 {
+	display: block;
+}
+.submenu-container > ul > a {
+	font-weight: normal;
+}
+.main-nav a:hover {
+	font-weight: bold !important;
+	background-color: #ddd;
+}
+.main-nav a > li:hover {
+	font-weight: bold !important;
+}
+.submenu-container li {
+    clear: both;
+    height: 50px;
+}
+.submenu-container > li > ul:hover {
+    background-color: #ddd;
+    width: 48.5%;
+}
+.submenu-container > li > ul {
+	padding: 0 0 0 20px;
+	margin-top: -1px;
+	height: 100%;
+}
+.dropdown-menu-toggle {
+	font-weight: normal;
+	color: #000;
+}
+.ymm-sw .dropdown-submenu li {
+	clear: both;
+	height: 49px;
+}
+.dropdown a:hover {
+	color: #000 !important;
+}
+
+/* 알림 */
+.notify_dropdown {
+	position: relative !important;
+	display: inline-block;
+}
+.notify_dropdown-content {
+	display: none;
+	position: absolute;
+	min-width: 300px;
+	z-index: 1000000;
+	background-color: #fff;
+	right: 150px;
+	margin-top: -5px;
+	border-radius: 5px;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 10px;
+ 	inset: 40px -50px auto auto;
+}
+.notify_dropdown-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+.notify_dropdown:hover .notify_dropdown-content {
+	display: block;
+}
+.notify_button {
+	background-color: rgba(0,0,0,0);
+	margin-top: 20px;
+	margin-bottom: 10px;
+	color: #000;
+    font-weight: 400;
+}
+.notify_setting {
+	background-color: rgba(0,0,0,0);
+	margin-top: 14px;
+	color: #000;
+    font-weight: 400;
+    margin-left: -15px
+}
+.container-fluid .col-sm-3:hover, .col-sm-4:hover, .col-sm-2:hover {
+	background-color: #ddd;
+}
+.notify_p {
+    margin-top: 10px;
+    width: 300px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #000;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #e6e6e6;
+}
+.notify_content {
+	margin-bottom: 15px;
+}
+
+.class_date_button {
+	display: inline-flex;
+	vertical-align: top;
+	margin-right: auto;
+}
+
+.not_hover:hover {
+    background-color: rgba(0,0,0,0);
+}
+
+.row_not {
+    margin-right: 0px;
+    margin-left: 0px;
+}
