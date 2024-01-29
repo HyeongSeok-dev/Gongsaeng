@@ -8,6 +8,6 @@ import kr.co.gongsaeng.mapper.ReviewMapper;
 @Service
 public class ReviewService {
 	
-	@Autowired
-	private ReviewMapper mapper;
+//	@Autowired
+//	private ReviewMapper mapper;
 }

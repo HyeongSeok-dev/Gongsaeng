@@ -13,23 +13,23 @@ import kr.co.gongsaeng.service.ReviewService;
 @Controller
 public class ReviewController {
 	
-	@Autowired
-	private ReviewService service;
+//	@Autowired
+//	private ReviewService service;
 	
 	
 	@GetMapping("review/write")
 	public String write(HttpSession session, Model model, int class_idx) {
 		
 		
-		 String sId = "dlwohgks7310";
-		    session.setAttribute("sId", sId);
-		    session.getAttribute(sId);
-		    
-		if (sId == null){
-			model.addAttribute("msg", "로그인이 필요합니다");
-			model.addAttribute("targetURL", "/gongsaeng/login");
-			return "forward";
-		}
+//		 String sId = "dlwohgks7310";
+//		    session.setAttribute("sId", sId);
+//		    session.getAttribute(sId);
+//		    
+//		if (sId == null){
+//			model.addAttribute("msg", "로그인이 필요합니다");
+//			model.addAttribute("targetURL", "/gongsaeng/login");
+//			return "forward";
+//		}
 		// ---------------------------------------------------------------------
 		
 	    // user_id를 사용하여 member 테이블에서 user_idx 찾기
