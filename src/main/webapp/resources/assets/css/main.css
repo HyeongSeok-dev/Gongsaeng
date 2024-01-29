@@ -111,7 +111,7 @@ img {
 	margin-left: 10px;
 	/* ### */
 	position: absolute;
-	margin-top: 15px;
+	margin-top: 20px;
 }
 /* ### */
 /* .navbar-header { */
@@ -822,7 +822,8 @@ label small{
     /* ### */
 /*     font-size: 16px; */
     font-size: 14px;
-    padding: 3px 15px;
+/*     padding: 3px 15px; */
+    padding: 5px 10px;
     border-radius: 5px;
 /*     border-radius: 10px; */
     -webkit-transition: all 0.4s ease;
@@ -837,6 +838,10 @@ label small{
 .nav-button.login{
     background-color: #494C53;
     margin-right: 5px;
+    padding: 5px 10px;
+    /* ### */
+    /* 알림배지를 앞으로 */
+/*     position: relative; */
 }
 .nav-button:hover{
     background-color: #494C53;
@@ -3768,6 +3773,21 @@ padding-bottom: 15px;
 	border-radius: 5px;
 	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 10px;
  	inset: 40px -50px auto auto;
+	overflow-y: auto;
+	max-height: 300px;
+}
+/* 스크롤바 막대 */
+.notify_dropdown-content::-webkit-scrollbar {
+    width: 10px;
+  }
+.notify_dropdown-content::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 12px 12px 12px 12px;
+}
+.notify_dropdown-content::-webkit-scrollbar-button:vertical:start:decrement,
+.notify_dropdown-content::-webkit-scrollbar-button:vertical:start:increment {
+    display: block;
+    height: 25px;
 }
 .notify_dropdown-content a {
 	color: black;
@@ -3808,6 +3828,87 @@ padding-bottom: 15px;
 .notify_content {
 	margin-bottom: 15px;
 }
+/* 스위치 */
+label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 13px !important;
+}
+
+.switch_checkbox {
+  appearance: none;
+  position: relative;
+  border: max(2px, 0.1em) solid gray;
+  border-radius: 1.25em;
+  width: 2.25em;
+  height: 1.25em;
+}
+
+.switch_checkbox::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  transform: scale(0.8);
+  background-color: gray;
+  transition: left 250ms linear;
+}
+
+.switch_checkbox:checked {
+  background-color: #494C53;
+  border-color: #494C53;
+}
+
+.switch_checkbox:checked::before {
+  background-color: white;
+  left: 1em;
+}
+
+.switch_checkbox:disabled {
+  border-color: lightgray;
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.switch_checkbox:disabled:before {
+  background-color: lightgray;
+}
+
+.switch_checkbox:disabled + span {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.switch_checkbox:focus-visible {
+  outline-offset: max(2px, 0.1em);
+  outline: max(2px, 0.1em) solid #494C53;
+}
+
+.switch_checkbox:enabled:hover {
+  box-shadow: 0 0 0 max(4px, 0.2em) lightgray;
+}
+
+/* Global CSS */
+fieldset {
+	display: grid;
+	justify-content: normal;
+	align-items: center;
+	height: 200px;
+}
+
+.switch_area {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+
+
 
 .class_date_button {
 	display: inline-flex;

@@ -89,6 +89,16 @@ $(document).ready(function () {
     });
 });
 
+// 알림 카테고리 클릭 시 해당 알림 보여주는 이벤트
+function notify_button(value) {
+	var notifyButtons = document.querySelectorAll('.notify_button_' + value);
+	
+	$('.notify_p').css('display', 'none');
+	notifyButtons.forEach(function(button) {
+		button.style.display = '';
+	});
+}
+
 
 /// 여기서부턴 class_list.jsp
 // 상세정보창
