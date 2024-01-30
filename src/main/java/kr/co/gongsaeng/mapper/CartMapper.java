@@ -3,6 +3,7 @@ package kr.co.gongsaeng.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import kr.co.gongsaeng.vo.CartListVO;
 
@@ -17,7 +18,7 @@ public interface CartMapper {
 	String deletCart(int class_idx);
 	
 	//장바구니 리스트
-	List<CartListVO> allCartList(String member_id);
+	List<CartListVO> allCartList(@Param("member_id") String member_id);
 
 	
 

@@ -123,16 +123,16 @@
 					<label for="u_email" class="col-sm-1 control-label">이메일</label>
 					<div class="col-sm-4">
 						<div class="input-group">
-							<input type="text" id="u_email" required name="member_email1" class="form-control" placeholder="이메일" maxlength="16">
+							<input type="text" id="u_email" required name="member_email1" class="form-control mail" placeholder="이메일" maxlength="16">
 							<div class="input-group-addon">@</div>
 						</div>
 					</div>
 
 					<div class="col-sm-4">
-						<input type="text" id="customEmail" required class="form-control" name="member_email2" style="display: none;" placeholder="이메일을 입력하세요"
+						<input type="text" id="customEmail" required class="form-control mail" name="member_email2" style="display: none;" placeholder="이메일을 입력하세요"
 							disabled="disabled">
 						<div id="emailSelectBox">
-							<select id="u_email2" name="member_email2" class="form-control">
+							<select id="u_email2" name="member_email2" class="form-control mail">
 								<option value="">선택하세요</option>
 								<option value="gmail.com">gmail.com</option>
 								<option value="naver.com">naver.com</option>

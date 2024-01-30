@@ -17,6 +17,7 @@ $(document).ready(function() {
 	        url: "addCart",
 	        data:{
 				class_idx : class_idx,
+				
 				memberId : memberId
 			},
 	        dataType: "json",
@@ -43,6 +44,7 @@ $(document).ready(function() {
         success: function(response) {
             if(response) { // 성공
                 alert("상품을 장바구니에서 삭제했습니다.");
+                window.reload();
             } else { // 실패
                 alert("상품을 장바구니에서 삭제하는데 실패했습니다.");
               }

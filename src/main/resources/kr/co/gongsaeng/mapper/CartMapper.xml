@@ -24,8 +24,9 @@
 	
 	<!-- 장바구니 조회하기 -->
 	<select id="allCartList">
-		SELECT 
-		FROM 
+		SELECT *
+		FROM cart
+		WHERE member_id = #{member_id}
 	</select>
 	
 </mapper>

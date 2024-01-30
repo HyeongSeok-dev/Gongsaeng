@@ -45,6 +45,9 @@
 			<if test="member_id == null and member_email1 != null">
 				and member_email = CONCAT(#{member_email1},'@',#{member_email2})
 		 	</if>
+			<if test="member_id == null and member_phone != null">
+				and member_phone = #{member_phone}
+		 	</if>
 				and member_status = 1
 		</where>
 	</select>

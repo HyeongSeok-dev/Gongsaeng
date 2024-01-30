@@ -2,6 +2,8 @@ package kr.co.gongsaeng.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +21,9 @@ public class CartController {
 	
 	//장바구니
 	@GetMapping("cart")
-	public String cart(@RequestParam String member_id) {
+	public String cart(HttpSession session) {
 		
+		String member_id = session.getAttribute("sId").toString();		
 		//장바구니 리스트 불러오기
 		List<CartListVO> cartList = cartService.getCartListSelect(member_id);
 		

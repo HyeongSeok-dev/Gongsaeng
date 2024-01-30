@@ -34,10 +34,10 @@ $(document).ready(function() {
 
 	//입력 널스트링이면 "입력하세요" 출력후 focus=======================
 	$("#joinBtn").click(function() {
-		
+
 		let email2 = $("#u_email2").val();
 		let email3 = $("#customEmail").val();
-//		아이디가 양식에 맞지 않을 경우
+		//		아이디가 양식에 맞지 않을 경우
 		if (!isvalidIdLength) {
 			alert("아이디가 양식에 맞지 않습니다.");
 			return false;
@@ -88,9 +88,10 @@ $(document).ready(function() {
 
 		//이메일 중복일 경우
 		if (isEmail) {
-			alert("이메일 중복입니다.");
+			alert("이메일이 중복되었습니다.");
 			return false;
 		}
+
 
 	});
 
@@ -178,7 +179,7 @@ $(document).ready(function() {
 		//영문 대소문자 숫자포함 8~16자리, 특수문자 한글입력불가	
 		//		let regex = /^[a-zA-Z0-9]{8,16}$/;
 		let regex = /^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{8,16}$/;
-		
+
 		if (!regex.exec(member_id)) { //입력값 검증 실패시
 			$("#checkIdResult").html("영문자, 숫자 조합 8~16자리 필수");
 			$("#checkIdResult").css("color", "red");
@@ -216,10 +217,27 @@ $(document).ready(function() {
 			$("#checkPhoneResult").html("- 를 뺀 숫자 11자리 필요");
 			$("#checkPhoneResult").css("color", "red");
 			Phone = true;
-		} else {
-			$("#checkPhoneResult").html("사용가능한 전화번호입니다.");
-			$("#checkPhoneResult").css("color", "blue");
-			Phone = false;
+		} else { //입력값 검증 성공시
+			isvalidIdLength = true;
+			$.ajax({
+				url: "CheckDupPhone",
+				data: {
+					member_phone: member_phone
+				},
+				dataType: "json",
+				success: function(checkDuplicateResult) {
+					if (checkDuplicateResult) { //중복
+						$("#checkPhoneResult").html("사용 불가능한 전화번호입니다.");
+						$("#checkPhoneResult").css("color", "red");
+						Phone = true;
+					} else { //중복X
+						$("#checkPhoneResult").html("사용가능한 전화번호입니다.");
+						$("#checkPhoneResult").css("color", "blue");
+						Phone = false;
+					}
+				} //success
+			}); //ajax
+
 		}
 
 	});
@@ -252,24 +270,30 @@ $(document).ready(function() {
 	}); //닉네임 중복확인
 
 	//이메일 중복확인==========================================
-	$("#u_email").blur(function() {
+	$(".mail").blur(function() {
 
-		let member_email = $("#u_email").val();
-
+		let member_email1 = $("#u_email").val();
+		let customEmail = $("#customEmail").val();
+		let member_email2;
+		
+		if(customEmail == null || customEmail == ""){
+			member_email2 =  $("#u_email2").val();
+		}else{
+			member_email2 = customEmail;
+		}
+		console.log("member_email1" + member_email1);
+		console.log("member_email2" + member_email2);
 		$.ajax({
-			url: "MemberCheckDupEmail",
+			url: "CheckDupEmail",
 			data: {
-				member_email: member_email
+				member_email1: member_email1,
+				member_email2: member_email2
 			},
 			dataType: "json",
 			success: function(checkDuplicateResult) {
 				if (checkDuplicateResult) { //중복
-					$("#checkEmailResult").html("이미 사용중인 이메일");
-					$("#checkEmailResult").css("color", "red");
 					isEmail = true;
 				} else { //중복X
-					$("#checkEmailResult").html("사용 가능한 이메일");
-					$("#checkEmailResult").css("color", "blue");
 					isEmail = false;
 				}
 			} //success
