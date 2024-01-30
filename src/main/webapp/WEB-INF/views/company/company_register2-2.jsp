@@ -19,10 +19,9 @@
 <link href="${pageContext.request.contextPath }/resources/company_assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
 <!-- CSS Just for demo purpose, don't include it in your project -->
 <link href="${pageContext.request.contextPath }/resources/company_assets/demo/demo.css" rel="stylesheet" />
-<!-- DatePicker -->
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
 <!-- FullCalendar 필요한 라이브러리 추가 -->
 <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css' rel='stylesheet' />
   <!-- 이미지 업로드 자바스크립트 -->
@@ -282,8 +281,8 @@ button {
 <body class="클래스 등록">
 	<div class="wrapper ">
 		<div class="sidebar" data-color="orange">
-		 <!-- Include sidebar_wrapper.jsp -->
-            <jsp:include page="./sidebar_wrapper.jsp"/>
+			<!-- Include sidebar_wrapper.jsp -->
+			<jsp:include page="./sidebar_wrapper.jsp" />
 			<!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
@@ -345,18 +344,16 @@ button {
 										class="dropdown-item" href="#">Another action</a> <a
 										class="dropdown-item" href="#">Something else here</a>
 								</div></li>
-									<li class="nav-item">
-								<a class="nav-link" href="#pablo">
+							<li class="nav-item"><a class="nav-link" href="#pablo">
 									<i class="now-ui-icons users_single-02"></i>
 									<p>
 										<span class="d-lg-none d-md-block">Account</span>
 									</p>
-								</a>
-							  </li>
-							</ul>
-						</div>
+							</a></li>
+						</ul>
 					</div>
-				</nav>
+				</div>
+			</nav>
 			<!-- End Navbar -->
 			<div class="panel-header panel-header-sm"></div>
 			<div class="content">
@@ -378,6 +375,19 @@ button {
 														data-toggle="modal" data-target="#scheduleModal">일정
 														등록</button>
 												</div>
+												<table id="scheduleTable" class="table">
+													<thead>
+														<tr>
+															<th>요일</th>
+															<th>날짜</th>
+															<th>운영시간</th>
+															<th>최대 인원</th>
+														</tr>
+													</thead>
+													<tbody>
+														<!-- 여기에 스크립트에서 생성한 행이 추가됩니다 -->
+													</tbody>
+												</table>
 											</div>
 											<div class="row">
 												<div class="col-md-12">
@@ -388,104 +398,97 @@ button {
 														<div class="modal-dialog" role="document">
 															<div class="modal-content">
 																<div class="modal-header">
-																	<h5 class="modal-title" id="scheduleModalLabel">일정
-																		등록</h5>
+																	<h5 class="modal-title" id="scheduleModalLabel">일정 등록</h5>
 																	<button type="button" class="close"
 																		data-dismiss="modal" aria-label="Close">
 																		<span aria-hidden="true">&times;</span>
 																	</button>
 																</div>
+																<!-- 																<form> -->
 																<div class="modal-body">
-																	<form>
-																		<div class="row">
-																			<div class="col-md-12 pr-1 mb-3">
+																	<div class="row">
+																		<div class="col-md-12 pr-1 mb-3">
+																			<div class="form-group">
+																				<span class="modal_title">요일</span><br>
+																				<!-- ====================================== -->
+																				<div class="modal_check">
+																					<input type="checkbox" id="mon_checkbox" onclick="updateCheckboxValue(this);">
+																					<label for="mon_checkbox" class="checkbox-label">월</label>
+																					<input type="hidden" name="class_day" value="1">
+
+																					<input type="checkbox" id="tue_checkbox" onclick="updateCheckboxValue(this);"> 
+																					<label for="tue_checkbox" class="checkbox-label">화</label>
+																					<input type="hidden" name="class_day" value="2">
+
+																					<input type="checkbox" id="wed_checkbox" onclick="updateCheckboxValue(this);"> 
+																					<label for="wed_checkbox" class="checkbox-label">수</label>
+																					<input type="hidden" name="class_day" value="3">
+
+																					<input type="checkbox" id="thr_checkbox" onclick="updateCheckboxValue(this);"> 
+																					<label for="thr_checkbox" class="checkbox-label">목</label>
+																					<input type="hidden" name="class_day" value="4">
+
+																					<input type="checkbox" id="fri_checkbox" onclick="updateCheckboxValue(this);"> 
+																					<label for="fri_checkbox" class="checkbox-label">금</label>
+																					<input type="hidden" name="class_day" value="5">
+
+																					<input type="checkbox" id="sat_checkbox" onclick="updateCheckboxValue(this);"> 
+																					<label for="sat_checkbox" class="checkbox-label">토</label>
+																					<input type="hidden" name="class_day" value="6">
+
+																					<input type="checkbox" id="sun_checkbox" onclick="updateCheckboxValue(this);"> 
+																					<label for="sun_checkbox" class="checkbox-label">일</label>
+																					<input type="hidden" name="class_day" value="0">
+																					<br>
+																				</div>
+																				<p class="modal_day_instruction">하나 이상의 운영요일이
+																					선택되어야 합니다.</p>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="row">
+																		<div class="col-md-8 pr-1 mb-3">
+																			<span class="modal_title">날짜</span><br>
+																			<div class="modal_date">
 																				<div class="form-group">
-																					<span class="modal_title">요일</span><br>
-																					<!-- ====================================== -->
-																					<div class="modal_check">
-																						<input type="checkbox" id="mon_checkbox"
-																							onclick="updateCheckboxValue(this);"> <label
-																							for="mon_checkbox" class="checkbox-label">월</label>
-																						<input type="hidden" name="class_day" value="1">
-
-																						<input type="checkbox" id="tue_checkbox"
-																							onclick="updateCheckboxValue(this);"> <label
-																							for="tue_checkbox" class="checkbox-label">화</label>
-																						<input type="hidden" name="class_day" value="２1">
-
-																						<input type="checkbox" id="wed_checkbox"
-																							onclick="updateCheckboxValue(this);"> <label
-																							for="wed_checkbox" class="checkbox-label">수</label>
-																						<input type="hidden" name="class_day" value="３1">
-
-																						<input type="checkbox" id="thr_checkbox"
-																							onclick="updateCheckboxValue(this);"> <label
-																							for="thr_checkbox" class="checkbox-label">목</label>
-																						<input type="hidden" name="class_day" value="4">
-
-																						<input type="checkbox" id="fri_checkbox"
-																							onclick="updateCheckboxValue(this);"> <label
-																							for="fri_checkbox" class="checkbox-label">금</label>
-																						<input type="hidden" name="class_day" value="5">
-
-																						<input type="checkbox" id="sat_checkbox"
-																							onclick="updateCheckboxValue(this);"> <label
-																							for="sat_checkbox" class="checkbox-label">토</label>
-																						<input type="hidden" name="class_day" value="6">
-
-																						<input type="checkbox" id="sun_checkbox"
-																							onclick="updateCheckboxValue(this);"> <label
-																							for="sun_checkbox" class="checkbox-label">일</label>
-																						<input type="hidden" name="class_day" value="0">
-																						<br>
-																					</div>
-																					<p class="modal_day_instruction">하나 이상의 운영요일이
-																						선택되어야 합니다.</p>
+																					<input type="date" id="startDate">&nbsp; ~
+																					&nbsp;<input type="date" id="endDate"> <br>
 																				</div>
 																			</div>
 																		</div>
-																		<div class="row">
-																			<div class="col-md-8 pr-1 mb-3">
-																				<span class="modal_title">날짜</span><br>
-																				<div class="modal_date">
-																				    <div class="form-group">
-																				        <input type="date" id="startDate">&nbsp; ~ &nbsp;<input type="date" id="endDate"> <br>
-																				    </div>
+																	</div>
+																	<div class="row">
+																		<div class="col-md-8 pr-1 mb-3">
+																			<div class="form-group">
+																				<span class="modal_title">클래스 운영시간(한 타임당)</span><br>
+																				<div class="modal_time">
+																					<input type="time" id="startTime">&nbsp; ~
+																					&nbsp;<input type="time" id="endTime">
 																				</div>
 																			</div>
 																		</div>
-																		<div class="row">
-																			<div class="col-md-8 pr-1 mb-3">
-																				<div class="form-group">
-																					<span class="modal_title">클래스 운영시간(한 타임당)</span><br>
-																					<div class="modal_time">
-																						<input type="time">&nbsp; ~ &nbsp;<input
-																							type="time"> <br>
-																					</div>
+																	</div>
+																	<div class="row">
+																		<div class="col-md-8 pr-1 mb-2">
+																			<div class="form-group">
+																				<span class="modal_title">클래스 최대 인원(한 타임당)</span>
+																				<div class="modal_select">
+																					<select class="form-control">
+																						<option value="1">1명</option>
+																						<option value="2">2명</option>
+																						<option value="3">3명</option>
+																						<option value="4">4명</option>
+																						<option value="5">5명</option>
+																						<option value="6">6명</option>
+																						<option value="7">7명</option>
+																						<option value="8">8명</option>
+																						<option value="9">9명</option>
+																						<option value="10">10명</option>
+																					</select>
 																				</div>
 																			</div>
 																		</div>
-																		<div class="row">
-																			<div class="col-md-8 pr-1 mb-2">
-																				<div class="form-group">
-																					<span class="modal_title">클래스 최대 인원(한 타임당)</span>
-																					<div class="modal_select">
-																						<select class="form-control">
-																							<option>1명</option>
-																							<option>2명</option>
-																							<option>3명</option>
-																							<option>4명</option>
-																							<option>5명</option>
-																							<option>6명</option>
-																							<option>7명</option>
-																							<option>8명</option>
-																							<option>9명</option>
-																							<option>10명</option>
-																						</select>
-																					</div>
-																				</div>
-																			</div>
-																		</div>
+																	</div>
 																</div>
 																<!-- 모달 내부 -->
 																<div class="modal-footer">
@@ -517,14 +520,11 @@ button {
 											<!--                         <input type="text" class="form-control" placeholder="Company" value="Mike"> -->
 											<!-- ========================================================================== -->
 											<!-- 파일업로드 용 폼 -->
-											<form enctype="multipart/form-data" id="imgform" method="post">
-												<input type="file" id="sumimage" style="display: none;"
-													accept=".jpg, .jpeg, .png"> <input type="file"
-													id="imageFile1" style="display: none;"
-													accept=".jpg, .jpeg, .png"> <input type="file"
-													id="imageFile2" style="display: none;"
-													accept=".jpg, .jpeg, .png">
-											</form>
+<!-- 											<form enctype="multipart/form-data" id="imgform" method="post"> -->
+												<input type="file" id="sumimage" style="display: none;" accept=".jpg, .jpeg, .png"> 
+												<input type="file" id="imageFile1" style="display: none;" accept=".jpg, .jpeg, .png"> 
+												<input type="file" id="imageFile2" style="display: none;" accept=".jpg, .jpeg, .png">
+<!-- 											</form> -->
 											<table style="margin-top: 30px;">
 												<tr>
 													<!-- 								<td class="td2" align="left"> -->
@@ -586,12 +586,12 @@ button {
 														<input type="text" class="form-control" placeholder="커리큘럼 3단계 상세내용을 입력해주세요">
 													</div>
 												</div>
-												<br><br>
+												<br>
+												<br>
 												<div class="col-md-4 pl-1">
 													<label>판매가격</label>
 													<div class="input-group">
-														<input type="text" class="form-control"
-															placeholder="ex) 100,000">
+														<input type="text" class="form-control" placeholder="ex) 100,000">
 														<div class="input-group-append">
 															<span class="input-group-text">원</span>
 														</div>
@@ -605,25 +605,24 @@ button {
 					</div>
 				</div>
 				<!-- ============================================================= -->
-									</div>
-								</form>
-							</div>
-						</div>
-					<div class="col-md-11 pl-1">	
-					<div class="submit_btn d-flex justify-content-end">
-						<button type="button" class="btn btn-danger btn-col-md-4 mr-2 custom-font-size">취소</button>
-						<button type="button" class="btn btn-default btn-col-md-4 mr-2 custom-font-size" onclick="location.href='${pageContext.request.contextPath}/company/class/register1'">이전</button>
-						<button type="button" class="btn btn-default btn-col-md-4  custom-font-size" onclick="location.href='${pageContext.request.contextPath}/company/class/register3'">다음</button>
-					</div>
-					</div>
-					</div>
-				</div>
 			</div>
-			<footer class="footer">
-			</footer>
+			</form>
 		</div>
 	</div>
-<!-- 하단에 위치시킨 단일 jQuery 라이브러리 -->
+	<div class="col-md-11 pl-1">
+		<div class="submit_btn d-flex justify-content-end">
+			<button type="button"
+				class="btn btn-danger btn-col-md-4 mr-2 custom-font-size">취소</button>
+			<button type="button"
+				class="btn btn-default btn-col-md-4 mr-2 custom-font-size"
+				onclick="location.href='${pageContext.request.contextPath}/company/class/register1'">이전</button>
+			<button type="button"
+				class="btn btn-default btn-col-md-4  custom-font-size"
+				onclick="location.href='${pageContext.request.contextPath}/company/class/register3'">다음</button>
+		</div>
+	</div>
+	<footer class="footer"> </footer>
+	<!-- 하단에 위치시킨 단일 jQuery 라이브러리 -->
     <!-- jQuery 라이브러리 -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
@@ -631,18 +630,18 @@ button {
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <!-- Bootstrap과 관련된 스크립트 -->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/locale/ko.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/locale/ko.js"></script>
 
-<!--   Core JS Files   -->
-<!-- Popper.js, then Bootstrap JS -->
-<script src="${pageContext.request.contextPath }/resources/company_assets/js/core/popper.min.js"></script>
-<script src="${pageContext.request.contextPath }/resources/company_assets/js/core/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath }/resources/company_assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-<!-- ... 나머지 스크립트 파일 ... -->
+	<!--   Core JS Files   -->
+	<!-- Popper.js, then Bootstrap JS -->
+	<script src="${pageContext.request.contextPath }/resources/company_assets/js/core/popper.min.js"></script>
+	<script src="${pageContext.request.contextPath }/resources/company_assets/js/core/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath }/resources/company_assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+	<!-- ... 나머지 스크립트 파일 ... -->
 	<!-- Chart JS -->
 	<script src="${pageContext.request.contextPath }/resources/company_assets/js/plugins/chartjs.min.js"></script>
 	<!--  Notifications Plugin    -->
@@ -653,77 +652,84 @@ button {
 	<script src="${pageContext.request.contextPath }/resources/company_assets/demo/demo.js"></script>
 	
 <script>
-$(document).ready(function() {
-    // 모달 저장 버튼 클릭 이벤트
-    $('#saveButton').off('click').on('click', function() {
-        generateScheduleTable();
-        $('#scheduleModal').modal('hide');
-    });
-});
+  // -----------------------------------------
+  // 커리큘럼
+	function updateCheckboxValue(checkbox) {
+	    var label = document.querySelector('label[for="' + checkbox.id + '"]');
+	    if (checkbox.checked) {
+	        label.classList.add('checked');
+	    } else {
+	        label.classList.remove('checked');
+	    }
+	}
 
-function generateScheduleTable() {
-    var startDate = $('#startDate').val();
-    var endDate = $('#endDate').val();
-    var daysChecked = [];
+  // -----------------------------------------
+	$(document).ready(function() {
+	    $('input[type="checkbox"]').each(function() {
+	        updateCheckboxValue(this);
+	    });
+	
+	    // '저장' 버튼 클릭 이벤트
+	    $('#saveButton').click(function(event) {
+	        // 페이지 새로고침 방지
+	        event.preventDefault();
+	
+	        // 선택된 요일 추출
+	        var selectedDays = [];
+	        var daysMapping = {
+	            'mon_checkbox': '월',
+	            'tue_checkbox': '화',
+	            'wed_checkbox': '수',
+	            'thr_checkbox': '목',
+	            'fri_checkbox': '금',
+	            'sat_checkbox': '토',
+	            'sun_checkbox': '일'
+	        };
+	
+	        console.log("체크된 요일 확인>>>>>>>>> " + selectedDays);
+	        
+	        
+	        // 체크된 요일 확인
+	        $('input[type="checkbox"]:checked').each(function() {
+	            selectedDays.push(daysMapping[this.id]);
+	        });
 
-    // 체크된 요일 확인
-    $('input[type="checkbox"]:checked').each(function() {
-        daysChecked.push(this.id);
-    });
+        // 기타 입력값
+        var startDate = $('#startDate').val();
+        var endDate = $('#endDate').val();
+        var startTime = $('#startTime').val();
+        var endTime = $('#endTime').val();
+        var maxParticipants = $('.modal_select select').val();
 
-    // 요일별로 숫자 매핑 (예: 'mon' -> 1)
-    var dayMapping = {
-        'mon_checkbox': 1,
-        'tue_checkbox': 2,
-        'wed_checkbox': 3,
-        'thr_checkbox': 4,
-        'fri_checkbox': 5,
-        'sat_checkbox': 6,
-        'sun_checkbox': 0
-    };
-
-    var tableHtml = '<table border="1"><tr><th>날짜</th><th>요일</th></tr>';
-
-    var current = moment(startDate);
-    var end = moment(endDate);
-
-    while (current <= end) {
-        var dayOfWeek = current.day(); // 0 (일요일) ~ 6 (토요일)
-
-        // 요일이 선택된 요일에 포함되면 테이블에 추가
-        if (daysChecked.some(id => dayMapping[id] === dayOfWeek)) {
-            tableHtml += '<tr><td>' + current.format('YYYY-MM-DD') + '</td><td>' + current.format('ddd') + '</td></tr>';
+        console.log("시작일>>>>>>>>>" + startDate);
+        console.log("종료일>>>>>>>>>" + endDate);
+        console.log("시작시간>>>>>>>>>" + startTime);
+        console.log("종료시간>>>>>>>>>" + endTime);
+        console.log("최대인원>>>>>>>>>" + maxParticipants);
+        
+        // 입력값 검증
+        if (selectedDays.length === 0 || !startDate || !endDate || !startTime || !endTime) {
+            alert("모든 필드를 채워주세요.");
+            return;
         }
 
-        current.add(1, 'days');
-    }
+        // 테이블에 행 추가
+        var tableRow = '<tr>' +
+                        '<td>' + selectedDays.join(', ') + '</td>' +
+                        '<td>' + startDate + ' ~ ' + endDate + '</td>' +
+                        '<td>' + startTime + ' ~ ' + endTime + '</td>' +
+                        '<td>' + maxParticipants + '</td>' +
+                       '</tr>';
 
-    tableHtml += '</table>';
-    $('#previewTable').html(tableHtml);
-}
-
-
-    function updateCheckboxValue(checkbox) {
-        var label = document.querySelector('label[for="' + checkbox.id + '"]');
-        if (checkbox.checked) {
-          label.classList.add('checked');
-        } else {
-          label.classList.remove('checked');
-        }
-      }
-
-      $(document).ready(function() {
-        // 체크박스 상태에 따라 레이블 스타일 초기 설정
-        $('input[type="checkbox"]').each(function() {
-          updateCheckboxValue(this);
-        });
-      });
-
-      
-      // -----------------------------------------
-      // 커리큘럼
-      
-       //<!-- 이미지 추가버튼 스크립트 -->--------------------
+        // 행 추가 후 모달 닫기
+        $('#scheduleTable tbody').append(tableRow);
+        $('#scheduleModal').on('hidden.bs.modal', function (e) {
+        	  $('.modal-backdrop').remove();
+	        	});
+	    });
+	});
+  
+   //<!-- 이미지 추가버튼 스크립트 -->--------------------
 	var preview_array  = [false, false, false];
 	
 	<!-- 이미지 등록시 미리보기 추가 작업 -->
@@ -1035,45 +1041,6 @@ function generateScheduleTable() {
 		return;
 	}
   
-  /* 일정 등록 */    
-// 이 함수는 모달에서 '저장' 버튼을 클릭했을 때 실행됩니다.
-// 모달에서 '저장' 버튼을 클릭했을 때 실행되는 함수
-function addEventsToCalendar() {
-    var startDate = $('#startDate').val(); // 시작 날짜
-    var endDate = $('#endDate').val(); // 종료 날짜
-    var selectedDays = []; // 선택된 요일들을 저장하는 배열
-
-    // 요일 체크박스들을 순회하면서 선택된 요일을 배열에 추가
-    $('input[type="checkbox"]').each(function() {
-        if (this.checked) {
-            selectedDays.push(this.id);
-        }
-    });
-
-    var currentDate = moment(startDate);
-    var lastDate = moment(endDate);
-
-    // 시작 날짜부터 종료 날짜까지 순회
-    while (currentDate <= lastDate) {
-        var day = currentDate.format('ddd').toLowerCase(); // 현재 날짜의 요일 (예: 'mon', 'tue')
-
-        // 만약 현재 날짜의 요일이 선택된 요일에 포함되면 이벤트를 추가
-        if (selectedDays.includes(day)) {
-            $('#calendar').fullCalendar('renderEvent', {
-                title: '클래스', // 이벤트 제목
-                start: currentDate.format('YYYY-MM-DD'), // 이벤트 시작 날짜
-                allDay: true // 하루 종일 이벤트
-            });
-        }
-        currentDate.add(1, 'days'); // 다음 날짜로 이동
-    }
-}
-
-$('#saveButton').click(function(event) {
-    event.preventDefault(); // 기본 동작 방지
-    addEventsToCalendar(); // 달력에 이벤트 추가 함수 호출
-    $('#scheduleModal').modal('hide'); // 모달 닫기
-});
 </script>
 </body>
 

@@ -565,244 +565,256 @@ textarea.form-control {
   
 </script>
 </head>
-<body class="클래스 등록">
-  <div class="wrapper ">
-    <div class="sidebar" data-color="orange">
-            <jsp:include page="./sidebar_wrapper.jsp"/>
-    </div>
-    <div class="main-panel" id="main-panel">
-      <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
-        <div class="container-fluid">
-          <div class="navbar-wrapper">
-            <div class="navbar-toggle">
-              <button type="button" class="navbar-toggler">
-                <span class="navbar-toggler-bar bar1"></span>
-                <span class="navbar-toggler-bar bar2"></span>
-                <span class="navbar-toggler-bar bar3"></span>
-              </button>
-            </div>
-            <a class="navbar-brand" href="#pablo">클래스 등록</a>
-          </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <form>
-              <div class="input-group no-border">
-                <input type="text" value="" class="form-control search" placeholder="Search...">
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <i class="now-ui-icons ui-1_zoom-bold"></i>
-                  </div>
-                </div>
-              </div>
-            </form>
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons media-2_sound-wave"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Stats</span>
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="now-ui-icons location_world"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Some Actions</span>
-                  </p>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons users_single-02"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Account</span>
-                  </p>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <!-- End Navbar -->
-      <div class="panel-header panel-header-sm">
-      </div>
-      <div class="content">
-        <div class="row">
-          <div class="col-md-11">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="title">클래스 등록 - 기본 정보</h5>
-              </div>
-     		<form action="ClassRegisterPro" method="post" name="classRegisterForm">
-              <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-3 pr-1">
-                      <div class="form-group">
-                        <label>모집 유형</label>
-                        <select class="form-control" name="class_category">
-                        	<option value="1">정규모집</option> 
-                        	<option value="2">원데이 클래스</option> 
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-3 pr-1">
-                      <div class="form-group">
-                        <label>클래스 대분류</label>
-						<select class="form-control" name="class_main_category" id="interior_type">
-                        	<option value="">대분류를 선택하세요</option>
-                        	<option value="1">바닥 시공</option> 
-                        	<option value="2">벽/천장 시공</option> 
-                        	<option value="3">부분 인테리어</option> 
-                        	<option value="4">야외 시공</option> 
-                        	<option value="5">종합 인테리어</option> 
-                        	<option value="6">기타 시공</option> 
-                        </select>
-                      </div>
-                    </div>
-						<div class="col-md-3">
-						  <div class="form-group">
-						    <label>클래스 소분류</label>
-								<select class="form-control" name="class_sub_category" id="sub_interior_type">
-						      <option value="">소분류를 선택하세요</option>
-						      <!-- 옵션은 JavaScript를 통해 동적으로 추가됩니다 -->
-						    </select>
-						  </div>
+<body>
+	<div class="wrapper ">
+		<div class="sidebar" data-color="orange">
+			<jsp:include page="./sidebar_wrapper.jsp" />
+		</div>
+		<div class="main-panel" id="main-panel">
+			<!-- Navbar -->
+			<nav
+				class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
+				<div class="container-fluid">
+					<div class="navbar-wrapper">
+						<div class="navbar-toggle">
+							<button type="button" class="navbar-toggler">
+								<span class="navbar-toggler-bar bar1"></span> <span
+									class="navbar-toggler-bar bar2"></span> <span
+									class="navbar-toggler-bar bar3"></span>
+							</button>
 						</div>
-						<!--  <div class="col-md-6 px-1"> / px: 패딩관련-->
-                    <div class="col-md-8 pr-7">
-                      <div class="form-group">
-                        <label>클래스 타이틀</label>
-                        <input type="text" class="form-control" name="class_title" placeholder="클래스 이름을 입력해 주세요" value="">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-<!--                     <div class="col-md-8 pr-7"> -->
-                    <div class="col-md-12 pr-7">
-                      <div class="form-group">
-                        <label>대표 사진 등록</label>
-                        <span class="pro_info" id="img_number">(0/3)</span>
-                 		<div class="pic_instruction">
- 							- 사진은 대표 이미지 포함 최대 3장까지 첨부할 수 있습니다.<br>
- 							  &nbsp;&nbsp;(1:1 비율 권장 / 최소 800px 이상 / 한 장당 최대 10MB)<br>
-							- 등록된 사진은 공생 SNS, 광고 등 외부 채널에 클래스 홍보 목적으로 사용될 수 있습니다.<br>
-						</div>
-<!--                         <input type="text" class="form-control" placeholder="Company" value="Mike"> -->
-                        <!-- ========================================================================== -->
-	<!-- 파일업로드 용 폼 -->
-	<form enctype="multipart/form-data" id="imgform" method="post">
-		<input type="file" id="sumimage"  name="class_pic1" style="display: none;" accept=".jpg, .jpeg, .png">
-		<input type="file" id="imageFile1" name="class_pic2" style="display: none;" accept=".jpg, .jpeg, .png">
-		<input type="file" id="imageFile2" name="class_pic3" style="display: none;" accept=".jpg, .jpeg, .png">
-	</form>
-			<table style="margin-top: 30px;">
-				<tr>
-					<td class="td2" align="left">
-					
-						<!-- 이미지 등록 영역 -->
-						<div id="img_zone">
-							<div id="img_preview0" >
-								<input type="image" id="imgup_sum" onclick="send_0();"
-									src="" width="150px" height="150px">
-								<span id="sum_style" >대표 이미지</span>
-								<!-- 삭제버튼 -->
-								<span id="del_sum" class="chk_style"  onclick="del_sum();">x</span>
-							</div>
-							
-								
-							<div id="img_preview1" >
-								<input type="image" id="imgup_1" onclick="send_1();"
-									src="" width="150px" height="150px">
-								<!-- 삭제버튼 -->
-								<span id="del_img1" class="chk_style" onclick="del_img1();">x</span>
-							</div>
-							
-							<div id="img_preview2">
-								<input type="image" id="imgup_2" onclick="send_2();"
-									src="" width="150px" height="150px">
-								<span id="del_img2" class="chk_style" onclick="del_img2();">x</span>
-							</div>
-						</div>
-					</td>
-				</tr><!-- 이미지영역끝 -->
-				<tr>
-					<td class="td1" align="left" >
-						<input type="button" id="imgup" onclick="img_preview();" value="대표 이미지 업로드" style="width: 150px; height: 50px; border-radius: 10px; border: 1px solid; background-image: url('${ pageContext.request.contextPath }/resources/img/image_upload.png'); background-size: cover;">
-					</td>
-				</tr>	
-			</table>
-                        <!-- ========================================================================== -->
-                      </div>
-                    </div>
-                    <div class="col-md-6 pl-1">
-                      <div class="form-group">
-                        <label>&nbsp;&nbsp;&nbsp;기존 공방 주소</label>
-				        <div class="col-sm-8">
-  						  <input type="radio" name="class_address" id="existingAddress" checked> 기존 공방 주소 출력하기 <br>
-				        </div>
-				        <div class="col-sm-8">
-  						  <input type="radio" name="class_address" id="newAddress"> 다른 주소 사용하기
-				        </div>
-                      </div>
-                        <!-- 주소 입력 필드, 처음에는 숨겨져 있음 -->
-						<div id="additionalAddress" style="display:none;">
-						    <div class="row">
-       						 <div class="col-md-8 offset-md-1">
-						            <div class="form-group">
-						                <label><b>다른 주소 사용하기</b></label><br>
-						                <div class="row address-row">
-						                    <div class="col-6">
-						                        <input class="form-control smaller-input" type="text" name="post_code" id="postCode" required>
-						                    </div>
-						                    <div class="col-6">
-						                        <input class="form-control smaller-input btn-primary" type="button" id="btnSearchAddress" value="주소검색">
-						                    </div>
-						                </div>
-						                <br>
-						                <input class="form-control smaller-input" type="text" name="address1" id="address1" placeholder="기본주소" required>
-						                <br>
-						                <input class="form-control smaller-input" type="text" name="address2" id="address2" placeholder="상세주소" required>
-						            </div>
-						        </div>
-						    </div>
-						</div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                      	<br><br>
-                        <label>클래스 소개문</label>
-                        <textarea rows="4" cols="80" class="form-control" placeholder="내용을 입력해주세요" value="Mike"></textarea>
-                      </div>
-                    </div>
-                    </div>
-                     <div class="row">
-                  </div>
-                  </div>
-              </div>
-            </div>
-           </form>
-          </div>
-					<div class="col-md-11 pl-1">	
-					<div class="submit_btn d-flex justify-content-end">
-						<button type="button" class="btn btn-danger btn-col-md-4 mr-2 custom-font-size">취소</button>
-						<button type="button" class="btn btn-default btn-col-md-4  custom-font-size" onclick="location.href='${pageContext.request.contextPath}/company/class/register2'">다음</button>
+						<a class="navbar-brand" href="#pablo">클래스 등록</a>
 					</div>
+					<button class="navbar-toggler" type="button" data-toggle="collapse"
+						data-target="#navigation" aria-controls="navigation-index"
+						aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-bar navbar-kebab"></span> <span
+							class="navbar-toggler-bar navbar-kebab"></span> <span
+							class="navbar-toggler-bar navbar-kebab"></span>
+					</button>
+					<div class="collapse navbar-collapse justify-content-end"
+						id="navigation">
+						<form>
+							<div class="input-group no-border">
+								<input type="text" value="" class="form-control search"
+									placeholder="Search...">
+								<div class="input-group-append">
+									<div class="input-group-text">
+										<i class="now-ui-icons ui-1_zoom-bold"></i>
+									</div>
+								</div>
+							</div>
+						</form>
+						<ul class="navbar-nav">
+							<li class="nav-item"><a class="nav-link" href="#pablo">
+									<i class="now-ui-icons media-2_sound-wave"></i>
+									<p>
+										<span class="d-lg-none d-md-block">Stats</span>
+									</p>
+							</a></li>
+							<li class="nav-item dropdown"><a
+								class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
+								data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"> <i
+									class="now-ui-icons location_world"></i>
+									<p>
+										<span class="d-lg-none d-md-block">Some Actions</span>
+									</p>
+							</a>
+								<div class="dropdown-menu dropdown-menu-right"
+									aria-labelledby="navbarDropdownMenuLink">
+									<a class="dropdown-item" href="#">Action</a> <a
+										class="dropdown-item" href="#">Another action</a> <a
+										class="dropdown-item" href="#">Something else here</a>
+								</div></li>
+							<li class="nav-item"><a class="nav-link" href="#pablo">
+									<i class="now-ui-icons users_single-02"></i>
+									<p>
+										<span class="d-lg-none d-md-block">Account</span>
+									</p>
+							</a></li>
+						</ul>
 					</div>
-            </div>
-          </div>
-        </div>
-      </div>
-  <!--   Core JS Files   -->
+				</div>
+			</nav>
+			<!-- End Navbar -->
+			<div class="panel-header panel-header-sm"></div>
+			<div class="content">
+				<div class="row">
+					<div class="col-md-11">
+						<div class="card">
+							<div class="card-header">
+								<h5 class="title">클래스 등록 - 기본 정보</h5>
+							</div>
+							<form action="ClassRegisterPro" method="post" name="classRegisterForm" enctype="multipart/form-data">
+								<div class="card-body">
+									<div class="row">
+										<div class="col-md-3 pr-1">
+											<div class="form-group">
+												<label>모집 유형</label> 
+												<select class="form-control" name="class_category">
+													<option value="1">정규모집</option>
+													<option value="2">원데이 클래스</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-md-3 pr-1">
+											<div class="form-group">
+												<label>클래스 대분류</label> 
+												<select class="form-control" name="class_main_category" id="interior_type">
+													<option value="">대분류를 선택하세요</option>
+													<option value="1">바닥 시공</option>
+													<option value="2">벽/천장 시공</option>
+													<option value="3">부분 인테리어</option>
+													<option value="4">야외 시공</option>
+													<option value="5">종합 인테리어</option>
+													<option value="6">기타 시공</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-md-3">
+											<div class="form-group">
+												<label>클래스 소분류</label> 
+												<select class="form-control" name="class_sub_category" id="sub_interior_type">
+													<option value="">소분류를 선택하세요</option>
+													<!-- 옵션은 JavaScript를 통해 동적으로 추가됩니다 -->
+												</select>
+											</div>
+										</div>
+										<!--  <div class="col-md-6 px-1"> / px: 패딩관련-->
+										<div class="col-md-8 pr-7">
+											<div class="form-group">
+												<label>클래스 타이틀</label> 
+												<input type="text" class="form-control" name="class_title" placeholder="클래스 이름을 입력해 주세요" value="">
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12 pr-7">
+											<div class="form-group">
+												<label>대표 사진 등록</label> <span class="pro_info"
+													id="img_number">(0/3)</span>
+												<div class="pic_instruction">
+													- 사진은 대표 이미지 포함 최대 3장까지 첨부할 수 있습니다.<br>
+													&nbsp;&nbsp;(1:1 비율 권장 / 최소 800px 이상 / 한 장당 최대 10MB)<br>
+													- 등록된 사진은 공생 SNS, 광고 등 외부 채널에 클래스 홍보 목적으로 사용될 수 있습니다.<br>
+												</div>
+												<!-- ========================================================================== -->
+												<!-- 파일업로드 용 폼 -->
+												<!-- 	<form enctype="multipart/form-data" id="imgform" method="post"> -->
+												<input type="file" id="sumimage" name="file1" style="display: none;" accept=".jpg, .jpeg, .png">
+												<input type="file" id="imageFile1" name="file2" style="display: none;" accept=".jpg, .jpeg, .png">
+												<input type="file" id="imageFile2" name="file3" style="display: none;" accept=".jpg, .jpeg, .png">
+												<!-- 	</form> -->
+												<table style="margin-top: 30px;">
+													<tr>
+														<td class="td2" align="left">
+															<!-- 이미지 등록 영역 -->
+															<div id="img_zone">
+																<div id="img_preview0">
+																	<input type="image" id="imgup_sum" onclick="send_0();"
+																		src="" width="150px" height="150px"> <span
+																		id="sum_style">대표 이미지</span>
+																	<!-- 삭제버튼 -->
+																	<span id="del_sum" class="chk_style"
+																		onclick="del_sum();">x</span>
+																</div>
+
+
+																<div id="img_preview1">
+																	<input type="image" id="imgup_1" onclick="send_1();"
+																		src="" width="150px" height="150px">
+																	<!-- 삭제버튼 -->
+																	<span id="del_img1" class="chk_style"
+																		onclick="del_img1();">x</span>
+																</div>
+
+																<div id="img_preview2">
+																	<input type="image" id="imgup_2" onclick="send_2();"
+																		src="" width="150px" height="150px"> <span
+																		id="del_img2" class="chk_style" onclick="del_img2();">x</span>
+																</div>
+															</div>
+														</td>
+													</tr>
+													<!-- 이미지영역끝 -->
+													<tr>
+														<td class="td1" align="left"><input type="button"
+															id="imgup" onclick="img_preview();" value="대표 이미지 업로드"
+															style="width: 150px; height: 50px; border-radius: 10px; border: 1px solid; background-image: url('${ pageContext.request.contextPath }/resources/img/image_upload.png'); background-size: cover;">
+														</td>
+													</tr>
+												</table>
+												<!-- ========================================================================== -->
+											</div>
+										</div>
+										<div class="col-md-6 pl-1">
+											<div class="form-group">
+												<label>&nbsp;&nbsp;&nbsp;기존 공방 주소</label>
+												<div class="col-sm-8">
+													<input type="radio" name="class_address"
+														id="existingAddress" checked> 기존 공방 주소 출력하기 <br>
+												</div>
+												<div class="col-sm-8">
+													<input type="radio" name="class_address" id="newAddress">
+													다른 주소 사용하기
+												</div>
+											</div>
+											<!-- 주소 입력 필드, 처음에는 숨겨져 있음 -->
+											<div id="additionalAddress" style="display: none;">
+												<div class="row">
+													<div class="col-md-8 offset-md-1">
+														<div class="form-group">
+															<!-- 						                <label><b>다른 주소 사용하기</b></label><br> -->
+															<div class="row address-row">
+																<div class="col-6">
+																	<input class="form-control smaller-input" type="text"
+																		name="post_code" id="postCode" required>
+																</div>
+																<div class="col-6">
+																	<input class="form-control smaller-input btn-primary"
+																		type="button" id="btnSearchAddress" value="주소검색">
+																</div>
+															</div>
+															<br> <input class="form-control smaller-input"
+																type="text" name="address1" id="address1"
+																placeholder="기본주소" required> <br> <input
+																class="form-control smaller-input" type="text"
+																name="address2" id="address2" placeholder="상세주소"
+																required>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<br>
+													<br> <label>클래스 소개문</label>
+													<textarea rows="4" cols="80" class="form-control"
+														placeholder="내용을 입력해주세요" value="Mike"></textarea>
+												</div>
+											</div>
+										</div>
+										<div class="row"></div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="col-md-11 pl-1">
+						<div class="submit_btn d-flex justify-content-end">
+							<button type="button"
+								class="btn btn-danger btn-col-md-4 mr-2 custom-font-size">취소</button>
+							<button type="button"
+								class="btn btn-default btn-col-md-4  custom-font-size"
+								onclick="location.href='${pageContext.request.contextPath}/company/class/register2'">다음</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--   Core JS Files   -->
   <script src="${pageContext.request.contextPath }/resources/company_assets/js/core/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/company_assets/js/core/popper.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/company_assets/js/core/bootstrap.min.js"></script>

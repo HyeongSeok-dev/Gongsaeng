@@ -166,16 +166,17 @@ button {
 								<form>
 									<div class="row">
 										<div class="col-md-7 pr-1">
+											<!-- 체크박스에 고유 ID 부여 -->
 											<div class="form-group">
-												<div class="checkbox">
-												  <label><input type="checkbox" value="">&nbsp;&nbsp;서비스 이용약관 동의(필수)</label>
-												</div>
-												<div class="checkbox">
-												  <label><input type="checkbox" value="">&nbsp;&nbsp;서비스 개인정보 처리방침 동의(필수)</label>
-												</div>
-												<div class="checkbox">
-												  <label><input type="checkbox" value="">&nbsp;&nbsp;공생 환불 규정에 동의(필수)</label>
-												</div>
+											    <div class="checkbox">
+											        <label><input type="checkbox" id="termsAgreement" value="">&nbsp;&nbsp;서비스 이용약관 동의(필수)</label>
+											    </div>
+											    <div class="checkbox">
+											        <label><input type="checkbox" id="privacyPolicyAgreement" value="">&nbsp;&nbsp;서비스 개인정보 처리방침 동의(필수)</label>
+											    </div>
+											    <div class="checkbox">
+											        <label><input type="checkbox" id="refundPolicyAgreement" value="">&nbsp;&nbsp;공생 환불 규정에 동의(필수)</label>
+											    </div>
 											</div>
 										</div>
 									</div>
@@ -186,7 +187,9 @@ button {
 					<div class="col-md-11 pl-1">	
 					<div class="submit_btn d-flex justify-content-end">
 						<button type="button" class="btn btn-default btn-col-md-4 mr-2 custom-font-size" onclick="location.href='${pageContext.request.contextPath}/company/class/register3'">이전</button>
-						<button type="button" class="btn btn-col-md-4 mr-2 custom-font-size examination" >검수 신청</button>
+<!-- 						<button type="button" class="btn btn-col-md-4 mr-2 custom-font-size examination" >검수 신청</button> -->
+							<!-- 검수 신청 버튼에 onclick 이벤트 추가 -->
+							<button type="button" class="btn btn-col-md-4 mr-2 custom-font-size examination" onclick="submitReview()">검수 신청</button>
 <%-- 						<button type="button" class="btn btn-default btn-col-md-4  custom-font-size" onclick="location.href='${pageContext.request.contextPath}/company/class/register4'">다음</button> --%>
 					</div>
 					</div>
@@ -243,6 +246,25 @@ button {
 	<!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
 	<script
 		src="${pageContext.request.contextPath }/resources/company_assets/demo/demo.js"></script>
+	<script type="text/javascript">
+	function submitReview() {
+	    // 각 체크박스의 상태 확인
+	    var isTermsAgreed = document.getElementById('termsAgreement').checked;
+	    var isPrivacyPolicyAgreed = document.getElementById('privacyPolicyAgreement').checked;
+	    var isRefundPolicyAgreed = document.getElementById('refundPolicyAgreement').checked;
+
+	    // 모든 체크박스가 선택되었는지 확인
+	    if (isTermsAgreed && isPrivacyPolicyAgreed && isRefundPolicyAgreed) {
+	        // 모든 조건이 충족 -> 실제 검수 신청 로직 처리
+	        alert('검수 신청이 완료되었습니다.');
+	        // 검수 신청 관련 로직 추가
+	    } else {
+	        alert('모든 약관에 동의해야 검수 신청이 가능합니다.');
+	    }
+	}
+	
+	</script>
+		
 </body>
 
 </html>

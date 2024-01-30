@@ -150,9 +150,9 @@ button {
 					<button class="navbar-toggler" type="button" data-toggle="collapse"
 						data-target="#navigation" aria-controls="navigation-index"
 						aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-bar navbar-kebab"></span> <span
-							class="navbar-toggler-bar navbar-kebab"></span> <span
-							class="navbar-toggler-bar navbar-kebab"></span>
+						<span class="navbar-toggler-bar navbar-kebab"></span> 
+						<span class="navbar-toggler-bar navbar-kebab"></span> 
+						<span class="navbar-toggler-bar navbar-kebab"></span>
 					</button>
 					<div class="collapse navbar-collapse justify-content-end"
 						id="navigation">
@@ -215,19 +215,26 @@ button {
 									<div class="row">
 									    <div class="col-md-12">
 									        <div class="form-group">
-									            <input type="checkbox" value="" id="workshop">&nbsp;<label for="workshop" class="register3_text_label">공방 보유</label>
-									            <input type="checkbox" value="" id="park">&nbsp;<label for="park" class="register3_text_label">주차 공간</label>
-									            <input type="checkbox" value="" id="wifi">&nbsp;<label for="wifi" class="register3_text_label">와이파이</label>
-									            <input type="checkbox" value="" id="coffee">&nbsp;<label for="coffee" class="register3_text_label">커피 별도구매</label>
-									            <input type="checkbox" value="" id="bus">&nbsp;<label for="bus" class="register3_text_label">대중교통 용이</label>
+									            <input type="checkbox" value="1" id="workshop">&nbsp;
+									            <label for="workshop" class="register3_text_label">공방 보유</label>
+									            <input type="checkbox" value="2" id="park">&nbsp;
+									            <label for="park" class="register3_text_label">주차 공간</label>
+									            <input type="checkbox" value="3" id="wifi">&nbsp;
+									            <label for="wifi" class="register3_text_label">와이파이</label>
+									            <input type="checkbox" value="4" id="coffee">&nbsp;
+									            <label for="coffee" class="register3_text_label">커피 별도구매</label>
+									            <input type="checkbox" value="5" id="bus">&nbsp;
+									            <label for="bus" class="register3_text_label">대중교통 용이</label>
 									        </div>
 									    </div>
 									</div>
 									<div class="row">
 									    <div class="col-md-12">
 									        <div class="form-group">
-    								            <input type="checkbox" value="" id="taxi">&nbsp;<label for="taxi" class="register3_text_label">택시/자가용 추천</label>
-									        	<input type="checkbox" value="" id="snack">&nbsp;<label for="snack" class="register3_text_label">음료/간식 제공</label>
+    								            <input type="checkbox" value="6" id="taxi">&nbsp;
+    								            <label for="taxi" class="register3_text_label">택시/자가용 추천</label>
+									        	<input type="checkbox" value="7" id="snack">&nbsp;
+									        	<label for="snack" class="register3_text_label">음료/간식 제공</label>
 									        </div>
 									    </div>
 									</div>
