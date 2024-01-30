@@ -1,6 +1,5 @@
 package kr.co.gongsaeng.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -14,10 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.table.zzimkong.vo.MailAuthInfoVO;
-
 import kr.co.gongsaeng.service.MemberService;
 import kr.co.gongsaeng.service.SendMailService;
+import kr.co.gongsaeng.vo.MailAuthInfoVO;
 import kr.co.gongsaeng.vo.MemberVO;
 
 @Controller
@@ -63,7 +61,6 @@ public class MemberController {
 			session.setAttribute("sCategory", dbMember.getMember_category());
 			// 메인 업주화면 이름 표시를위한 세션
 			session.setAttribute("sName", dbMember.getMember_name());
-			// user_idx가 외래키여서 session에 sIdx 넣었음
 			return "redirect:/";
 		}
 	}
@@ -74,20 +71,19 @@ public class MemberController {
 	}
 
 	@PostMapping("member/findIdPro")
-	public String findIdPro(MemberVO member, HttpSession session, Model model, HttpServletRequest request) {
+	public String findIdPro(MemberVO member, HttpSession session, Model model) {
 		System.out.println(member); // form action 값 잘 넘어왔는지 찍어보기
 		member.setMember_email(member.getMember_email1() + "@" + member.getMember_email2());
 		System.out.println(member); // email 두개 결합 잘 되었나 확인
 		
-		String contextPath = request.getContextPath();
 		MemberVO dbMember = service.getValidMember(member);
 		
-		if(dbMember == null) { // 이메일이 없음
-			model.addAttribute("msg", "존재하지 않는 이메일입니다.");
+		if(dbMember == null) {
+			model.addAttribute("msg", "존재하지 않는 회원입니다.");
 			return "fail_back";
 		} 
 		
-		String auth_code = mailService.sendIdAuthMail(member, contextPath); // MemberVO 객체 전달 및 이메일 전송 완료
+		String auth_code = mailService.sendIdAuthMail(member); // MemberVO 객체 전달 및 이메일 전송 완료
 		service.registMailAuthInfo(member.getMember_email(), auth_code);
 		model.addAttribute("msg", "인증메일이 발송되었습니다. 메일을 확인하세요");
 		return "popup_close";
@@ -100,9 +96,9 @@ public class MemberController {
 	}
 
 	@PostMapping("member/findPasswdPro")
-	public String findPasswdPro(MemberVO member, HttpSession session, Model model, HttpServletRequest request) {
+	public String findPasswdPro(MemberVO member, HttpSession session, Model model) {
 		System.out.println(member);
-		String contextPath = request.getContextPath();
+		
 		
 		member.setMember_email(member.getMember_email1()+"@"+member.getMember_email2());
 		
@@ -113,12 +109,87 @@ public class MemberController {
 			return "fail_back";
 		}
 		
-		String auth_code = mailService.sendPasswdAuthMail(member, contextPath); // MemberVO 객체 전달 및 이메일 전송 완료
+		String auth_code = mailService.sendPasswdAuthMail(member); // MemberVO 객체 전달 및 이메일 전송 완료
 		service.registMailAuthInfo(member.getMember_id(), auth_code);
 		model.addAttribute("msg", "인증메일이 발송되었습니다. 메일을 확인하세요");
 		return "popup_close";
 	}
 
+	@GetMapping("MemberIdEmailAuth")
+	public String MemberIdEmailAuth(MailAuthInfoVO authInfo, HttpSession session, Model model) {
+		
+//		MailAuthInfoVO authinfo
+		System.out.println("authInfo : " + authInfo);
+		
+		// MemberService - requestEmailAuth() 메서드 호출하여 인증 요청
+		// => 파라미터 : MailAuthInfoVO 객체   리턴타입 : boolean(isAuthSuccess)
+		boolean isAuthSuccess = service.requestEmailAuth(authInfo);
+		
+		if(isAuthSuccess) { // 성공
+//			model.addAttribute("msg", "인증 성공!");
+//			model.addAttribute("targetURL", "login");
+			
+			MemberVO member = service.requestIdAuth(authInfo);
+			model.addAttribute("member", member);
+			service.removeAuthInfo(authInfo.getMember_email()); // 인증정보 삭제
+			return "login/login_result_id";
+		} else { // 실패 
+			model.addAttribute("msg", "인증 실패!");
+			return "fail_back";
+		}
+	}
+	
+	
+	
+	@GetMapping("MemberPasswdEmailAuth")
+	public String MemberPasswdEmailAuth(MailAuthInfoVO authInfo, HttpSession session, Model model) {
+		
+//		MailAuthInfoVO authinfo
+		System.out.println("authInfo : " + authInfo);
+		
+		// MemberService - requestEmailAuth() 메서드 호출하여 인증 요청
+		// => 파라미터 : MailAuthInfoVO 객체   리턴타입 : boolean(isAuthSuccess)
+		boolean isAuthSuccess = service.requestEmailAuth(authInfo);
+		System.out.println("불린값" + isAuthSuccess);
+		if(isAuthSuccess) { // 성공
+			model.addAttribute("authInfo", authInfo);
+			return "login/update_passwd";
+		} else { // 실패 
+			model.addAttribute("msg", "인증 실패!");
+			return "fail_back";
+		}
+	}
+	
+	@PostMapping("updatePasswdPro")
+	public String updatePasswdPro(MemberVO member, HttpSession session, Model model, MailAuthInfoVO authInfo) {
+		
+		MailAuthInfoVO dbAuthInfo = service.getAuthInfo(authInfo);
+		
+		System.out.println(member);
+		System.out.println(authInfo);
+		if(dbAuthInfo == null) {
+			model.addAttribute("msg", "잘못된 접근입니다!");
+			return "fail_back";
+		}
+		
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String securePasswd = passwordEncoder.encode(member.getMember_passwd());
+		member.setMember_passwd(securePasswd);
+		
+		int updateCount = service.updatePasswd(member);
+		if(updateCount > 0) { //성공
+			model.addAttribute("msg", "비밀번호가 변경되었습니다.");
+			model.addAttribute("targetURL", "login");
+			service.removeAuthInfo(authInfo.getMember_id()); // 이거 호출하라 함
+			return "forward";
+		}else {
+			model.addAttribute("msg", "비밀번호 변경 오류! 인증을 다시 진행하세요");
+			return "fail_back";
+		}
+	}
+	
+	
+	//======================================================회원가입
 	@GetMapping("member/joinAgree")
 	public String joinAgree() {
 		return "member/join_agree";
@@ -216,78 +287,5 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:/";
 	}
-	@GetMapping("MemberIdEmailAuth")
-	public String MemberIdEmailAuth(MailAuthInfoVO authInfo, HttpSession session, Model model) {
-		
-//		MailAuthInfoVO authinfo
-		System.out.println("authInfo : " + authInfo);
-		
-		// MemberService - requestEmailAuth() 메서드 호출하여 인증 요청
-		// => 파라미터 : MailAuthInfoVO 객체   리턴타입 : boolean(isAuthSuccess)
-		boolean isAuthSuccess = service.requestEmailAuth(authInfo);
-		
-		if(isAuthSuccess) { // 성공
-//			model.addAttribute("msg", "인증 성공!");
-//			model.addAttribute("targetURL", "login");
-			
-			MemberVO member = service.requestIdAuth(authInfo);
-			model.addAttribute("member", member);
-			service.removeAuthInfo(authInfo.getUser_email()); // 인증정보 삭제
-			return "login/login_result_id";
-		} else { // 실패 
-			model.addAttribute("msg", "인증 실패!");
-			return "fail_back";
-		}
-	}
-	
-	
-	
-	@GetMapping("MemberPasswdEmailAuth")
-	public String MemberPasswdEmailAuth(MailAuthInfoVO authInfo, HttpSession session, Model model) {
-		
-//		MailAuthInfoVO authinfo
-		System.out.println("authInfo : " + authInfo);
-		
-		// MemberService - requestEmailAuth() 메서드 호출하여 인증 요청
-		// => 파라미터 : MailAuthInfoVO 객체   리턴타입 : boolean(isAuthSuccess)
-		boolean isAuthSuccess = service.requestEmailAuth(authInfo);
-		System.out.println("불린값" + isAuthSuccess);
-		if(isAuthSuccess) { // 성공
-			model.addAttribute("authInfo", authInfo);
-			return "login/login_update_passwd";
-		} else { // 실패 
-			model.addAttribute("msg", "인증 실패!");
-			return "fail_back";
-		}
-	}
-	
-	@PostMapping("updatePasswdPro")
-	public String updatePasswdPro(MemberVO member, HttpSession session, Model model, MailAuthInfoVO authInfo) {
-		
-		MailAuthInfoVO dbAuthInfo = service.getAuthInfo(authInfo);
-		
-		System.out.println(member);
-		System.out.println(authInfo);
-		if(dbAuthInfo == null) {
-			model.addAttribute("msg", "잘못된 접근입니다!");
-			return "fail_back";
-		}
-		
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		String securePasswd = passwordEncoder.encode(member.getMember_passwd());
-		member.setMember_passwd(securePasswd);
-		
-		int updateCount = service.updatePasswd(member);
-		if(updateCount > 0) { //성공
-			model.addAttribute("msg", "비밀번호가 변경되었습니다.");
-			model.addAttribute("targetURL", "login");
-			service.removeAuthInfo(authInfo.getUser_id()); // 이거 호출하라 함
-			return "forward";
-		}else {
-			model.addAttribute("msg", "비밀번호 변경 오류! 인증을 다시 진행하세요");
-			return "fail_back";
-		}
-	}
-	
 
 }

@@ -6,5 +6,6 @@
 	<!-- 마이바티스에서 접근할 사용자 정의 클래스 타입에 대한 Alias(별칭) 설정 -->
 	<typeAliases>
 		<typeAlias type="kr.co.gongsaeng.vo.MemberVO"  alias="member"/>
+		<typeAlias type="kr.co.gongsaeng.vo.MailAuthInfoVO"  alias="mailAuthInfo"/>
 	</typeAliases>
 </configuration>

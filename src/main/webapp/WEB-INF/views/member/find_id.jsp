@@ -62,22 +62,22 @@
         <form action="findIdPro" autocomplete="off" method="POST">
             <div class="form-group">
                 <label for="name">이름</label>
-                <input type="text" class="form-control" id="name" placeholder="이름을 입력해주세요" name="name" required>
+                <input type="text" class="form-control" id="member_name" placeholder="이름을 입력해주세요" name="member_name" required>
             </div>
             <div class="form-group">
                 <label for="email">이메일</label>
                 <div class="row">
                     <div class="col-xs-4">
 						<div class="input-group">
-							<input type="text" id="u_email" required name="user_email1" class="form-control" placeholder="이메일" maxlength="16">
+							<input type="text" id="u_email" required name="member_email1" class="form-control" placeholder="이메일" maxlength="16">
 							<div class="input-group-addon">@</div>
 						</div>
 					</div>
                     <div class="col-xs-4">
-                        <input type="text" id="customEmail" required class="form-control" name="user_email2" style="display: none;" placeholder="이메일을 입력하세요"
+                        <input type="text" id="customEmail" required class="form-control" name="member_email2" style="display: none;" placeholder="이메일을 입력하세요"
 							disabled="disabled">
 						<div id="emailSelectBox">
-							<select id="u_email2" name="user_email2" class="form-control">
+							<select id="u_email2" name="member_email2" class="form-control">
 								<option value="">선택하세요</option>
 								<option value="gmail.com">gmail.com</option>
 								<option value="naver.com">naver.com</option>

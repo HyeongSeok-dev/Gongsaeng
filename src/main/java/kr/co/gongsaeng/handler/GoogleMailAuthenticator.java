@@ -17,7 +17,7 @@ public class GoogleMailAuthenticator extends Authenticator {
 		 *   => 구글 계정 설정 - 보안 - 2단계 인증 - 앱 비밀번호 설정 필요
 		 *      (설정 시 나타나는 16자리 앱 비밀번호를 계정 패스워드 대신 사용(로그인 시에는 사용 불가)
 		 */
-		passwordAuthentication = new PasswordAuthentication("gongsaeng", "amjcwitooxuensxw");
+		passwordAuthentication = new PasswordAuthentication("gongsaeng0", "amjcwitooxuensxw");
 	}
 
 	// 인증 정보 관리 객체(PasswordAuthentication)를 외부로 리턴하는 getPasswordAuthentication() 메서드 정의

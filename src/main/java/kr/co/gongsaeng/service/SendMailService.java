@@ -18,14 +18,16 @@ public class SendMailService {
 	private SendMailClient mailClient;
 	
 	// 인증 메일 발송 요청을 위한 sendAuthMail() 메서드
-	public String sendIdAuthMail(MemberVO member, String contextPath) {
+	public String sendIdAuthMail(MemberVO member) {
 		// 인증 메일에 포함시켜 전달할 난수 생성
 		String auth_code = GenerateRandomCode.getRandomCode(50);
 		System.out.println("생성된 난수 : " + auth_code);
 		
-		String subject = "[테이블 찜콩] 아이디 확인 메일입니다.";
-		String content = "<a href='" + contextPath + "/MemberIdEmailAuth?user_email=" + member.getMember_email() + "&auth_code=" + auth_code + "'>"
-						+ "이메일 인증을 수행하려면 이 링크를 클릭해 주세요!</a>";
+		String subject = "[공생] 아이디 확인 메일입니다.";
+		String content = "<a href='http://localhost:8080/gongsaeng/MemberIdEmailAuth?user_email=" + member.getMember_email() + "&auth_code=" + auth_code + "'>"
+				+ "이메일 인증을 수행하려면 이 링크를 클릭해 주세요!</a>";
+//		String content = "<a href='http://c5d2308t2.itwillbs.com/gongsaeng/MemberIdEmailAuth?user_email=" + member.getMember_email() + "&auth_code=" + auth_code + "'>"
+//						+ "이메일 인증을 수행하려면 이 링크를 클릭해 주세요!</a>";
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -38,14 +40,16 @@ public class SendMailService {
 	}
 	
 	// 인증 메일 발송 요청을 위한 sendAuthMail() 메서드
-	public String sendPasswdAuthMail(MemberVO member, String contextPath) {
+	public String sendPasswdAuthMail(MemberVO member) {
 		// 인증 메일에 포함시켜 전달할 난수 생성
 		String auth_code = GenerateRandomCode.getRandomCode(50);
 		System.out.println("생성된 난수 : " + auth_code);
 		
 		String subject = "[공생] 비밀번호 확인 메일입니다.";
-		String content = "<a href='" + contextPath + "/MemberPasswdEmailAuth?user_id=" + member.getMember_id() + "&auth_code=" + auth_code + "'>"
+		String content = "<a href='http://localhost:8080/gongsaeng/MemberPasswdEmailAuth?user_id=" + member.getMember_id() + "&auth_code=" + auth_code + "'>"
 				+ "이메일 인증을 수행하려면 이 링크를 클릭해 주세요!</a>";
+//		String content = "<a href='http://c5d2308t2.itwillbs.com/gongsaeng/MemberPasswdEmailAuth?user_id=" + member.getMember_id() + "&auth_code=" + auth_code + "'>"
+//				+ "이메일 인증을 수행하려면 이 링크를 클릭해 주세요!</a>";
 		new Thread(new Runnable() {
 			@Override
 			public void run() {

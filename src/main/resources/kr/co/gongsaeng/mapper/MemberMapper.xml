@@ -52,92 +52,93 @@
 		</where>
 	</select>
 	
-<!-- 	<update id="updateWithdrawMember"> -->
-<!-- 		UPDATE member -->
-<!-- 	    SET -->
-<!-- 	         member_status=3 -->
-<!-- 	         , member_reg_date = now() -->
-<!-- 	    WHERE member_id = #{member_id} -->
+	<update id="updateWithdrawMember">
+		UPDATE member
+	    SET
+	         member_status=3
+	         , member_reg_date = now()
+	    WHERE member_id = #{member_id}
 			
-<!-- 	</update> -->
+	</update>
 	
-<!-- 	<select id="selectValidMember" resultType="member"> -->
-<!-- 		SELECT *  -->
-<!-- 		FROM member -->
-<!-- 		WHERE member_email = #{member_email} -->
-<!-- 			AND member_status = '1' -->
-<!-- 	</select> -->
+	<select id="selectValidMember" resultType="member">
+		SELECT * 
+		FROM member
+		WHERE member_email = #{member_email}
+			AND member_name = #{member_name}
+			AND member_status = '1'
+	</select>
 	
-<!-- 	<select id="selectMailAuthInfo" resultType="mailAuthInfo"> -->
-<!-- 		SELECT * -->
-<!-- 		FROM mail_auth -->
-<!-- 		<choose> -->
-<!-- 			<when test="param.indexOf('@') >= 0"> -->
-<!-- 				WHERE member_email = #{param} -->
-<!-- 			</when> -->
-<!-- 			<otherwise> -->
-<!-- 				WHERE member_email = #{param} -->
-<!-- 			</otherwise> -->
-<!-- 		</choose> -->
-<!-- 	</select> -->
+	<select id="selectMailAuthInfo" resultType="mailAuthInfo">
+		SELECT *
+		FROM mail_auth
+		<choose>
+			<when test="param.indexOf('@') >= 0">
+				WHERE mail_auth_email = #{param}
+			</when>
+			<otherwise>
+				WHERE mail_auth_email = #{param}
+			</otherwise>
+		</choose>
+	</select>
 	
-<!-- 	<insert id="insertMailAuthInfo"> -->
-<!-- 		INSERT -->
-<!-- 		INTO mail_auth -->
-<!-- 		<choose> -->
-<!-- 			<when test="param.indexOf('@') >= 0"> -->
-<!-- 				VALUES (null, null, #{auth_code},#{param}) -->
-<!-- 			</when> -->
-<!-- 			<otherwise> -->
-<!-- 				VALUES (null,#{param}, #{auth_code}, null) -->
-<!-- 			</otherwise> -->
-<!-- 		</choose> -->
-<!-- 	</insert> -->
+	<insert id="insertMailAuthInfo">
+		INSERT
+		INTO mail_auth
+		<choose>
+			<when test="param.indexOf('@') >= 0">
+				VALUES (null, null, #{auth_code},#{param})
+			</when>
+			<otherwise>
+				VALUES (null,#{param}, #{auth_code}, null)
+			</otherwise>
+		</choose>
+	</insert>
 	
-<!-- 	<update id="updateMailAuthInfo"> -->
-<!-- 		UPDATE mail_auth -->
-<!-- 		SET auth_code = #{auth_code} -->
-<!-- 		<choose> -->
-<!-- 			<when test="param.indexOf('@') >= 0"> -->
-<!-- 				WHERE member_email = #{param} -->
-<!-- 			</when> -->
-<!-- 			<otherwise> -->
-<!-- 				WHERE member_id = #{param} -->
-<!-- 			</otherwise> -->
-<!-- 		</choose> -->
-<!-- 	</update> -->
+	<update id="updateMailAuthInfo">
+		UPDATE mail_auth
+		SET auth_code = #{auth_code}
+		<choose>
+			<when test="param.indexOf('@') >= 0">
+				WHERE mail_auth_email = #{param}
+			</when>
+			<otherwise>
+				WHERE member_id = #{param}
+			</otherwise>
+		</choose>
+	</update>
 	
-<!-- 	<delete id="deleteMailAuthInfo"> -->
-<!-- 		DELETE FROM mail_auth		 -->
-<!-- 		<choose> -->
-<!-- 			<when test="param.indexOf('@') >= 0"> -->
-<!-- 				WHERE member_email = #{param} -->
-<!-- 			</when> -->
-<!-- 			<otherwise> -->
-<!-- 				WHERE member_id = #{param} -->
-<!-- 			</otherwise> -->
-<!-- 		</choose> -->
-<!-- 	</delete> -->
+	<delete id="deleteMailAuthInfo">
+		DELETE FROM mail_auth		
+		<choose>
+			<when test="param.indexOf('@') >= 0">
+				WHERE mail_auth_email = #{param}
+			</when>
+			<otherwise>
+				WHERE member_id = #{param}
+			</otherwise>
+		</choose>
+	</delete>
 
-<!-- 	<select id="selectVailidMailAuthInfo" resultType="mailAuthInfo"> -->
-<!-- 		SELECT * -->
-<!-- 		FROM mail_auth -->
-<!-- 		WHERE member_id = #{member_id} -->
-<!-- 		AND auth_code = #{auth_code} -->
-<!-- 	</select> -->
+	<select id="selectVailidMailAuthInfo" resultType="mailAuthInfo">
+		SELECT *
+		FROM mail_auth
+		WHERE member_id = #{member_id}
+		AND auth_code = #{auth_code}
+	</select>
 
 	
-<!-- 	<update id="updatePasswd"> -->
-<!-- 		UPDATE member -->
-<!-- 		SET member_passwd = #{member_passwd} -->
-<!-- 		WHERE member_id = #{member_id} -->
-<!-- 	</update> -->
+	<update id="updatePasswd">
+		UPDATE member
+		SET member_passwd = #{member_passwd}
+		WHERE member_id = #{member_id}
+	</update>
 	
-<!-- 	<select id="selectIdAuth" resultType="member"> -->
-<!-- 		SELECT * -->
-<!-- 		FROM member -->
-<!-- 		WHERE member_email = #{member_email} -->
-<!-- 	</select> -->
+	<select id="selectIdAuth" resultType="member">
+		SELECT *
+		FROM member
+		WHERE member_email = #{member_email}
+	</select>
 
 	
 </mapper>
