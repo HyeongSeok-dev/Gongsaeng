@@ -5,7 +5,27 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class CompanyController {
-	
+
+	// 클래스 등록
+	@GetMapping("company/class/register")
+	public String company_register() {
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		return "company/company_register";
+	}
+
 	@GetMapping("company/banjang/register")
 	public String company_banjang_register() {
 		return "company/company_banjang_register";
@@ -16,10 +36,6 @@ public class CompanyController {
 		return "company/company_main";
 	}
 		
-	@GetMapping("company/class/register")
-	public String company_register() {
-		return "company/company_register";
-	}
 
 	@GetMapping("company/class/register1")
 	public String company_register1() {
@@ -28,7 +44,7 @@ public class CompanyController {
 
 	@GetMapping("company/class/register2")
 	public String company_register2() {
-		return "company/company_register2";
+		return "company/company_register2-2";
 	}
 
 	@GetMapping("company/class/register3")

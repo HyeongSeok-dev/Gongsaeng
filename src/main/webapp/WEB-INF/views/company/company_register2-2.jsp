@@ -22,10 +22,15 @@
 <!-- DatePicker -->
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
-<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- FullCalendar 필요한 라이브러리 추가 -->
 <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css' rel='stylesheet' />
-
+  <!-- 이미지 업로드 자바스크립트 -->
+ <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+ <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <!-- Global CSS -->
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet" />
 
@@ -619,16 +624,24 @@ button {
 		</div>
 	</div>
 <!-- 하단에 위치시킨 단일 jQuery 라이브러리 -->
-<!-- jQuery 라이브러리 -->
+    <!-- jQuery 라이브러리 -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <!-- 다른 JavaScript 라이브러리 -->
+
+    <!-- jQuery UI 라이브러리 -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/locale/ko.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/company_assets/js/core/popper.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/company_assets/js/core/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/company_assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+
+    <!-- Bootstrap과 관련된 스크립트 -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/locale/ko.js"></script>
+
+<!--   Core JS Files   -->
+<!-- Popper.js, then Bootstrap JS -->
+<script src="${pageContext.request.contextPath }/resources/company_assets/js/core/popper.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/company_assets/js/core/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/company_assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 <!-- ... 나머지 스크립트 파일 ... -->
 	<!-- Chart JS -->
 	<script src="${pageContext.request.contextPath }/resources/company_assets/js/plugins/chartjs.min.js"></script>
@@ -639,80 +652,57 @@ button {
 	<!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
 	<script src="${pageContext.request.contextPath }/resources/company_assets/demo/demo.js"></script>
 	
-	
-	
-	
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	
-	
-	
-	
 <script>
-
-function addEventsToCalendar() {
-    var startDate = $('#startDate').val();
-    var endDate = $('#endDate').val();
-
-    var currentDate = moment(startDate);
-    var lastDate = moment(endDate);
-
-    while (currentDate <= lastDate) {
-        var dayId = currentDate.format('ddd').toLowerCase() + '_checkbox';
-        if ($('#' + dayId).is(':checked')) {
-            $('#calendar').fullCalendar('renderEvent', {
-                title: '클래스',
-                start: currentDate.format('YYYY-MM-DD'),
-                allDay: true
-            });
-        }
-        currentDate.add(1, 'days');
-    }
-}
-
-
-
 $(document).ready(function() {
-    // 달력 초기화
-    $('#calendar').fullCalendar({
-        // 한글화 적용
-        locale: 'ko',
-        // 헤더 설정
-        header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'month,agendaWeek,agendaDay'
-        },
-        // 기본 날짜 설정 (옵션)
-        defaultDate: moment().format('YYYY-MM-DD'),
-        // 클릭 이벤트 핸들러
-        eventClick: function(calEvent, jsEvent, view) {
-            alert('Event: ' + calEvent.title);
-        },
-        // FullCalendar 기타 설정
-    });
-
-    // 체크박스 상태에 따라 레이블 스타일 초기 설정
-    $('input[type="checkbox"]').each(function() {
-        updateCheckboxValue(this);
-    });
-
-    // 모달에서 '저장' 버튼을 클릭했을 때의 이벤트 핸들러
-    $('#saveButton').click(function() {
-        addEventsToCalendar();
+    // 모달 저장 버튼 클릭 이벤트
+    $('#saveButton').off('click').on('click', function() {
+        generateScheduleTable();
         $('#scheduleModal').modal('hide');
     });
 });
 
+function generateScheduleTable() {
+    var startDate = $('#startDate').val();
+    var endDate = $('#endDate').val();
+    var daysChecked = [];
+
+    // 체크된 요일 확인
+    $('input[type="checkbox"]:checked').each(function() {
+        daysChecked.push(this.id);
+    });
+
+    // 요일별로 숫자 매핑 (예: 'mon' -> 1)
+    var dayMapping = {
+        'mon_checkbox': 1,
+        'tue_checkbox': 2,
+        'wed_checkbox': 3,
+        'thr_checkbox': 4,
+        'fri_checkbox': 5,
+        'sat_checkbox': 6,
+        'sun_checkbox': 0
+    };
+
+    var tableHtml = '<table border="1"><tr><th>날짜</th><th>요일</th></tr>';
+
+    var current = moment(startDate);
+    var end = moment(endDate);
+
+    while (current <= end) {
+        var dayOfWeek = current.day(); // 0 (일요일) ~ 6 (토요일)
+
+        // 요일이 선택된 요일에 포함되면 테이블에 추가
+        if (daysChecked.some(id => dayMapping[id] === dayOfWeek)) {
+            tableHtml += '<tr><td>' + current.format('YYYY-MM-DD') + '</td><td>' + current.format('ddd') + '</td></tr>';
+        }
+
+        current.add(1, 'days');
+    }
+
+    tableHtml += '</table>';
+    $('#previewTable').html(tableHtml);
+}
 
 
-
-
-
-
-
-
-
-    // ------------------------------------------------
     function updateCheckboxValue(checkbox) {
         var label = document.querySelector('label[for="' + checkbox.id + '"]');
         if (checkbox.checked) {
@@ -722,8 +712,6 @@ $(document).ready(function() {
         }
       }
 
-    // ------------------------------------------------
-    
       $(document).ready(function() {
         // 체크박스 상태에 따라 레이블 스타일 초기 설정
         $('input[type="checkbox"]').each(function() {
@@ -906,7 +894,7 @@ $(document).ready(function() {
 		if(check_array.indexOf(file_type)==-1){
 			
 			alert('이미지 파일만 선택할 수 있습니다.');
-			/* 실제 업로드 되는 input태그 value값 지우기 */
+			/* 실제 업로드 되는 input태그 vlaue값 지우기 */
 			$('#imageFile1').val('');
 			
 			return;
@@ -1046,9 +1034,46 @@ $(document).ready(function() {
 		
 		return;
 	}
-
   
+  /* 일정 등록 */    
+// 이 함수는 모달에서 '저장' 버튼을 클릭했을 때 실행됩니다.
+// 모달에서 '저장' 버튼을 클릭했을 때 실행되는 함수
+function addEventsToCalendar() {
+    var startDate = $('#startDate').val(); // 시작 날짜
+    var endDate = $('#endDate').val(); // 종료 날짜
+    var selectedDays = []; // 선택된 요일들을 저장하는 배열
 
+    // 요일 체크박스들을 순회하면서 선택된 요일을 배열에 추가
+    $('input[type="checkbox"]').each(function() {
+        if (this.checked) {
+            selectedDays.push(this.id);
+        }
+    });
+
+    var currentDate = moment(startDate);
+    var lastDate = moment(endDate);
+
+    // 시작 날짜부터 종료 날짜까지 순회
+    while (currentDate <= lastDate) {
+        var day = currentDate.format('ddd').toLowerCase(); // 현재 날짜의 요일 (예: 'mon', 'tue')
+
+        // 만약 현재 날짜의 요일이 선택된 요일에 포함되면 이벤트를 추가
+        if (selectedDays.includes(day)) {
+            $('#calendar').fullCalendar('renderEvent', {
+                title: '클래스', // 이벤트 제목
+                start: currentDate.format('YYYY-MM-DD'), // 이벤트 시작 날짜
+                allDay: true // 하루 종일 이벤트
+            });
+        }
+        currentDate.add(1, 'days'); // 다음 날짜로 이동
+    }
+}
+
+$('#saveButton').click(function(event) {
+    event.preventDefault(); // 기본 동작 방지
+    addEventsToCalendar(); // 달력에 이벤트 추가 함수 호출
+    $('#scheduleModal').modal('hide'); // 모달 닫기
+});
 </script>
 </body>
 

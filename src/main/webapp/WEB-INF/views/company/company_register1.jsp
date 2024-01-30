@@ -644,23 +644,22 @@ textarea.form-control {
               <div class="card-header">
                 <h5 class="title">클래스 등록 - 기본 정보</h5>
               </div>
-<!--      		<form action="ClassRegisterPro" method="post" name="classRegisterForm"> -->
+     		<form action="ClassRegisterPro" method="post" name="classRegisterForm">
               <div class="card-body">
                   <div class="row">
                     <div class="col-md-3 pr-1">
                       <div class="form-group">
                         <label>모집 유형</label>
-                        <select class="form-control">
-                        	<option>정규모집</option> 
-                        	<option>원데이 클래스</option> 
+                        <select class="form-control" name="class_category">
+                        	<option value="1">정규모집</option> 
+                        	<option value="2">원데이 클래스</option> 
                         </select>
-<!--                         <input type="text" class="form-control" placeholder="Company" value="Creative Code Inc."> -->
                       </div>
                     </div>
                     <div class="col-md-3 pr-1">
                       <div class="form-group">
                         <label>클래스 대분류</label>
-						<select class="form-control" name="interior_type" id="interior_type">
+						<select class="form-control" name="class_main_category" id="interior_type">
                         	<option value="">대분류를 선택하세요</option>
                         	<option value="1">바닥 시공</option> 
                         	<option value="2">벽/천장 시공</option> 
@@ -674,7 +673,7 @@ textarea.form-control {
 						<div class="col-md-3">
 						  <div class="form-group">
 						    <label>클래스 소분류</label>
-								<select class="form-control" name="sub_interior_type" id="sub_interior_type">
+								<select class="form-control" name="class_sub_category" id="sub_interior_type">
 						      <option value="">소분류를 선택하세요</option>
 						      <!-- 옵션은 JavaScript를 통해 동적으로 추가됩니다 -->
 						    </select>
@@ -684,7 +683,7 @@ textarea.form-control {
                     <div class="col-md-8 pr-7">
                       <div class="form-group">
                         <label>클래스 타이틀</label>
-                        <input type="text" class="form-control" placeholder="클래스 이름을 입력해 주세요" value="">
+                        <input type="text" class="form-control" name="class_title" placeholder="클래스 이름을 입력해 주세요" value="">
                       </div>
                     </div>
                   </div>
@@ -703,9 +702,9 @@ textarea.form-control {
                         <!-- ========================================================================== -->
 	<!-- 파일업로드 용 폼 -->
 	<form enctype="multipart/form-data" id="imgform" method="post">
-		<input type="file" id="sumimage"   style="display: none;" accept=".jpg, .jpeg, .png">
-		<input type="file" id="imageFile1" style="display: none;" accept=".jpg, .jpeg, .png">
-		<input type="file" id="imageFile2" style="display: none;" accept=".jpg, .jpeg, .png">
+		<input type="file" id="sumimage"  name="class_pic1" style="display: none;" accept=".jpg, .jpeg, .png">
+		<input type="file" id="imageFile1" name="class_pic2" style="display: none;" accept=".jpg, .jpeg, .png">
+		<input type="file" id="imageFile2" name="class_pic3" style="display: none;" accept=".jpg, .jpeg, .png">
 	</form>
 			<table style="margin-top: 30px;">
 				<tr>
@@ -750,10 +749,10 @@ textarea.form-control {
                       <div class="form-group">
                         <label>&nbsp;&nbsp;&nbsp;기존 공방 주소</label>
 				        <div class="col-sm-8">
-  						  <input type="radio" name="optradio" id="existingAddress" checked> 기존 공방 주소 출력하기 <br>
+  						  <input type="radio" name="class_address" id="existingAddress" checked> 기존 공방 주소 출력하기 <br>
 				        </div>
 				        <div class="col-sm-8">
-  						  <input type="radio" name="optradio" id="newAddress"> 다른 주소 사용하기
+  						  <input type="radio" name="class_address" id="newAddress"> 다른 주소 사용하기
 				        </div>
                       </div>
                         <!-- 주소 입력 필드, 처음에는 숨겨져 있음 -->

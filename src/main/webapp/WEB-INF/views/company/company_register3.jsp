@@ -254,9 +254,9 @@ button {
 												<!-- ========================================================================== -->
 												<br>
 												<div class="form-group">
-													<input type="text" class="form-control" placeholder="검색에 사용되는 단어를 키워드로 등록해주세요" >
-													<input type="text" id="keyword" name="com_search_tag" value="" placeholder="사업장이 검색될 키워드를 입력하고 스페이스바를 눌러주세요">
-													
+												<div class="guide">※ 키워드를 입력하고 스페이스바를 누르면 자동으로 '#'가 붙습니다.</div>
+<!-- 													<input type="text" class="form-control" placeholder="검색에 사용되는 단어를 키워드로 등록해주세요" > -->
+													<input type="text" class="form-control" id="keyword" name="com_search_tag" value="" placeholder="검색에 사용되는 단어를 키워드로 등록해주세요">
 												</div>
 											</div>
 										</div>
