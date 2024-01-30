@@ -1810,6 +1810,12 @@ padding: 0 0 0.5em;
     /* 클래스카드 가로로 늘린 버전 */
 	width: 386px;
 }
+.p0_review{
+    padding: 0px;
+    /* ### */
+    /* 클래스카드 가로로 늘린 버전 */
+	width: 300px;
+}
 .overflow{
     overflow: hidden;
 }
@@ -1840,6 +1846,8 @@ padding: 0 0 0.5em;
     /* ### */
 /*     margin-bottom: 10px; */
     margin-bottom: 5px;
+    /* 리뷰카드(메인) - 닉네임 float 설정 */
+    clear: both;
 }
 .slim-hr{
 
@@ -3654,6 +3662,18 @@ padding-bottom: 15px;
 	color: #000;
 	margin-bottom: 12px;
 }
+/* 리뷰 카드(메인) */
+.col_reviewContent {
+	min-height:100px;
+	max-height:100px;
+	padding: 0px;
+}
+.col_reviewContent a {
+	font-size: 12px;
+	font-weight: normal;
+	float: right;
+}
+
 /* 검색결과가 없을경우 페이지 */
 .noResearchResult_h2 {
     font-size: 20px;
@@ -3907,9 +3927,6 @@ fieldset {
   gap: 0.5rem;
 }
 
-
-
-
 .class_date_button {
 	display: inline-flex;
 	vertical-align: top;
@@ -3923,4 +3940,56 @@ fieldset {
 .row_not {
     margin-right: 0px;
     margin-left: 0px;
+}
+
+/* 더보기 */
+.plus_class_List {
+	display: inline-block;
+	padding: 0px;
+	border: none;
+	background: none;
+	float: inline-end;
+	margin-top: 40px;
+	margin-right: -10px;
+}
+.plus_class_List:hover {
+	color: #ddd;
+	font-weight: bold;
+}
+
+/* 최신리뷰 슬라이더 */
+.recentReview-slider .owl-item {
+	width: 300px !important;
+}
+
+/* 상세검색 카테고리 */
+.search_detail_category {
+    background-color: rgba(0,0,0,0);
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    color: #C2C2C2;
+}
+.search_detail_category:hover {
+    color: #494C53;
+}
+.search_detail_category.selected {
+    color: #494C53;
+    font-weight: bold;
+}
+
+.form_button {
+	font-size: 16px;
+/* 	margin-top: 10px; */
+/* 	margin-bottom: 30px; */
+	color: #C2C2C2;
+	float: right;
+	text-align: right;
+	margin-left: 20px;
+}
+
+.form_button button {
+	float: right;
+	padding: 10px;
+	margin-left: 15px;    
 }

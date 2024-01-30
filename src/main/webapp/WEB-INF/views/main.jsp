@@ -12,7 +12,6 @@
 	<meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
-	
 <!-- 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'> -->
 <!-- 	<link rel="preconnect" href="https://fonts.googleapis.com"> -->
 <!-- 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
@@ -40,7 +39,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 	
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
-	<link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">
+	<link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">	<%-- 폰트 --%>
 
 <script type="text/javascript">
 function toggleButtons() {
@@ -121,22 +120,28 @@ function toggleButtons() {
         <div class="container">   
             <div class="row">
                 <div class="col-md-12  padding-top-40 properties-page">
+                
                     <div class="col-md-12 "> 
-                        <div class="col-xs-10 page-subheader sorting pl0">
-
-                        <ul class="sort-by-list">
-                            <li class="active">
-                                <a href="javascript:void(0);" class="order_by_date" data-orderby="property_date" data-order="ASC">
-                                    최신순
-                                </a>
-                            </li>
-                            <li class="">
-                                <a href="javascript:void(0);" class="order_by_price" data-orderby="property_price" data-order="DESC">
-                                    인기순
-                                </a>
-                            </li>
-                        </ul>
-                            
+<!--                         <div class="col-xs-10 page-subheader sorting pl0"> -->
+                        <div class="col-xs-6 page-subheader sorting pl0">
+	                        <ul class="sort-by-list">
+	                            <li class="active">
+	                                <a href="javascript:void(0);" class="order_by_date" data-orderby="property_date" data-order="ASC">
+	                                    최신순
+	                                </a>
+	                            </li>
+	                            <li class="">
+	                                <a href="javascript:void(0);" class="order_by_price" data-orderby="property_price" data-order="DESC">
+	                                    인기순
+	                                </a>
+	                            </li>
+	                        </ul>
+                        </div>
+                        
+                        <div class="col-xs-6 page-subheader sorting pl0">
+							<button class="plus_class_List" onclick="location.href='${pageContext.request.contextPath}/class/list'">
+								더보기
+							</button>
                         </div>
                     </div>
 
@@ -563,20 +568,6 @@ function toggleButtons() {
 
                         </div>
                     </div>
-                    <div class="col-md-12"> 
-                        <div class="pull-right">
-                            <div class="pagination">
-                                <ul>
-<!--                                     <li><a href="#">Prev</a></li> -->
-<!--                                     <li><a href="#">1</a></li> -->
-<!--                                     <li><a href="#">2</a></li> -->
-<!--                                     <li><a href="#">3</a></li> -->
-<!--                                     <li><a href="#">4</a></li> -->
-                                    <li><a href="#">더보기</a></li>
-                                </ul>
-                            </div>
-                        </div>                
-                    </div>
                 </div>  
             </div>
         </div>
@@ -597,7 +588,7 @@ function toggleButtons() {
 							<%-- 마감임박순 클래스 카드 area --%>
 	                        <div class="slider-area">
 	                            <div class="slider">
-	                                <div id="deadlineClass-slider" class="owl-carousel owl-theme">
+	                                <div class="owl-carousel owl-theme deadlineClass-slider">
 	                                    <div class="item">
 
 	                                        <div class="col-sm-6 col-md-3 p0">
@@ -645,7 +636,235 @@ function toggleButtons() {
 
 	                                                        <div class="row">
 	                                                            <div class="col-sm-12 col_className">
-	                                                                <h5><a href="${pageContext.request.contextPath}/product/detail">도배 기초</a></h5>
+	                                                                <h5><a href="${pageContext.request.contextPath}/product/detail">도배 기초1</a></h5>
+	                                                                <div class="dot-hr"></div>
+	                                                                <div class="item_p">
+	                                                                    <span class="pull-left_plus">
+	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+	                                                                    </span>
+	                                                                </div>
+	                                                            </div>
+	                                                        </div>
+
+	                                                        <div class="row">
+	                                                            <div class="col-sm-12 col_classPrice">
+	                                                                <div class="item_p">
+	                                                                    <span class="proerty-price pull-right">300,000원</span>
+	                                                                </div>
+	                                                            </div>
+	                                                        </div>
+
+	                                                    </div>
+	                                                </div>
+
+	                                            </div>
+	                                        </div>
+
+	                                    </div>
+
+	                                    <div class="item">
+
+	                                        <div class="col-sm-6 col-md-3 p0">
+	                                            <div class="box-two proerty-item">
+	                                            
+	                                                <div class="item-thumb">
+	                                                    <a href="${pageContext.request.contextPath}/product/detail">
+	                                                        <img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
+	                                                    </a>
+	                                                    
+	                                                    <%-- 클래스 기간형식 --%>
+														<span class="jss162">원데이 클래스</span>
+
+	                                                    <%-- 찜표시 --%>
+	                                                    <%-- 찜하기 전 --%>
+	                                                    <button id="button1" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u" tabindex="0" type="button">
+	                                                        <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss97 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteBorderRoundedIcon">
+	                                                            <path d="M19.66 3.99c-2.64-1.8-5.9-.96-7.66 1.1-1.76-2.06-5.02-2.91-7.66-1.1-1.4.96-2.28 2.58-2.34 4.29-.14 3.88 3.3 6.99 8.55 11.76l.1.09c.76.69 1.93.69 2.69-.01l.11-.1c5.25-4.76 8.68-7.87 8.55-11.75-.06-1.7-.94-3.32-2.34-4.28zM12.1 18.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"></path>
+	                                                        </svg>
+	                                                        <span class="MuiTouchRipple-root css-w0pj6f"></span>
+	                                                    </button>
+
+	                                                    <%-- 찜한 후 --%>
+	                                                    <button id="button2" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss146 css-1j7qk7u" tabindex="0" type="button">
+	                                                        <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss147 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
+	                                                            <path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
+	                                                        </svg>
+	                                                        <span class="MuiTouchRipple-root css-w0pj6f"></span>
+	                                                    </button>
+	                                                </div>
+
+	                                                <div class="item-entry overflow">
+	                                                    <div class="container-fluid">
+	                                                        <div class="row">
+	                                                            <div class="col-sm-6" style="padding: 0px;">
+	                                                                <h6><a href="${pageContext.request.contextPath}/company/profile">인테리어 사업체명</a></h6>
+	                                                            </div>
+	                                                            <div class="col-sm-6" style="padding: 0px; text-align: right;">
+	                                                                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss14 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
+	                                                                    <path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
+	                                                                </svg>
+	                                                                32
+	                                                            </div>
+	                                                        </div>
+
+	                                                        <div class="row">
+	                                                            <div class="col-sm-12 col_className">
+	                                                                <h5><a href="${pageContext.request.contextPath}/product/detail">도배 기초2</a></h5>
+	                                                                <div class="dot-hr"></div>
+	                                                                <div class="item_p">
+	                                                                    <span class="pull-left_plus">
+	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+	                                                                    </span>
+	                                                                </div>
+	                                                            </div>
+	                                                        </div>
+
+	                                                        <div class="row">
+	                                                            <div class="col-sm-12 col_classPrice">
+	                                                                <div class="item_p">
+	                                                                    <span class="proerty-price pull-right">300,000원</span>
+	                                                                </div>
+	                                                            </div>
+	                                                        </div>
+
+	                                                    </div>
+	                                                </div>
+
+	                                            </div>
+	                                        </div>
+
+	                                    </div>
+
+	                                    <div class="item">
+
+	                                        <div class="col-sm-6 col-md-3 p0">
+	                                            <div class="box-two proerty-item">
+	                                            
+	                                                <div class="item-thumb">
+	                                                    <a href="${pageContext.request.contextPath}/product/detail">
+	                                                        <img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
+	                                                    </a>
+	                                                    
+	                                                    <%-- 클래스 기간형식 --%>
+														<span class="jss162">원데이 클래스</span>
+
+	                                                    <%-- 찜표시 --%>
+	                                                    <%-- 찜하기 전 --%>
+	                                                    <button id="button1" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u" tabindex="0" type="button">
+	                                                        <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss97 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteBorderRoundedIcon">
+	                                                            <path d="M19.66 3.99c-2.64-1.8-5.9-.96-7.66 1.1-1.76-2.06-5.02-2.91-7.66-1.1-1.4.96-2.28 2.58-2.34 4.29-.14 3.88 3.3 6.99 8.55 11.76l.1.09c.76.69 1.93.69 2.69-.01l.11-.1c5.25-4.76 8.68-7.87 8.55-11.75-.06-1.7-.94-3.32-2.34-4.28zM12.1 18.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"></path>
+	                                                        </svg>
+	                                                        <span class="MuiTouchRipple-root css-w0pj6f"></span>
+	                                                    </button>
+
+	                                                    <%-- 찜한 후 --%>
+	                                                    <button id="button2" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss146 css-1j7qk7u" tabindex="0" type="button">
+	                                                        <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss147 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
+	                                                            <path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
+	                                                        </svg>
+	                                                        <span class="MuiTouchRipple-root css-w0pj6f"></span>
+	                                                    </button>
+	                                                </div>
+
+	                                                <div class="item-entry overflow">
+	                                                    <div class="container-fluid">
+	                                                        <div class="row">
+	                                                            <div class="col-sm-6" style="padding: 0px;">
+	                                                                <h6><a href="${pageContext.request.contextPath}/company/profile">인테리어 사업체명</a></h6>
+	                                                            </div>
+	                                                            <div class="col-sm-6" style="padding: 0px; text-align: right;">
+	                                                                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss14 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
+	                                                                    <path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
+	                                                                </svg>
+	                                                                32
+	                                                            </div>
+	                                                        </div>
+
+	                                                        <div class="row">
+	                                                            <div class="col-sm-12 col_className">
+	                                                                <h5><a href="${pageContext.request.contextPath}/product/detail">도배 기초3</a></h5>
+	                                                                <div class="dot-hr"></div>
+	                                                                <div class="item_p">
+	                                                                    <span class="pull-left_plus">
+	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+	                                                                    </span>
+	                                                                </div>
+	                                                            </div>
+	                                                        </div>
+
+	                                                        <div class="row">
+	                                                            <div class="col-sm-12 col_classPrice">
+	                                                                <div class="item_p">
+	                                                                    <span class="proerty-price pull-right">300,000원</span>
+	                                                                </div>
+	                                                            </div>
+	                                                        </div>
+
+	                                                    </div>
+	                                                </div>
+
+	                                            </div>
+	                                        </div>
+
+	                                    </div>
+	                                    
+	                                    <div class="item">
+
+	                                        <div class="col-sm-6 col-md-3 p0">
+	                                            <div class="box-two proerty-item">
+	                                            
+	                                                <div class="item-thumb">
+	                                                    <a href="${pageContext.request.contextPath}/product/detail">
+	                                                        <img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
+	                                                    </a>
+	                                                    
+	                                                    <%-- 클래스 기간형식 --%>
+														<span class="jss162">원데이 클래스</span>
+
+	                                                    <%-- 찜표시 --%>
+	                                                    <%-- 찜하기 전 --%>
+	                                                    <button id="button1" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u" tabindex="0" type="button">
+	                                                        <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss97 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteBorderRoundedIcon">
+	                                                            <path d="M19.66 3.99c-2.64-1.8-5.9-.96-7.66 1.1-1.76-2.06-5.02-2.91-7.66-1.1-1.4.96-2.28 2.58-2.34 4.29-.14 3.88 3.3 6.99 8.55 11.76l.1.09c.76.69 1.93.69 2.69-.01l.11-.1c5.25-4.76 8.68-7.87 8.55-11.75-.06-1.7-.94-3.32-2.34-4.28zM12.1 18.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"></path>
+	                                                        </svg>
+	                                                        <span class="MuiTouchRipple-root css-w0pj6f"></span>
+	                                                    </button>
+
+	                                                    <%-- 찜한 후 --%>
+	                                                    <button id="button2" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss146 css-1j7qk7u" tabindex="0" type="button">
+	                                                        <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss147 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
+	                                                            <path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
+	                                                        </svg>
+	                                                        <span class="MuiTouchRipple-root css-w0pj6f"></span>
+	                                                    </button>
+	                                                </div>
+
+	                                                <div class="item-entry overflow">
+	                                                    <div class="container-fluid">
+	                                                        <div class="row">
+	                                                            <div class="col-sm-6" style="padding: 0px;">
+	                                                                <h6><a href="${pageContext.request.contextPath}/company/profile">인테리어 사업체명</a></h6>
+	                                                            </div>
+	                                                            <div class="col-sm-6" style="padding: 0px; text-align: right;">
+	                                                                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss14 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
+	                                                                    <path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
+	                                                                </svg>
+	                                                                32
+	                                                            </div>
+	                                                        </div>
+
+	                                                        <div class="row">
+	                                                            <div class="col-sm-12 col_className">
+	                                                                <h5><a href="${pageContext.request.contextPath}/product/detail">도배 기초4</a></h5>
 	                                                                <div class="dot-hr"></div>
 	                                                                <div class="item_p">
 	                                                                    <span class="pull-left_plus">
@@ -677,252 +896,6 @@ function toggleButtons() {
 	                            </div>
 	                        </div>
 							<%-- 마감임박순 클래스 카드 area --%>
-
-	                        <div class="slider-area">
-	                            <div class="slider">
-	                                <div id="deadlineClass-slider" class="owl-carousel owl-theme">
-	                                    <div class="item">
-
-	                                        <div class="col-sm-6 col-md-3 p0">
-	                                            <div class="box-two proerty-item">
-	                                            
-	                                                <div class="item-thumb">
-	                                                    <a href="${pageContext.request.contextPath}/product/detail">
-	                                                        <img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
-	                                                    </a>
-	                                                    
-	                                                    <%-- 클래스 기간형식 --%>
-														<span class="jss162">원데이 클래스</span>
-
-	                                                    <%-- 찜표시 --%>
-	                                                    <%-- 찜하기 전 --%>
-	                                                    <button id="button1" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u" tabindex="0" type="button">
-	                                                        <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss97 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteBorderRoundedIcon">
-	                                                            <path d="M19.66 3.99c-2.64-1.8-5.9-.96-7.66 1.1-1.76-2.06-5.02-2.91-7.66-1.1-1.4.96-2.28 2.58-2.34 4.29-.14 3.88 3.3 6.99 8.55 11.76l.1.09c.76.69 1.93.69 2.69-.01l.11-.1c5.25-4.76 8.68-7.87 8.55-11.75-.06-1.7-.94-3.32-2.34-4.28zM12.1 18.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"></path>
-	                                                        </svg>
-	                                                        <span class="MuiTouchRipple-root css-w0pj6f"></span>
-	                                                    </button>
-
-	                                                    <%-- 찜한 후 --%>
-	                                                    <button id="button2" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss146 css-1j7qk7u" tabindex="0" type="button">
-	                                                        <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss147 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
-	                                                            <path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
-	                                                        </svg>
-	                                                        <span class="MuiTouchRipple-root css-w0pj6f"></span>
-	                                                    </button>
-	                                                </div>
-
-	                                                <div class="item-entry overflow">
-	                                                    <div class="container-fluid">
-	                                                        <div class="row">
-	                                                            <div class="col-sm-6" style="padding: 0px;">
-	                                                                <h6><a href="${pageContext.request.contextPath}/company/profile">인테리어 사업체명</a></h6>
-	                                                            </div>
-	                                                            <div class="col-sm-6" style="padding: 0px; text-align: right;">
-	                                                                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss14 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
-	                                                                    <path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
-	                                                                </svg>
-	                                                                32
-	                                                            </div>
-	                                                        </div>
-
-	                                                        <div class="row">
-	                                                            <div class="col-sm-12 col_className">
-	                                                                <h5><a href="${pageContext.request.contextPath}/product/detail">도배 기초</a></h5>
-	                                                                <div class="dot-hr"></div>
-	                                                                <div class="item_p">
-	                                                                    <span class="pull-left_plus">
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                    </span>
-	                                                                </div>
-	                                                            </div>
-	                                                        </div>
-
-	                                                        <div class="row">
-	                                                            <div class="col-sm-12 col_classPrice">
-	                                                                <div class="item_p">
-	                                                                    <span class="proerty-price pull-right">300,000원</span>
-	                                                                </div>
-	                                                            </div>
-	                                                        </div>
-
-	                                                    </div>
-	                                                </div>
-
-	                                            </div>
-	                                        </div>
-
-	                                    </div>
-	                                </div>
-	                            </div>
-	                        </div>
-	                        
-	                        <div class="slider-area">
-	                            <div class="slider">
-	                                <div id="deadlineClass-slider" class="owl-carousel owl-theme">
-	                                    <div class="item">
-
-	                                        <div class="col-sm-6 col-md-3 p0">
-	                                            <div class="box-two proerty-item">
-	                                            
-	                                                <div class="item-thumb">
-	                                                    <a href="${pageContext.request.contextPath}/product/detail">
-	                                                        <img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
-	                                                    </a>
-	                                                    
-	                                                    <%-- 클래스 기간형식 --%>
-														<span class="jss162">원데이 클래스</span>
-
-	                                                    <%-- 찜표시 --%>
-	                                                    <%-- 찜하기 전 --%>
-	                                                    <button id="button1" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u" tabindex="0" type="button">
-	                                                        <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss97 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteBorderRoundedIcon">
-	                                                            <path d="M19.66 3.99c-2.64-1.8-5.9-.96-7.66 1.1-1.76-2.06-5.02-2.91-7.66-1.1-1.4.96-2.28 2.58-2.34 4.29-.14 3.88 3.3 6.99 8.55 11.76l.1.09c.76.69 1.93.69 2.69-.01l.11-.1c5.25-4.76 8.68-7.87 8.55-11.75-.06-1.7-.94-3.32-2.34-4.28zM12.1 18.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"></path>
-	                                                        </svg>
-	                                                        <span class="MuiTouchRipple-root css-w0pj6f"></span>
-	                                                    </button>
-
-	                                                    <%-- 찜한 후 --%>
-	                                                    <button id="button2" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss146 css-1j7qk7u" tabindex="0" type="button">
-	                                                        <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss147 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
-	                                                            <path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
-	                                                        </svg>
-	                                                        <span class="MuiTouchRipple-root css-w0pj6f"></span>
-	                                                    </button>
-	                                                </div>
-
-	                                                <div class="item-entry overflow">
-	                                                    <div class="container-fluid">
-	                                                        <div class="row">
-	                                                            <div class="col-sm-6" style="padding: 0px;">
-	                                                                <h6><a href="${pageContext.request.contextPath}/company/profile">인테리어 사업체명</a></h6>
-	                                                            </div>
-	                                                            <div class="col-sm-6" style="padding: 0px; text-align: right;">
-	                                                                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss14 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
-	                                                                    <path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
-	                                                                </svg>
-	                                                                32
-	                                                            </div>
-	                                                        </div>
-
-	                                                        <div class="row">
-	                                                            <div class="col-sm-12 col_className">
-	                                                                <h5><a href="${pageContext.request.contextPath}/product/detail">도배 기초</a></h5>
-	                                                                <div class="dot-hr"></div>
-	                                                                <div class="item_p">
-	                                                                    <span class="pull-left_plus">
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                    </span>
-	                                                                </div>
-	                                                            </div>
-	                                                        </div>
-
-	                                                        <div class="row">
-	                                                            <div class="col-sm-12 col_classPrice">
-	                                                                <div class="item_p">
-	                                                                    <span class="proerty-price pull-right">300,000원</span>
-	                                                                </div>
-	                                                            </div>
-	                                                        </div>
-
-	                                                    </div>
-	                                                </div>
-
-	                                            </div>
-	                                        </div>
-
-	                                    </div>
-	                                </div>
-	                            </div>
-	                        </div>
-	                        
-	                        <div class="slider-area">
-	                            <div class="slider">
-	                                <div id="deadlineClass-slider" class="owl-carousel owl-theme">
-	                                    <div class="item">
-
-	                                        <div class="col-sm-6 col-md-3 p0">
-	                                            <div class="box-two proerty-item">
-	                                            
-	                                                <div class="item-thumb">
-	                                                    <a href="${pageContext.request.contextPath}/product/detail">
-	                                                        <img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
-	                                                    </a>
-	                                                    
-	                                                    <%-- 클래스 기간형식 --%>
-														<span class="jss162">원데이 클래스</span>
-
-	                                                    <%-- 찜표시 --%>
-	                                                    <%-- 찜하기 전 --%>
-	                                                    <button id="button1" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u" tabindex="0" type="button">
-	                                                        <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss97 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteBorderRoundedIcon">
-	                                                            <path d="M19.66 3.99c-2.64-1.8-5.9-.96-7.66 1.1-1.76-2.06-5.02-2.91-7.66-1.1-1.4.96-2.28 2.58-2.34 4.29-.14 3.88 3.3 6.99 8.55 11.76l.1.09c.76.69 1.93.69 2.69-.01l.11-.1c5.25-4.76 8.68-7.87 8.55-11.75-.06-1.7-.94-3.32-2.34-4.28zM12.1 18.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"></path>
-	                                                        </svg>
-	                                                        <span class="MuiTouchRipple-root css-w0pj6f"></span>
-	                                                    </button>
-
-	                                                    <%-- 찜한 후 --%>
-	                                                    <button id="button2" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss146 css-1j7qk7u" tabindex="0" type="button">
-	                                                        <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss147 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
-	                                                            <path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
-	                                                        </svg>
-	                                                        <span class="MuiTouchRipple-root css-w0pj6f"></span>
-	                                                    </button>
-	                                                </div>
-
-	                                                <div class="item-entry overflow">
-	                                                    <div class="container-fluid">
-	                                                        <div class="row">
-	                                                            <div class="col-sm-6" style="padding: 0px;">
-	                                                                <h6><a href="${pageContext.request.contextPath}/company/profile">인테리어 사업체명</a></h6>
-	                                                            </div>
-	                                                            <div class="col-sm-6" style="padding: 0px; text-align: right;">
-	                                                                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss14 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
-	                                                                    <path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
-	                                                                </svg>
-	                                                                32
-	                                                            </div>
-	                                                        </div>
-
-	                                                        <div class="row">
-	                                                            <div class="col-sm-12 col_className">
-	                                                                <h5><a href="${pageContext.request.contextPath}/product/detail">도배 기초</a></h5>
-	                                                                <div class="dot-hr"></div>
-	                                                                <div class="item_p">
-	                                                                    <span class="pull-left_plus">
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                    </span>
-	                                                                </div>
-	                                                            </div>
-	                                                        </div>
-
-	                                                        <div class="row">
-	                                                            <div class="col-sm-12 col_classPrice">
-	                                                                <div class="item_p">
-	                                                                    <span class="proerty-price pull-right">300,000원</span>
-	                                                                </div>
-	                                                            </div>
-	                                                        </div>
-
-	                                                    </div>
-	                                                </div>
-
-	                                            </div>
-	                                        </div>
-
-	                                    </div>
-	                                </div>
-	                            </div>
-	                        </div>
 
                         </div>
                     </div>
@@ -960,10 +933,10 @@ function toggleButtons() {
 							<%-- 리뷰 카드 area --%>
 	                        <div class="slider-area">
 	                            <div class="slider">
-	                                <div id="recentReview-slider" class="owl-carousel owl-theme">
+	                                <div class="owl-carousel owl-theme recentReview-slider">
 	                                    <div class="item">
 
-	                                        <div class="col-sm-6 col-md-3 p0">
+	                                        <div class="col-sm-6 col-md-3 p0_review">
 	                                            <div class="box-two proerty-item">
 	                                            
 	                                                <div class="item-thumb">
@@ -976,19 +949,13 @@ function toggleButtons() {
 	                                                    <div class="container-fluid">
 	                                                        <div class="row">
 	                                                            <div class="col-sm-6" style="padding: 0px;">
-	                                                                <h6><a href="${pageContext.request.contextPath}/company/profile">인테리어 사업체명</a></h6>
-	                                                            </div>
-	                                                            <div class="col-sm-6" style="padding: 0px; text-align: right;">
-	                                                                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss14 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
-	                                                                    <path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
-	                                                                </svg>
-	                                                                32
+	                                                                <h6><a href="${pageContext.request.contextPath}/product/detail" style="font-weight: bold;">해당 클래스명1</a></h6>
 	                                                            </div>
 	                                                        </div>
 
 	                                                        <div class="row">
-	                                                            <div class="col-sm-12 col_className">
-	                                                                <h5><a href="${pageContext.request.contextPath}/product/detail">도배 기초</a></h5>
+	                                                            <div class="col-sm-12 col_reviewContent">
+	                                                                <a href="${pageContext.request.contextPath}/product/detail">작성자 닉네임1</a>
 	                                                                <div class="dot-hr"></div>
 	                                                                <div class="item_p">
 	                                                                    <span class="pull-left_plus">
@@ -1001,10 +968,44 @@ function toggleButtons() {
 	                                                            </div>
 	                                                        </div>
 
+	                                                    </div>
+	                                                </div>
+
+	                                            </div>
+	                                        </div>
+
+	                                    </div>
+										
+										<div class="item">
+
+	                                        <div class="col-sm-6 col-md-3 p0_review">
+	                                            <div class="box-two proerty-item">
+	                                            
+	                                                <div class="item-thumb">
+	                                                    <a href="${pageContext.request.contextPath}/product/detail">
+	                                                        <img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
+	                                                    </a>
+	                                                </div>
+
+	                                                <div class="item-entry overflow">
+	                                                    <div class="container-fluid">
 	                                                        <div class="row">
-	                                                            <div class="col-sm-12 col_classPrice">
+	                                                            <div class="col-sm-6" style="padding: 0px;">
+	                                                                <h6><a href="${pageContext.request.contextPath}/product/detail" style="font-weight: bold;">해당 클래스명2</a></h6>
+	                                                            </div>
+	                                                        </div>
+
+	                                                        <div class="row">
+	                                                            <div class="col-sm-12 col_reviewContent">
+	                                                                <a href="${pageContext.request.contextPath}/product/detail">작성자 닉네임2</a>
+	                                                                <div class="dot-hr"></div>
 	                                                                <div class="item_p">
-	                                                                    <span class="proerty-price pull-right">300,000원</span>
+	                                                                    <span class="pull-left_plus">
+	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+	                                                                    </span>
 	                                                                </div>
 	                                                            </div>
 	                                                        </div>
@@ -1016,196 +1017,137 @@ function toggleButtons() {
 	                                        </div>
 
 	                                    </div>
+										
+										<div class="item">
+
+	                                        <div class="col-sm-6 col-md-3 p0_review">
+	                                            <div class="box-two proerty-item">
+	                                            
+	                                                <div class="item-thumb">
+	                                                    <a href="${pageContext.request.contextPath}/product/detail">
+	                                                        <img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
+	                                                    </a>
+	                                                </div>
+
+	                                                <div class="item-entry overflow">
+	                                                    <div class="container-fluid">
+	                                                        <div class="row">
+	                                                            <div class="col-sm-6" style="padding: 0px;">
+	                                                                <h6><a href="${pageContext.request.contextPath}/product/detail" style="font-weight: bold;">해당 클래스명3</a></h6>
+	                                                            </div>
+	                                                        </div>
+
+	                                                        <div class="row">
+	                                                            <div class="col-sm-12 col_reviewContent">
+	                                                                <a href="${pageContext.request.contextPath}/product/detail">작성자 닉네임3</a>
+	                                                                <div class="dot-hr"></div>
+	                                                                <div class="item_p">
+	                                                                    <span class="pull-left_plus">
+	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+	                                                                    </span>
+	                                                                </div>
+	                                                            </div>
+	                                                        </div>
+
+	                                                    </div>
+	                                                </div>
+
+	                                            </div>
+	                                        </div>
+
+	                                    </div>
+										
+										<div class="item">
+
+	                                        <div class="col-sm-6 col-md-3 p0_review">
+	                                            <div class="box-two proerty-item">
+	                                            
+	                                                <div class="item-thumb">
+	                                                    <a href="${pageContext.request.contextPath}/product/detail">
+	                                                        <img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
+	                                                    </a>
+	                                                </div>
+
+	                                                <div class="item-entry overflow">
+	                                                    <div class="container-fluid">
+	                                                        <div class="row">
+	                                                            <div class="col-sm-6" style="padding: 0px;">
+	                                                                <h6><a href="${pageContext.request.contextPath}/product/detail" style="font-weight: bold;">해당 클래스명4</a></h6>
+	                                                            </div>
+	                                                        </div>
+
+	                                                        <div class="row">
+	                                                            <div class="col-sm-12 col_reviewContent">
+	                                                                <a href="${pageContext.request.contextPath}/product/detail">작성자 닉네임4</a>
+	                                                                <div class="dot-hr"></div>
+	                                                                <div class="item_p">
+	                                                                    <span class="pull-left_plus">
+	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+	                                                                    </span>
+	                                                                </div>
+	                                                            </div>
+	                                                        </div>
+
+	                                                    </div>
+	                                                </div>
+
+	                                            </div>
+	                                        </div>
+
+	                                    </div>
+	                                    
+										<div class="item">
+
+	                                        <div class="col-sm-6 col-md-3 p0_review">
+	                                            <div class="box-two proerty-item">
+	                                            
+	                                                <div class="item-thumb">
+	                                                    <a href="${pageContext.request.contextPath}/product/detail">
+	                                                        <img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
+	                                                    </a>
+	                                                </div>
+
+	                                                <div class="item-entry overflow">
+	                                                    <div class="container-fluid">
+	                                                        <div class="row">
+	                                                            <div class="col-sm-6" style="padding: 0px;">
+	                                                                <h6><a href="${pageContext.request.contextPath}/product/detail" style="font-weight: bold;">해당 클래스명5</a></h6>
+	                                                            </div>
+	                                                        </div>
+
+	                                                        <div class="row">
+	                                                            <div class="col-sm-12 col_reviewContent">
+	                                                                <a href="${pageContext.request.contextPath}/product/detail">작성자 닉네임5</a>
+	                                                                <div class="dot-hr"></div>
+	                                                                <div class="item_p">
+	                                                                    <span class="pull-left_plus">
+	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+	                                                                    </span>
+	                                                                </div>
+	                                                            </div>
+	                                                        </div>
+
+	                                                    </div>
+	                                                </div>
+
+	                                            </div>
+	                                        </div>
+
+	                                    </div>
+										
 	                                </div>
 	                            </div>
 	                        </div>
 							<%-- 리뷰 카드 area --%>
-
-	                        <div class="slider-area">
-	                            <div class="slider">
-	                                <div id="recentReview-slider" class="owl-carousel owl-theme">
-	                                    <div class="item">
-
-	                                        <div class="col-sm-6 col-md-3 p0">
-	                                            <div class="box-two proerty-item">
-	                                            
-	                                                <div class="item-thumb">
-	                                                    <a href="${pageContext.request.contextPath}/product/detail">
-	                                                        <img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
-	                                                    </a>
-	                                                </div>
-
-	                                                <div class="item-entry overflow">
-	                                                    <div class="container-fluid">
-	                                                        <div class="row">
-	                                                            <div class="col-sm-6" style="padding: 0px;">
-	                                                                <h6><a href="${pageContext.request.contextPath}/company/profile">인테리어 사업체명</a></h6>
-	                                                            </div>
-	                                                            <div class="col-sm-6" style="padding: 0px; text-align: right;">
-	                                                                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss14 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
-	                                                                    <path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
-	                                                                </svg>
-	                                                                32
-	                                                            </div>
-	                                                        </div>
-
-	                                                        <div class="row">
-	                                                            <div class="col-sm-12 col_className">
-	                                                                <h5><a href="${pageContext.request.contextPath}/product/detail">도배 기초</a></h5>
-	                                                                <div class="dot-hr"></div>
-	                                                                <div class="item_p">
-	                                                                    <span class="pull-left_plus">
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                    </span>
-	                                                                </div>
-	                                                            </div>
-	                                                        </div>
-
-	                                                        <div class="row">
-	                                                            <div class="col-sm-12 col_classPrice">
-	                                                                <div class="item_p">
-	                                                                    <span class="proerty-price pull-right">300,000원</span>
-	                                                                </div>
-	                                                            </div>
-	                                                        </div>
-
-	                                                    </div>
-	                                                </div>
-
-	                                            </div>
-	                                        </div>
-
-	                                    </div>
-	                                </div>
-	                            </div>
-	                        </div>
-	                        
-	                        <div class="slider-area">
-	                            <div class="slider">
-	                                <div id="recentReview-slider" class="owl-carousel owl-theme">
-	                                    <div class="item">
-
-	                                        <div class="col-sm-6 col-md-3 p0">
-	                                            <div class="box-two proerty-item">
-	                                            
-	                                                <div class="item-thumb">
-	                                                    <a href="${pageContext.request.contextPath}/product/detail">
-	                                                        <img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
-	                                                    </a>
-	                                                </div>
-
-	                                                <div class="item-entry overflow">
-	                                                    <div class="container-fluid">
-	                                                        <div class="row">
-	                                                            <div class="col-sm-6" style="padding: 0px;">
-	                                                                <h6><a href="${pageContext.request.contextPath}/company/profile">인테리어 사업체명</a></h6>
-	                                                            </div>
-	                                                            <div class="col-sm-6" style="padding: 0px; text-align: right;">
-	                                                                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss14 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
-	                                                                    <path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
-	                                                                </svg>
-	                                                                32
-	                                                            </div>
-	                                                        </div>
-
-	                                                        <div class="row">
-	                                                            <div class="col-sm-12 col_className">
-	                                                                <h5><a href="${pageContext.request.contextPath}/product/detail">도배 기초</a></h5>
-	                                                                <div class="dot-hr"></div>
-	                                                                <div class="item_p">
-	                                                                    <span class="pull-left_plus">
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                    </span>
-	                                                                </div>
-	                                                            </div>
-	                                                        </div>
-
-	                                                        <div class="row">
-	                                                            <div class="col-sm-12 col_classPrice">
-	                                                                <div class="item_p">
-	                                                                    <span class="proerty-price pull-right">300,000원</span>
-	                                                                </div>
-	                                                            </div>
-	                                                        </div>
-
-	                                                    </div>
-	                                                </div>
-
-	                                            </div>
-	                                        </div>
-
-	                                    </div>
-	                                </div>
-	                            </div>
-	                        </div>
-	                        
-	                        <div class="slider-area">
-	                            <div class="slider">
-	                                <div id="recentReview-slider" class="owl-carousel owl-theme">
-	                                    <div class="item">
-
-	                                        <div class="col-sm-6 col-md-3 p0">
-	                                            <div class="box-two proerty-item">
-	                                            
-	                                                <div class="item-thumb">
-	                                                    <a href="${pageContext.request.contextPath}/product/detail">
-	                                                        <img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
-	                                                    </a>
-	                                                </div>
-
-	                                                <div class="item-entry overflow">
-	                                                    <div class="container-fluid">
-	                                                        <div class="row">
-	                                                            <div class="col-sm-6" style="padding: 0px;">
-	                                                                <h6><a href="${pageContext.request.contextPath}/company/profile">인테리어 사업체명</a></h6>
-	                                                            </div>
-	                                                            <div class="col-sm-6" style="padding: 0px; text-align: right;">
-	                                                                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss14 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
-	                                                                    <path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
-	                                                                </svg>
-	                                                                32
-	                                                            </div>
-	                                                        </div>
-
-	                                                        <div class="row">
-	                                                            <div class="col-sm-12 col_className">
-	                                                                <h5><a href="${pageContext.request.contextPath}/product/detail">도배 기초</a></h5>
-	                                                                <div class="dot-hr"></div>
-	                                                                <div class="item_p">
-	                                                                    <span class="pull-left_plus">
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                    </span>
-	                                                                </div>
-	                                                            </div>
-	                                                        </div>
-
-	                                                        <div class="row">
-	                                                            <div class="col-sm-12 col_classPrice">
-	                                                                <div class="item_p">
-	                                                                    <span class="proerty-price pull-right">300,000원</span>
-	                                                                </div>
-	                                                            </div>
-	                                                        </div>
-
-	                                                    </div>
-	                                                </div>
-
-	                                            </div>
-	                                        </div>
-
-	                                    </div>
-	                                </div>
-	                            </div>
-	                        </div>
 
                         </div>
                     </div>
@@ -1214,7 +1156,7 @@ function toggleButtons() {
             </div>
         </div>
     </div>
-    <!-- 최근 리뷰 area -->
+   	<%-- 최근 리뷰 area --%>
     
 	<!-- Footer area -->
 	<!-- 하단바 삽입-->
