@@ -15,7 +15,7 @@ public interface CartMapper {
 	String insertCart(int class_idx, String memberId);
 
 	//장바구니 물건삭제
-	String deletCart(int class_idx);
+	String deletCart(int cart_idx);
 	
 	//장바구니 리스트
 	List<CartListVO> allCartList(@Param("member_id") String member_id);

@@ -20,8 +20,8 @@ public class CartService {
 	}
 
 	//장바구니 물건삭제
-	public String deleteFromCart(int class_idx) {
-		return mapper.deletCart(class_idx);
+	public String deleteFromCart(int cart_idx) {
+		return mapper.deletCart(cart_idx);
 	}
 
 	//장바구니 리스트
@@ -32,6 +32,8 @@ public class CartService {
 		return result;
 	}
 
+	//장바구니 인원수 수정하기
+	
 	
 
 	

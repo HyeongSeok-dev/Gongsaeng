@@ -12,6 +12,7 @@
 			#{cart_idx} 
 			, #{member_id}
 			, #{class_idx}
+			<!-- 추후에 컬럼추가된거 적기 -->
 		);
 	</insert>
 	
@@ -19,7 +20,7 @@
 	<delete id="deletCart">
 		DELETE 
 		FROM cart
-		WHERE class_idx = #{class_idx}
+		WHERE cart_idx = #{cart_idx}
 	</delete>
 	
 	<!-- 장바구니 조회하기 -->

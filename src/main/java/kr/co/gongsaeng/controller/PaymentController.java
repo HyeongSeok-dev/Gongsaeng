@@ -17,13 +17,13 @@ import kr.co.gongsaeng.service.BankService;
 import kr.co.gongsaeng.vo.ResponseTokenVO;
 
 @Controller
-public class paymentController {
+public class PaymentController {
 	
 	@Autowired
 	private BankService bankService;
 	
 	//로그출력을 위한 기본 라이브러리
-	private static final Logger logger = LoggerFactory.getLogger(paymentController.class);
+	private static final Logger logger = LoggerFactory.getLogger(PaymentController.class);
 	
 	//결제하기
 	@GetMapping("payment")

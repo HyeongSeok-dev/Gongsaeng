@@ -40,8 +40,8 @@
 <link href="${pageContext.request.contextPath }/resources/css/payment.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet" type="text/css">
 
+        <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
         <script src="${pageContext.request.contextPath }/resources/assets/js/modernizr-2.6.2.min.js"></script>
-        <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script> 
         <script src="${pageContext.request.contextPath }/resources/assets/js/jquery-1.10.2.min.js"></script> 
         <script src="${pageContext.request.contextPath }/resources/bootstrap/js/bootstrap.min.js"></script>
         <script src="${pageContext.request.contextPath }/resources/assets/js/bootstrap-select.min.js"></script>
@@ -53,9 +53,7 @@
 <%--         <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script> --%>
         <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
         <script src="${pageContext.request.contextPath }/resources/assets/js/main_noicheck.js"></script>
-<!-- <script src="https://cdn.iamport.kr/v1/iamport.js"></script> -->
-<!-- <script src="https://cdn.portone.io/v2/browser-sdk.js"></script> -->
-<%-- <script src="${pageContext.request.contextPath }/resources/js/payment_API.js"></script> --%>
+	<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 
 	<script src="${pageContext.request.contextPath }/resources/js/payment.js"></script>
 

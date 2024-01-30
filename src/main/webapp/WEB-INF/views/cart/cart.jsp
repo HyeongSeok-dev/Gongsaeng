@@ -82,7 +82,7 @@
 		<div class="col-xs-12" style="margin-top: 70px; margin-bottom: 70px;">
 			<div class="panel panel-info">
 			
- <%-- 					    	<c:forEach items="${ }" var="cart"> --%> 
+<%-- 	    	<c:forEach var="cart" items="${cartList}" >  --%>
 				<div class="panel-body">
 					<div class="row">
 					    <div class="col-xs-2">
@@ -96,7 +96,7 @@
 					    <div class="col-xs-6">
 					        <div class="row">
 					            <div class="col-xs-6 text-right">
-					                <h6><strong>15,000원<span class="text-muted">&nbsp;x</span></strong></h6>
+					                <h6><strong>15,000원<span class="text-muted">&nbsp;&nbsp;&nbsp;x</span></strong></h6>
 					            </div>
 					            <div class="col-xs-4">
 					                <input type="number" class="form-control input-sm" id="resPerson" value="{res_person}"  min="1" max="20">
@@ -119,9 +119,8 @@
 					    </div>
 					</div>
 					<hr>
- <%-- 					    </c:forEach> --%> 
-					
-				</div>
+				 </div>
+<%-- 			    </c:forEach>  --%>
 
 				<div class="panel-footer">
 					<div class="row text-center">
