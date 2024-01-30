@@ -21,7 +21,7 @@
 <link href="${pageContext.request.contextPath }/resources/company_assets/demo/demo.css" rel="stylesheet" />
 <!-- DatePicker -->
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- FullCalendar 필요한 라이브러리 추가 -->
 <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css' rel='stylesheet' />
@@ -448,10 +448,9 @@ button {
 																			<div class="col-md-8 pr-1 mb-3">
 																				<span class="modal_title">날짜</span><br>
 																				<div class="modal_date">
-																					<div class="form-group">
-																						<input type="date">&nbsp; ~ &nbsp;<input
-																							type="date"> <br>
-																					</div>
+																				    <div class="form-group">
+																				        <input type="date" id="startDate">&nbsp; ~ &nbsp;<input type="date" id="endDate"> <br>
+																				    </div>
 																				</div>
 																			</div>
 																		</div>
@@ -490,8 +489,6 @@ button {
 																</div>
 																<!-- 모달 내부 -->
 																<div class="modal-footer">
-																	<!-- 															        <button type="button" class="btn btn-primary">저장</button> -->
-																	<!-- 															        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button> -->
 																	<button type="button" class="btn btn-primary"
 																		id="saveButton">저장</button>
 																	<button type="button" class="btn btn-secondary"
@@ -520,8 +517,7 @@ button {
 											<!--                         <input type="text" class="form-control" placeholder="Company" value="Mike"> -->
 											<!-- ========================================================================== -->
 											<!-- 파일업로드 용 폼 -->
-											<form enctype="multipart/form-data" id="imgform"
-												method="post">
+											<form enctype="multipart/form-data" id="imgform" method="post">
 												<input type="file" id="sumimage" style="display: none;"
 													accept=".jpg, .jpeg, .png"> <input type="file"
 													id="imageFile1" style="display: none;"
@@ -698,7 +694,7 @@ button {
     
         // -----------------------------------------
         
-                // 모달에서 '저장' 버튼을 눌렀을 때의 이벤트 핸들러
+       // 모달에서 '저장' 버튼을 눌렀을 때의 이벤트 핸들러
         $('#saveButton').click(function() {
             var title = '클래스'; // 이벤트 제목 설정 (필요에 따라 변경 가능)
             var start = $('#startDate').val(); // 시작 날짜
@@ -1057,9 +1053,45 @@ button {
 		return;
 	}
   
-      
-      
-      
+  /* 일정 등록 */    
+// 이 함수는 모달에서 '저장' 버튼을 클릭했을 때 실행됩니다.
+// 모달에서 '저장' 버튼을 클릭했을 때 실행되는 함수
+function addEventsToCalendar() {
+    var startDate = $('#startDate').val(); // 시작 날짜
+    var endDate = $('#endDate').val(); // 종료 날짜
+    var selectedDays = []; // 선택된 요일들을 저장하는 배열
+
+    // 요일 체크박스들을 순회하면서 선택된 요일을 배열에 추가
+    $('input[type="checkbox"]').each(function() {
+        if (this.checked) {
+            selectedDays.push(this.id);
+        }
+    });
+
+    var currentDate = moment(startDate);
+    var lastDate = moment(endDate);
+
+    // 시작 날짜부터 종료 날짜까지 순회
+    while (currentDate <= lastDate) {
+        var day = currentDate.format('ddd').toLowerCase(); // 현재 날짜의 요일 (예: 'mon', 'tue')
+
+        // 만약 현재 날짜의 요일이 선택된 요일에 포함되면 이벤트를 추가
+        if (selectedDays.includes(day)) {
+            $('#calendar').fullCalendar('renderEvent', {
+                title: '클래스', // 이벤트 제목
+                start: currentDate.format('YYYY-MM-DD'), // 이벤트 시작 날짜
+                allDay: true // 하루 종일 이벤트
+            });
+        }
+        currentDate.add(1, 'days'); // 다음 날짜로 이동
+    }
+}
+
+$('#saveButton').click(function(event) {
+    event.preventDefault(); // 기본 동작 방지
+    addEventsToCalendar(); // 달력에 이벤트 추가 함수 호출
+    $('#scheduleModal').modal('hide'); // 모달 닫기
+});
 </script>
 </body>
 

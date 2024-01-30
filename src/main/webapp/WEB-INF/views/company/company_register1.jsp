@@ -750,12 +750,34 @@ textarea.form-control {
                       <div class="form-group">
                         <label>&nbsp;&nbsp;&nbsp;기존 공방 주소</label>
 				        <div class="col-sm-8">
-				          <input type="radio" name="optradio" checked> 기존 공방 주소 출력하기 <br>
+  						  <input type="radio" name="optradio" id="existingAddress" checked> 기존 공방 주소 출력하기 <br>
 				        </div>
 				        <div class="col-sm-8">
-				          <input type="radio" name="optradio">  다른 주소 사용하기
+  						  <input type="radio" name="optradio" id="newAddress"> 다른 주소 사용하기
 				        </div>
                       </div>
+                        <!-- 주소 입력 필드, 처음에는 숨겨져 있음 -->
+						<div id="additionalAddress" style="display:none;">
+						    <div class="row">
+       						 <div class="col-md-8 offset-md-1">
+						            <div class="form-group">
+						                <label><b>다른 주소 사용하기</b></label><br>
+						                <div class="row address-row">
+						                    <div class="col-6">
+						                        <input class="form-control smaller-input" type="text" name="post_code" id="postCode" required>
+						                    </div>
+						                    <div class="col-6">
+						                        <input class="form-control smaller-input btn-primary" type="button" id="btnSearchAddress" value="주소검색">
+						                    </div>
+						                </div>
+						                <br>
+						                <input class="form-control smaller-input" type="text" name="address1" id="address1" placeholder="기본주소" required>
+						                <br>
+						                <input class="form-control smaller-input" type="text" name="address2" id="address2" placeholder="상세주소" required>
+						            </div>
+						        </div>
+						    </div>
+						</div>
                     <div class="col-md-12">
                       <div class="form-group">
                       	<br><br>
@@ -795,6 +817,45 @@ textarea.form-control {
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="${pageContext.request.contextPath }/resources/company_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="${pageContext.request.contextPath }/resources/company_assets/demo/demo.js"></script>
+	<!-- 다음 주소검색 API 사용을 위한 라이브러리 추가 -->
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script type="text/javascript">
+	  document.getElementById('newAddress').addEventListener('change', function() {
+	      if(this.checked) {
+	          document.getElementById('additionalAddress').style.display = 'block';
+	      }
+	  });
+	
+	  document.getElementById('existingAddress').addEventListener('change', function() {
+	      if(this.checked) {
+	          document.getElementById('additionalAddress').style.display = 'none';
+	      }
+	  });
+	  
+		// =====================================================================
+		// 주소 검색 API 활용 기능 추가
+		// "t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js" 스크립트 파일 로딩 필수!
+		// 주소 검색 API 활용 기능 추가
+		document.querySelector("#btnSearchAddress").onclick = function() {
+		    new daum.Postcode({
+		        oncomplete: function(data) {
+		            // 우편번호(zonecode) 가져와서 우편번호 항목(postCode)에 출력
+		            document.getElementById('postCode').value = data.zonecode; 
+		            
+		            // 기본주소(address) 가져와서 기본주소 항목(address1)에 출력
+		            let address = data.address;
+		            if(data.buildingName != "") {
+		                address += " (" + data.buildingName + ")";
+		            }
+		            document.getElementById('address1').value = address;
+		
+		            // 상세주소 항목(address2)에 포커스 요청
+		            document.getElementById('address2').focus();
+		        }
+		    }).open();
+		};
+	  
+</script>
 </body>
 
 </html>

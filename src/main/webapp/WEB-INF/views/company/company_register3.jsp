@@ -255,6 +255,8 @@ button {
 												<br>
 												<div class="form-group">
 													<input type="text" class="form-control" placeholder="검색에 사용되는 단어를 키워드로 등록해주세요" >
+													<input type="text" id="keyword" name="com_search_tag" value="" placeholder="사업장이 검색될 키워드를 입력하고 스페이스바를 눌러주세요">
+													
 												</div>
 											</div>
 										</div>
@@ -361,6 +363,27 @@ button {
 	<!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
 	<script
 		src="${pageContext.request.contextPath }/resources/company_assets/demo/demo.js"></script>
+	<script type="text/javascript">
+	
+	$('#keyword').on('input', function(e) {
+	    var lines = $(this).val().split('\n');
+	    for (var i = 0; i < lines.length; i++) {
+	        if (lines[i].length > 0 && lines[i][0] != '#') {
+	            lines[i] = '#' + lines[i];
+	        }
+	    }
+	    $(this).val(lines.join('\n'));
+	    
+	});
+	
+	$('#keyword').on('keydown', function(e) {
+    if (e.which == 32) {
+        e.preventDefault();
+        $(this).val($(this).val() + '#'); 
+    }
+});
+	
+	</script>	
 </body>
 
 </html>
