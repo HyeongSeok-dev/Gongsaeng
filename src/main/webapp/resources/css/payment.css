@@ -3,6 +3,12 @@
 /* #payAgree{ */
 /* 	width: 50px; */
 /* } */
+
+/* 테이블 길이 */
+.info_tag {
+    width: 100%; /* 또는 width: 500px; */
+}
+        
 .page-head {
     background: #494C53 no-repeat scroll center top / cover;
     color: #FFF;
@@ -57,7 +63,7 @@ main {
 
 .right_box_stiky {
 	position: sticky;
-    top: 125px;
+    top: 130px;
 }
 
 .div_left_box>section {

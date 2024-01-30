@@ -14,21 +14,32 @@ public class CartController {
 	private CartService cartService;
 	
 	//장바구니
-//	@GetMapping("cart")
-//	public String cart() {
-//		return "cart/cart";
-//	}
+	@GetMapping("cart")
+	public String cart() {
+		return "cart/cart";
+	}
 	
 	//장바구니에 물건넣기
-	 @GetMapping("cart")
-	    public @ResponseBody String addToCart(@RequestParam String class_idx, @RequestParam String memberId) {
-	        try {
-	            cartService.addToCart(class_idx, memberId);
-	            return "";
-	        } catch (Exception e) {
-	            return "";
-	        }
+	@PostMapping("addCart")
+    public @ResponseBody String addToCart(@RequestParam int class_idx, @RequestParam String memberId) {
+        try {
+            cartService.addToCart(class_idx, memberId);
+            return "true";
+        } catch (Exception e) {
+            return "false";
+        }
+    }
+	 
+	 //장바구니 물건삭제
+	@PostMapping("deleteCart")
+	public String deleteCart(@RequestParam int class_idx) {
+	    try {
+	        cartService.deleteFromCart(class_idx);
+	        return "true";
+	    } catch (Exception e) {
+	        return "false";
 	    }
+	}
 	
 }//CartController
 

@@ -6,6 +6,15 @@
 /*     min-height: 100px; */
 /* } */
 
+/* 결제하기 버튼 위치 */
+#payment {
+    margin-top: 20px;
+}
+
+/* 수정하기 버튼위치 */
+
+/* */
+
 /* 클래스대표 이미지 */
 .img-responsive {
     width: 150px;

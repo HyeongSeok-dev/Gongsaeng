@@ -114,34 +114,41 @@
 					
 					<!-- 수강클래스====================================================== -->
 					<section id="leftSec01" class="section_box">
-					<h2>수강클래스이름</h2>
-					<div class="info_tag">
-						<!-- 클래스대표사진 -->
-						<div class="info img_info">
-							<img src="${pageContext.request.contextPath }/resources/img/payment_test.png" width="65" id="kakao">
-						</div><br>
-						<!-- 클래스명 -->
-<!-- 						<div class="info"> -->
-<!-- 							<span class="info_title"><h3>클래스명</h3></span> -->
-<%-- 							<span class="info_content">${res.res_date}</span> --%>
-<%-- 							<input type="hidden" name="res_date" value="${res.res_date}"> --%>
-<!-- 						</div> -->
-						<div class="info">
-							<span class="info_title">수강인원</span>
-<%-- 							<span class="info_content">${res.res_time}</span> --%>
-<%-- 							<input type="hidden" name="res_time" value="${res.res_time}"> --%>
-						</div>
-						<div class="info">
-							<span class="info_title">방문날짜/시간</span>
-<%-- 							<span class="info_content" >${res.res_person}명</span> --%>
-<%-- 							<input type="hidden" name="res_person" value="${res.res_person}"> --%>
-						</div>
-						<div class="info">
-							<span class="info_title">결제 금액</span>
-<%-- 							<span class="info_content" ><b>${map.res_table_price_str}</b>원</span> --%>
-<%-- 							<input type="hidden" name="res_table_price" value="${res.res_table_price}" id="resTablePrice"> --%>
-						</div>
-					</div><!-- 대표사진 끝나는곳-->
+					<h2>{class_title}</h2>
+					<table class="info_tag" >
+					    <tr>
+					        <td rowspan="4">
+					            <img src="${pageContext.request.contextPath }/resources/img/payment_test.png" width="140" id="kakao">
+					        </td>
+					    </tr>
+					    
+					    <tr>
+					        <td width="130">
+					            <span class="info_title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;수강인원</span>
+					        </td>
+					        <td>
+					        	{res_person}
+					        </td>
+					    </tr>
+					    <tr>
+					        <td>
+					            <span class="info_title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;방문날짜/시간</span>
+					        </td>
+					        <td>
+					        	{class_start_date}
+					        	{class_start_time}
+					        </td>
+					    </tr>
+					    <tr>
+					        <td>
+					            <span class="info_title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;결제 금액</span>
+					        </td>
+					        <td>
+					        	{payment}
+					        </td>
+					    </tr>
+					</table>
+
 				</section>
 					
 				<!-- 쿠폰선택========================================================== -->
@@ -390,8 +397,11 @@
 			<input type="hidden" value="" name="preOrderTotalPrice"  id="preOrderTotalPrice"/>
 		</form>
 	</main>
+	
+<!-- 	<hr> -->
 <!-- 	<footer> -->
 <%-- 		<jsp:include page="../inc/bottom.jsp"></jsp:include> --%>
 <!-- 	</footer>  -->
+	
 </body>
 </html>

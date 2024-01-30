@@ -13,7 +13,8 @@ $(document).ready(function() {
 	    var memberId = $("#member_id").val(); //회원 아이디
 	
 	    $.ajax({
-	        url: "cart",
+			type: "POST",
+	        url: "addCart",
 	        data:{
 				class_idx : class_idx,
 				memberId : memberId
@@ -31,4 +32,23 @@ $(document).ready(function() {
 	    
 	});
 	
+	//장바구니에 물건삭제===============================================
+	$("#cartX").click(function() {
+    var class_idx = $("#class_idx").val(); // 삭제하려는 상품의 클래스 번호
+
+    $.ajax({
+        type: "POST",
+        url: "deleteCart",
+        data: { class_idx: class_idx },
+        success: function(response) {
+            if(response) { // 성공
+                alert("상품을 장바구니에서 삭제했습니다.");
+            } else { // 실패
+                alert("상품을 장바구니에서 삭제하는데 실패했습니다.");
+              }
+	        }    
+	    });//ajax
+	});
+
+
 }); //$(document).ready(function() {
