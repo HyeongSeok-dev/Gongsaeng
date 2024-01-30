@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/responsive.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
-<<<<<<< HEAD
+
 <script>
 
 //1:1 문의창
@@ -35,10 +35,7 @@ function openCenteredWindow(url, name, width, height) {
     window.open(url, name, 'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top);
 }
 </script>
-	
-=======
 
->>>>>>> branch 'master' of https://github.com/HyeongSeok-dev/Gongsaeng.git
 <nav class="navbar navbar-default ">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->

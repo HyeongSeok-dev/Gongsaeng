@@ -80,7 +80,6 @@
 			                   </div> 
 			                </form>
 			            </div>  
-			            <br> 
 			            <!-- Nav tabs category -->
 			            <ul class="nav nav-tabs faq-cat-tabs">
 			                <li><a href="#faq-cat-0" data-toggle="tab">전체</a></li>
@@ -97,7 +96,7 @@
 			                    	<div class="panel panel-default panel-faq">
 			                            <div class="panel-heading">
 			                                <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-1">
-			                                    <h4 class="panel-title">
+			                                    <h4 class="panel-title" style="font-size: 15px; font-weight: bold; color: #000000;">
 			                                       '공생'이란?
 			                                        <span class="pull-right"></span>
 			                                    </h4>
@@ -121,7 +120,7 @@
 			                        <div class="panel panel-default panel-faq">
 			                            <div class="panel-heading">
 			                                <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#faq-cat-1-sub-2">
-			                                    <h4 class="panel-title">
+			                                    <h4 class="panel-title" style="font-size: 15px; font-weight: bold; color: #000000;">
 			                                        회원가입 방법
 			                                        <span class="pull-right"></span>
 			                                    </h4>
@@ -149,7 +148,7 @@
 			                        <div class="panel panel-default panel-faq">
 			                            <div class="panel-heading">
 			                                <a data-toggle="collapse" data-parent="#accordion-cat-2" href="#faq-cat-2-sub-1">
-			                                    <h4 class="panel-title">
+			                                    <h4 class="panel-title" style="font-size: 15px; font-weight: bold; color: #000000;">
 			                                        회원 탈퇴는 어떻게 하나요?
 			                                        <span class="pull-right"></span>
 			                                    </h4>
@@ -173,7 +172,7 @@
 			                        <div class="panel panel-default panel-faq">
 			                            <div class="panel-heading">
 			                                <a data-toggle="collapse" data-parent="#accordion-cat-2" href="#faq-cat-2-sub-2">
-			                                    <h4 class="panel-title">
+			                                    <h4 class="panel-title" style="font-size: 15px; font-weight: bold; color: #000000;">
 			                                       계정을 잊어버렸는데 어떻게 하나요?
 			                                        <span class="pull-right"></span>
 			                                    </h4>
@@ -197,7 +196,7 @@
 			                        <div class="panel panel-default panel-faq">
 			                            <div class="panel-heading">
 			                                <a data-toggle="collapse" data-parent="#accordion-cat-3" href="#faq-cat-3-sub-1">
-			                                    <h4 class="panel-title">
+			                                    <h4 class="panel-title" style="font-size: 15px; font-weight: bold; color: #000000;">
 			                                        공생 결제는 어떻게 하나요?
 			                                        <span class="pull-right"></span>
 			                                    </h4>
@@ -214,7 +213,7 @@
 			                        <div class="panel panel-default panel-faq">
 			                            <div class="panel-heading">
 			                                <a data-toggle="collapse" data-parent="#accordion-cat-3" href="#faq-cat-3-sub-2">
-			                                    <h4 class="panel-title">
+			                                    <h4 class="panel-title" style="font-size: 15px; font-weight: bold; color: #000000;">
 			                                       현장에서 결제가 가능한가요?
 			                                        <span class="pull-right"></span>
 			                                    </h4>
@@ -232,7 +231,7 @@
 			                        <div class="panel panel-default panel-faq">
 			                            <div class="panel-heading">
 			                                <a data-toggle="collapse" data-parent="#accordion-cat-3" href="#faq-cat-3-sub-3">
-			                                    <h4 class="panel-title">
+			                                    <h4 class="panel-title" style="font-size: 15px; font-weight: bold; color: #000000;">
 			                                       환불은 언제 처리되나요?
 			                                        <span class="pull-right"></span>
 			                                    </h4>
@@ -263,7 +262,7 @@
 			                        <div class="panel panel-default panel-faq">
 			                            <div class="panel-heading">
 			                                <a data-toggle="collapse" data-parent="#accordion-cat-4" href="#faq-cat-4-sub-1">
-			                                    <h4 class="panel-title">
+			                                    <h4 class="panel-title" style="font-size: 15px; font-weight: bold; color: #000000;">
 			                                        쿠폰을 받았는데 어떻게 사용하나요?
 			                                        <span class="pull-right"></span>
 			                                    </h4>
@@ -283,7 +282,7 @@
 			                         <div class="panel panel-default panel-faq">
 			                            <div class="panel-heading">
 			                                <a data-toggle="collapse" data-parent="#accordion-cat-4" href="#faq-cat-4-sub-2">
-			                                    <h4 class="panel-title">
+			                                    <h4 class="panel-title" style="font-size: 15px; font-weight: bold; color: #000000;">
 			                                        쿠폰 기간이 만료되었어요.
 			                                        <span class="pull-right"></span>
 			                                    </h4>
@@ -306,7 +305,7 @@
 			                        <div class="panel panel-default panel-faq">
 			                            <div class="panel-heading">
 			                                <a data-toggle="collapse" data-parent="#accordion-cat-5" href="#faq-cat-5-sub-1">
-			                                    <h4 class="panel-title">
+			                                    <h4 class="panel-title" style="font-size: 15px; font-weight: bold; color: #000000;">
 			                                        고객센터는 어떻게 이용하나요?
 			                                        <span class="pull-right"></span>
 			                                    </h4>
@@ -323,7 +322,7 @@
 			                        <div class="panel panel-default panel-faq">
 			                            <div class="panel-heading">
 			                                <a data-toggle="collapse" data-parent="#accordion-cat-5" href="#faq-cat-5-sub-2">
-			                                    <h4 class="panel-title">
+			                                    <h4 class="panel-title" style="font-size: 15px; font-weight: bold; color: #000000;">
 			                                       공생 이용하기 전, 서비스에 궁금한 것이 있어요.
 			                                        <span class="pull-right"></span>
 			                                    </h4>

@@ -8,18 +8,20 @@ body {
 	border: 1px solid #f5f5f5;
 	border-radius: 4px;
 	padding: 7px 13px;
+	font-weight: bold;
 }
 
 .cs_notice {
    background-color: #000000;
    color: #FFFFFF;
-   padding: 0.2em 0.6em 0.2em;
+   padding: 0.2em 1.1em 0.2em;
    border: 1px solid #000000;
    border-radius: 3px;
    font-weight: 500;
    font-size: 13px;
    text-transform: uppercase;
 	}
+	
 .cs_event {
 	    background-color: #FFFFFF;
 	    color: #000000;
@@ -34,4 +36,19 @@ body {
 .bottom  {
     border-top: 1px solid #D1D1D1;
     color: #535353;
-}     
+}
+
+.panel-default>.panel-heading {
+    color: #333;
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+}
+
+/* .panel-body { */
+/* 	background-color: #f5f5f5; */
+/* } */
+
+.cs_p {
+    padding: 0px 0px 1em;
+/*     margin: 0; */
+}

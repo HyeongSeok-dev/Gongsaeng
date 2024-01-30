@@ -77,21 +77,25 @@
 				<p>공생(공간을 생각하다.)</p>
 			</div>
 			<div class="messages">
+				<div class="logo-container">
+			        <img class="logo-image" src="${pageContext.request.contextPath }/resources/assets/img/logo2 (2).png" alt="" />
+			        <h2 class="logo-text">공생에 문의하기</h2>
+			    </div>
 				<ul>
 					<li class="sent">
-						<img src="${pageContext.request.contextPath }/resources/assets/img/logo1 (3).png" alt="" />
-						<p>안녕하세요. 공간을 생각하는 공생입니다!<br><br>
-	  						궁금한 내용을 남겨주시면 확인하는 대로<br>
-	  						빠르게 답변드리겠습니다.<br><br>
-	  						[상담 운영 시간]<br>
-							평일 : 10:00~18:00<br>
-							주말·공휴일 휴무</p>
-						<span class="message-time">13:45</span>
+					    <img src="${pageContext.request.contextPath }/resources/assets/img/logo1 (3).png" alt="" />
+					    <p>안녕하세요. 공간을 생각하는 공생입니다!<br><br>
+					        궁금한 내용을 남겨주시면 확인하는 대로<br>
+					        빠르게 답변드리겠습니다.<br><br>
+					        [상담 운영 시간]<br>
+					        평일 : 10:00~18:00<br>
+					        주말·공휴일 휴무</p>
+					    <span class="time-right">11:01</span>
 					</li>
 					<li class="replies">
-						<span class="message-time">13:45</span>
-						<img src="${pageContext.request.contextPath }/resources/img/ddoong2.jpg" alt="" />
-						<p>당일에 클래스 수업 시간 변경이 가능할까요?</p>
+					    <img src="${pageContext.request.contextPath }/resources/img/ddoong2.jpg" alt="" />
+					    <p>당일에 클래스 수업 시간 변경이 가능할까요?</p>
+					    <span class="time-left">11:01</span>
 					</li>
 					<li class="replies">
 						<img src="${pageContext.request.contextPath }/resources/img/ddoong2.jpg" alt="" />
