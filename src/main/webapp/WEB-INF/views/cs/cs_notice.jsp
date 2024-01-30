@@ -75,7 +75,7 @@
 		        <div class="panel panel-default ">
 		            <div class="panel-heading accordion-toggle question-toggle collapsed" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question0">
 		                 <h4 class="panel-title">
-		                    <a href="#" class="ing"><span class="cs_notice">공지</span> 공생 회원 이용약관 변경 안내</a>
+		                    <a href="#" class="ing"><span class="cs_notice">공지</span><span style="margin-left: 20px; font-size: 15px;">공생 회원 이용약관 변경 안내</span></a>
 		              </h4>
 		
 		            </div>
@@ -99,7 +99,7 @@
 		        <div class="panel panel-default ">
 		            <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question1">
 		                 <h4 class="panel-title">
-		                    <a href="#" class="ing"><span class="cs_event">이벤트</span> 신년 이벤트</a>
+		                    <a href="#" class="ing"><span class="cs_event">이벤트</span><span style="margin-left: 20px; font-size: 15px;">신년 이벤트</span></a>
 		              </h4>
 		
 		            </div>
@@ -112,7 +112,7 @@
 		        <div class="panel panel-default ">
 		            <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question2">
 		                 <h4 class="panel-title">
-		                    <a href="#" class="ing"><span class="cs_event">이벤트</span> 출석체크 이벤트</a>
+		                    <a href="#" class="ing"><span class="cs_event">이벤트</span><span style="margin-left: 20px; font-size: 15px;">출석체크 이벤트</span></a>
 		              </h4>
 		
 		            </div>
@@ -125,13 +125,13 @@
 		        <div class="panel panel-default ">
 		            <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question3">
 		                 <h4 class="panel-title">
-		                    <a href="#" class="ing"><span class="cs_notice">공지</span> 공생, 누적 견적 수 3300만 건, 등록된 반장 70만 명 돌파</a>
+		                    <a href="#" class="ing"><span class="cs_notice">공지</span><span style="margin-left: 20px; font-size: 15px;">공생, 누적 견적 수 3300만 건, 등록된 반장 70만 명 돌파</span></a>
 		              </h4>
 		
 		            </div>
 		            <div id="question3" class="panel-collapse collapse" style="height: 0px;">
 		                <div class="panel-body">
-		                    <p>공생의 누적 견적서 수가 3천3백만 건을 돌파했다고 밝혔다. 현재까지 공생에 등록한 반장의 수는 약 70만 명이다.<br>
+		                    <p class="cs_p">공생의 누적 견적서 수가 3천3백만 건을 돌파했다고 밝혔다. 현재까지 공생에 등록한 반장의 수는 약 70만 명이다.<br>
 							공생은 국내 최대 인테리어 서비스 플랫폼으로, 국내에서는 유일하게 인테리어, 레슨, 이벤트 비즈니스 등 넓은 영역에서 서비스를 제공 중이다. 공생의 ‘견적서’는 고수와 고객의 연결고리로써, 반장이 견적서를 보내는 수만큼 반장-고객 매칭이 이루어진다.<br>
 							코로나19 이후 홈/리빙 서비스 수요 증가, 비대면 레슨 서비스 확대 등과 맞물려 공생의 견적 수 성과는 2021년 상반기에만 2020년 전체 성과를 따라잡았다. 또한 직장을 바라보는 MZ세대의 시선이 달라지면서, 좋아하는 일로 N잡에 도전하는 반장의 수도 꾸준히 늘었다. 2021년 상반기에 공생에 등록한 반장은 12만명이다.<br>
 							이형석 대표는 “반장과 고객 모두가 공생이라는 생태계 안에서 서로 연결되어 삶의 질을 높이기를 바란다. 머지않은 미래에 고객의 라이프스타일과 고수의 비즈니스 영역 전반에서 가치를 제공하는 플랫폼이 될 것”이라고 전했다.<br>

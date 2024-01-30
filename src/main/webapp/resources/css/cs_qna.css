@@ -693,8 +693,41 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     cursor: pointer;
 }
 
-.message-time {
-    right: 10px;
+.time-right {
+    float: right;
+    color: #aaa;
     font-size: 0.8em;
-    color: gray;
+    bottom: 0;  /* 'sent' 클래스의 바닥으로부터의 거리입니다. */
+    right: 10px;  /* 'sent' 클래스의 오른쪽으로부터의 거리입니다. */
 }
+
+.time-left {
+    float: left;
+    color: #aaa;
+    font-size: 0.8em;
+    bottom: 0;  /* 'replies' 클래스의 바닥으로부터의 거리입니다. */
+    left: 10px;  /* 'replies' 클래스의 왼쪽으로부터의 거리입니다. */
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.logo-image {
+    width: 100px; /* 이미지 크기는 적절히 조정 */
+    height: 50px;
+    object-fit: cover;
+}
+
+.logo-text {
+	margin-top: 20px;
+    font-size: 20px; /* 텍스트 크기는 적절히 조정 */
+    font-weight: bold;
+    text-align: center;
+}
+
+
