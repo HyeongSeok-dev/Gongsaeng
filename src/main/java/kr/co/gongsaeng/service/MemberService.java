@@ -48,6 +48,7 @@ public class MemberService {
 	// 메일 인증 수행 요청 => 트랜잭션 처리 필요
 	@Transactional
 	public boolean requestEmailAuth(MailAuthInfoVO authInfo) {
+		
 		boolean isAuthSuccess = false;
 		MailAuthInfoVO currentAuthInfo = null;
 		// MemberMapper - selectMailAuthInfo() 메서드 호출(재사용)
