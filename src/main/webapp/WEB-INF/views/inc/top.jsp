@@ -184,7 +184,7 @@ function openCenteredWindow(url, name, width, height) {
 <!-- 					</a> -->
 	                <%-- 장바구니에 담은 상품이 있을 경우 --%>
 					<a href="${pageContext.request.contextPath}/cart">
-		                <button class="navbar-btn nav-button wow bounceInRight login" data-wow-delay="0.48s">
+		                <button id="cartList" class="navbar-btn nav-button wow bounceInRight login" data-wow-delay="0.48s">
 		                	장바구니<span class="badge2">55</span>
 		                </button>
 	                </a>

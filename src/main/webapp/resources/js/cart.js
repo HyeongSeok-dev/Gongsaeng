@@ -49,6 +49,21 @@ $(document).ready(function() {
 	        }    
 	    });//ajax
 	});
+	
+	//장바구니 목록=====================================================
+//	$("#cartList").click(function(){
+//		var memberId = $("#member_id").val(); //회원 아이디
+//		
+//		$.ajax({
+//			type: "GET",
+//			url: "cartList",
+//			data: {
+//				memberId : memberId
+//			},
+//			success : fuction(cartListSelect){
+//			}//success
+//		});//ajax
+//	});
 
 
 }); //$(document).ready(function() {

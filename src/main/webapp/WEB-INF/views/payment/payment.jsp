@@ -398,10 +398,10 @@
 		</form>
 	</main>
 	
-<!-- 	<hr> -->
-<!-- 	<footer> -->
-<%-- 		<jsp:include page="../inc/bottom.jsp"></jsp:include> --%>
-<!-- 	</footer>  -->
+	<hr>
+	<footer>
+		<jsp:include page="../inc/bottom.jsp"></jsp:include>
+	</footer> 
 	
 </body>
 </html>

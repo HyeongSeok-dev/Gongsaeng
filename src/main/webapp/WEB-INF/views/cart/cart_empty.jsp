@@ -74,72 +74,7 @@
      </div>
 	
 <div class="container">
-<form action="">
-	<div class="row justify-content-center">
-	<!-- 중간에 오게하기이해 div추가 -->
-	<div class="col-12 col-8 offset-2">
-<!-- 	<div class="col-xs-12 col-xs-offset-2"> -->
-		<div class="col-xs-12" style="margin-top: 70px; margin-bottom: 70px;">
-			<div class="panel panel-info">
-			
- <%-- 					    	<c:forEach items="${ }" var="cart"> --%> 
-				<div class="panel-body">
-					<div class="row">
-					    <div class="col-xs-2">
-					        <img class="img-responsive" src="${pageContext.request.contextPath }/resources/img/payment_test.png">
-					    </div>
-					    <!-- 클래스이름 -->
-					    <div class="col-xs-4">
-					        <h3 class="product-name"><strong>셀프 도배 시공</strong></h3>
-					        <h4 class="product-name">방문날짜/시간</h4>
-					    </div>
-					    <div class="col-xs-6">
-					        <div class="row">
-					            <div class="col-xs-6 text-right">
-					                <h6><strong>15,000원<span class="text-muted">&nbsp;x</span></strong></h6>
-					            </div>
-					            <div class="col-xs-4">
-					                <input type="number" class="form-control input-sm" id="resPerson" value="{res_person}"  min="1" max="20">
-					            </div>
-					        </div>
-					        <div class="row move-right">
-						        <!-- 수정하기 버튼-->
-					            <div class="col-xs-6">
-					                <button type="button" id="update" class="btn btn-default btn-sm btn-block" style="color: #F0F0F0; width: 272px;">
-					                    수정하기
-					                </button>
-					            </div>
-					            <!-- 삭제하기 이모티콘 -->
-					            <div class="col-xs-6">
-					                <button type="button" id="delet" class="btn btn-link btn-xs">
-					                    <span class="glyphicon glyphicon-trash"> </span>
-					                </button>
-					            </div>
-					        </div>
-					    </div>
-					</div>
-					<hr>
- <%-- 					    </c:forEach> --%> 
-					
-				</div>
 
-				<div class="panel-footer">
-					<div class="row text-center">
-						<div class="col-xs-9">
-							<h4 class="text-right">총결제금액 <strong>15,000원</strong></h4>
-						</div>
-						<div class="col-xs-3">
-							<button type="button" id="payment" class="btn btn-success btn-block">
-								결제하기
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		</div><!-- 중간에오게하기위해 div추가 -->
-	</div>
-</form>
 </div>
 
 	<footer>

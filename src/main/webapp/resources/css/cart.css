@@ -10,10 +10,22 @@
 #payment {
     margin-top: 20px;
 }
-
+/* 삭제하기 버튼 위치*/
+#delet {
+    position: relative;
+    top: -20px;  
+}
+    
 /* 수정하기 버튼위치 */
+.move-right {
+        position: relative;
+        left: 185px;
+    }
 
-/* */
+/* 예약인원수 박스위치*/
+#resPerson{
+	margin-top: 20px;
+}
 
 /* 클래스대표 이미지 */
 .img-responsive {

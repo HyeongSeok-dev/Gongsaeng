@@ -22,4 +22,10 @@
 		WHERE class_idx = #{class_idx}
 	</delete>
 	
+	<!-- 장바구니 조회하기 -->
+	<select id="allCartList">
+		SELECT 
+		FROM 
+	</select>
+	
 </mapper>
