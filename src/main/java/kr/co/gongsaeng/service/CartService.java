@@ -32,13 +32,13 @@ public class CartService {
 		return result;
 	}
 
-	//장바구니 인원수 수정하기
-	
+	public String updateCart(int cart_idx, int resPerson) {
+		return mapper.updateCart(cart_idx, resPerson);
+	}
+
+	//장바구니 수량변경
 	
 
-	
-
-	
 
 	
 } //class CartService

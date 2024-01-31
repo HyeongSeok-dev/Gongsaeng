@@ -30,4 +30,11 @@
 		WHERE member_id = #{member_id}
 	</select>
 	
+	<!-- 장바구니 수량수정 -->
+	<update id="updateCart">
+		UPDATE cart
+		SET resPerson = #{resPerson}
+		WHERE cart_idx = #{cart_idx}
+	</update>
+	
 </mapper>

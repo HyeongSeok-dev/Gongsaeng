@@ -52,6 +52,28 @@ $(document).ready(function() {
 	    });//ajax
 	});
 	
+	//장바구니에 수량변경===============================================
+	$("#update").click(function() {
+	    var cart_idx = $("#cart_idx").val(); // 변경하려는 카트번호
+	    var resPerson = $("#resPerson").val(); // 수량
+	
+	    $.ajax({
+	        type: "POST",
+	        url: "updateCart",
+	        data: { 
+	            cart_idx: cart_idx, //카트번호
+	            resPerson: resPerson //인원수(수량)
+	        },
+	        success: function(response) {
+	            if(response) { // 성공
+	                alert("상품 수량을 수정했습니다.");
+	            } else { // 실패
+	                alert("상품 수량을 수정하는데 실패했습니다.");
+	            }
+	        }
+	    });//ajax
+	});
+
 
 
 }); //$(document).ready(function() {

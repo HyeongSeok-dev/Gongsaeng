@@ -67,108 +67,125 @@ $(document).ready(function() {
 					  buyer_postcode: "123-456",
 					  m_redirect_url: "{모바일에서 결제 완료 후 리디렉션 될 URL}"
 					}, function (rsp) { 
-//						console.log("function");
-//						console.log("rsp : " + rsp);
-//						console.log("status : " + rsp.status);
-//					    if (rsp.success) {
-//					      // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
-//					      // jQuery로 HTTP 요청
-//						console.log("imp_uid : " + rsp.imp_uid);
-//					      $("#pay_num").val(rsp.imp_uid); //폼에 결제번호 넣기
-//					      jQuery.ajax({
-//					        url: "paymentPro", 
-//					        method: "post",
-//					        dataType: "json",
-//					        data: $("form").serialize(), 
-//					      }).done(function (data) {
-//					        // 가맹점 서버 결제 API 성공시 로직
-//					        console.log("성공 : " + data);
-//					        if(data) {
-//					        	window.location.href="payment/info?res_num=" + rsp.merchant_uid
-//											+ "&discountPoint=" + discountPoint 
-//											+ "&earnedPoints=" + earnedPoints
-//											+ "&finalTotalPayment=" + totalPayment;
-//							} else {
-//								console.log("결제내역 데이터베이스 입력 실패")
-//							}
-//					      });
-//					  }
+						console.log("function");
+						console.log("rsp : " + rsp);
+						console.log("status : " + rsp.status);
+					    if (rsp.success) {
+					      // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
+					      // jQuery로 HTTP 요청
+						console.log("imp_uid : " + rsp.imp_uid);
+					      $("#pay_num").val(rsp.imp_uid); //폼에 결제번호 넣기
+					      jQuery.ajax({
+					        url: "paymentPro", 
+					        method: "post",
+					        dataType: "json",
+					        data: $("form").serialize(), 
+					      }).done(function (data) {
+					        // 가맹점 서버 결제 API 성공시 로직
+					        console.log("성공 : " + data);
+					        if(data) {
+					        	window.location.href="payment/info?res_num=" + rsp.merchant_uid
+											+ "&discountPoint=" + discountPoint 
+											+ "&earnedPoints=" + earnedPoints
+											+ "&finalTotalPayment=" + totalPayment;
+							} else {
+								console.log("결제내역 데이터베이스 입력 실패")
+							}
+					      });
+					  }
 					});
 	//		} else if($('input[type=radio][value="2"]').is(':checked')) { // 네이버페이
 			
-//			} else if($('input[type=radio][value="2"]').is(':checked')) { //카드결제
-//				console.log("dd");
-//				//이니시스
-//				IMP.request_pay({
-//				    pg : 'html5_inicis.INIBillTst', //테스트 시 html5_inicis.INIpayTest 기재 
-//				    pay_method : 'card',
+			} else if($('input[type=radio][value="2"]').is(':checked')) { //카드결제
+				console.log("dd");
+				//이니시스
+				IMP.request_pay({
+				    pg : 'html5_inicis.INIBillTst', //테스트 시 html5_inicis.INIpayTest 기재 
+				    pay_method : 'card',
 //				    merchant_uid: $("#res_num").val(), //상점에서 생성한 고유 주문번호
-//				    name : "찜콩테이블 예약 - " + $("#com_name").val() +" "+ $("#res_person").val() + "명",
-//				    amount : parseInt($("#totalPayment_text").text().trim().replace(/,/g, '')),
-//				    buyer_email : $("#user_email").val(),
-//				    buyer_name : $("#user_name").val(),
-//				    buyer_tel : $("#user_phone").val(),   //필수 파라미터 입니다.
-//				}, function(rsp) { // callback 로직
-//				console.log(rsp.card_name);
-//	//				    $("#pay_card_co").val(rsp.vbank_date.card_name); // 카드사정보 파라미터로 저장
-//					if (rsp.success) {   
-//					    console.log("imp_uid : " + rsp.imp_uid);
-//					      $("#pay_num").val(rsp.imp_uid); //폼에 결제번호 넣기
-//					      $("#pay_card_co").val(rsp.card_name);
-//					      jQuery.ajax({
-//					        url: "paymentPro", 
-//					        method: "post",
-//					        dataType: "json",
-//					        data: $("form").serialize(), 
-//					      }).done(function (data) {
-//					        // 가맹점 서버 결제 API 성공시 로직
-//					        console.log("성공 : " + data);
-//					        if(data) {
-//					        	window.location.href="payment/info?res_num=" + rsp.merchant_uid
-//											+ "&discountPoint=" + discountPoint 
-//											+ "&earnedPoints=" + earnedPoints
-//											+ "&finalTotalPayment=" + totalPayment;
-//							} else {
-//								console.log("결제내역 데이터베이스 입력 실패")
-//							}
-//						});
-//					}
-//				});
-//			} else if($("#mobilePhonePayment").is(':checked')) { // 휴대폰 결제
-//					console.log("폰결제");
-//					IMP.request_pay(
-//					  {
-//					    pg: "danal",
-//					    pay_method: "phone",
+//				    name : "공생 클래스 수강 - " + $("#com_name").val() +" "+ $("#res_person").val() + "명",
+////				    amount : parseInt($("#totalPayment_text").text().trim().replace(/,/g, '')),
+//				    amount : parseInt($("#payment").text().trim().replace(/,/g, '')),
+//				    buyer_email : $("#member_email").val(),
+//				    buyer_name : $("#member_name").val(),
+//				    buyer_tel : $("#member_phone").val(),   //필수 파라미터 입니다.
+					//========================================================
+					merchant_uid: "order_no_0001", //상점에서 생성한 고유 주문번호
+				    name : '주문명:결제테스트',
+				    amount : 1004,
+				    buyer_email : 'test@portone.io',
+				    buyer_name : '구매자이름',
+				    buyer_tel : '010-1234-5678',   //필수 파라미터 입니다.
+				}, function(rsp) { // callback 로직
+				console.log(rsp.card_name);
+	//				    $("#pay_card_co").val(rsp.vbank_date.card_name); // 카드사정보 파라미터로 저장
+					if (rsp.success) {   
+					    console.log("imp_uid : " + rsp.imp_uid);
+					      $("#pay_num").val(rsp.imp_uid); //폼에 결제번호 넣기
+					      $("#pay_card_co").val(rsp.card_name);
+					      jQuery.ajax({
+					        url: "paymentPro", 
+					        method: "post",
+					        dataType: "json",
+					        data: $("form").serialize(), 
+					      }).done(function (data) {
+					        // 가맹점 서버 결제 API 성공시 로직
+					        console.log("성공 : " + data);
+					        if(data) {
+					        	window.location.href="payment/info?res_num=" + rsp.merchant_uid
+											+ "&discountPoint=" + discountPoint 
+											+ "&earnedPoints=" + earnedPoints
+											+ "&finalTotalPayment=" + totalPayment;
+							} else {
+								console.log("결제내역 데이터베이스 입력 실패")
+							}
+						});
+					}
+				});
+			} else if($("#mobilePhonePayment").is(':checked')) { // 휴대폰 결제
+					console.log("폰결제");
+					IMP.request_pay(
+					  {
+					    pg: "danal",
+					    pay_method: "phone",
 //					    merchant_uid: $("#res_num").val(), // 상점에서 생성한 고유 주문번호
-//					    name: "찜콩테이블 예약 - " + $("#com_name").val() +" "+ $("#res_person").val() + "명",
+//					    name: "공생 클래스 수강 - " + $("#com_name").val() +" "+ $("#res_person").val() + "명",
 //					    amount: parseInt($("#totalPayment_text").text().trim().replace(/,/g, '')),
 //					    buyer_email: $("#user_email").val(),
 //					  	buyer_name: $("#user_name").val(),
-//					  },
-//					  function (rsp) {
-//					    if (rsp.success) {   
-//					    console.log("imp_uid : " + rsp.imp_uid);
-//					      $("#pay_num").val(rsp.imp_uid); //폼에 결제번호 넣기
-//					      jQuery.ajax({
-//					        url: "paymentPro", 
-//					        method: "post",
-//					        dataType: "json",
-//					        data: $("form").serialize(), 
-//					      }).done(function (data) {
-//					        // 가맹점 서버 결제 API 성공시 로직
-//					        console.log("성공 : " + data);
-//					        if(data) {
-//					        	window.location.href="payment/info?res_num=" + rsp.merchant_uid
-//											+ "&discountPoint=" + discountPoint 
-//											+ "&earnedPoints=" + earnedPoints
-//											+ "&finalTotalPayment=" + totalPayment;
-//							} else {
-//								console.log("결제내역 데이터베이스 입력 실패")
-//							}
-//						});
-//					}
-//				});
+						//===================================================
+						 merchant_uid: "order_no_0001", // 상점에서 생성한 고유 주문번호
+					    name: "주문명:결제테스트",
+					    amount: 1004,
+					    buyer_email: "test@portone.io",
+					    buyer_name: "구매자이름",
+					    buyer_tel: "010-1234-5678",
+					    buyer_addr: "서울특별시 강남구 삼성동",
+					    buyer_postcode: "123-456",
+					  },
+					  function (rsp) {
+					    if (rsp.success) {   
+					    console.log("imp_uid : " + rsp.imp_uid);
+					      $("#pay_num").val(rsp.imp_uid); //폼에 결제번호 넣기
+					      jQuery.ajax({
+					        url: "paymentPro", 
+					        method: "post",
+					        dataType: "json",
+					        data: $("form").serialize(), 
+					      }).done(function (data) {
+					        // 가맹점 서버 결제 API 성공시 로직
+					        console.log("성공 : " + data);
+					        if(data) {
+					        	window.location.href="payment/info?res_num=" + rsp.merchant_uid
+											+ "&discountPoint=" + discountPoint 
+											+ "&earnedPoints=" + earnedPoints
+											+ "&finalTotalPayment=" + totalPayment;
+							} else {
+								console.log("결제내역 데이터베이스 입력 실패")
+							}
+						});
+					}
+				});
 			} //결제수단선택
 			
 		//결제이용약관 필수처리

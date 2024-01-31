@@ -55,6 +55,17 @@ public class CartController {
 	    }
 	}
 	
+	//장바구니 수량변경
+	@ResponseBody
+	@PostMapping("updateCart")
+	public String updateCart(@RequestParam int cart_idx, @RequestParam int resPerson) {
+	    try {
+	        cartService.updateCart(cart_idx, resPerson);
+	        return "true";
+	    } catch (Exception e) {
+	        return "false";
+	    }
+	}
 	
 }//CartController
 

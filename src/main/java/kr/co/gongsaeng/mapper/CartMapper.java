@@ -19,6 +19,9 @@ public interface CartMapper {
 	
 	//장바구니 리스트
 	List<CartListVO> allCartList(@Param("member_id") String member_id);
+	
+	//장바구니 수량수정
+	String updateCart(int cart_idx, int resPerson);
 
 	
 
