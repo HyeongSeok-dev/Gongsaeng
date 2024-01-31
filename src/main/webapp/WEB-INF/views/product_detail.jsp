@@ -570,7 +570,7 @@
 											</div>
 											<br>
 											<div>
-												&nbsp;&nbsp;&nbsp;<button type="button" class="payButton" onclick="">장바구니</button>&nbsp;&nbsp;&nbsp;
+												&nbsp;&nbsp;&nbsp;<button type="button" id=onCart class="payButton" onclick="">장바구니</button>&nbsp;&nbsp;&nbsp;
 												<button type="button" class="payButton" onclick="">결제하기</button>
 			                                </div>   
 	<!--                                         <fieldset> -->

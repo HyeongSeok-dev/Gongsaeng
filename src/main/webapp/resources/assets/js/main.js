@@ -46,30 +46,28 @@ $(document).ready(function () {
         items: 3
     });
     
-    
     // 메인 클래스카드(마감임박순) 슬라이더
-    $("#deadlineClass-slider").owlCarousel({
-	    navigation: true, // Show next and prev buttons
-	    smartSpeed: 500,
-	    autoplay: true,
-	    autoplayTimeout: 5000,
-		items : 3,
-	    mouseDrag: true,
-//	    center: true,
-	    loop: true
-    });
-    
-    // 메인 리뷰카드(최신순) 슬라이더
-    $("#recentReview-slider").owlCarousel({
-	    navigation: true, // Show next and prev buttons
-	    smartSpeed: 500,
-	    autoplay: true,
-	    autoplayTimeout: 5000,
-		items : 3,
-	    mouseDrag: true,
-//	    center: true,
-	    loop: true
-    });
+    $(".deadlineClass-slider").owlCarousel({
+	        navigation: true,
+	        smartSpeed: 500,
+//	        autoplay: true,
+	        autoplayTimeout: 5000,
+	        items: 3,
+	        mouseDrag: true,
+	        loop: false
+	});
+	
+	// 메인 리뷰카드(최신순) 슬라이더
+    $(".recentReview-slider").owlCarousel({
+	        navigation: true,
+	        smartSpeed: 500,
+//	        autoplay: true,
+	        autoplayTimeout: 5000,
+	        items: 3,
+	        mouseDrag: true,
+	        loop: false
+	});
+	
 })
 
 // 상단바 전체메뉴 멀티 드롭다운 이벤트
@@ -101,8 +99,26 @@ function notify_button(value) {
 
 
 /// 여기서부턴 class_list.jsp
-// 상세정보창
+// 상세검색
 $(document).ready(function () {
+	// 상세검색 카테고리(원데이/정규모집) 클릭 시 해당 카테고리 보여주는 이벤트
+	$('.search_detail_category').on('click', function(event) {
+		// 모든 카테고리에 selected 클래스 삭제
+	    $('.search_detail_category').removeClass('selected');
+	    // 선택된 카테고리에 selected 클래스 추가
+	    $(this).addClass('selected');
+	
+	    let searchCategory = event.target.value;
+	    
+	    if(searchCategory == 'searchCategory1') {
+	        $('.class_date_button').hide();
+	        $('.class_oneday_button').show();
+	    } else if(searchCategory == 'searchCategory2') {
+	        $('.class_oneday_button').hide();
+	        $('.class_date_button').show();
+	    }
+	});
+	
 	$('#price-range').slider();
     $('#property-geo').slider();
     $('#min-baths').slider();
@@ -159,9 +175,10 @@ $(document).ready(function () {
         return r;
     }
     
+    // 체크박스 아이콘
 	$('input').iCheck({
-		checkboxClass: 'icheckbox_square-yellow',
-		radioClass: 'iradio_square-yellow',
+		checkboxClass: 'icheckbox_square-grey',
+		radioClass: 'iradio_square-grey',
 		increaseArea: '20%' // optional
     });
 });

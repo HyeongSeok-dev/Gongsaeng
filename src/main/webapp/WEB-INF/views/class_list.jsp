@@ -34,21 +34,6 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/responsive.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
-	
-<script type="text/javascript">
-// function toggleButtons() {
-//   var button1 = document.getElementById('button1');
-//   var button2 = document.getElementById('button2');
-  
-//   if (button1.style.display == 'none') {
-//     button1.style.display = 'block';
-//     button2.style.display = 'none';
-//   } else {
-//     button1.style.display = 'none';
-//     button2.style.display = 'block';
-//   }
-// }
-</script>
 
 </head>
 <body>
@@ -57,10 +42,7 @@
 	</div>
 	
 	<%-- 상단바 삽입 --%>
-	<%-- 로그인 전 --%>
 	<jsp:include page="./inc/top.jsp"/>
-	<%-- 로그인 후 --%>
-<%-- 	<jsp:include page="./inc/top2.jsp"/> --%>
 
 	<div class="page-head"> 
 		<div class="container">
@@ -80,10 +62,12 @@
 				<div class="col-md-12 padding-bottom-40 large-search"> 
 	                <div class="search-form wow pulse">
 	                
-	                    <form action="" class=" form-inline">
+	                    <form action="" class="form-inline">
 	                        <div class="col-md-12">
-	                        	<button>원데이</button>
-	                        	<button>정규모집</button>
+	                            <div class="col-md-4">
+		                        	<button type="button" class="search_detail_category selected" value="searchCategory1">원데이</button>
+		                        	<button type="button" class="search_detail_category" value="searchCategory2">정규모집</button>
+		                        </div>
 	                        </div>
 	                        <div class="col-md-12" style="margin-bottom: 20px;">
 	                            <div class="col-md-4">
@@ -149,13 +133,22 @@
 	                            </div>
 	                        </div>
 	                        
-	                        <div class="col-md-12 ">
-								<div class="col-md-4">
+	                        <div class="col-md-12">
+	                        	<%-- 원데이 --%>
+								<div class="col-md-4 class_oneday_button">
 									<select id="basic" class="selectpicker show-tick form-control" title="요일">
 										<option>평일</option>
 										<option>토요일</option>
 										<option>일요일</option>  
 									</select>
+								</div>
+								<%-- 정규모집 --%>
+								<div class="col-md-4 class_date_button" style="display: none;">
+									<input type="text" id="date" class="form-control" name="class_startDate" style="margin-right: auto;"
+											onchange="select_class_startDate()" onfocus="this.type='date'; this.value='';" value="시작일">
+									<span><b style="vertical-align: text-top;">&nbsp;~&nbsp;</b></span>
+									<input type="text" id="date" class="form-control" name="class_endDate" style="margin-right: auto;"
+											onchange="select_class_endDate" onfocus="this.type='date'; this.value='';" value="종료일">
 								</div>
 								
 								<div class="col-sm-4 not_hover">
@@ -220,6 +213,11 @@
 	                                </div>
 	
 	                            </div>   
+	                        </div>
+	                        
+	                        <div class="col-md-12 form_button">
+	                        	<button type="reset">초기화</button>
+	                        	<button type="submit">검색</button>
 	                        </div>
 	                    </form>
 	                    
@@ -984,6 +982,29 @@
 						 
 					</div>
 	            </div>
+				
+				<%-- 검색결과 없을 경우 --%>
+				<hr>
+	            <div class="col-md-12 clear"> 
+	                <div id="list-type" class="proerty-th">
+	                
+	                	<%-- 상단바 검색창으로 검색할 경우 --%>
+                		<h2 class="noResearchResult_h2">
+                			<b>''</b> 에 대한 검색결과가 없습니다.
+							<br>
+                			검색어를 다시 입력해 주세요.
+                		</h2>
+	                	
+	                	<%-- 상세 검색창으로 검색할 경우 --%>
+<!--                 		<h2 class="noResearchResult_h2"> -->
+<!--                 			검색결과가 없습니다. -->
+<!-- 							<br> -->
+<!--                 			검색어를 다시 입력하거나 필터를 재설정해주세요. -->
+<!--                 		</h2> -->
+
+					</div>
+	            </div>
+	            
 	            
 	            <%-- 페이지네이션 --%>
 <!-- 	            <div class="col-md-12 clear">  -->
