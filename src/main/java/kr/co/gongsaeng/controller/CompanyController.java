@@ -119,6 +119,47 @@ public class CompanyController {
 		System.out.println("실제 업로드 파일명3 : " + gclass.getClass_pic3());
 		
 		
+		// -------------------
+		// BoardVO 객체에 전달(저장)된 실제 파일 정보가 관리되는 MultipartFile 타입 객체 꺼내기
+		MultipartFile mFile4 = gclass.getFile1();
+		MultipartFile mFile5 = gclass.getFile2();
+		MultipartFile mFile6 = gclass.getFile3();
+		// MultipartFile 객체의 getOriginalFilename() 메서드 호출 시 업로드 된 파일명 리턴
+		System.out.println("원본파일명1 : " + mFile1.getOriginalFilename());
+		System.out.println("원본파일명2 : " + mFile2.getOriginalFilename());
+		System.out.println("원본파일명3 : " + mFile3.getOriginalFilename());
+		
+		// --------------------------
+		// [ 파일명 중복방지 대책 ]
+		gclass.setClass_pic1("");
+		gclass.setClass_pic2("");
+		gclass.setClass_pic3("");
+		
+		String fileName4 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile1.getOriginalFilename();
+		String fileName5 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile2.getOriginalFilename();
+		String fileName6 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile3.getOriginalFilename();
+		
+		// 파일이 존재할 경우 BoardVO 객체에 서브디렉토리명(subDir)과 함께 파일명 저장
+		// ex) 2023/12/19/ef3e51e8_1.jpg
+		if(!mFile4.getOriginalFilename().equals("")) {
+			gclass.setClass_pic1(subDir + "/" + fileName4);
+		}
+		
+		if(!mFile5.getOriginalFilename().equals("")) {
+			gclass.setClass_pic1(subDir + "/" + fileName5);
+		}
+		
+		if(!mFile6.getOriginalFilename().equals("")) {
+			gclass.setClass_pic1(subDir + "/" + fileName6);
+		}
+		
+		System.out.println("실제 업로드 파일명4 : " + gclass.getClass_curriculum1());
+		System.out.println("실제 업로드 파일명5 : " + gclass.getClass_curriculum2());
+		System.out.println("실제 업로드 파일명6 : " + gclass.getClass_curriculum3());
+		
+		
+		// classService - registClass() 메서드 호출하여 클래스 등록 작업 요청
+		// 
 		
 		
 		
@@ -262,6 +303,11 @@ public class CompanyController {
 	@GetMapping("company/calendar")
 	public String company_calendar() {
 		return "company/example_calendar";
+	}
+
+	@GetMapping("company/dbr")
+	public String company_dbr() {
+		return "company/dbregister";
 	}
 
 

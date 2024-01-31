@@ -818,7 +818,7 @@ textarea.form-control {
   <script src="${pageContext.request.contextPath }/resources/company_assets/js/core/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/company_assets/js/core/popper.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/company_assets/js/core/bootstrap.min.js"></script>
-  <script src="${pageContext.request.contextPath }/resources/company_assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+<%--   <script src="${pageContext.request.contextPath }/resources/company_assets/js/plugins/perfect-scrollbar.jquery.min.js"></script> --%>
   <!--  Google Maps Plugin    -->
   <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
   <!-- Chart JS -->
