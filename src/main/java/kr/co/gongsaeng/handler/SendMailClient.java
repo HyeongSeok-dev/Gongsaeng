@@ -12,12 +12,15 @@ import javax.mail.Message.RecipientType;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 
 @Component
 public class SendMailClient {
 	// 메일 발송을 수행할 sendMail() 메서드
+	@Value("${email_account}")
+	private String email_account;
 	public void sendMail(String email, String subject, String content) {
 		try {
 			// 1. 시스템(서버)의 속성 정보(= 서버 정보)를 java.util.Properties 객체로 리턴받기
@@ -58,7 +61,7 @@ public class SendMailClient {
 			//    => 단, 상용 메일 서버(구글, 네이버) 등의 경우 스팸 정책으로 인해
 			//       기본적인 상태로는 발신자 주소 변경 불가(= 기본 계정 주소 그대로 사용됨)
 			// 	  => UnsupportedEncodingException 예외 처리 필요
-			Address senderAddress = new InternetAddress("gongsaeng0@gmail.com", "공생");
+			Address senderAddress = new InternetAddress(email_account, "공생");
 			
 			// 2) 수신자 정보 설정을 위한 javax.mail.internet.InternetAddress 객체 생성
 			//    => Address 타입으로 업캐스팅

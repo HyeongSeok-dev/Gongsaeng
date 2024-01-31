@@ -33,6 +33,6 @@
 	
 	<context:component-scan base-package="kr.co.gongsaeng" />
 	
-	
+	<context:property-placeholder location="classpath:/config/appdata.properties"/>
 	
 </beans:beans>
