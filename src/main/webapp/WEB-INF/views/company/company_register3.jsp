@@ -143,7 +143,7 @@ button {
 									class="navbar-toggler-bar bar2"></span> <span
 									class="navbar-toggler-bar bar3"></span>
 							</button>
-						</div>
+						</div> 
 						<a class="navbar-brand" href="#pablo">클래스 등록 (기타 제공 사항)</a>
 
 					</div>
