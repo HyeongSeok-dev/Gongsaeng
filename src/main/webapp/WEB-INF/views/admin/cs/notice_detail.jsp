@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/admin_assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-   공생|관리자페이지 신고
+   공생|관리자페이지 고객센터
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -20,17 +20,17 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <!-- CSS Files -->
   <link href="${pageContext.request.contextPath }/resources/admin_assets/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="${pageContext.request.contextPath }/resources/admin_assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="${pageContext.request.contextPath }/resources/admin_assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
   <link href="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.css" rel="stylesheet" />
-  <link href="${pageContext.request.contextPath }/resources/admin_assets/css/class.css" rel="stylesheet" />
+  <link href="${pageContext.request.contextPath }/resources/admin_assets/css/admin.css" rel="stylesheet" />
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
   <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">
 </head>
 
 <body class="">
   <div class="wrapper ">
-    <jsp:include page="admin_sidebar.jsp"/>
+    <jsp:include page="../inc/admin_sidebar.jsp"/>
     <div class="main-panel" id="main-panel">
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
@@ -43,7 +43,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand title" href="#pablo">리뷰 신고</a>
+            <a class="navbar-brand title" href="#pablo">공지사항관리</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -96,123 +96,79 @@
       <div class="panel-header panel-header-sm">
       </div>
       <div class="content">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="title">리뷰 신고 목록</h5>
-              </div>
-              <div class="card-body">
-	               <div class="card-body-header report_checkbox">
-						<div class="member_category_checkbox">
-			              	<input type="checkbox" value="전체선택" name="member_category"> 전체선택&nbsp;
-			              	<input type="checkbox" value="접수" name="member_category"> 접수&nbsp;
-			              	<input type="checkbox" value="승인" name="member_category"> 승인&nbsp;
-			              	<input type="checkbox" value="반려" name="member_category"> 반려&nbsp;
-		              	</div>
-		              	<div>
-		              		<form action="" class="member_date">
-		              			<div class="search_bar_admin">
-					              	<div>
-										<select>
-											<option>전체일자</option>
-											<option>신고일자</option>
-											<option>처리일자</option>
-										</select>
-					              	</div>
-					              	<div>
-					              		<input type="date" id="start_date">&nbsp;&nbsp;~&nbsp;&nbsp;<input type="date" id="end_date">
-					              	</div>
-			              		</div>
-			              		<div class="search_bar_admin">
-			              			<div>
-										<select>
-											<option>전체검색</option>
-<!-- 											<option>신고자아이디</option> -->
-											<option>신고자아이디</option>
-											<option>피신고자아이디</option>
-											<option>클래스명</option>
-										</select>
-					              	</div>
-			              			<div>
-			              				<input type="search">
-			              			</div>
-					              	<div>
-					              		<button type="submit" class="btn btn_default" value="검색">검색</button>
-					              	</div>
-			              		</div>	
-		              		</form>
-		              	</div>
-	              	</div>
-	              	
-                <table class="table table-bordered">
-			            <tr>
-			                <th>신고일자</th>
-			                <th>리뷰번호</th>
-			                <th>신고자아이디</th>
-			                <th>피신고자아이디</th>
-			                <th>신고사유</th>
-			                <th>처리상태</th>
-			                <th>상세보기</th>
-			            </tr>
-			            <!-- 회원 데이터 로우 -->
-			            <tr>
-			                <td>신고일자</td>
-			                <td>리뷰번호</td>
-			                <td>신고자아이디</td>
-			                <td>피신고자아이디</td>
-			                <td>신고사유</td>
-			                <td>처리상태</td>
-			                <td><button type="button" class="btn btn_default" value="상세보기">상세보기</button></td>
-			            </tr>
-			    </table>
-              </div>
-            </div>
-          </div>
-        </div>
+        <form>
+	        <div class="row">
+	          <div class="col-md-12">
+	            <div class="card">
+	              <div class="card-header">
+	                <h5 class="title">공지사항 상세/수정</h5>
+	              </div>
+	              <div class="card-body">
+		             <table class="table table-bordered">
+		             	<colgroup>
+		             		<col width="25%"/>
+		             		<col width="75%"/>
+		             	</colgroup>
+		             	<tr>
+		             		<th>대상회원/분류</th>
+		             		<td>
+		             			<select name="">
+					              	<option value="0">대상선택</option>
+					              	<option value="1">반장회원</option>
+					              	<option value="2">일반회원</option>
+			              		</select>
+		             			<select>
+									<option>분류</option>
+									<option>이용안내</option>
+									<option>회원정보</option>
+									<option>결제/환불</option>
+									<option>쿠폰/이벤트</option>
+									<option>기타</option>
+								</select>
+		             		</td>
+		             	</tr>
+		             	<tr>
+		             		<th>제목</th>
+		             		<td>
+		             			<input type="text" class="register_text">
+		             		</td>
+		             	</tr>
+		             	<tr>
+		             		<th>제목</th>
+		             		<td>
+		             			<textarea class="register_textarea">
+		             			
+		             			</textarea>
+		             		</td>
+		             	</tr>
+		             	<tr>
+		             		<th>파일</th>
+		             		<td>
+		             			<input type="file" class="form-control profileImg" accept="image/*">
+		    	       		 	<button type="button" class="btn btn_default">파일선택</button>
+			           		 	<span>파일명</span>
+		             		</td>
+						</tr>
+		             </table>	 	
+	              </div>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="row">
+	        	<div class="col-md-12 btn_bottom">
+		        	<button type="button" class="btn btn_default">목록</button>&nbsp;&nbsp;
+		        	<button type="submit" class="btn btn_default">변경저장</button>&nbsp;&nbsp;
+		        	<button type="reset" class="btn btn-light">초기화</button>
+	        	</div>
+	        </div>
+        </form>
       </div>
       <footer class="footer">
-      </footer>
+       <jsp:include page="../inc/admin_bottom.jsp"/>
+     </footer>
     </div>
   </div>
   
-   <!-- 모달 창 -->
-    <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="filterModalLabel">회원 유형 선택</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="allCheck">
-                        <label class="form-check-label" for="allCheck">
-                            전체 선택
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="leaderCheck">
-                        <label class="form-check-label" for="leaderCheck">
-                            반장 회원
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="generalCheck">
-                        <label class="form-check-label" for="generalCheck">
-                            일반 회원
-                        </label>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                    <button type="button" class="btn btn-primary">적용</button>
-                </div>
-            </div>
-        </div>
-    </div>
   <!--   Core JS Files   -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/popper.min.js"></script>

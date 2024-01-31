@@ -2,7 +2,7 @@
 .now_total {
 	margin-left: 30px;
 	color: white;
-	font-size: 20px;
+	font-size: 27px;
 	text-align: center;
 }
 .now_dateTime {
@@ -20,9 +20,30 @@
 	text-align: center;
 }
 .card-header {
-	font-size: 18px;
+	font-size: 20px;
 	font-weight: 600;
 	color: #494C53;
+}
+
+.todo_count>a{
+	font-size: 18px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.todo_count {
+	display: flex;
+	flex-direction: column;
+    align-items: center;
+}
+
+.todo_count>a:hover {
+	border-bottom: 1px solid;
+}
+
+.tr_hover:hover{
+	border: 1.5px solid #888;
+	background-color: #fff;
 }
 
 .card>hr{

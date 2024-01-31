@@ -43,12 +43,12 @@ input {
 	border-radius: 5px;
 	border: 1px solid #E3E3E3;
 }
-.coupon_unit {
-	position: relative;
-	bottom: 39px;
-	left: 100px;
-	border: none;
-}
+/* .coupon_unit { */
+/* 	position: relative; */
+/* 	bottom: 39px; */
+/* 	left: 100px; */
+/* 	border: none; */
+/* } */
 
 /* ------------------------------------------------------ */
 /* member에서 */
@@ -60,19 +60,14 @@ input {
 
 .member_date {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	align-items: center;
+	align-content: center;
 }
 .search_bar_admin {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-}
-
-.card-body-header {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
 }
 
 .card_overflow {
@@ -81,7 +76,7 @@ input {
 
 /* ------------------------------------------------------ */
 
-.btn.detail_btn{
+.btn.btn_default{
 	font-size: 14px;
 	height: 30px; 
 	padding:5px 10px;

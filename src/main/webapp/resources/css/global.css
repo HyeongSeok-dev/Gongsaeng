@@ -35,7 +35,7 @@ body {
     font-family: 'NanumSquareNeo-Variable', sans-serif;
 }
 
-input[type="checkbox"] {
-	position: relative;
-	top: 2px;
-}
+/* input[type="checkbox"] { */
+/* 	position: relative; */
+/* 	top: 2px; */
+/* } */

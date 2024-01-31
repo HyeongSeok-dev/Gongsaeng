@@ -7,5 +7,6 @@
 	<typeAliases>
 		<typeAlias type="kr.co.gongsaeng.vo.MemberVO"  alias="member"/>
 		<typeAlias type="kr.co.gongsaeng.vo.MailAuthInfoVO"  alias="mailAuthInfo"/>
+		<typeAlias type="kr.co.gongsaeng.vo.ReportVO"  alias="report"/>
 	</typeAliases>
 </configuration>

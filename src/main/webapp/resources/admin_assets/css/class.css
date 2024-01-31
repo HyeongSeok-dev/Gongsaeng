@@ -3,25 +3,25 @@
 	font-size: 25px;
 }
 
-.btn.detail_btn{
+.btn.btn_default{
 	font-size: 14px;
 	height: 30px; 
 	padding:5px 10px;
 	margin: 0;
 }
 
-.class_category_select {
-	display: flex;
-	flex-direction: row;
-	margin: 10px;
-}
+/* .class_category_select { */
+/* 	display: flex; */
+/* 	flex-direction: row; */
+/* 	margin: 10px; */
+/* } */
 
-.class_category_select>select{
-	border-radius: 5px;
-	border: 1px solid rgb(148, 148, 148);	
-	height: 30px;
-	margin: 5px;
-}
+/* .class_category_select>select{ */
+/* 	border-radius: 5px; */
+/* 	border: 1px solid rgb(148, 148, 148);	 */
+/* 	height: 30px; */
+/* 	margin: 5px; */
+/* } */
 
 .member_date {
 	display: flex;

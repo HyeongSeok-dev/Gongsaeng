@@ -1,126 +1,215 @@
 package kr.co.gongsaeng.controller;
 
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import kr.co.gongsaeng.service.AdminService;
+import kr.co.gongsaeng.vo.MemberVO;
+import kr.co.gongsaeng.vo.ReportVO;
 
 @Controller
 public class AdminController {
+	
+	private static final Logger log = LoggerFactory.getLogger(HomeController.class);
+	
+	@Autowired
+	private AdminService service;
+	
 	@GetMapping("admin")
 	public String admin() {
 		return "admin/main";
 	}
-	@GetMapping("admin2")
-	public String admin2() {
-		return "admin/main2";
-	}
-
 	@GetMapping("admin/dashboard")
 	public String dashboard() {
 		return "admin/dashboard";
 	}
 	@GetMapping("admin/member")
-	public String member() {
-		return "admin/member";
+	public String memberListForm(HttpSession session, Model model, Map<String, Object> map) {
+
+		if(session.getAttribute("sId") == null) {
+			model.addAttribute("msg", "로그인이 필요합니다");
+			model.addAttribute("targetURL", "/gongsaeng/login");
+			return "forward";
+		} else if(!session.getAttribute("sId").equals("admin")) {
+			model.addAttribute("msg", "잘못된 접근 입니다.");
+			return "fail_back";
+		}
+		
+		// [회원목록 조회]
+		List<MemberVO> memberList = service.getMemberList();
+		log.info("목록조회 memberList : " + memberList);
+		log.info("길이측정" + memberList.size());
+		
+		// [리뷰 신고수 조회]
+//		String[] reportCountArr = null;
+//		for(int i = 0; i <= memberList.size(); i++) {
+//			MemberVO member = memberList.get(i);
+//			reportCountArr[i] = service.getReportCount(member.getMember_id());
+//		}
+
+		
+//		List<MemberInfo> memberInfoList = new ArrayList<MemberInfo>();
+//		for(int i = 0; i <= memberInfoList.size(); i++) {
+//			MemberVO member = null;
+//			String reportCount = "";
+//			for(int j = 0; j <= memberList.size(); j++) {
+//				member = memberList.get(j);
+//				reportCount = service.getReportCount(member.getMember_id());
+//			}
+//			memberInfoList.
+//			memberInfoList.set(i, reportCount);
+//		}
+		
+		List<ReportVO> reportCountList = service.getReportCountList();
+		log.info("신고수조회 reportCountList : " + reportCountList);
+		log.info("길이측정" + reportCountList.size());
+		
+		model.addAttribute("memberList", memberList);
+		model.addAttribute("reportCountList", reportCountList);
+		
+		return "admin/member/member";
 	}
 	@GetMapping("admin/member/detail")
-	public String memberDetail() {
-		return "admin/member_detail";
+	public String memberDetailForm(HttpSession session, Model model, @RequestParam MemberVO member) {
+		if(session.getAttribute("sId") == null) {
+			model.addAttribute("msg", "로그인이 필요합니다");
+			model.addAttribute("targetURL", "/gongsaeng/login");
+			return "forward";
+		} else if(!session.getAttribute("sId").equals("admin")) {
+			model.addAttribute("msg", "잘못된 접근 입니다.");
+			return "fail_back";
+		}
+		
+		// [회원 상세정보 조회]
+		member = service.getMember(member.getMember_id());
+		
+		
+		
+		
+		return "admin/member/member_detail";
 	}
-	@GetMapping("admin/member/detail/company")
-	public String memberDetailCompany() {
-		return "admin/member_detail_company";
-	}
-	@GetMapping("admin/member/detail/class")
+	//-----------------------------------------
+//	@GetMapping("admin/member/review")
+//	public String memberDetailCompany() {
+//		return "admin/member/review";
+//	}
+	@GetMapping("admin/member/reservation/class")
 	public String memberDetailClass() {
-		return "admin/member_detail_class";
+		return "admin/member/reservation_class";
 	}
+	//----------------------------------
 	@GetMapping("admin/company")
 	public String company() {
-		return "admin/company";
+		return "admin/company/company";
+	}
+	@GetMapping("admin/company/refund")
+	public String companyRefund() {
+		return "admin/company/company_refund";
 	}
 	@GetMapping("admin/company/detail")
 	public String companyDetail() {
-		return "admin/company_detail";
+		return "admin/company/company_detail";
 	}
 	@GetMapping("admin/company/class")
 	public String companyClass() {
-		return "admin/class";
+		return "admin/company/class";
 	}
 	@GetMapping("admin/company/class/detail")
 	public String companyClassDetail() {
-		return "admin/class_detail";
+		return "admin/company/class_detail";
 	}
-	@GetMapping("admin/account/member")
+	@GetMapping("admin/OPay/account")
 	public String accountMember() {
-		return "admin/account_member";
+		return "admin/OPay/account_member";
 	}
-	@GetMapping("admin/account/BMember")
-	public String accountBMember() {
-		return "admin/account_BMember";
-	}
-	@GetMapping("admin/account/member/detail")
+	@GetMapping("admin/OPay/account/detail")
 	public String accountMemberDetail() {
-		return "admin/account_member_detail";
-	}
-	@GetMapping("admin/account/BMember/detail")
-	public String accountBMemberDetail() {
-		return "admin/account_BMember_detail";
+		return "admin/OPay/account_member_detail";
 	}
 	@GetMapping("admin/OPay/deposit/withdraw")
 	public String OPayDepositWithdraw() {
-		return "admin/OPay_deposit_withdraw";
+		return "admin/OPay/OPay_deposit_withdraw";
 	}
 	@GetMapping("admin/OPay/deposit/withdraw/detail")
 	public String OPayDepositWithdrawDetail() {
-		return "admin/OPay_deposit_withdraw_detail";
+		return "admin/OPay/OPay_deposit_withdraw_detail";
 	}
 	@GetMapping("admin/OPay/use")
 	public String OPayUse() {
-		return "admin/OPay_use";
+		return "admin/OPay/OPay_use";
+	}
+	@GetMapping("admin/OPay/detail")
+	public String OPayDetail() {
+		return "admin/OPay/OPay_detail";
 	}
 	@GetMapping("admin/report/class")
 	public String reportClass() {
-		return "admin/report_class";
+		return "admin/report/report_class";
 	}
 	@GetMapping("admin/report/review")
 	public String reportReview() {
-		return "admin/report_review";
+		return "admin/report/report_review";
 	}
-	@GetMapping("admin/report/class/detail")
+	@GetMapping("admin/report/detail")
 	public String reportClassDetail() {
-		return "admin/report_class_detail";
-	}
-	@GetMapping("admin/report/review/detail")
-	public String reportReviewDetail() {
-		return "admin/report_review_detail";
+		return "admin/report/report_detail";
 	}
 	@GetMapping("admin/marketing/event")
-	public String event() {
-		return "admin/event";
+	public String eventForm() {
+		
+		
+		return "admin/marketing/event";
 	}
 	@GetMapping("admin/marketing/event/detail")
-	public String eventDetail() {
-		return "admin/event_detail";
+	public String eventDetailForm() {
+		return "admin/marketing/event_detail";
 	}
 	@GetMapping("admin/marketing/coupon")
-	public String coupon() {
-		return "admin/coupon";
-	}
-	@GetMapping("admin/marketing/coupon/detail")
-	public String eventCoupon() {
-		return "admin/coupon_detail";
+	public String couponForm() {
+		return "admin/marketing/coupon";
 	}
 	@GetMapping("admin/cs/chat")
 	public String csChat() {
-		return "admin/cs_chat";
+		return "admin/cs/chat";
 	}
 	@GetMapping("admin/cs/faq")
 	public String csFaq() {
-		return "admin/cs_faq";
+		return "admin/cs/faq";
 	}
 	@GetMapping("admin/cs/notice")
 	public String csNotice() {
-		return "admin/cs_notice";
+		return "admin/cs/notice";
+	}
+	@GetMapping("admin/cs/notice/register")
+	public String csNoticeRegisterForm() {
+		return "admin/cs/notice_register";
+	}
+	@GetMapping("admin/cs/notice/detail")
+	public String csNoticeDetail() {
+		return "admin/cs/notice_detail";
+	}
+	@GetMapping("admin/cs/faq/register")
+	public String csFaqRegister() {
+		return "admin/cs/faq_register";
+	}
+	@GetMapping("admin/cs/faq/detail")
+	public String csFaqDetail() {
+		return "admin/cs/faq_detail";
 	}
 	
 	//---------------------------

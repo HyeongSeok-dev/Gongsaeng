@@ -128,7 +128,7 @@
 					              		<input type="date" id="start_date">&nbsp;&nbsp;~&nbsp;&nbsp;<input type="date" id="end_date">
 					              	</div>
 					              	<div>
-					              		<button type="submit" class="btn detail_btn" value="검색">검색</button>
+					              		<button type="submit" class="btn btn_default" value="검색">검색</button>
 					              	</div>
 			              		</div>	
 		              		</form>
@@ -151,7 +151,7 @@
 			                <td>금액</td>
 			                <td>거래유형</td>
 			                <td>날짜</td>
-			                <td><button type="button" class="btn detail_btn" value="상세보기">상세보기</button></td>
+			                <td><button type="button" class="btn btn_default" value="상세보기">상세보기</button></td>
 			            </tr>
 			    </table>
               </div>

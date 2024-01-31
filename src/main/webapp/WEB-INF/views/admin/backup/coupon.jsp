@@ -184,7 +184,7 @@
 		              				<input type="search">
 		              			</div>
 				              	<div>
-				              		<button type="submit" class="btn detail_btn" value="검색">검색</button>
+				              		<button type="submit" class="btn btn_default" value="검색">검색</button>
 				              	</div>
 		              		</div>	
 	              		</form>
@@ -206,7 +206,7 @@
 				                <td>쿠폰이름</td>
 				                <td>유효기간</td>
 				                <td>할인(금액/률)</td>
-<!-- 				                <td><button type="button" class="btn detail_btn" value="상세보기">상세보기</button></td> -->
+<!-- 				                <td><button type="button" class="btn btn_default" value="상세보기">상세보기</button></td> -->
 				            </tr>
 				    </table>
 	         	 </div>

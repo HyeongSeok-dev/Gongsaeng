@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/admin_assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-   공생|관리자페이지 신고
+   공생|관리자페이지 고객센터
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -23,14 +23,14 @@
   <link href="${pageContext.request.contextPath }/resources/admin_assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.css" rel="stylesheet" />
-  <link href="${pageContext.request.contextPath }/resources/admin_assets/css/class.css" rel="stylesheet" />
+  <link href="${pageContext.request.contextPath }/resources/admin_assets/css/admin.css" rel="stylesheet" />
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
   <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">
 </head>
 
 <body class="">
   <div class="wrapper ">
-    <jsp:include page="admin_sidebar.jsp"/>
+    <jsp:include page="../inc/admin_sidebar.jsp"/>
     <div class="main-panel" id="main-panel">
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
@@ -43,7 +43,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand title" href="#pablo">리뷰 신고</a>
+            <a class="navbar-brand title" href="#pablo">자주묻는 질문 관리</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -100,38 +100,27 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h5 class="title">리뷰 신고 목록</h5>
+                <h5 class="title">자주묻는 질문 목록</h5>
               </div>
               <div class="card-body">
 	               <div class="card-body-header report_checkbox">
 						<div class="member_category_checkbox">
-			              	<input type="checkbox" value="전체선택" name="member_category"> 전체선택&nbsp;
-			              	<input type="checkbox" value="접수" name="member_category"> 접수&nbsp;
-			              	<input type="checkbox" value="승인" name="member_category"> 승인&nbsp;
-			              	<input type="checkbox" value="반려" name="member_category"> 반려&nbsp;
+							<button class="btn btn_default" type="button" style="margin-bottom: 5px;" onclick="location.href='${pageContext.request.contextPath }/admin/cs/faq/register'">새글쓰기</button>
 		              	</div>
 		              	<div>
 		              		<form action="" class="member_date">
 		              			<div class="search_bar_admin">
-					              	<div>
-										<select>
-											<option>전체일자</option>
-											<option>신고일자</option>
-											<option>처리일자</option>
-										</select>
-					              	</div>
-					              	<div>
-					              		<input type="date" id="start_date">&nbsp;&nbsp;~&nbsp;&nbsp;<input type="date" id="end_date">
-					              	</div>
+				              		<input type="date" id="start_date">&nbsp;&nbsp;~&nbsp;&nbsp;<input type="date" id="end_date">
 			              		</div>
 			              		<div class="search_bar_admin">
 			              			<div>
 										<select>
 											<option>전체검색</option>
-<!-- 											<option>신고자아이디</option> -->
-											<option>신고자아이디</option>
-											<option>피신고자아이디</option>
-											<option>클래스명</option>
+											<option>카테고리</option>
+											<option>대상</option>
+											<option>제목</option>
+											<option>내용</option>
+											<option>제목+내용</option>
 										</select>
 					              	</div>
 			              			<div>
@@ -146,25 +135,66 @@
 	              	</div>
 	              	
                 <table class="table table-bordered">
-			            <tr>
-			                <th>신고일자</th>
-			                <th>리뷰번호</th>
-			                <th>신고자아이디</th>
-			                <th>피신고자아이디</th>
-			                <th>신고사유</th>
-			                <th>처리상태</th>
-			                <th>상세보기</th>
-			            </tr>
-			            <!-- 회원 데이터 로우 -->
-			            <tr>
-			                <td>신고일자</td>
-			                <td>리뷰번호</td>
-			                <td>신고자아이디</td>
-			                <td>피신고자아이디</td>
-			                <td>신고사유</td>
-			                <td>처리상태</td>
-			                <td><button type="button" class="btn btn_default" value="상세보기">상세보기</button></td>
-			            </tr>
+                	<colgroup>
+                		<col width="10%" />
+                		<col width="15%" />
+                		<col width="15%" />
+                		<col width="45%" />
+                		<col width="45%" />
+                	</colgroup>
+		            <tr>
+		                <th>작성일자</th>
+		                <th>
+							<select>
+								<option>대상회원</option>
+								<option>반장회원</option>
+								<option>일반회원</option>
+							</select>
+						</th>
+						<th>
+							<select>
+								<option>분류</option>
+								<option>이용안내</option>
+								<option>회원정보</option>
+								<option>결제/환불</option>
+								<option>쿠폰/이벤트</option>
+								<option>회원관리</option>
+								<option>결제/환불/정산</option>
+								<option>기타</option>
+							</select>
+						</th>
+						<!-- 회원 -->
+<!-- 		                <th> -->
+<!-- 							<select> -->
+<!-- 								<option>분류</option> -->
+<!-- 								<option>이용안내</option> -->
+<!-- 								<option>회원정보</option> -->
+<!-- 								<option>결제/환불</option> -->
+<!-- 								<option>쿠폰/이벤트</option> -->
+<!-- 								<option>기타</option> -->
+<!-- 							</select> -->
+<!-- 						</th> -->
+						<!-- 반장 -->
+<!-- 			                <th> -->
+<!-- 								<select> -->
+<!-- 									<option>분류</option> -->
+<!-- 									<option>이용안내</option> -->
+<!-- 									<option>회원관리</option> -->
+<!-- 									<option>결제/환불/정산</option> -->
+<!-- 									<option>기타</option> -->
+<!-- 								</select> -->
+<!-- 							</th> -->
+		                <th>제목</th>
+		                <th>내용</th>
+		            </tr>
+		            <!-- 회원 데이터 로우 -->
+		            <tr  class="tr_hover" onclick="location.href='${pageContext.request.contextPath }/admin/cs/faq/detail'">
+		                <td>작성일자</td>
+		                <td>대상</td>
+		                <td>분류</td>
+		                <td>제목</td>
+		                <td>내용</td>
+		            </tr>
 			    </table>
               </div>
             </div>
@@ -172,6 +202,7 @@
         </div>
       </div>
       <footer class="footer">
+       <jsp:include page="../inc/admin_bottom.jsp"/>
       </footer>
     </div>
   </div>

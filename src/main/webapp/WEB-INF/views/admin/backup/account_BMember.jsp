@@ -130,7 +130,7 @@
 			              				<input type="search">
 			              			</div>
 					              	<div>
-					              		<button type="submit" class="btn detail_btn" value="검색">검색</button>
+					              		<button type="submit" class="btn btn_default" value="검색">검색</button>
 					              	</div>
 			              		</div>	
 		              		</form>
@@ -151,7 +151,7 @@
 			                <td>아이디</td>
 			                <td>계좌번호</td>
 			                <td>은행명</td>
-			                <td><button type="button" class="btn detail_btn" value="상세보기">상세보기</button></td>
+			                <td><button type="button" class="btn btn_default" value="상세보기">상세보기</button></td>
 			            </tr>
 			    </table>
               </div>

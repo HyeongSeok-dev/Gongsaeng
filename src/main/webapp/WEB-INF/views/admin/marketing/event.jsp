@@ -10,7 +10,7 @@
   <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/admin_assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    공생|관리자페이지 이벤트관리
+    공생|관리자페이지 마케팅센터
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -28,7 +28,7 @@
 
 <body class="user-profile">
   <div class="wrapper ">
-    <jsp:include page="admin_sidebar.jsp"/>
+    <jsp:include page="../inc/admin_sidebar.jsp"/>
     <div class="main-panel" id="main-panel">
       <!-- Navbar -->
        <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
@@ -143,12 +143,14 @@
           </div>
           <div class="col-md-6">
           	<div class="card"  style="height: 400px;">
-              <div class="card-header">
-                <h5 class="title">등록이벤트 미리보기</h5>
-              </div>
-              <div class="card-body">
-              	<img src="" alt="">
-              </div>
+          		<div class="card_overflow">
+	              <div class="card-header">
+	                <h5 class="title">등록이벤트 미리보기</h5>
+	              </div>
+	              <div class="card-body">
+	              	<img src="" alt="">
+	              </div>
+            	</div>
             </div>
           </div>
         </div>
@@ -188,20 +190,21 @@
 	              	  </div>
 	              	</div>
 	                <table class="table table-bordered">
-				            <tr>
-				                <th>번호</th>
-				                <th>제목</th>
-				                <th>등록일자</th>
-				                <th>이벤트기한</th>
-				                <th>상세보기</th>
-				            </tr>
-				            <!-- 회원 데이터 로우 -->
-				            <tr>
-				                <td>번호</td>
-				                <td>제목</td>
+	                	<colgroup>
+	                		<col width="20%"/>
+	                		<col width="60%"/>
+	                		<col width="20%"/>
+	                	</colgroup>
+			            <tr>
+			                <th>등록일자</th>
+			                <th>제목</th>
+			                <th>이벤트기한</th>
+			            </tr>
+			            <!-- 회원 데이터 로우 -->
+				            <tr class="tr_hover" data-toggle="modal" data-target="#exampleModal">
 				                <td>등록일자</td>
+				                <td>제목</td>
 				                <td>이벤트기한</td>
-				                <td><button type="button" class="btn btn_default" value="상세보기">상세보기</button></td>
 				            </tr>
 				    </table>
 	         	 </div>
@@ -210,7 +213,7 @@
 	    </div>
 	 </div>
      <footer class="footer">
-       <jsp:include page="admin_bottom.jsp"/>
+       <jsp:include page="../inc/admin_bottom.jsp"/>
      </footer>
   </div>
  </div>
@@ -228,6 +231,35 @@
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.js"></script>
+  
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">이벤트 상세</h5>&nbsp;&nbsp;
+        <div>
+		    <span>XXX 이벤트</span>&nbsp;<span>기간 : 2024/02/12 ~ 2024/02/13</span>&nbsp;<span>진행예정</span>
+        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+<!--         <div> -->
+<!-- 	        <span>XXX 이벤트</span>&nbsp;<span>기간 : 2024/02/12 ~ 2024/02/13</span>&nbsp;<span>진행예정</span> -->
+<!--         </div> -->
+        <div>
+        	여기는 이벤트 이미지가옴
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+        <button type="button" class="btn btn-primary">저장</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 
 </html>
