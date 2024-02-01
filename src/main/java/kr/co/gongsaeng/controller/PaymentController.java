@@ -53,6 +53,12 @@ public class PaymentController {
 		return "payment/charge_account";
 	}
 	
+	//페이충전-충전완료
+	@GetMapping("payment/charge/complete")
+	public String chargeComplete() {
+		return "payment/charge_complete";
+	}
+	
 	//callback
 	@GetMapping("callback")
 	public String callback(@RequestParam Map<String, String> authResponse, HttpSession session, Model model) {

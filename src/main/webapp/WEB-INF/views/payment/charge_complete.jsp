@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="utf-8">
+ <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>공생 | 공간을 생각하다</title>
         <meta name="description" content="GARO is a real-estate template">
@@ -33,9 +33,6 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/responsive.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/global.css">
         
-        <link href="${pageContext.request.contextPath }/resources/css/payment_agree.css" rel="stylesheet" type="text/css">
-        
-        
         <script src="${pageContext.request.contextPath }/resources/assets/js/modernizr-2.6.2.min.js"></script>
         <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script> 
         <script src="${pageContext.request.contextPath }/resources/assets/js/jquery-1.10.2.min.js"></script> 
@@ -50,40 +47,80 @@
         <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
 <%--         <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script> --%>
         <script src="${pageContext.request.contextPath }/resources/assets/js/main_noicheck.js"></script>
-      
+        
 <style type="text/css">
+	
+.review_complete_ment {
+	text-align: center;
+}    
 
-
-.section_box {
-    width: 70%;  /* 원하는 너비로 설정하세요. */
-    margin: 50px auto;
+.review_complete_ment,
+.review_complete_ment .review_complete,
+.review_complete_ment .review_complete_content {
+    color: #fff;
 }
-      
-</style>  
-</head>
 
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	display: flex;
+  	flex-direction: column;
+  	}
+
+body {
+	background: linear-gradient(#A4A4A4, #fff);
+	font-family:'Pretendard-Regular',Apple SD Gothic Neo,sans-serifs;
+	display: flex;
+	align-items: center;
+}
+
+
+.review_complete_ment {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.review_complete_ment img {
+  display: block;
+  margin: 0 auto;
+}
+
+.review_complete,
+.review_complete_content {
+  margin: 10px 0;
+}
+
+#check {
+	width: 70px;
+	height: 70px;
+}
+
+#closeImage {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+}
+
+#ok{
+	color: #A4A4A4;
+}
+	
+</style>
+
+</head>
 <body>
-	<div class="section_box">
-		<section class="sec05">
-			<table>
-			
-				<tr>
-					<h2>포인트충전</h2>
-				</tr>
-				<tr>
-					<td><h5>현재 포인트 잔액 : </h5></td>
-					<td></td>
-				<tr>
-				<tr>
-					<td><h5>충전할 금액 : </h5></td>
-					<td><input type="text"></td>
-				</tr>
-				<tr>
-					<td><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-ok"></span> 선택</a></td>
-				</tr>
-				
-			</table>
-		</section>
-	</div>
+	<div class="review_complete_ment">
+	<img src="${pageContext.request.contextPath}/resources/img/complete_check.svg" id="check">
+	<h1 class="review_complete">0페이충전 완료!</h1>
+    <div class="review_complete_content">0페이 충전이 완료되었습니다!</div>
+   	<br>
+    <button type="button" id="ok">
+    	확인
+    </button>
+    
+    </div>
 </body>
 </html>

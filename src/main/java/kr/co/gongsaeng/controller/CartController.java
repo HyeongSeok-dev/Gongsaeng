@@ -32,16 +32,19 @@ public class CartController {
 		return "cart/cart";
 	}
 	
+	//장바구니에서 상품 찾기
+	
 	
 	//장바구니에 물건넣기
 	@PostMapping("addCart")
-    public @ResponseBody String addToCart(@RequestParam int class_idx, @RequestParam String member_id) {
+    public @ResponseBody boolean addToCart(@RequestParam int class_idx, @RequestParam String member_id) {
         try {
             cartService.addToCart(class_idx, member_id);
-            return "true";
+            return true;
         } catch (Exception e) {
-            return "false";
+            return false;
         }
+	
     }
 	 
 	 //장바구니 물건삭제
@@ -66,6 +69,8 @@ public class CartController {
 	        return "false";
 	    }
 	}
+	
+	
 	
 }//CartController
 

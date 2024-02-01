@@ -52,82 +52,70 @@
         <script src="${pageContext.request.contextPath }/resources/assets/js/main_noicheck.js"></script>
         
 <style type="text/css">
-
-.out_block{
-	display: flex; 
-	justify-content: center; 
- 	flex-direction: column; 
- 	align-items: center;
- 	width: 100%;
+        
+.custab{
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 5% 0;
+    box-shadow: 3px 3px 2px #ccc;
+    transition: 0.5s;
 }
-
-h1 {
-  color: #848484;
+.custab:hover{
+    box-shadow: 3px 3px 0px transparent;
+    transition: 0.5s;
 }
-
-.agree {
-	display: flex;
-	align-items: center;
+        
+table thead {
+    background-color: #f2f2f2;  /* 원하는 색상으로 변경하세요. */
 }
-
-table {
-        width: 100%;
-    }
-
-.section_box {
-    width: 70%;  /* 원하는 너비로 설정하세요. */
-    margin: 0 auto;
+.table-striped tbody tr {
+    background-color: #ffffff !important; /* 흰색 배경 */
 }
+  
+.table-striped tbody tr:hover {
+      background-color: #f2f2f2 !important; /* 원하는 색상으로 변경하세요. */
+} 
 
 </style>
-
 </head>
 <body>
-<!-- 	<header> -->
-<%-- 		<jsp:include page="../inc/top.jsp"></jsp:include> --%>
-<!-- 	</header> -->
-	
-	<main>
-	<!-- 제목 -->
-<!-- 	<div class="page-head">   -->
-<!--           <div class="container"> -->
-<!--               <div class="row"> -->
-<!--                   <div class="page-head-content"> -->
-<!--                       <h1 class="page-title">포인트충전</h1>                -->
-<!--                   </div> -->
-<!--               </div> -->
-<!--           </div> -->
-<!--       </div> -->
-      
-	<div class="section_box">
-				<section class="sec05" >
-					<h2>계좌선택</h2>
-					<br>
-					<h5>0페이를 충전할 계좌를 선택하세요.</h5>
-					<br>
-					<form action="">
-					<table>
-						<tr>
-							<td>은행명</td>
-							<td>계좌번호</td>
-							<td>계좌번호</td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>${accountDetail.bank_name}</td>
-							<td>${account_num_masked}</td>
-							<td>${account_num_masked}</td>
-							<td><input type="submit" value="선택"></td>
-						</tr>
-					</table>
-					</form>
-				</section>
+	<div class="container">
+	    <div class="row col-md-12 mx-auto custyle">
+		    <table class="table table-striped custab">
+			    <thead>
+			        <tr>
+			            <th>은행</th>
+			            <th>계좌번호</th>
+			            <th>핀테크이용번호</th>
+			            <th class="text-center"></th>
+			        </tr>
+			    </thead>
+	            
+	            <tr>
+	                <td>{accountDetail.bank_name}</td>
+	                <td>{account_num_masked}</td>
+	                <td>{accountDetail.fintech_use_num}</td>
+	                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-ok"></span> 선택</a></td>
+	            </tr>
+	            <tr>
+	                <td>{accountDetail.bank_name}</td>
+	                <td>{account_num_masked}</td>
+	                <td>{accountDetail.fintech_use_num}</td>
+	                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-ok"></span> 선택</a></td>
+	       
+	            </tr>
+	            <tr>
+	                <td>{accountDetail.bank_name}</td>
+	                <td>{account_num_masked}</td>
+	                <td>{accountDetail.fintech_use_num}</td>
+	                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-ok"></span> 선택</a></td>
+	            </tr>
+	            
+	           
+		    </table>
+	    </div>
 	</div>
 									
 	
-	
-	</main>	
-
-
 </body>
 </html>

@@ -11,14 +11,15 @@ $(document).ready(function() {
 		
 	    var class_idx = $("#class_idx").val(); //클래스 번호
 	    var memberId = $("#member_id").val(); //회원 아이디
+	    var date = $("#reservation-date").val(); //예약날짜
 	
 	    $.ajax({
 			type: "POST",
 	        url: "addCart",
 	        data:{
 				class_idx : class_idx,
-				
-				memberId : memberId
+				memberId : memberId,
+				date : date
 			},
 	        dataType: "json",
 	        success: function(onCart){
