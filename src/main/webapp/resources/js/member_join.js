@@ -258,7 +258,7 @@ $(document).ready(function() {
 				url: "phoneAuthRequest?member_phone=" + member_phone,
 				cache: false,
 				success: function(data) {
-					if (data = true  {
+					if (data = true)  {
 						alert("인증번호 발송이 완료되었습니다.\n휴대폰에서 인증번호를 확인해 주세요.");
 					} else {
 						alert("인증번호 발송이 실패하였습니다.\n전화번호를 다시 확인해 주세요 ");
