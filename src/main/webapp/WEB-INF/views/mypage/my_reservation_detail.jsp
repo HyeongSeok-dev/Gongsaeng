@@ -58,7 +58,7 @@
 
 </head>
 <body>
-	<jsp:include page="../inc/top2.jsp"></jsp:include>
+	<jsp:include page="../inc/top.jsp"></jsp:include>
 	<br>
 	<div class="container">
 		<div class="row">
