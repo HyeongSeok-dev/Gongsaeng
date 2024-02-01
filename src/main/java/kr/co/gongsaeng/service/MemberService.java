@@ -56,7 +56,7 @@ public class MemberService {
 		if(authInfo.getMember_id() != null) {
 			currentAuthInfo = mapper.selectMailAuthInfo(authInfo.getMember_id());
 		}else {
-			currentAuthInfo = mapper.selectMailAuthInfo(authInfo.getMember_email());
+			currentAuthInfo = mapper.selectMailAuthInfo(authInfo.getMail_auth_email());
 		}
 //		System.out.println("전달받은 인증정보 : " + authInfo);
 //		System.out.println("조회된 기존 인증정보 : " + currentAuthInfo);
@@ -64,7 +64,7 @@ public class MemberService {
 		// 조회된 인증 정보 존재 여부 판별
 		if(currentAuthInfo != null) { // 존재할 경우(아이디에 해당하는 인증 정보 존재)
 			// 인증메일 하이퍼링크를 통해 전달받은 인증코드와 조회된 인증코드 문자열 비교
-			if(authInfo.getAuth_code().equals(currentAuthInfo.getAuth_code())) {
+			if(authInfo.getMail_auth_code().equals(currentAuthInfo.getMail_auth_code())) {
 				// 	 MemberMapper - deleteMailAuthInfo() 메서드 호출하여
 				//    mail_auth_info 테이블의 레코드 삭제
 				//    => 파라미터 : 아이디

@@ -24,7 +24,9 @@ $(document).ready(function() {
 	}
 
 
-	let Phone = false; //전화번호 양식 검사
+	let phone = false; //전화번호 양식 검사
+	let phoneAuthNumber = "";
+	let phoneAuthSuccess = false;
 	let isPasswd = false; //비밀번호 안전도 검사
 	let isvalidIdLength = false; //아이디 양식검사
 	let isDuplicateId = false; //아이디 중복 여부 저장할 변수
@@ -81,7 +83,7 @@ $(document).ready(function() {
 		}
 
 		//전화번호 양식 맞지 않을경우
-		if (Phone) {
+		if (!phone) {
 			alert("전화번호가 양식에 맞지 않습니다.");
 			return false;
 		}
@@ -89,6 +91,11 @@ $(document).ready(function() {
 		//이메일 중복일 경우
 		if (isEmail) {
 			alert("이메일이 중복되었습니다.");
+			return false;
+		}
+
+		if (!phoneAuthSuccess) {
+			alert("전화번호가 인증되지 않았습니다.");
 			return false;
 		}
 
@@ -210,13 +217,11 @@ $(document).ready(function() {
 	//전화번호 길이 제한=====================================
 	$("#u_phone").keyup(function() {
 		let member_phone = $("#u_phone").val();
-
 		let regex = /^\d{11}$/;
 
 		if (!regex.test(member_phone)) {
 			$("#checkPhoneResult").html("- 를 뺀 숫자 11자리 필요");
 			$("#checkPhoneResult").css("color", "red");
-			Phone = true;
 		} else { //입력값 검증 성공시
 			isvalidIdLength = true;
 			$.ajax({
@@ -229,17 +234,58 @@ $(document).ready(function() {
 					if (checkDuplicateResult) { //중복
 						$("#checkPhoneResult").html("사용 불가능한 전화번호입니다.");
 						$("#checkPhoneResult").css("color", "red");
-						Phone = true;
 					} else { //중복X
 						$("#checkPhoneResult").html("사용가능한 전화번호입니다.");
 						$("#checkPhoneResult").css("color", "blue");
-						Phone = false;
+						phone = true;
 					}
 				} //success
 			}); //ajax
 
 		}
 
+	});
+
+
+	$("#auth_phone_number_btn").click(function() {
+		let member_phone = $("#u_phone").val();
+		if (phone != true) {
+			alert('사용할 수 없는 전화번호입니다.')
+		} else {
+
+			$.ajax({
+				type: "GET",
+				url: "phoneAuthRequest?member_phone=" + member_phone,
+				cache: false,
+				success: function(data) {
+					if (data = true  {
+						alert("인증번호 발송이 완료되었습니다.\n휴대폰에서 인증번호를 확인해 주세요.");
+					} else {
+						alert("인증번호 발송이 실패하였습니다.\n전화번호를 다시 확인해 주세요 ");
+					}
+				}
+			})
+		}
+	});
+
+	$("#phone_auth_input").keyup(function() {
+		let phone_auth_code = this.val();
+		$.ajax({
+			type: "GET",
+			url: "phoneAuthRequest?phone_auth_code=" + phone_auth_code,
+			cache: false,
+			success: function(data) {
+				if (data = "true") { //중복
+					$("#checkNickResult").html("이미 사용중인 닉네임");
+					$("#checkNickResult").css("color", "red");
+					isDuplicateNick = true;
+				} else { //중복X
+					$("#checkNickResult").html("사용 가능한 닉네임");
+					$("#checkNickResult").css("color", "blue");
+					isDuplicateNick = false;
+				}
+			}
+		})
 	});
 
 	//닉네임 중복확인==========================================
@@ -275,10 +321,10 @@ $(document).ready(function() {
 		let member_email1 = $("#u_email").val();
 		let customEmail = $("#customEmail").val();
 		let member_email2;
-		
-		if(customEmail == null || customEmail == ""){
-			member_email2 =  $("#u_email2").val();
-		}else{
+
+		if (customEmail == null || customEmail == "") {
+			member_email2 = $("#u_email2").val();
+		} else {
 			member_email2 = customEmail;
 		}
 		console.log("member_email1" + member_email1);
@@ -301,6 +347,6 @@ $(document).ready(function() {
 
 	});
 
-
-
 });
+
+

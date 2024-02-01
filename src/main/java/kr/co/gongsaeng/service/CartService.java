@@ -15,7 +15,7 @@ public class CartService {
 	private CartMapper mapper;
 	
 	//장바구니 물건넣기
-	public  String addToCart(int class_idx, String member_id) {
+	public int addToCart(int class_idx, String member_id) {
 		return mapper.insertCart(class_idx, member_id);
 	}
 

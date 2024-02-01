@@ -1,7 +1,9 @@
 package kr.co.gongsaeng.handler;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.springframework.stereotype.Component;
 
+@Component
 public class GenerateRandomCode {
 	// 난수 생성하여 문자열로 리턴할 getRandomCode() 메서드 정의
 	// => 파라미터 : 난수 길이(정수)   리턴타입 : String

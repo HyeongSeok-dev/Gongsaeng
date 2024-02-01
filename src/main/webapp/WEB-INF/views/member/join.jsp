@@ -64,8 +64,7 @@
 				<div class="form-group">
 					<label for="memberId" class="col-sm-1 control-label">아이디</label>
 					<div class="col-sm-8">
-						<input type="text" id="memberId" required name="member_id" class="form-control" placeholder="아이디 (영문자, 숫자 조합 8~16자리 필수(한글, 특수문자 사용불가 )"
-							maxlength="100" />
+						<input type="text" id="memberId" required name="member_id" class="form-control" placeholder="아이디 (영문자, 숫자 조합 8~16자리 필수(한글, 특수문자 사용불가 )" maxlength="100" />
 					</div>
 					<div class="col-sm-3">
 						<span id="checkIdResult"></span>
@@ -74,15 +73,15 @@
 				<div class="form-group">
 					<label for="passwd" class="col-sm-1 control-label">비밀번호</label>
 					<div class="col-sm-8">
-						<input type="password" id="passwd" required name="member_passwd" class="form-control" placeholder="비밀번호 (영문, 숫자, 특수문자 조합 8~16자리) 권장"
-							maxlength="16">
+						<input type="password" id="passwd" required name="member_passwd" class="form-control" placeholder="비밀번호 (영문, 숫자, 특수문자 조합 8~16자리) 권장" maxlength="16">
 					</div>
 					<div class="col-sm-3">
 						<span id="checkPasswdResult"></span>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="passwd2" class="col-sm-1 control-label">비밀번호<br>확인</label>
+					<label for="passwd2" class="col-sm-1 control-label">비밀번호<br>확인
+					</label>
 					<div class="col-sm-8">
 						<input type="password" id="passwd2" required name="passwd2" class="form-control" placeholder="비밀번호 확인" maxlength="16">
 					</div>
@@ -114,9 +113,9 @@
 						<input type="date" id="com_birth" required name="member_birthday" class="form-control">
 					</div>
 					<div class="col-sm-3">
-						<label class="control-label pull-left margin">성별 &nbsp;&nbsp;</label>
-						<input type="radio" id="gender_m" name="member_gender" value="1" class="form-control" required><label for="gender_m" class="control-label">남&nbsp; </label>
-						<input type="radio" id="gender_f" name="member_gender" value="2" class="form-control" required><label for="gender_f" class="control-label">여&nbsp; </label>
+						<label class="control-label pull-left margin">성별 &nbsp;&nbsp;</label> <input type="radio" id="gender_m" name="member_gender" value="1"
+							class="form-control" required><label for="gender_m" class="control-label">남&nbsp; </label> <input type="radio" id="gender_f" name="member_gender"
+							value="2" class="form-control" required><label for="gender_f" class="control-label">여&nbsp; </label>
 					</div>
 				</div>
 				<div class="form-group">
@@ -146,11 +145,23 @@
 				</div>
 				<div class="form-group">
 					<label for="u_phone" class="col-sm-1 control-label">전화번호</label>
-					<div class="col-sm-8">
+					<div class="col-sm-5">
 						<input type="text" id="u_phone" required name="member_phone" class="form-control" placeholder="전화번호 (' - ' 를 빼고 입력)" maxlength="100">
+					</div>
+					<div class="col-sm-3 text-center">
+						<button type="button" class="btn btn-info" id="auth_phone_number_btn">인증하기</button>
 					</div>
 					<div class="col-sm-3">
 						<span id="checkPhoneResult"></span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="u_email" class="col-sm-1 control-label">전화번호 인증</label>
+					<div class="col-sm-8">
+						<input type="text" id="phone_auth_input" required class="form-control" placeholder="인증번호를 입력하세요">
+					</div>
+					<div class="col-sm-3">
+						<span id="phoneAuthResult"></span>
 					</div>
 				</div>
 				<div class="form-group">

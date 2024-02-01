@@ -64,7 +64,7 @@
 				<label for="name">이름</label> <input type="text" class="form-control" id="member_name" placeholder="이름을 입력해주세요" name="member_name">
 			</div>
 			<div class="form-group">
-				<label for="id">아이디</label> <input type="text" class="form-control" id="id" placeholder="아이디를 입력해주세요" name="id">
+				<label for="id">아이디</label> <input type="text" class="form-control" id="id" placeholder="아이디를 입력해주세요" name="member_id">
 			</div>
 			<div class="form-group">
 				<label for="email">이메일</label>

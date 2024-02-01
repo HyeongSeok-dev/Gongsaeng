@@ -17,9 +17,9 @@ public interface MemberMapper {
 	
 	MailAuthInfoVO selectMailAuthInfo(String param);
 
-	void insertMailAuthInfo(@Param("param") String param, @Param("auth_code")String auth_code);
+	void insertMailAuthInfo(@Param("param") String param, @Param("mail_auth_code")String auth_code);
 
-	void updateMailAuthInfo(@Param("param") String param, @Param("auth_code")String auth_code);
+	void updateMailAuthInfo(@Param("param") String param, @Param("mail_auth_code")String auth_code);
 
 	// 기존 인증정보 삭제
 	void deleteMailAuthInfo(String param);

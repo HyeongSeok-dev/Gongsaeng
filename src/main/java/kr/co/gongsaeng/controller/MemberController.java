@@ -5,11 +5,13 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -17,6 +19,10 @@ import kr.co.gongsaeng.service.MemberService;
 import kr.co.gongsaeng.service.SendMailService;
 import kr.co.gongsaeng.vo.MailAuthInfoVO;
 import kr.co.gongsaeng.vo.MemberVO;
+import net.nurigo.sdk.NurigoApp;
+import net.nurigo.sdk.message.exception.NurigoMessageNotReceivedException;
+import net.nurigo.sdk.message.model.Message;
+import net.nurigo.sdk.message.service.DefaultMessageService;
 
 @Controller
 public class MemberController {
@@ -25,6 +31,14 @@ public class MemberController {
 	MemberService service;
 	@Autowired
 	private SendMailService mailService;
+	
+	@Value("${sms_api_key}")
+	private String sms_api_key;
+	@Value("${sms_secret_key}")
+	private String sms_secret_key;
+	@Value("${sms_sender_number}")
+	private String sms_sender_number;
+	private int phoneAuthCode;
 
 	private static final Logger log = LoggerFactory.getLogger(MemberController.class);
 	@GetMapping("member/login")
@@ -131,8 +145,8 @@ public class MemberController {
 			
 			MemberVO member = service.requestIdAuth(authInfo);
 			model.addAttribute("member", member);
-			service.removeAuthInfo(authInfo.getMember_email()); // 인증정보 삭제
-			return "login/login_result_id";
+			service.removeAuthInfo(authInfo.getMail_auth_email()); // 인증정보 삭제
+			return "member/login_result_id";
 		} else { // 실패 
 			model.addAttribute("msg", "인증 실패!");
 			return "fail_back";
@@ -153,7 +167,7 @@ public class MemberController {
 		System.out.println("불린값" + isAuthSuccess);
 		if(isAuthSuccess) { // 성공
 			model.addAttribute("authInfo", authInfo);
-			return "login/update_passwd";
+			return "member/update_passwd";
 		} else { // 실패 
 			model.addAttribute("msg", "인증 실패!");
 			return "fail_back";
@@ -198,7 +212,6 @@ public class MemberController {
 	@GetMapping("member/join")
 	public String join(@RequestParam(defaultValue = "") String agreeAd, Model model) {
 		model.addAttribute("agreeAd", agreeAd);
-		log.info(agreeAd);
 		return "member/join";
 	}
 
@@ -280,6 +293,33 @@ public class MemberController {
 			return "true";
 		}
 	} // MemberCheckDupNick()
+		
+	@GetMapping("member/phoneAuthRequest")
+	@ResponseBody
+	public String phoneAuth(MemberVO member) {
+		DefaultMessageService messageService =  NurigoApp.INSTANCE.initialize(sms_api_key, sms_secret_key, "https://api.coolsms.co.kr");
+		// Message 패키지가 중복될 경우 net.nurigo.sdk.message.model.Message로 치환하여 주세요
+		phoneAuthCode = (int)(Math.random() * 9000.0D + 1000.0D);
+		
+		Message message = new Message();
+		message.setFrom(sms_sender_number);
+		message.setTo(member.getMember_phone());
+		message.setText("[공생] 회원가입 인증번호는 " + phoneAuthCode + "입니다.");
+
+		try {
+		  // send 메소드로 ArrayList<Message> 객체를 넣어도 동작합니다!
+		  messageService.send(message);
+		  return "true";
+		} catch (NurigoMessageNotReceivedException exception) {
+		  // 발송에 실패한 메시지 목록을 확인할 수 있습니다!
+		  System.out.println(exception.getFailedMessageList());
+		  System.out.println(exception.getMessage());
+		  return "false";
+		} catch (Exception exception) {
+		  System.out.println(exception.getMessage());
+		  return "false";
+		}
+	}
 	
 	@GetMapping("member/logout")
 	public String logout(HttpSession session) {

@@ -12,7 +12,7 @@ import kr.co.gongsaeng.vo.CartListVO;
 public interface CartMapper {
 
 	//장바구니에 물건넣기
-	String insertCart(int class_idx, String memberId);
+	int insertCart(int class_idx, String memberId);
 
 	//장바구니 물건삭제
 	String deletCart(int cart_idx);

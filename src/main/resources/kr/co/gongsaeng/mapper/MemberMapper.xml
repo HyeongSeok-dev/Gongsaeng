@@ -77,7 +77,7 @@
 				WHERE mail_auth_email = #{param}
 			</when>
 			<otherwise>
-				WHERE mail_auth_email = #{param}
+				WHERE member_id = #{param}
 			</otherwise>
 		</choose>
 	</select>
@@ -87,17 +87,17 @@
 		INTO mail_auth
 		<choose>
 			<when test="param.indexOf('@') >= 0">
-				VALUES (null, null, #{auth_code},#{param})
+				VALUES (null, null, #{mail_auth_code},#{param})
 			</when>
 			<otherwise>
-				VALUES (null,#{param}, #{auth_code}, null)
+				VALUES (null,#{param}, #{mail_auth_code}, null)
 			</otherwise>
 		</choose>
 	</insert>
 	
 	<update id="updateMailAuthInfo">
 		UPDATE mail_auth
-		SET auth_code = #{auth_code}
+		SET mail_auth_code = #{mail_auth_code}
 		<choose>
 			<when test="param.indexOf('@') >= 0">
 				WHERE mail_auth_email = #{param}
@@ -124,7 +124,7 @@
 		SELECT *
 		FROM mail_auth
 		WHERE member_id = #{member_id}
-		AND auth_code = #{auth_code}
+		AND mail_auth_code = #{mail_auth_code}
 	</select>
 
 	
@@ -137,7 +137,7 @@
 	<select id="selectIdAuth" resultType="member">
 		SELECT *
 		FROM member
-		WHERE member_email = #{member_email}
+		WHERE member_email = #{mail_auth_email}
 	</select>
 
 	

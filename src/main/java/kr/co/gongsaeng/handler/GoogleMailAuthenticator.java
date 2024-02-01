@@ -4,18 +4,14 @@ import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 public class GoogleMailAuthenticator extends Authenticator {
 	// 인증정보(아이디, 패스워드(앱 비밀번호))를 관리할 javax.mail.PasswordAuthentication 타입 변수 선언
 	PasswordAuthentication passwordAuthentication;
 	
-	@Value("${email_account_name}")
-	private String email_account_name;
-	@Value("${email_app_password}")
-	private String email_app_password;
-	
 	// 기본 생성자 정의
-	public GoogleMailAuthenticator() {
+	public GoogleMailAuthenticator(String email_account_id, String email_app_passwd) {
 		/*
 		 * 인증에 사용될 아이디와 패스워드를 갖는 PasswordAuthentication 객체 생성
 		 * - 파라미터 : 메일 서버 계정명, 패스워드
@@ -24,7 +20,9 @@ public class GoogleMailAuthenticator extends Authenticator {
 		 *   => 구글 계정 설정 - 보안 - 2단계 인증 - 앱 비밀번호 설정 필요
 		 *      (설정 시 나타나는 16자리 앱 비밀번호를 계정 패스워드 대신 사용(로그인 시에는 사용 불가)
 		 */
-		passwordAuthentication = new PasswordAuthentication(email_account_name, email_app_password);
+		System.out.println("email_account_id" + email_account_id);
+		System.out.println("email_app_passwd" + email_app_passwd);
+		passwordAuthentication = new PasswordAuthentication(email_account_id, email_app_passwd);
 	}
 
 	// 인증 정보 관리 객체(PasswordAuthentication)를 외부로 리턴하는 getPasswordAuthentication() 메서드 정의

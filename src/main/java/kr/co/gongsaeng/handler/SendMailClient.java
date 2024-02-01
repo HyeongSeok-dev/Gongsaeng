@@ -21,7 +21,13 @@ public class SendMailClient {
 	// 메일 발송을 수행할 sendMail() 메서드
 	@Value("${email_account}")
 	private String email_account;
+	@Value("${email_account_id}")
+	private String email_account_id;
+	@Value("${email_app_passwd}")
+	private String email_app_passwd;
+	
 	public void sendMail(String email, String subject, String content) {
+		System.out.println(email_account);
 		try {
 			// 1. 시스템(서버)의 속성 정보(= 서버 정보)를 java.util.Properties 객체로 리턴받기
 			Properties props = System.getProperties(); // 구조가 Map 객체와 유사
@@ -39,7 +45,7 @@ public class SendMailClient {
 			
 			// 3. 메일 서버 인증 정보 관리하는 사용자 정의 클래스의 인스턴스 생성
 			//    => GoogleMailAuthenticator -> javax.mail.Authenticator 타입으로 업캐스팅
-			Authenticator authenticator = new GoogleMailAuthenticator();
+			Authenticator authenticator = new GoogleMailAuthenticator(email_account_id,email_app_passwd);
 			
 			// 4. 자바 메일 전송 수행 작업을 javax.mail.Session 객체 단위로 관리하므로
 			//    Session 클래스의 getDefaultInstance() 메서드 호출하여 Session 객체 리턴받기
@@ -47,6 +53,8 @@ public class SendMailClient {
 			//    => 파라미터 : Properties 객체(서버 정보), Authenticator 객체(인증 정보)
 			Session mailSession = Session.getDefaultInstance(props, authenticator);
 			
+			System.out.println(props.toString());
+			System.out.println(authenticator.toString());
 			// 5. 서버 정보와 인증 정보를 포함하여 전송할 메일 정보를 하나로 관리할
 			//    javax.mail.internet.MimeMessage 객체 생성
 			//    => MimeMessage -> javax.mail.internet.Message 타입으로 업캐스팅
@@ -63,11 +71,14 @@ public class SendMailClient {
 			// 	  => UnsupportedEncodingException 예외 처리 필요
 			Address senderAddress = new InternetAddress(email_account, "공생");
 			
+			System.out.println(senderAddress.toString());
 			// 2) 수신자 정보 설정을 위한 javax.mail.internet.InternetAddress 객체 생성
 			//    => Address 타입으로 업캐스팅
 			//    => 파라미터 : 수신자 주소
 			//    => AddressException 예외 처리 필요(수신자 주소 불일치 등)
 			Address receiverAddress = new InternetAddress(email);
+			
+			System.out.println(email);
 			
 			// 3) Message 객체를 사용하여 전송할 메일에 대한 내용 설정
 			//    => MessagingException 처리 필요
