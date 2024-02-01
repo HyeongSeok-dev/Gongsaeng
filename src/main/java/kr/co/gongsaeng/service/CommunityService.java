@@ -8,12 +8,12 @@ import kr.co.gongsaeng.vo.BoardVO;
 
 @Service
 public class CommunityService {
-	@Autowired
-	private BoardMapper mapper;
-	
+//	@Autowired
+//	private BoardMapper mapper;
+//	
 	// 게시물 등록 요청
-	public int registBoard(BoardVO board) {
-		return mapper.insertBoard(board);
-	}
+//	public int registBoard(BoardVO board) {
+//		return mapper.insertBoard(board);
+//	}
 
 }

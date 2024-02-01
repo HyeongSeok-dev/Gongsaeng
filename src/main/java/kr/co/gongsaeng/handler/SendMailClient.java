@@ -45,7 +45,7 @@ public class SendMailClient {
 			
 			// 3. 메일 서버 인증 정보 관리하는 사용자 정의 클래스의 인스턴스 생성
 			//    => GoogleMailAuthenticator -> javax.mail.Authenticator 타입으로 업캐스팅
-			Authenticator authenticator = new GoogleMailAuthenticator(email_account_id,email_app_passwd);
+			Authenticator authenticator = new GoogleMailAuthenticator(email_account_id, email_app_passwd);
 			
 			// 4. 자바 메일 전송 수행 작업을 javax.mail.Session 객체 단위로 관리하므로
 			//    Session 클래스의 getDefaultInstance() 메서드 호출하여 Session 객체 리턴받기
