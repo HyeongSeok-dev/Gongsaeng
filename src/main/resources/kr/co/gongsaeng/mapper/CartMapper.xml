@@ -9,10 +9,11 @@
 		INSERT
 		INTO cart
 		VALUES(
-			#{cart_idx} 
+			null 
 			, #{member_id}
 			, #{class_idx}
-			<!-- 추후에 컬럼추가된거 적기 -->
+			, #{res_date}
+			, #{res_person}
 		);
 	</insert>
 	
@@ -24,7 +25,7 @@
 	</delete>
 	
 	<!-- 장바구니 조회하기 -->
-	<select id="allCartList">
+	<select id="cartList">
 		SELECT *
 		FROM cart
 		WHERE member_id = #{member_id}
@@ -34,6 +35,21 @@
 	<update id="updateCart">
 		UPDATE cart
 		SET resPerson = #{resPerson}
+		WHERE cart_idx = #{cart_idx}
+	</update>
+	
+	<!-- 장바구니 찾기 (findCart) -->
+	<select id="findCart">
+		SELECT *
+		FROM cart
+		WHERE class_idx = #{class_idx} AND
+			  member_id = #{member_id} AND
+			  date = #{date}
+	</select>
+	
+	<update id="cartPlus">
+		UPDATE cart
+		SET res_person = res_person + 1
 		WHERE cart_idx = #{cart_idx}
 	</update>
 	

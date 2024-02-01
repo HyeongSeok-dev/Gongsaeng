@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.gongsaeng.mapper.CartMapper;
 import kr.co.gongsaeng.vo.CartListVO;
+import kr.co.gongsaeng.vo.CartVO;
 
 @Service
 public class CartService {
@@ -14,29 +15,41 @@ public class CartService {
 	@Autowired
 	private CartMapper mapper;
 	
+	//장바구니 물건찾기
+	public CartVO findCart(int class_idx, String member_id, String date) {
+		return mapper.findCart(class_idx, member_id, date);
+	}
+	
 	//장바구니 물건넣기
-	public int addToCart(int class_idx, String member_id) {
-		return mapper.insertCart(class_idx, member_id);
+	public int addToCart(int class_idx, String member_id, String date, int persons) {
+		return mapper.insertCart(class_idx, member_id, date, persons);
 	}
 
 	//장바구니 물건삭제
-	public String deleteFromCart(int cart_idx) {
+	public int deleteFromCart(int cart_idx) {
 		return mapper.deletCart(cart_idx);
 	}
 
 	//장바구니 리스트
 	public List<CartListVO> getCartListSelect(String member_id) {
 		
-		List<CartListVO> result = mapper.allCartList(member_id);
+		List<CartListVO> result = mapper.cartList(member_id);
 		
 		return result;
 	}
 
-	public String updateCart(int cart_idx, int resPerson) {
+	//수량수정
+	public int updateCart(int cart_idx, int resPerson) {
 		return mapper.updateCart(cart_idx, resPerson);
 	}
 
-	//장바구니 수량변경
+	//수량추가
+	public Object cartPlus(int cart_idx) {
+		return mapper.cartPlus(cart_idx);
+	}
+
+	
+
 	
 
 

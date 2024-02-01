@@ -57,7 +57,12 @@
 .section_box {
     width: 70%;  /* 원하는 너비로 설정하세요. */
     margin: 50px auto;
+    text-align: center;
 }
+.sec05 table {
+        width: 50%;  /* 원하는 너비로 설정하세요. */
+        margin: 0 auto;
+    }
       
 </style>  
 </head>
@@ -68,7 +73,7 @@
 			<table>
 			
 				<tr>
-					<h2>포인트충전</h2>
+					<h2>포인트충전</h2><br>
 				</tr>
 				<tr>
 					<td><h5>현재 포인트 잔액 : </h5></td>
@@ -79,7 +84,7 @@
 					<td><input type="text"></td>
 				</tr>
 				<tr>
-					<td><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-ok"></span> 선택</a></td>
+					<td><input type="button" value="충전"></td>
 				</tr>
 				
 			</table>

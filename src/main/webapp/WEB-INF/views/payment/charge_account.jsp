@@ -76,6 +76,18 @@ table thead {
       background-color: #f2f2f2 !important; /* 원하는 색상으로 변경하세요. */
 } 
 
+input[type="button"]:hover {
+       background-color: #b3b3b3; /* 마우스를 올렸을 때의 색상 */
+}
+input[type="button"]:active {
+    background-color: #f2f2f2; /* 클릭했을 때의 색상 */
+}
+/* table th, table td { */
+/*     font-family: Arial, sans-serif;  */
+/* } */
+
+
+
 </style>
 </head>
 <body>
@@ -95,20 +107,19 @@ table thead {
 	                <td>{accountDetail.bank_name}</td>
 	                <td>{account_num_masked}</td>
 	                <td>{accountDetail.fintech_use_num}</td>
-	                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-ok"></span> 선택</a></td>
+	                <td><input type="button" value="선택"></td>
 	            </tr>
 	            <tr>
 	                <td>{accountDetail.bank_name}</td>
 	                <td>{account_num_masked}</td>
 	                <td>{accountDetail.fintech_use_num}</td>
-	                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-ok"></span> 선택</a></td>
-	       
+	                <td><input type="button" value="선택"></td>
 	            </tr>
 	            <tr>
 	                <td>{accountDetail.bank_name}</td>
 	                <td>{account_num_masked}</td>
 	                <td>{accountDetail.fintech_use_num}</td>
-	                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-ok"></span> 선택</a></td>
+	                <td><input type="button" value="선택"></td>
 	            </tr>
 	            
 	           

@@ -59,6 +59,12 @@ public class PaymentController {
 		return "payment/charge_complete";
 	}
 	
+	//개인정보 동의
+	@GetMapping("payment/charge/agree")
+	public String chargeAgree() {
+		return "payment/charge_agree";
+	}
+	
 	//callback
 	@GetMapping("callback")
 	public String callback(@RequestParam Map<String, String> authResponse, HttpSession session, Model model) {

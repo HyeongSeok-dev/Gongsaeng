@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.annotation.RequestScope;
 
 import kr.co.gongsaeng.service.CartService;
 import kr.co.gongsaeng.vo.CartListVO;
@@ -32,42 +33,66 @@ public class CartController {
 		return "cart/cart";
 	}
 	
-	//장바구니에서 상품 찾기
-	
+	//장바구니에서 찾기
+	@ResponseBody
+	@GetMapping("findCart")
+	public CartVO findCart(int class_idx, String member_id, String date) {
+		 try {
+	         // 장바구니에서 해당 상품 찾기
+			 CartVO cart = cartService.findCart(class_idx, member_id, date);
+		         return cart;
+		 	} catch (Exception e) {
+		        return null;
+		    }
+	}
 	
 	//장바구니에 물건넣기
+	@ResponseBody
 	@PostMapping("addCart")
-    public @ResponseBody boolean addToCart(@RequestParam int class_idx, @RequestParam String member_id) {
-        try {
-            cartService.addToCart(class_idx, member_id);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-	
-    }
+    public String addToCart(@RequestParam int class_idx, @RequestParam String member_id, @RequestParam String date, @RequestParam int persons) {
+		
+		//장바구니에서 물건찾기
+		CartVO cart = cartService.findCart(class_idx, member_id, date);
+		if(cart == null) { // 장바구니에 일치하는게 없으면 추가
+		
+            int insertCart = cartService.addToCart(class_idx, member_id, date, persons);
+            
+	            if(insertCart > 0) { //성공
+	            	return "true";
+	            }else {
+	            	return "false";
+	            }   
+         
+		}else {
+			
+			//일치하는게 있으면 수량 +1
+			cartService.cartPlus(cart.getCart_idx());
+			return "true";
+			
+		}
+    }//addToCart
 	 
 	 //장바구니 물건삭제
 	@PostMapping("deleteCart")
 	public String deleteCart(@RequestParam int cart_idx) {
-	    try {
-	        cartService.deleteFromCart(cart_idx);
-	        return "true";
-	    } catch (Exception e) {
-	        return "false";
-	    }
+	       int deletCart = cartService.deleteFromCart(cart_idx);
+	       if(deletCart > 0) { //성공
+	    	   return "true";
+	       }else {
+	    	   return "false";
+	       }
 	}
 	
 	//장바구니 수량변경
 	@ResponseBody
 	@PostMapping("updateCart")
 	public String updateCart(@RequestParam int cart_idx, @RequestParam int resPerson) {
-	    try {
-	        cartService.updateCart(cart_idx, resPerson);
-	        return "true";
-	    } catch (Exception e) {
-	        return "false";
-	    }
+	        int updateCart = cartService.updateCart(cart_idx, resPerson);
+	        if(updateCart > 0) {
+	        	return "true";
+	        }else {
+	        	return "false";
+	        }
 	}
 	
 	
