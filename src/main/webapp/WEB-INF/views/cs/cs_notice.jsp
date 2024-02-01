@@ -63,7 +63,7 @@
             </div>
         </div>
      	<br>
-            <div class="container">
+            <div class="container" id="csNotice">
 	        <span>
 	        	<button type="button" class="notice_point" onclick=>전체</button>
 	        	<button type="button" class="notice_point" onclick=>공지</button>

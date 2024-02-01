@@ -79,8 +79,12 @@
                     <div class="col-md-3">
                         <select class="form-control" id="serviceType">
                             <option disabled selected>서비스 종류 선택</option>
-                            <option>서비스1</option>
-                            <option>서비스2</option>
+                            <option>시공</option>
+                            <option>설치 및 수리</option>
+                            <option>리모델링</option>
+                            <option>리폼</option>
+                            <option>인테리어</option>
+                            <option>기타</option>
                         </select>
                     </div>
                 </div>

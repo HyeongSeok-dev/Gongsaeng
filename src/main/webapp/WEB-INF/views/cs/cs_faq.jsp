@@ -53,6 +53,7 @@
     </head>
     <body>
     <jsp:include page="../inc/top.jsp"></jsp:include>
+    <section>
        	<div class="page-head"> 
             <div class="container">
                 <div class="row">
@@ -65,7 +66,7 @@
 		<br>
 		<div class="container">
 	        <nav>
-			  <div class="container row" style="float: none; margin:100 auto;">
+			  <div class="row" style="float: none; margin:100 auto;">
 			    <div class="faq_row">
 			        <div class="col-lg-12">
 						<div>
@@ -344,6 +345,7 @@
 			    </div>
 			</nav>
 		</div>
+	</section>	
 		<!-- Footer area -->
 		<!-- 하단바 삽입-->
 		<div class="bottom">

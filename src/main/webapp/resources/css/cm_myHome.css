@@ -104,10 +104,15 @@ body {
 }
 
 .h4_community {
-    font-size: 18px;
+    font-size: 15px;
     margin: 0 0 10px;
 }
 
 .heart-icon {
     font-size: 22px;
+    color: #FF1212;
+}
+
+.fa-heart-o {
+    color: white;
 }

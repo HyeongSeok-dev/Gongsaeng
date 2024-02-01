@@ -91,13 +91,13 @@
 					    </a>
 					    <div class="content">
 					        <a href="#" class="pull-right">
-					            <i class="fa fa-heart heart-icon"></i>
+					            <i class="fa fa-heart-o heart-icon"></i>
 					        </a>
 					    </div>
 					</div>
                     <div align="center">
 					    <h4 class="h4_community">쇼룸 같은 집</h4>
-					    <i class="fa fa-heart"></i> <span id="likeCount">0</span>
+					    <i class="fa fa-heart"></i> <span class="likeCount">0</span>
 					</div>
                 </div>
                 <!-- 카드 2 -->
@@ -110,14 +110,14 @@
 	                        </div>
                         </a>
                         <div class="content">
-                           <a href="#" class="pull-right">
-                               <i class="fa fa-heart heart-icon"></i>
-                           </a>
+	                        <a href="#" class="pull-right">
+	                            <i class="fa fa-heart-o heart-icon"></i>
+	                        </a>
                         </div>
                     </div>
                     <div align="center">
 					    <h4 class="h4_community">40년된 시골집을 개조</h4>
-					    <i class="fa fa-heart"></i> <span id="likeCount">0</span>
+					    <i class="fa fa-heart"></i> <span class="likeCount">0</span>
 					</div>
                 </div>
                 <!-- 카드 3 -->
@@ -130,15 +130,15 @@
 				            </div>
 				        </a>
 				        <div class="content">
-				            <a href="#" class="pull-right" id="likeButton">
-				                <i class="fa fa-heart heart-icon"></i>
+				            <a href="#" class="pull-right">
+				                <i class="fa fa-heart-o heart-icon"></i>
 				            </a>
 				        </div>
 				    </div>
-				</div>
 				<div align="center">
 				    <h4 class="h4_community">고양이와 함께 하는 집</h4>
-				    <i class="fa fa-heart"></i> <span id="likeCount">0</span>
+				    <i class="fa fa-heart"></i> <span class="likeCount">0</span>
+				</div>
 				</div>
             </div>
             <div class="row">
@@ -152,14 +152,14 @@
 	                        </div>
                         </a>
                         <div class="content">
-                          <a href="#" class="pull-right">
-                              <i class="fa fa-heart heart-icon"></i>
-                          </a>
+	                        <a href="#" class="pull-right">
+	                            <i class="fa fa-heart-o heart-icon"></i>
+	                        </a>
                         </div>
                     </div>
                     <div align="center">
 					    <h4 class="h4_community">쇼룸 같은 집</h4>
-					    <i class="fa fa-heart"></i> <span id="likeCount">0</span>
+					    <i class="fa fa-heart"></i> <span class="likeCount">0</span>
 					</div>
                 </div>
                 <!-- 카드 5 -->
@@ -172,14 +172,14 @@
 	                        </div>
                         </a>
                         <div class="content">
-                          <a href="#" class="pull-right">
-                              <i class="fa fa-heart heart-icon"></i>
-                          </a>
-                        </div>
+	                        <a href="#" class="pull-right">
+                            	<i class="fa fa-heart-o heart-icon"></i>
+	                        </a>
+                       </div>
                     </div>
                     <div align="center">
 					    <h4 class="h4_community">우리집</h4>
-					    <i class="fa fa-heart"></i> <span id="likeCount">0</span>
+					    <i class="fa fa-heart"></i> <span class="likeCount">0</span>
 					</div>
                 </div>
                 <!-- 카드 6 -->
@@ -192,14 +192,14 @@
 	                        </div>
 	                    </a>
                         <div class="content">
-                          <a href="#" class="pull-right">
-                              <i class="fa fa-heart heart-icon"></i>
-                          </a>
+	                        <a href="#" class="pull-right">
+	                            <i class="fa fa-heart-o heart-icon"></i>
+	                        </a>
                         </div>
                     </div>
                     <div align="center">
 					    <h4 class="h4_community">구축 아파트 리모델링</h4>
-					    <i class="fa fa-heart"></i> <span id="likeCount">0</span>
+					    <i class="fa fa-heart"></i> <span class="likeCount">0</span>
 					</div>
                 </div>
             </div>

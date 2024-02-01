@@ -36,6 +36,25 @@ $(document).ready(function() {
         readURL(this);
         this.value = null;
     });
+    
+    $(".heart-icon").on("click", function() {
+        var $this = $(this);
+        var likeCountElement = $this.closest('.col-sm-4').find('.likeCount');
+        var likeCount = parseInt(likeCountElement.text());
+
+        if ($this.hasClass('fa-heart-o')) {
+            $this.removeClass('fa-heart-o').addClass('fa-heart');
+            likeCountElement.text(likeCount + 1);
+        } else {
+            $this.removeClass('fa-heart').addClass('fa-heart-o');
+            likeCountElement.text(likeCount - 1);
+        }
+
+        // 여기서는 좋아요 수를 로컬 스토리지에 저장하고 있습니다.
+        // 실제 웹사이트에서는 좋아요 수를 서버에 저장하고 불러오는 API를 사용해야 합니다.
+        localStorage.setItem('likeCount', likeCountElement.text());
+    });
+    
 });
 
 

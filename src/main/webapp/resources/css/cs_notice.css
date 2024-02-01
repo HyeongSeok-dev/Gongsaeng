@@ -52,3 +52,7 @@ body {
     padding: 0px 0px 1em;
 /*     margin: 0; */
 }
+
+#csNotice {
+	min-height: 800px;
+}

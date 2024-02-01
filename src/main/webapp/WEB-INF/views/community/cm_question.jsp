@@ -94,10 +94,13 @@
 			        <div class="col-sm-12 text-left">
 			            <button class="btn btn-primary" id="resetButton" style="margin-right: 10px;">초기화</button>
 			            <select class="form-control" id="serviceType" style="display: inline-block; width: auto;">
-			                <option>서비스1</option>
-			                <option>서비스2</option>
-			                <option>서비스3</option>
-			                <option>서비스4</option>
+			            	<option disabled selected>서비스</option>
+			                <option>시공</option>
+                            <option>설치 및 수리</option>
+                            <option>리모델링</option>
+                            <option>리폼</option>
+                            <option>인테리어</option>
+                            <option>기타</option>
 			            </select>
 			        </div>
 			    </div>
