@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'> -->
 <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
@@ -67,24 +67,24 @@ function openCenteredWindow(url, name, width, height) {
 	            	</a>        		
         		</c:when>
         		
-        		<%-- 일반 회원일 경우 --%>
-        		<c:when test="${sessionScope.sCategory eq 1}">
+        		<%-- 일반 회원(관리자X)일 경우 --%>
+        		<c:when test="${sessionScope.sCategory eq 1 and sessionScope.sId ne 'admin1234'}">
 	            	<a href="${pageContext.request.contextPath}/mypage/main">
 						<button class="navbar-btn nav-button_not" data-wow-delay="0.45s"><b>${sessionScope.sNick}</b>님</button>
 					</a>
 
 					<%-- 알림 --%>
 					<div class="notify_dropdown">
-						<button class="navbar-btn nav-button wow bounceInRight login" onclick="toggleDropdownMenu(event)">
-							알림<span class="badge2">39</span>
+						<button class="navbar-btn nav-button wow bounceInRight login" onclick="toggleDropdownMenu(event)" style="position: relative; z-index: 2;">
+							알림<span class="badge1">3</span>
 						</button>
 						
 						<div class="notify_dropdown-content">
 							  
 							<div class="container-fluid">
-								<div class="row">
+								<div class="row notify_category">
 									<div class="col-sm-3" style="text-align:center;">
-										<button onclick="notify_button(this.value)" value="1" class="notify_button">알림</button>
+										<button onclick="notify_button(this.value)" value="1" class="notify_button first">알림</button>
 									</div>
 									<div class="col-sm-4" style="text-align:center;">
 										<button onclick="notify_button(this.value)" value="2" class="notify_button">공지사항</button>
@@ -105,11 +105,13 @@ function openCenteredWindow(url, name, width, height) {
 									<div class="row">
 										<div class="col-sm-12">
 										
+											<%-- 알림 - 알림 --%>
 											<div class="notify_p notify_button_1">
 												<b>01-19 18:00</b><br>
 												알림[미드센츄리모든학개론] 수업은 어떠셨나요? 수강후기를 남기시면 500포인트가 적립됩니다.
 											</div>
 											
+											<%-- 알림 - 공지사항 --%>
 											<div class="notify_p notify_button_2" style="display: none;">
 												<b>01-19 18:00</b><br>
 												공지사항1[미드센츄리모든학개론] 수업은 어떠셨나요? 수강후기를 남기시면 500포인트가 적립됩니다.
@@ -122,7 +124,16 @@ function openCenteredWindow(url, name, width, height) {
 												<b>01-19 18:00</b><br>
 												공지사항3[미드센츄리모든학개론] 수업은 어떠셨나요? 수강후기를 남기시면 500포인트가 적립됩니다.
 											</div>
+											<div class="notify_p notify_button_2" style="display: none;">
+												<b>01-19 18:00</b><br>
+												공지사항4[미드센츄리모든학개론] 수업은 어떠셨나요? 수강후기를 남기시면 500포인트가 적립됩니다.
+											</div>
+											<div class="notify_p notify_button_2" style="display: none;">
+												<b>01-19 18:00</b><br>
+												공지사항5[미드센츄리모든학개론] 수업은 어떠셨나요? 수강후기를 남기시면 500포인트가 적립됩니다.
+											</div>
 											
+											<%-- 알림 - 이벤트 --%>
 											<div class="notify_p notify_button_3" style="display: none;">
 												<b>01-19 18:00</b><br>
 												이벤트1[미드센츄리모든학개론] 수업은 어떠셨나요? 수강후기를 남기시면 500포인트가 적립됩니다.
@@ -132,36 +143,31 @@ function openCenteredWindow(url, name, width, height) {
 												이벤트2[미드센츄리모든학개론] 수업은 어떠셨나요? 수강후기를 남기시면 500포인트가 적립됩니다.
 											</div>
 											
+											<%-- 알림 - 설정 --%>
 											<div class="notify_p notify_button_4" style="display: none; background-color: #fff">
 
 												<fieldset>
 													<div class="switch_area">
 														<label class="swich_label">
-															<input role="switch" type="checkbox" class="switch_checkbox"/>
-															<span>알람</span>
+															<input role="switch" type="checkbox" class="switch_checkbox"/><span>알람</span>
 														</label>
 														<label class="swich_label">
-															<input role="switch" type="checkbox" class="switch_checkbox"/>
-															<span>공지사항</span>
+															<input role="switch" type="checkbox" class="switch_checkbox"/><span>공지사항</span>
 														</label>
 														<label class="swich_label">
-															<input role="switch" type="checkbox" class="switch_checkbox"/>
-															<span>이벤트</span>
+															<input role="switch" type="checkbox" class="switch_checkbox"/><span>이벤트</span>
 														</label>
 														
 														<hr>
 														
 														<label class="swich_label">
-															<input role="switch" type="checkbox" class="switch_checkbox"/>
-															<span>이메일 알림</span>
+															<input role="switch" type="checkbox" class="switch_checkbox"/><span>이메일 알림</span>
 														</label>
 														<label class="swich_label">
-															<input role="switch" type="checkbox" class="switch_checkbox"/>
-															<span>문자 알림</span>
+															<input role="switch" type="checkbox" class="switch_checkbox"/><span>문자 알림</span>
 														</label>
 <!-- 														<label class="swich_label"> -->
-<!-- 															<input role="switch" type="checkbox" class="switch_checkbox" disabled/> -->
-<!-- 															<span>알람 (비활성화)</span> -->
+<!-- 															<input role="switch" type="checkbox" class="switch_checkbox" disabled/><span>알람 (비활성화)</span> -->
 <!-- 														</label> -->
 													</div>
 												</fieldset>
@@ -176,13 +182,19 @@ function openCenteredWindow(url, name, width, height) {
 					</div>
 					
 					<%-- 장바구니--%>
-<%-- 					<a href="${pageContext.request.contextPath}/cart"> --%>
-<!-- 						<button class="navbar-btn nav-button wow fadeInRight" data-wow-delay="0.48s">카트</button> -->
-<!-- 					</a> -->
 	                <%-- 장바구니에 담은 상품이 있을 경우 --%>
 					<a href="${pageContext.request.contextPath}/cart">
 		                <button id="cartList" class="navbar-btn nav-button wow bounceInRight login" data-wow-delay="0.48s">
-		                	장바구니<span class="badge2">55</span>
+		                	장바구니
+		                	<c:set var="cartCount" value="${fn:length(cartList)}"></c:set>
+	                		<%-- 장바구니 갯수가 0보다 크고 10보다 작을 경우 --%>
+	                		<c:if test="${cartCount gt 0 and cartCount lt 10}">
+	                			<span class="badge1">${cartCount}</span>
+	                		</c:if>
+	                		<%-- 장바구니 갯수가 10과 같거나 클 경우 --%>
+	                		<c:if test="${cartCount ge 10}">
+	                			<span class="badge2">${cartCount}</span>
+	                		</c:if>
 		                </button>
 	                </a>
 					<a href="${pageContext.request.contextPath}/member/logout">
@@ -253,7 +265,7 @@ function openCenteredWindow(url, name, width, height) {
         		</c:when>
         		
         		<%-- 관리자 회원일 경우 --%>
-        		<c:when test="${sessionScope.sId eq 'admin'}">
+        		<c:when test="${sessionScope.sId eq 'admin1234'}">
 	            	<a href="${pageContext.request.contextPath}/admin/main">
 						<button class="navbar-btn nav-button_not" data-wow-delay="0.45s"><b>관리자</b>님</button>
 					</a>

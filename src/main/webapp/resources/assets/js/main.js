@@ -39,33 +39,34 @@ $(document).ready(function () {
 
     });
     $("#testimonial-slider").owlCarousel({
-        navigation: false, // Show next and prev buttons
-        slideSpeed: 100,
-        pagination: true,
-        paginationSpeed: 100,
-        items: 3
+		navigation: false, // Show next and prev buttons
+		slideSpeed: 100,
+		pagination: true,
+		paginationSpeed: 100,
+		items: 3
     });
     
     // 메인 클래스카드(마감임박순) 슬라이더
     $(".deadlineClass-slider").owlCarousel({
-	        navigation: true,
-	        smartSpeed: 500,
-//	        autoplay: true,
-	        autoplayTimeout: 5000,
-	        items: 3,
-	        mouseDrag: true,
-	        loop: false
+		nav: true,
+		dots: false,
+		smartSpeed: 500,
+		autoplayTimeout: 5000,
+		items: 3,
+		mouseDrag: true,
+		loop: false
 	});
 	
 	// 메인 리뷰카드(최신순) 슬라이더
     $(".recentReview-slider").owlCarousel({
-	        navigation: true,
-	        smartSpeed: 500,
-//	        autoplay: true,
-	        autoplayTimeout: 5000,
-	        items: 3,
-	        mouseDrag: true,
-	        loop: false
+//        navigation: true,
+        nav: true,
+        dots: false,
+        smartSpeed: 500,
+        autoplayTimeout: 5000,
+        items: 3,
+        mouseDrag: true,
+        loop: false
 	});
 	
 })
@@ -90,7 +91,10 @@ $(document).ready(function () {
 // 알림 카테고리 클릭 시 해당 알림 보여주는 이벤트
 function notify_button(value) {
 	var notifyButtons = document.querySelectorAll('.notify_button_' + value);
-	
+	var $button = $('button:not(.notify_setting)[value="' + value + '"]');
+
+	$('.notify_button').css({'font-weight': 'normal', 'background' : 'none'});
+	$button.css({'font-weight': 'bold', 'background' : 'linear-gradient(to top, #ddd 40%, transparent 20%)'});
 	$('.notify_p').css('display', 'none');
 	notifyButtons.forEach(function(button) {
 		button.style.display = '';
@@ -119,14 +123,25 @@ $(document).ready(function () {
 	    }
 	});
 	
-	$('#price-range').slider();
-    $('#property-geo').slider();
+//    $('#time-range').slider();
+//    $('#property-geo').slider();
+    $('#price-range').slider();
     $('#min-baths').slider();
     $('#min-bed').slider();
 
-    var RGBChange = function () {
-        $('#RGB').css('background', '#FDC600')
-    };
+	// timepicker : 클래스 시간 드롭다운 형식 커스텀
+	$('input.timepicker').timepicker({
+        timeFormat: 'HH:mm',
+        interval: 1,
+        startTime: '00:00',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: false
+    });
+        
+//    var RGBChange = function () {
+//        $('#RGB').css('background', '#FDC600')
+//    };
 
     // Advanced search toggle
     var $SearchToggle = $('.search-form .search-toggle');

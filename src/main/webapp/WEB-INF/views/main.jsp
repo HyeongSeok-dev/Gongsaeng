@@ -919,12 +919,12 @@ function toggleButtons() {
 	<%-- 캐러셀_이벤트 area --%>
 
     <!-- 최근 리뷰 area -->
-    <div class="content-area recent-property" style="background-color: background-color: #FCFCFC; padding-bottom: 100px;">
+    <div class="content-area recent-property recentReview-property" style="background-color: background-color: #FCFCFC; padding-bottom: 100px;">
         <div class="container">   
             <div class="row">
-                <div class="col-md-12  padding-top-40 properties-page">
-                    <div class="col-md-12 "> 
-					<h2 class="class_card_h2">최신 리뷰</h2>
+                <div class="col-md-12  padding-top-60 properties-page">
+                    <div class="col-md-12"> 
+						<h2 class="class_card_h2">최신 리뷰</h2>
                     </div>
 
 	                <div class="col-md-12 ">

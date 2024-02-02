@@ -841,7 +841,8 @@ label small{
     padding: 5px 10px;
     /* ### */
     /* 알림배지를 앞으로 */
-/*     position: relative; */
+	position: relative;
+	z-index: 1;
 }
 .nav-button:hover{
     background-color: #494C53;
@@ -1866,6 +1867,9 @@ padding: 0 0 0.5em;
 }
 .padding-top-40{
     padding-top: 40px;
+}
+.padding-top-60{
+    padding-top: 60px;
 }
 .padding-bottom-40{
     padding-bottom: 40px;
@@ -2920,7 +2924,9 @@ padding-bottom: 15px;
     padding: 20px 0px;
     box-sizing: border-box;
     position: relative;
-    z-index: 9;
+    /* 임시 */
+/*     z-index: 9; */
+    z-index: 1;
     border: 1px solid #E6E6E6;
     box-shadow: 0px 0px 1px rgba(0, 0, 0, 0);
     display: inline-block;
@@ -3497,22 +3503,50 @@ padding-bottom: 15px;
 
 /* ### */
 /* 배지 */
-.badge {
+/* 갯수가 한자릿수일 때 */
+.badge1 {
     display: inline-block;
-    min-width: 10px;
-    padding: 2px 5px;
-    font-size: 10px;
-    font-weight: 700;
-    line-height: 1;
+    min-width: 20px;
+    padding: 0 8px;
+    font-size: 0.6rem;
+    font-weight: 600;
+    line-height: 22px;
     color: #fff;
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
     background-color: #777;
-    border-radius: 10px;
-    margin-top: -4px
+    border-radius: 20px;
+    margin-top: -15px;
+    position: absolute;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.28);
+    border: 1px solid rgba(0,0,0,.04);
+    z-index: 10;
+    box-sizing: border-box;
 }
+/* 갯수가 두자릿수일 때 */
 .badge2 {
+    display: inline-block;
+    min-width: 20px;
+    padding: 0 5px;
+    font-size: 0.6rem;
+    font-weight: 600;
+    line-height: 22px;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #777;
+    border-radius: 20px;
+    margin-top: -15px;
+    position: absolute;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.28);
+    border: 1px solid rgba(0,0,0,.04);
+    z-index: 10;
+    box-sizing: border-box;
+}
+/* 기존 코드 - 차후 삭제예정  */
+.badge3 {
 	display: inline-block;
 	min-width: 20px;
 	padding: 0 5px;
@@ -3532,7 +3566,6 @@ padding-bottom: 15px;
 	z-index: 10;
 	box-sizing: border-box;
 }
-
 
 /* ### */
 /* 하트(찜) 오버레이 */
@@ -3793,21 +3826,7 @@ padding-bottom: 15px;
 	border-radius: 5px;
 	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 10px;
  	inset: 40px -50px auto auto;
-	overflow-y: auto;
-	max-height: 300px;
-}
-/* 스크롤바 막대 */
-.notify_dropdown-content::-webkit-scrollbar {
-    width: 10px;
-  }
-.notify_dropdown-content::-webkit-scrollbar-thumb {
-    background: #ddd;
-    border-radius: 12px 12px 12px 12px;
-}
-.notify_dropdown-content::-webkit-scrollbar-button:vertical:start:decrement,
-.notify_dropdown-content::-webkit-scrollbar-button:vertical:start:increment {
-    display: block;
-    height: 25px;
+	max-height: 400px;
 }
 .notify_dropdown-content a {
 	color: black;
@@ -3820,8 +3839,8 @@ padding-bottom: 15px;
 }
 .notify_button {
 	background-color: rgba(0,0,0,0);
-	margin-top: 20px;
-	margin-bottom: 10px;
+	padding-top: 20px;
+	padding-bottom: 14px;
 	color: #000;
     font-weight: 400;
 }
@@ -3832,8 +3851,13 @@ padding-bottom: 15px;
     font-weight: 400;
     margin-left: -15px
 }
-.container-fluid .col-sm-3:hover, .col-sm-4:hover, .col-sm-2:hover {
-	background-color: #ddd;
+.container-fluid button:not(.notify_setting):hover {
+	font-weight: bold;
+	background: linear-gradient(to top, #ddd 40%, transparent 20%);
+}
+.container-fluid .first {
+	font-weight: bold;
+	background: linear-gradient(to top, #ddd 40%, transparent 20%);
 }
 .notify_p {
     margin-top: 10px;
@@ -3847,7 +3871,20 @@ padding-bottom: 15px;
 }
 .notify_content {
 	margin-bottom: 15px;
+	max-height: 300px;
+	/* 스크롤바 생성 */
+	overflow-y: auto;
+	/* 가로 스크롤 숨기기 */
+	overflow-x: hidden;
+	/* 스크롤바 숨기기 */
+	-ms-overflow-style: none;
 }
+.notify_content::-webkit-scrollbar {
+    width: 10px;
+	/* 스크롤바 숨기기 */
+    display: none !important;
+}
+
 /* 스위치 */
 label {
   display: inline-flex;
@@ -3932,6 +3969,12 @@ fieldset {
 	vertical-align: top;
 	margin-right: auto;
 }
+/* 상세검색 - 클래스 시간 선택 */
+.class_time {
+	display: inline-flex;
+	vertical-align: top;
+	margin-right: auto;
+}
 
 .not_hover:hover {
     background-color: rgba(0,0,0,0);
@@ -3977,7 +4020,7 @@ fieldset {
     color: #494C53;
     font-weight: bold;
 }
-
+/* 상세검색 초기화, 검색 버튼 */
 .form_button {
 	font-size: 16px;
 /* 	margin-top: 10px; */
@@ -3985,11 +4028,107 @@ fieldset {
 	color: #C2C2C2;
 	float: right;
 	text-align: right;
-	margin-left: 20px;
+	padding-bottom: 5px;
+	margin: -20px 20px 0 20px;
+}
+.form_button button {
+/* 	float: right; */
+	padding: 8px;
+	margin-left: 10px;  
+	width: 100px;
+}
+.form_button button:hover {
+	background-color: #494C53;
+	color: #fff;
+}
+.form_button button[type="submit"] {
+    background-color: #494C53;
+    color: #fff;
+}
+.form_button button[type="submit"]:hover {
+    background-color: #F0F0F0;
+    color: #494C53;
 }
 
-.form_button button {
-	float: right;
-	padding: 10px;
-	margin-left: 15px;    
+.form-inline input[type="text"], select {
+    color: #494C53 !important;
 }
+
+/* 상세검색란 - timepicker */
+.bootstrap-select.btn-group .dropdown-menu {
+    margin: auto;
+}
+.ui-timepicker-standard {
+	z-index: 1000 !important;
+	position: absolute;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border-top: none !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    font-family: 'NanumSquareNeo-Variable';
+}
+.ui-timepicker-standard .ui-state-hover {
+	color: #262626;
+	text-decoration: none;
+	background-color: #f5f5f5;
+	border: none;
+	font-weight: normal;
+}
+.ui-timepicker-standard a {
+    border: none;
+    display: block;
+    text-decoration: none;
+	padding: 9px 20px;
+	clear: both;
+	font-weight: 400;
+	line-height: 1.42857;
+	color: #333;
+	white-space: nowrap;
+}
+
+/* 최근 리뷰순 */
+.recentReview-property .proerty-th {
+    /* margin-left: -9px; */
+    margin: 0px 0px 0px -9px;
+}
+
+/* 슬라이더 네비게이션 */
+.owl-carousel .owl-nav {
+    position: absolute;
+	top: -55px;
+	right: 0.5%;
+}
+.recentReview-slider .owl-nav {
+    position: absolute;
+	top: -55px;
+	right: -0.3%;
+}
+
+.owl-carousel .owl-nav .owl-prev,
+.owl-carousel .owl-nav .owl-next {
+    width: 30px;
+    height: 30px;
+}
+.owl-theme .owl-nav [class*=owl-]:hover {
+    background: #494C53;
+    color: #FFF;
+    text-decoration: none;
+}
+.owl-carousel .owl-nav button.owl-next, .owl-carousel .owl-nav button.owl-prev {
+    border: 1px solid #494C53;
+    border-radius: 20px;
+/*     background: 0 0; */
+/*     color: inherit; */
+/*     padding: 0!important; */
+/*     font: inherit; */
+}
+

@@ -177,10 +177,17 @@
 				this.selectionElStyle.width = Math.abs(this.percentage[0] - this.percentage[1]) +'%';
 			}
 			if (this.range) {
+				
+				// 숫자를 천 단위로 표시(미국식)
+				this.formater = function(value) {
+					return value.toLocaleString('en-US');
+				};
+
 				this.tooltipInner.text(
 					this.formater(this.value[0]) + 
-					' : ' + 
-					this.formater(this.value[1])
+					'원 ~ ' + 
+					this.formater(this.value[1]) +
+					'원'
 				);
 				this.tooltip[0].style[this.stylePos] = this.size * (this.percentage[0] + (this.percentage[1] - this.percentage[0])/2)/100 - (this.orientation === 'vertical' ? this.tooltip.outerHeight()/2 : this.tooltip.outerWidth()/2) +'px';
 			} else {

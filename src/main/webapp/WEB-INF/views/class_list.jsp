@@ -16,7 +16,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
-	
+    
 	<%-- css 파일 --%>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/normalize.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/font-awesome.min.css">
@@ -28,6 +28,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/icheck.min_all.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/price-range.css">
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">	<%-- TimePicker : input type="time" 형식 변경 --%>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/owl.carousel.css">  
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/owl.theme.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/owl.transitions.css">
@@ -134,7 +135,7 @@
 	                        </div>
 	                        
 	                        <div class="col-md-12">
-	                        	<%-- 원데이 --%>
+	                        	<%-- 원데이 클래스일 경우 --%>
 								<div class="col-md-4 class_oneday_button">
 									<select id="basic" class="selectpicker show-tick form-control" title="요일">
 										<option>평일</option>
@@ -142,27 +143,30 @@
 										<option>일요일</option>  
 									</select>
 								</div>
-								<%-- 정규모집 --%>
+								<%-- 정규모집 클래스일 경우 --%>
 								<div class="col-md-4 class_date_button" style="display: none;">
-									<input type="text" id="date" class="form-control" name="class_startDate" style="margin-right: auto;"
+									<input type="text" id="date1" class="form-control" name="class_startDate" style="margin-right: auto;"
 											onchange="select_class_startDate()" onfocus="this.type='date'; this.value='';" value="시작일">
 									<span><b style="vertical-align: text-top;">&nbsp;~&nbsp;</b></span>
-									<input type="text" id="date" class="form-control" name="class_endDate" style="margin-right: auto;"
+									<input type="text" id="date2" class="form-control" name="class_endDate" style="margin-right: auto;"
 											onchange="select_class_endDate" onfocus="this.type='date'; this.value='';" value="종료일">
 								</div>
 								
-								<div class="col-sm-4 not_hover">
-									<label for="property-geo">시작시간 ~ 종료시간</label>
-									<input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[50,450]" id="property-geo"><br />
-									<b class="pull-left color">40m</b> 
-									<b class="pull-right color">12000m</b>
+								<%-- 클래스 시간 --%>
+								<div class="col-md-4 class_time">
+									<input type="text" id="timepicker1" class="form-control timepicker" name="class_startTime" style="margin-right: auto;"
+										onchange="select_class_startTime()" value="시작시간">
+									<span><b style="vertical-align: text-top;">&nbsp;~&nbsp;</b></span>
+									<input type="text" id="timepicker2" class="form-control timepicker" name="class_endTime" style="margin-right: auto;"
+										onchange="select_class_endTime" value="종료시간">
 								</div>
-
+								
+								<%-- 클래스 금액 --%>
 								<div class="col-sm-4 not_hover">
 									<label for="price-range">금액</label>
-									<input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[0,450]" id="price-range"><br />
-									<b class="pull-left color">2000$</b>
-									<b class="pull-right color">100000$</b>
+									<input type="text" class="span2" value="[10000,100000]" data-slider-min="0" data-slider-max="1000000" data-slider-step="1000" data-slider-value="[0,1000000]" id="price-range"><br/>
+									<b class="pull-left color">0원</b>
+									<b class="pull-right color">1,000,000원</b>
 								</div>
 	                        </div>	
 	                                
@@ -1050,6 +1054,7 @@
 	<script src="${pageContext.request.contextPath}/resources/assets/js/wow.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/icheck.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/price-range.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>	<%-- TimePicker : input type="time" 형식 변경 --%>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/main.js"></script>
 </body>
 </html>
