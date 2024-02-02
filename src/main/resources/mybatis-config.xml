@@ -9,8 +9,11 @@
 		<typeAlias type="kr.co.gongsaeng.vo.MailAuthInfoVO"  alias="mailAuthInfo"/>
 		<typeAlias type="kr.co.gongsaeng.vo.ReportVO"  alias="report"/>
 		<typeAlias type="kr.co.gongsaeng.vo.ReviewVO"  alias="review"/>
+<<<<<<< HEAD
 		<typeAlias type="kr.co.gongsaeng.vo.CartVO"  alias="cart"/>
 		<typeAlias type="kr.co.gongsaeng.vo.CartListVO"  alias="cartList"/>
+=======
 		<typeAlias type="kr.co.gongsaeng.vo.BoardVO"  alias="board"/>
+>>>>>>> stash
 	</typeAliases>
 </configuration>
