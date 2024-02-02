@@ -146,7 +146,7 @@ public class MemberController {
 			MemberVO member = service.requestIdAuth(authInfo);
 			model.addAttribute("member", member);
 			service.removeAuthInfo(authInfo.getMail_auth_email()); // 인증정보 삭제
-			return "member/login_result_id";
+			return "member/find_id_result";
 		} else { // 실패 
 			model.addAttribute("msg", "인증 실패!");
 			return "fail_back";
@@ -167,7 +167,7 @@ public class MemberController {
 		System.out.println("불린값" + isAuthSuccess);
 		if(isAuthSuccess) { // 성공
 			model.addAttribute("authInfo", authInfo);
-			return "member/update_passwd";
+			return "member/find_passwd_result";
 		} else { // 실패 
 			model.addAttribute("msg", "인증 실패!");
 			return "fail_back";
@@ -193,7 +193,7 @@ public class MemberController {
 		int updateCount = service.updatePasswd(member);
 		if(updateCount > 0) { //성공
 			model.addAttribute("msg", "비밀번호가 변경되었습니다.");
-			model.addAttribute("targetURL", "login");
+			model.addAttribute("targetURL", "member/login");
 			service.removeAuthInfo(authInfo.getMember_id()); // 이거 호출하라 함
 			return "forward";
 		}else {
@@ -321,6 +321,17 @@ public class MemberController {
 		}
 	}
 	
+	@GetMapping("member/phoneAuthIsCorrect")
+	@ResponseBody
+	public String phoneAuthIsCorrect(@RequestParam(defaultValue = "")int phone_auth_code) {
+		System.out.println(phoneAuthCode);
+		System.out.println(phone_auth_code);
+		if(phoneAuthCode == phone_auth_code) {
+			return "true";
+		}else {
+			return "false";
+		}
+	}
 	@GetMapping("member/logout")
 	public String logout(HttpSession session) {
 		// 세션 초기화

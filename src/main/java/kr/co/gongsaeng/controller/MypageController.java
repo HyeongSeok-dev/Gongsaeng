@@ -1,14 +1,31 @@
 package kr.co.gongsaeng.controller;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import kr.co.gongsaeng.service.MypageService;
+import kr.co.gongsaeng.vo.MemberVO;
 
 @Controller
 public class MypageController {
 	
+	@Autowired
+	MypageService service;
+	
 	@GetMapping("mypage/main")
-	public String main() {
+	public String main(HttpSession session, Model model, MemberVO member) {
+		if(session.getAttribute("sId") == null) {
+			model.addAttribute("msg", "로그인이 필요합니다");
+			model.addAttribute("targetURL", "/gongsaeng/login");
+			return "forward";
+		}
+//		member = service.getMemberInfo(member);
+		model.addAttribute("member", member);
 		return "mypage/my_main";
 	}
 

@@ -146,19 +146,19 @@
 				<div class="form-group">
 					<label for="u_phone" class="col-sm-1 control-label">전화번호</label>
 					<div class="col-sm-5">
-						<input type="text" id="u_phone" required name="member_phone" class="form-control" placeholder="전화번호 (' - ' 를 빼고 입력)" maxlength="100">
+						<input type="text" id="u_phone" required name="member_phone" class="form-control" placeholder="전화번호 (' - ' 를 빼고 입력)" maxlength="100" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 					</div>
 					<div class="col-sm-3 text-center">
-						<button type="button" class="btn btn-info" id="auth_phone_number_btn">인증하기</button>
+						<button type="button" class="btn btn-info" id="auth_phone_number_btn" disabled="disabled">인증하기</button>
 					</div>
 					<div class="col-sm-3">
 						<span id="checkPhoneResult"></span>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="u_email" class="col-sm-1 control-label">전화번호 인증</label>
+					<label for="u_email" class="col-sm-1 control-label">전화번호<br>인증</label>
 					<div class="col-sm-8">
-						<input type="text" id="phone_auth_input" required class="form-control" placeholder="인증번호를 입력하세요">
+						<input type="text" id="phone_auth_input" required class="form-control" placeholder="인증번호를 입력하세요" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 					</div>
 					<div class="col-sm-3">
 						<span id="phoneAuthResult"></span>

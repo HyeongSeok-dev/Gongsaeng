@@ -29,7 +29,7 @@
 <link href="${pageContext.request.contextPath }/resources/assets/css/animate.css" rel="stylesheet" media="screen">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/bootstrap-select.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/icheck.min_all.css">
+<%--         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/icheck.min_all.css"> --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/price-range.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/owl.carousel.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/owl.theme.css">
@@ -37,7 +37,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/responsive.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/global.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/mypage.css">
 
 <script src="${pageContext.request.contextPath }/resources/assets/js/modernizr-2.6.2.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
@@ -49,85 +48,32 @@
 <script src="${pageContext.request.contextPath }/resources/assets/js/jquery.easypiechart.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/owl.carousel.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/wow.js"></script>
-<script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
+<%--         <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script> --%>
 <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
-<script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/mypage.js"></script>
+<%--         <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script> --%>
+<script src="${pageContext.request.contextPath }/resources/assets/js/main_noicheck.js"></script>
+
 
 </head>
 <body>
-	<jsp:include page="../inc/top.jsp"></jsp:include>
-	<br>
 	<div class="container">
 		<div class="row">
-			<!-- 좌측 메뉴바 -->
-			<div class="col-sm-3">
-			<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png">
+			<div class="col-md-4 col-md-offset-4">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h4 class="panel-title text-center cursor" onclick="javascript:location.href='main'">마이페이지</h4>
+						<h3 class="panel-title">아이디 찾기 결과</h3>
 					</div>
 					<div class="panel-body">
-						<ul class="list-group">
-							<li class="list-group-item cursor" onclick="javascript:location.href='reservation'">예약 내역</li>
-							<li class="list-group-item cursor" data-toggle="collapse" href="#alert">알림/메시지
-								<div id="alert" class="panel-collapse collapse in ">
-									<ul class="list-group">
-										<li class="list-group-item cursor active" onclick="javascript:location.href='alert'">알림</li>
-										<li class="list-group-item cursor" onclick="javascript:location.href='messages'">메시지</li>
-									</ul>
-								</div>
-							</li>
-							<li class="list-group-item cursor" data-toggle="collapse" href="#offer">혜택
-								<div id="offer" class="panel-collapse collapse">
-									<ul class="list-group">
-										<li class="list-group-item cursor" onclick="javascript:location.href='coupon'">쿠폰</li>
-										<li class="list-group-item cursor" onclick="javascript:location.href='cash'">캐쉬</li>
-										<li class="list-group-item cursor " onclick="javascript:location.href='point'">포인트</li>
-									</ul>
-								</div>
-							</li>
-							<li class="list-group-item cursor" data-toggle="collapse" href="#favorList">관심리스트
-								<div id="favorList" class="panel-collapse collapse">
-									<ul class="list-group">
-										<li class="list-group-item cursor " onclick="javascript:location.href='bookmark'">북마크</li>
-										<li class="list-group-item cursor " onclick="javascript:location.href='following'">팔로우</li>
-										<li class="list-group-item cursor " onclick="javascript:location.href='recent'">최근 본 클래스</li>
-									</ul>
-								</div>
-							</li>
-							<li class="list-group-item cursor" data-toggle="collapse" href="#review">리뷰
-								<div id="review" class="panel-collapse collapse">
-									<ul class="list-group">
-										<li class="list-group-item cursor " onclick="javascript:location.href='reviewWrite'">리뷰 쓰기</li>
-										<li class="list-group-item cursor " onclick="javascript:location.href='reviewList'">내가 쓴 리뷰</li>
-									</ul>
-								</div>
-							</li>
-							<li class="list-group-item cursor" data-toggle="collapse" href="#community">커뮤니티
-								<div id="community" class="panel-collapse collapse">
-									<ul class="list-group">
-										<li class="list-group-item cursor " onclick="javascript:location.href='community'">내가 쓴 글</li>
-										<li class="list-group-item cursor " onclick="javascript:location.href='communityRecent'">최근 본 글</li>
-									</ul>
-								</div>
-							</li>
-							<li class="list-group-item cursor" data-toggle="collapse" href="#info">내 정보
-								<div id="info" class="panel-collapse collapse">
-									<ul class="list-group">
-										<li class="list-group-item cursor " onclick="javascript:location.href='modifyProfile'">내 정보 수정</li>
-										<li class="list-group-item cursor " onclick="javascript:location.href=''">반장회원 신청</li>
-									</ul>
-								</div>
-							</li>
-						</ul>
+						<p>회원님의 아이디는 <strong>${member.member_id}</strong> 입니다.</p>
+						<p>
+							<button type="button" class="btn btn-lg btn-info btn-block" id="findBtn" onclick="location.href='${pageContext.request.contextPath}/member/login'">
+								로그인 하러 가기</button>
+						</p>
 					</div>
 				</div>
 			</div>
-			<!-- 우측 본문영역 -->
-			<div class="col-sm-9"></div>
-
 		</div>
 	</div>
+
 </body>
 </html>

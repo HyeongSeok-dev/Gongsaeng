@@ -25,8 +25,7 @@ $(document).ready(function() {
 
 
 	let phone = false; //전화번호 양식 검사
-	let phoneAuthNumber = "";
-	let phoneAuthSuccess = false;
+	let phoneAuthSuccess = true;
 	let isPasswd = false; //비밀번호 안전도 검사
 	let isvalidIdLength = false; //아이디 양식검사
 	let isDuplicateId = false; //아이디 중복 여부 저장할 변수
@@ -258,7 +257,7 @@ $(document).ready(function() {
 				url: "phoneAuthRequest?member_phone=" + member_phone,
 				cache: false,
 				success: function(data) {
-					if (data = true)  {
+					if (data == "true")  {
 						alert("인증번호 발송이 완료되었습니다.\n휴대폰에서 인증번호를 확인해 주세요.");
 					} else {
 						alert("인증번호 발송이 실패하였습니다.\n전화번호를 다시 확인해 주세요 ");
@@ -269,20 +268,20 @@ $(document).ready(function() {
 	});
 
 	$("#phone_auth_input").keyup(function() {
-		let phone_auth_code = this.val();
+		let phone_auth_code = $("#phone_auth_input").val();
 		$.ajax({
 			type: "GET",
-			url: "phoneAuthRequest?phone_auth_code=" + phone_auth_code,
+			url: "phoneAuthIsCorrect?phone_auth_code=" + phone_auth_code,
 			cache: false,
 			success: function(data) {
-				if (data = "true") { //중복
-					$("#checkNickResult").html("이미 사용중인 닉네임");
-					$("#checkNickResult").css("color", "red");
-					isDuplicateNick = true;
-				} else { //중복X
-					$("#checkNickResult").html("사용 가능한 닉네임");
-					$("#checkNickResult").css("color", "blue");
-					isDuplicateNick = false;
+				if (data == "true") { 
+					$("#phoneAuthResult").html("인증 성공");
+					$("#phoneAuthResult").css("color", "blue");
+					phoneAuthSuccess = true;
+				} else { 
+					$("#phoneAuthResult").html("인증번호를 잘못 입력하셨습니다.");
+					$("#phoneAuthResult").css("color", "red");
+					phoneAuthSuccess = false;
 				}
 			}
 		})
