@@ -103,52 +103,57 @@
                 <h5 class="title">회원 목록</h5>
               </div>
               <div class="card-body">
+              	<form action="memberSearch">
 	               <div class="row">
 		              	<div class="col-md-6 col_checkbox">
-				              	<input type="checkbox" value="" name="member_status" id="statusAllCheck"> &nbsp;전체선택&nbsp;
-				              	<input type="checkbox" value="1" name="member_status" class="member_status"> &nbsp;정상&nbsp;
-				              	<input type="checkbox" value="2" name="member_status" class="member_status"> &nbsp;휴면&nbsp;
-				              	<input type="checkbox" value="3" name="member_status" class="member_status"> &nbsp;탈퇴&nbsp;
+				              	<input type="checkbox" value="0" name="member_status" id="statusAllCheck"
+				              		<c:if test="${param.member_status eq '0'}">checked</c:if>> &nbsp;전체선택&nbsp;
+				              	<input type="checkbox" value="1" name="member_status" class="member_status" id="statusNormal"
+				              		<c:if test="${param.member_status eq '1'}">checked</c:if>> &nbsp;정상&nbsp;
+				              	<input type="checkbox" value="2" name="member_status" class="member_status" id="statusDormantl"
+				              		<c:if test="${param.member_status eq '2'}">checked</c:if>> &nbsp;휴면&nbsp;
+				              	<input type="checkbox" value="3" name="member_status" class="member_status" id="statusWithdraw"
+				              		<c:if test="${param.member_status eq '3'}">checked</c:if>> &nbsp;탈퇴&nbsp;
 		              	</div>
 		              	<div class="col-md-6">
-		              		<form action="" class="member_date filter_search">
+		              		<div class="member_date filter_search">
 		              			<div class="search_bar_admin">
-		              				<select name="class_state">
-						              	<option value="0">전체일자</option>
-						              	<option value="1">가입일자</option>
-						              	<option value="2">탈퇴일자</option>
+		              				<select name="searchDate">
+						              	<option value="allDate" <c:if test="${param.searchDate eq 'allDate'}">selected</c:if>>전체일자</option>
+						              	<option value="registerDate" <c:if test="${param.searchDate eq 'registerDate'}">selected</c:if>>가입일자</option>
+						              	<option value="withdrawDate" <c:if test="${param.searchDate eq 'withdrawDate'}">selected</c:if>>탈퇴일자</option>
 				              		</select>
 				              		<input type="date" id="start_date">&nbsp;&nbsp;~&nbsp;&nbsp;<input type="date" id="end_date">
 			              		</div>
 			              		<div class="search_bar_admin">
-									<select>
-										<option>전체검색</option>
-										<option>아이디</option>
-										<option>닉네임</option>
+									<select name="searchType">
+										<option value="id_nick" <c:if test="${param.searchType eq 'id_nick'}">selected</c:if>>전체검색</option>
+										<option value="id" <c:if test="${param.searchType eq 'id'}">selected</c:if>>아이디</option>
+										<option value="nick" <c:if test="${param.searchType eq 'nick'}">selected</c:if>>닉네임</option>
 									</select>&nbsp;
-		              				<input type="search">&nbsp;
-				              		<button type="submit" class="btn btn_default" value="검색">검색</button>
+		              				<input type="search" value="" id="searchText">&nbsp;
+				              		<button type="submit" class="btn btn_default" id="searchBtn" value="검색">검색</button>
 			              		</div>	
-		              		</form>
+			              	</div>
 		              	</div>
 	              	</div>
 	              	
                 	<table class="table table-bordered">
                 		<colgroup>
-                			<col width="16%" />
-                			<col width="16%" />
-                			<col width="16%" />
-                			<col width="16%" />
-                			<col width="16%" />
-                			<col width="16%" />
+                			<col width="20%" />
+                			<col width="10%" />
+                			<col width="20%" />
+                			<col width="20%" />
+                			<col width="10%" />
+                			<col width="10%" />
                 		</colgroup>
 			            <tr>
 			                <th>가입/탈퇴일자</th>
 			                <th>
-			                    <select name="class_state">
-					              	<option value="0">회원분류</option>
-					              	<option value="1">반장회원</option>
-					              	<option value="2">일반회원</option>
+			                    <select name="member_category" class="member_category">
+					              	<option value="0" <c:if test="${param.member_category eq 0}">selected</c:if>>회원분류</option>
+					              	<option value="1" id="banjang" <c:if test="${param.member_category eq 1}">selected</c:if>>반장회원</option>
+					              	<option value="2" id="general" <c:if test="${param.member_category eq 2}">selected</c:if>>일반회원</option>
 			              		</select>
 			                </th>
 			                <th>아이디</th>
@@ -157,8 +162,15 @@
 			                <th>신고받은 수</th>
 			            </tr>
 			            <!-- 회원 데이터 로우 -->
-			            <c:forEach var="m" items="${memberList }" var="r" items="${reportCountList }">
-				            <tr class="tr_hover" onclick="location.href='${pageContext.request.contextPath }/admin/member/detail'">
+			            <c:forEach var="m" items="${memberList }">
+			            	<c:choose>
+								<c:when test="${m.member_status eq 3}">
+				            		<tr>
+								</c:when>		            	
+								<c:otherwise>
+				            		<tr class="tr_hover" onclick="location.href='${pageContext.request.contextPath }/admin/member/detail?member_id=${m.member_id }'">
+								</c:otherwise>
+			            	</c:choose>
 						        <td>${m.member_date }</td>
 				                <c:choose>
 									<c:when test="${m.member_category eq 1}">
@@ -176,20 +188,31 @@
 				                <td>
 									<c:choose>
 									<c:when test="${m.member_status eq 1}">
-						                <td>정상</td>
+						               정상
 				                	</c:when>
 									<c:when test="${m.member_status eq 2}">
-						                <td>휴면</td>
+						               휴면
 				                	</c:when>
 				                	<c:otherwise>
-						                <td>탈퇴</td>
+						               탈퇴
 				                	</c:otherwise>
 				                </c:choose>
 								</td>
-				                <td>${r.reportCount }</td>
+				                <td>
+					                <c:choose>
+										<c:when test="${m.reportCount eq null }">
+											0
+					                	</c:when>
+					                	<c:otherwise>
+							                ${m.reportCount } 
+					                	</c:otherwise>
+					                </c:choose>
+					                건
+				                </td>
 				            </tr>
 			            </c:forEach>
 			   	 </table>
+			   </form>
               </div>
             </div>
           </div>

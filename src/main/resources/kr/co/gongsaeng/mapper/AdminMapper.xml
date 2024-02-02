@@ -7,24 +7,40 @@
 <mapper namespace="kr.co.gongsaeng.mapper.AdminMapper">
 
 	<!-- member.jsp -->
-	<!-- 회원목록 조회 -->
+	<!-- 회원목록(신고수 포함) 조회 -->
 	<select id="selectMemberList" resultType="member">
-		SELECT *
-		FROM member;
+		SELECT member.*, reportCount 
+		FROM member left OUTER JOIN ( SELECT member_id, COUNT(review_idx) AS reportCount
+			 FROM report
+			 GROUP BY member_id) reportCount
+		ON member.member_id = reportCount.member_id
+		ORDER BY member_date DESC
 	</select>
-	<!-- 신고수 조회 -->
-	<select id="selectReportCountList" resultType="report">
-		SELECT member_id, COUNT(review_idx) AS 'reportCount'
-		FROM report
-		GROUP BY member_id
-<!-- 		WHERE member_id = #{member_id}; -->
+	
+	<!--필터링 회원목록 조회 -->
+	<select id="selectMemberFilterList" resultType="member">
+		SELECT member.*, reportCount 
+		FROM member left OUTER JOIN ( SELECT member_id, COUNT(review_idx) AS reportCount
+			 FROM report
+			 GROUP BY member_id) reportCount
+		ON member.member_id = reportCount.member_id
+		<choose>
+			<when test="member_status.equals('1')">
+				WHERE member_status = #{member_status}
+			</when>
+		
+		</choose>
+		ORDER BY member_date DESC
 	</select>
+	
+	
+	
 	<!-- member_detail.jsp -->
 	<!-- 회원정보 조회 -->
 	<select id="selectMember" resultType="member">
 		SELECT *
 		FROM member
-		WHERE member_id= #{member_id};
+		WHERE member_id = #{member_id};
 	</select>
 	
 </mapper>

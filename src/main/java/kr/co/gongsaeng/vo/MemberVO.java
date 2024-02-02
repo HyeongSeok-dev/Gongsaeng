@@ -18,8 +18,12 @@ public class MemberVO {
 	private int member_status;
 	private int member_category;
 	private String member_alert_status;
-	private String member_reg_date;
+	private String member_date;
 	
-	// admin/member 신고수
-//	private int reportCount;
+	
+	// [관리자페이지] 
+	// 회원목록 신고수 조회
+	private int reportCount;
+	// 필터링을 위한 체크박스
+	private String[] member_status_str;
 }

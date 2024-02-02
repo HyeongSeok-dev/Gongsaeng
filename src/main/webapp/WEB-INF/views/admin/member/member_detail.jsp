@@ -101,14 +101,19 @@
 	          <div class="col-md-12">
 	            <div class="card">
 	              <div class="card-header">
-	                <h5 class="title">XXX님(반장) 상세 정보</h5>
+	                <h5 class="title">${member.member_nick}님
+	                <c:if test="${member.member_status eq '2'}">
+	                	(반장)
+	                </c:if>
+	                 상세 정보</h5>
 	              </div>
 	              <div class="card-body">
 	           		 <div class="text_center">
 		           		<img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-circle img-thumbnail" alt="avatar">
 						<input type="file" class="form-control profileImg" accept="image/*">
 						<div class="profileImg" >
-	    	       		 	<button type="button" class="btn">파일선택</button>
+							<br>
+	    	       		 	<button type="button" class="btn btn_default">파일선택</button>
 		           		 	<span>파일명</span>
 						</div>
 	           		 </div>
@@ -122,10 +127,7 @@
 		             	</colgroup>
 		             	<tr>
 		             		<th>가입일자</th>
-		             		<td>가입일자</td>
-	<!-- 	             	---------탈퇴이면 탈퇴일자---------- -->
-	<!-- 	             		<th>탈퇴일자</th> -->
-	<!-- 	             		<td>탈퇴일자</td> -->
+		             		<td>${member.member_date }</td>
 		             		<th>회원상태</th>
 		             		<td>
 		             			 <select name="class_state">

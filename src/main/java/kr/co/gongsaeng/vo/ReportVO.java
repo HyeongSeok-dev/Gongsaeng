@@ -16,6 +16,4 @@ public class ReportVO {
 	private String member_phone;
 	private int report_category;
 	
-	// admin 신고수 조회
-	private int reportCount;
 }

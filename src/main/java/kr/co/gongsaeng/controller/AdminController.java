@@ -10,17 +10,21 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.gongsaeng.service.AdminService;
 import kr.co.gongsaeng.vo.MemberVO;
 import kr.co.gongsaeng.vo.ReportVO;
+import lombok.Getter;
 
 @Controller
 public class AdminController {
@@ -31,76 +35,106 @@ public class AdminController {
 	private AdminService service;
 	
 	@GetMapping("admin")
-	public String admin() {
+	public String admin(HttpSession session, Model model) {
+		
+//		if(session.getAttribute("sId") == null) {
+//			model.addAttribute("msg", "로그인이 필요합니다");
+//			model.addAttribute("targetURL", "/gongsaeng/member/login");
+//			return "forward";
+//		} else if(!session.getAttribute("sId").equals("admin")) {
+//			model.addAttribute("msg", "잘못된 접근 입니다.");
+//			return "fail_back";
+//		}
+		
 		return "admin/main";
 	}
 	@GetMapping("admin/dashboard")
 	public String dashboard() {
+//		if(session.getAttribute("sId") == null) {
+//			model.addAttribute("msg", "로그인이 필요합니다");
+//			model.addAttribute("targetURL", "/gongsaeng/member/login");
+//			return "forward";
+//		} else if(!session.getAttribute("sId").equals("admin")) {
+//			model.addAttribute("msg", "잘못된 접근 입니다.");
+//			return "fail_back";
+//		}
+		
 		return "admin/dashboard";
 	}
+	
 	@GetMapping("admin/member")
-	public String memberListForm(HttpSession session, Model model, Map<String, Object> map) {
+	public String memberListForm(HttpSession session, Model model) {
 
-		if(session.getAttribute("sId") == null) {
-			model.addAttribute("msg", "로그인이 필요합니다");
-			model.addAttribute("targetURL", "/gongsaeng/login");
-			return "forward";
-		} else if(!session.getAttribute("sId").equals("admin")) {
-			model.addAttribute("msg", "잘못된 접근 입니다.");
-			return "fail_back";
-		}
+//		if(session.getAttribute("sId") == null) {
+//			model.addAttribute("msg", "로그인이 필요합니다");
+//			model.addAttribute("targetURL", "/gongsaeng/member/login");
+//			return "forward";
+//		} else if(!session.getAttribute("sId").equals("admin")) {
+//			model.addAttribute("msg", "잘못된 접근 입니다.");
+//			return "fail_back";
+//		}
 		
-		// [회원목록 조회]
+		
+		// [회원목록(신고수 join) 조회]
 		List<MemberVO> memberList = service.getMemberList();
-		log.info("목록조회 memberList : " + memberList);
-		log.info("길이측정" + memberList.size());
-		
-		// [리뷰 신고수 조회]
-//		String[] reportCountArr = null;
-//		for(int i = 0; i <= memberList.size(); i++) {
-//			MemberVO member = memberList.get(i);
-//			reportCountArr[i] = service.getReportCount(member.getMember_id());
-//		}
-
-		
-//		List<MemberInfo> memberInfoList = new ArrayList<MemberInfo>();
-//		for(int i = 0; i <= memberInfoList.size(); i++) {
-//			MemberVO member = null;
-//			String reportCount = "";
-//			for(int j = 0; j <= memberList.size(); j++) {
-//				member = memberList.get(j);
-//				reportCount = service.getReportCount(member.getMember_id());
-//			}
-//			memberInfoList.
-//			memberInfoList.set(i, reportCount);
-//		}
-		
-		List<ReportVO> reportCountList = service.getReportCountList();
-		log.info("신고수조회 reportCountList : " + reportCountList);
-		log.info("길이측정" + reportCountList.size());
+		log.info("목록조회(신고수 join) memberList : " + memberList);
 		
 		model.addAttribute("memberList", memberList);
-		model.addAttribute("reportCountList", reportCountList);
 		
 		return "admin/member/member";
 	}
+	
+	@ResponseBody
+	@GetMapping("admin/memberTableFilter")
+	public String memberTableChange(HttpSession session, MemberVO member) {
+		
+//		if(session.getAttribute("sId") == null) {
+//		model.addAttribute("msg", "로그인이 필요합니다");
+//		model.addAttribute("targetURL", "/gongsaeng/member/login");
+//		return "forward";
+//	} else if(!session.getAttribute("sId").equals("admin")) {
+//		model.addAttribute("msg", "잘못된 접근 입니다.");
+//		return "fail_back";
+//	}
+		log.info("member : >>" + member);
+		log.info("member_status_str >> " + member.getMember_status_str());
+//		// [회원목록 조회]
+//		List<MemberVO> memberFilterList = service.getMemberFilterList(member);
+//		log.info("목록조회 memberList : " + memberFilterList);
+	
+		// [리뷰 신고수 조회]
+//		List<ReportVO> reportCountList = service.getReportCountList();
+//		log.info("신고수조회 reportCountList : " + reportCountList);
+		
+		List<MemberVO> memberList = service.getMemberList();
+		log.info("목록조회(신고수 join) memberList : " + memberList);
+		
+		JSONObject jsonObject = new JSONObject(member);
+		return jsonObject.toString();
+	}
+	
+//	@GetMapping("memberSearch")
+//	public String memberSearch() {
+//		
+//	}
+	
+	
 	@GetMapping("admin/member/detail")
-	public String memberDetailForm(HttpSession session, Model model, @RequestParam MemberVO member) {
-		if(session.getAttribute("sId") == null) {
-			model.addAttribute("msg", "로그인이 필요합니다");
-			model.addAttribute("targetURL", "/gongsaeng/login");
-			return "forward";
-		} else if(!session.getAttribute("sId").equals("admin")) {
-			model.addAttribute("msg", "잘못된 접근 입니다.");
-			return "fail_back";
-		}
+	public String memberDetailForm(HttpSession session, Model model, @RequestParam String member_id) {
+	
+//		if(session.getAttribute("sId") == null) {
+//			model.addAttribute("msg", "로그인이 필요합니다");
+//			model.addAttribute("targetURL", "/gongsaeng/login");
+//			return "forward";
+//		} else if(!session.getAttribute("sId").equals("admin")) {
+//			model.addAttribute("msg", "잘못된 접근 입니다.");
+//			return "fail_back";
+//		}
 		
 		// [회원 상세정보 조회]
-		member = service.getMember(member.getMember_id());
+		MemberVO member = service.getMember(member_id);
 		
-		
-		
-		
+		model.addAttribute("member", member);
 		return "admin/member/member_detail";
 	}
 	//-----------------------------------------
