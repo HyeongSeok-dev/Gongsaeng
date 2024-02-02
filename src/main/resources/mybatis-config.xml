@@ -11,5 +11,6 @@
 		<typeAlias type="kr.co.gongsaeng.vo.ReviewVO"  alias="review"/>
 		<typeAlias type="kr.co.gongsaeng.vo.CartVO"  alias="cart"/>
 		<typeAlias type="kr.co.gongsaeng.vo.CartListVO"  alias="cartList"/>
+		<typeAlias type="kr.co.gongsaeng.vo.BoardVO"  alias="board"/>
 	</typeAliases>
 </configuration>
