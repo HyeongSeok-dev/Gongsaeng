@@ -12,7 +12,7 @@ $(document).ready(function() {
 	    var class_idx = $("#class_idx").val(); //클래스 번호
 	    var memberId = $("#member_id").val(); //회원 아이디
 	    var date = $("#reservation-date").val(); //예약날짜
-	    var persons = $("#persons").var(); //예약인원수
+	    var res_person = $("#res_person").var(); //예약인원수
 	
 	    $.ajax({
 			type: "POST",
@@ -21,7 +21,7 @@ $(document).ready(function() {
 				class_idx : class_idx,
 				memberId : memberId,
 				date : date,
-				persons : persons
+				res_person : res_person
 			},
 	        dataType: "json",
 	        success: function(onCart){
@@ -58,14 +58,14 @@ $(document).ready(function() {
 	//장바구니에 수량변경===============================================
 	$("#update").click(function() {
 	    var cart_idx = $("#cart_idx").val(); // 변경하려는 카트번호
-	    var resPerson = $("#resPerson").val(); // 수량
+	    var res_person = $("#res_person").val(); // 수량
 	
 	    $.ajax({
 	        type: "POST",
 	        url: "updateCart",
 	        data: { 
 	            cart_idx: cart_idx, //카트번호
-	            resPerson: resPerson //인원수(수량)
+	            res_person: res_person //인원수(수량)
 	        },
 	        success: function(response) {
 	            if(response) { // 성공

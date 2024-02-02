@@ -15,7 +15,7 @@ public interface CartMapper {
 
 	//장바구니에 물건넣기
 	int insertCart(@Param ("class_idx") int class_idx, @Param ("memberId") String memberId, 
-			@Param ("date") String date, @Param ("persons") int persons);
+			@Param ("date") String date, @Param ("res_person") int res_person);
 
 	//장바구니 물건삭제
 	int deletCart(@Param ("cart_idx") int cart_idx);
@@ -24,7 +24,7 @@ public interface CartMapper {
 	List<CartListVO> cartList(@Param("member_id") String member_id);
 	
 	//장바구니 수량수정
-	int updateCart(@Param ("cart_idx") int cart_idx, @Param ("resPerson") int resPerson);
+	int updateCart(@Param ("cart_idx") int cart_idx, @Param ("res_person") int res_person);
 
 	//장바구니 찾기
 	CartVO findCart(@Param ("class_idx") int class_idx, @Param ("member_id") String member_id, @Param ("date") String date);

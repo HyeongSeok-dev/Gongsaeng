@@ -99,7 +99,7 @@
 					                <h6><strong>15,000원<span class="text-muted">&nbsp;&nbsp;&nbsp;x</span></strong></h6>
 					            </div>
 					            <div class="col-xs-4">
-					                <input type="number" class="form-control input-sm" id="resPerson" value="{res_person}"  min="1" max="20">
+					                <input type="number" class="form-control input-sm" id="res_person" value="{res_person}"  min="1" max="20">
 					            </div>
 					        </div>
 					        <div class="row move-right">

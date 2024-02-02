@@ -59,35 +59,35 @@
     margin: 50px auto;
     text-align: center;
 }
-.sec05 table {
-        width: 50%;  /* 원하는 너비로 설정하세요. */
-        margin: 0 auto;
-    }
-      
+.sec05 table { 
+    width: 50%;  /* 원하는 너비로 설정하세요. */ 
+    margin: 0 auto; 
+} 
+
 </style>  
 </head>
 
 <body>
 	<div class="section_box">
 		<section class="sec05">
+		
 			<table>
-			
-				<tr>
-					<h2>포인트충전</h2><br>
-				</tr>
-				<tr>
-					<td><h5>현재 포인트 잔액 : </h5></td>
-					<td></td>
-				<tr>
-				<tr>
-					<td><h5>충전할 금액 : </h5></td>
-					<td><input type="text"></td>
-				</tr>
-				<tr>
-					<td><input type="button" value="충전"></td>
-				</tr>
-				
+			    <tr>
+			        <td colspan="3">
+			            <h3>{member_nick}님 <br> 현재 0페이 잔액</h3>
+			            <h1>{}원</h1>
+			        </td>
+			    </tr>
+			    <tr>
+			        <td><input type="button" value="충전하기" id="payCharge"></td>
+			        <td>&nbsp;&nbsp;&nbsp;</td>
+			        <td><input type="button" value="환급하기" id="payBack"></td>
+			    </tr>
+			    <tr>
+			        <td colspan="3" id="area">dffdd123</td>
+			    </tr>
 			</table>
+
 		</section>
 	</div>
 </body>

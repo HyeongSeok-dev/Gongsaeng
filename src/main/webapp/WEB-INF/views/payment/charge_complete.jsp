@@ -78,7 +78,7 @@ body {
 
 .review_complete_ment {
   text-align: center;
-  margin-top: 40px;
+  margin-top: 300px;
 }
 
 .review_complete_ment img {
@@ -92,8 +92,8 @@ body {
 }
 
 #check {
-	width: 70px;
-	height: 70px;
+	width: 50px;
+	height: 50px;
 }
 
 #closeImage {
@@ -104,9 +104,6 @@ body {
   height: 50px;
 }
 
-#ok{
-	color: #A4A4A4;
-}
 	
 </style>
 

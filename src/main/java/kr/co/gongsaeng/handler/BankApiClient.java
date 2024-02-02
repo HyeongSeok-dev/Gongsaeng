@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -20,6 +21,19 @@ import kr.co.gongsaeng.vo.ResponseTokenVO;
 
 @Component
 public class BankApiClient {
+	
+	@Value("${client_id}")
+	private String client_id;
+	
+	@Value("${client_secret}")
+	private String client_secret;
+	
+	@Value("${base_url}")
+	private String base_url;
+	
+	@Value("${cntr_account_num}")
+	private String cntr_account_num;
+	
 	
 	private static final Logger logger = LoggerFactory.getLogger(BankApiClient.class);
 
@@ -37,8 +51,8 @@ public class BankApiClient {
 		
 		//파라미터 전달
 		parameters.add("code", authResponse.get("code"));
-		parameters.add("client_id", "4066d795-aa6e-4720-9383-931d1f60d1a9");
-		parameters.add("client_secret", "36b4a668-94ba-426d-a291-771405e498e4");
+		parameters.add("client_id", client_id);
+		parameters.add("client_secret", client_secret);
 		parameters.add("redirect_uri", "http://localhost:8081/gongsaeng/callback");
 		parameters.add("grant_type", "authorization_code");
 		

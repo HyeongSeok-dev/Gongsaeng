@@ -41,10 +41,10 @@ public class PaymentController {
 		return "payment/payment_agree";
 	}
 	
-	//페이충전
-	@GetMapping("payment/charge")
-	public String charge() {
-		return "payment/charge";
+	//페이메인화면
+	@GetMapping("payment/charge/main")
+	public String chargeMain() {
+		return "payment/charge_main";
 	}
 	
 	//페이충전-계좌선택

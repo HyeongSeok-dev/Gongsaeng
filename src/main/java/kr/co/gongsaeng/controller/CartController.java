@@ -49,13 +49,13 @@ public class CartController {
 	//장바구니에 물건넣기
 	@ResponseBody
 	@PostMapping("addCart")
-    public String addToCart(@RequestParam int class_idx, @RequestParam String member_id, @RequestParam String date, @RequestParam int persons) {
+    public String addToCart(@RequestParam int class_idx, @RequestParam String member_id, @RequestParam String date, @RequestParam int res_person) {
 		
 		//장바구니에서 물건찾기
 		CartVO cart = cartService.findCart(class_idx, member_id, date);
 		if(cart == null) { // 장바구니에 일치하는게 없으면 추가
 		
-            int insertCart = cartService.addToCart(class_idx, member_id, date, persons);
+            int insertCart = cartService.addToCart(class_idx, member_id, date, res_person);
             
 	            if(insertCart > 0) { //성공
 	            	return "true";
@@ -91,8 +91,8 @@ public class CartController {
 	//장바구니 수량변경
 	@ResponseBody
 	@PostMapping("updateCart")
-	public String updateCart(@RequestParam int cart_idx, @RequestParam int resPerson) {
-	        int updateCart = cartService.updateCart(cart_idx, resPerson);
+	public String updateCart(@RequestParam int cart_idx, @RequestParam int res_person) {
+	        int updateCart = cartService.updateCart(cart_idx, res_person);
 	        if(updateCart > 0) {
 	        	return "true";
 	        }else {

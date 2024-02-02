@@ -15,11 +15,15 @@
 	<insert id="insertAccessToken">
 		INSERT INTO account
 		VALUES (
-			#{member_id}
+			null
+			, #{member_id}
 			, #{token.access_token}
-			, #{token.refresh_token}
 			, #{token.user_seq_no}
-			, null
+			, #{account_user_ci}
+			, #{account_user_name}
+			, #{fintech_use_num}
+			, #{account_num_masked}
+			, #{token.refresh_token}
 		)
 	</insert>
 	

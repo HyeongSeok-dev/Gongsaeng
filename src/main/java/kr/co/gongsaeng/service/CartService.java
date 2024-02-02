@@ -21,8 +21,8 @@ public class CartService {
 	}
 	
 	//장바구니 물건넣기
-	public int addToCart(int class_idx, String member_id, String date, int persons) {
-		return mapper.insertCart(class_idx, member_id, date, persons);
+	public int addToCart(int class_idx, String member_id, String date, int res_person) {
+		return mapper.insertCart(class_idx, member_id, date, res_person);
 	}
 
 	//장바구니 물건삭제
@@ -39,8 +39,8 @@ public class CartService {
 	}
 
 	//수량수정
-	public int updateCart(int cart_idx, int resPerson) {
-		return mapper.updateCart(cart_idx, resPerson);
+	public int updateCart(int cart_idx, int res_person) {
+		return mapper.updateCart(cart_idx, res_person);
 	}
 
 	//수량추가
