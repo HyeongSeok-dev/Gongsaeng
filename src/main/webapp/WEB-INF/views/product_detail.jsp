@@ -566,7 +566,7 @@
 										<br><br>
 											<div class="persons-group">
 											    <p>예약 인원</p>
-											    <input type="number" id="persons" name="persons" value="${search.persons}" min="1" max="20">
+											    <input type="number" id="res_person" name="res_person" value="${search.res_person}" min="1" max="20">
 											</div>
 											<br>
 											<div>

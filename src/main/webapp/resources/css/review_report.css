@@ -577,7 +577,7 @@ hr {
 /*     display: inline-block;  */
 /* /*     -webkit-appearance: none;  */ 
 /* /*     appearance: none;  */ 
-/* /*     background: url(./images/checkbox.svg) 50% 50% no-repeat;  */ */
+/* /*     background: url(./images/checkbox.svg) 50% 50% no-repeat;  */ 
 /*     width: 20px;  */
 /*     min-width: 20px;  */
 /*     height: 20px;  */
@@ -666,7 +666,7 @@ hr {
 /* }  */
 
 
-/* /* These were inline style tags. Uses id+class to override almost everything */ */
+/* /* These were inline style tags. Uses id+class to override almost everything */ 
 /* #__notice.style-BDCKI {   */
 /*    display: block;   */
 /* }   */
@@ -687,7 +687,7 @@ hr {
 /* /*     margin: 15% auto; Centers the modal vertically */ 
 /* /*     padding: 20px; */ 
 /* /*     width: 300px; Set the width to 300px */ 
-/* /*     Additional styles to ensure responsiveness and centering */ */
+/* /*     Additional styles to ensure responsiveness and centering */ 
 /* /*     max-width: 90%;  */ 
 /* /*     box-sizing: border-box;  */ 
 /* /* } */ 

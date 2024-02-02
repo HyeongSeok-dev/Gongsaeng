@@ -13,11 +13,11 @@
 <title>Insert title here</title>
 </head>
 <body>	
-	<input type="hidden" name="com_id" value="${param.com_id}">		
+	<input type="hidden" name="com_idx" value="${param.com_idx}">		
 	<div class="review_complete_ment">
 	<img src="${pageContext.request.contextPath}/resources/img/complete_check.svg" id="check">
 <%-- 	<a href="${pageContext.request.contextPath}/review/redetail?com_id=1"> --%>
-	<a href="${pageContext.request.contextPath}/review/redetail?com_id=${param.com_id}">
+	<a href="${pageContext.request.contextPath}/review/redetail?com_idx=${param.com_idx}">
 	<img src="${pageContext.request.contextPath}/resources/img/complete_x.svg" id="closeImage">
 	</a>
 	<h1 class="review_complete">리뷰 쓰기 완료!</h1>

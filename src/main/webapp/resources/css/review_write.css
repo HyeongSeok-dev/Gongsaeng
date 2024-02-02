@@ -4,10 +4,12 @@
 
 /* ============================================================== */
 /* 별점 수정*/
+
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
        .review_rate { display: inline-block;
        		   border: 0;
        		   margin-right: 15px;}
+       		   
 .review_rate > input {display: none;}
 .review_rate > label {float: right;
 					  color: #ddd}
@@ -18,9 +20,12 @@
 					  cursor: pointer;
 					  font-family: FontAwesome;
 					  content: "\f005 ";}
-.review_rate .half:before {content: "\f089 "; 
+.review_rate .half:before {
+					content: "\f089 "; 
 					position: absolute;
-					padding-right: 0;}
+					padding-right: 0;
+					margin-bottom: -35px;}
+					
 .review_rate input:checked ~ label, 
 .review_rate label:hover,
 .review_rate label:hover ~ label { color: gold!important;} 
@@ -31,9 +36,15 @@
 .review_rate label:hover ~ label,  
 .review_rate label:hover ~ input:checked ~ label { color: gold!important;}
 
+
 .starpoint_wrap {
   display: flex;
   justify-content: center; /* 가로축에서 중앙 정렬 */
+}
+
+.comName
+.classTitle{
+	font-size: 10px !important;	
 }
 
 .rating {
@@ -73,39 +84,34 @@
 
 /* ============================================================== */
 /* 체크박스와 레이블(231228) */
-#review_food_big_checkbox, 
-#review_food_deli_checkbox,
-#review_food_cheap_checkbox,
-#review_food_fresh_checkbox,
-#review_food_healthy_checkbox,
-#review_mood_interior_checkbox,
-#review_mood_alone_checkbox,
-#review_mood_large_checkbox,
-#review_mood_meeting_checkbox,
-#review_mood_view_checkbox,
-#review_etc_kind_checkbox,
-#review_etc_parking_checkbox,
-#review_etc_toilet_checkbox,
+#review_kind_checkbox, 
+#review_detail_checkbox,
+#review_cheap_checkbox,
+#review_explanation_checkbox,
+#review_interior_checkbox,
+#review_trendy_checkbox,
+#review_large_checkbox,
+#review_meeting_checkbox,
+#review_comfortable_checkbox,
+#review_parking_checkbox,
+#review_clean_toilet_checkbox,
 #review_etc_fast_checkbox,
-#review_etc_child_checkbox,
 #review_no_keyword_checkbox { 
-	display: none; }
+	display: none;
+	}
 	
-#review_food_big_checkbox:checked + .checkbox_label, 
-#review_food_deli_checkbox:checked + .checkbox_label,
-#review_food_cheap_checkbox:checked + .checkbox_label, 
-#review_food_fresh_checkbox:checked + .checkbox_label, 
-#review_food_healthy_checkbox:checked + .checkbox_label, 
-#review_mood_interior_checkbox:checked + .checkbox_label, 
-#review_mood_alone_checkbox:checked + .checkbox_label, 
-#review_mood_large_checkbox:checked + .checkbox_label, 
-#review_mood_meeting_checkbox:checked + .checkbox_label, 
-#review_mood_view_checkbox:checked + .checkbox_label, 
-#review_etc_kind_checkbox:checked + .checkbox_label, 
-#review_etc_parking_checkbox:checked + .checkbox_label, 
-#review_etc_toilet_checkbox:checked + .checkbox_label, 
+#review_kind_checkbox:checked + .checkbox_label, 
+#review_detail_checkbox:checked + .checkbox_label,
+#review_cheap_checkbox:checked + .checkbox_label, 
+#review_explanation_checkbox:checked + .checkbox_label, 
+#review_interior_checkbox:checked + .checkbox_label, 
+#review_trendy_checkbox:checked + .checkbox_label, 
+#review_large_checkbox:checked + .checkbox_label, 
+#review_meeting_checkbox:checked + .checkbox_label, 
+#review_comfortable_checkbox:checked + .checkbox_label, 
+#review_parking_checkbox:checked + .checkbox_label, 
+#review_clean_toilet_checkbox:checked + .checkbox_label, 
 #review_etc_fast_checkbox:checked + .checkbox_label, 
-#review_etc_child_checkbox:checked + .checkbox_label, 
 #review_no_keyword_checkbox:checked + .checkbox_label 
 {
 	background-color: #c2c2c2;
@@ -124,6 +130,7 @@
     border-radius: 10px;
     width: 180px;
     margin: 5px;
+    align-items: center;
 }
 
 /* ============================================================== */

@@ -11,8 +11,10 @@ public class ReportVO {
 	private String member_id;
 	private int report_reason;
 	private String report_content;
-	private String report_email;
+	private String member_email;
 	private int report_status;
+	private String member_phone;
+	private int report_category;
 	
 	// admin 신고수 조회
 	private int reportCount;

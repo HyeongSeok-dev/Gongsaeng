@@ -14,6 +14,7 @@
 <meta name="author" content="Kimarotec">
 <meta name="keyword" content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <!-- CSS -->
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,12 +47,12 @@
 <script src="${pageContext.request.contextPath}/resources/js/review_write.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.js"></script>
 <script type="text/javascript">
-function addResIdx(res_idx) { 
+function addResIdx(pay_num) { 
 	
 // 	$('form').append('<input type="hidden" name="res_idx" value="${reviewItem.res_idx}" id="resIdx">');
 // 	console.log($("#resIdx").html());
-	$("#resIdx").val(res_idx);
-	console.log("resIdx : " + $("#resIdx").val());
+	$("#payNum").val(pay_num);
+	console.log("payNum : " + $("#payNum").val());
 }
 
 </script>
@@ -59,12 +60,12 @@ function addResIdx(res_idx) {
 </head>
 <body>
 <jsp:include page="../inc/top.jsp"/>
-	<article id="reviewWriteForm">
+	<article id="reviewWriteForm" class="writeForm">
 	<div class="container">
-		<form action="reviewWritePro" name="reviewWriteForm" method="POST" enctype="multipart/form-data">
+		<form action="reviewWritePro" name="reviewWriteForm" method="POST" enctype="multipart/form-data" >
 		<div class="restaurant_info">
-	 <a href="${pageContext.request.contextPath}/review/redetail?com_id=${com_id}"><h1>${comName}</h1></a>
-			
+			<h1 class="comName"><a href="${pageContext.request.contextPath}/review/redetail?com_id=${com_id}">${comName}</a></h1>
+			<h1 class="classTitle"><a href="${pageContext.request.contextPath}/review/redetail?com_id=${com_id}">${classTitle}</a></h1>
 		<span id="visitCountNumber">${visitCount}</span><span id="visitCount">번째 방문</span>
 		<span>
 		<select onchange="addResIdx(this.value)">
@@ -80,8 +81,8 @@ function addResIdx(res_idx) {
 		</select>
 		</span>
 		</div>
-	    <input type="hidden" name="com_id" value="${param.com_id}">		
-	    <input type="hidden" name="res_idx" value="${param.res_idx}" id="resIdx">
+	    <input type="hidden" name="com_idx" value="${param.com_idx}">		
+	    <input type="hidden" name="res_Num" value="${param.res_num}" id="resNum">
 		<div class="separator"></div>
 		<div class="review_rate_1" style="text-align: center;">
 		<fieldset class="review_rate">
@@ -124,53 +125,53 @@ function addResIdx(res_idx) {
 			<p>이 장소에 어울리는 키워드를 골라주세요.</p>
 			<div class="keyword_section">
 				<div class="keyword_category">
-						<input type="checkbox" id="review_food_big_checkbox" onclick="updateCheckboxValue(this);">
-						<label for="review_food_big_checkbox" class="checkbox_label">친절해요</label>
-						<input type="hidden" name="review_food_big" value="0">
+						<input type="checkbox" id="review_kind_checkbox" onclick="updateCheckboxValue(this);">
+						<label for="review_kind_checkbox" class="checkbox_label">친절해요</label>
+						<input type="hidden" name="review_kind" value="0">
 						
-						<input type="checkbox" id="review_food_deli_checkbox" onclick="updateCheckboxValue(this);">
-				        <label for="review_food_deli_checkbox" class="checkbox_label">꼼꼼해요</label>
-				        <input type="hidden" name="review_food_deli" value="0">
+						<input type="checkbox" id="review_detail_checkbox" onclick="updateCheckboxValue(this);">
+				        <label for="review_detail_checkbox" class="checkbox_label">꼼꼼해요</label>
+				        <input type="hidden" name="review_detail" value="0">
 				        
-						<input type="checkbox" id="review_food_cheap_checkbox" onclick="updateCheckboxValue(this);">
-				        <label for="review_food_cheap_checkbox" class="checkbox_label">가격이 합리적이에요</label>
-				        <input type="hidden" name="review_food_cheap" value="0">
+						<input type="checkbox" id="review_cheap_checkbox" onclick="updateCheckboxValue(this);">
+				        <label for="review_cheap_checkbox" class="checkbox_label">가격이 합리적이에요</label>
+				        <input type="hidden" name="review_cheap" value="0">
 				        
-						<input type="checkbox" id="review_food_fresh_checkbox" onclick="updateCheckboxValue(this);">
-				        <label for="review_food_fresh_checkbox" class="checkbox_label">설명을 잘해주세요</label>
-				        <input type="hidden" name="review_food_fresh" value="0">
+						<input type="checkbox" id="review_explanation_checkbox" onclick="updateCheckboxValue(this);">
+				        <label for="review_explanation_checkbox" class="checkbox_label">설명을 잘해주세요</label>
+				        <input type="hidden" name="review_explanation" value="0">
 				        
 
 				</div>
 				<div class="keyword_category">
-						<input type="checkbox" id="review_mood_interior_checkbox" onclick="updateCheckboxValue(this);">
-				        <label for="review_mood_interior_checkbox" class="checkbox_label">인테리어가 멋져요</label>
-				        <input type="hidden" name="review_mood_interior" value="0">
+						<input type="checkbox" id="review_interior_checkbox" onclick="updateCheckboxValue(this);">
+				        <label for="review_interior_checkbox" class="checkbox_label">인테리어가 멋져요</label>
+				        <input type="hidden" name="review_interior" value="0">
 				        
-						<input type="checkbox" id="review_food_healthy_checkbox" onclick="updateCheckboxValue(this);">
-				        <label for="review_food_healthy_checkbox" class="checkbox_label">트렌디해요</label>
-				        <input type="hidden" name="review_food_healthy" value="0">
+						<input type="checkbox" id="review_trendy_checkbox" onclick="updateCheckboxValue(this);">
+				        <label for="review_trendy_checkbox" class="checkbox_label">트렌디해요</label>
+				        <input type="hidden" name="review_trendy" value="0">
 				        
-						<input type="checkbox" id="review_mood_large_checkbox" onclick="updateCheckboxValue(this);">
-				        <label for="review_mood_large_checkbox" class="checkbox_label">매장이 넓어요</label>
-				        <input type="hidden" name="review_mood_large" value="0">
+						<input type="checkbox" id="review_large_checkbox" onclick="updateCheckboxValue(this);">
+				        <label for="review_large_checkbox" class="checkbox_label">매장이 넓어요</label>
+				        <input type="hidden" name="review_large" value="0">
 				        
-						<input type="checkbox" id="review_mood_meeting_checkbox" onclick="updateCheckboxValue(this);">
-				        <label for="review_mood_meeting_checkbox" class="checkbox_label">단체로 갈 수 있어요</label>
-				        <input type="hidden" name="review_mood_meeting" value="0">
+						<input type="checkbox" id="review_meeting_checkbox" onclick="updateCheckboxValue(this);">
+				        <label for="review_meeting_checkbox" class="checkbox_label">단체로 갈 수 있어요</label>
+				        <input type="hidden" name="review_meeting" value="0">
 				</div>
 				<div class="keyword_category">
-						<input type="checkbox" id="review_etc_kind_checkbox" onclick="updateCheckboxValue(this);">
-				        <label for="review_etc_kind_checkbox" class="checkbox_label">분위기가 편해요</label>
-				        <input type="hidden" name="review_etc_kind" value="0">
+						<input type="checkbox" id="review_comfortable_checkbox" onclick="updateCheckboxValue(this);">
+				        <label for="review_comfortable_checkbox" class="checkbox_label">분위기가 편해요</label>
+				        <input type="hidden" name="review_comfortable" value="0">
 				        
-						<input type="checkbox" id="review_etc_parking_checkbox" onclick="updateCheckboxValue(this);">
-				        <label for="review_etc_parking_checkbox" class="checkbox_label">주차하기 편해요</label>
-				        <input type="hidden" name="review_etc_parking" value="0">
+						<input type="checkbox" id="review_parking_checkbox" onclick="updateCheckboxValue(this);">
+				        <label for="review_parking_checkbox" class="checkbox_label">주차하기 편해요</label>
+				        <input type="hidden" name="review_parking" value="0">
 				        
-						<input type="checkbox" id="review_etc_toilet_checkbox" onclick="updateCheckboxValue(this);">
-				        <label for="review_etc_toilet_checkbox" class="checkbox_label">화장실이 깨끗해요</label>
-				        <input type="hidden" name="review_etc_toilet" value="0">
+						<input type="checkbox" id="review_clean_toilet_checkbox" onclick="updateCheckboxValue(this);">
+				        <label for="review_clean_toilet_checkbox" class="checkbox_label">화장실이 깨끗해요</label>
+				        <input type="hidden" name="review_clean_toilet" value="0">
 				        
 						<input type="checkbox" id="review_etc_fast_checkbox" onclick="updateCheckboxValue(this);">
 				        <label for="review_etc_fast_checkbox" class="checkbox_label">찾아가기 쉬워요</label>
@@ -211,12 +212,12 @@ function addResIdx(res_idx) {
 				name="review_content" placeholder="업주와 다른 사용자들이 상처받지 않도록 좋은 표현을 사용해주세요.(500자수 제한)"></textarea>
 			<a class="caution_link" href="#" onclick="openPopup()">리뷰 작성 유의사항</a>
 			<section id="commandCell">
-				<button class="register_button" onclick="location.href='${pageContext.request.contextPath}/review/complete?com_id=${com_id}">등록하기</button>
+				<button class="register_button" onclick="location.href='${pageContext.request.contextPath}/review/complete?class_idx=1">등록하기</button>
 <%-- 		    <a href="${pageContext.request.contextPath}/review/write?com_id=${param.com_id}"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a> --%>
 			</section>
 		</div>
 	</form>
-	</div>
+	</div><!-- 컨 -->
 	<br><br><br>
 	<div class="footer-area">
 		<jsp:include page="../inc/bottom.jsp"/>

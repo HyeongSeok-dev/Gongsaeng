@@ -61,14 +61,14 @@
 <body>
 <%-- <jsp:include page="../inc/top.jsp"></jsp:include> --%>
 <form action="reviewReportPro" name="reviewReportPro" method="POST" id="reviewReportPro">
-    <input type="hidden" name="com_id" value="${comId}">
-    <input type="hidden" name="review_num" value="${reviewNum}">
-    <input type="hidden" name="user_id" value="${userId}">
+    <input type="hidden" name="class_idx" value="${classIdx}">
+    <input type="hidden" name="review_idx" value="${reviewIdx}">
+    <input type="hidden" name="member_id" value="${memberId}">
 	<div class="wrapper">
 		<header id="header" class="opaque">
 			<div class="container">
 				<div class="header-left">
-						<a href="${pageContext.request.contextPath}/review/redetail?com_id=${comId}" class="btn-back">뒤로</a>
+						<a href="${pageContext.request.contextPath}/review/redetail?class_idx=${classIdx}" class="btn-back">뒤로</a>
 					<h1 class="page-title">리뷰 신고</h1>
 				</div>
 				<div class="header-right">
@@ -127,7 +127,7 @@
 						<h3 class="form_block_title">답변 받으실 휴대폰 번호</h3>
 						<br>
 						<div class="form_block_body">
-							<input type="text" class="form-input" name="user_email" value="${member.user_phone}">
+							<input type="text" class="form-input" name="member_email" value="${member.member_email}">
 						</div>
 					</div>
 					<br>
@@ -135,7 +135,7 @@
 						<h3 class="form_block_title">답변 받으실 이메일 주소</h3>
 						<br>
 						<div class="form_block_body">
-							<input type="text" class="form-input" name="user_phone" value="${member.user_email}">
+							<input type="text" class="form-input" name="member_phone" value="${member.member_phone}">
 						</div>
 					</div>
 					<hr class="line">
@@ -166,7 +166,7 @@
 			<hr class="space">
 <!-- 		</main> -->
 		<div class="sticky_bottom_btns">
-			<a href="${pageContext.request.contextPath}/review/redetail?com_id=${comId}" class="btn btn-lg btn-outline" id="cancelButton">취소</a>
+			<a href="${pageContext.request.contextPath}/review/redetail?class_idx=${classIdx}" class="btn btn-lg btn-outline" id="cancelButton">취소</a>
 			<button class="btn btn-lg btn-red" id="reportButton" type="submit">신고하기</button>
 		</div>
 	</div>
