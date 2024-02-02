@@ -63,6 +63,16 @@
 		<div class="row">
 			<!-- 좌측 메뉴바 -->
 			<div class="col-sm-3">
+				<c:choose>
+					<c:when test="${empty member.member_img}">
+						<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" style="cursor: pointer;"
+							onclick="location.href='modifyProfile'">
+					</c:when>
+					<c:otherwise>
+						<img alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}" style="cursor: pointer;"
+							onclick="location.href='modifyProfile'">
+					</c:otherwise>
+				</c:choose>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title text-center cursor" onclick="javascript:location.href='main'">마이페이지</h4>
@@ -73,49 +83,53 @@
 							<li class="list-group-item cursor" data-toggle="collapse" href="#alert">알림/메시지
 								<div id="alert" class="panel-collapse collapse">
 									<ul class="list-group">
-										<li class="list-group-item cursor" onclick="javascript:location.href='alert'">알림</li>
-										<li class="list-group-item cursor"><a href="messages">메시지</a></li>
+										<li class="list-group-item cursor " onclick="javascript:location.href='alert'">알림</li>
+										<li class="list-group-item cursor" onclick="javascript:location.href='messages'">메시지</li>
 									</ul>
 								</div>
 							</li>
 							<li class="list-group-item cursor" data-toggle="collapse" href="#offer">혜택
 								<div id="offer" class="panel-collapse collapse">
 									<ul class="list-group">
-										<li class="list-group-item cursor"><a href="coupon">쿠폰</a></li>
-										<li class="list-group-item cursor"><a href="cash">캐쉬</a></li>
-										<li class="list-group-item cursor"><a href="point">포인트</a></li>
+										<li class="list-group-item cursor" onclick="javascript:location.href='coupon'">쿠폰</li>
+										<li class="list-group-item cursor" onclick="javascript:location.href='cash'">캐쉬</li>
+										<li class="list-group-item cursor " onclick="javascript:location.href='point'">포인트</li>
 									</ul>
 								</div>
 							</li>
-							<li class="list-group-item cursor"><a data-toggle="collapse" href="#favorList">관심리스트</a>
-								<div id="favorList" class="panel-collapse collapse">
+							<li class="list-group-item cursor" data-toggle="collapse" href="#favorList">관심리스트
+								<div id="favorList" class="panel-collapse collapse ">
 									<ul class="list-group">
-										<li class="list-group-item cursor"><a href="bookmark">북마크</a></li>
-										<li class="list-group-item cursor"><a href="following">팔로우</a></li>
-										<li class="list-group-item cursor"><a href="recent">최근 본 클래스</a></li>
+										<li class="list-group-item cursor " onclick="javascript:location.href='bookmark'">북마크</li>
+										<li class="list-group-item cursor " onclick="javascript:location.href='following'">팔로우</li>
+										<li class="list-group-item cursor " onclick="javascript:location.href='recent'">최근 본 클래스</li>
 									</ul>
-								</div></li>
-							<li class="list-group-item "><a data-toggle="collapse" href="#review">리뷰</a>
+								</div>
+							</li>
+							<li class="list-group-item cursor" data-toggle="collapse" href="#review">리뷰
 								<div id="review" class="panel-collapse collapse">
 									<ul class="list-group">
-										<li class="list-group-item cursor"><a href="reviewWrite">리뷰 쓰기</a></li>
-										<li class="list-group-item cursor"><a href="reviewList">내가 쓴 리뷰</a></li>
+										<li class="list-group-item cursor " onclick="javascript:location.href='reviewWrite'">리뷰 쓰기</li>
+										<li class="list-group-item cursor " onclick="javascript:location.href='reviewList'">내가 쓴 리뷰</li>
 									</ul>
-								</div></li>
-							<li class="list-group-item "><a data-toggle="collapse" href="#community">커뮤니티</a>
+								</div>
+							</li>
+							<li class="list-group-item cursor" data-toggle="collapse" href="#community">커뮤니티
 								<div id="community" class="panel-collapse collapse">
 									<ul class="list-group">
-										<li class="list-group-item cursor"><a href="community">내가 쓴 글</a></li>
-										<li class="list-group-item cursor"><a href="communityRecent">최근 본 글</a></li>
+										<li class="list-group-item cursor " onclick="javascript:location.href='community'">내가 쓴 글</li>
+										<li class="list-group-item cursor " onclick="javascript:location.href='communityRecent'">최근 본 글</li>
 									</ul>
-								</div></li>
-							<li class="list-group-item "><a data-toggle="collapse" href="#info">내 정보</a>
+								</div>
+							</li>
+							<li class="list-group-item cursor" data-toggle="collapse" href="#info">내 정보/반장 신청
 								<div id="info" class="panel-collapse collapse in">
 									<ul class="list-group">
-										<li class="list-group-item cursor active"><a href="modifyProfile">내 정보 수정</a></li>
-										<li class="list-group-item cursor"><a href="#">반장회원 신청</a></li>
+										<li class="list-group-item cursor active" onclick="javascript:location.href='modifyProfile'">내 정보 수정</li>
+										<li class="list-group-item cursor " onclick="javascript:location.href='../company/banjang/register'">반장회원 신청</li>
 									</ul>
-								</div></li>
+								</div>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -129,8 +143,17 @@
 							<!-- left column -->
 							<div class="col-md-3">
 								<div class="text-center">
-									<img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-circle img-thumbnail" alt="avatar"> <br>
-									<br> <input type="file" class="form-control profileImg" accept="image/*">
+									<c:choose>
+										<c:when test="${empty member.member_img}">
+											<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" style="cursor: pointer;"
+												onclick="location.href='modifyProfile'">
+										</c:when>
+										<c:otherwise>
+											<img alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}" style="cursor: pointer;"
+												onclick="location.href='modifyProfile'">
+										</c:otherwise>
+									</c:choose>
+									<br> <br> <input type="file" class="form-control profileImg" accept="image/*">
 								</div>
 							</div>
 
@@ -147,7 +170,7 @@
 								<div class="form-group">
 									<label class="col-lg-3 control-label">비밀번호 : </label>
 									<div class="col-lg-9">
-										<input class="form-control"  type="password" value="비밀번호" placeholder="비밀번호">
+										<input class="form-control" type="password" value="비밀번호" placeholder="비밀번호">
 									</div>
 								</div>
 								<div class="form-group">
@@ -178,8 +201,8 @@
 									</div>
 
 									<div class="col-lg-3">
-										<input type="text" id="customEmail" required class="form-control" name="user_email2" style="display: none;"
-											placeholder="이메일을 입력하세요" disabled="disabled">
+										<input type="text" id="customEmail" required class="form-control" name="user_email2" style="display: none;" placeholder="이메일을 입력하세요"
+											disabled="disabled">
 										<div id="emailSelectBox">
 											<select id="u_email2" name="user_email2" class="form-control">
 												<option value="">선택하세요</option>

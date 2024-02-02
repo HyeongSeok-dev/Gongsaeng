@@ -62,6 +62,14 @@
 		<div class="row">
 			<!-- 좌측 메뉴바 -->
 			<div class="col-sm-3">
+			<c:choose>
+				<c:when test="${empty member.member_img}">
+					<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" style="cursor: pointer;" onclick="location.href='modifyProfile'">
+				</c:when>
+				<c:otherwise>
+					<img alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}" style="cursor: pointer;" onclick="location.href='modifyProfile'">
+				</c:otherwise>				
+			</c:choose>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title text-center cursor" onclick="javascript:location.href='main'">마이페이지</h4>
@@ -111,11 +119,11 @@
 									</ul>
 								</div>
 							</li>
-							<li class="list-group-item cursor" data-toggle="collapse" href="#info">내 정보
+							<li class="list-group-item cursor" data-toggle="collapse" href="#info">내 정보/반장 신청
 								<div id="info" class="panel-collapse collapse">
 									<ul class="list-group">
 										<li class="list-group-item cursor " onclick="javascript:location.href='modifyProfile'">내 정보 수정</li>
-										<li class="list-group-item cursor " onclick="javascript:location.href=''">반장회원 신청</li>
+										<li class="list-group-item cursor " onclick="javascript:location.href='../company/banjang/register'">반장회원 신청</li>
 									</ul>
 								</div>
 							</li>
