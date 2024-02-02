@@ -22,7 +22,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.gongsaeng.service.AdminService;
+import kr.co.gongsaeng.vo.AccountVO;
+import kr.co.gongsaeng.vo.AdminInfo;
+import kr.co.gongsaeng.vo.ClassVO;
+import kr.co.gongsaeng.vo.CompanyVO;
 import kr.co.gongsaeng.vo.MemberVO;
+import kr.co.gongsaeng.vo.PaymentVO;
 import kr.co.gongsaeng.vo.ReportVO;
 import lombok.Getter;
 
@@ -134,7 +139,36 @@ public class AdminController {
 		// [회원 상세정보 조회]
 		MemberVO member = service.getMember(member_id);
 		
+		// 1. 이메일 아이디와 주소 나눠서 변수에 저장
+		String[] emailStr = member.getMember_id().split("@");
+//		member.setMember_email1(emailStr[0]);
+//		member.setMember_email2(emailStr[1]);
+		System.out.println(emailStr[0]);
+//		System.out.println(emailStr[1]);
+		
+		// [ 계좌 조회 ]
+		AccountVO account = service.getAccount(member_id);
+		
+		// AdminInfo 객체에 저장할 정보
+		// [ 예약수(결제수) 조회 ]
+		AdminInfo adminInfo = service.getPayCount(member_id);
+		// [ 리뷰수 조회 ]
+		adminInfo = service.getReviewCount(member_id);
+		
+		// 반장일때
+		if(member.getMember_category() == 2) {
+			// [ 사업체 조회 ]
+			CompanyVO company = service.getCompany(member_id);
+			// [ 등록 클래스 조회 ]
+			adminInfo = service.getClassCount(member_id);
+		
+		model.addAttribute("company", company);
+		}
+		
+		System.out.println("adminInfo >>>" + adminInfo);
 		model.addAttribute("member", member);
+		model.addAttribute("account", account);
+		model.addAttribute("adminInfo", adminInfo);
 		return "admin/member/member_detail";
 	}
 	//-----------------------------------------

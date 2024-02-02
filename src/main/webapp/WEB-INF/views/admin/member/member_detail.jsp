@@ -95,14 +95,14 @@
       <!-- End Navbar -->
       <div class="panel-header panel-header-sm">
       </div>
-      <form>
+      <form action="mypage/modifyPro" method="post">
 	      <div class="content">
 	        <div class="row">
 	          <div class="col-md-12">
 	            <div class="card">
 	              <div class="card-header">
 	                <h5 class="title">${member.member_nick}님
-	                <c:if test="${member.member_status eq '2'}">
+	                <c:if test="${member.member_category eq 2}">
 	                	(반장)
 	                </c:if>
 	                 상세 정보</h5>
@@ -130,83 +130,108 @@
 		             		<td>${member.member_date }</td>
 		             		<th>회원상태</th>
 		             		<td>
-		             			 <select name="class_state">
-					              	<option value="0">회원상태</option>
-					              	<option value="1">정상</option>
-					              	<option value="2">휴먼</option>
-					              	<option value="2">탈퇴</option>
+		             			<select name="member_state">
+					              	<option value="1" <c:if test="${member.member_status eq 1}">selected</c:if>>정상</option>
+					              	<option value="2" <c:if test="${member.member_status eq 2}">selected</c:if>>휴면</option>
+					              	<option value="3" <c:if test="${member.member_status eq 3}">selected</c:if>>탈퇴</option>
 			              		</select>
 		             		</td>
 		             	</tr>
 		             	<tr>
-		             	
-		             	</tr>
-	<!-- 	             	<tr> -->
-	<!-- 	             		<th>이미지</th> -->
-	<!-- 	             		<td> -->
-	<!-- 	             		 여기 이미지옴<br> -->
-	<!-- <!-- 	             		 	<input type="file"> -->
-	<!-- 	             		 	<button type="button" class="btn">파일선택</button> -->
-	<!-- 	             		 	<span>파일명</span> -->
-	<!-- 	             		</td> -->
-	<!-- 	             	</tr> -->
-		             	<tr>
 		             		<th>이름</th>
-		             		<td>이름</td>
+		             		<td>${member.member_name }</td>
 		             		<th>닉네임</th>
-		             		<td>닉네임</td>
+		             		<td>${member.member_nick }</td>
 		             	</tr>
 		             	<tr>
 		             		<th>아이디</th>
-		             		<td>아이디</td>
+		             		<td>${member.member_id }</td>
 		             		<th>회원분류</th>
 		             		<td>
-								<select>
-									<option>일반</option>
-									<option>사업자(반장)</option>
-								</select>
+		             			<c:choose>
+										<c:when test="${member.member_category eq 1}">
+							                일반
+					                	</c:when>
+										<c:when test="${member.member_category eq 2}">
+							                반장
+					                		<button type="button" class="btn btn_default">반장탈퇴</button>
+					                	</c:when>
+					                	<c:otherwise>
+							                관리자
+					                	</c:otherwise>
+					            </c:choose>
 							</td>
 		             	</tr>
-		             	<!-- 반장회원일 경우 -->
 		             	<!-- ----------- -->
 		             	<tr>
 		             		<th>생년월일</th>
-		             		<td>생년월일</td>
+		             		<td>${member.member_birthday}</td>
 		             		<th>전화번호</th>
 		             		<td>
-								<input type="text"><!--  - <input type="text"> - <input type="text">  -->
+								<input type="text" value="${member.member_phone}" name="member_phone"><!--  - <input type="text"> - <input type="text">  -->
 								<div class="gaid">(-제외하고 입력)</div>
 							</td>
 		             	</tr>
 		             	<tr>
 		             		<th>계좌번호</th>
 		             		<td>
-		             			<span>은행</span>
-		             			<span>계좌번호</span>
-	<!-- 	             			<span> -->
-	<!-- 								<select> -->
-	<!-- 									<option>비인증</option> -->
-	<!-- 									<option>인증</option> -->
-	<!-- 								</select> -->
-	<!-- 							</span> -->
+	             				<c:choose>
+	             					<c:when test="${account.account_num_masked ne null }">
+	<%-- 		             			<span>${account.member_ }</span> --%>
+			             				<span>
+			             					${account.account_num_masked }
+			             				</span>
+			             				<span>
+			             					인증/비인증()
+			             				</span>
+	             					</c:when>
+	             					<c:otherwise>
+	             						등록계좌 없음
+	             					</c:otherwise>
+	             				</c:choose>
 		             		</td>
 		             		<th>알림수신상태</th>
-		             		<td>알림수신상태</td>
+		             		<td>알림수신상태 물어보고 하기
+<%-- 		             			<c:choose> --%>
+<%-- 										<c:when test="${member.member_ member_alert_status eq 1}"> --%>
+<!-- 							               일반   -->
+<%-- 					                	</c:when> --%>
+<%-- 										<c:when test="${member.member_ member_alert_status eq 2}"> --%>
+							                
+<%-- 					                	</c:when> --%>
+<%-- 										<c:when test="${member.member_ member_alert_status eq 3}"> --%>
+							                
+<%-- 					                	</c:when> --%>
+<%-- 										<c:when test="${member.member_ member_alert_status eq 4}"> --%>
+							                
+<%-- 					                	</c:when> --%>
+<%-- 										<c:when test="${member.member_ member_alert_status eq 5}"> --%>
+							                
+<%-- 					                	</c:when> --%>
+<%-- 					            </c:choose> --%>
+		             		</td>
 		             	</tr>
 		             	<tr>
 		             		<th>이메일</th>
 		             		<td colspan="3">
-		             			<input type="text"> @ 
-		             			<input type="text">
-								<select>
-									<option>선택하세요</option>
-									<option>gmail.com</option>
-									<option>naver.com</option>
-									<option>yahoo.com</option>
-									<option>daum.net</option>
-									<option>직접입력</option>
+		             			<input type="text" value="${member.member_email1}" name="member_email1"> @ 
+		             			<input type="text" value="${member.member_email2}" name="member_email2" id="member_email2">
+								<select id="selectEmail">
+									<option <c:if test="${member.member_email2 eq 'gmail.com'}">selected</c:if>>gmail.com</option>
+									<option <c:if test="${member.member_email2 eq 'naver.com'}">selected</c:if>>naver.com</option>
+									<option <c:if test="${member.member_email2 eq 'yahoo.com'}">selected</c:if>>yahoo.com</option>
+									<option <c:if test="${member.member_email2 eq 'daum.net'}">selected</c:if>>daum.net</option>
 								</select>
-		             			<span>[비인증]</span>
+		             			<span>
+			             			<c:choose>
+										<c:when test="${member.member_alert_status eq 5}">
+					             			[비인증]
+										</c:when>
+										<c:when  test="${member.member_alert_status eq 5}">
+					             			[인증]
+										</c:when>
+				             		</c:choose>
+		             			</span>
 		             		</td>
 		             	</tr>
 		             	
@@ -220,14 +245,68 @@
 							<th class="detail_table">정기</th>
 						</tr>             	
 		             	<tr>
-		             		<td>
-		             			이달 0 건 / 누적 0 건
+		             		<td> <%-- 총 --%>
+		             			이달
+		             			<c:choose>
+									<c:when test="${adminInfo.classMonthRes eq null}">
+				             			0
+									</c:when>
+									<c:otherwise>
+				             			${adminInfo.classMonthRes}
+									</c:otherwise>
+			             		</c:choose> 
+		             			 건 / 누적 
+		             			 <c:choose>
+									<c:when test="${adminInfo.classRes eq null}">
+				             			0
+									</c:when>
+									<c:otherwise>
+				             			${adminInfo.classRes}
+									</c:otherwise>
+			             		</c:choose>  
+		             			 건
 		             		</td>
-		             		<td>
-		             			이달 0 건 / 누적 0 건
+		             		<td> <%-- 원데이 --%>
+		             			이달
+		             			<c:choose>
+									<c:when test="${adminInfo.oneDayMonthRes eq null}">
+				             			0
+									</c:when>
+									<c:otherwise>
+				             			${adminInfo.oneDayMonthRes}
+									</c:otherwise>
+			             		</c:choose> 
+		             			 건 / 누적 
+		             			 <c:choose>
+									<c:when test="${adminInfo.oneDayRes eq null}">
+				             			0
+									</c:when>
+									<c:otherwise>
+				             			${adminInfo.oneDayRes}
+									</c:otherwise>
+			             		</c:choose>  
+		             			 건
 		             		</td>
-		             		<td>
-		             			이달 0 건 / 누적 0 건
+		             		<td> <%-- 정기 --%>
+		             			이달
+		             			<c:choose>
+									<c:when test="${adminInfo.regularMonthRes eq null}">
+				             			0
+									</c:when>
+									<c:otherwise>
+				             			${adminInfo.regularMonthRes}
+									</c:otherwise>
+			             		</c:choose> 
+		             			 건 / 누적 
+		             			 <c:choose>
+									<c:when test="${adminInfo.regularRes eq null}">
+				             			0
+									</c:when>
+									<c:otherwise>
+				             			${adminInfo.regularRes}
+									</c:otherwise>
+			             		</c:choose>  
+		             			 건
 		             		</td>
 						</tr>    
 						    
@@ -242,50 +321,105 @@
 							<th class="detail_table">피신고건 수</th>
 						</tr>             	
 		             	<tr>
-		             		<td>
-		             			0 건
+		             		<td> <%-- 이달 --%>
+		             			<c:choose>
+									<c:when test="${adminInfo.reviewMonth eq null}">
+				             			0
+									</c:when>
+									<c:otherwise>
+				             			${adminInfo.reviewMonth}
+									</c:otherwise>
+			             		</c:choose>  
+		             			건
 		             		</td>
-		             		<td>
-		             			0 건
+		             		<td> <%--누적 --%>
+		             			<c:choose>
+									<c:when test="${adminInfo.reviewTotal eq null}">
+				             			0
+									</c:when>
+									<c:otherwise>
+				             			${adminInfo.reviewTotal}
+									</c:otherwise>
+			             		</c:choose> 
+		             			건
 		             		</td>
-		             		<td>
-		             			0 건
+		             		<td> <%--피신고건 --%>
+		             			<c:choose>
+									<c:when test="${adminInfo.reviewReport eq null}">
+				             			0
+									</c:when>
+									<c:otherwise>
+				             			${adminInfo.reviewReport}
+									</c:otherwise>
+			             		</c:choose> 
+		             			건
 		             		</td>
 						</tr>    
-						
-						
 		             </table>	 
 		             <%-- 반장회원이면 --%>
-		             <br>
-		             <h5>반장 정보</h5>
-		             <table class="table table-bordered">	 
-		             	<colgroup>
-		             		<col width="25%" />
-		             		<col width="75%" />
-		             	</colgroup>	
-		             	<tr>
-		             		<th>
-		             			반장 소개
-		             		</th>
-		             		<td>소개내용</td>
-		             	</tr>
-		             	<tr>
-		             		<th>
-		             			사업체
-		             			<!-- 사업체 상세보기로 -->
-		             			<a class="more_info" href="${pageContext.request.contextPath }/admin/company/detail">더보기</a>
-		             		</th>
-		             		<td>사업체명</td>
-		             	</tr>
-		             	<tr>
-		             		<th>
-		             			등록클래스
-		             			<!-- 특정 사업체의 등록 클래스 목록 -->
-		             			<a class="more_info" href="${pageContext.request.contextPath }/admin/company/class">더보기</a>
-		             		</th>
-		             		<td>총 0 건</td>
-		             	</tr>
-		             </table>	 	
+		             <c:if test="${member.member_category eq 2}">
+			             <br>
+			             <h5>반장 정보</h5>
+			             <table class="table table-bordered">	 
+			             	<colgroup>
+			             		<col width="25%" />
+			             		<col width="75%" />
+			             	</colgroup>	
+			             	<tr>
+			             		<th>
+			             			사업체
+			             			<!-- 사업체 상세보기로 -->
+			             			<a class="more_info" href="${pageContext.request.contextPath }/admin/company/detail?com_idx=${company.com_idx}">더보기</a>
+			             		</th>
+			             		<td>${company.com_name}</td>
+			             	</tr>
+			             	<tr>
+			             		<th>반장 소개</th>
+			             		<td>${company.com_introduction}</td>
+			             	</tr>
+			             	<tr>
+			             		<th>계좌번호</th>
+			             		<td>${company.com_bank} &nbsp; ${company.com_account}</td>
+			             	</tr>
+			             	<tr>
+			             		<th>
+			             			등록클래스
+			             			<!-- 특정 사업체의 등록 클래스 목록 -->
+			             			<a class="more_info" href="${pageContext.request.contextPath }/admin/company/class?com_idx=${company.com_idx}">더보기</a>
+			             		</th>
+			             		<td>
+			             			총
+				             		<c:choose>
+										<c:when test="${adminInfo.totalClass eq null}">
+					             			0
+										</c:when>
+										<c:otherwise>
+					             			${adminInfo.totalClass}
+										</c:otherwise>
+			             			</c:choose> 
+				             		건 / 원데이 
+				             		<c:choose>
+										<c:when test="${adminInfo.oneDayClass eq null}">
+					             			0
+										</c:when>
+										<c:otherwise>
+					             			${adminInfo.oneDayClass}
+										</c:otherwise>
+			             			</c:choose>  
+				             		건 / 정기 
+				             		<c:choose>
+										<c:when test="${adminInfo.regularClass eq null}">
+					             			0
+										</c:when>
+										<c:otherwise>
+					             			${adminInfo.regularClass}
+										</c:otherwise>
+			             			</c:choose>  
+				             		건
+			             		 </td>
+			             	</tr>
+			             </table>
+		             </c:if>	 	
 	              </div>
 	            </div>
 	          </div>

@@ -172,31 +172,33 @@
 								</c:otherwise>
 			            	</c:choose>
 						        <td>${m.member_date }</td>
-				                <c:choose>
-									<c:when test="${m.member_category eq 1}">
-						                <td>일반</td>
-				                	</c:when>
-									<c:when test="${m.member_category eq 2}">
-						                <td>반장</td>
-				                	</c:when>
-				                	<c:otherwise>
-						                <td>관리자</td>
-				                	</c:otherwise>
-				                </c:choose>
+						        <td>
+					                <c:choose>
+										<c:when test="${m.member_category eq 1}">
+							                일반
+					                	</c:when>
+										<c:when test="${m.member_category eq 2}">
+							                반장
+					                	</c:when>
+					                	<c:otherwise>
+							                관리자
+					                	</c:otherwise>
+					                </c:choose>
+				                </td>
 				                <td>${m.member_id }</td>
 				                <td>${m.member_nick }</td>
 				                <td>
 									<c:choose>
-									<c:when test="${m.member_status eq 1}">
-						               정상
-				                	</c:when>
-									<c:when test="${m.member_status eq 2}">
-						               휴면
-				                	</c:when>
-				                	<c:otherwise>
-						               탈퇴
-				                	</c:otherwise>
-				                </c:choose>
+										<c:when test="${m.member_status eq 1}">
+							               정상
+					                	</c:when>
+										<c:when test="${m.member_status eq 2}">
+							               휴면
+					                	</c:when>
+					                	<c:otherwise>
+							               탈퇴
+					                	</c:otherwise>
+				               		</c:choose>
 								</td>
 				                <td>
 					                <c:choose>
@@ -209,7 +211,7 @@
 					                </c:choose>
 					                건
 				                </td>
-				            </tr>
+				         </tr>
 			            </c:forEach>
 			   	 </table>
 			   </form>
