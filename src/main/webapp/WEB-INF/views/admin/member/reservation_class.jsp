@@ -23,7 +23,7 @@
   <link href="${pageContext.request.contextPath }/resources/admin_assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.css" rel="stylesheet" />
-  <link href="${pageContext.request.contextPath }/resources/admin_assets/css/class.css" rel="stylesheet" />
+  <link href="${pageContext.request.contextPath }/resources/admin_assets/css/admin.css" rel="stylesheet" />
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
   <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">
 </head>
@@ -100,119 +100,77 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h5 class="title">XXX님 클래스 목록</h5>
+                <h5 class="title">${member.member_id }님 클래스 결제(예약) 목록</h5>
               </div>
               <div class="card-body">
-	               <div class="card-body-header">
-		              	<div class="class_category_select">
-		              		<select name="class_main_category">
-				              	<option value="0">대분류</option>
-				              	<option value="1">바닥 시공</option>
-				              	<option value="2">벽/천장 시공</option>
-				              	<option value="3">부분 인테리어</option>
-				              	<option value="4">야외 시공</option>
-				              	<option value="5">종합 인테리어</option>
-				              	<option value="6">기타 시공</option>
-			              	</select>
-			              	<select name="class_sub_category">
-				              	<option value="0">소분류</option>
-				              	<option value="1"></option>
-				              	<option value="2"></option>
-				              	<option value="3"></option>
-				              	<option value="4"></option>
-				              	<option value="5"></option>
-			              	</select>
-			              	<!-- 클래스의 기간이 종료되면 모집종료로 표현되게 만들어야함 -->
-							<select name="class_state">
-				              	<option value="0">상태</option>
-				              	<option value="1">모집중</option>
-				              	<option value="2">모집종료</option>
-		              		</select>
-		              	</div>
-		              	<div>
-		              		<form action="" class="member_date">
-		              			<div class="search_bar_admin">
-					              	<div>
-										<select>
-											<option>일자선택</option>
-											<option>가입일자</option>
-											<option>탈퇴일자</option>
-										</select>
-					              	</div>
-					              	<div>
-					              		<input type="date" id="start_date">&nbsp;&nbsp;~&nbsp;&nbsp;<input type="date" id="end_date">
-					              	</div>
-			              		</div>
-			              		<div class="search_bar_admin">
-			              			<div>
-										<select>
-											<option>전체검색</option>
-											<option>사업체명</option>
-											<option>클래스명</option>
-										</select>
-					              	</div>
-			              			<div>
-			              				<input type="search">
-			              			</div>
-					              	<div>
-					              		<button type="submit" class="btn btn_default" value="검색">검색</button>
-					              	</div>
-			              		</div>	
-		              		</form>
-		              	</div>
+           		<form action="" class="member_date">
+	               <div class="row">
+              			<div class="search_bar_admin">
+			              	<div>
+			              		<select name="class_state">
+					              	<option value="0">전체일자</option>
+					              	<option value="1">등록일자</option>
+					              	<option value="2">폐업일자</option>
+			              		</select>
+			              		<input type="date" id="start_date">&nbsp;&nbsp;~&nbsp;&nbsp;<input type="date" id="end_date">
+			              	</div>
+	              		</div>
 	              	</div>
-	              	
-                <table class="table table-bordered">
+	               <div class="row">
+	              		<div class="search_bar_admin">
+							<select>
+								<option>전체검색</option>
+								<option>사업체명</option>
+								<option>클래스명</option>
+							</select>&nbsp;
+              				<input type="search">&nbsp;
+		              		<button type="submit" class="btn btn_default" value="검색">검색</button>
+	              		</div>	
+	              	</div>
+	              	<br>
+                	<table class="table table-bordered">
+                		<colgroup>
+                			<col width="15%"/>
+                			<col width="13%"/>
+                			<col width="10%"/>
+                			<col width="15%"/>
+                			<col width="7%"/>
+                			<col width="10%"/>
+                			<col width="10%"/>
+                			<col width="10%"/>
+                			<col width="10%"/>
+                		</colgroup>
 			            <tr>
-			                <th>등록일자</th>
+			                <th>결제일자</th>
+			                <th>
+			                	<select>
+									<option>기간형태</option>
+									<option>원데이</option>
+									<option>정규모집</option>
+								</select>
+			                </th>
 			                <th>사업체명</th>
-<!-- 			                <th>대분류</th> -->
-			                <th>
-			                 	<select name="class_main_category">
-					              	<option value="0">대분류</option>
-					              	<option value="1">바닥 시공</option>
-					              	<option value="2">벽/천장 시공</option>
-					              	<option value="3">부분 인테리어</option>
-					              	<option value="4">야외 시공</option>
-					              	<option value="5">종합 인테리어</option>
-					              	<option value="6">기타 시공</option>
-			              		</select>
-			                </th>
-			                <th>
-			                	<select name="class_sub_category">
-					              	<option value="0">소분류</option>
-					              	<option value="1"></option>
-					              	<option value="2"></option>
-					              	<option value="3"></option>
-					              	<option value="4"></option>
-					              	<option value="5"></option>
-			              		</select>
-			                </th>
-<!-- 			                <th>소분류</th> -->
 			                <th>클래스명</th>
-			                <th>신고수</th>
-<!-- 			                <th>상태</th> -->
-			                <th>
-			                	<select name="class_state">
-					              	<option value="0">상태</option>
-					              	<option value="1">모집중</option>
-					              	<option value="2">모집종료</option>
-		              			</select>
-			                </th>
-			                <th>상세보기</th>
+			                <th>수량</th>
+			                <th>결제수단</th>
+			                <th>결제금액</th>
+			                <th>할인금액</th>
+			                <th>최종금액</th>
 			            </tr>
 			            <!-- 회원 데이터 로우 -->
 			            <tr>
-			                <td>등록일자</td>
+			                <td>결제일자</td>
+			                <td>기간형태</td>
 			                <td>사업체명</td>
-			                <td>대분류</td>
-			                <td>소분류</td>
 			                <td>클래스명</td>
-			                <td>신고받은 수</td>
-			                <td>상태</td>
-			                <td><button type="button" class="btn btn_default" value="상세보기">상세보기</button></td>
+			                <td>수량</td>
+			                <td>결제수단</td>
+			                <td>결제금액</td>
+			                <td>할인금액</td>
+			                <td>최종금액</td>
 			            </tr>
-			    </table>
+			    	</table>
+			    </form>
               </div>
             </div>
           </div>
@@ -223,44 +181,6 @@
       </footer>
     </div>
   </div>
-  
-   <!-- 모달 창 -->
-    <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="filterModalLabel">회원 유형 선택</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="allCheck">
-                        <label class="form-check-label" for="allCheck">
-                            전체 선택
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="leaderCheck">
-                        <label class="form-check-label" for="leaderCheck">
-                            반장 회원
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="generalCheck">
-                        <label class="form-check-label" for="generalCheck">
-                            일반 회원
-                        </label>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                    <button type="button" class="btn btn-primary">적용</button>
-                </div>
-            </div>
-        </div>
-    </div>
   <!--   Core JS Files   -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/popper.min.js"></script>

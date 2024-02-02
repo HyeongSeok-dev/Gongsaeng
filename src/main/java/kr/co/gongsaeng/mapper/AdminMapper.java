@@ -9,6 +9,7 @@ import kr.co.gongsaeng.vo.AccountVO;
 import kr.co.gongsaeng.vo.AdminInfo;
 import kr.co.gongsaeng.vo.CompanyVO;
 import kr.co.gongsaeng.vo.MemberVO;
+import kr.co.gongsaeng.vo.PaymentVO;
 import kr.co.gongsaeng.vo.ReportVO;
 
 @Mapper
@@ -34,6 +35,10 @@ public interface AdminMapper {
 	CompanyVO selectCompany(String member_id);
 	// 반장만)클래스등록수 조회
 	AdminInfo selectClassCount(String member_id);
+	
+	// reservation_class.jsp
+	// 특정회원의 클래스 결제(예약)내역
+	List<PaymentVO> selectClassPayList(String member_id);
 	
 
 

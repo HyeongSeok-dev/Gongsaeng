@@ -104,52 +104,52 @@
               </div>
               <div class="card-body">
               	<div class="row">
-	               		<div class="col-md-7 checkbox_div">
-	               			<div>
-			               		<div class="row col_checkbox">
-					              	<input type="checkbox" value="0" name="member_category"> &nbsp;대분류 전체&nbsp;
-					              	<input type="checkbox" value="1" name="member_category"> &nbsp;바닥 시공&nbsp;
-					              	<input type="checkbox" value="2" name="member_category"> &nbsp;벽/천장 시공&nbsp;
-					              	<input type="checkbox" value="3" name="member_category"> &nbsp;부분 인테리어&nbsp;
-					              	<input type="checkbox" value="4" name="member_category"> &nbsp;야외 시공&nbsp;
-					              	<input type="checkbox" value="5" name="member_category"> &nbsp;종합 인테리어&nbsp;
-					              	<input type="checkbox" value="6" name="member_category"> &nbsp;기타 시공&nbsp;
-				              	</div>
-			               		<div class="row col_checkbox">
-					              	<input type="checkbox" value="전체선택" name="member_category"> &nbsp;소분류 전체&nbsp;
-					              	<input type="checkbox" value="1" name="member_category"> &nbsp;<span>샷시설치 및 수리</span>&nbsp;
-					              	<input type="checkbox" value="2" name="member_category"> &nbsp;<span>화장실 리모델링</span>&nbsp;
-					              	<input type="checkbox" value="3" name="member_category"> &nbsp;<span>주방 리모델링</span>&nbsp;
-					              	<input type="checkbox" value="4" name="member_category"> &nbsp;<span>가구 리폼</span>&nbsp;
-					              	<input type="checkbox" value="5" name="member_category"> &nbsp;<span>붙박이장 시공</span>&nbsp;
-				              	</div>
-	               			</div>
-		              	</div>
-		              	<div class="col-md-5">
-		              		<form action="" class="member_date">
-		              			
-		              			<div class="search_bar_admin">
-					              	<div>
-					              		<select name="class_state">
-							              	<option value="0">전체일자</option>
-							              	<option value="1">등록일자</option>
-							              	<option value="2">폐업일자</option>
-					              		</select>
-					              		<input type="date" id="start_date">&nbsp;&nbsp;~&nbsp;&nbsp;<input type="date" id="end_date">
-					              	</div>
-			              		</div>
-			              		<div class="search_bar_admin">
-									<select>
-										<option>전체검색</option>
-										<option>사업체명</option>
-										<option>클래스명</option>
-									</select>&nbsp;
-		              				<input type="search">&nbsp;
-				              		<button type="submit" class="btn btn_default" value="검색">검색</button>
-			              		</div>	
-		              		</form>
-		              	</div>
+               		<div class="col-md-7 checkbox_div">
+               			<div>
+		               		<div class="row col_checkbox">
+				              	<input type="checkbox" value="0" name="member_category"> &nbsp;대분류 전체&nbsp;
+				              	<input type="checkbox" value="1" name="member_category"> &nbsp;바닥 시공&nbsp;
+				              	<input type="checkbox" value="2" name="member_category"> &nbsp;벽/천장 시공&nbsp;
+				              	<input type="checkbox" value="3" name="member_category"> &nbsp;부분 인테리어&nbsp;
+				              	<input type="checkbox" value="4" name="member_category"> &nbsp;야외 시공&nbsp;
+				              	<input type="checkbox" value="5" name="member_category"> &nbsp;종합 인테리어&nbsp;
+				              	<input type="checkbox" value="6" name="member_category"> &nbsp;기타 시공&nbsp;
+			              	</div>
+		               		<div class="row col_checkbox">
+				              	<input type="checkbox" value="전체선택" name="member_category"> &nbsp;소분류 전체&nbsp;
+				              	<input type="checkbox" value="1" name="member_category"> &nbsp;<span>샷시설치 및 수리</span>&nbsp;
+				              	<input type="checkbox" value="2" name="member_category"> &nbsp;<span>화장실 리모델링</span>&nbsp;
+				              	<input type="checkbox" value="3" name="member_category"> &nbsp;<span>주방 리모델링</span>&nbsp;
+				              	<input type="checkbox" value="4" name="member_category"> &nbsp;<span>가구 리폼</span>&nbsp;
+				              	<input type="checkbox" value="5" name="member_category"> &nbsp;<span>붙박이장 시공</span>&nbsp;
+			              	</div>
+               			</div>
 	              	</div>
+	              	<div class="col-md-5">
+	              		<form action="" class="member_date">
+	              			
+	              			<div class="search_bar_admin">
+				              	<div>
+				              		<select name="class_state">
+						              	<option value="0">전체일자</option>
+						              	<option value="1">등록일자</option>
+						              	<option value="2">폐업일자</option>
+				              		</select>
+				              		<input type="date" id="start_date">&nbsp;&nbsp;~&nbsp;&nbsp;<input type="date" id="end_date">
+				              	</div>
+		              		</div>
+		              		<div class="search_bar_admin">
+								<select>
+									<option>전체검색</option>
+									<option>사업체명</option>
+									<option>클래스명</option>
+								</select>&nbsp;
+	              				<input type="search">&nbsp;
+			              		<button type="submit" class="btn btn_default" value="검색">검색</button>
+		              		</div>	
+	              		</form>
+	              	</div>
+	              </div>
 	              	
                 	<table class="table table-bordered">
 	                	<colgroup>

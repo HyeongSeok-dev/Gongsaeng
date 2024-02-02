@@ -11,6 +11,7 @@ import kr.co.gongsaeng.vo.AccountVO;
 import kr.co.gongsaeng.vo.AdminInfo;
 import kr.co.gongsaeng.vo.CompanyVO;
 import kr.co.gongsaeng.vo.MemberVO;
+import kr.co.gongsaeng.vo.PaymentVO;
 import kr.co.gongsaeng.vo.ReportVO;
 
 @Service
@@ -58,6 +59,10 @@ public class AdminService {
 	// 반장회원만 클래스등록수 조회
 	public AdminInfo getClassCount(String member_id) {
 		return mapper.selectClassCount(member_id);
+	}
+
+	public List<PaymentVO> getClassPayList(String member_id) {
+		return mapper.selectClassPayList(member_id);
 	}
 
 

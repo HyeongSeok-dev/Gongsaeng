@@ -109,7 +109,16 @@
 	              </div>
 	              <div class="card-body">
 	           		 <div class="text_center">
-		           		<img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-circle img-thumbnail" alt="avatar">
+	           		 	<c:choose>
+							<c:when test="${empty member.member_img}">
+								<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" style="cursor: pointer;"
+									onclick="location.href='modifyProfile'" class="img-circle img-thumbnail">
+							</c:when>
+							<c:otherwise>
+								<img alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}" style="cursor: pointer;"
+									onclick="location.href='modifyProfile'" class="img-circle img-thumbnail">
+							</c:otherwise>
+						</c:choose>
 						<input type="file" class="form-control profileImg" accept="image/*">
 						<div class="profileImg" >
 							<br>
@@ -238,7 +247,7 @@
 		             	<tr>
 		             		<th rowspan="2">
 		             			클래스 예약 내역<br>
-		             			<a class="more_info" href="${pageContext.request.contextPath }/admin/member/reservation/class">더보기</a>
+		             			<a class="more_info" href="${pageContext.request.contextPath }/admin/member/reservation/class?member_id=${member.member_id}">더보기</a>
 		             		</th>
 							<th class="detail_table">총</th>
 							<th class="detail_table">원데이</th>
@@ -314,7 +323,7 @@
 		             		<th rowspan="2">
 		             			남긴 리뷰 수<br>
 		             			<!-- 리뷰리스트랑 같이씀 member_id들고가기 -->
-		             			<a class="more_info" href="${pageContext.request.contextPath }/admin/review">더보기</a>
+		             			<a class="more_info" href="${pageContext.request.contextPath }/admin/review?member_id=${member.member_id}">더보기</a>
 		             		</th>
 							<th class="detail_table">이달</th>
 							<th class="detail_table">누적</th>

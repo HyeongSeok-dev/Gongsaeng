@@ -140,11 +140,11 @@ public class AdminController {
 		MemberVO member = service.getMember(member_id);
 		
 		// 1. 이메일 아이디와 주소 나눠서 변수에 저장
-		String[] emailStr = member.getMember_id().split("@");
-//		member.setMember_email1(emailStr[0]);
-//		member.setMember_email2(emailStr[1]);
-		System.out.println(emailStr[0]);
-//		System.out.println(emailStr[1]);
+		String[] emailStr = member.getMember_email().split("@");
+		member.setMember_email1(emailStr[0]);
+		member.setMember_email2(emailStr[1]);
+		System.out.println("email 1 >>> " + emailStr[0]);
+		System.out.println("email 2 >>> " + emailStr[1]);
 		
 		// [ 계좌 조회 ]
 		AccountVO account = service.getAccount(member_id);
@@ -171,13 +171,36 @@ public class AdminController {
 		model.addAttribute("adminInfo", adminInfo);
 		return "admin/member/member_detail";
 	}
-	//-----------------------------------------
-//	@GetMapping("admin/member/review")
-//	public String memberDetailCompany() {
-//		return "admin/member/review";
+
+	@GetMapping("admin/member/review")
+	public String memberDetailCompany(HttpSession session, Model model, @RequestParam String member_id) {
+//		if(session.getAttribute("sId") == null) {
+//		model.addAttribute("msg", "로그인이 필요합니다");
+//		model.addAttribute("targetURL", "/gongsaeng/login");
+//		return "forward";
+//	} else if(!session.getAttribute("sId").equals("admin")) {
+//		model.addAttribute("msg", "잘못된 접근 입니다.");
+//		return "fail_back";
 //	}
+		
+		return "admin/member/review";
+	}
+	
 	@GetMapping("admin/member/reservation/class")
-	public String memberDetailClass() {
+	public String memberDetailClass(HttpSession session, Model model, @RequestParam String member_id) {
+//		if(session.getAttribute("sId") == null) {
+//		model.addAttribute("msg", "로그인이 필요합니다");
+//		model.addAttribute("targetURL", "/gongsaeng/login");
+//		return "forward";
+//	} else if(!session.getAttribute("sId").equals("admin")) {
+//		model.addAttribute("msg", "잘못된 접근 입니다.");
+//		return "fail_back";
+//	}
+		
+		List<PaymentVO> classPayList = service.getClassPayList(member_id);
+		
+		model.addAttribute("classPayList", classPayList);
+				
 		return "admin/member/reservation_class";
 	}
 	//----------------------------------

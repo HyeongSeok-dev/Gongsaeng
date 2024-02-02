@@ -75,4 +75,11 @@
 		WHERE member_id = #{member_id};
 	</select>
 	
+	<!-- reservation_class.jsp -->
+	<!-- 특정회원의 클래스 결제(예약)내역 -->
+	<select id="selectClassPayList" resultType="payment">
+		SELECT *
+		FROM payment
+		WHERE member_id = #{member_id};
+	</select>
 </mapper>

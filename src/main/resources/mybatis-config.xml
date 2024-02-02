@@ -16,5 +16,6 @@
 		<typeAlias type="kr.co.gongsaeng.vo.AdminInfo"  alias="adminInfo"/>
 		<typeAlias type="kr.co.gongsaeng.vo.CompanyVO"  alias="company"/>
 		<typeAlias type="kr.co.gongsaeng.vo.ClassVO"  alias="class"/>
+		<typeAlias type="kr.co.gongsaeng.vo.PaymentVO"  alias="payment"/>
 	</typeAliases>
 </configuration>
