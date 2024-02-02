@@ -39,7 +39,7 @@
 	</update>
 	
 	<!-- 장바구니 찾기 (findCart) -->
-	<select id="findCart">
+	<select id="findCart" resultType="cart">
 		SELECT *
 		FROM cart
 		WHERE class_idx = #{class_idx} AND

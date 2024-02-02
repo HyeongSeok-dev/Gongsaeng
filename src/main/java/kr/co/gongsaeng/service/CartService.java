@@ -44,7 +44,7 @@ public class CartService {
 	}
 
 	//수량추가
-	public Object cartPlus(int cart_idx) {
+	public int cartPlus(int cart_idx) {
 		return mapper.cartPlus(cart_idx);
 	}
 

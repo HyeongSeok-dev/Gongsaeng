@@ -66,8 +66,13 @@ public class CartController {
 		}else {
 			
 			//일치하는게 있으면 수량 +1
-			cartService.cartPlus(cart.getCart_idx());
-			return "true";
+			int plusCart = cartService.cartPlus(cart.getCart_idx());
+			
+			if(plusCart > 0) {
+				return "true";
+			}else {
+				return "false";
+			}
 			
 		}
     }//addToCart

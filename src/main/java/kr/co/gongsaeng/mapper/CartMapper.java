@@ -24,13 +24,13 @@ public interface CartMapper {
 	List<CartListVO> cartList(@Param("member_id") String member_id);
 	
 	//장바구니 수량수정
-	int updateCart(int cart_idx, int resPerson);
+	int updateCart(@Param ("cart_idx") int cart_idx, @Param ("resPerson") int resPerson);
 
 	//장바구니 찾기
-	CartVO findCart(int class_idx, String member_id, String date);
+	CartVO findCart(@Param ("class_idx") int class_idx, @Param ("member_id") String member_id, @Param ("date") String date);
 
 	//수량 더하기
-	Object cartPlus(int cart_idx);
+	int cartPlus(int cart_idx);
 
 
 
