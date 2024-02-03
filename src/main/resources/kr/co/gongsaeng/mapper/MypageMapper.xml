@@ -11,6 +11,29 @@
 		FROM member
 		WHERE member_id = #{member_id}
 	</select>
+	
+	<update id="updateMemberInfo">
+		UPDATE member
+		SET 
+		<if test="!member_passwd.equals('')">
+			member_passwd = #{member_passwd}
+		</if>
+			,member_nick = 	#{member_nick}
+			,member_name = 	#{member_name}
+			,member_email = #{member_email}
+			,member_phone = #{member_phone}
+		<if test="!member_img.equals('')">
+			,member_img = #{member_img}
+		</if>
+			
+		WHERE member_id = #{member_id}
+	</update>
+	
+	<update id="updateMemberStatus">
+		UPDATE member
+		SET member_status = '3'
+		WHERE member_id = #{member_id}
+	</update>
 
 
 </mapper>

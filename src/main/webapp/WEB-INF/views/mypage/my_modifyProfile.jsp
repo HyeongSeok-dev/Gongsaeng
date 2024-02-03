@@ -51,8 +51,7 @@
 <script src="${pageContext.request.contextPath }/resources/assets/js/wow.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
-<script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/mypage.js"></script>
+<%-- <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script> --%>
 <script src="${pageContext.request.contextPath }/resources/js/my_modify_member.js"></script>
 
 </head>
@@ -146,14 +145,14 @@
 									<c:choose>
 										<c:when test="${empty member.member_img}">
 											<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" style="cursor: pointer;"
-												onclick="location.href='modifyProfile'">
+												onclick="location.href='modifyProfile'" class="img-thumbnail">
 										</c:when>
 										<c:otherwise>
 											<img alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}" style="cursor: pointer;"
-												onclick="location.href='modifyProfile'">
+												onclick="location.href='modifyProfile'" class="img-thumbnail">
 										</c:otherwise>
 									</c:choose>
-									<br> <br> <input type="file" class="form-control profileImg" accept="image/*">
+									<br> <br> <input type="file" class="form-control profileImg" accept="image/*" name="m_file">
 								</div>
 							</div>
 
@@ -163,53 +162,79 @@
 								<br>
 								<div class="form-group">
 									<label class="col-lg-3 control-label">아이디 : </label>
-									<div class="col-lg-9">
-										<input class="form-control" required type="text" value="아이디" placeholder="아이디">
+									<div class="col-lg-6">
+										<input class="form-control" required type="text" value="${member.member_id}" placeholder="아이디" readonly name="member_id">
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-lg-3 control-label">비밀번호 : </label>
-									<div class="col-lg-9">
-										<input class="form-control" type="password" value="비밀번호" placeholder="비밀번호">
+									<div class="col-lg-6">
+										<input class="form-control" type="password" placeholder="비밀번호" id="passwd" name="member_passwd">
+									</div>
+									<div class="col-lg-3">
+										<span id="checkPasswdResult"></span>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-lg-3 control-label">비밀번호 확인 : </label>
-									<div class="col-lg-9">
-										<input class="form-control" type="password" value="비밀번호확인" placeholder="비밀번호확인">
+									<div class="col-lg-6">
+										<input class="form-control" type="password" placeholder="비밀번호확인" id="passwd2">
 									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-lg-3 control-label">이름 : </label>
-									<div class="col-lg-9">
-										<input class="form-control" required type="text" value="이름">
+									<div class="col-lg-3">
+										<span id="checkPasswd2Result"></span>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-lg-3 control-label">닉네임:</label>
-									<div class="col-lg-9">
-										<input class="form-control" required type="text" value="닉네임">
+									<div class="col-lg-6">
+										<input class="form-control" required type="text" value="${member.member_nick}" id="u_nick" name="member_nick" >
+									</div>
+									<div class="col-lg-3">
+										<span id="checkNickResult"></span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-lg-3 control-label">이름 : </label>
+									<div class="col-lg-6">
+										<input class="form-control" required type="text" value="${member.member_name}"  name="member_name">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="com_birth" class="col-lg-3 control-label">생년월일 : </label>
+									<div class="col-lg-6">
+										<input type="date" id="com_birth" required name="member_birthday" value="${member.member_birthday}" class="form-control" disabled>
+									</div>
+									<div class="col-lg-3">
+										<c:choose>
+											<c:when test="${member.member_gender eq 1}">
+												<label class="control-label pull-left margin">성별 : &nbsp;&nbsp; 남</label>
+											</c:when>
+											<c:otherwise>
+												<label class="control-label pull-left margin">성별 : &nbsp;&nbsp; 여</label>
+											</c:otherwise>
+										</c:choose>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="u_email" class="col-lg-3 control-label">이메일:</label>
 									<div class="col-lg-3">
 										<div class="input-group">
-											<input type="text" id="u_email" required name="user_email1" class="form-control" placeholder="이메일" maxlength="16">
+											<input type="text" id="u_email" value="${member.member_email1}" required name="member_email1" class="form-control mail" placeholder="이메일"
+												maxlength="16">
 											<div class="input-group-addon">@</div>
 										</div>
 									</div>
-
+									<c:if test="${member.member_email2 eq gmail.com}">selected</c:if>
 									<div class="col-lg-3">
-										<input type="text" id="customEmail" required class="form-control" name="user_email2" style="display: none;" placeholder="이메일을 입력하세요"
-											disabled="disabled">
+										<input type="text" id="customEmail" value="${member.member_email2}" required class="form-control mail" name="member_email2" style="display: none;"
+											placeholder="이메일을 입력하세요" disabled="disabled">
 										<div id="emailSelectBox">
-											<select id="u_email2" name="user_email2" class="form-control">
+											<select id="u_email2" name="member_email2" class="form-control mail">
 												<option value="">선택하세요</option>
-												<option value="gmail.com">gmail.com</option>
-												<option value="naver.com">naver.com</option>
-												<option value="daum.net">daum.net</option>
-												<option value="yahoo.com">yahoo.com</option>
+												<option value="gmail.com" <c:if test="${member.member_email2 eq 'gmail.com'}">selected</c:if>>gmail.com</option>
+												<option value="naver.com" <c:if test="${member.member_email2 eq 'naver.com'}">selected</c:if>>naver.com</option>
+												<option value="daum.net" <c:if test="${member.member_email2 eq 'daum.net'}">selected</c:if>>daum.net</option>
+												<option value="yahoo.com" <c:if test="${member.member_email2 eq 'yahoo.com'}">selected</c:if>>yahoo.com</option>
 												<option value="custom">직접입력</option>
 											</select>
 										</div>
@@ -218,14 +243,21 @@
 								</div>
 								<div class="form-group">
 									<label class="col-lg-3 control-label">전화번호:</label>
-									<div class="col-lg-9">
-										<input class="form-control" required type="text" value="전화번호">
+									<div class="col-lg-4">
+										<input type="text" id="u_phone" required name="member_phone" value="${member.member_phone}" class="form-control" maxlength="100"
+											oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+									</div>
+									<div class="col-sm-2 text-center">
+										<button type="button" class="btn btn-info" id="auth_phone_number_btn" disabled="disabled">인증하기</button>
+									</div>
+									<div class="col-sm-3">
+										<span id="checkPhoneResult"></span>
 									</div>
 								</div>
 								<br>
 								<div class="form-group">
 									<div class="col-xs-9 text-left">
-										<button type="submit" class="btn btn-info" id="modify">수정하기</button>
+										<button type="submit" class="btn btn-info" id="modifyBtn">수정하기</button>
 									</div>
 									<div class="col-xs-3 text-left">
 										<button type="button" class="btn btn-warning" onclick="withdraw()">탈퇴하기</button>

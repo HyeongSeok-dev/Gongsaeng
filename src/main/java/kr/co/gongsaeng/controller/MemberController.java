@@ -53,7 +53,7 @@ public class MemberController {
 
 		if (dbMember == null) {
 			System.out.println(dbMember);
-			model.addAttribute("msg", "잘못 입력하셨습니다. 입력값을 확인해주세요");
+			model.addAttribute("msg", "아이디/비밀번호를 확인해주세요");
 			return "fail_back";
 		}
 
@@ -63,7 +63,7 @@ public class MemberController {
 
 		// 비밀번호 일치하지 않음 처리
 		if (!passwordEncoder.matches(member.getMember_passwd(), dbMember.getMember_passwd())) {
-			model.addAttribute("msg", "아이디 또는 비밀번호가 틀렸습니다.");
+			model.addAttribute("msg", "아이디/비밀번호를 확인해주세요");
 			return "fail_back";
 
 		} else { // 로그인 성공
@@ -132,7 +132,6 @@ public class MemberController {
 	@GetMapping("MemberIdEmailAuth")
 	public String MemberIdEmailAuth(MailAuthInfoVO authInfo, HttpSession session, Model model) {
 		
-//		MailAuthInfoVO authinfo
 		System.out.println("authInfo : " + authInfo);
 		
 		// MemberService - requestEmailAuth() 메서드 호출하여 인증 요청
@@ -158,7 +157,6 @@ public class MemberController {
 	@GetMapping("MemberPasswdEmailAuth")
 	public String MemberPasswdEmailAuth(MailAuthInfoVO authInfo, HttpSession session, Model model) {
 		
-//		MailAuthInfoVO authinfo
 		System.out.println("authInfo : " + authInfo);
 		
 		// MemberService - requestEmailAuth() 메서드 호출하여 인증 요청

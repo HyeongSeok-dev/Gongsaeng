@@ -9,4 +9,8 @@ public interface MypageMapper {
 
 	MemberVO selectMemberInfo(MemberVO member);
 
+	int updateMemberInfo(MemberVO member);
+
+	int updateMemberStatus(MemberVO member);
+
 }

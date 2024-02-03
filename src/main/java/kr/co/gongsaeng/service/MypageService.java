@@ -16,5 +16,15 @@ public class MypageService {
 		// TODO Auto-generated method stub
 		return mapper.selectMemberInfo(member);
 	}
+
+	public int modifymember(MemberVO member) {
+		// TODO Auto-generated method stub
+		return mapper.updateMemberInfo(member);
+	}
+
+	public int withdrawMember(MemberVO member) {
+		// TODO Auto-generated method stub
+		return mapper.updateMemberStatus(member);
+	}
 	
 }

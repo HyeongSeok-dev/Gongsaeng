@@ -1,5 +1,7 @@
 package kr.co.gongsaeng.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
@@ -19,6 +21,7 @@ public class MemberVO {
 	private int member_category;
 	private String member_alert_status;
 	private String member_date;
+	private MultipartFile m_file;
 	
 	
 	// [관리자페이지] 
