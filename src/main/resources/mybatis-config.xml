@@ -14,7 +14,7 @@
 		<typeAlias type="kr.co.gongsaeng.vo.BoardVO"  alias="board"/>
 		<typeAlias type="kr.co.gongsaeng.vo.AccountVO"  alias="account"/>
 		<typeAlias type="kr.co.gongsaeng.vo.CompanyVO"  alias="company"/>
-		<typeAlias type="kr.co.gongsaeng.vo.ClassVO"  alias="gclass"/>
+		<typeAlias type="kr.co.gongsaeng.vo.ClassVO"  alias="gclass"/> 
 <!-- 		<typeAlias type="kr.co.gongsaeng.vo.ClassVO"  alias="class"/> -->
 		<typeAlias type="kr.co.gongsaeng.vo.PaymentVO"  alias="payment"/>
 	</typeAliases>
