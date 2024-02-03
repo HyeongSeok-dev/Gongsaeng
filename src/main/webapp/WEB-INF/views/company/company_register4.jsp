@@ -163,7 +163,43 @@ button {
 								<h5 class="title">클래스 등록 (검수 요청 및 약관 동의)</h5>
 							</div>
 							<div class="card-body">
-								<form>
+						<form action="ClassRegisterPro" method="post" name="classRegisterForm" enctype="multipart/form-data">
+								<%-- ============================================================================= --%> 
+								<input type="hidden" name="class_category" value="${gclass.class_category}">
+							    <input type="hidden" name="class_main_category" value="${gclass.class_main_category}">
+							    <input type="hidden" name="class_sub_category" value="${gclass.class_sub_category}">
+							    <input type="hidden" name="class_title" value="${gclass.class_title}">
+<%-- 							    <input type="hidden" name="file1" value="${file1}"> --%>
+<%-- 							    <input type="hidden" name="file2" value="${file2}"> --%>
+<%-- 							    <input type="hidden" name="file3" value="${file3}"> --%>
+							    <input type="hidden" name="address1" value="${gclass.address1}">
+							    <input type="hidden" name="address2" value="${gclass.address2}">
+							    <input type="hidden" name="class_introduction" value="${gclass.class_introduction}">
+								<%-- ============================================================================= --%> 
+							    <input type="hidden" name="class_day" value="${gclass.class_day}">
+							    <input type="hidden" name="class_start_date" value="${gclass.class_start_date}">
+							    <input type="hidden" name="class_end_date" value="${gclass.class_end_date}">
+							    <input type="hidden" name="class_start_time" value="${gclass.class_start_time}">
+							    <input type="hidden" name="class_end_time" value="${gclass.class_end_time}">
+							    <input type="hidden" name="class_member_count" value="${gclass.class_member_count}">
+<%-- 							    <input type="hidden" name="file4" value="${file4}"> --%>
+<%-- 							    <input type="hidden" name="file5" value="${file5}"> --%>
+<%-- 							    <input type="hidden" name="file6" value="${file6}"> --%>
+							    <input type="hidden" name="class_curriculum_detail1" value="${gclass.class_curriculum_detail1}">
+							    <input type="hidden" name="class_curriculum_detail2" value="${gclass.class_curriculum_detail2}">
+							    <input type="hidden" name="class_curriculum_detail3" value="${gclass.class_curriculum_detail3}">
+							    <input type="hidden" name="class_price" value="${gclass.class_price}">
+								<%-- ============================================================================= --%> 
+							    <input type="hidden" name="class_offering" value="${gclass.class_offering}">
+							    <input type="hidden" name="class_caution" value="${gclass.class_caution}">
+							    <input type="hidden" name="class_tag" value="${gclass.class_tag}">
+							    <input type="hidden" name="class_question1" value="${gclass.class_question1}">
+							    <input type="hidden" name="class_answer1" value="${gclass.class_answer1}">
+							    <input type="hidden" name="class_question2" value="${gclass.class_question2}">
+							    <input type="hidden" name="class_answer2" value="${gclass.class_answer2}">
+							    <input type="hidden" name="class_question3" value="${gclass.class_question3}">
+							    <input type="hidden" name="class_answer3" value="${gclass.class_answer3}">
+								<%-- ============================================================================= --%> 
 									<div class="row">
 										<div class="col-md-7 pr-1">
 											<!-- 체크박스에 고유 ID 부여 -->
@@ -187,10 +223,8 @@ button {
 					<div class="col-md-11 pl-1">	
 					<div class="submit_btn d-flex justify-content-end">
 						<button type="button" class="btn btn-default btn-col-md-4 mr-2 custom-font-size" onclick="location.href='${pageContext.request.contextPath}/company/class/register3'">이전</button>
-<!-- 						<button type="button" class="btn btn-col-md-4 mr-2 custom-font-size examination" >검수 신청</button> -->
-							<!-- 검수 신청 버튼에 onclick 이벤트 추가 -->
-							<button type="button" class="btn btn-col-md-4 mr-2 custom-font-size examination" onclick="submitReview()">검수 신청</button>
-<%-- 						<button type="button" class="btn btn-default btn-col-md-4  custom-font-size" onclick="location.href='${pageContext.request.contextPath}/company/class/register4'">다음</button> --%>
+<!-- 							<button type="button" class="btn btn-col-md-4 mr-2 custom-font-size examination" onclick="submitReview()">검수 신청</button> -->
+							<input type="submit" class="btn btn-col-md-4 mr-2 custom-font-size examination" onclick="submitReview()" value="검수 신청">
 					</div>
 					</div>
 				</div>
@@ -245,6 +279,7 @@ button {
 	<!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
 	<script
 		src="${pageContext.request.contextPath }/resources/company_assets/demo/demo.js"></script>
+		
 	<script type="text/javascript">
 	function submitReview() {
 	    // 각 체크박스의 상태 확인
