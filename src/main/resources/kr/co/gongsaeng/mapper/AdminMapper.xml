@@ -101,7 +101,7 @@
 	</select>
 	
 	<!-- 클래스등록수 조회 -->
-	<select id="selectClassCount" resultType="class">
+	<select id="selectClassCount" resultType="gclass">
 		SELECT COUNT(class_idx) AS 'totalClass'
 		, (SELECT COUNT(class_category) FROM class WHERE class_category = 2) AS 'oneDayClass'
 		, (SELECT COUNT(class_category) FROM class WHERE class_category = 1) AS 'regularClass'
