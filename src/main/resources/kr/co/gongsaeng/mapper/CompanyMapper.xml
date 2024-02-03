@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.gongsaeng.mapper.CompanyMapper">
+
+	<!-- 회원 아이디정보 조회(SELECT) -->
+	<select id="selectMember" resultType="member">
+		SELECT *
+		FROM member
+		WHERE member_id = #{member_id}
+	</select>
+	
+	<!-- 반장 회원등록(INSERT) -->
+	<insert id="insertCompany" >
+		INSERT
+		INTO company
+		VALUES (
+			null
+			,#{com_img}
+			,#{member_id}
+			,#{com_name}
+			,#{com_category}
+			,#{com_post_code}	
+			,#{com_address1}	
+			,#{com_address2}	
+			,#{com_tel}	
+			,#{com_email}	
+			,#{com_introduction}	
+			,#{com_bank}	
+			,#{com_account}	
+			,#{com_account_name}	
+			,2	
+			,now()
+		)
+	</insert>
+</mapper>

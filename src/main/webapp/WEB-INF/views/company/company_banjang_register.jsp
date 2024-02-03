@@ -44,10 +44,10 @@
 						address += " (" + data.buildingName + ")";
 					}
 					
-					document.companyJoinForm.address1.value = address;
+					document.companyJoinForm.com_address1.value = address;
 					
 					// 3) 상세주소 항목(address2)에 포커스(커서) 요청
-					document.companyJoinForm.address2.focus();
+					document.companyJoinForm.com_address2.focus();
 		        }
 		    }).open();
 		};
@@ -167,62 +167,64 @@ input[type="checkbox"] {
 						<div class="card">
 							<div class="card-body">
 								<div class="m-sm-4">
-									<form action="companyJoinPro" method="post" name="companyJoinForm">
+									<form action="companyJoinPro" method="post" name="companyJoinForm" enctype="multipart/form-data">
 										<div class="form-group">
 											<label><b>대표 사진 등록</b></label>
 											<div class="container mt-5 text-center">
 												<!-- text-center 클래스 추가 -->
 												<div class="preview mb-3">
-													<img id="imagePreview"
-														src="${pageContext.request.contextPath }/resources/img/banjang_profile5.png"
-														alt="Image preview" class="img-fluid rounded-circle" />
+													<img id="imagePreview" src="${pageContext.request.contextPath }/resources/img/banjang_profile5.png" alt="Image preview" class="img-fluid rounded-circle" />
 												</div>
-												<input type="file" id="imageUpload" accept="image/*" />
+<!-- 													<input type="file" id="imageUpload" accept="image/*" /> -->
+													<input type="file" id="imageUpload" name="file1" accept="image/*" />
+													
 											</div>
-											<br> <label><b>반장님 이름(사업체 명)</b></label> <input
-												class="form-control small-input type="text"
-												name="companyName" placeholder="사업체 명을 입력해주세요" required>
+												<br> 
+												
+											
+										<label><b>반장님 아이디</b></label> 
+											<input class="form-control small-input" type= "text" value="${member.member_id}" required>
+										</div>
+										<br>
+										<label><b>반장님 이름(사업체 명)</b></label> 
+											<input class="form-control small-input" name="com_name" type= "text"  placeholder="사업체 명을 입력해주세요" required>
 										</div>
 										<br>
 										<div class="form-group">
-											<label><b>공개 연락처(선택)</b></label> <input
-												class="form-control small-input" type="text"
-												name="companyPhoneNumber" placeholder="공개 연락처를 입력해주세요">
+											<label><b>공개 연락처(선택)</b></label> 
+											<input class="form-control small-input" type="text" name="com_tel" placeholder="공개 연락처를 입력해주세요">
 										</div>
 										<br>
 										<div class="form-group">
-											<label><b>공개 이메일</b></label> 
-											<input class="form-control small-input" type="email"
-												name="companyEmail" placeholder="공개 이메일을 입력해주세요" required>
+										<label><b>공개 이메일</b></label> 
+											<input class="form-control small-input" type="email" name="com_email" placeholder="공개 이메일을 입력해주세요" required>
 										</div>
 										<br>
 										<div class="form-group">
 											<label><b>사업체 주소</b></label><br>
 											    <div class="row address-row"> <!-- 여기에 row 클래스를 추가하여 새로운 행을 시작합니다 -->
 												<div class="col-6">
-                                                    <input class="form-control smaller-input" type="text" name="post_code" id="postCode" required>
+                                                    <input class="form-control smaller-input" type="text" name="com_post_code" id="postCode" required>
                                                 </div>
                                                 <div class="col-6">
                                                     <input class="form-control smaller-input btn-primary" type="button" id="btnSearchAddress" value="주소검색">
                                                 </div>
                                             </div>
                                             <br>
-                                            <input class="form-control smaller-input" type="text" name="address1" id="address1" placeholder="기본주소" required>
+                                            <input class="form-control smaller-input" type="text" name="com_address1" id="com_address1" placeholder="기본주소" required>
 <!--                                             <br> -->
-                                            <input class="form-control smaller-input" type="text" name="address2" id="address2" placeholder="상세주소" required>
+                                            <input class="form-control smaller-input" type="text" name="com_address2" id="com_address2" placeholder="상세주소" required>
 										</div>
 										<br>
 										<div class="form-group">
 											<label><b>반장님 소개</b></label> 
-											<input class="form-control small-input" type="text"
-												name="companyIntroduction" placeholder="반장님 소개를 입력해주세요">
+											<input class="form-control small-input" type="text" name="com_introduction" placeholder="반장님 소개를 입력해주세요">
 										</div>
 										<br>
 										<div class="form-group">
 											<label><b>계좌 정보 입력</b></label>
 											<div class="form-group">
-												<!--   <label for="sel1">Select list:</label> -->
-												<select class="form-control small-input" id="sel1" name="companyAccountBank" required>
+												<select class="form-control small-input" id="sel1" name="com_bank" required>
 													<option disabled selected>은행명</option>
 													<option>산업은행</option>
 													<option>기업은행</option>
@@ -256,55 +258,50 @@ input[type="checkbox"] {
 													<option>국민은행(구 주택)</option>
 												</select>
 											</div>
-											<input class="form-control small-input" type="text"
-												name="companyAccountNumber" placeholder="계좌번호를 입력해주세요" required> 
-											<input class="form-control small-input" type="text"
-												name="companyAccountName" placeholder="예금주명" required>
+											<input class="form-control small-input" type="text" name="com_account" placeholder="계좌번호를 입력해주세요" required> 
+											<input class="form-control small-input" type="text" name="com_account_name" placeholder="예금주명" required>
 										</div>
 										<br> <label><b>어떤 클래스를 제공할 수 있나요?</b></label>
 										<div class="form-check-category">
 											<div class="form-check">
 												<label class="form-check-label"> 
-												<input type="checkbox" class="form-check-input" value="">
+												<input type="checkbox" class="form-check-input" name="com_category" value="1">
 												&nbsp;바닥 시공
 												</label>
 											</div>
 											<div class="form-check">
-												<label class="form-check-label"> <input
-													type="checkbox" class="form-check-input" value="">
+												<label class="form-check-label"> 
+												<input type="checkbox" class="form-check-input" name="com_category" value="2">
 													&nbsp;벽/천장 시공
 												</label>
 											</div>
 											<div class="form-check">
-												<label class="form-check-label"> <input
-													type="checkbox" class="form-check-input" value="">
+												<label class="form-check-label"> 
+												<input type="checkbox" class="form-check-input" name="com_category" value="3">
 													&nbsp;부분 인테리어
 												</label>
 											</div>
 											<div class="form-check">
-												<label class="form-check-label"> <input
-													type="checkbox" class="form-check-input" value="">
+												<label class="form-check-label"> 
+												<input type="checkbox" class="form-check-input" name="com_category" value="4">
 													&nbsp;야외 시공
 												</label>
 											</div>
 											<div class="form-check">
-												<label class="form-check-label"> <input
-													type="checkbox" class="form-check-input" value="">
+												<label class="form-check-label"> 
+												<input type="checkbox" class="form-check-input"  name="com_category" value="5">
 													&nbsp;종합 인테리어
 												</label>
 											</div>
 											<div class="form-check">
 												<label class="form-check-label"> 
-												<input type="checkbox" class="form-check-input" value="">
+												<input type="checkbox" class="form-check-input"  name="com_category" value="6">
 													&nbsp;기타 홈 인테리어
 												</label>
 											</div>
 										</div>
 										<br>
 										<br>
-										<!-- <div class="text-center mt-3"> -->
-										<!-- <a href="index.html" class="btn btn-lg btn-primary">반장 신청</a> -->
-										<!-- </div> -->
 										<input type="submit" value="반장 신청">
 									</form>
 								</div>

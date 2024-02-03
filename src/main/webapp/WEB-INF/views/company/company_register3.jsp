@@ -209,7 +209,50 @@ button {
 								<h5 class="title">클래스 등록 (기타 제공사항)</h5>
 							</div>
 							<div class="card-body">
-								<form>
+							<form action="company/class/register4" method="post" enctype="multipart/form-data">
+								<%-- ============================================================================= --%> 
+								<input type="hidden" name="class_category" value="${gclass.class_category}">
+							    <input type="hidden" name="class_main_category" value="${gclass.class_main_category}">
+							    <input type="hidden" name="class_sub_category" value="${gclass.class_sub_category}">
+							    <input type="hidden" name="class_title" value="${gclass.class_title}">
+<%-- 							    <input type="hidden" name="file1" value="${file1}"> --%>
+<%-- 							    <input type="hidden" name="file2" value="${file2}"> --%>
+<%-- 							    <input type="hidden" name="file3" value="${file3}"> --%>
+							    <input type="hidden" name="address1" value="${gclass.address1}">
+							    <input type="hidden" name="address2" value="${gclass.address2}">
+							    <input type="hidden" name="class_introduction" value="${gclass.class_introduction}">
+								<%-- ============================================================================= --%> 
+							    <input type="hidden" name="class_day" value="${gclass.class_day}">
+							    <input type="hidden" name="class_start_date" value="${gclass.class_start_date}">
+							    <input type="hidden" name="class_end_date" value="${gclass.class_end_date}">
+							    <input type="hidden" name="class_start_time" value="${gclass.class_start_time}">
+							    <input type="hidden" name="class_end_time" value="${gclass.class_end_time}">
+							    <input type="hidden" name="class_member_count" value="${gclass.class_member_count}">
+<%-- 							    <input type="hidden" name="file4" value="${file4}"> --%>
+<%-- 							    <input type="hidden" name="file5" value="${file5}"> --%>
+<%-- 							    <input type="hidden" name="file6" value="${file6}"> --%>
+							    <input type="hidden" name="class_curriculum_detail1" value="${gclass.class_curriculum_detail1}">
+							    <input type="hidden" name="class_curriculum_detail2" value="${gclass.class_curriculum_detail2}">
+							    <input type="hidden" name="class_curriculum_detail3" value="${gclass.class_curriculum_detail3}">
+							    <input type="hidden" name="class_price" value="${gclass.class_price}">
+								<%-- ============================================================================= --%> 
+							    <input type="hidden" name="class_offering" value="${gclass.class_offering}">
+							    <input type="hidden" name="class_caution" value="${gclass.class_caution}">
+							    <input type="hidden" name="class_tag" value="${gclass.class_tag}">
+							    <input type="hidden" name="class_question1" value="${gclass.class_question1}">
+							    <input type="hidden" name="class_answer1" value="${gclass.class_answer1}">
+							    <input type="hidden" name="class_question2" value="${gclass.class_question2}">
+							    <input type="hidden" name="class_answer2" value="${gclass.class_answer2}">
+							    <input type="hidden" name="class_question3" value="${gclass.class_question3}">
+							    <input type="hidden" name="class_answer3" value="${gclass.class_answer3}">
+								<%-- ============================================================================= --%> 
+						
+							    
+							    
+							    
+							    
+							    
+							    
 				            <label>기타 제공사항 선택</label><br>         
 								<div class="card_small">
 									<div class="row">
@@ -248,7 +291,7 @@ button {
 												<br>
 												<div class="form-group">
 <!-- 													<label>시작일</label>  -->
-													<input type="text" class="form-control" placeholder="내용을 입력해주세요" >
+													<input type="text" class="form-control" name="class_caution" placeholder="내용을 입력해주세요" >
 												</div>
 											</div>
 										</div>
@@ -263,7 +306,7 @@ button {
 												<div class="form-group">
 												<div class="guide">※ 키워드를 입력하고 스페이스바를 누르면 자동으로 '#'가 붙습니다.</div>
 <!-- 													<input type="text" class="form-control" placeholder="검색에 사용되는 단어를 키워드로 등록해주세요" > -->
-													<input type="text" class="form-control" id="keyword" name="com_search_tag" value="" placeholder="검색에 사용되는 단어를 키워드로 등록해주세요">
+													<input type="text" class="form-control" id="keyword" name="class_tag" value="" placeholder="검색에 사용되는 단어를 키워드로 등록해주세요">
 												</div>
 											</div>
 										</div>
@@ -277,29 +320,35 @@ button {
 												<br>
 												<span class="register3_text">질문 1</span>
 												<div class="form-group">
-													<input type="text" class="form-control" placeholder="자주하는 질문을 입력해주세요" >
+													<input type="text" class="form-control" placeholder="자주하는 질문을 입력해주세요" 
+													name="class_question1">
 												</div>
 												<span class="register3_text">답변 1</span>
 												<div class="form-group">
-													<input type="text" class="form-control" placeholder="자주하는 질문의 답변을 입력해주세요" >
+													<input type="text" class="form-control" placeholder="자주하는 질문의 답변을 입력해주세요" 
+													name="class_answer1">
 												</div>
 												<br>
 												<span class="register3_text">질문 2</span>
 												<div class="form-group">
-													<input type="text" class="form-control" placeholder="자주하는 질문을 입력해주세요" >
+													<input type="text" class="form-control" placeholder="자주하는 질문을 입력해주세요" 
+													name="class_question2">
 												</div>
 												<span class="register3_text">답변 2</span>
 												<div class="form-group">
-													<input type="text" class="form-control" placeholder="자주하는 질문의 답변을 입력해주세요" >
+													<input type="text" class="form-control" placeholder="자주하는 질문의 답변을 입력해주세요"
+													name="class_answer2" >
 												</div>
 												<br>
 												<span class="register3_text">질문 3</span>
 												<div class="form-group">
-													<input type="text" class="form-control" placeholder="자주하는 질문을 입력해주세요" >
+													<input type="text" class="form-control" placeholder="자주하는 질문을 입력해주세요"
+													name="class_question3" >
 												</div>
 												<span class="register3_text">답변 3</span>
 												<div class="form-group">
-													<input type="text" class="form-control" placeholder="자주하는 질문의 답변을 입력해주세요" >
+													<input type="text" class="form-control" placeholder="자주하는 질문의 답변을 입력해주세요"
+													name="class_answer3" >
 												</div>
 											</div>
 										</div>

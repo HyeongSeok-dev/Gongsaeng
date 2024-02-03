@@ -132,27 +132,53 @@ body {
       </div>
 		<div class="content">
 			<div class="row">
+<!-- 				<div class="col-md-6"> -->
+<!-- 					<h4 class="card-title">정산 가능 금액</h4> -->
+<!-- 					<div class="card"> -->
+<!-- 						<div class="card-header"></div> -->
+<!-- 						<div class="card-body"> -->
+<!-- 							<div class="income_btn d-flex align-items-center justify-content-between"> -->
+<!-- 								<h5 class="card-title md-4">1,000,000원</h5> -->
+<!-- 								<button type="button" class="btn btn-danger md-2">정산 신청</button> -->
+<!-- 							</div> -->
+<!-- 							<span class="account-number mt-2">국민은행</span><br> -->
+<!-- 							<span class="account-number mt-2">11790204135187 조혜진</span> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<div class="col-md-6">
+    <h4 class="card-title">정산 가능 금액</h4>
+    <div class="card">
+        <div class="card-header"></div>
+        <br>
+        <h5 class="card-title">&nbsp;&nbsp;&nbsp;1,000,000원</h5>
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+                <!-- 계좌 정보 -->
+                <div>
+                    <span class="account-number">[ 계좌정보 ]</span><br>
+                    <span class="account-number">국민은행</span><br>
+                    <span class="account-number">11790204135187 조혜진</span>
+                </div>
+                <!-- 정산 신청 버튼 -->
+                <div>
+                    <button type="button" class="btn btn-danger">정산 신청</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 				<div class="col-md-6">
-					<h4 class="card-title">정산 가능 금액</h4>
+					<h4 class="card-title">O페이 내역</h4>
 					<div class="card">
 						<div class="card-header"></div>
+						<br>
+							<h5 class="card-title">&nbsp;&nbsp;&nbsp;1,000,000원</h5>
+							
 						<div class="card-body">
-							<div
-								class="income_btn d-flex align-items-center justify-content-between">
-								<h5 class="card-title md-4">1,000,000원</h5>
-								<button type="button" class="btn btn-danger md-2">정산 신청</button>
+          					 <div class="income_btn d-flex justify-content-end">
+								<button type="button" class="btn btn-danger md-2">환급 신청</button>
 							</div>
-							<span class="account-number mt-2">국민은행</span><br>
-							<span class="account-number mt-2">11790204135187 조혜진</span>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<h4 class="card-title">정산 완료 금액</h4>
-					<div class="card">
-						<div class="card-header"></div>
-						<div class="card-body">
-							<h5 class="card-title">1,000,000원</h5>
 						</div>
 					</div>
 				</div>

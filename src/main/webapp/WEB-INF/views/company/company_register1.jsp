@@ -28,137 +28,128 @@
  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
  
  <style type="text/css">
-
-
 input, select {
-    border-radius: 10px!important; /* 원하는 반지름 값으로 설정 */
-} 
- 
-body
-{
-  background-color:#f5f5f5;
+	border-radius: 10px !important; /* 원하는 반지름 값으로 설정 */
 }
 
+body {
+	background-color: #f5f5f5;
+}
 
 .card label {
-    font-size: 20px!important;
+	font-size: 20px !important;
 }
 
 .form-control {
-  height: 50px; 
+	height: 50px;
 }
 
-	/* 이미지 미리보기 css */
-	#img_preview0, #img_preview1, #img_preview2, #img_preview3, #img_preview4, #img_preview5{
-		display: none;
-		position: relative;
-		
-		margin:5px;
-		
-		width: 150px;
-		height: 150px; 
-		
-/* 		border: 2px solid black; */
-	
-	}
-	/* 미리보기 삭제버튼 css */
-	#sum_style{
-		text-align:center;
-		width:75px;
-		height:20spx;
-	    position:absolute; 
-		font-size:12px;
-		outline:none;
-		border:none;
-		border-radius:15px;
-	    right:70px;
-	    bottom:130px;
-	    /* z-index:1; */
-	    background-color:rgba(0,0,0,0.5);
-	    color:white;
-	}
-	.chk_style{
-		vertical-align: middle;
-		text-align:center;
-		
-		width:28px;
-		height:28px;
-	    position:absolute; 
-		/* font-size:20px; */
-		outline:none;
-		border:none;
-		border-radius:18px;
-	    right:9px;
-	    bottom:115px;
-	    /* z-index:1; */
-	    background-color:rgba(0,0,0,0.5);
-	    color:#ffcccc;
-	}
-	
-		
-	/* 미리보기 삭제 css */
-	#del_img1, #del_img2, #del_img3, #del_img4, #del_img5,#del_sum{
-		cursor: pointer;
-		display: none;
-	}
-	
-	#imgup{
-		margin-top: 5px;
-	}
-	
-	/* 이미지 미리보기 css */
-	#imgup_1,#imgup_2, #imgup_3, #imgup_4, #imgup_5,#imgup_sum {
-		cursor: pointer;
-		display: none;
-	}
-	
-	
-	.input-tag:focus{
-		outline: none;
-		border: 1px solid black;
-	}
+/* 이미지 미리보기 css */
+#img_preview0, #img_preview1, #img_preview2, #img_preview3,
+	#img_preview4, #img_preview5 {
+	display: none;
+	position: relative;
+	margin: 5px;
+	width: 150px;
+	height: 150px;
 
-	
-	/* 테이블 간의 간격 */
-	td {
-		width: 1020px;
-		padding: 0.8em 1.4em 0.5em 0.8em;
-	}
-	
-	.td1{
-		width: 20%;
-		vertical-align: top;
-	}
-	
-	.td2{
-		width: 80%;
-	}
-	#img_zone{
-		
-		/* background-color: black; */
-/* 		margin: auto;  */
-		width: 100%; 
-		min-height: 50px;
-		margin-bottom: 50px;
-	}
-	#img_intro{
-		
-		font-size:16px;
-		color : skyblue;
-		/* background-color: #ccffcc; */
-		margin: auto; 
-		width: 65%; 
-		min-height: 50px;
-	}
-	
-	/* 대표 사진 등록 */
-	.pic_instruction {
-		font-size: 14px;
-		color: #666A73;
-	}
-	
-	.custom-font-size {
-    font-size: 18px;
+	/* 		border: 2px solid black; */
+}
+/* 미리보기 삭제버튼 css */
+#sum_style {
+	text-align: center;
+	width: 75px;
+	height: 20spx;
+	position: absolute;
+	font-size: 12px;
+	outline: none;
+	border: none;
+	border-radius: 15px;
+	right: 70px;
+	bottom: 130px;
+	/* z-index:1; */
+	background-color: rgba(0, 0, 0, 0.5);
+	color: white;
+}
+
+.chk_style {
+	vertical-align: middle;
+	text-align: center;
+	width: 28px;
+	height: 28px;
+	position: absolute;
+	/* font-size:20px; */
+	outline: none;
+	border: none;
+	border-radius: 18px;
+	right: 9px;
+	bottom: 115px;
+	/* z-index:1; */
+	background-color: rgba(0, 0, 0, 0.5);
+	color: #ffcccc;
+}
+
+/* 미리보기 삭제 css */
+#del_img1, #del_img2, #del_img3, #del_img4, #del_img5, #del_sum {
+	cursor: pointer;
+	display: none;
+}
+
+#imgup {
+	margin-top: 5px;
+}
+
+/* 이미지 미리보기 css */
+#imgup_1, #imgup_2, #imgup_3, #imgup_4, #imgup_5, #imgup_sum {
+	cursor: pointer;
+	display: none;
+}
+
+.input-tag:focus {
+	outline: none;
+	border: 1px solid black;
+}
+
+/* 테이블 간의 간격 */
+td {
+	width: 1020px;
+	padding: 0.8em 1.4em 0.5em 0.8em;
+}
+
+.td1 {
+	width: 20%;
+	vertical-align: top;
+}
+
+.td2 {
+	width: 80%;
+}
+
+#img_zone {
+	/* background-color: black; */
+	/* 		margin: auto;  */
+	width: 100%;
+	min-height: 50px;
+	margin-bottom: 50px;
+}
+
+#img_intro {
+	font-size: 16px;
+	color: skyblue;
+	/* background-color: #ccffcc; */
+	margin: auto;
+	width: 65%;
+	min-height: 50px;
+}
+
+/* 대표 사진 등록 */
+.pic_instruction {
+	font-size: 14px;
+	color: #666A73;
+}
+
+.custom-font-size {
+	font-size: 18px;
 }
 
 .card {
@@ -166,14 +157,15 @@ body
 	-webkit-box-shadow: 1px 0 20px rgba(96, 93, 175, .05);
 	box-shadow: 1px 0 20px rgba(96, 93, 175, .05);
 	margin-bottom: 30px;
-background-color: #F1F3F5!important;}
+	background-color: #F1F3F5 !important;
+}
 
 .content {
-	background-color: #fff!important;
+	background-color: #fff !important;
 }
 
 .card label {
-	color: #666A73!important;
+	color: #666A73 !important;
 }
 
 .form-control search {
@@ -181,9 +173,8 @@ background-color: #F1F3F5!important;}
 }
 
 textarea.form-control {
-	border-radius: 10px!important;
+	border-radius: 10px !important;
 }
-	
 </style>
 <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet" />
 
@@ -371,7 +362,7 @@ textarea.form-control {
 		
 	    if (input.files && input.files[0]) {
 	        var reader = new FileReader();
-	        reader.onload = function (e) {
+	        reader.onload = function ㄹ(e) {
 		        $('#imgup_sum').attr('src', e.target.result);
 		        
 		        $("#img_preview0").css("display","inline-block");
@@ -641,12 +632,24 @@ textarea.form-control {
 			<div class="panel-header panel-header-sm"></div>
 			<div class="content">
 				<div class="row">
+				<!--  본문 시작 -->
 					<div class="col-md-11">
 						<div class="card">
 							<div class="card-header">
 								<h5 class="title">클래스 등록 - 기본 정보</h5>
 							</div>
-							<form action="ClassRegisterPro" method="post" name="classRegisterForm" enctype="multipart/form-data">
+							<form action="company/class/register2" method="post" enctype="multipart/form-data">
+							    <input type="hidden" name="class_category" value="${gclass.class_category}">
+							    <input type="hidden" name="class_main_category" value="${gclass.class_main_category}">
+							    <input type="hidden" name="class_sub_category" value="${gclass.class_sub_category}">
+							    <input type="hidden" name="class_title" value="${gclass.class_title}">
+<%-- 							    <input type="hidden" name="file1" value="${file1}"> --%>
+<%-- 							    <input type="hidden" name="file2" value="${file2}"> --%>
+<%-- 							    <input type="hidden" name="file3" value="${file3}"> --%>
+							    <input type="hidden" name="address1" value="${gclass.address1}">
+							    <input type="hidden" name="address2" value="${gclass.address2}">
+							    <input type="hidden" name="class_introduction" value="${gclass.class_introduction}">
+							
 								<div class="card-body">
 									<div class="row">
 										<div class="col-md-3 pr-1">
@@ -739,9 +742,10 @@ textarea.form-control {
 													</tr>
 													<!-- 이미지영역끝 -->
 													<tr>
-														<td class="td1" align="left"><input type="button"
-															id="imgup" onclick="img_preview();" value="대표 이미지 업로드"
-															style="width: 150px; height: 50px; border-radius: 10px; border: 1px solid; background-image: url('${ pageContext.request.contextPath }/resources/img/image_upload.png'); background-size: cover;">
+														<td class="td1" align="left">
+														<input type="button" id="imgup" onclick="img_preview();" value="대표 이미지 업로드"
+															style="width: 150px; height: 50px; border-radius: 10px; border: 1px solid; 
+															background-image: url('${ pageContext.request.contextPath }/resources/img/image_upload.png'); background-size: cover;">
 														</td>
 													</tr>
 												</table>
@@ -765,7 +769,6 @@ textarea.form-control {
 												<div class="row">
 													<div class="col-md-8 offset-md-1">
 														<div class="form-group">
-															<!-- 						                <label><b>다른 주소 사용하기</b></label><br> -->
 															<div class="row address-row">
 																<div class="col-6">
 																	<input class="form-control smaller-input" type="text"
@@ -776,12 +779,11 @@ textarea.form-control {
 																		type="button" id="btnSearchAddress" value="주소검색">
 																</div>
 															</div>
-															<br> <input class="form-control smaller-input"
-																type="text" name="address1" id="address1"
-																placeholder="기본주소" required> <br> <input
-																class="form-control smaller-input" type="text"
-																name="address2" id="address2" placeholder="상세주소"
-																required>
+															<br> <input class="form-control smaller-input" type="text" name="address1" id="address1"
+																	placeholder="기본주소" required>  
+																<br> 
+																<input class="form-control smaller-input" type="text" name="address2" id="address2" 
+																	placeholder="상세주소" required>
 														</div>
 													</div>
 												</div>
@@ -790,8 +792,7 @@ textarea.form-control {
 												<div class="form-group">
 													<br>
 													<br> <label>클래스 소개문</label>
-													<textarea rows="4" cols="80" class="form-control"
-														placeholder="내용을 입력해주세요" value="Mike"></textarea>
+													<textarea rows="4" cols="80" class="form-control" name="class_introduction" placeholder="내용을 입력해주세요"> </textarea>
 												</div>
 											</div>
 										</div>
@@ -805,8 +806,7 @@ textarea.form-control {
 						<div class="submit_btn d-flex justify-content-end">
 							<button type="button"
 								class="btn btn-danger btn-col-md-4 mr-2 custom-font-size">취소</button>
-							<button type="button"
-								class="btn btn-default btn-col-md-4  custom-font-size"
+							<button type="button" class="btn btn-default btn-col-md-4  custom-font-size"
 								onclick="location.href='${pageContext.request.contextPath}/company/class/register2'">다음</button>
 						</div>
 					</div>

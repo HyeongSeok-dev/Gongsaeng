@@ -222,11 +222,9 @@ a {
 									</div>
 									<div class="col-lg-3  mt-3">
 										<div class="filler-job-form">
-											<i class="uil uil-clipboard-notes"></i> <select
-												class="form-select selectForm__inner" data-trigger="true"
-												name="choices-single-categories"
-												id="choices-single-categories"
-												aria-label="Default select example">
+											<i class="uil uil-clipboard-notes"></i> 
+											<select class="form-select selectForm__inner" data-trigger="true" name="choices-single-categories"
+												id="choices-single-categories" aria-label="Default select example">
 												<option value="7">클래스 분류</option>
 												<option value="1">바닥 시공</option>
 												<option value="2">벽/천장 시공</option>
@@ -262,10 +260,8 @@ a {
 									<div class="row">
 										<div class="col-lg-6">
 											<div class="selection-widget">
-												<select class="form-select" data-trigger="true"
-													name="choices-single-filter-orderby"
-													id="choices-single-filter-orderby"
-													aria-label="Default select example">
+												<select class="form-select" data-trigger="true" name="choices-single-filter-orderby"
+													id="choices-single-filter-orderby" aria-label="Default select example">
 													<option value="df">최신순</option>
 													<option value="ne"></option>
 													<option value="od">Oldest</option>
@@ -275,8 +271,7 @@ a {
 										</div>
 										<div class="col-lg-6">
 											<div class="selection-widget mt-2 mt-lg-0">
-												<select class="form-select" data-trigger="true"
-													name="choices-candidate-page" id="choices-candidate-page"
+												<select class="form-select" data-trigger="true" name="choices-candidate-page" id="choices-candidate-page"
 													aria-label="Default select example">
 													<option value="df">All</option>
 													<option value="ne">8개씩 보기</option>
