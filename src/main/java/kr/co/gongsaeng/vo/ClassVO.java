@@ -65,4 +65,10 @@ public class ClassVO {
 	private String class_question3;
 	private String class_answer3;
 	
+	
+	// [관리자 페이지]
+	// 회원(반장) 상세페이지
+	private String totalClass; // 총 등록
+	private String oneDayClass; // 원데이 등록
+	private String regularClass; // 정기 등록
 }

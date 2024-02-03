@@ -42,32 +42,66 @@
 		FROM member
 		WHERE member_id = #{member_id};
 	</select>
+	
 	<!-- 계좌정보 조회 -->
 	<select id="selectAccount" resultType="account">
 		SELECT *
 		FROM account
 		WHERE member_id = #{member_id};
 	</select>
-	<!-- 결제정보 조회 -->
-	<select id="selectPayCount" resultType="adminInfo">
-		SELECT *
-		FROM payment
-		WHERE member_id = #{member_id};
+	
+	<!-- (예약)결제수 조회 -->
+	<select id="selectPayCount" resultType="payment">
+		<![CDATA[
+			SELECT COUNT(pay_num) AS 'classRes'
+				 , (SELECT COUNT(pay_num) FROM payment p , class c WHERE (p.class_idx = c.class_idx AND c.class_category = 2) AND p.member_id = #{member_id}) AS 'oneDayRes'
+				 , (SELECT COUNT(pay_num) FROM payment p , class c WHERE (p.class_idx = c.class_idx AND c.class_category = 1) AND p.member_id = #{member_id}) AS 'regularRes'
+				 , (SELECT COUNT(pay_num) FROM payment p WHERE (pay_date >= (last_day(now() - INTERVAL 1 month) + INTERVAL 1 DAY)
+																				AND pay_date <= last_day(now())) 
+				 															AND p.member_id = #{member_id}) AS 'classMonthRes'
+				 , (SELECT COUNT(pay_num) FROM payment p , class c WHERE (p.class_idx = c.class_idx AND c.class_category = 2) 
+				 															AND (pay_date >= (last_day(now() - INTERVAL 1 month) + INTERVAL 1 DAY)
+																				AND pay_date <= last_day(now())) 	 															
+				 															AND p.member_id = #{member_id}) AS 'oneDayMonthRes'
+				 , (SELECT COUNT(pay_num) FROM payment p , class c WHERE (p.class_idx = c.class_idx AND c.class_category = 1) 
+				 															AND (pay_date >= (last_day(now() - INTERVAL 1 month) + INTERVAL 1 DAY)
+																				AND pay_date <= last_day(now())) 
+				 															AND p.member_id = #{member_id}) AS 'regularMonthRes'
+			FROM payment
+			WHERE member_id = #{member_id};
+		]]>	
 	</select>
+	
 	<!-- 리뷰수 조회 -->
-	<select id="selectReviewCount" resultType="adminInfo">
-		SELECT *
-		FROM review
-		WHERE member_id = #{member_id};
+	<!--
+	  'reviewTotal' - 회원이 남긴 총리뷰수 
+	  'reviewMonth' -회원이 남긴 이번달 리뷰수
+	  'reviewReport' - 신고당한 리뷰수 
+	-->
+	<select id="selectReviewCount" resultType="review">
+		<![CDATA[
+			SELECT COUNT(review_idx) AS 'reviewTotal'
+			,(SELECT COUNT(review_idx)
+			  FROM review
+			  WHERE (review_regdate >= (last_day(now() - INTERVAL 1 month) + INTERVAL 1 DAY)
+					AND review_regdate <= last_day(now())) AND member_id = #{member_id}) AS 'reviewMonth'
+			,(SELECT COUNT(report_idx)
+			  FROM report, review  
+			  WHERE report.review_idx = review.review_idx AND review.member_id = #{member_id} ) AS 'reviewReport' 
+			FROM review 
+			WHERE member_id = #{member_id};
+		]]>	
 	</select>
+	
 	<!-- 사업체 조회 -->
 	<select id="selectCompany" resultType="company">
 		SELECT *
 		FROM company
 		WHERE member_id = #{member_id};
 	</select>
+	
 	<!-- 클래스등록수 조회 -->
-	<select id="selectClassCount" resultType="adminInfo">
+	<select id="selectClassCount" resultType="class">
 		SELECT COUNT(class_idx) AS 'totalClass'
 		, (SELECT COUNT(class_category) FROM class WHERE class_category = 2) AS 'oneDayClass'
 		, (SELECT COUNT(class_category) FROM class WHERE class_category = 1) AS 'regularClass'
@@ -76,7 +110,7 @@
 	</select>
 	
 	<!-- reservation_class.jsp -->
-	<!-- 특정회원의 클래스 결제(예약)내역 -->
+	<!-- 특정회원의 클래스 결제(예약)상세 내역 -->
 	<select id="selectClassPayList" resultType="payment">
 		SELECT *
 		FROM payment

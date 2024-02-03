@@ -122,8 +122,16 @@
 						<input type="file" class="form-control profileImg" accept="image/*">
 						<div class="profileImg" >
 							<br>
-	    	       		 	<button type="button" class="btn btn_default">파일선택</button>
-		           		 	<span>파일명</span>
+		           		 	<c:choose>
+								<c:when test="${empty member.member_img}">
+			    	       		 	<button type="button" class="btn btn_default">파일선택</button>
+				           		 	<span>파일명</span>
+								</c:when>
+								<c:otherwise>
+			    	       		 	<button type="button" class="btn btn_default">파일선택</button>
+				           		 	<span>${member.member_img}</span>
+								</c:otherwise>
+							</c:choose>
 						</div>
 	           		 </div>
 	              	 <br>
@@ -158,16 +166,16 @@
 		             		<th>회원분류</th>
 		             		<td>
 		             			<c:choose>
-										<c:when test="${member.member_category eq 1}">
+										<c:when test="${member.member_category eq 1 and member.member_id ne 'admin1234'}">
 							                일반
+					                	</c:when>
+										<c:when test="${member.member_category eq 1 and company.com_status eq 2}">
+							                사업장 신청중
+					                		<button type="button" class="btn btn_default">승인</button>
 					                	</c:when>
 										<c:when test="${member.member_category eq 2}">
 							                반장
-					                		<button type="button" class="btn btn_default">반장탈퇴</button>
 					                	</c:when>
-					                	<c:otherwise>
-							                관리자
-					                	</c:otherwise>
 					            </c:choose>
 							</td>
 		             	</tr>
@@ -257,20 +265,20 @@
 		             		<td> <%-- 총 --%>
 		             			이달
 		             			<c:choose>
-									<c:when test="${adminInfo.classMonthRes eq null}">
+									<c:when test="${payCount.classMonthRes eq null}">
 				             			0
 									</c:when>
 									<c:otherwise>
-				             			${adminInfo.classMonthRes}
+				             			${payCount.classMonthRes}
 									</c:otherwise>
 			             		</c:choose> 
 		             			 건 / 누적 
 		             			 <c:choose>
-									<c:when test="${adminInfo.classRes eq null}">
+									<c:when test="${payCount.classRes eq null}">
 				             			0
 									</c:when>
 									<c:otherwise>
-				             			${adminInfo.classRes}
+				             			${payCount.classRes}
 									</c:otherwise>
 			             		</c:choose>  
 		             			 건
@@ -278,20 +286,20 @@
 		             		<td> <%-- 원데이 --%>
 		             			이달
 		             			<c:choose>
-									<c:when test="${adminInfo.oneDayMonthRes eq null}">
+									<c:when test="${payCount.oneDayMonthRes eq null}">
 				             			0
 									</c:when>
 									<c:otherwise>
-				             			${adminInfo.oneDayMonthRes}
+				             			${payCount.oneDayMonthRes}
 									</c:otherwise>
 			             		</c:choose> 
 		             			 건 / 누적 
 		             			 <c:choose>
-									<c:when test="${adminInfo.oneDayRes eq null}">
+									<c:when test="${payCount.oneDayRes eq null}">
 				             			0
 									</c:when>
 									<c:otherwise>
-				             			${adminInfo.oneDayRes}
+				             			${payCount.oneDayRes}
 									</c:otherwise>
 			             		</c:choose>  
 		             			 건
@@ -299,20 +307,20 @@
 		             		<td> <%-- 정기 --%>
 		             			이달
 		             			<c:choose>
-									<c:when test="${adminInfo.regularMonthRes eq null}">
+									<c:when test="${payCount.regularMonthRes eq null}">
 				             			0
 									</c:when>
 									<c:otherwise>
-				             			${adminInfo.regularMonthRes}
+				             			${payCount.regularMonthRes}
 									</c:otherwise>
 			             		</c:choose> 
 		             			 건 / 누적 
 		             			 <c:choose>
-									<c:when test="${adminInfo.regularRes eq null}">
+									<c:when test="${payCount.regularRes eq null}">
 				             			0
 									</c:when>
 									<c:otherwise>
-				             			${adminInfo.regularRes}
+				             			${payCount.regularRes}
 									</c:otherwise>
 			             		</c:choose>  
 		             			 건
@@ -332,33 +340,33 @@
 		             	<tr>
 		             		<td> <%-- 이달 --%>
 		             			<c:choose>
-									<c:when test="${adminInfo.reviewMonth eq null}">
+									<c:when test="${reviewCount.reviewMonth eq null}">
 				             			0
 									</c:when>
 									<c:otherwise>
-				             			${adminInfo.reviewMonth}
+				             			${reviewCount.reviewMonth}
 									</c:otherwise>
 			             		</c:choose>  
 		             			건
 		             		</td>
 		             		<td> <%--누적 --%>
 		             			<c:choose>
-									<c:when test="${adminInfo.reviewTotal eq null}">
+									<c:when test="${reviewCount.reviewTotal eq null}">
 				             			0
 									</c:when>
 									<c:otherwise>
-				             			${adminInfo.reviewTotal}
+				             			${reviewCount.reviewTotal}
 									</c:otherwise>
 			             		</c:choose> 
 		             			건
 		             		</td>
 		             		<td> <%--피신고건 --%>
 		             			<c:choose>
-									<c:when test="${adminInfo.reviewReport eq null}">
+									<c:when test="${reviewCount.reviewReport eq null}">
 				             			0
 									</c:when>
 									<c:otherwise>
-				             			${adminInfo.reviewReport}
+				             			${reviewCount.reviewReport}
 									</c:otherwise>
 			             		</c:choose> 
 		             			건
@@ -368,7 +376,7 @@
 		             <%-- 반장회원이면 --%>
 		             <c:if test="${member.member_category eq 2}">
 			             <br>
-			             <h5>반장 정보</h5>
+			             <h5 class="title">반장 정보</h5>
 			             <table class="table table-bordered">	 
 			             	<colgroup>
 			             		<col width="25%" />
@@ -399,29 +407,29 @@
 			             		<td>
 			             			총
 				             		<c:choose>
-										<c:when test="${adminInfo.totalClass eq null}">
+										<c:when test="${classCount.totalClass eq null}">
 					             			0
 										</c:when>
 										<c:otherwise>
-					             			${adminInfo.totalClass}
+					             			${classCount.totalClass}
 										</c:otherwise>
 			             			</c:choose> 
 				             		건 / 원데이 
 				             		<c:choose>
-										<c:when test="${adminInfo.oneDayClass eq null}">
+										<c:when test="${classCount.oneDayClass eq null}">
 					             			0
 										</c:when>
 										<c:otherwise>
-					             			${adminInfo.oneDayClass}
+					             			${classCount.oneDayClass}
 										</c:otherwise>
 			             			</c:choose>  
 				             		건 / 정기 
 				             		<c:choose>
-										<c:when test="${adminInfo.regularClass eq null}">
+										<c:when test="${classCount.regularClass eq null}">
 					             			0
 										</c:when>
 										<c:otherwise>
-					             			${adminInfo.regularClass}
+					             			${classCount.regularClass}
 										</c:otherwise>
 			             			</c:choose>  
 				             		건

@@ -8,11 +8,12 @@ import org.springframework.stereotype.Service;
 
 import kr.co.gongsaeng.mapper.AdminMapper;
 import kr.co.gongsaeng.vo.AccountVO;
-import kr.co.gongsaeng.vo.AdminInfo;
+import kr.co.gongsaeng.vo.ClassVO;
 import kr.co.gongsaeng.vo.CompanyVO;
 import kr.co.gongsaeng.vo.MemberVO;
 import kr.co.gongsaeng.vo.PaymentVO;
 import kr.co.gongsaeng.vo.ReportVO;
+import kr.co.gongsaeng.vo.ReviewVO;
 
 @Service
 public class AdminService {
@@ -42,12 +43,12 @@ public class AdminService {
 	}
 
 	// 클래스 결제수 조회
-	public AdminInfo getPayCount(String member_id) {
+	public PaymentVO getPayCount(String member_id) {
 		return mapper.selectPayCount(member_id);
 	}
 	
 	// 클래스 리뷰수 조회
-	public AdminInfo getReviewCount(String member_id) {
+	public ReviewVO getReviewCount(String member_id) {
 		return mapper.selectReviewCount(member_id);
 	}
 
@@ -57,7 +58,7 @@ public class AdminService {
 	}
 
 	// 반장회원만 클래스등록수 조회
-	public AdminInfo getClassCount(String member_id) {
+	public ClassVO getClassCount(String member_id) {
 		return mapper.selectClassCount(member_id);
 	}
 

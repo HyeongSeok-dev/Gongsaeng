@@ -23,12 +23,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.gongsaeng.service.AdminService;
 import kr.co.gongsaeng.vo.AccountVO;
-import kr.co.gongsaeng.vo.AdminInfo;
 import kr.co.gongsaeng.vo.ClassVO;
 import kr.co.gongsaeng.vo.CompanyVO;
 import kr.co.gongsaeng.vo.MemberVO;
 import kr.co.gongsaeng.vo.PaymentVO;
 import kr.co.gongsaeng.vo.ReportVO;
+import kr.co.gongsaeng.vo.ReviewVO;
 import lombok.Getter;
 
 @Controller
@@ -151,24 +151,29 @@ public class AdminController {
 		
 		// AdminInfo 객체에 저장할 정보
 		// [ 예약수(결제수) 조회 ]
-		AdminInfo adminInfo = service.getPayCount(member_id);
+		PaymentVO payCount = service.getPayCount(member_id);
+		System.out.println("payCount >>>" + payCount);
 		// [ 리뷰수 조회 ]
-		adminInfo = service.getReviewCount(member_id);
+		ReviewVO reviewCount = service.getReviewCount(member_id);
 		
 		// 반장일때
+		ClassVO classCount = null;
 		if(member.getMember_category() == 2) {
 			// [ 사업체 조회 ]
 			CompanyVO company = service.getCompany(member_id);
 			// [ 등록 클래스 조회 ]
-			adminInfo = service.getClassCount(member_id);
+			classCount = service.getClassCount(member_id);
 		
 		model.addAttribute("company", company);
 		}
 		
-		System.out.println("adminInfo >>>" + adminInfo);
+		System.out.println("reviewCount >>>" + reviewCount);
+		System.out.println("clascount >>>" + classCount);
 		model.addAttribute("member", member);
 		model.addAttribute("account", account);
-		model.addAttribute("adminInfo", adminInfo);
+		model.addAttribute("payCount", payCount);
+		model.addAttribute("reviewCount", reviewCount);
+		model.addAttribute("classCount", classCount);
 		return "admin/member/member_detail";
 	}
 
