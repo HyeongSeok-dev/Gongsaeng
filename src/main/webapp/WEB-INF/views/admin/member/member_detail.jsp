@@ -26,6 +26,7 @@
   <link href="${pageContext.request.contextPath }/resources/admin_assets/css/admin.css" rel="stylesheet" />
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
   <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">
+  <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
 </head>
 
 <body class="">
@@ -111,25 +112,29 @@
 	           		 <div class="text_center">
 	           		 	<c:choose>
 							<c:when test="${empty member.member_img}">
-								<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" style="cursor: pointer;"
-									onclick="location.href='modifyProfile'" class="img-circle img-thumbnail">
+								<div id="img">
+									<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" 
+									class="img-circle img-thumbnail">
+								</div>
 							</c:when>
 							<c:otherwise>
-								<img alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}" style="cursor: pointer;"
-									onclick="location.href='modifyProfile'" class="img-circle img-thumbnail">
+								<div id="img">
+									<img id="img" alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}"
+										class="img-circle img-thumbnail">
+								</div>
 							</c:otherwise>
 						</c:choose>
-						<input type="file" class="form-control profileImg" accept="image/*">
+						<input type="file" id="file" class="form-control profileImg" accept="image/*">
 						<div class="profileImg" >
 							<br>
 		           		 	<c:choose>
 								<c:when test="${empty member.member_img}">
-			    	       		 	<button type="button" class="btn btn_default">파일선택</button>
-				           		 	<span>파일명</span>
+			    	       		 	<button type="button" id="uploadFileBtn" class="btn btn_default">파일선택</button>
+				           		 	<span id="fileLabel">파일명</span>
 								</c:when>
 								<c:otherwise>
-			    	       		 	<button type="button" class="btn btn_default">파일선택</button>
-				           		 	<span>${member.member_img}</span>
+			    	       		 	<button type="button" id="uploadFileBtn" class="btn btn_default">파일선택</button>
+				           		 	<span id="fileLabel">${member.member_img}</span>
 								</c:otherwise>
 							</c:choose>
 						</div>
@@ -147,7 +152,7 @@
 		             		<td>${member.member_date }</td>
 		             		<th>회원상태</th>
 		             		<td>
-		             			<select name="member_state">
+		             			<select name="member_state" id="member_state">
 					              	<option value="1" <c:if test="${member.member_status eq 1}">selected</c:if>>정상</option>
 					              	<option value="2" <c:if test="${member.member_status eq 2}">selected</c:if>>휴면</option>
 					              	<option value="3" <c:if test="${member.member_status eq 3}">selected</c:if>>탈퇴</option>
@@ -158,7 +163,9 @@
 		             		<th>이름</th>
 		             		<td>${member.member_name }</td>
 		             		<th>닉네임</th>
-		             		<td>${member.member_nick }</td>
+		             		<td>
+		             			<input type="text" value="${member.member_nick }" name="member_nick" id="member_nick">
+		             		</td>
 		             	</tr>
 		             	<tr>
 		             		<th>아이디</th>
@@ -170,8 +177,8 @@
 							                일반
 					                	</c:when>
 										<c:when test="${member.member_category eq 1 and company.com_status eq 2}">
-							                사업장 신청중
-					                		<button type="button" class="btn btn_default">승인</button>
+							                반장 신청중
+					                		<button type="button" class="btn btn_default" onclick="location.href=''">승인</button>
 					                	</c:when>
 										<c:when test="${member.member_category eq 2}">
 							                반장
@@ -185,7 +192,7 @@
 		             		<td>${member.member_birthday}</td>
 		             		<th>전화번호</th>
 		             		<td>
-								<input type="text" value="${member.member_phone}" name="member_phone"><!--  - <input type="text"> - <input type="text">  -->
+								<input type="text" name="member_phone" value="${member.member_phone}" id="member_phone">
 								<div class="gaid">(-제외하고 입력)</div>
 							</td>
 		             	</tr>
@@ -231,13 +238,14 @@
 		             	<tr>
 		             		<th>이메일</th>
 		             		<td colspan="3">
-		             			<input type="text" value="${member.member_email1}" name="member_email1"> @ 
+		             			<input type="text" value="${member.member_email1}" name="member_email1" id="member_email1"> @ 
 		             			<input type="text" value="${member.member_email2}" name="member_email2" id="member_email2">
 								<select id="selectEmail">
-									<option <c:if test="${member.member_email2 eq 'gmail.com'}">selected</c:if>>gmail.com</option>
-									<option <c:if test="${member.member_email2 eq 'naver.com'}">selected</c:if>>naver.com</option>
-									<option <c:if test="${member.member_email2 eq 'yahoo.com'}">selected</c:if>>yahoo.com</option>
-									<option <c:if test="${member.member_email2 eq 'daum.net'}">selected</c:if>>daum.net</option>
+									<option value="">직접입력</option>
+									<option value="gmail.com" <c:if test="${member.member_email2 eq 'gmail.com'}">selected</c:if>>gmail.com</option>
+									<option value="naver.com" <c:if test="${member.member_email2 eq 'naver.com'}">selected</c:if>>naver.com</option>
+									<option value="yahoo.com" <c:if test="${member.member_email2 eq 'yahoo.com'}">selected</c:if>>yahoo.com</option>
+									<option value="daum.net" <c:if test="${member.member_email2 eq 'daum.net'}">selected</c:if>>daum.net</option>
 								</select>
 		             			<span>
 			             			<c:choose>
@@ -444,7 +452,7 @@
 	        <div class="row">
 	        	<div class="col-md-12 btn_bottom">
 		        	<button type="button" class="btn btn_default" onclick="location.replace('${pageContext.request.contextPath }/admin/member')">목록</button>&nbsp;&nbsp;
-		        	<button type="submit" class="btn btn_default">변경저장</button>
+		        	<button type="submit" class="btn btn_default" id="modifyMember">변경저장</button>
 	        	</div>
 	        </div>
 	      </div>
@@ -469,18 +477,7 @@
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.js"></script>
-	<script>
-        $(document).ready(function() {
-            // 필터 기능 구현
-            $('#leaderFilter, #withdrawalFilter').change(function() {
-                var leaderFilter = $('#leaderFilter').val();
-                var withdrawalFilter = $('#withdrawalFilter').val();
-                
-                // 로직에 따라 회원 데이터 필터링 및 표시
-            });
-        });
-    </script>
-
+  <script src="${pageContext.request.contextPath }/resources/admin_assets/js/member_detail.js"></script>
 </body>
 
 </html>

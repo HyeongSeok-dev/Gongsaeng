@@ -227,6 +227,7 @@
   </div>
   
   <!--   Core JS Files   -->
+  <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/popper.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/bootstrap.min.js"></script>

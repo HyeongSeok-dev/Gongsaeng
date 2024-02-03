@@ -1,6 +1,5 @@
 $(function() {
 	//member.js
-
 	// 회원상태/일반회원/필터링함수
 	function tableFilter(){
 		
