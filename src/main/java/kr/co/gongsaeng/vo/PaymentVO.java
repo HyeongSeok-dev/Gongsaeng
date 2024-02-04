@@ -29,4 +29,9 @@ public class PaymentVO {
 	private String classMonthRes; // 이달 수업 예약
 	private String oneDayMonthRes;
 	private String regularMonthRes;
+	
+	//회원 예약(결제)내역 페이지
+	private String com_name;
+	private String class_name;
+	private String class_category;
 }

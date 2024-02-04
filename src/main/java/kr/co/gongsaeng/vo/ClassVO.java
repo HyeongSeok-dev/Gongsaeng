@@ -71,4 +71,9 @@ public class ClassVO {
 	private String totalClass; // 총 등록
 	private String oneDayClass; // 원데이 등록
 	private String regularClass; // 정기 등록
+	
+	// 클래스 목록페이지
+	private String com_name; // 사업체이름
+	private String classReportCount; // 신고받은 수
+	
 }
