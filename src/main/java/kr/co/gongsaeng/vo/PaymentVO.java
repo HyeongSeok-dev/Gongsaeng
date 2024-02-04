@@ -5,6 +5,21 @@ import lombok.Data;
 @Data
 public class PaymentVO {
 	
+	private String pay_num;
+	private int res_num;
+	private int res_person;
+	private int com_idx;
+	private int class_idx;
+	private String member_id;
+	private int payment;
+	private int discount_payment;
+	private String pay_method;
+	private String pay_date;
+	private String pay_card_co;
+	private String per_Info_consent;
+	private int pay_status;
+	private int pay_category;
+	private int pay_cal_staus;
 	
 	//[ 관리자 페이지 ]
 	// 회원상세 페이지

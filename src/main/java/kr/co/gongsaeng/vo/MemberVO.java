@@ -23,8 +23,9 @@ public class MemberVO {
 	private String member_date;
 	private MultipartFile m_file;
 	
-	
 	// [관리자페이지] 
+	// 회원목록 회원분류추가
+	private String com_status;
 	// 회원목록 신고수 조회
 	private int reportCount;
 	// 필터링을 위한 체크박스
