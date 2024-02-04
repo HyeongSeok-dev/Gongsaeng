@@ -1,5 +1,17 @@
 @charset "UTF-8";
 
+/* 모든 요소들 화면 중간정렬하기 */
+ .out_block {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /*뷰포트의 높이만큼*/
+        
+        width: 80%; /* 원하는 너비 값으로 설정하세요. */
+        margin: 0 auto; /* 상하 마진 0, 좌우 마진 auto */
+    }
+
 #next{
 	border: none;
 }

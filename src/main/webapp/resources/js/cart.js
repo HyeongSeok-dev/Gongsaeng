@@ -9,8 +9,10 @@ $(document).ready(function() {
 	//장바구니에 물건담기===============================================
 	$("#onCart").click(function() {
 		
-	    var class_idx = $("#class_idx").val(); //클래스 번호
-	    var memberId = $("#member_id").val(); //회원 아이디
+//	    var class_idx = $("#class_idx").val(); //클래스 번호
+//	    var memberId = $("#member_id").val(); //회원 아이디
+	    var class_idx = "1"; //클래스 번호하드코딩
+	    var memberId = "testUser"; //회원 아이디 하드코딩
 	    var date = $("#reservation-date").val(); //예약날짜
 	    var res_person = $("#res_person").var(); //예약인원수
 	
@@ -37,8 +39,11 @@ $(document).ready(function() {
 	});
 	
 	//장바구니에 물건삭제===============================================
-	$("#cartX").click(function() {
-    var class_idx = $("#class_idx").val(); // 삭제하려는 상품의 클래스 번호
+	$("#delet").click(function() {
+//    var class_idx = $("#class_idx").val(); // 삭제하려는 상품의 클래스 번호
+    var class_idx = "1"; // 하드코딩
+
+	console.log("삭제버튼 작동");
 
     $.ajax({
         type: "POST",
@@ -57,9 +62,12 @@ $(document).ready(function() {
 	
 	//장바구니에 수량변경===============================================
 	$("#update").click(function() {
-	    var cart_idx = $("#cart_idx").val(); // 변경하려는 카트번호
+//	    var cart_idx = $("#cart_idx").val(); // 변경하려는 카트번호
+	    var cart_idx = "1"; // 변경하려는 카트번호
 	    var res_person = $("#res_person").val(); // 수량
 	
+		console.log("수정하기버튼 작동");
+		
 	    $.ajax({
 	        type: "POST",
 	        url: "updateCart",

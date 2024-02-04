@@ -36,9 +36,9 @@ public class PaymentController {
 	}
 	
 	//약관동의
-	@GetMapping("payment/agree")
-	public String paymentAgree() {
-		return "payment/payment_agree";
+	@GetMapping("charge/agree")
+	public String chargeAgree() {
+		return "payment/charge_agree";
 	}
 	
 	//페이메인화면
@@ -57,12 +57,6 @@ public class PaymentController {
 	@GetMapping("payment/charge/complete")
 	public String chargeComplete() {
 		return "payment/charge_complete";
-	}
-	
-	//개인정보 동의
-	@GetMapping("payment/charge/agree")
-	public String chargeAgree() {
-		return "payment/charge_agree";
 	}
 	
 	//callback

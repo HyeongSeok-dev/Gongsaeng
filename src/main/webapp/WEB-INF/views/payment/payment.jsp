@@ -68,22 +68,16 @@
 			window.open('${pageContext.request.contextPath }/payment/agree','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
 		}
 	
-	//계좌인증
-	function authAccount() {
-		// 새 창을 사용하여 사용자 인증 페이지 요청
-		let requestUri = "https://testapi.openbanking.or.kr/oauth/2.0/authorize?"
-							+ "response_type=code"
-							+ "&client_id=4066d795-aa6e-4720-9383-931d1f60d1a9"
-							+ "&redirect_uri=http://localhost:8081/gongsaeng/callback"
-							+ "&scope=login inquiry transfer"
-							+ "&state=${sessionScope.state}"
-							+ "&auth_type=0";
-		window.open(requestUri, "authWindow", "width=600, height=800");
-	}
-	
 	//충전하기
 	function charge(){
 	window.open("payment/charge", "authWindow", "width=600, height=800");	
+	}
+	
+	//계좌등록을 안했는데 포인트 사용하고 버튼누르면 계좌를 등록하기위한
+	//개인정보 동의 페이지(charge_agree)페이지로 이동
+	function agreePage() {
+	    alert('계좌를 등록해주세요.');
+	    window.open('charge/agree', '_blank', 'width=600, height=800 ');
 	}
 	
 </script>
@@ -197,7 +191,7 @@
 							</div>
 							<input type="text" value="" placeholder="사용할 0페이를 입력해 주세요" class="pay_to_use" name="payToUse" /><span class="won">원</span>
 							
-							<button id="chargePay" class="use_button charge" type="button" onclick="alert('계좌를 인증해주세요.'); authAccount();">사용하기</button>
+							<button id="chargePay" class="use_button charge" type="button" onclick="agreePage(); ">사용하기</button>
 							<!-- member_id유무에 따른 버튼 출력 -->
 <%-- 							<c:choose> --%>
 <%-- 								없을때(계좌등록) --%>

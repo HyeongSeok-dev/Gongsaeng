@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
 
 	// 포인트 text 박스에 숫자가 입력될 때 마다 숫자에 천단위 쉼표를 찍어주는 쿼리
@@ -204,4 +205,6 @@ $(document).ready(function() {
          
 	}); //payBtn
 	
+	
+
 }); //jquery문 전체

@@ -25,6 +25,8 @@ public class CartController {
 	@GetMapping("cart")
 	public String cart(HttpSession session, Model model) {
 		
+		System.out.println(session.getAttribute("sId"));
+		
 		String member_id = session.getAttribute("sId").toString();		
 		//장바구니 리스트 불러오기
 		List<CartListVO> cartList = cartService.getCartListSelect(member_id);

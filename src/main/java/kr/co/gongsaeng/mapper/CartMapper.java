@@ -18,7 +18,7 @@ public interface CartMapper {
 			@Param ("date") String date, @Param ("res_person") int res_person);
 
 	//장바구니 물건삭제
-	int deletCart(@Param ("cart_idx") int cart_idx);
+	int deletCart( int cart_idx);
 	
 	//장바구니 리스트
 	List<CartListVO> cartList(@Param("member_id") String member_id);

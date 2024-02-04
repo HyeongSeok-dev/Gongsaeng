@@ -50,45 +50,41 @@
         <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
 <%--         <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script> --%>
         <script src="${pageContext.request.contextPath }/resources/assets/js/main_noicheck.js"></script>
-      
-<style type="text/css">
-
-
-.section_box {
-    width: 70%;  /* 원하는 너비로 설정하세요. */
-    margin: 50px auto;
-    text-align: center;
-}
-.sec05 table { 
-    width: 50%;  /* 원하는 너비로 설정하세요. */ 
-    margin: 0 auto; 
-} 
-
-</style>  
 </head>
 
-<body>
-	<div class="section_box">
-		<section class="sec05">
-		
-			<table>
-			    <tr>
-			        <td colspan="3">
-			            <h3>{member_nick}님 <br> 현재 0페이 잔액</h3>
-			            <h1>{}원</h1>
-			        </td>
-			    </tr>
-			    <tr>
-			        <td><input type="button" value="충전하기" id="payCharge"></td>
-			        <td>&nbsp;&nbsp;&nbsp;</td>
-			        <td><input type="button" value="환급하기" id="payBack"></td>
-			    </tr>
-			    <tr>
-			        <td colspan="3" id="area">dffdd123</td>
-			    </tr>
-			</table>
+<script type="text/javascript">
+	
+</script>
 
-		</section>
-	</div>
+<body>
+	<div class="container" >
+    <div class="page-header text-center">
+        <h3>{member_nick}님의 0페이 현재잔액<span class="pull-right label label-default"></span></h3><br>
+        <h1>{}원</h1>
+    </div>
+    <div class="row">
+     <div class="col-md-3"></div> <!-- 앞의 3칼럼을 비워둠 -->
+    	<div class="col-md-6">
+            <div class="panel with-nav-tabs panel-default">
+                <div class="panel-heading">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab1default" data-toggle="tab">충전</a></li>
+                            <li><a href="#tab2default" data-toggle="tab">환급</a></li>
+<!--                             <li><a href="#tab3default" data-toggle="tab">Default 3</a></li> -->
+                            <!-- 드롭다운 탑메뉴 -->
+<!--                             <li class="dropdown"> -->
+<!--                                 <a href="#" data-toggle="dropdown">Dropdown <span class="caret"></span></a> -->
+<!--                                 <ul class="dropdown-menu" role="menu"> -->
+<!--                                     <li><a href="#tab4default" data-toggle="tab">Default 4</a></li> -->
+<!--                                     <li><a href="#tab5default" data-toggle="tab">Default 5</a></li> -->
+<!--                                 </ul> -->
+<!--                             </li> -->
+                        </ul>
+                </div>
+               </div>
+                    </div>
+                </div>
+            </div>
+      <br/>
 </body>
 </html>
