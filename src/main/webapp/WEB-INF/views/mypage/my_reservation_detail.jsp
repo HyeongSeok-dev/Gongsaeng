@@ -79,11 +79,11 @@
 					<div class="panel-body">
 						<ul class="list-group">
 							<li class="list-group-item cursor active" onclick="javascript:location.href='reservation'">예약 내역</li>
-							<li class="list-group-item cursor" data-toggle="collapse" href="#alert">알림/메시지
+							<li class="list-group-item cursor" data-toggle="collapse" href="#alert">알림/채팅
 								<div id="alert" class="panel-collapse collapse">
 									<ul class="list-group">
 										<li class="list-group-item cursor " onclick="javascript:location.href='alert'">알림</li>
-										<li class="list-group-item cursor" onclick="javascript:location.href='messages'">메시지</li>
+										<li class="list-group-item cursor" onclick="javascript:location.href='chat'">채팅</li>
 									</ul>
 								</div>
 							</li>
@@ -105,7 +105,7 @@
 									</ul>
 								</div>
 							</li>
-							<li class="list-group-item cursor" data-toggle="collapse" href="#review">리뷰
+							<li class="list-group-item cursor" data-toggle="collapse" href="#review">리뷰/신고
 								<div id="review" class="panel-collapse collapse">
 									<ul class="list-group">
 										<li class="list-group-item cursor " onclick="javascript:location.href='reviewWrite'">리뷰 쓰기</li>
@@ -139,7 +139,7 @@
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title text-center">예약 이름</h3>
+						<h3 class="panel-title text-center">${resInfo.class_title}</h3>
 					</div>
 					<div class="panel-body">
 						<div class="row">
@@ -148,9 +148,9 @@
 						</div>
 						<p class="text-center">예약 인원: 00명</p>
 						<div class="row">
-							<div class="col-xs-9">업체 이름</div>
+							<div class="col-xs-9">업체명 : ${resInfo.com_name}</div>
 							<div class="col-xs-3 text-right">
-								<button class="btn btn-default" onclick="javascript:location.href='messages'">메시지 문의</button>
+								<button class="btn btn-default" onclick="javascript:location.href='chat?com_idx=${resInfo.com_idx}'">채팅 문의</button>
 							</div>
 						</div>
 					</div>
@@ -161,9 +161,9 @@
 						<h3 class="panel-title">오시는 길</h3>
 					</div>
 					<div class="panel-body">
-						<iframe src="https://maps.google.com/maps?q=아이티윌 부산&amp;output=embed" width="100%" height="350" frameborder="0"
+						<iframe src="https://maps.google.com/maps?q=${resInfo.com_address1}${resInfo.com_address2}&amp;output=embed" width="100%" height="350" frameborder="0"
 							style="border: 0" allowfullscreen></iframe>
-						<p>주소: 부산</p>
+						<p>주소: ${resInfo.com_address1} ${resInfo.com_address2} </p>
 					</div>
 				</div>
 
@@ -172,8 +172,8 @@
 						<h3 class="panel-title">예약자 정보</h3>
 					</div>
 					<div class="panel-body">
-						<p>예약자: 홍길동</p>
-						<p>연락처: 010-1234-5678</p>
+						<p>예약자: ${resInfo.member_name}</p>
+						<p>연락처: ${resInfo.member_phone}</p>
 						<p>요청사항: 없음</p>
 					</div>
 				</div>
@@ -183,13 +183,13 @@
 						<h3 class="panel-title">결제 정보</h3>
 					</div>
 					<div class="panel-body">
-						<p>결제 방법: 카드 결제</p>
-						<p>클래스 금액: 00,000원</p>
-						<p>할인 금액: 00,000원</p>
-						<p>포인트 적립 내역: 00포인트</p>
+						<p>결제 방법: ${resInfo.pay_method}</p>
+						<p>클래스 금액: ${resInfo.total_price}원</p>
+						<p>할인 금액: ${resInfo.discount_payment}원</p>
+						<p>포인트 적립 내역: ${resInfo.point}포인트</p>
 						<hr>
 						<p>
-							<strong>최종 결제금액: 00,000원</strong>
+							<strong>최종 결제금액: ${resInfo.payment}원</strong>
 						</p>
 					</div>
 				</div>

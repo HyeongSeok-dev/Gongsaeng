@@ -1,5 +1,8 @@
 package kr.co.gongsaeng.controller;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -42,12 +45,21 @@ public class MemberController {
 
 	private static final Logger log = LoggerFactory.getLogger(MemberController.class);
 	@GetMapping("member/login")
-	public String login() {
+	public String login(Model model, HttpServletRequest request) {
+		Cookie[] cookies = request.getCookies();
+	    if (cookies != null) {
+	        for (Cookie cookie : cookies) {
+	            if (cookie.getName().equals("cId")) {
+	                model.addAttribute("cId", cookie.getValue());
+	                break;
+	            }
+	        }
+	    }
 		return "member/login";
 	}
 
 	@PostMapping("member/loginPro")
-	public String loginProlonginPro(MemberVO member, HttpSession session, Model model) {
+	public String loginProlonginPro(MemberVO member, HttpSession session, Model model, HttpServletResponse response) {
 		System.out.println(member);
 		MemberVO dbMember = service.getMember(member);
 
@@ -67,6 +79,13 @@ public class MemberController {
 			return "fail_back";
 
 		} else { // 로그인 성공
+			
+			if(member.getRememberId() != null && member.getRememberId().equals("on")) {
+				Cookie cookie = new Cookie("cId", member.getMember_id());
+				
+				cookie.setMaxAge(60 * 60 * 24 * 7);
+				response.addCookie(cookie);
+			}
 			// 세션 객체에 로그인 성공한 아이디를 "sId" 속성으로 추가
 			session.setAttribute("sId", dbMember.getMember_id());
 			// 메인닉네임표시

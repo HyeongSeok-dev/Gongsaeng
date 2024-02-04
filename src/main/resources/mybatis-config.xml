@@ -18,5 +18,6 @@
 		<typeAlias type="kr.co.gongsaeng.vo.PaymentVO"  alias="payment"/>
 		<typeAlias type="kr.co.gongsaeng.vo.CashVO"  alias="cash"/>
 		<typeAlias type="kr.co.gongsaeng.vo.CouponVO"  alias="coupon"/>
+		<typeAlias type="kr.co.gongsaeng.vo.MyResVO"  alias="myRes"/>
 	</typeAliases>
 </configuration>

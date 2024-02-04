@@ -49,11 +49,11 @@
 <script src="${pageContext.request.contextPath }/resources/assets/js/jquery.easypiechart.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/owl.carousel.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/wow.js"></script>
-<script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
+<%-- <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script> --%>
 <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
-<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.6.0/kakao.min.js" integrity="sha384-6MFdIr0zOira1CHQkedUqJVql0YtcZA1P0nbPrQYJXVJZUkTk/oX4U9GhUIs3/z8"
-	crossorigin="anonymous"></script>
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.6.0/kakao.min.js"
+	integrity="sha384-6MFdIr0zOira1CHQkedUqJVql0YtcZA1P0nbPrQYJXVJZUkTk/oX4U9GhUIs3/z8" crossorigin="anonymous"></script>
 <script src="${pageContext.request.contextPath }/resources/js/member_login.js"></script>
 
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -62,55 +62,56 @@
 
 	<jsp:include page="../inc/top.jsp"></jsp:include>
 	<div class="container">
-		<div class="omb_login">
-			<h3 class="omb_authTitle">로그인</h3>
-			<div class="row omb_row-sm-offset-3 omb_socialButtons">
-				<div class="col-xs-6 col-sm-3">
-					<a href="#" class="btn btn-xs btn-block text-center" style="width: 65%; margin: 0 auto;"> 
-						<img src="${pageContext.request.contextPath }/resources/img/btnG_naver.png">
-					</a>
+		<form class="omb_loginForm" action="loginPro" autocomplete="off" method="POST">
+			<div class="omb_login">
+				<h3 class="omb_authTitle">로그인</h3>
+				<div class="row omb_row-sm-offset-3 omb_socialButtons">
+					<div class="col-xs-6 col-sm-3">
+						<a href="#" class="btn btn-xs btn-block text-center" style="width: 65%; margin: 0 auto;"> <img
+							src="${pageContext.request.contextPath }/resources/img/btnG_naver.png">
+						</a>
+					</div>
+					<div class="col-xs-6 col-sm-3">
+						<a href="#" class="btn btn-xs btn-block text-center"> <img src="${pageContext.request.contextPath }/resources/img/kakao_login.png">
+						</a>
+					</div>
 				</div>
-				<div class="col-xs-6 col-sm-3">
-					<a href="#" class="btn btn-xs btn-block text-center" > 
-						<img src="${pageContext.request.contextPath }/resources/img/kakao_login.png" >
-					</a>
+
+				<div class="row omb_row-sm-offset-3 omb_loginOr">
+					<div class="col-xs-12 col-sm-6"></div>
 				</div>
-			</div>
 
-			<div class="row omb_row-sm-offset-3 omb_loginOr">
-				<div class="col-xs-12 col-sm-6"></div>
-			</div>
-
-			<div class="row omb_row-sm-offset-3">
-				<div class="col-xs-12 col-sm-6">
-					<form class="omb_loginForm" action="loginPro" autocomplete="off" method="POST">
+				<div class="row omb_row-sm-offset-3">
+					<div class="col-xs-12 col-sm-6">
 						<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-user"></i></span> <input type="text" class="form-control" name="member_id" placeholder="아이디" required>
+							<span class="input-group-addon"><i class="fa fa-user"></i></span> <input type="text" class="form-control" value="${cId}" name="member_id" placeholder="아이디"
+								required>
 						</div>
 						<br>
 						<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-lock"></i></span> <input type="password" class="form-control" name="member_passwd" placeholder="비밀번호" required>
+							<span class="input-group-addon"><i class="fa fa-lock"></i></span> <input type="password" class="form-control" name="member_passwd"
+								placeholder="비밀번호" required>
 						</div>
 						<br>
 						<button class="btn btn-lg btn-success btn-block " type="submit">로그인</button>
 						<button class="btn btn-lg btn-info btn-block " type="button" onclick="javascript:location.href='joinAgree'">회원가입</button>
-					</form>
+					</div>
 				</div>
-			</div>
-			<div class="row omb_row-sm-offset-3 ">
-				<div class="col-xs-3 col-md-2">
-					<label class="checkbox"> <input type="checkbox" value="" name="rememberId">아이디 기억하기
-					</label>
-				</div>
+				<div class="row omb_row-sm-offset-3 ">
+					<div class="col-xs-3 col-md-2 text-left">
+						<label class="checkbox"> <input type="checkbox" name="rememberId" <c:if test="${not empty cId}">checked</c:if>class="checkBox">아이디 기억하기
+						</label>
+					</div>
 
-				<div class="col-xs-3 col-md-2 text-right checkbox" style="cursor: pointer;">
-					<a onclick="javascript: window.open('findId', 'findId', 'width=500,height=300,top=50%, left=50%');">아이디찾기</a>
-				</div>
-				<div class="col-xs-3 col-md-2 text-right radio" style="cursor: pointer;">
-					<a onclick="javascript: window.open('findPasswd', 'findPasswd', 'width=500,height=400,top=50%, left=50%');">비밀번호 찾기</a>
+					<div class="col-xs-3 col-md-2 text-right checkbox" style="cursor: pointer;">
+						<a onclick="javascript: window.open('findId', 'findId', 'width=500,height=300,top=50%, left=50%');">아이디찾기</a>
+					</div>
+					<div class="col-xs-3 col-md-2 text-right radio" style="cursor: pointer;">
+						<a onclick="javascript: window.open('findPasswd', 'findPasswd', 'width=500,height=400,top=50%, left=50%');">비밀번호 찾기</a>
+					</div>
 				</div>
 			</div>
-		</div>
+		</form>
 	</div>
 </body>
 </html>

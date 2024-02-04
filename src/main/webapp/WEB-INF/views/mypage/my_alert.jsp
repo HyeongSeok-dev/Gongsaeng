@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -62,14 +63,16 @@
 		<div class="row">
 			<!-- 좌측 메뉴바 -->
 			<div class="col-sm-3">
-			<c:choose>
-				<c:when test="${empty member.member_img}">
-					<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" style="cursor: pointer;" onclick="location.href='modifyProfile'">
-				</c:when>
-				<c:otherwise>
-					<img alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}" style="cursor: pointer;" onclick="location.href='modifyProfile'">
-				</c:otherwise>				
-			</c:choose>
+				<c:choose>
+					<c:when test="${empty member.member_img}">
+						<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" style="cursor: pointer;"
+							onclick="location.href='modifyProfile'">
+					</c:when>
+					<c:otherwise>
+						<img alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}" style="cursor: pointer;"
+							onclick="location.href='modifyProfile'">
+					</c:otherwise>
+				</c:choose>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title text-center cursor" onclick="javascript:location.href='main'">마이페이지</h4>
@@ -77,11 +80,11 @@
 					<div class="panel-body">
 						<ul class="list-group">
 							<li class="list-group-item cursor" onclick="javascript:location.href='reservation'">예약 내역</li>
-							<li class="list-group-item cursor" data-toggle="collapse" href="#alert">알림/메시지
+							<li class="list-group-item cursor" data-toggle="collapse" href="#alert">알림/채팅
 								<div id="alert" class="panel-collapse collapse in ">
 									<ul class="list-group">
 										<li class="list-group-item cursor active" onclick="javascript:location.href='alert'">알림</li>
-										<li class="list-group-item cursor" onclick="javascript:location.href='messages'">메시지</li>
+										<li class="list-group-item cursor" onclick="javascript:location.href='chat'">채팅</li>
 									</ul>
 								</div>
 							</li>
@@ -103,7 +106,7 @@
 									</ul>
 								</div>
 							</li>
-							<li class="list-group-item cursor" data-toggle="collapse" href="#review">리뷰
+							<li class="list-group-item cursor" data-toggle="collapse" href="#review">리뷰/신고
 								<div id="review" class="panel-collapse collapse">
 									<ul class="list-group">
 										<li class="list-group-item cursor " onclick="javascript:location.href='reviewWrite'">리뷰 쓰기</li>
@@ -133,7 +136,38 @@
 			</div>
 			<!-- 우측 본문영역 -->
 			<div class="col-sm-9"></div>
+			<div class="col-sm-9">
+				<h2>알림</h2>
+				<table class="table">
+					<thead>
+						<tr>
+							<th class="col-sm-2 text-center">분류</th>
+							<th class="col-sm-7 text-center">내용</th>
+							<th class="col-sm-3 text-center">수신시간</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="alert" items="${alertList}">
+							<tr>
+								<td><c:choose>
+										<c:when test="${alert.alert_category eq 1}">알림</c:when>
+										<c:when test="${alert.alert_category eq 2}">공지사항</c:when>
+										<c:when test="${alert.alert_category eq 3}">이벤트</c:when>
+									</c:choose></td>
+								<td>${alert.alert_content}</td>
+								<td>
+									<fmt:parseDate var="parsedDate" value="${alert.alert_datetime}" pattern="yyyy-MM-dd'T'HH:mm:ss" />
+									<fmt:formatDate value="${parsedDate}" pattern="yyyy-MM-dd HH:mm:ss" />
+									<button type="button" class="btn btn-danger btn-xs pull-right">
+										<span class="glyphicon glyphicon-remove"></span>
+									</button>
+								</td>
 
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </body>

@@ -62,14 +62,16 @@
 		<div class="row">
 			<!-- 좌측 메뉴바 -->
 			<div class="col-sm-3">
-			<c:choose>
-				<c:when test="${empty member.member_img}">
-					<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" style="cursor: pointer;" onclick="location.href='modifyProfile'">
-				</c:when>
-				<c:otherwise>
-					<img alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}" style="cursor: pointer;" onclick="location.href='modifyProfile'">
-				</c:otherwise>				
-			</c:choose>
+				<c:choose>
+					<c:when test="${empty member.member_img}">
+						<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" style="cursor: pointer;"
+							onclick="location.href='modifyProfile'">
+					</c:when>
+					<c:otherwise>
+						<img alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}" style="cursor: pointer;"
+							onclick="location.href='modifyProfile'">
+					</c:otherwise>
+				</c:choose>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title text-center cursor" onclick="javascript:location.href='main'">마이페이지</h4>
@@ -77,11 +79,11 @@
 					<div class="panel-body">
 						<ul class="list-group">
 							<li class="list-group-item cursor" onclick="javascript:location.href='reservation'">예약 내역</li>
-							<li class="list-group-item cursor" data-toggle="collapse" href="#alert">알림/메시지
+							<li class="list-group-item cursor" data-toggle="collapse" href="#alert">알림/채팅
 								<div id="alert" class="panel-collapse collapse">
 									<ul class="list-group">
 										<li class="list-group-item cursor " onclick="javascript:location.href='alert'">알림</li>
-										<li class="list-group-item cursor" onclick="javascript:location.href='messages'">메시지</li>
+										<li class="list-group-item cursor" onclick="javascript:location.href='chat'">채팅</li>
 									</ul>
 								</div>
 							</li>
@@ -103,7 +105,7 @@
 									</ul>
 								</div>
 							</li>
-							<li class="list-group-item cursor" data-toggle="collapse" href="#review">리뷰
+							<li class="list-group-item cursor" data-toggle="collapse" href="#review">리뷰/신고
 								<div id="review" class="panel-collapse collapse">
 									<ul class="list-group">
 										<li class="list-group-item cursor " onclick="javascript:location.href='reviewWrite'">리뷰 쓰기</li>
@@ -138,76 +140,30 @@
 						<h4 class="panel-title">팔로우</h4>
 					</div>
 					<div class="panel-body">
-						<div class="row">
-							<div class="col-sm-2">
-								<img src="author.jpg" alt="작가 사진" class="img-responsive">
-							</div>
-							<div class="col-sm-5">
-								<h5>작가 이름</h5>
-								<p>작가 설명</p>
-								<button class="btn btn-default">팔로우 취소</button>
-							</div>
-							<div class="col-sm-5">
-								<div class="row">
-									<div class="col-xs-4">
-										<img src="work1.jpg" alt="작품 사진" class="img-responsive">
-									</div>
-									<div class="col-xs-4">
-										<img src="work2.jpg" alt="작품 사진" class="img-responsive">
-									</div>
-									<div class="col-xs-4">
-										<img src="work3.jpg" alt="작품 사진" class="img-responsive">
+						<c:forEach var="following" items="${followingList}">
+							<div class="row">
+								<div class="col-sm-2">
+									<img src="${pageContext.request.contextPath }/resources/upload/${following.com_img}" alt="작가 사진" class="img-responsive">
+								</div>
+								<div class="col-sm-5">
+									<h5>${following.com_name}</h5>
+									<p>${following.com_introduction}</p>
+								</div>
+								<div class="col-sm-5">
+									<div class="row">
+										<div class="col-xs-4">
+											<img src="${pageContext.request.contextPath }/resources/upload/${following.class_image1}" alt="작품 사진" class="img-responsive">
+										</div>
+										<div class="col-xs-4">
+											<img src="${pageContext.request.contextPath }/resources/upload/${following.class_image2}" alt="작품 사진" class="img-responsive">
+										</div>
+										<div class="col-xs-4">
+											<img src="${pageContext.request.contextPath }/resources/upload/${following.class_image3}" alt="작품 사진" class="img-responsive">
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-2">
-								<img src="author.jpg" alt="작가 사진" class="img-responsive">
-							</div>
-							<div class="col-sm-5">
-								<h5>작가 이름</h5>
-								<p>작가 설명</p>
-								<button class="btn btn-default">팔로우 취소</button>
-							</div>
-							<div class="col-sm-5">
-								<div class="row">
-									<div class="col-xs-4">
-										<img src="work1.jpg" alt="작품 사진" class="img-responsive">
-									</div>
-									<div class="col-xs-4">
-										<img src="work2.jpg" alt="작품 사진" class="img-responsive">
-									</div>
-									<div class="col-xs-4">
-										<img src="work3.jpg" alt="작품 사진" class="img-responsive">
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-2">
-								<img src="author.jpg" alt="작가 사진" class="img-responsive">
-							</div>
-							<div class="col-sm-5">
-								<h5>작가 이름</h5>
-								<p>작가 설명</p>
-								<button class="btn btn-default">팔로우 취소</button>
-							</div>
-							<div class="col-sm-5">
-								<div class="row">
-									<div class="col-xs-4">
-										<img src="work1.jpg" alt="작품 사진" class="img-responsive">
-									</div>
-									<div class="col-xs-4">
-										<img src="work2.jpg" alt="작품 사진" class="img-responsive">
-									</div>
-									<div class="col-xs-4">
-										<img src="work3.jpg" alt="작품 사진" class="img-responsive">
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- 위의 row div를 복사하여 붙여넣어 필요한 만큼의 작가 카드를 만들 수 있습니다. -->
+						</c:forEach>
 					</div>
 				</div>
 			</div>

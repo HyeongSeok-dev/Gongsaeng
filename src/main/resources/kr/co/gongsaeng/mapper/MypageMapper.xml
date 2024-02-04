@@ -36,4 +36,87 @@
 	</update>
 
 
+	<select id="selectMyMainView" resultType="map">
+		SELECT * 
+		FROM my_main_view
+		WHERE member_id = #{member_id}
+	</select>
+	
+	<select id="selectUnreadChatInfo" resultType="map">
+		SELECT * 
+		FROM chat
+		WHERE chat_receiver = #{member_nick}
+<!-- 		열람여부 확인 and절 필요 -->
+	</select>
+	
+	<select id="selectUnreadAlertInfo" resultType="map">
+		SELECT * 
+		FROM alert
+		WHERE member_id = #{member_id}
+<!-- 		열람여부 확인 and절 필요 -->
+	</select>
+	
+	<select id="selectBookmarkInfo" resultType="map">
+		SELECT c.class_idx, c.class_pic1, c.class_title,co.com_name
+		FROM bookmark b
+		JOIN class c ON c.class_idx = b.class_idx 
+		JOIN company co ON co.member_id = c.member_id 
+		WHERE b.member_id = #{member_id}
+	</select>
+	
+	<select id="selectFollowingInfo" resultType="map">
+		SELECT co.com_idx, co.com_name, co.com_img, co.com_introduction,
+	    (SELECT c.class_pic1 FROM class c WHERE co.member_id = c.member_id LIMIT 1) as class_image1,
+	    (SELECT c.class_pic1 FROM class c WHERE co.member_id = c.member_id LIMIT 1 OFFSET 1) as class_image2,
+	    (SELECT c.class_pic1 FROM class c WHERE co.member_id = c.member_id LIMIT 1 OFFSET 2) as class_image3
+	    FROM following f
+	    JOIN company co ON f.com_idx = co.com_idx
+	    JOIN class c ON co.member_id = c.member_id
+	    WHERE f.member_id = #{member_id}
+	    GROUP BY co.com_idx
+	</select>
+
+
+	<select id="selectResList" resultType="myRes">
+		select pay_num, p.com_idx,p.class_idx, p.member_id ,payment,discount_payment,pay_method,pay_date,pay_status,class_pic1,com_name,class_title
+		FROM payment p
+		JOIN class c ON c.class_idx = p.class_idx 
+		JOIN company co ON co.com_idx = p.com_idx 
+		WHERE p.member_id = #{member_id}
+		
+	</select>
+	
+	<select id="selectResInfo" resultType="myRes">
+		select pay_num, p.com_idx,p.class_idx, p.member_id ,payment,discount_payment,pay_method,pay_date,pay_status,class_pic1,com_name,class_title,com_post_code, com_address1,com_address2, member_name, member_phone
+		FROM payment p
+		JOIN class c ON c.class_idx = p.class_idx 
+		JOIN company co ON co.com_idx = p.com_idx 
+		JOIN member m ON m.member_id = p.member_id 
+		WHERE p.pay_num = #{pay_num}
+	</select>
+	<select id="selectAlertList" resultType="map">
+		SELECT * 
+		FROM alert
+		WHERE member_id = #{member_id}
+	</select>
+	
+	<select id="selectCouponList" resultType="map">
+		SELECT * 
+		FROM coupon
+		WHERE member_id = #{member_id}
+		AND coupon_status = '1'
+	</select>
+	
+	<select id="selectCashList" resultType="map">
+		SELECT * 
+		FROM cash
+		WHERE member_id = #{member_id}
+	</select>
+	
+	<select id="selectPointList" resultType="map">
+		SELECT * 
+		FROM point
+		WHERE member_id = #{member_id}
+	</select>
+	
 </mapper>

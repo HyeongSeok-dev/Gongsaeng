@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -63,14 +65,16 @@
 		<div class="row">
 			<!-- 좌측 메뉴바 -->
 			<div class="col-sm-3">
-			<c:choose>
-				<c:when test="${empty member.member_img}">
-					<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" style="cursor: pointer;" onclick="location.href='modifyProfile'">
-				</c:when>
-				<c:otherwise>
-					<img alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}" style="cursor: pointer;" onclick="location.href='modifyProfile'">
-				</c:otherwise>				
-			</c:choose>
+				<c:choose>
+					<c:when test="${empty member.member_img}">
+						<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" style="cursor: pointer;"
+							onclick="location.href='modifyProfile'">
+					</c:when>
+					<c:otherwise>
+						<img alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}" style="cursor: pointer;"
+							onclick="location.href='modifyProfile'">
+					</c:otherwise>
+				</c:choose>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title text-center cursor" onclick="javascript:location.href='main'">마이페이지</h4>
@@ -78,11 +82,11 @@
 					<div class="panel-body">
 						<ul class="list-group">
 							<li class="list-group-item cursor" onclick="javascript:location.href='reservation'">예약 내역</li>
-							<li class="list-group-item cursor" data-toggle="collapse" href="#alert">알림/메시지
+							<li class="list-group-item cursor" data-toggle="collapse" href="#alert">알림/채팅
 								<div id="alert" class="panel-collapse collapse">
 									<ul class="list-group">
 										<li class="list-group-item cursor " onclick="javascript:location.href='alert'">알림</li>
-										<li class="list-group-item cursor" onclick="javascript:location.href='messages'">메시지</li>
+										<li class="list-group-item cursor" onclick="javascript:location.href='chat'">채팅</li>
 									</ul>
 								</div>
 							</li>
@@ -104,7 +108,7 @@
 									</ul>
 								</div>
 							</li>
-							<li class="list-group-item cursor" data-toggle="collapse" href="#review">리뷰
+							<li class="list-group-item cursor" data-toggle="collapse" href="#review">리뷰/신고
 								<div id="review" class="panel-collapse collapse">
 									<ul class="list-group">
 										<li class="list-group-item cursor " onclick="javascript:location.href='reviewWrite'">리뷰 쓰기</li>
@@ -139,61 +143,40 @@
 						<h2 class="panel-title">쿠폰</h2>
 					</div>
 					<div class="row">
-						<!-- 아래 col-md-6 div를 쿠폰 카드의 개수만큼 복사하여 붙여넣기 -->
-						<div class="col-md-6">
-							<div class="panel panel-default">
-								<div class="panel-body">
-									<div class="row">
-										<div class="col-xs-2">
-											<img src="thumbnail.jpg" alt="쿠폰 이미지" class="thumbnail">
-										</div>
-										<div class="col-xs-10">
-											<h4>신규회원 가입 쿠폰</h4>
-											<p>쿠폰 값: 5000원</p>
-											<p>15,000원 이상 구매시 사용 가능</p>
-											<p>29일 남음 (유효기간: 2024-01-23 ~ 2024-02-22)</p>
-											<button class="btn btn-default btn-block">적용 가능 작품 보기</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="panel panel-default">
-								<div class="panel-body">
-									<div class="row">
-										<div class="col-xs-2">
-											<img src="thumbnail.jpg" alt="쿠폰 이미지" class="thumbnail">
-										</div>
-										<div class="col-xs-10">
-											<h4>신규회원 가입 쿠폰</h4>
-											<p>쿠폰 값: 5000원</p>
-											<p>15,000원 이상 구매시 사용 가능</p>
-											<p>29일 남음 (유효기간: 2024-01-23 ~ 2024-02-22)</p>
-											<button class="btn btn-default btn-block">적용 가능 작품 보기</button>
+						<c:forEach var="coupon" items="${couponList}">
+							<div class="col-md-6">
+								<div class="panel panel-default">
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-xs-12">
+												<h4>${coupon.coupon_name}</h4>
+												<c:choose>
+													<c:when test="${coupon.coupon_value gt 1}">
+														<p>할인 금액: ${fn:substringBefore(coupon.coupon_value,'.')}원</p>
+													</c:when>
+													<c:otherwise>할인률: ${fn:substringBefore(coupon.coupon_value * 100,'.')}%</c:otherwise>
+												</c:choose>
+
+												<p>${coupon.coupon_min_price}원이상 구매시 사용 가능</p>
+												<fmt:parseDate var="validDate" value="${coupon.coupon_valid_date}" pattern="yyyy-MM-dd" />
+												<jsp:useBean id="now" class="java.util.Date" />
+												<c:set var="diff" value="${validDate.time - now.time}" />
+												<c:set var="days" value="${fn:substringBefore(diff / (1000*60*60*24), '.')}"/>
+												<p>${days}일 남음 (유효기간: ${coupon.coupon_Issue_date} ~ ${coupon.coupon_valid_date})</p>
+												<c:choose>
+													<c:when test="${coupon.com_idx eq 4}">
+														<a href="../class/list"><button class="btn btn-default btn-block">적용 가능 클래스 보러가기</button></a>
+													</c:when>
+													<c:otherwise>
+														<a href="../class/list?com_idx=${coupon.com_idx}"><button class="btn btn-default btn-block">적용 가능 클래스 보러가기</button></a>
+													</c:otherwise>
+												</c:choose>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="panel panel-default">
-								<div class="panel-body">
-									<div class="row">
-										<div class="col-xs-2">
-											<img src="thumbnail.jpg" alt="쿠폰 이미지" class="thumbnail">
-										</div>
-										<div class="col-xs-10">
-											<h4>신규회원 가입 쿠폰</h4>
-											<p>쿠폰 값: 5000원</p>
-											<p>15,000원 이상 구매시 사용 가능</p>
-											<p>29일 남음 (유효기간: 2024-01-23 ~ 2024-02-22)</p>
-											<button class="btn btn-default btn-block">적용 가능 작품 보기</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+						</c:forEach>
 					</div>
 				</div>
 			</div>
