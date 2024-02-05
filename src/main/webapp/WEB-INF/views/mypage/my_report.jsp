@@ -64,25 +64,34 @@
 						<h4 class="panel-title">클래스 신고</h4>
 					</div>
 					<div class="panel-body">
-						<form>
+						<form action="reportPro" method="POST">
 							<div class="form-group">
 								<label><strong>어떤 점이 불편하셨나요?</strong></label>
 								<div class="radio">
-									<label><input type="radio" name="reportReason" value="1">반장님이 불친절해요</label>
+									<label><input type="radio" name="report_reason" required value="1" style="margin-left: -240px">반장님이 불친절해요</label>
 								</div>
 								<div class="radio">
-									<label><input type="radio" name="reportReason" value="2">클래스 내용이 게시된 것과 달라요</label>
+									<label><input type="radio" name="report_reason" required value="2" style="margin-left: -240px">클래스 내용이 게시된 것과 달라요</label>
 								</div>
 								<div class="radio">
-									<label><input type="radio" name="reportReason" value="3">추가적인 요금을 요구했어요</label>
+									<label><input type="radio" name="report_reason" required value="3" style="margin-left: -240px">추가적인 요금을 요구했어요</label>
 								</div>
 								<div class="radio">
-									<label><input type="radio" name="reportReason" value="4">기타</label>
+									<label><input type="radio" name="report_reason" required value="4" style="margin-left: -240px">기타</label>
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="reportContent"><strong>신고 내용을 작성하세요</strong></label>
-								<textarea class="form-control" id="reportContent" rows="3"></textarea>
+								<label for="report_content"><strong>신고 내용을 작성하세요</strong></label>
+								<textarea class="form-control" id="report_content" name="report_content" required rows="3"></textarea>
+								<input type="hidden" name="class_idx" value="${param.class_idx}">
+							</div>
+							<div class="form-group">
+								<label for="email"><strong>답변받을 이메일</strong></label>
+								<input type="email" id="email" value="${member.member_email}" name="member_email" class="form-control" required >
+							</div>
+							<div class="form-group">
+								<label for="email"><strong>답변받을 전화번호(선택)</strong></label>
+								<input type="tel" id="phone" name="member_phone" class="form-control" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 							</div>
 							<button type="submit" class="btn btn-default">신고하기</button>
 						</form>

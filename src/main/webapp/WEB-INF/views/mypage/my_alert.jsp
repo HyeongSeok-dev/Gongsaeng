@@ -117,8 +117,8 @@
 							<li class="list-group-item cursor" data-toggle="collapse" href="#community">커뮤니티
 								<div id="community" class="panel-collapse collapse">
 									<ul class="list-group">
+										<li class="list-group-item cursor " onclick="javascript:location.href='../community/question'">공생 커뮤니티</li>
 										<li class="list-group-item cursor " onclick="javascript:location.href='community'">내가 쓴 글</li>
-										<li class="list-group-item cursor " onclick="javascript:location.href='communityRecent'">최근 본 글</li>
 									</ul>
 								</div>
 							</li>

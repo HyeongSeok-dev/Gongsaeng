@@ -19,14 +19,12 @@
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/normalize.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/font-awesome.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/fontello.css">
-<link href="${pageContext.request.contextPath }/resources/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css"
-	rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/assets/fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/assets/css/animate.css" rel="stylesheet" media="screen">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/bootstrap-select.min.css">
@@ -39,7 +37,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/responsive.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/global.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/mypage.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/community.css">
 
 <script src="${pageContext.request.contextPath }/resources/assets/js/modernizr-2.6.2.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
@@ -64,14 +62,16 @@
 		<div class="row">
 			<!-- 좌측 메뉴바 -->
 			<div class="col-sm-3">
-			<c:choose>
-				<c:when test="${empty member.member_img}">
-					<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" style="cursor: pointer;" onclick="location.href='modifyProfile'">
-				</c:when>
-				<c:otherwise>
-					<img alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}" style="cursor: pointer;" onclick="location.href='modifyProfile'">
-				</c:otherwise>				
-			</c:choose>
+				<c:choose>
+					<c:when test="${empty member.member_img}">
+						<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" style="cursor: pointer;"
+							onclick="location.href='modifyProfile'">
+					</c:when>
+					<c:otherwise>
+						<img alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}" style="cursor: pointer;"
+							onclick="location.href='modifyProfile'">
+					</c:otherwise>
+				</c:choose>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title text-center cursor" onclick="javascript:location.href='main'">마이페이지</h4>
@@ -116,8 +116,8 @@
 							<li class="list-group-item cursor" data-toggle="collapse" href="#community">커뮤니티
 								<div id="community" class="panel-collapse collapse in ">
 									<ul class="list-group">
-										<li class="list-group-item cursor active" onclick="javascript:location.href='community'">내가 쓴 글</li>
-										<li class="list-group-item cursor " onclick="javascript:location.href='communityRecent'">최근 본 글</li>
+										<li class="list-group-item cursor active" onclick="javascript:location.href='../community/question'">공생 커뮤니티</li>
+										<li class="list-group-item cursor " onclick="javascript:location.href='community'">내가 쓴 글</li>
 									</ul>
 								</div>
 							</li>
@@ -135,9 +135,39 @@
 			</div>
 			<!-- 우측 본문영역 -->
 			<div class="col-sm-9">
-	
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h2 class="panel-title">내가 쓴 글</h2>
+					</div>
+					<div class="panel panel-default">
+						<div class="cm_text panel-body">
+							<c:forEach var="community" items="${myCommunityList}">
+								<div class="row mt-5">
+									<div class="col-sm-9">
+										<c:choose>
+											<c:when test="5"><p>궁금해요</p></c:when>
+											<c:when test="6"><p>함께해요</p></c:when>
+										</c:choose>
+										<a href="questionDetail?board_idx=${community.board_idx}" class="cm_context"> <!-- 글제목 두껍게 -->
+											<h4 class="h4_community" style="font-weight: bold;">${community.board_subject}</h4> <!-- 글 내용과 댓글은 일반 두께로 -->
+											<p class="text-truncate" style="font-weight: normal;">${community.board_content}</p>
+											<p style="font-weight: normal;">
+												<span class="fa fa-comment"></span> ${community.reply_count}
+											</p>
+										</a>
+									</div>
+									<div class="col-sm-3">
+										<div class="cm_thumbnail">
+											<img src="${pageContext.request.contextPath }/resources/upload/${community.board_board_img1}" alt="이미지">
+											<div class="caption text-right"></div>
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+						</div>
+					</div>
+				</div>
 			</div>
-
 		</div>
 	</div>
 </body>

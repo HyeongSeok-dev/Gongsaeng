@@ -43,5 +43,9 @@ public interface MypageMapper {
 
 	int deletefollowing(Map<String, String> map);
 
+	int insertReportClass(Map<String, String> map);
+
+	List<Map<String, String>> selectMyCommunityList(MemberVO member);
+
 
 }

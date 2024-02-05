@@ -1,5 +1,9 @@
 package kr.co.gongsaeng.controller;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
+import java.util.Map;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -45,7 +49,7 @@ public class MemberController {
 
 	private static final Logger log = LoggerFactory.getLogger(MemberController.class);
 	@GetMapping("member/login")
-	public String login(Model model, HttpServletRequest request) {
+	public String login(Model model, HttpServletRequest request, HttpSession session) {
 		Cookie[] cookies = request.getCookies();
 	    if (cookies != null) {
 	        for (Cookie cookie : cookies) {
@@ -55,6 +59,10 @@ public class MemberController {
 	            }
 	        }
 	    }
+	    SecureRandom random = new SecureRandom();
+	    BigInteger bigInteger = new BigInteger(130, random);
+	    String naverState = bigInteger.toString();
+	    session.setAttribute("naverState", naverState);
 		return "member/login";
 	}
 
@@ -356,4 +364,22 @@ public class MemberController {
 		return "redirect:/";
 	}
 
+	@GetMapping("kakaoCallback")
+	public String kakaoCallback(@RequestParam Map<String, String>map) {
+		System.out.println(map);
+		return "";
+	}
+	
+	@GetMapping("naverCallback")
+	public String naverCallback(@RequestParam Map<String, String>map, HttpSession session, Model model) {
+		System.out.println(map);
+		
+		if(!map.get("state").equals(session.getAttribute("naverState"))) {
+			model.addAttribute("msg", "잘못된 접근입니다.");
+			return "fail_back";
+		}
+		
+		
+		return "";
+	}
 }

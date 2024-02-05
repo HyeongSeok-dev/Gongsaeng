@@ -407,7 +407,7 @@ public class MypageController {
 	}
 
 	@PostMapping("mypage/reportPro")
-	public String reportPro(HttpSession session, Model model, MemberVO member) {
+	public String reportPro(HttpSession session, Model model, MemberVO member, @RequestParam Map<String, String> map) {
 		String sId = (String) session.getAttribute("sId");
 		if (sId == null) {
 			model.addAttribute("msg", "로그인이 필요합니다");
@@ -415,10 +415,16 @@ public class MypageController {
 
 			return "forward";
 		}
-		member.setMember_id(sId);
-		member = service.getMemberInfo(member);
-		model.addAttribute("member", member);
-		return "";
+		map.put("member_id", sId);
+		int insertCount = service.registReportClass(map);
+		
+		if (insertCount > 0) {
+			model.addAttribute("msg", "신고가 접수되었습니다.");
+			return "popup_close";
+		} else {
+			model.addAttribute("msg", "오류발생. 다시시도해주세요.");
+			return "fail_back";
+		}
 	}
 
 	@GetMapping("mypage/community")
@@ -432,23 +438,12 @@ public class MypageController {
 		}
 		member.setMember_id(sId);
 		member = service.getMemberInfo(member);
+		List<Map<String, String>> myCommunityList = service.getMyCommunityList(member);
+
 		model.addAttribute("member", member);
+		model.addAttribute("myCommunityList", myCommunityList);
+		
 		return "mypage/my_community";
-	}
-
-	@GetMapping("mypage/communityRecent")
-	public String communityRecent(HttpSession session, Model model, MemberVO member) {
-		String sId = (String) session.getAttribute("sId");
-		if (sId == null) {
-			model.addAttribute("msg", "로그인이 필요합니다");
-			model.addAttribute("targetURL", "/gongsaeng/member/login");
-
-			return "forward";
-		}
-		member.setMember_id(sId);
-		member = service.getMemberInfo(member);
-		model.addAttribute("member", member);
-		return "mypage/my_communityRecent";
 	}
 
 	@GetMapping("mypage/modifyProfile")

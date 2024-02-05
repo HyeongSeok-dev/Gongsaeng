@@ -96,5 +96,15 @@ public class MypageService {
 		return mapper.deletefollowing(map);
 	}
 
+	public int registReportClass(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return mapper.insertReportClass(map);
+	}
+
+	public List<Map<String, String>> getMyCommunityList(MemberVO member) {
+		// TODO Auto-generated method stub
+		return mapper.selectMyCommunityList(member);
+	}
+
 	
 }

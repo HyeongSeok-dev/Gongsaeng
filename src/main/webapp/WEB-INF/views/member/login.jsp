@@ -55,6 +55,32 @@
 <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.6.0/kakao.min.js"
 	integrity="sha384-6MFdIr0zOira1CHQkedUqJVql0YtcZA1P0nbPrQYJXVJZUkTk/oX4U9GhUIs3/z8" crossorigin="anonymous"></script>
 <script src="${pageContext.request.contextPath }/resources/js/member_login.js"></script>
+<script type="text/javascript">
+function kakaoLogin() {
+	// 새 창을 사용하여 사용자 인증 페이지 요청
+	var popupX = (document.body.offsetWidth / 2) - (600 / 2);
+	// 만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
+
+	var popupY = (window.screen.height / 2) - (800 / 2);
+	// 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
+	let requestUri = "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=e39809998753f714832d442f3f54f8b9&redirect_uri=http://localhost:8081/gongsaeng/kakaoCallback"
+
+	window.open(requestUri, "kakao", "width=600, height=800, left=" + popupX + ", top=" + popupY);
+}
+
+function naverLogin() {
+	// 새 창을 사용하여 사용자 인증 페이지 요청
+	var popupX = (document.body.offsetWidth / 2) - (600 / 2);
+	// 만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
+
+	var popupY = (window.screen.height / 2) - (800 / 2);
+	// 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
+	let requestUri = "https://nid.naver.com/oauth2.0/authorize?client_id=6SFki8OS5kfh1x16Zctr&response_type=code&redirect_uri=http%3a%2f%2flocalhost%3a8081%2fgongsaeng%2fnaverCallback&state=${sessionScope.naverState}"
+
+
+	window.open(requestUri, "kakao", "width=600, height=800, left=" + popupX + ", top=" + popupY);
+}
+</script>
 
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 </head>
@@ -67,12 +93,13 @@
 				<h3 class="omb_authTitle">로그인</h3>
 				<div class="row omb_row-sm-offset-3 omb_socialButtons">
 					<div class="col-xs-6 col-sm-3">
-						<a href="#" class="btn btn-xs btn-block text-center" style="width: 65%; margin: 0 auto;"> <img
+						<a href="javascript:naverLogin()" class="btn btn-xs btn-block text-center" style="width: 65%; margin: 0 auto;"> <img
 							src="${pageContext.request.contextPath }/resources/img/btnG_naver.png">
 						</a>
 					</div>
 					<div class="col-xs-6 col-sm-3">
-						<a href="javascript:kakaoLogin()" class="btn btn-xs btn-block text-center"> <img src="${pageContext.request.contextPath }/resources/img/kakao_login.png">
+						<a href="javascript:kakaoLogin()" class="btn btn-xs btn-block text-center"> <img
+							src="${pageContext.request.contextPath }/resources/img/kakao_login.png">
 						</a>
 					</div>
 				</div>
@@ -84,8 +111,8 @@
 				<div class="row omb_row-sm-offset-3">
 					<div class="col-xs-12 col-sm-6">
 						<div class="input-group">
-							<span class="input-group-addon"><i class="fa fa-user"></i></span> <input type="text" class="form-control" value="${cId}" name="member_id" placeholder="아이디"
-								required>
+							<span class="input-group-addon"><i class="fa fa-user"></i></span> <input type="text" class="form-control" value="${cId}" name="member_id"
+								placeholder="아이디" required>
 						</div>
 						<br>
 						<div class="input-group">
@@ -99,7 +126,8 @@
 				</div>
 				<div class="row omb_row-sm-offset-3 ">
 					<div class="col-xs-3 col-md-2 text-left">
-						<label class="checkbox"> <input type="checkbox" name="rememberId" <c:if test="${not empty cId}">checked</c:if>class="checkBox">아이디 기억하기
+						<label class="checkbox"> <input type="checkbox" name="rememberId" <c:if test="${not empty cId}"> checked </c:if> class="box">아이디
+							기억하기
 						</label>
 					</div>
 

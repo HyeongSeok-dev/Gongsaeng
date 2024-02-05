@@ -116,8 +116,8 @@
 							<li class="list-group-item cursor" data-toggle="collapse" href="#community">커뮤니티
 								<div id="community" class="panel-collapse collapse">
 									<ul class="list-group">
+										<li class="list-group-item cursor " onclick="javascript:location.href='../community/question'">공생 커뮤니티</li>
 										<li class="list-group-item cursor " onclick="javascript:location.href='community'">내가 쓴 글</li>
-										<li class="list-group-item cursor " onclick="javascript:location.href='communityRecent'">최근 본 글</li>
 									</ul>
 								</div>
 							</li>
@@ -182,7 +182,7 @@
 									</div>
 									<div class="col-xs-2">
 										<button class="btn btn-default btn-block" onclick="javascript:location.href='review/write?pay_num=${res.pay_num}'">리뷰쓰기</button>
-										<a onclick="javascript: window.open('report?pay_num=${res.pay_num}', 'report', 'width=500,height=450,top=50%, left=50%');"><button
+										<a onclick="javascript: window.open('report?class_idx=${res.class_idx}', 'report', 'width=500,height=550,top=50%, left=50%');"><button
 												class="btn btn-danger btn-block">신고하기</button></a>
 									</div>
 								</div>

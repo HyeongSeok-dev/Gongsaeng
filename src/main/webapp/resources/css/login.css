@@ -21,7 +21,10 @@
 .omb_login .omb_socialButtons .omb_btn-naver {background: #03CF5D;}
 .omb_login .omb_socialButtons .omb_btn-kakao {background: #FEE500;}
 .omb_login .omb_socialButtons .omb_btn-google {background: #c32f10;}
-
+.box{
+	position: static;
+	width: 10px;
+}
 
 .omb_login .omb_loginOr {
 	position: relative;

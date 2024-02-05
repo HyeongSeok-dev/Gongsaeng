@@ -128,4 +128,30 @@
 		WHERE following_idx = #{following_idx}
 	</delete>
 	
+	<insert id="insertReportClass">
+		INSERT INTO report
+		VALUES(
+			null
+			,null
+			,#{class_idx}
+			,#{member_id}
+			,#{report_reason}
+			,#{report_content}
+			,#{member_email}
+			,1
+			,#{member_phone}
+			,2
+			,now
+		)
+	</insert>
+	
+	<select id="selectMyCommunityList" resultType="map">
+		SELECT b.board_idx, b.member_id, board_subject,board_content,board_date,board_main_category,board_sub_category,board_img1,board_img2,board_img3,count(reply_idx) as reply_count
+		FROM board b			
+		LEFT JOIN tiny_reply_community t ON b.board_idx = t.board_idx
+		WHERE b.member_id = #{member_id}
+		AND (b.board_main_category = 5 OR b.board_main_category = 6)
+		GROUP BY b.board_idx
+	</select>
+	
 </mapper>
