@@ -45,12 +45,9 @@ public class ClassVO {
 	private String class_address1;
 	private String class_address2;
 	// ------------------------------------------------------------------------------------
-//	private String class_curriculum_detail1;
 	private String class_curriculum_detail1;
 	private String class_curriculum_detail2;
 	private String class_curriculum_detail3;
-	
-	
 	// ------------------------------------------------------------------------------------	
 	private int class_main_category;
 	private int class_sub_category;
@@ -65,6 +62,8 @@ public class ClassVO {
 	private String class_answer3;
 	
 	private String class_introduction;
+
+	private String dayString;
 	
 	
 	// [관리자 페이지]

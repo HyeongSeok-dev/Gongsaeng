@@ -23,14 +23,14 @@
   <link href="${pageContext.request.contextPath }/resources/company_assets/demo/demo.css" rel="stylesheet" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <style type="text/css">
  
 body {
 	background: #f5f5f5; 
 	/*     margin-top:20px; */
 }
-
-
 
 
 .card {
@@ -102,10 +102,10 @@ a {
 	background-color: #fff!important;
 }
 
-.class_btn {
-	
+.avatar-lg {
+/*   width: 200px!important; */
+/*   height: 200px!important; */
 }
-
 </style>
 <!-- Global CSS -->
 <link
@@ -202,18 +202,14 @@ a {
 									<div class="justify-content-center row">
 									<div class="col-lg-3 mt-3">
 										<div class="filler-job-form">
-											<i class="uil uil-briefcase-alt"></i><input
-												id="exampleFormControlInput1" placeholder="클래스 이름,분류... "
-												type="search"
-												class="form-control filler-job-input-box form-control" />
+											<i class="uil uil-briefcase-alt"></i>
+											<input id="exampleFormControlInput1" placeholder="클래스 이름,분류... " type="search" class="form-control filler-job-input-box form-control" />
 										</div>
 									</div>
 									<div class="col-lg-3 mt-3">
 										<div class="filler-job-form">
-											<i class="uil uil-location-point"></i> <select
-												class="form-select selectForm__inner" data-trigger="true"
-												name="choices-single-location" id="choices-single-location"
-												aria-label="Default select example">
+											<i class="uil uil-location-point"></i> 
+											<select class="form-select selectForm__inner" data-trigger="true" name="choices-single-location" id="choices-single-location" aria-label="Default select example">
 												<option value="AF">정규 모집 & 원데이</option>
 												<option value="AX">정규 모집</option>
 												<option value="AL">원데이 클래스</option>
@@ -223,15 +219,10 @@ a {
 									<div class="col-lg-3  mt-3">
 										<div class="filler-job-form">
 											<i class="uil uil-clipboard-notes"></i> 
-											<select class="form-select selectForm__inner" data-trigger="true" name="choices-single-categories"
-												id="choices-single-categories" aria-label="Default select example">
-												<option value="7">클래스 분류</option>
-												<option value="1">바닥 시공</option>
-												<option value="2">벽/천장 시공</option>
-												<option value="3">부분 인테리어</option>
-												<option value="4">야외 시공</option>
-												<option value="5">종합 인테리어</option>
-												<option value="6">기타 시공</option>
+											<select class="form-select selectForm__inner" data-trigger="true" name="choices-single-categories" id="choices-single-categories" aria-label="Default select example">
+												<option value="3">진행중 & 종료</option>
+												<option value="1">진행중</option>
+												<option value="2">클래스 종료</option>
 											</select>
 										</div>
 									</div>
@@ -262,17 +253,16 @@ a {
 											<div class="selection-widget">
 												<select class="form-select" data-trigger="true" name="choices-single-filter-orderby"
 													id="choices-single-filter-orderby" aria-label="Default select example">
-													<option value="df">최신순</option>
-													<option value="ne"></option>
-													<option value="od">Oldest</option>
-													<option value="rd">Random</option>
+														<option value="df">최신순</option>
+														<option value="ne"></option>
+														<option value="od">Oldest</option>
+														<option value="rd">Random</option>
 												</select>
 											</div>
 										</div>
 										<div class="col-lg-6">
 											<div class="selection-widget mt-2 mt-lg-0">
-												<select class="form-select" data-trigger="true" name="choices-candidate-page" id="choices-candidate-page"
-													aria-label="Default select example">
+												<select class="form-select" data-trigger="true" name="choices-candidate-page" id="choices-candidate-page" aria-label="Default select example">
 													<option value="df">All</option>
 													<option value="ne">8개씩 보기</option>
 													<option value="ne">12개씩 보기</option>
@@ -283,113 +273,123 @@ a {
 								</div>
 							</div>
 						</div>
-						<div class="candidate-list">
-							<div class="candidate-list-box card mt-4">
-								<div class="p-4 card-body">
-									<div class="align-items-center row">
-										<div class="col-auto">
-											<div class="candidate-list-images">
-												<a href="#"><img
-													src="https://bootdey.com/img/Content/avatar/avatar1.png"
-													alt class="avatar-md img-thumbnail rounded-circle" /></a>
+
+									<!-- ==================================================================================== -->
+						<c:forEach items="${classList}" var="classInfo">
+							<div class="candidate-list">
+								<div class="candidate-list-box card mt-4">
+									<div class="p-4 card-body">
+										<div class="align-items-center row">
+<!-- 											<div class="col-lg-2"> -->
+											<div class="col-auto">
+												<div class="candidate-list-images">
+													<a href="#"> 
+                              						  <img src="${pageContext.request.contextPath }/resources/upload/${classInfo.class_pic1}" alt="Class Image" class="avatar-md img-thumbnail rounded-circle" />
+													</a>
+												</div>
+											</div>
+											<div class="col-lg-5">
+												<div class="candidate-list-content mt-3 mt-lg-0">
+													<h5 class="fs-19 mb-0">
+														<p class="text-muted mb-2">
+						                                <c:choose>
+						                                    <c:when test="${classInfo.class_category == 1}">
+						                                        정규모집
+						                                    </c:when>
+						                                    <c:when test="${classInfo.class_category == 2}">
+						                                        원데이 클래스
+						                                    </c:when>
+						                                    <c:otherwise>
+						                                        기타
+						                                    </c:otherwise>
+						                                </c:choose>
+														</p>
+														<a class="primary-link" href="#">${classInfo.class_title}</a>
+													</h5>
+													<p class="text-muted mb-2">
+														<c:choose>
+															<c:when test="${classInfo.class_main_category == 1}">
+															바닥 시공
+															</c:when>														
+															<c:when test="${classInfo.class_main_category == 2}">
+															벽/천장 시공
+															</c:when>														
+															<c:when test="${classInfo.class_main_category == 3}">
+															부분 인테리어
+															</c:when>														
+															<c:when test="${classInfo.class_main_category == 4}">
+															야외 시공
+															</c:when>														
+															<c:when test="${classInfo.class_main_category == 5}">
+															종합 인테리어
+															</c:when>														
+															<c:when test="${classInfo.class_main_category == 6}">
+															기타시공
+															</c:when>														
+														</c:choose>
+													</p>
+													<ul class="list-inline mb-0 text-muted">
+														<li class="list-inline-item">
+														<i class="mdi mdi-map-marker"></i>
+															${classInfo.class_address1}
+															${classInfo.class_address2}
+														</li>
+														<br>
+														<li class="list-inline-item">
+															<i class="fa fa-clock-o" style="font-size:18px"></i>  
+															 ${classInfo.class_start_date} ~ ${classInfo.class_end_date}(${classInfo.class_times}시간/${classInfo.dayString })&nbsp;&nbsp;|&nbsp;&nbsp;<i class="mdi mdi-wallet"></i> ${classInfo.class_price}원
+														</li>
+													</ul>
+												</div>
 											</div>
 										</div>
-										<div class="col-lg-5">
-											<div class="candidate-list-content mt-3 mt-lg-0">
-												<h5 class="fs-19 mb-0">
-													<p class="text-muted mb-2">클래스 번호 : 777</p>
-													<a class="primary-link" href="#">인테리어 원데이 클래스</a><span
-														class="badge bg-success ms-1"><i
-														class="mdi mdi-star align-middle"></i>4.8</span>
-												</h5>
-												<p class="text-muted mb-2">원데이 | 소품만들기</p>
-												<ul class="list-inline mb-0 text-muted">
-													<li class="list-inline-item"><i
-														class="mdi mdi-map-marker"></i>서면 아이티윌</li>
-													<li class="list-inline-item"><i class="mdi mdi-wallet"></i>
-														50,000원 / 4시간</li>
-												</ul>
-											</div>
-										</div>
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+										<!-- ==================================================================================== -->								
 										<div class="col-lg-4">
-											<div
-												class="mt-2 mt-lg-0 d-flex flex-wrap align-items-start gap-1">
+											<div class="mt-2 mt-lg-0 d-flex flex-wrap align-items-start gap-1">
 <!-- 												<span class="badge bg-soft-secondary fs-14 mt-1">Leader</span> -->
 <!-- 												<span class="badge bg-soft-secondary fs-14 mt-1">Manager</span> -->
 <!-- 												<span class="badge bg-soft-secondary fs-14 mt-1">Developer</span> -->
 											</div>
 										</div>
 									</div>
-									<div class="favorite-icon">
-										<a href="#"><i class="mdi mdi-heart fs-18"></i></a>
-									</div>
+<!-- 									<div class="favorite-icon"> -->
+<!-- 										<a href="#"> -->
+<!-- 											<i class="mdi mdi-heart fs-18"></i> -->
+<!-- 										</a> -->
+<!-- 									</div> -->
 								</div>
 							</div>
 							<div class="candidate-list-box bookmark-post card mt-4">
-								<div class="p-4 card-body">
-									<div class="align-items-center row">
-										<div class="col-auto">
-											<div class="candidate-list-images">
-												<a href="#"><img
-													src="https://bootdey.com/img/Content/avatar/avatar2.png"
-													alt class="avatar-md img-thumbnail rounded-circle" /></a>
-											</div>
-										</div>
-										<div class="col-lg-5">
-											<div class="candidate-list-content mt-3 mt-lg-0">
-												<h5 class="fs-19 mb-0">
-													<a class="primary-link" href="#">Gabriel Palmer</a><span
-														class="badge bg-warning ms-1"><i
-														class="mdi mdi-star align-middle"></i>3.4</span>
-												</h5>
-												<p class="text-muted mb-2">HTML Developer</p>
-												<ul class="list-inline mb-0 text-muted">
-													<li class="list-inline-item"><i
-														class="mdi mdi-map-marker"></i> Oakridge Lane California</li>
-													<li class="list-inline-item"><i class="mdi mdi-wallet"></i>
-														$250 / hours</li>
-												</ul>
-											</div>
-										</div>
-										<div class="col-lg-4">
-											<div
-												class="mt-2 mt-lg-0 d-flex flex-wrap align-items-start gap-1">
-												<span class="badge bg-soft-secondary fs-14 mt-1">Design</span><span
-													class="badge bg-soft-secondary fs-14 mt-1">Developer</span>
-											</div>
-										</div>
-									</div>
-									<div class="favorite-icon">
-										<a href="#"><i class="mdi mdi-heart fs-18"></i></a>
-									</div>
-								</div>
+
 							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="mt-4 pt-2 col-lg-12">
 							<nav aria-label="Page navigation example">
-								<div
-									class="pagination job-pagination mb-0 justify-content-center">
-									<li class="page-item disabled"><a class="page-link"
-										tabindex="-1" href="#"><i
-											class="mdi mdi-chevron-double-left fs-15"></i></a></li>
+								<div class="pagination job-pagination mb-0 justify-content-center">
+									<li class="page-item disabled"><a class="page-link" tabindex="-1" href="#">
+										<i class="mdi mdi-chevron-double-left fs-15"></i></a></li>
 									<li class="page-item active"><a class="page-link" href="#">1</a></li>
 									<li class="page-item"><a class="page-link" href="#">2</a></li>
 									<li class="page-item"><a class="page-link" href="#">3</a></li>
 									<li class="page-item"><a class="page-link" href="#">4</a></li>
-									<li class="page-item"><a class="page-link" href="#"><i
-											class="mdi mdi-chevron-double-right fs-15"></i></a></li>
+									<li class="page-item"><a class="page-link" href="#">
+									<i class="mdi mdi-chevron-double-right fs-15"></i></a></li>
 								</div>
 							</nav>
 						</div>
 					</div>
 				</div>
 		</section>
-		<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
-		<script type="text/javascript">
-</script>
+			<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+			<script type="text/javascript">
+		</script>
 
 
       <footer class="footer">

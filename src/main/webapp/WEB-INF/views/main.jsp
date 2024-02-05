@@ -1178,6 +1178,8 @@ function toggleButtons() {
 	<hr>
 	<button onclick="location.href='${pageContext.request.contextPath}/mypage/main'">mypage/main</button>
 	<button onclick="location.href='${pageContext.request.contextPath}/member/login'">login</button>
+	<hr>
+	<button onclick="location.href='${pageContext.request.contextPath}/company/main'">사업체 페이지(반장)</button>
 	<!-- Footer area -->
 
 

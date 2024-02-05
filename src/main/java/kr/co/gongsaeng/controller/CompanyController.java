@@ -11,6 +11,9 @@ import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +26,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.protobuf.TextFormat.ParseException;
@@ -310,8 +314,6 @@ public class CompanyController {
 	
 
 	// ================================================================
-	
-	
 	// [ 반장회원 전환 신청 ] -> 일반 회원의 기존 정보 가져오기
 	@GetMapping("company/banjang/register")
 	public String company_banjang_register(HttpSession session, Model model) {
@@ -403,6 +405,26 @@ public class CompanyController {
 				}
 	
 	
+
+	// =============================================================
+	// 클래스 내역
+	@GetMapping("company/class") 
+	public String classList(HttpSession session, Model model, ClassVO gclass, HttpServletRequest request) {
+	    String sId = (String)session.getAttribute("sId");
+	    
+	    System.out.println("Current sId from session: >>>>>>>>>>>>> " + sId);
+	    
+	       gclass.setMember_id(sId);
+		   model.addAttribute("gclass",gclass);
+		    
+		   List<Map<String, Object>> classList = classService.getClassList(sId);
+		   
+		   model.addAttribute("classList", classList); // 클래스 목록을 모델에 추가
+
+		    
+		    return "company/company_class";
+		}
+		
 	
 	@GetMapping("company/main")
 	public String company_main() {
@@ -410,10 +432,6 @@ public class CompanyController {
 	}
 		
 	
-	@GetMapping("company/class")
-	public String company_class() {
-		return "company/company_class";
-	}
 
 //	@GetMapping("company/reservation")
 //	public String company_reservation() {
