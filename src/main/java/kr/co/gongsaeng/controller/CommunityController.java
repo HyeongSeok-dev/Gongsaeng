@@ -109,10 +109,8 @@ public class CommunityController {
 				e.printStackTrace();
 			}
 			
-			// 글목록 서블릿 리다이렉트
 			model.addAttribute("msg", "글이 등록되었습니다.");
-		    String referer = request.getHeader("Referer");
-		    return "redirect:" + referer;
+			return "back2";
 		    
 		} else {
 			// "글쓰기 실패!" 메세지 처리(fail_back)
