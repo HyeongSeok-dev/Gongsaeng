@@ -65,7 +65,7 @@
     <jsp:include page="../inc/top.jsp"></jsp:include>
     <br>
      <div class="container">
-        <form>
+        <form action="writePro" method="post">
         <div class="col-lg-10 col-lg-offset-1">
             <div class="form-group">
                 <div class="row">
@@ -109,7 +109,7 @@
 			</div>
             <div class="form-group btn-container">
                 <button type="submit" class="btn btn-primary">등록</button>
-                <button type="button" class="btn btn-default">취소</button>
+                <button type="button" class="btn btn-default" onclick="history.back()">취소</button>
             </div>
             </div>
             </div>
