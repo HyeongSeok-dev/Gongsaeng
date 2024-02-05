@@ -55,6 +55,12 @@ $(document).ready(function() {
         localStorage.setItem('likeCount', likeCountElement.text());
     });
     
+    /* 글 등록 메시지  */
+        var msg = '${msg}';
+        if (msg) {
+            alert(msg);
+        }
+    
 });
 
 
