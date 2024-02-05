@@ -69,13 +69,7 @@ public class CommunityController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		MultipartFile mFile1 = board.getFile1();
-		MultipartFile mFile2 = board.getFile2();
-		MultipartFile mFile3 = board.getFile3();
-		
-		System.out.println("원본파일명1 : " + mFile1.getOriginalFilename());
-		System.out.println("원본파일명2 : " + mFile2.getOriginalFilename());
-		System.out.println("원본파일명3 : " + mFile3.getOriginalFilename());
+		MultipartFile mFile = board.getFile();
 		
 		// --------------------------
 		// [ 파일명 중복방지 대책 ]
@@ -83,20 +77,10 @@ public class CommunityController {
 		board.setBoard_img2("");
 		board.setBoard_img3("");
 		
-		String fileName1 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile1.getOriginalFilename();
-		String fileName2 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile2.getOriginalFilename();
-		String fileName3 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile3.getOriginalFilename();
+		String fileName = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile.getOriginalFilename();
 
-		if(!mFile1.getOriginalFilename().equals("")) {
-			board.setBoard_img1(subDir + "/" + fileName1);
-		}
-		
-		if(!mFile2.getOriginalFilename().equals("")) {
-			board.setBoard_img2(subDir + "/" + fileName2);
-		}
-		
-		if(!mFile3.getOriginalFilename().equals("")) {
-			board.setBoard_img3(subDir + "/" + fileName3);
+		if(!mFile.getOriginalFilename().equals("")) {
+			board.setBoard_img1(subDir + "/" + fileName);
 		}
 		
 		System.out.println("실제 업로드 파일명1 : " + board.getBoard_img1());
@@ -116,16 +100,8 @@ public class CommunityController {
 				// => MultipartFile 객체의 transferTo() 메서드를 호출하여 실제 위치로 이동(= 업로드)
 				// => 파일이 선택되지 않은 경우(파일명이 널스트링) 이동이 불가능(예외 발생)하므로 제외
 				// => transferTo() 메서드 파라미터로 java.io.File 타입 객체 전달
-				if(!mFile1.getOriginalFilename().equals("")) {
-					mFile1.transferTo(new File(saveDir, fileName1));
-				}
-				
-				if(!mFile2.getOriginalFilename().equals("")) {
-					mFile2.transferTo(new File(saveDir, fileName2));
-				}
-				
-				if(!mFile3.getOriginalFilename().equals("")) {
-					mFile3.transferTo(new File(saveDir, fileName3));
+				if(!mFile.getOriginalFilename().equals("")) {
+					mFile.transferTo(new File(saveDir, fileName));
 				}
 			} catch (IllegalStateException e) {
 				e.printStackTrace();

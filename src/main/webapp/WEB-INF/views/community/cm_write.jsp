@@ -65,35 +65,36 @@
     <jsp:include page="../inc/top.jsp"></jsp:include>
     <br>
      <div class="container">
-        <form action="writePro" method="post">
+        <form action="writePro" method="post" enctype="multipart/form-data">
         <div class="col-lg-10 col-lg-offset-1">
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-3">
-                        <select class="form-control" id="subjectType">
-                            <option disabled selected>주제 선택</option>
-                            <option>궁금해요</option>
-                            <option>함께해요</option>
+                        <select class="form-control" name="board_main_category" required>
+                            <option disabled selected value="">주제 선택</option>
+                            <option value="5">궁금해요</option>
+                            <option value="6">함께해요</option>
                         </select>
                     </div>
                     <div class="col-md-3">
-                        <select class="form-control" id="serviceType">
-                            <option disabled selected>서비스 종류 선택</option>
-                            <option>시공</option>
-                            <option>설치 및 수리</option>
-                            <option>리모델링</option>
-                            <option>리폼</option>
-                            <option>인테리어</option>
-                            <option>기타</option>
+                        <select class="form-control" name="board_sub_category" required>
+                            <option disabled selected value="">서비스 종류 선택</option>
+                            <option value="1">시공</option>
+                            <option value="2">설치 및 수리</option>
+                            <option value="3">리모델링</option>
+                            <option value="4">리폼</option>
+                            <option value="5">인테리어</option>
+                            <option value="6">기타</option>
                         </select>
                     </div>
                 </div>
             </div>
+            <input type="hidden" name="member_id" value="${sessionScope.sId }" />
             <div class="form-group">
-                <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요">
+                <input type="text" class="form-control" name="board_subject" placeholder="제목을 입력하세요" required>
             </div>
             <div class="form-group">
-                <textarea class="form-control" id="content" rows="25" placeholder="내용을 입력하세요"></textarea>
+                <textarea class="form-control" name="board_content" rows="25" placeholder="내용을 입력하세요" required></textarea>
             </div>
             <div class="form-group">
  			<div class="image-upload">
@@ -101,7 +102,7 @@
 		        <i class="fa fa-camera">  첨부파일</i>
 		        <span class="file-count">(0/3)</span>
 		    </label>
-		    <input id="file-input" type="file" multiple />
+		    <input id="file-input" type="file" name="file" multiple />
 			</div>
 			<div class="image-preview" id="image-preview">
 			    <div class="image-preview__image"></div>
