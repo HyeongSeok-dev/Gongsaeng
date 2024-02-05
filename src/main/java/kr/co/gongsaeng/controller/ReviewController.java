@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.Gson;
+
 import kr.co.gongsaeng.service.ReviewService;
 import kr.co.gongsaeng.vo.MemberVO;
+import kr.co.gongsaeng.vo.ReviewCountVO;
 import kr.co.gongsaeng.vo.ReviewVO;
 
 @Controller
@@ -43,6 +47,7 @@ public class ReviewController {
 		
 		//업체명
 		String comName = service.getCompanyName(comIdx);
+		//클래스명
 		String classTitle = service.getClassTitle(classIdx);
 		String sId = (String) session.getAttribute("sId");
 		
@@ -259,6 +264,7 @@ public class ReviewController {
 			ReviewVO review,
 			@RequestParam("review_idx") int reviewIdx,// 선생님은 페이지번호 였지만 난 reviewNum으로
 			@RequestParam("com_idx") int comIdx,
+			@RequestParam("class_idx") int classIdx,
 			HttpSession session, Model model ) {
 			// 세션 아이디에 따른 차단 처리
 				String sId = (String)session.getAttribute("sId");
@@ -314,26 +320,26 @@ public class ReviewController {
 		// ----------------------------------------------------------------------------------
 		// ReviewwService - modifyReview() 메서드 호출하여 글 수정 작업 요청
 		// => 파라미터 : ReviewVO 객체   리턴타입 : int(updateCount)
-//		int updateCount = service.modifyReview(review);
+		int updateCount = service.modifyReview(review);
 		
 		// DB작업 요청 처리 결과 판별
-//		if(updateCount > 0) {
-//			try {
-//				if(!review.getReview_img_1().equals("")) {
-//					mFile1.transferTo(new File(saveDir, fileName1));
-//				}
-//			} catch (IllegalStateException e) {
-//				e.printStackTrace();
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//			
-//	        return "redirect:/review/redetail?com_id=" + comIdx;
-//			
-//		} else {
-//			model.addAttribute("msg","리뷰 수정 실패!");
+		if(updateCount > 0) {
+			try {
+				if(!review.getReview_img_1().equals("")) {
+					mFile1.transferTo(new File(saveDir, fileName1));
+				}
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+	        return "redirect:/review/redetail?com_id=" + comIdx;
+			
+		} else {
+			model.addAttribute("msg","리뷰 수정 실패!");
 			return "fail_back";
-//		}
+		}
 		
 	}
 
@@ -412,13 +418,96 @@ public class ReviewController {
 	
 	
 	@GetMapping("review/detail")
-	public String detail() {
+	public String detail(@RequestParam("class_idx") int classIdx, 
+						@RequestParam(defaultValue = "1") int comIdx,
+			//			@RequestParam("review_num") int reviewNum, 	
+			//			@RequestParam("user_id") String userId, 
+						@RequestParam(value = "sortType", required = false, defaultValue = "newest") String sortType,
+			            @RequestParam(value = "photoOnly", required = false, defaultValue = "false") boolean photoOnly,
+			            @RequestParam(value = "menuName", required = false) String menuName,
+						HttpSession session,
+			            Model model,
+			            HttpServletResponse response,
+			            ReviewVO review) {
+		
+		// 세션 값 저장해두기
+		String sId = (String) session.getAttribute("sId");
+		
+		session.setAttribute("classIdx", classIdx);
+//	    session.setAttribute("review_num", reviewNum);
+	    session.setAttribute("member_id", sId);
+	    		
+		// 업체 이름 불러오기
+		String comName = service.getCompanyName(comIdx);
+		//클래스명ㄴ
+		String classTitle = service.getClassTitle(classIdx);
+	    model.addAttribute("classIdx", classIdx);
+		model.addAttribute("comName",comName);
+		model.addAttribute("classTitle",classTitle);
+//		System.out.println("작성페이지 comid>>>>>>>" + comId);
+//		System.out.println("작성페이지 comname>>>>>>>" + comName);
+		
+		// 리뷰 갯수
+		int reviewCount = service.getReviewCount(classIdx);
+		model.addAttribute("reviewCount",reviewCount);
+		
+		// 리뷰 별점 평균
+		Double reviewAverage = service.getReviewAverage(classIdx);
+		model.addAttribute("reviewAverage",reviewAverage);
+
+		// 리뷰 리스트 불러오기
+		List<ReviewVO> reviews = service.getAllReviews(classIdx);
+//		System.out.println("리뷰리스트 불러오기>>>>>>>>>>>>>>>>>" + reviews);
+
+		// 이런 점이 좋았어요 차트 수정
+        List<ReviewCountVO> reviewCounts = service.getReviewCountsByComId(classIdx);
+        String reviewCountsJson = new Gson().toJson(reviewCounts);
+        model.addAttribute("reviewCountsJson", reviewCountsJson);		
+		model.addAttribute("reviews", reviews);
+
+//		if (!photoOnly && menuName != null && !menuName.isEmpty()) {
+//		    // 메뉴 이름으로 리뷰 필터링
+//		    reviews = service.getReviewsByMenuName(classIdx, menuName);
+//		} else {
+//		    // sortType에 따라 리뷰 정렬
+//		    switch (sortType) {
+//		        case "highest":
+//		            reviews = service.getReviewsSortedByScore(classIdx, true);
+//		            break;
+//		        case "lowest":
+//		            reviews = service.getReviewsSortedByScore(classIdx, false);
+//		            break;
+//		        case "newest":
+//		        default:
+//		            reviews = service.getAllReviews(classIdx); // 기본적으로 모든 리뷰 가져옴
+//		            break;
+//		    }
+//		}
+        // 카테고리별 리뷰 개수 가져오기
+//        ReviewCategoryCountVO categoryCount = service.categoryCount(classIdx);
+//        model.addAttribute("categoryCount",categoryCount);
+//        
+//        // 이런 곳 좋아요 출력
+//        int likeCount = service.getLikeCount(classIdx);
+//        model.addAttribute("likeCount", likeCount);
+//        
+//        model.addAttribute("reviews", reviews);
+        
+        // 예약 완료 0번일 시 리뷰 작성 불가 메세지 출력 및 리뷰작성 
+//        if (sId != null) {
+//            Integer userIdx = service.findUserIdx(sId);
+//            int visitCount = service.getReservationCount(userIdx, classIdx);
+//            model.addAttribute("visitCount", visitCount);
+//        } else {
+//            model.addAttribute("visitCount", 0);
+//        }
+		
 		return "review/review_detail";
 	}
 	
 	// ===================================================================
 	// [ 리뷰 삭제 ]
-	@PostMapping("/gongsaeng/review/delete")
+	@PostMapping("/gongsaeng/review/delete")//ooo
 	public String reviewDelete(
 			ReviewVO review,
 			@RequestParam(defaultValue = "1") int reviewIdx,
@@ -496,37 +585,44 @@ public class ReviewController {
 	
 	
 	
-	@GetMapping("review/complete")
-	public String complete(@RequestParam(defaultValue = "1") int comIdx, Model model) {
-		List<ReviewVO> reviews = service.getAllReviews(comIdx);
-	    model.addAttribute("comIdx", comIdx);
+	@GetMapping("review/complete")//ooo
+	public String complete(@RequestParam(defaultValue = "1") int comIdx,
+						@RequestParam(defaultValue = "1") int classIdx, Model model) {
+		List<ReviewVO> reviews = service.getAllReviews(classIdx);
+	    model.addAttribute("classIdx", classIdx);
 	    model.addAttribute("reviews", reviews);
 		return "review/review_complete";
 	}
 	
-	@GetMapping("review/comment")
+	@GetMapping("review/comment")//ooo
 	public String comment( @RequestParam("com_idx") int comIdx, 
-							 @RequestParam("review_num") int reviewIdx,
+							@RequestParam("class_idx") int classIdx,
+							 @RequestParam("review_idx") int reviewIdx,
 							 Model model, HttpSession session) {
 		// review_num과 com_id를 모델에 추가
 		model.addAttribute("reviewIdx", reviewIdx);
 		model.addAttribute("com_idx", comIdx);
+		model.addAttribute("class_idx", classIdx);
 		
 		String memberId = (String) session.getAttribute("member_id");
 		// 현재 로그인한 사용자의 ID를 세션에서 가져옴
 		String sId = (String)session.getAttribute("sId");
 		
 	    // 세션에 com_id와 user_id를 설정
+		session.setAttribute("class_idx", classIdx);
 		session.setAttribute("com_idx", comIdx);
 		session.setAttribute("member_id", sId);
 		
+		// 클래스 이름 불러오기
+		String classTitle = service.getClassTitle(classIdx);
+		model.addAttribute("classTitle", classTitle);
 		// 업체 이름 불러오기
 		String comName = service.getCompanyName(comIdx);
-		model.addAttribute("comName",comName);
+		model.addAttribute("comName", comName);
 		
 		MemberVO member = service.getUserInfo(sId);
-		model.addAttribute("member",member);
-		model.addAttribute("userId",memberId);
+		model.addAttribute("member", member);
+		model.addAttribute("userId", memberId);
 		
 		
 		// --------------------------------------------------------------------------
@@ -551,7 +647,7 @@ public class ReviewController {
 	// => 폼 파라미터 데이터를 TinyReplyBoardVO 객체 대신 Map 타입 객체로 처리
 	//    (주의! 파라미터 매핑용으로 Map 타입 선언 시 @RequestParam 어노테이션 필수!)
 	//    (만약, 어노테이션 생략 시 파라미터 데이터가 저장되어 있지 않은 단순 Map 객체가 주입됨)
-	@PostMapping("review/ReviewTinyReplyWrite")
+	@PostMapping("review/ReviewTinyReplyWrite")//ooo
 	public String writeTinyReply(@RequestParam Map<String, String> map, HttpSession session, Model model
 //									,@RequestParam("com_id") int comId
 								) {
@@ -572,7 +668,7 @@ public class ReviewController {
 		// => 실패 시 "댓글 작성 실패!" 메세지 처리(fail_back)
 		if(insertCount > 0) {
 //				return "redirect:/review/comment?review_num=" + map.get("review_num");
-	        return "redirect:/review/comment?review_num=" + map.get("review_num") + "&com_id=" + map.get("com_id");
+	        return "redirect:/review/comment?review_idx=" + map.get("review_idx") + "&class_idx=" + map.get("class_idx");
 		} else {
 			model.addAttribute("msg", "댓글 작성 실패!");
 			return "fail_back";
@@ -580,10 +676,41 @@ public class ReviewController {
 		
 	}
 	
+	// "BoardTinyReReplyWrite" 서블릿 요청에 대한 대댓글 작성 비즈니스 로직 처리
+	// => AJAX 요청에 대한 응답 처리를 위해 @ResponseBody 적용
+	@ResponseBody
+	@PostMapping("review/ReviewTinyReReplyWrite")//ooo
+	public String writeTinyReReply(@RequestParam Map<String, String> map, HttpSession session) {
+		if(session.getAttribute("sId") == null) {
+			return "invalidSession";
+		}
+		
+		// BoardService - registTinyReReplyBoard() 메서드 호출하여 대댓글 등록 요청
+		// => 파라미터 : Map 객체   리턴타입 : int(insertCount)
+		int insertCount = service.registTinyReReplyReview(map);
+		
+		// 등록 요청 처리 결과 판별
+		// => 성공 시 "true", 실패 시 "false" 리턴
+		if(insertCount > 0) {
+			return "true";
+		} else {
+			return "false"; 
+		}
+		
+	}
+	
+	
+	
 	
 	
 	@GetMapping("product/detail")
 	public String productDetail() {
+		
+
+		
 		return "product_detail";
 	}
+	
+	
+	
 }

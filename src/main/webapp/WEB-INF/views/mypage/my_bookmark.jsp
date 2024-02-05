@@ -53,7 +53,9 @@
 <script src="${pageContext.request.contextPath }/resources/assets/js/wow.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
-<script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
+<%-- <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script> --%>
+<script src="${pageContext.request.contextPath }/resources/js/my_bookmark.js"></script>
+
 
 </head>
 <body>
@@ -63,14 +65,16 @@
 		<div class="row">
 			<!-- 좌측 메뉴바 -->
 			<div class="col-sm-3">
-			<c:choose>
-				<c:when test="${empty member.member_img}">
-					<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" style="cursor: pointer;" onclick="location.href='modifyProfile'">
-				</c:when>
-				<c:otherwise>
-					<img alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}" style="cursor: pointer;" onclick="location.href='modifyProfile'">
-				</c:otherwise>				
-			</c:choose>
+				<c:choose>
+					<c:when test="${empty member.member_img}">
+						<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" style="cursor: pointer;"
+							onclick="location.href='modifyProfile'">
+					</c:when>
+					<c:otherwise>
+						<img alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}" style="cursor: pointer;"
+							onclick="location.href='modifyProfile'">
+					</c:otherwise>
+				</c:choose>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title text-center cursor" onclick="javascript:location.href='main'">마이페이지</h4>
@@ -78,11 +82,11 @@
 					<div class="panel-body">
 						<ul class="list-group">
 							<li class="list-group-item cursor" onclick="javascript:location.href='reservation'">예약 내역</li>
-							<li class="list-group-item cursor" data-toggle="collapse" href="#alert">알림/메시지
+							<li class="list-group-item cursor" data-toggle="collapse" href="#alert">알림/채팅
 								<div id="alert" class="panel-collapse collapse">
 									<ul class="list-group">
 										<li class="list-group-item cursor " onclick="javascript:location.href='alert'">알림</li>
-										<li class="list-group-item cursor" onclick="javascript:location.href='messages'">메시지</li>
+										<li class="list-group-item cursor" onclick="javascript:location.href='chat'">채팅</li>
 									</ul>
 								</div>
 							</li>
@@ -104,7 +108,7 @@
 									</ul>
 								</div>
 							</li>
-							<li class="list-group-item cursor" data-toggle="collapse" href="#review">리뷰
+							<li class="list-group-item cursor" data-toggle="collapse" href="#review">리뷰/신고
 								<div id="review" class="panel-collapse collapse">
 									<ul class="list-group">
 										<li class="list-group-item cursor " onclick="javascript:location.href='reviewWrite'">리뷰 쓰기</li>
@@ -141,54 +145,27 @@
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<div class="row">
-								<div class="col-md-4 col-sm-12">
-									<div class="product-grid">
-										<div class="product-image">
-											<a href="#" class="image"> <img class="thumbnail" src="${pageContext.request.contextPath }/resources/img/payment_test.png">
-											</a>
-											<ul class="product-links">
-												<li><a href="#"><span class="material-symbols-outlined"> shopping_cart </span></a></li>
-												<li><a href="#"><span class="material-symbols-outlined"> heart_minus </span></a></li>
-											</ul>
-										</div>
-										<div class="product-content">
-											<h3 class="title">미장 클래스</h3>
-											<div class="class">업체명</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-4 col-sm-12">
-									<div class="product-grid">
-										<div class="product-image">
-											<a href="#" class="image"> <img class="thumbnail" src="${pageContext.request.contextPath }/resources/img/payment_test.png">
-											</a>
-											<ul class="product-links">
-												<li><a href="#"><span class="material-symbols-outlined"> shopping_cart </span></a></li>
-												<li><a href="#"><span class="material-symbols-outlined"> heart_minus </span></a></li>
-											</ul>
-										</div>
-										<div class="product-content">
-											<h3 class="title">미장 클래스</h3>
-											<div class="class">업체명</div>
+								<c:forEach var="bookmark" items="${bookmarkList}">
+									<div class="col-md-4 col-sm-12">
+										<div class="product-grid pull-left">
+											<div class="product-image">
+												<a href="../product/detail?class_idx=${bookmark.class_idx}" class="image"> <img class="thumbnail" src="${pageContext.request.contextPath }/resources/img/payment_test.png" ></a>
+<%-- 												<a href="../product/detail?class_idx=${bookmark.class_idx}" class="image"> <img class="thumbnail" src="${pageContext.request.contextPath }/resources/upload/${bookmark.class_pic1}" ></a> --%>
+												<ul class="product-links">
+													<li>
+														<span class="material-symbols-outlined bookmarkBtn" style="cursor: pointer;"> heart_minus </span>
+														<input type="hidden" value="${bookmark.bookmark_idx}" class="bookmark_idx">
+													</li>
+												</ul>
+												
+											</div>
+											<div class="product-content">
+												<h3 class="title">${bookmark.class_title}</h3>
+												<div class="class">${bookmark.com_name}</div>
+											</div>
 										</div>
 									</div>
-								</div>
-								<div class="col-md-4 col-sm-12">
-									<div class="product-grid">
-										<div class="product-image">
-											<a href="#" class="image"> <img class="thumbnail" src="${pageContext.request.contextPath }/resources/img/payment_test.png">
-											</a>
-											<ul class="product-links">
-												<li><a href="#"><span class="material-symbols-outlined"> shopping_cart </span></a></li>
-												<li><a href="#"><span class="material-symbols-outlined"> heart_minus </span></a></li>
-											</ul>
-										</div>
-										<div class="product-content">
-											<h3 class="title">미장 클래스</h3>
-											<div class="class">업체명</div>
-										</div>
-									</div>
-								</div>
+								</c:forEach>
 							</div>
 						</div>
 					</div>

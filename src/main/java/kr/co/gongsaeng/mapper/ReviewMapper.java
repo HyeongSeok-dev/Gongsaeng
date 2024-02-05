@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import kr.co.gongsaeng.vo.MemberVO;
+import kr.co.gongsaeng.vo.ReviewCountVO;
 import kr.co.gongsaeng.vo.ReviewVO;
 
 @Mapper
@@ -46,13 +47,27 @@ public interface ReviewMapper {
 	List<Map<String, Object>> selectTinyReplyReviewList(int reviewIdx);
 
 	// 리뷰 리스트 불러오기
-	List<ReviewVO> allReviewList(int comIdx);
+	List<ReviewVO> allReviewList(int classIdx);
 	
 	// 리뷰 신고
 	int insertReviewReport(ReviewVO review);
 
 	// 댓글 작성 요청
 	int insertTinyReplyReview(Map<String, String> map);
+
+	// 리뷰 글 수 
+	int countReview(int classIdx);
+
+	// 리뷰 별점 평균
+	Double averageReview(int classIdx);
+
+	// 이런 점이 좋았어요
+	List<ReviewCountVO> countReviewsByComId(int classIdx);
+
+	// 대댓글 작성 요청
+	int insertTinyReReplyReview(Map<String, String> map);
+
+	int updateReview(ReviewVO review);
 
 	// 리뷰 수정 업데이트
 //	int updateReview(ReviewVO review);

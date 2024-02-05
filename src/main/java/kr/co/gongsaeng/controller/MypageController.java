@@ -7,8 +7,14 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.RandomStringUtils;
@@ -18,11 +24,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.gongsaeng.service.MypageService;
 import kr.co.gongsaeng.vo.MemberVO;
+import kr.co.gongsaeng.vo.MyResVO;
 
 @Controller
 public class MypageController {
@@ -31,7 +39,7 @@ public class MypageController {
 	MypageService service;
 
 	@GetMapping("mypage/main")
-	public String main(HttpSession session, Model model, MemberVO member) {
+	public String main(HttpSession session, Model model, MemberVO member, HttpServletRequest request) {
 		String sId = (String) session.getAttribute("sId");
 		if (sId == null) {
 			model.addAttribute("msg", "로그인이 필요합니다");
@@ -42,6 +50,61 @@ public class MypageController {
 		member.setMember_id(sId);
 		member = service.getMemberInfo(member);
 		model.addAttribute("member", member);
+
+		Map<String, String> myMainInfo = service.getmyMainInfo(member);
+		List<Map<String, Object>> unReadChats = service.getUnreadChatInfo(member);
+		List<Map<String, Object>> unReadAlert = service.getUnreadAlertInfo(member);
+		List<Map<String, Object>> bookmarkList = service.getBookmarkInfo(member);
+		List<Map<String, Object>> followingList = service.getFollowingInfo(member);
+
+		// 상품페이지에 넣을 쿠키 추가 코드
+//		 String recent = class_idx + "|" + imageUrl+ "|" + class_title + "|" + com_name;
+//		    Cookie[] cookies = request.getCookies();
+//		    if (cookies != null) {
+//		        for (Cookie cookie : cookies) {
+//		            if (cookie.getName().equals("RecentClass")) {
+//		                recent = cookie.getValue() + "," + recent;
+//		                break;
+//		            }
+//		        }
+//		    }
+//
+//		    // 쿠키 생성
+//		    Cookie cookie = new Cookie("RecentClass", recent);
+//
+//		    // 쿠키 유효기간 설정 (예: 7일)
+//		    cookie.setMaxAge(60 * 60 * 24 * 7);
+//
+//		    // 응답에 쿠키 추가
+//		    response.addCookie(cookie);
+
+		List<Map<String, String>> recentClasses = new ArrayList<>();
+	    Cookie[] cookies = request.getCookies();
+	    if (cookies != null) {
+	        for (Cookie cookie : cookies) {
+	            if (cookie.getName().equals("RecentClass")) {
+	                String[] productInfos = cookie.getValue().split(",");
+	                for (String productInfo : productInfos) {
+	                    String[] details = productInfo.split("\\|");
+	                    Map<String, String> recentClass = new HashMap<>();
+	                    recentClass.put("class_idx", details[0]);
+	                    recentClass.put("imageUrl", details[1]);
+	                    recentClass.put("class_title", details[2]);
+	                    recentClass.put("com_name", details[3]);
+	                    recentClasses.add(recentClass);
+	                }
+	                break;
+	            }
+	        }
+	    }
+	    
+		model.addAttribute("myMainInfo", myMainInfo);
+		model.addAttribute("unReadChats", unReadChats);
+		model.addAttribute("unReadAlert", unReadAlert);
+		model.addAttribute("recentProducts", recentClasses);
+		model.addAttribute("bookmarkList", bookmarkList);
+		model.addAttribute("followingList", followingList);
+
 		return "mypage/my_main";
 	}
 
@@ -56,12 +119,17 @@ public class MypageController {
 		}
 		member.setMember_id(sId);
 		member = service.getMemberInfo(member);
+		
+		
+		List<MyResVO> resList = service.getResList(member);
+		
 		model.addAttribute("member", member);
+		model.addAttribute("resList", resList);
 		return "mypage/my_reservation";
 	}
 
 	@GetMapping("mypage/reservationDetail")
-	public String reservationDetail(HttpSession session, Model model, MemberVO member) {
+	public String reservationDetail(HttpSession session, Model model, MemberVO member, MyResVO res) {
 		String sId = (String) session.getAttribute("sId");
 		if (sId == null) {
 			model.addAttribute("msg", "로그인이 필요합니다");
@@ -71,12 +139,18 @@ public class MypageController {
 		}
 		member.setMember_id(sId);
 		member = service.getMemberInfo(member);
+		MyResVO resInfo = service.getResInfo(res);
+		
+		resInfo.setTotal_price(resInfo.getPayment() + resInfo.getDiscount_payment());
+		resInfo.setPoint((int) ((int)resInfo.getPayment()* 0.005));
+		
 		model.addAttribute("member", member);
+		model.addAttribute("resInfo", resInfo);
 		return "mypage/my_reservation_detail";
 	}
 
 	@GetMapping("mypage/reservationCancel")
-	public String reservationCancel(HttpSession session, Model model, MemberVO member) {
+	public String reservationCancel(HttpSession session, Model model, MemberVO member, MyResVO res) {
 		String sId = (String) session.getAttribute("sId");
 		if (sId == null) {
 			model.addAttribute("msg", "로그인이 필요합니다");
@@ -86,7 +160,12 @@ public class MypageController {
 		}
 		member.setMember_id(sId);
 		member = service.getMemberInfo(member);
+		MyResVO resInfo = service.getResInfo(res);
+		
+		resInfo.setPoint((int) ((int)resInfo.getPayment()* 0.005));
+		
 		model.addAttribute("member", member);
+		model.addAttribute("resInfo", resInfo);
 		return "mypage/my_reservation_cancel";
 	}
 
@@ -116,11 +195,15 @@ public class MypageController {
 		}
 		member.setMember_id(sId);
 		member = service.getMemberInfo(member);
+		
+		List<Map<String, Object>> alertList = service.getAlertList(member);
+		
 		model.addAttribute("member", member);
+		model.addAttribute("alertList", alertList);
 		return "mypage/my_alert";
 	}
 
-	@GetMapping("mypage/messages")
+	@GetMapping("mypage/chat")
 	public String messages(HttpSession session, Model model, MemberVO member) {
 		String sId = (String) session.getAttribute("sId");
 		if (sId == null) {
@@ -132,7 +215,7 @@ public class MypageController {
 		member.setMember_id(sId);
 		member = service.getMemberInfo(member);
 		model.addAttribute("member", member);
-		return "mypage/my_messages";
+		return "mypage/my_chat";
 	}
 
 	@GetMapping("mypage/coupon")
@@ -146,7 +229,14 @@ public class MypageController {
 		}
 		member.setMember_id(sId);
 		member = service.getMemberInfo(member);
+		
+		List<Map<String, Object>> couponList = service.getCouponList(member);
+		
+		
 		model.addAttribute("member", member);
+		model.addAttribute("couponList", couponList);
+		
+		
 		return "mypage/my_coupon";
 	}
 
@@ -161,11 +251,15 @@ public class MypageController {
 		}
 		member.setMember_id(sId);
 		member = service.getMemberInfo(member);
-		model.addAttribute("member", member);
-
+		List<Map<String, Object>> cashList = service.getCashList(member);
+		Map<String, String> totalCash = service.getmyMainInfo(member);
+		
 		String rNum = RandomStringUtils.randomNumeric(32);
 		session.setAttribute("state", rNum);
-
+		
+		model.addAttribute("member", member);
+		model.addAttribute("cashList", cashList);
+		model.addAttribute("totalCash", totalCash);
 		return "mypage/my_cash";
 	}
 
@@ -180,7 +274,12 @@ public class MypageController {
 		}
 		member.setMember_id(sId);
 		member = service.getMemberInfo(member);
+		List<Map<String, Object>> pointList = service.getPointList(member);
+		Map<String, String> totalPoint = service.getmyMainInfo(member);
+		
 		model.addAttribute("member", member);
+		model.addAttribute("pointList", pointList);
+		model.addAttribute("totalPoint",totalPoint);
 		return "mypage/my_point";
 	}
 
@@ -194,8 +293,11 @@ public class MypageController {
 			return "forward";
 		}
 		member.setMember_id(sId);
+		List<Map<String, Object>> bookmarkList = service.getBookmarkInfo(member);
+		
 		member = service.getMemberInfo(member);
 		model.addAttribute("member", member);
+		model.addAttribute("bookmarkList", bookmarkList);
 		return "mypage/my_bookmark";
 	}
 
@@ -210,12 +312,15 @@ public class MypageController {
 		}
 		member.setMember_id(sId);
 		member = service.getMemberInfo(member);
+		List<Map<String, Object>> followingList = service.getFollowingInfo(member);
+
 		model.addAttribute("member", member);
+		model.addAttribute("followingList", followingList);
 		return "mypage/my_following";
 	}
 
 	@GetMapping("mypage/recent")
-	public String recent(HttpSession session, Model model, MemberVO member) {
+	public String recent(HttpSession session, Model model, MemberVO member, HttpServletRequest request) {
 		String sId = (String) session.getAttribute("sId");
 		if (sId == null) {
 			model.addAttribute("msg", "로그인이 필요합니다");
@@ -225,7 +330,29 @@ public class MypageController {
 		}
 		member.setMember_id(sId);
 		member = service.getMemberInfo(member);
+		
+		List<Map<String, String>> recentClasses = new ArrayList<>();
+	    Cookie[] cookies = request.getCookies();
+	    if (cookies != null) {
+	        for (Cookie cookie : cookies) {
+	            if (cookie.getName().equals("RecentClass")) {
+	                String[] productInfos = cookie.getValue().split(",");
+	                for (String productInfo : productInfos) {
+	                    String[] details = productInfo.split("\\|");
+	                    Map<String, String> recentClass = new HashMap<>();
+	                    recentClass.put("class_idx", details[0]);
+	                    recentClass.put("imageUrl", details[1]);
+	                    recentClasses.add(recentClass);
+	                }
+	                break;
+	            }
+	        }
+	    }
+		
 		model.addAttribute("member", member);
+		model.addAttribute("recentClasses", recentClasses);
+		
+		
 		return "mypage/my_recent";
 	}
 
@@ -240,7 +367,12 @@ public class MypageController {
 		}
 		member.setMember_id(sId);
 		member = service.getMemberInfo(member);
+		
+		List<MyResVO> resList = service.getResList(member);
+		
 		model.addAttribute("member", member);
+		model.addAttribute("resList", resList);
+		
 		return "mypage/my_review_write";
 	}
 
@@ -388,7 +520,7 @@ public class MypageController {
 
 		member.setMember_passwd(passwordEncoder.encode(member.getMember_passwd()));
 
-		member.setMember_email(member.getMember_email1()+"@"+member.getMember_email2());
+		member.setMember_email(member.getMember_email1() + "@" + member.getMember_email2());
 		// memberService - modifymember() 메서드 호출하여 회원 정보 수정 요청
 		// => 파라미터 : memberInfo 객체, 새 패스워드(newPasswd) 리턴타입 : int(updateCount)
 		int updateCount = service.modifymember(member);
@@ -417,7 +549,7 @@ public class MypageController {
 		}
 
 	}
-	
+
 	@ResponseBody
 	@PostMapping("mypage/withdraw")
 	public String withdraw(HttpSession session, Model model, MemberVO member) {
@@ -428,23 +560,64 @@ public class MypageController {
 
 			return "forward";
 		}
-		
+
 		member.setMember_id(sId);
 		MemberVO dbmember = service.getMemberInfo(member);
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		
-        if (!passwordEncoder.matches(member.getMember_passwd(), dbmember.getMember_passwd())) {
-        	return "false";
-        }
-        
-        int updateCount = service.withdrawMember(member);
-        
-        if(updateCount > 0) {
-        	session.invalidate();
-        	return "true";
-        }else {
-        	return "fail";
-        }
+
+		if (!passwordEncoder.matches(member.getMember_passwd(), dbmember.getMember_passwd())) {
+			return "false";
+		}
+
+		int updateCount = service.withdrawMember(member);
+
+		if (updateCount > 0) {
+			session.invalidate();
+			return "true";
+		} else {
+			return "fail";
+		}
 	}
+	
+	@ResponseBody
+	@GetMapping("mypage/deleteBookmark")
+	public String deleteBookmark(@RequestParam Map<String, String> map, HttpSession session, Model model) {
+		String sId = (String) session.getAttribute("sId");
+		if (sId == null) {
+			model.addAttribute("msg", "로그인이 필요합니다");
+			model.addAttribute("targetURL", "/gongsaeng/member/login");
+
+			return "forward";
+		}
+		System.out.println(map);
+		int deleteCount = service.deleteBookmark(map);
+
+		if (deleteCount > 0) {
+			return "true";
+		} else {
+			return "false";
+		}
+	}
+	
+	@ResponseBody
+	@GetMapping("mypage/deletefollowing")
+	public String deletefollowing(@RequestParam Map<String, String> map, HttpSession session, Model model) {
+		String sId = (String) session.getAttribute("sId");
+		if (sId == null) {
+			model.addAttribute("msg", "로그인이 필요합니다");
+			model.addAttribute("targetURL", "/gongsaeng/member/login");
+			
+			return "forward";
+		}
+		System.out.println(map);
+		int deleteCount = service.deletefollowing(map);
+		
+		if (deleteCount > 0) {
+			return "true";
+		} else {
+			return "false";
+		}
+	}
+	
 
 }

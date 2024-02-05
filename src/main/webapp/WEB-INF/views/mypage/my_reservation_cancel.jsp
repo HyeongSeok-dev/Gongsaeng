@@ -79,11 +79,11 @@
 					<div class="panel-body">
 						<ul class="list-group">
 							<li class="list-group-item cursor active" onclick="javascript:location.href='reservation'">예약 내역</li>
-							<li class="list-group-item cursor" data-toggle="collapse" href="#alert">알림/메시지
+							<li class="list-group-item cursor" data-toggle="collapse" href="#alert">알림/채팅
 								<div id="alert" class="panel-collapse collapse">
 									<ul class="list-group">
 										<li class="list-group-item cursor " onclick="javascript:location.href='alert'">알림</li>
-										<li class="list-group-item cursor" onclick="javascript:location.href='messages'">메시지</li>
+										<li class="list-group-item cursor" onclick="javascript:location.href='chat'">채팅</li>
 									</ul>
 								</div>
 							</li>
@@ -105,7 +105,7 @@
 									</ul>
 								</div>
 							</li>
-							<li class="list-group-item cursor" data-toggle="collapse" href="#review">리뷰
+							<li class="list-group-item cursor" data-toggle="collapse" href="#review">리뷰/신고
 								<div id="review" class="panel-collapse collapse">
 									<ul class="list-group">
 										<li class="list-group-item cursor " onclick="javascript:location.href='reviewWrite'">리뷰 쓰기</li>
@@ -139,7 +139,7 @@
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title text-center">예약 이름</h3>
+						<h3 class="panel-title text-center">${resInfo.class_title}</h3>
 					</div>
 					<div class="panel-body">
 						<div class="row">
@@ -148,9 +148,9 @@
 						</div>
 						<p class="text-center">예약 인원: 00명</p>
 						<div class="row">
-							<div class="col-xs-9">업체 이름</div>
+							<div class="col-xs-9">업체명 : ${resInfo.com_name}</div>
 							<div class="col-xs-3 text-right">
-								<button class="btn btn-default">메시지 문의</button>
+								<button class="btn btn-default" onclick="javascript:location.href='chat?com_idx=${resInfo.com_idx}'">채팅 문의</button>
 							</div>
 						</div>
 					</div>
@@ -161,15 +161,15 @@
 						<h3 class="panel-title">결제 정보</h3>
 					</div>
 					<div class="panel-body">
-						<p>결제 방법: 카드 결제</p>
-						<p>최종 결제 금액: 00,000원</p>
-						<p>포인트 적립 내역: 00포인트</p>
+						<p>결제 방법: ${resInfo.pay_method}</p>
+						<p>최종 결제 금액: ${resInfo.payment}원</p>
+						<p>포인트 적립 내역: ${resInfo.point}포인트</p>
 						<hr>
 						<p>
-							<strong>환불 예상 금액: 00,000원</strong>
+							<strong>환불 예상 금액: ${resInfo.payment}원</strong>
 						</p>
 						<p>
-							<strong>소멸 포인트: 00포인트</strong>
+							<strong>소멸 포인트: ${resInfo.point}포인트</strong>
 						</p>
 					</div>
 				</div>

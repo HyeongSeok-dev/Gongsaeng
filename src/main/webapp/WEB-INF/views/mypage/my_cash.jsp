@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -62,14 +64,16 @@
 		<div class="row">
 			<!-- 좌측 메뉴바 -->
 			<div class="col-sm-3">
-			<c:choose>
-				<c:when test="${empty member.member_img}">
-					<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" style="cursor: pointer;" onclick="location.href='modifyProfile'">
-				</c:when>
-				<c:otherwise>
-					<img alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}" style="cursor: pointer;" onclick="location.href='modifyProfile'">
-				</c:otherwise>				
-			</c:choose>
+				<c:choose>
+					<c:when test="${empty member.member_img}">
+						<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" style="cursor: pointer;"
+							onclick="location.href='modifyProfile'">
+					</c:when>
+					<c:otherwise>
+						<img alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}" style="cursor: pointer;"
+							onclick="location.href='modifyProfile'">
+					</c:otherwise>
+				</c:choose>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title text-center cursor" onclick="javascript:location.href='main'">마이페이지</h4>
@@ -77,11 +81,11 @@
 					<div class="panel-body">
 						<ul class="list-group">
 							<li class="list-group-item cursor" onclick="javascript:location.href='reservation'">예약 내역</li>
-							<li class="list-group-item cursor" data-toggle="collapse" href="#alert">알림/메시지
+							<li class="list-group-item cursor" data-toggle="collapse" href="#alert">알림/채팅
 								<div id="alert" class="panel-collapse collapse">
 									<ul class="list-group">
 										<li class="list-group-item cursor " onclick="javascript:location.href='alert'">알림</li>
-										<li class="list-group-item cursor" onclick="javascript:location.href='messages'">메시지</li>
+										<li class="list-group-item cursor" onclick="javascript:location.href='chat'">채팅</li>
 									</ul>
 								</div>
 							</li>
@@ -103,7 +107,7 @@
 									</ul>
 								</div>
 							</li>
-							<li class="list-group-item cursor" data-toggle="collapse" href="#review">리뷰
+							<li class="list-group-item cursor" data-toggle="collapse" href="#review">리뷰/신고
 								<div id="review" class="panel-collapse collapse">
 									<ul class="list-group">
 										<li class="list-group-item cursor " onclick="javascript:location.href='reviewWrite'">리뷰 쓰기</li>
@@ -140,7 +144,7 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-sm-6">
-								<p>현재 포인트: 00,000캐쉬</p>
+								<p>현재 캐쉬: ${totalCash.total_cash}캐쉬</p>
 							</div>
 							<div class="col-sm-6 text-right">
 								<button class="btn btn-primary">캐쉬 충전</button>
@@ -149,18 +153,38 @@
 						<table class="table">
 							<thead>
 								<tr>
-									<th>적립 내용</th>
-									<th>금액</th>
-									<th>발생 일시</th>
+									<th class="col-sm-3 text-center">분류</th>
+									<th class="col-sm-6 text-center">금액</th>
+									<th class="col-sm-3 text-center">발생일시</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>적립 내용 예시</td>
-									<td>00,000원</td>
-									<td>yyyy-mm-dd hh:mm</td>
-								</tr>
-								<!-- 위의 tr을 복사하여 붙여넣어 필요한 만큼의 행을 만들 수 있습니다. -->
+								<c:forEach var="cash" items="${cashList}">
+									<tr>
+										<c:choose>
+											<c:when test="${cash.cash_category eq 1}">
+												<td>충전</td>
+											</c:when>
+											<c:when test="${cash.cash_category eq 2}">
+												<td>사용</td>
+											</c:when>
+											<c:when test="${cash.cash_category eq 3}">
+												<td>출금</td>
+											</c:when>
+											<c:when test="${cash.cash_category eq 4}">
+												<td>환불</td>
+											</c:when>
+											<c:when test="${cash.cash_category eq 5}">
+												<td>환급</td>
+											</c:when>
+										</c:choose>
+										<td>${cash.cash_value}원</td>
+										<td>
+											<fmt:parseDate var="parsedDate" value="${cash.cash_date}" pattern="yyyy-MM-dd'T'HH:mm:ss" /> 
+											<fmt:formatDate value="${parsedDate}" pattern="yyyy-MM-dd HH:mm:ss" />
+										</td>
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>

@@ -77,11 +77,11 @@
 					<div class="panel-body">
 						<ul class="list-group">
 							<li class="list-group-item cursor active" onclick="javascript:location.href='reservation'">예약 내역</li>
-							<li class="list-group-item cursor" data-toggle="collapse" href="#alert">알림/메시지
+							<li class="list-group-item cursor" data-toggle="collapse" href="#alert">알림/채팅
 								<div id="alert" class="panel-collapse collapse">
 									<ul class="list-group">
 										<li class="list-group-item cursor " onclick="javascript:location.href='alert'">알림</li>
-										<li class="list-group-item cursor" onclick="javascript:location.href='messages'">메시지</li>
+										<li class="list-group-item cursor" onclick="javascript:location.href='chat'">채팅</li>
 									</ul>
 								</div>
 							</li>
@@ -103,7 +103,7 @@
 									</ul>
 								</div>
 							</li>
-							<li class="list-group-item cursor" data-toggle="collapse" href="#review">리뷰
+							<li class="list-group-item cursor" data-toggle="collapse" href="#review">리뷰/신고
 								<div id="review" class="panel-collapse collapse">
 									<ul class="list-group">
 										<li class="list-group-item cursor " onclick="javascript:location.href='reviewWrite'">리뷰 쓰기</li>
@@ -138,15 +138,21 @@
 						<h4 class="panel-title">예약 내역</h4>
 					</div>
 					<br>
+					<c:forEach var="res" items="${resList}">
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<div class="row">
 								<div class="col-xs-6">
-									<strong>예약완료</strong><br> <small>결제 날짜: yyyy-mm-dd</small>
+									<c:choose>
+										<c:when test="${res.pay_status eq 1}"><strong>예약완료</strong><br> </c:when>
+										<c:when test="${res.pay_status eq 2}"><strong>예약취소</strong><br> </c:when>
+										<c:when test="${res.pay_status eq 3}"><strong>방문완료</strong><br> </c:when>
+									</c:choose>
+									<small>결제 날짜: ${res.pay_date}</small>
 								</div>
 								<div class="col-xs-6 text-right">
-									예약 금액: 00,000원<br>
-									<a href="reservationDetail"> 상세보기 ></a>
+									예약 금액: ${res.payment}원<br>
+									<a href="reservationDetail?pay_num=${res.pay_num}"> 상세보기 ></a>
 								</div>
 							</div>
 						</div>
@@ -155,22 +161,23 @@
 								<div class="col-xs-10">
 									<div class="row">
 										<div class="col-xs-2">
-											<img src="thumbnail.jpg" alt="업체 사진" class="thumbnail">
+											<img src="${pageContext.request.contextPath }/resources/upload/${res.class_pic1}" alt="클래스 사진" class="thumbnail">
 										</div>
 										<div class="col-xs-10">
-											<p>가게 이름</p>
-											<p>업주 이름</p>
+											<p>가게 이름 : ${res.com_name}</p>
+											<p>클래스 이름 : ${res.class_title}</p>
 											<p>예약한 날짜: yyyy-mm-dd</p>
 										</div>
 									</div>
 								</div>
 								<div class="col-xs-2">
-									<button class="btn btn-default btn-block" onclick="javascript:location.href='messages'">메시지 문의</button>
-									<a href="reservationCancel"><button class="btn btn-danger btn-block">예약 취소</button></a>
+									<button class="btn btn-default btn-block" onclick="javascript:location.href='chat'">채팅 문의</button>
+									<a href="reservationCancel?pay_num=${res.pay_num}"><button class="btn btn-danger btn-block">예약 취소</button></a>
 								</div>
 							</div>
 						</div>
 					</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>

@@ -67,3 +67,8 @@
 		margin-top:10px;
  	}		
 }
+
+.checkBox{
+	position: static;
+	width: 20px;
+}
