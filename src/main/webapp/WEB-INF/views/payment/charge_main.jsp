@@ -59,7 +59,7 @@
 <body>
 	<div class="container" >
     <div class="page-header text-center">
-        <h3>{member_nick}님의 0페이 현재잔액<span class="pull-right label label-default"></span></h3><br>
+        <h3>${member_name}님의 0페이 현재잔액<span class="pull-right label label-default"></span></h3><br>
         <h1>{}원</h1>
     </div>
     <div class="row">
@@ -82,9 +82,9 @@
                         </ul>
                 </div>
                </div>
-                    </div>
-                </div>
-            </div>
+              </div>
+             </div>
+       </div>
       <br/>
 </body>
 </html>

@@ -8,7 +8,7 @@
 	<select id="selectId" resultType="string">
 		SELECT member_id
 		FROM account
-		WHERE id = #{member_id}
+		WHERE member_id = #{id}
 	</select>
 	
 	<!-- 엑세스 토큰 저장 - INSERT -->
@@ -16,14 +16,14 @@
 		INSERT INTO account
 		VALUES (
 			null
-			, #{member_id}
+			, #{id}
 			, #{token.access_token}
-			, #{token.user_seq_no}
-			, #{account_user_ci}
-			, #{account_user_name}
-			, #{fintech_use_num}
-			, #{account_num_masked}
 			, #{token.refresh_token}
+			, #{token.user_seq_no}
+			, null
+			, ""
+			, ""
+			, ""
 		)
 	</insert>
 	
@@ -34,7 +34,7 @@
 			access_token = #{token.access_token}
 			, refresh_token = #{token.refresh_token}
 			, user_seq_no = #{token.user_seq_no}
-		WHERE id = #{member_id}
+		WHERE member_id = #{id}
 	</update>
 	
 	<!-- 사용자 토큰 정보 조회 - SELECT -->

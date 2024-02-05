@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -21,6 +22,9 @@ import kr.co.gongsaeng.vo.ResponseTokenVO;
 
 @Component
 public class BankApiClient {
+	
+	@Autowired
+	private BankValueGenerator bankValueGenerator;
 	
 	@Value("${client_id}")
 	private String client_id;
@@ -132,12 +136,44 @@ public class BankApiClient {
 		return responseEntity.getBody();
 	}
 
-
 	//==================================================================================
 	//잔액조회 api요청
-//	public Map<String, Object> requestAccountDetail(Map<String, String> map) {
-//		return null;
-//	}
+	public Map<String, Object> requestAccountDetail(Map<String, String> map) {
+		//파라미터로 사용할 난수 생성하여 리턴받기
+		String bank_tran_id = bankValueGenerator.getBankTranId(); 
+		logger.info("은행 거래 고유 번호(bank_tran_id) : " + bank_tran_id);
+		
+		String tran_dtime = bankValueGenerator.getTranDTime();
+		logger.info("요청 일시(tran_dtime) : " + tran_dtime);
+		
+		//사용자 정보 조회시 엑세스 토큰 값을 헤더에 담아 전송하므로 헤더에 정보추가
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Authorization", "Bearer " + map.get("access_token"));
+		
+		//헤더 정보를 갖는 객체 생성
+		HttpEntity<String> httpEntity = new HttpEntity<String>(headers);
+		
+		//요청에 필요한 URI정보생성
+		URI uri = UriComponentsBuilder
+				.fromUriString(base_url + "/v2.0/account/balance/fin_num")
+				.queryParam("bank_tran_id", bank_tran_id) // 거래고유번호(참가기관)
+				.queryParam("fintech_use_num", map.get("fintech_use_num")) // 핀테크이용번호
+				.queryParam("tran_dtime", tran_dtime) // 요청일시
+				.encode() // 파라미터에 대한 인코딩 처리
+				.build() // UriComponents 객체 생성
+				.toUri(); // URI 타입 객체로 변환
+		
+		//객체생성
+		RestTemplate restTemplate = new RestTemplate();
+		
+		//HTTP요청 수행
+		ResponseEntity<Map<String, Object>> responseEntity
+			= restTemplate.exchange(uri, HttpMethod.GET, httpEntity, new ParameterizedTypeReference<Map<String, Object>>() {});
+		
+		//getBody()호출하여 응답데이터 리턴
+		return responseEntity.getBody();
+	}
+
 	
 	
 }//BankApiClient

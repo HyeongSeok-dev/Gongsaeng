@@ -21,6 +21,7 @@ public class BankService {
 	//엑세스 토큰 발급 요청
 	public ResponseTokenVO requestAccessToken(Map<String, String> authResponse) {
 		return bankApiClient.requestAccessToken(authResponse);
+		
 	}
 	
 	//============================================================================
@@ -30,6 +31,7 @@ public class BankService {
 
 		//아이디 존재여부 판별
 		if(id == null) {
+			System.out.println("map" + map);
 			bankMapper.insertAccessToken(map);
 		}else {
 			bankMapper.updateAccessToken(map);
@@ -50,8 +52,9 @@ public class BankService {
 	
 	//============================================================================
 	//계좌 상세정보 조회 요청
-//	public Map<String, Object> requestAccountDetail(Map<String, String> map){
-//		return bankApiClient.requestAccountDetail(map);
-//	}
+	public Map<String, Object> requestAccountDetail(Map<String, String> map) {
+		return bankApiClient.requestAccountDetail(map);
+	}
+
 	
 } //class BankService

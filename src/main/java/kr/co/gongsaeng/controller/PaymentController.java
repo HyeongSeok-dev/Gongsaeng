@@ -32,6 +32,9 @@ public class PaymentController {
 		String rNum = RandomStringUtils.randomNumeric(32);
 		sesison.setAttribute("state", rNum);
 		
+		System.out.println(rNum);
+		System.out.println("state : " + sesison.getAttribute("state"));
+		
 		return "payment/payment";
 	}
 	
@@ -41,17 +44,17 @@ public class PaymentController {
 		return "payment/charge_agree";
 	}
 	
-	//페이메인화면
+	//메인화면
 	@GetMapping("payment/charge/main")
 	public String chargeMain() {
 		return "payment/charge_main";
 	}
 	
 	//페이충전-계좌선택
-	@GetMapping("payment/charge/account")
-	public String chargeAccount() {
-		return "payment/charge_account";
-	}
+//	@GetMapping("payment/charge/account")
+//	public String chargeAccount() {
+//		return "payment/charge_account";
+//	}
 	
 	//페이충전-충전완료
 	@GetMapping("payment/charge/complete")
@@ -63,6 +66,7 @@ public class PaymentController {
 	@GetMapping("callback")
 	public String callback(@RequestParam Map<String, String> authResponse, HttpSession session, Model model) {
 		logger.info("authResponse : " + authResponse.toString());
+		logger.info("session>>>>>>>>>>>>> : " + session.getAttribute("state"));
 		
 		//=======================================================================
 		//응답 데이터중 state값이 요청시 사용된 값인지 판별
@@ -85,13 +89,13 @@ public class PaymentController {
 		if(responseToken == null || responseToken.getAccess_token() == null) {
 			model.addAttribute("msg", "토큰 발급 실패! 다시 인증하세요!");
 			model.addAttribute("isClose", true);
-			model.addAttribute("targetURL", "FintechMain");
+			model.addAttribute("targetURL", "payment/charge_agree");
 			return "forward";
 		}
 		
 		// BankApiService - registAccessToken() 메서드 호출하여 토큰 관련 정보 저장 요청
 		String id = (String)session.getAttribute("sId");
-				
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
 		map.put("token", responseToken);
@@ -102,16 +106,69 @@ public class PaymentController {
 		session.setAttribute("user_seq_no", responseToken.getUser_seq_no());
 		
 		// "forward.jsp" 페이지 포워딩을 통해
-		// "계좌 인증 완료" 메세지 출력 후 인증 창 닫고 FintechUserInfo 서블릿 요청
+		// "계좌 인증 완료" 메세지 출력 후 인증 창 닫고 서블릿 요청
 		model.addAttribute("msg", "계좌 인증 완료!");
 		model.addAttribute("isClose", true);
-		model.addAttribute("targetURL", "FintechUserInfo");
+		model.addAttribute("targetURL", "payment/charge/account");
 		
 		return "forward";
 	}
 	
+	//사용자 정보조회API
+	@GetMapping("payment/charge/account")
+	public String paymentChargeAccount(HttpSession session, Model model) {
+		
+		if(session.getAttribute("sId") == null) {
+			model.addAttribute("msg", "로그인 필수");
+			model.addAttribute("isClose", true);
+			return "forward";
+		}else if(session.getAttribute("access_token") == null) {
+			model.addAttribute("msg", "계좌 인증 필수");
+			model.addAttribute("isClose", true);
+			return "forward";
+		}
+		
+		//map객체에 저장된 엑세스 토큰과 사용자 번호 저장
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("access_token", (String)session.getAttribute("access_token"));
+		map.put("user_seq_no", (String)session.getAttribute("user_seq_no"));
+		
+		Map<String, Object> userInfo = bankService.requestUserInfo(map);
+		logger.info(">>>>>> userInfo : " + userInfo);
+		
+		model.addAttribute("userInfo", userInfo);
+		
+		return "payment/charge_account";
+	}
 	
-	
+	//페이메인화면(잔액조회 API)
+	@PostMapping("BankAccountDetail")
+	public String accountDetail(@RequestParam Map<String, String> map, HttpSession session, Model model) {
+		
+		//로그인, 계좌인증 필수처리
+		if(session.getAttribute("sId") == null) {
+			model.addAttribute("msg", "로그인 필수");
+			model.addAttribute("isClose", true);
+			return "forward";
+		}else if(session.getAttribute("access_token") == null) {
+			model.addAttribute("msg", "계좌 인증 필수");
+			model.addAttribute("isClose", true);
+			return "forward";
+		}
+		
+		//요청에 사용할 엑세스 토큰(세션)을 map객체에 추가
+		map.put("access_token", (String)session.getAttribute("access_token"));
+		
+		//계좌상세정보 조회요청
+		Map<String, Object> accountDetail = bankService.requestAccountDetail(map);
+		
+		// 조회결과(Map 객체, 이름, 계좌번호) 저장
+		model.addAttribute("accountDetail", accountDetail);
+		model.addAttribute("user_name", map.get("user_name"));
+		model.addAttribute("account_num_masked", map.get("account_num_masked"));
+		
+		return "payment/charge_main";
+	}
 	
 	
 	

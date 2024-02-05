@@ -51,12 +51,12 @@ $(document).ready(function() {
 					console.log("kakao");
 					IMP.request_pay({
 					  pg: "kakaopay",
-//					  merchant_uid: $("#res_num").val(), //주문번호
+//					  merchant_uid: $("#res_num").val(), //상품번호(클래스아이디)
 //					  name: "공생 클래스 수강 - " + $("#class_title").val() +" "+ $("#class_ctart_date").val() +
 //					  	"" + $("#class_start_time") + "부터시작" + $("#res_person").val() + "명",
-//					  amount: parseInt($("#totalPayment_text").text().trim().replace(/,/g, '')),
-//					  buyer_email: $("#member_email").val(),
-//					  buyer_name: $("#member_name").val()
+//					  amount: parseInt($("#totalPayment_text").text().trim().replace(/,/g, '')), //할인된금액(최종결제금액)
+//					  buyer_email: $("#member_email").val(), //생략가능(pg사에 따라 다름)
+//					  buyer_name: $("#member_name").val() //생략가능(pg사에 따라 다름)
 //================================================================================
 					  merchant_uid: "order_no_0001", // 상점에서 생성한 고유 주문번호
 					  name: "주문명:결제테스트",

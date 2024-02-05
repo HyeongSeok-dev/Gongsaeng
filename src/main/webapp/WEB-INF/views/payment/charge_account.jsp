@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -93,6 +94,9 @@ input[type="button"]:active {
 <body>
 	<div class="container">
 	    <div class="row col-md-12 mx-auto custyle">
+	    
+	     <h2>${userInfo.user_name} 고객님의 계좌 정보</h2>
+	     
 		    <table class="table table-striped custab">
 			    <thead>
 			        <tr>
@@ -103,24 +107,22 @@ input[type="button"]:active {
 			        </tr>
 			    </thead>
 	            
-	            <tr>
-	                <td>{accountDetail.bank_name}</td>
-	                <td>{account_num_masked}</td>
-	                <td>{accountDetail.fintech_use_num}</td>
-	                <td><input type="button" value="선택"></td>
-	            </tr>
-	            <tr>
-	                <td>{accountDetail.bank_name}</td>
-	                <td>{account_num_masked}</td>
-	                <td>{accountDetail.fintech_use_num}</td>
-	                <td><input type="button" value="선택"></td>
-	            </tr>
-	            <tr>
-	                <td>{accountDetail.bank_name}</td>
-	                <td>{account_num_masked}</td>
-	                <td>{accountDetail.fintech_use_num}</td>
-	                <td><input type="button" value="선택"></td>
-	            </tr>
+	            <c:forEach var="account" items="${userInfo.res_list}">
+		            <tr>
+		                <td>${account.bank_name}</td>
+		                <td>${account.account_num_masked}</td>
+		                <td>${account.fintech_use_num}</td>
+		                <td>
+			                <%--잔액조회 API서비스 요청을 위한 데이터 전송폼 생성 --%>
+			                <form action="BankAccountDetail" method="post">
+								<input type="hidden" name="fintech_use_num" value="${account.fintech_use_num}">
+								<input type="hidden" name="user_name" value="${userInfo.user_name}">
+								<input type="hidden" name="account_num_masked" value="${account.account_num_masked}">
+				                <input type="submit" value="선택">
+							</form>
+		                </td>
+		            </tr>
+	            </c:forEach>
 	            
 	           
 		    </table>

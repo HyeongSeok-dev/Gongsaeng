@@ -194,18 +194,18 @@
 							<button id="chargePay" class="use_button charge" type="button" onclick="agreePage(); ">사용하기</button>
 							<!-- member_id유무에 따른 버튼 출력 -->
 <%-- 							<c:choose> --%>
-<%-- 								없을때(계좌등록) --%>
+<!-- 								없을때(계좌등록) -->
 <%-- 								<c:when test="${empty sessionScope. }">  --%>
 <!-- 									<button id="chargePay" class="use_button charge"  type="button" onclick="authAccount()">충전하기</button> -->
 <%-- 								</c:when> --%>
-<%-- 								있을때(사용) --%>
+<!-- 								있을때(사용) -->
 <%-- 								<c:when test="${not empty sessionScope. }">  --%>
 <!-- 									<button id="usePay" class="use_button"  type="button">사용하기</button> -->
 <%-- 								</c:when> --%>
 <%-- 							</c:choose> --%>
 							<%--충전하기 임시버튼 --%>
-							<br>
-							<button onclick="charge()">충전하기(임시버튼)</button>
+<!-- 							<br> -->
+<!-- 							<button onclick="charge()">충전하기(임시버튼)</button> -->
 						</div>
 				</section>
 				

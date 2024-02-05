@@ -58,6 +58,7 @@ $(document).ready(function(){
     $("#next").click(function(){
         if ($('#agree').is(":checked")) {
             // 체크박스가 체크되었을 때 authAccount()함수호출
+            window.close();
         	authAccount();
         } else {
             // 체크박스가 체크되지 않았을 때 alert 출력
