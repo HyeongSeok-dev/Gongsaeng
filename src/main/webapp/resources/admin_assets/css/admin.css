@@ -67,6 +67,16 @@
 	align-items: flex-end;
 	margin-bottom: 5px;
 }
+.col_checkbox_2 {
+	display: flex;
+	justify-content: flex-end;
+	flex-direction: column;
+	margin-bottom: 5px;
+}
+.row_checkbox{
+	margin-left: 10px;
+}
+
 .col_checkbox>input[type="checkbox"] {
     position: relative;
     bottom: 5px;

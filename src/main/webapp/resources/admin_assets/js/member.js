@@ -43,25 +43,35 @@ $(function() {
 	// 기본값은 전체선택
 	$(".member_status").prop('checked', true);
 	$("#statusAllCheck").prop('checked', true);
+	$(".member_category").prop('checked', true);
+	$("#categoryAllCheck").prop('checked', true);
 	
 	// 전체선택시 전체체크/해제
+	// 회원상태
 	$("#statusAllCheck").change(function(){
 		$(".member_status").prop('checked', this.checked);
 		tableFilter();
 	});	
+	// 회원카테고리
+	$("#categoryAllCheck").change(function(){
+		$(".member_category").prop('checked', this.checked);
+		tableFilter();
+	});	
 	
 	// 각 체크선택시
+	// 회원상태
 	$(".member_status").change(function(){
 		console.log("회원상태체크박스");
 		$("#statusAllCheck").prop('checked', false);
 		tableFilter();
 	});
-	
-	// 회원분류 변경
-	$(".member_category").on("change", function(){
-		console.log("회원분류드롭박스");
+	// 회원카테고리
+	$(".member_category").change(function(){
+		console.log("회원상태체크박스");
+		$("#categoryAllCheck").prop('checked', false);
 		tableFilter();
 	});
+	
 	
 	// 검색버튼 클릭시
 	$("#searchBtn").on("click", function(){
@@ -71,4 +81,8 @@ $(function() {
 		}
 		return true;
 	});
+	
+	//========================================================================
+	
+	
 });

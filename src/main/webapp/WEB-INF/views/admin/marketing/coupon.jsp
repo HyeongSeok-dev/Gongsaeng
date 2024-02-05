@@ -213,17 +213,26 @@
 			                <th>쿠폰이름</th>
 			                <th>유효기간</th>
 			                <th>할인<br>(원/%)</th>
-<!-- 				                <th>상세보기</th> -->
 			            </tr>
 			            <!-- 회원 데이터 로우 -->
-			            <tr>
-			                <td>발급일</td>
-			                <td>발급자</td>
-			                <td>쿠폰이름</td>
-			                <td>유효기간</td>
-			                <td>할인(금액/률)</td>
-<!-- 				                <td><button type="button" class="btn btn_default" value="상세보기">상세보기</button></td> -->
-			            </tr>
+			            <c:forEach var="coupon" items="${couponList }">
+				            <tr>
+				                <td>${coupon.coupon_Issue_date }</td>
+				                <td>
+				                	<c:choose>
+										<c:when test="${coupon.com_idx eq 0 }">
+											관리자
+										</c:when>
+										<c:otherwise>
+											반장
+										</c:otherwise>
+				                	</c:choose>
+				                </td>
+				                <td>${coupon.coupon_name }</td>
+				                <td>${coupon.coupon_valid_date }</td>
+				                <td>${coupon.coupon_value }</td>
+				            </tr>
+			            </c:forEach>
 				    </table>
 	         	 </div>
 	        </div>

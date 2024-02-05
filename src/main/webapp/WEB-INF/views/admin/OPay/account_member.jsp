@@ -128,29 +128,20 @@
 			            <tr>
 			                <th>등록일자</th>
 			                <th>아이디</th>
-			                <th>
-			                	<select name="class_sub_category">
-					              	<option value="0">은행명</option>
-					              	<option value="1"></option>
-					              	<option value="2"></option>
-					              	<option value="3"></option>
-					              	<option value="4"></option>
-					              	<option value="5"></option>
-			              		</select>
-			                </th>
+			                <th>은행명</th>
 			                <th>계좌번호</th>
-<!-- 			                <th>상세보기</th> -->
 			            </tr>
 			            <!-- 회원 데이터 로우 -->
-			            <tr class="tr_hover" onclick="location.href='${pageContext.request.contextPath }/admin/OPay/account/detail'">
-			                <td>등록일자</td>
-			                <td>아이디</td>
-			                <td>은행명</td>
-			                <td>계좌번호</td>
-<!-- 			                <td> -->
-<%-- 			                	<button type="button" class="btn btn_default" value="상세내역" onclick="location.href='${pageContext.request.contextPath }/admin/account/member/detail'">상세내역</button> --%>
-<!-- 			                </td> -->
-			            </tr>
+			            <c:forEach var="acc" items="${accountList }">
+				            <tr class="tr_hover" onclick="location.href='${pageContext.request.contextPath }/admin/OPay/account/detail'">
+				                <td>등록일자필요</td>
+<%-- 				                <td>${acc. }</td> --%>
+				                <td>${acc.member_id }</td>
+<%-- 				                <td>${acc. }</td> --%>
+				                <td>은행명필요</td>
+				                <td>${acc.account_num_masked}</td>
+				            </tr>
+			            </c:forEach>
 			    	</table>
               </div>
             </div>
@@ -163,43 +154,6 @@
     </div>
   </div>
   
-   <!-- 모달 창 -->
-    <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="filterModalLabel">회원 유형 선택</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="allCheck">
-                        <label class="form-check-label" for="allCheck">
-                            전체 선택
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="leaderCheck">
-                        <label class="form-check-label" for="leaderCheck">
-                            반장 회원
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="generalCheck">
-                        <label class="form-check-label" for="generalCheck">
-                            일반 회원
-                        </label>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                    <button type="button" class="btn btn-primary">적용</button>
-                </div>
-            </div>
-        </div>
-    </div>
   <!--   Core JS Files   -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/popper.min.js"></script>
@@ -214,6 +168,8 @@
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.js"></script>
+  <script src="${pageContext.request.contextPath }/resources/admin_assets/js/account.js"></script>
+
 	<script>
         $(document).ready(function() {
             // 필터 기능 구현

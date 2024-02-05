@@ -8,8 +8,11 @@ import org.springframework.stereotype.Service;
 
 import kr.co.gongsaeng.mapper.AdminMapper;
 import kr.co.gongsaeng.vo.AccountVO;
+import kr.co.gongsaeng.vo.BoardVO;
+import kr.co.gongsaeng.vo.CashVO;
 import kr.co.gongsaeng.vo.ClassVO;
 import kr.co.gongsaeng.vo.CompanyVO;
+import kr.co.gongsaeng.vo.CouponVO;
 import kr.co.gongsaeng.vo.MemberVO;
 import kr.co.gongsaeng.vo.PaymentVO;
 import kr.co.gongsaeng.vo.ReportVO;
@@ -62,8 +65,59 @@ public class AdminService {
 		return mapper.selectClassCount(member_id);
 	}
 
+	// 회원정보수정
+	public int modifyMember(MemberVO member) {
+		return mapper.updateModifyMember(member);
+	}
+
+	// 반장승인
+	public int companyApproval(String member_id) {
+		//  사업체 상태변경
+		mapper.updateStatusApproval(member_id);
+		
+		// 회원 분류변경
+		return mapper.updateMemberCategory(member_id);
+	}
+
+	// 반장거부
+	public int companyRejection(String member_id) {
+		return mapper.updateStatusRejection(member_id);
+	}
+	
 	public List<PaymentVO> getClassPayList(String member_id) {
 		return mapper.selectClassPayList(member_id);
+	}
+
+	public List<CompanyVO> getCompanyList() {
+		return mapper.selectCompanyList();
+	}
+
+	public List<ClassVO> getClassList() {
+		return mapper.selectClassList();
+	}
+
+	public List<AccountVO> getAccountList() {
+		return mapper.selectAccountList();
+	}
+
+	public List<CashVO> getCashList() {
+		return mapper.selectCashList();
+	}
+
+	public List<BoardVO> getEventList() {
+		return mapper.selectEventList();
+	}
+
+	public List<CouponVO> getCouponList() {
+		return mapper.selectCouponList();
+	}
+
+	public List<ReportVO> getReportClassList() {
+		return mapper.selectReportClassList();
+	}
+
+	public List<ReportVO> getReportReviewList() {
+		return mapper.selectReportReviewList();
 	}
 
 

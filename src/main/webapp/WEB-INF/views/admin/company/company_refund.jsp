@@ -225,16 +225,9 @@
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.js"></script>
+  <script src="${pageContext.request.contextPath }/resources/admin_assets/js/company.js"></script>
+
 	<script>
-        $(document).ready(function() {
-            // 필터 기능 구현
-            $('#leaderFilter, #withdrawalFilter').change(function() {
-                var leaderFilter = $('#leaderFilter').val();
-                var withdrawalFilter = $('#withdrawalFilter').val();
-                
-                // 로직에 따라 회원 데이터 필터링 및 표시
-            });
-        });
     </script>
 
 </body>

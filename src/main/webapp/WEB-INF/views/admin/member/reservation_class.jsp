@@ -100,7 +100,7 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h5 class="title">${member.member_id }님 클래스 결제(예약) 목록</h5>
+                <h5 class="title">${member_id}님 클래스 결제(예약) 목록</h5>
               </div>
               <div class="card-body">
            		<form action="" class="member_date">
@@ -145,8 +145,8 @@
 			                <th>
 			                	<select>
 									<option>기간형태</option>
-									<option>원데이</option>
 									<option>정규모집</option>
+									<option>원데이</option>
 								</select>
 			                </th>
 			                <th>사업체명</th>
@@ -158,17 +158,29 @@
 			                <th>최종금액</th>
 			            </tr>
 			            <!-- 회원 데이터 로우 -->
-			            <tr>
-			                <td>결제일자</td>
-			                <td>기간형태</td>
-			                <td>사업체명</td>
-			                <td>클래스명</td>
-			                <td>수량</td>
-			                <td>결제수단</td>
-			                <td>결제금액</td>
-			                <td>할인금액</td>
-			                <td>최종금액</td>
-			            </tr>
+			            <c:forEach var="pay" items="${classPayList}">
+				            <tr>
+				                <td>${pay.pay_date}</td>
+				                <td>
+				                	<c:choose>
+				                		<c:when test="${pay.class_category eq 1}">
+				                			정규모집
+				                		</c:when>
+				                		<c:when test="${pay.class_category eq 2}">
+				                			원데이
+				                		</c:when>
+				                	</c:choose>
+				                </td>
+				                <td>${pay.com_name }</td>
+				                <td>${pay.class_name }</td>
+				                <td>여기 결제한 수업갯수</td>
+<%-- 	회의하고진행 			                <td>${pay.cart_idx }</td>  --%>
+				                <td>결제수단${pay.pay_method }</td>
+				                <td>${pay.payment  + pay.payment } 원</td>
+				                <td>${pay.discount_payment} 원</td>
+				                <td>${pay.payment } 원</td>
+				            </tr>
+			            </c:forEach>
 			    	</table>
 			    </form>
               </div>

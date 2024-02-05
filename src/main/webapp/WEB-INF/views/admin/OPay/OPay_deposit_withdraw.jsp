@@ -130,21 +130,38 @@
 		                <th>
 							<select>
 								<option>거래유형</option>
-								<option>충전</option>
-								<option>송금</option>
+								<option value="1" <c:if test="${param.cash_category eq '1'}">selected</c:if>>충전</option>
+								<option value="3" <c:if test="${param.cash_category eq '3'}">selected</c:if>>송금</option>
+								<option value="5" <c:if test="${param.cash_category eq '5'}">selected</c:if>>환급</option>
 							</select>
 						</th>
 		                <th>아이디</th>
 		                <th>금액</th>
 		            </tr>
 		            <!-- 회원 데이터 로우 -->
-		            <tr  class="tr_hover" onclick="location.href='${pageContext.request.contextPath }/admin/OPay/detail'">
-		                <td>거래번호</td>
-		                <td>날짜</td>
-		                <td>거래유형</td>
-		                <td>아이디</td>
-		                <td>금액</td>
-		            </tr>
+		            <c:forEach var="cash" items="${cashList}">
+			            <c:if test="${cash.cash_category eq 1 or cash.cash_category eq 3 or cash.cash_category eq 5}">
+				            <tr  class="tr_hover" onclick="location.href='${pageContext.request.contextPath }/admin/OPay/detail'">
+				                <td>${cash.cash_idx }</td>
+				                <td>${cash.cash_date }</td>
+				                <td>
+				                <c:choose>
+				                	<c:when test="${cash.cash_category eq 1}">
+						                충전
+				                	</c:when>
+				                	<c:when test="${cash.cash_category eq 3}">
+						                출금
+				                	</c:when>
+				                	<c:when test="${cash.cash_category eq 5}">
+						                환급
+				                	</c:when>
+				                </c:choose>
+				                </td>
+				                <td>${cash.member_id }</td>
+				                <td>${cash.cash_value }</td>
+				            </tr>
+			            </c:if>
+		            </c:forEach>
 			    </table>
               </div>
             </div>
@@ -208,6 +225,8 @@
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.js"></script>
+  <script src="${pageContext.request.contextPath }/resources/admin_assets/js/company.js"></script>
+	
 	<script>
         $(document).ready(function() {
             // 필터 기능 구현

@@ -2,6 +2,10 @@
 .navbar-brand.title {
 	font-size: 25px;
 }
+.btn_default{
+	background-color: #888;
+    color: #FFFFFF;
+}
 
 .btn.register_btn, .btn.file_btn{
 	font-size: 14px;

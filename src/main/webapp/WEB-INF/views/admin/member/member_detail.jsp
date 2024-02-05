@@ -96,7 +96,7 @@
       <!-- End Navbar -->
       <div class="panel-header panel-header-sm">
       </div>
-      <form action="mypage/modifyPro" method="post">
+      <form action="modifyPro" method="post">
 	      <div class="content">
 	        <div class="row">
 	          <div class="col-md-12">
@@ -152,7 +152,7 @@
 		             		<td>${member.member_date }</td>
 		             		<th>회원상태</th>
 		             		<td>
-		             			<select name="member_state" id="member_state">
+		             			<select name="member_status" id="member_status">
 					              	<option value="1" <c:if test="${member.member_status eq 1}">selected</c:if>>정상</option>
 					              	<option value="2" <c:if test="${member.member_status eq 2}">selected</c:if>>휴면</option>
 					              	<option value="3" <c:if test="${member.member_status eq 3}">selected</c:if>>탈퇴</option>
@@ -165,6 +165,7 @@
 		             		<th>닉네임</th>
 		             		<td>
 		             			<input type="text" value="${member.member_nick }" name="member_nick" id="member_nick">
+		             			<div class="gaid" id="nickGaid"></div>
 		             		</td>
 		             	</tr>
 		             	<tr>
@@ -173,15 +174,23 @@
 		             		<th>회원분류</th>
 		             		<td>
 		             			<c:choose>
-										<c:when test="${member.member_category eq 1 and member.member_id ne 'admin1234'}">
-							                일반
+										<c:when test="${member.member_id eq 'admin1234' and member.member_category eq 1}">
+							                관리자
 					                	</c:when>
-										<c:when test="${member.member_category eq 1 and company.com_status eq 2}">
-							                반장 신청중
-					                		<button type="button" class="btn btn_default" onclick="location.href=''">승인</button>
+										<c:when test="${company.com_status eq 2}">
+							                일반(반장 신청중)
+					                		<button type="button" class="btn btn_default" id="approval">승인</button>
+					                		<button type="button" class="btn btn_default" id="rejection">거부</button>
+					                	</c:when>
+										<c:when test="${company.com_status eq 5}">
+							                일반 (반장 승인거부)
+					                		<button type="button" class="btn btn_default" id="approval">승인</button>
 					                	</c:when>
 										<c:when test="${member.member_category eq 2}">
 							                반장
+					                	</c:when>
+										<c:when test="${member.member_category eq 1}">
+							                일반
 					                	</c:when>
 					            </c:choose>
 							</td>
@@ -191,10 +200,7 @@
 		             		<th>생년월일</th>
 		             		<td>${member.member_birthday}</td>
 		             		<th>전화번호</th>
-		             		<td>
-								<input type="text" name="member_phone" value="${member.member_phone}" id="member_phone">
-								<div class="gaid">(-제외하고 입력)</div>
-							</td>
+		             		<td>${member.member_phone}</td>
 		             	</tr>
 		             	<tr>
 		             		<th>계좌번호</th>
@@ -238,8 +244,8 @@
 		             	<tr>
 		             		<th>이메일</th>
 		             		<td colspan="3">
-		             			<input type="text" value="${member.member_email1}" name="member_email1" id="member_email1"> @ 
-		             			<input type="text" value="${member.member_email2}" name="member_email2" id="member_email2">
+		             			<input type="text" value="${member.member_email1}" name="member_email1" id="member_email1" class="member_email"> @ 
+		             			<input type="text" value="${member.member_email2}" name="member_email2" id="member_email2" class="member_email">
 								<select id="selectEmail">
 									<option value="">직접입력</option>
 									<option value="gmail.com" <c:if test="${member.member_email2 eq 'gmail.com'}">selected</c:if>>gmail.com</option>
@@ -451,6 +457,7 @@
 	        </div>
 	        <div class="row">
 	        	<div class="col-md-12 btn_bottom">
+	        		<input type="hidden" name="member_id" value="${member.member_id }" id="member_id">
 		        	<button type="button" class="btn btn_default" onclick="location.replace('${pageContext.request.contextPath }/admin/member')">목록</button>&nbsp;&nbsp;
 		        	<button type="submit" class="btn btn_default" id="modifyMember">변경저장</button>
 	        	</div>

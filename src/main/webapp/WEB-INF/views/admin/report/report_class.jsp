@@ -105,10 +105,10 @@
               <div class="card-body">
               	 <div class="row">
 		              	<div class="col-md-6 col_checkbox">
-				              	<input type="checkbox" value="전체선택" name="member_category"> &nbsp;전체선택&nbsp;
-				              	<input type="checkbox" value="처리중" name="member_category"> &nbsp;처리중&nbsp;
-				              	<input type="checkbox" value="승인" name="member_category"> &nbsp;승인&nbsp;
-				              	<input type="checkbox" value="반려" name="member_category"> &nbsp;반려&nbsp;
+				              	<input type="checkbox" value="0" id="reportStatusAllCheck"> &nbsp;전체선택&nbsp;
+				              	<input type="checkbox" value="1" name="report_status" class="report_status"> &nbsp;처리중&nbsp;
+				              	<input type="checkbox" value="2" name="report_status" class="report_status"> &nbsp;승인&nbsp;
+				              	<input type="checkbox" value="3" name="report_status" class="report_status"> &nbsp;반려&nbsp;
 		              	</div>
 		              	<div class="col-md-6">
 		              		<form action="" class="member_date filter_search">
@@ -117,11 +117,11 @@
 			              		</div>
 			              		<div class="search_bar_admin">
 									<select>
-										<option>전체검색</option>
-										<option>반장아이디</option>
-										<option>신고자아이디</option>
-										<option>사업체명</option>
-										<option>클래스명</option>
+										<option <c:if test="${param.searchDate eq 'allDate'}">selected</c:if>>전체검색</option>
+										<option <c:if test="${param.searchDate eq 'allDate'}">selected</c:if>>반장아이디</option>
+										<option <c:if test="${param.searchDate eq 'allDate'}">selected</c:if>>신고자아이디</option>
+										<option <c:if test="${param.searchDate eq 'allDate'}">selected</c:if>>사업체명</option>
+										<option <c:if test="${param.searchDate eq 'allDate'}">selected</c:if>>클래스명</option>
 									</select>&nbsp;
 		              				<input type="search">&nbsp;
 				              		<button type="submit" class="btn btn_default" value="검색">검색</button>
@@ -148,14 +148,16 @@
 		                <th>처리상태</th>
 		            </tr>
 		            <!-- 회원 데이터 로우 -->
-		            <tr class="tr_hover" onclick="location.href='${pageContext.request.contextPath }/admin/report/detail'">
-		                <td>신고일자</td>
-		                <td>클래스명</td>
-		                <td>신고자 아이디</td>
-		                <td>반장아이디</td>
-		                <td>사업체명</td>
-		                <td>처리상태</td>
-		            </tr>
+		            <c:forEach var="report" items="${reportList }">
+			            <tr class="tr_hover" onclick="location.href='${pageContext.request.contextPath }/admin/report/detail'">
+			                <td>신고일</td>
+			                <td>클래스명</td>
+			                <td>신고자 아이디</td>
+			                <td>반장아이디</td>
+			                <td>사업체명</td>
+			                <td>처리상태</td>
+			            </tr>
+		            </c:forEach>
 			    </table>
               </div>
             </div>
@@ -168,43 +170,6 @@
     </div>
   </div>
   
-   <!-- 모달 창 -->
-    <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="filterModalLabel">회원 유형 선택</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="allCheck">
-                        <label class="form-check-label" for="allCheck">
-                            전체 선택
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="leaderCheck">
-                        <label class="form-check-label" for="leaderCheck">
-                            반장 회원
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="generalCheck">
-                        <label class="form-check-label" for="generalCheck">
-                            일반 회원
-                        </label>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                    <button type="button" class="btn btn-primary">적용</button>
-                </div>
-            </div>
-        </div>
-    </div>
   <!--   Core JS Files   -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/popper.min.js"></script>
@@ -219,17 +184,7 @@
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.js"></script>
-	<script>
-        $(document).ready(function() {
-            // 필터 기능 구현
-            $('#leaderFilter, #withdrawalFilter').change(function() {
-                var leaderFilter = $('#leaderFilter').val();
-                var withdrawalFilter = $('#withdrawalFilter').val();
-                
-                // 로직에 따라 회원 데이터 필터링 및 표시
-            });
-        });
-    </script>
+  <script src="${pageContext.request.contextPath }/resources/admin_assets/js/report.js"></script>
 
 </body>
 

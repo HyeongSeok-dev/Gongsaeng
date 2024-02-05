@@ -6,8 +6,11 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import kr.co.gongsaeng.vo.AccountVO;
+import kr.co.gongsaeng.vo.BoardVO;
+import kr.co.gongsaeng.vo.CashVO;
 import kr.co.gongsaeng.vo.ClassVO;
 import kr.co.gongsaeng.vo.CompanyVO;
+import kr.co.gongsaeng.vo.CouponVO;
 import kr.co.gongsaeng.vo.MemberVO;
 import kr.co.gongsaeng.vo.PaymentVO;
 import kr.co.gongsaeng.vo.ReportVO;
@@ -36,10 +39,46 @@ public interface AdminMapper {
 	CompanyVO selectCompany(String member_id);
 	// 반장만)클래스등록수 조회
 	ClassVO selectClassCount(String member_id);
+	// 회원정보수정
+	int updateModifyMember(MemberVO member);
+	// 반장승인
+	int updateMemberCategory(String member_id);
+	int updateStatusApproval(String member_id);
+	// 반장거부
+	int updateStatusRejection(String member_id);
+	
 	
 	// reservation_class.jsp
 	// 특정회원의 클래스 결제(예약)내역
 	List<PaymentVO> selectClassPayList(String member_id);
+
+	// company.jsp
+	// 사업체 목록 
+	List<CompanyVO> selectCompanyList();
+	
+	// class.jsp
+	// 클래스 목록
+	List<ClassVO> selectClassList();
+	
+	// account_member.jsp
+	// 등록계좌 목록
+	List<AccountVO> selectAccountList();
+	
+	// OPay_*.jsp
+	// 페이 충전송금 목록
+	List<CashVO> selectCashList();
+	
+	//event.jsp
+	List<BoardVO> selectEventList();
+	
+	//coupon.jsp
+	List<CouponVO> selectCouponList();
+	
+	//report_class.jsp
+	List<ReportVO> selectReportClassList();
+	//report_review.jsp
+	List<ReportVO> selectReportReviewList();
+	
 	
 
 

@@ -136,7 +136,7 @@
                       </div>
                     </div>
                   </div>
-                 <button type="submit" class="btn register_btn">등록하기</button>
+                 <button type="submit" class="btn btn_default">등록하기</button>
                 </form>
               </div>
             </div>
@@ -201,11 +201,15 @@
 			                <th>이벤트기한</th>
 			            </tr>
 			            <!-- 회원 데이터 로우 -->
-				            <tr class="tr_hover" data-toggle="modal" data-target="#exampleModal">
-				                <td>등록일자</td>
-				                <td>제목</td>
-				                <td>이벤트기한</td>
-				            </tr>
+			            <c:forEach var="event" items="${eventList }">
+			            	<c:if test="${event.board_main_category eq 4}">
+					            <tr class="tr_hover" data-toggle="modal" data-target="#exampleModal">
+					                <td>${event.board_date}</td>
+					                <td>${event.board_subject}</td>
+					                <td>${event.board_content}</td>
+					            </tr>
+			            	</c:if>
+			            </c:forEach>
 				    </table>
 	         	 </div>
 	        </div>

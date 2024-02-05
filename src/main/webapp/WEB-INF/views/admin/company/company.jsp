@@ -107,22 +107,21 @@
 	               		<div class="col-md-7 checkbox_div">
 	               			<div>
 			               		<div class="row col_checkbox">
-					              	<input type="checkbox" value="전체선택" name="member_category"> &nbsp;전체선택&nbsp;
-					              	<input type="checkbox" value="1" name="member_category"> &nbsp;정상&nbsp;
-					              	<input type="checkbox" value="2" name="member_category"> &nbsp;승인대기&nbsp;
-					              	<input type="checkbox" value="3" name="member_category"> &nbsp;영업중지&nbsp;
-					              	<input type="checkbox" value="4" name="member_category"> &nbsp;보류&nbsp;
-					              	<input type="checkbox" value="5" name="member_category"> &nbsp;승인거부&nbsp;
-					              	<input type="checkbox" value="6" name="member_category"> &nbsp;폐업&nbsp;
+					              	<input type="checkbox" value="전체선택" name="com_status" id="statusAllCheck"> &nbsp;전체선택&nbsp;
+					              	<input type="checkbox" value="1" name="com_status" class="com_status"> &nbsp;정상&nbsp;
+					              	<input type="checkbox" value="2" name="com_status" class="com_status"> &nbsp;승인대기&nbsp;
+					              	<input type="checkbox" value="3" name="com_status" class="com_status"> &nbsp;폐업&nbsp;
+					              	<input type="checkbox" value="4" name="com_status" class="com_status"> &nbsp;보류&nbsp;
+					              	<input type="checkbox" value="5" name="com_status" class="com_status"> &nbsp;승인거부&nbsp;
 				              	</div>
 			               		<div class="row col_checkbox">
-					              	<input type="checkbox" value="0" name="member_category"> &nbsp;전체선택&nbsp;
-					              	<input type="checkbox" value="1" name="member_category"> &nbsp;바닥 시공&nbsp;
-					              	<input type="checkbox" value="2" name="member_category"> &nbsp;벽/천장 시공&nbsp;
-					              	<input type="checkbox" value="3" name="member_category"> &nbsp;부분 인테리어&nbsp;
-					              	<input type="checkbox" value="4" name="member_category"> &nbsp;야외 시공&nbsp;
-					              	<input type="checkbox" value="5" name="member_category"> &nbsp;종합 인테리어&nbsp;
-					              	<input type="checkbox" value="6" name="member_category"> &nbsp;기타 시공&nbsp;
+					              	<input type="checkbox" value="0" name="com_category" id="categoryAllCheck"> &nbsp;전체선택&nbsp;
+					              	<input type="checkbox" value="1" name="com_category" class="com_category"> &nbsp;바닥 시공&nbsp;
+					              	<input type="checkbox" value="2" name="com_category" class="com_category"> &nbsp;벽/천장 시공&nbsp;
+					              	<input type="checkbox" value="3" name="com_category" class="com_category"> &nbsp;부분 인테리어&nbsp;
+					              	<input type="checkbox" value="4" name="com_category" class="com_category"> &nbsp;야외 시공&nbsp;
+					              	<input type="checkbox" value="5" name="com_category" class="com_category"> &nbsp;종합 인테리어&nbsp;
+					              	<input type="checkbox" value="6" name="com_category" class="com_category"> &nbsp;기타 시공&nbsp;
 				              	</div>
 	               			</div>
 		              	</div>
@@ -188,13 +187,54 @@
 			                </th>
 			            </tr>
 			            <!-- 회원 데이터 로우 -->
-			            <tr class="tr_hover" onclick="location.href='${pageContext.request.contextPath }/admin/company/detail'">
-			                <td>등록/폐업일자</td>
-			                <td>카테고리</td>
-			                <td>아이디</td>
-			                <td>사업체명</td>
-			                <td>상태</td>
-			            </tr>
+			            <c:forEach var="com" items="${comList }">
+				            <tr class="tr_hover" onclick="location.href='${pageContext.request.contextPath }/admin/company/detail'">
+				                <td>${com.com_date }</td>
+				                <td>
+				                	<c:choose>
+				                		<c:when test="${com.com_category eq 1 }">
+				                			바닥시공
+				                		</c:when>
+				                		<c:when test="${com.com_category eq 2 }">
+				                			벽/천장 시공
+				                		</c:when>
+				                		<c:when test="${com.com_category eq 3 }">
+				                			부분인테리어
+				                		</c:when>
+				                		<c:when test="${com.com_category eq 4 }">
+				                			야외시공
+				                		</c:when>
+				                		<c:when test="${com.com_category eq 5 }">
+				                			종합인테리어 
+				                		</c:when>
+				                		<c:when test="${com.com_category eq 6 }">
+				                			기타 홈인테리어 
+				                		</c:when>
+				                	</c:choose>
+				                </td>
+				                <td>${com.member_id }</td>
+				                <td>${com.com_name }</td>
+				                <td>
+				                	<c:choose>
+				                		<c:when test="${com.com_status eq 1 }">
+				                			정상
+				                		</c:when>
+				                		<c:when test="${com.com_status eq 2 }">
+				                			승인대기
+				                		</c:when>
+				                		<c:when test="${com.com_status eq 3 }">
+				                			폐업
+				                		</c:when>
+				                		<c:when test="${com.com_status eq 4 }">
+				                			보류
+				                		</c:when>
+				                		<c:when test="${com.com_status eq 5 }">
+				                			승인거부
+				                		</c:when>
+				                	</c:choose>
+				               </td>
+				            </tr>
+			            </c:forEach>
 			    </table>
               </div>
             </div>
@@ -258,17 +298,8 @@
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.js"></script>
-	<script>
-        $(document).ready(function() {
-            // 필터 기능 구현
-            $('#leaderFilter, #withdrawalFilter').change(function() {
-                var leaderFilter = $('#leaderFilter').val();
-                var withdrawalFilter = $('#withdrawalFilter').val();
-                
-                // 로직에 따라 회원 데이터 필터링 및 표시
-            });
-        });
-    </script>
+  <script src="${pageContext.request.contextPath }/resources/admin_assets/js/company.js"></script>
+  
 
 </body>
 
