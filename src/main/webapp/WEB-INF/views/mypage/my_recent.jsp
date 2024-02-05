@@ -150,7 +150,6 @@
 												<a href="../product/detail?class_idx=${recentClass.class_idx}"><img
 													src="${pageContext.request.contextPath }/resources/upload/${recentClass.imageUrl}" alt=""></a>
 												<ul class="product-links">
-													<li><a href="#"><span class="material-symbols-outlined"> shopping_cart </span></a></li>
 													<li><a href="#"><span class="material-symbols-outlined"> favorite </span></a></li>
 												</ul>
 											</div>

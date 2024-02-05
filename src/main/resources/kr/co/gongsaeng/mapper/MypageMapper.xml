@@ -57,7 +57,7 @@
 	</select>
 	
 	<select id="selectBookmarkInfo" resultType="map">
-		SELECT c.class_idx, c.class_pic1, c.class_title,co.com_name
+		SELECT b.bookmark_idx,b.member_id, c.class_idx, c.class_pic1, c.class_title,co.com_name
 		FROM bookmark b
 		JOIN class c ON c.class_idx = b.class_idx 
 		JOIN company co ON co.member_id = c.member_id 
@@ -65,7 +65,7 @@
 	</select>
 	
 	<select id="selectFollowingInfo" resultType="map">
-		SELECT co.com_idx, co.com_name, co.com_img, co.com_introduction,
+		SELECT co.com_idx, co.com_name, co.com_img, co.com_introduction,f.following_idx,
 	    (SELECT c.class_pic1 FROM class c WHERE co.member_id = c.member_id LIMIT 1) as class_image1,
 	    (SELECT c.class_pic1 FROM class c WHERE co.member_id = c.member_id LIMIT 1 OFFSET 1) as class_image2,
 	    (SELECT c.class_pic1 FROM class c WHERE co.member_id = c.member_id LIMIT 1 OFFSET 2) as class_image3
@@ -73,7 +73,7 @@
 	    JOIN company co ON f.com_idx = co.com_idx
 	    JOIN class c ON co.member_id = c.member_id
 	    WHERE f.member_id = #{member_id}
-	    GROUP BY co.com_idx
+	    GROUP BY f.following_idx, co.com_idx
 	</select>
 
 
@@ -118,5 +118,14 @@
 		FROM point
 		WHERE member_id = #{member_id}
 	</select>
+	
+	<delete id="deleteBookmark">
+		DELETE FROM bookmark
+		WHERE bookmark_idx = #{bookmark_idx}
+	</delete>
+	<delete id="deletefollowing">
+		DELETE FROM following
+		WHERE following_idx = #{following_idx}
+	</delete>
 	
 </mapper>

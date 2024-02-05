@@ -86,5 +86,15 @@ public class MypageService {
 		return mapper.selectPointList(member);
 	}
 
+	public int deleteBookmark(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return mapper.deleteBookmark(map);
+	}
+
+	public int deletefollowing(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return mapper.deletefollowing(map);
+	}
+
 	
 }

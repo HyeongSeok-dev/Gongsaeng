@@ -51,8 +51,8 @@
 <script src="${pageContext.request.contextPath }/resources/assets/js/wow.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
-<script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/mypage.js"></script>
+<%-- <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script> --%>
+<script src="${pageContext.request.contextPath }/resources/js/my_following.js"></script>
 
 </head>
 <body>
@@ -148,6 +148,8 @@
 								<div class="col-sm-5">
 									<h5>${following.com_name}</h5>
 									<p>${following.com_introduction}</p>
+									<button class="btn btn-default followingBtn">팔로우 취소</button>
+									<input type="hidden" value="${following.following_idx}" class="following_idx">
 								</div>
 								<div class="col-sm-5">
 									<div class="row">

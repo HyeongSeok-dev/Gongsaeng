@@ -39,5 +39,9 @@ public interface MypageMapper {
 
 	List<Map<String, Object>> selectPointList(MemberVO member);
 
+	int deleteBookmark(Map<String, String> map);
+
+	int deletefollowing(Map<String, String> map);
+
 
 }

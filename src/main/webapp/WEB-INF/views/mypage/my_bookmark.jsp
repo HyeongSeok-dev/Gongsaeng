@@ -53,7 +53,8 @@
 <script src="${pageContext.request.contextPath }/resources/assets/js/wow.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
-<script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
+<%-- <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script> --%>
+<script src="${pageContext.request.contextPath }/resources/js/my_bookmark.js"></script>
 
 
 </head>
@@ -146,14 +147,17 @@
 							<div class="row">
 								<c:forEach var="bookmark" items="${bookmarkList}">
 									<div class="col-md-4 col-sm-12">
-										<div class="product-grid">
+										<div class="product-grid pull-left">
 											<div class="product-image">
 												<a href="../product/detail?class_idx=${bookmark.class_idx}" class="image"> <img class="thumbnail" src="${pageContext.request.contextPath }/resources/img/payment_test.png" ></a>
 <%-- 												<a href="../product/detail?class_idx=${bookmark.class_idx}" class="image"> <img class="thumbnail" src="${pageContext.request.contextPath }/resources/upload/${bookmark.class_pic1}" ></a> --%>
 												<ul class="product-links">
-													<li><a href="#"><span class="material-symbols-outlined"> shopping_cart </span></a></li>
-													<li><a href="#"><span class="material-symbols-outlined"> heart_minus </span></a></li>
+													<li>
+														<span class="material-symbols-outlined bookmarkBtn" style="cursor: pointer;"> heart_minus </span>
+														<input type="hidden" value="${bookmark.bookmark_idx}" class="bookmark_idx">
+													</li>
 												</ul>
+												
 											</div>
 											<div class="product-content">
 												<h3 class="title">${bookmark.class_title}</h3>

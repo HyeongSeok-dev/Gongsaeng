@@ -24,6 +24,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -577,5 +578,46 @@ public class MypageController {
 			return "fail";
 		}
 	}
+	
+	@ResponseBody
+	@GetMapping("mypage/deleteBookmark")
+	public String deleteBookmark(@RequestParam Map<String, String> map, HttpSession session, Model model) {
+		String sId = (String) session.getAttribute("sId");
+		if (sId == null) {
+			model.addAttribute("msg", "로그인이 필요합니다");
+			model.addAttribute("targetURL", "/gongsaeng/member/login");
+
+			return "forward";
+		}
+		System.out.println(map);
+		int deleteCount = service.deleteBookmark(map);
+
+		if (deleteCount > 0) {
+			return "true";
+		} else {
+			return "false";
+		}
+	}
+	
+	@ResponseBody
+	@GetMapping("mypage/deletefollowing")
+	public String deletefollowing(@RequestParam Map<String, String> map, HttpSession session, Model model) {
+		String sId = (String) session.getAttribute("sId");
+		if (sId == null) {
+			model.addAttribute("msg", "로그인이 필요합니다");
+			model.addAttribute("targetURL", "/gongsaeng/member/login");
+			
+			return "forward";
+		}
+		System.out.println(map);
+		int deleteCount = service.deletefollowing(map);
+		
+		if (deleteCount > 0) {
+			return "true";
+		} else {
+			return "false";
+		}
+	}
+	
 
 }

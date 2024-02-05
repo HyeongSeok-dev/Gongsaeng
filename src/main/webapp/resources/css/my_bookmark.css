@@ -17,7 +17,7 @@
 .product-grid:hover .product-image img{ transform: scale(1.1); }
 .product-grid .product-links{
     background: #fff;
-    width: 150px;
+    width: 80px;
     padding: 10px 20px;
     margin: 0;
     list-style: none;
@@ -26,12 +26,12 @@
     opacity: 0;
     transform: translateX(-50%) translateY(-150%);
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 15%;
+    left: 83%;
     transition: all .35s ease;
 }
 .product-grid:hover .product-links{
-    opacity: 1;
+    opacity: 0.8;
     transform: translateX(-50%) translateY(-50%);
 }
 .product-grid .product-links li{
