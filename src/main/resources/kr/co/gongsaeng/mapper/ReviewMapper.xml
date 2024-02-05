@@ -13,11 +13,11 @@
 				,#{review_content}
 				,#{review_score}
 				,1
+				,1
 				,now()
 				,#{review_img_1}
 				,NULL
 				,NULL
-				,1
 				,1
 				,#{review_kind}
 				,#{review_detail}
@@ -220,6 +220,102 @@
 			, 0                 -- 순서번호(새 댓글이므로 기본값 0)
 		);
 	</insert>
+	
+		<!-- 리뷰 갯수 -->
+	<select id="countReview" resultType="int">
+	    SELECT COUNT(*)
+	    FROM review
+	    WHERE class_idx = #{class_idx}
+	</select>
+	
+		<!-- 별점 평균 -->
+	<select id="averageReview" parameterType="int" resultType="double">
+		SELECT ROUND(AVG(review_score)/2,2)
+		FROM review
+	    WHERE class_idx = #{class_idx}
+	</select>
+	
+		<!-- 이런 점이 좋았어요 -->
+	<select id="countReviewsByComId" resultType="reviewcount">
+	    SELECT
+	        class_idx,
+	        SUM(review_kind) as review_kind,
+	        SUM(review_detail) as review_detail,
+	        SUM(review_cheap) as review_cheap,
+	        SUM(review_explanation) as review_explanation,
+	        SUM(review_interior) as review_interior,
+	        SUM(review_trendy) as review_trendy,
+	        SUM(review_large) as review_large,
+	        SUM(review_meeting) as review_meeting,
+	        SUM(review_comfortable) as review_comfortable,
+	        SUM(review_parking) as review_parking,
+	        SUM(review_clean_toilet) as review_clean_toilet,
+	        SUM(review_etc_fast) as review_etc_fast,
+	        SUM(review_no_keyword) as review_no_keyword
+	    FROM review
+	    WHERE class_idx = #{class_idx}
+	    GROUP BY class_idx
+	</select>
+	
+		<insert id="insertTinyReReplyReview">
+		<selectKey keyProperty="result" resultType="map" order="BEFORE">
+			SELECT 
+				IFNULL(MAX(comment_num), 0) AS comment_num
+				, (
+					SELECT 
+						IFNULL(MAX(comment_re_seq), 0) 
+					FROM comment
+					WHERE 
+						comment_num = #{comment_num}
+						AND comment_re_ref = ${comment_re_ref}
+				) AS comment_re_seq
+			FROM comment
+		</selectKey>
+		
+		<!-- selectKey 를 통해 조회된 복수개의 값은 result 라는 이름으로 관리됨 -->
+		INSERT
+		INTO comment
+		VALUES (
+			#{result.comment_num} + 1        -- reply_num(selectKey 로 조회된 값 + 1)
+			, #{review_idx}                 -- board_num(전달받은 값 사용)
+			, #{member_id}                -- reply_name(전달받은 값 사용)
+			, 1
+			, #{comment_content}             -- reply_content(전달받은 값 사용)
+			, now()                        -- reply_date
+			, 1
+			, #{comment_re_ref}              -- 참조글번호(reply_re_ref)(전달받은 값 사용)
+			, #{comment_re_lev} + 1          -- 들여쓰기레벨(reply_re_lev)(전달받은 값 + 1)
+			, #{result.comment_re_seq} + 1   -- 순서번호(reply_re_seq)(selectKey 로 조회된 값 + 1)
+		);
+	</insert>
+	
+	<!-- 리뷰 수정(UPDATE) -->
+	<update id="updateReview" parameterType="kr.co.gongsaeng.vo.ReviewVO">
+	    UPDATE review
+	    SET
+	        <if test="user_id != null"> member_id = #{v}</if>
+	        <if test="review_content != null">, review_content = #{review_content}</if>
+	        <if test="review_score != null">, review_score = #{review_score}</if>
+	        <if test="review_mood_interior != null">, review_mood_interior = #{review_mood_interior}</if>
+	        <if test="review_mood_alone != null">, review_mood_alone = #{review_mood_alone}</if>
+	        <if test="review_mood_large != null">, review_mood_large = #{review_mood_large}</if>
+	        <if test="review_mood_meeting != null">, review_mood_meeting = #{review_mood_meeting}</if>
+	        <if test="review_mood_view != null">, review_mood_view = #{review_mood_view}</if>
+	        <if test="review_food_big != null">, review_food_big = #{review_food_big}</if>
+	        <if test="review_food_deli != null">, review_food_deli = #{review_food_deli}</if>
+	        <if test="review_food_cheap != null">, review_food_cheap = #{review_food_cheap}</if>
+	        <if test="review_food_fresh != null">, review_food_fresh = #{review_food_fresh}</if>
+	        <if test="review_food_healthy != null">, review_food_healthy = #{review_food_healthy}</if>
+	        <if test="review_etc_kind != null">, review_etc_kind = #{review_etc_kind}</if>
+	        <if test="review_etc_parking != null">, review_etc_parking = #{review_etc_parking}</if>
+	        <if test="review_etc_toilet != null">, review_etc_toilet = #{review_etc_toilet}</if>
+	        <if test="review_etc_fast != null">, review_etc_fast = #{review_etc_fast}</if>
+	        <if test="review_etc_child != null">, review_etc_child = #{review_etc_child}</if>
+	        <if test="review_no_keyword != null">, review_no_keyword = #{review_no_keyword}</if>
+	        <if test="review_img_1 != null and review_img_1 != ''">, review_img_1 = #{review_img_1}</if>
+	        <if test="review_like != null">, review_like = #{review_like}</if>
+	    WHERE review_num = #{review_num}
+	</update>
 
 
 </mapper>

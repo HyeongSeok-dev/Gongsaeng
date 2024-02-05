@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.gongsaeng.mapper.ReviewMapper;
 import kr.co.gongsaeng.vo.MemberVO;
+import kr.co.gongsaeng.vo.ReviewCountVO;
 import kr.co.gongsaeng.vo.ReviewVO;
 
 @Service
@@ -71,8 +72,8 @@ public class ReviewService {
 	}
 
 	// 리뷰 리스트
-	public List<ReviewVO> getAllReviews(int comIdx) {
-		List<ReviewVO> result =  mapper.allReviewList(comIdx);
+	public List<ReviewVO> getAllReviews(int classIdx) {
+		List<ReviewVO> result =  mapper.allReviewList(classIdx);
 		
 		System.out.println("리스트왜안돼>>>>>>>>>>>>>>>>>>>>>"  + result);
 	   return result;
@@ -89,10 +90,35 @@ public class ReviewService {
 		return mapper.insertTinyReplyReview(map);
 	}
 
+	//리뷰글갯수
+	public int getReviewCount(int classIdx) {
+		return mapper.countReview(classIdx);
+	}
+
+	// 리뷰 별점 평균 계산
+	public Double getReviewAverage(int classIdx) {
+		return mapper.averageReview(classIdx);
+	}
+
+	// =========================================================================
+	// 이런 점이 좋았어요
+	public List<ReviewCountVO> getReviewCountsByComId(int classIdx) {
+
+		return mapper.countReviewsByComId(classIdx);
+	}
+	// =========================================================================
+
+	// 대댓글 등록 요청
+	// => 단, 두 가지 이상의 작업을 수행해야할 경우 트랜잭션 처리
+	public int registTinyReReplyReview(Map<String, String> map) {
+		// 대댓글 등록
+		return mapper.insertTinyReReplyReview(map);
+	}
+
 	//리뷰수정요청
-//	public int modifyReview(ReviewVO review) {
-//		return mapper.updateReview(review);
-//	}
+	public int modifyReview(ReviewVO review) {
+		return mapper.updateReview(review);
+	}
 
 	
 }
