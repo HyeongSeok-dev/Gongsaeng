@@ -72,7 +72,7 @@
 						</a>
 					</div>
 					<div class="col-xs-6 col-sm-3">
-						<a href="#" class="btn btn-xs btn-block text-center"> <img src="${pageContext.request.contextPath }/resources/img/kakao_login.png">
+						<a href="javascript:kakaoLogin()" class="btn btn-xs btn-block text-center"> <img src="${pageContext.request.contextPath }/resources/img/kakao_login.png">
 						</a>
 					</div>
 				</div>
