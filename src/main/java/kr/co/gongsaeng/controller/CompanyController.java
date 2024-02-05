@@ -1,10 +1,14 @@
 package kr.co.gongsaeng.controller;
 
+import java.beans.PropertyEditor;
+import java.beans.PropertyEditorSupport;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
@@ -15,9 +19,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.google.protobuf.TextFormat.ParseException;
 
 import kr.co.gongsaeng.service.ClassService;
 import kr.co.gongsaeng.service.CompanyService;
@@ -97,7 +105,7 @@ public class CompanyController {
 		return "company/company_register8";
 	}
 	
-	@PostMapping("ClassRegisterPro")
+	@PostMapping("company/class/classRegisterPro")
 	public String classRegisterPro(HttpSession session, Model model, HttpServletRequest request, ClassVO gclass) {
 //		if(session.getAttribute("sId") == null) {
 //			model.addAttribute("msg", "로그인이 필요합니다");
@@ -139,24 +147,40 @@ public class CompanyController {
 			e.printStackTrace();
 		}
 		
-		// -------------------
+		// ========================================================================================================================
 		// BoardVO 객체에 전달(저장)된 실제 파일 정보가 관리되는 MultipartFile 타입 객체 꺼내기
 		MultipartFile mFile1 = gclass.getFile1();
 		MultipartFile mFile2 = gclass.getFile2();
 		MultipartFile mFile3 = gclass.getFile3();
+		MultipartFile mFile4 = gclass.getFile4();
+		MultipartFile mFile5 = gclass.getFile5();
+		MultipartFile mFile6 = gclass.getFile6();
 		// MultipartFile 객체의 getOriginalFilename() 메서드 호출 시 업로드 된 파일명 리턴
 		System.out.println("원본파일명1 : " + mFile1.getOriginalFilename());
 		System.out.println("원본파일명2 : " + mFile2.getOriginalFilename());
 		System.out.println("원본파일명3 : " + mFile3.getOriginalFilename());
+		System.out.println("원본파일명4 : " + mFile4.getOriginalFilename());
+		System.out.println("원본파일명5 : " + mFile5.getOriginalFilename());
+		System.out.println("원본파일명6 : " + mFile6.getOriginalFilename());
 		// --------------------------
 		// [ 파일명 중복방지 대책 ]
 		gclass.setClass_pic1("");
 		gclass.setClass_pic2("");
 		gclass.setClass_pic3("");
+		gclass.setClass_curriculum1("");
+		gclass.setClass_curriculum2("");
+		gclass.setClass_curriculum3("");
+		
+		
 		
 		String fileName1 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile1.getOriginalFilename();
 		String fileName2 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile2.getOriginalFilename();
 		String fileName3 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile3.getOriginalFilename();
+		String fileName4 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile4.getOriginalFilename();
+		String fileName5 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile5.getOriginalFilename();
+		String fileName6 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile6.getOriginalFilename();
+		
+		
 		
 		// 파일이 존재할 경우 BoardVO 객체에 서브디렉토리명(subDir)과 함께 파일명 저장
 		// ex) 2023/12/19/ef3e51e8_1.jpg
@@ -171,52 +195,29 @@ public class CompanyController {
 		if(!mFile3.getOriginalFilename().equals("")) {
 			gclass.setClass_pic3(subDir + "/" + fileName3);
 		}
-		
-		System.out.println("실제 업로드 파일명1 : " + gclass.getClass_pic1());
-		System.out.println("실제 업로드 파일명2 : " + gclass.getClass_pic2());
-		System.out.println("실제 업로드 파일명3 : " + gclass.getClass_pic3());
-		
-		
-		// -------------------
-		// BoardVO 객체에 전달(저장)된 실제 파일 정보가 관리되는 MultipartFile 타입 객체 꺼내기
-		MultipartFile mFile4 = gclass.getFile1();
-		MultipartFile mFile5 = gclass.getFile2();
-		MultipartFile mFile6 = gclass.getFile3();
-		// MultipartFile 객체의 getOriginalFilename() 메서드 호출 시 업로드 된 파일명 리턴
-		System.out.println("원본파일명1 : " + mFile1.getOriginalFilename());
-		System.out.println("원본파일명2 : " + mFile2.getOriginalFilename());
-		System.out.println("원본파일명3 : " + mFile3.getOriginalFilename());
-		
-		// --------------------------
-		// [ 파일명 중복방지 대책 ]
-		gclass.setClass_pic1("");
-		gclass.setClass_pic2("");
-		gclass.setClass_pic3("");
-		
-		String fileName4 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile1.getOriginalFilename();
-		String fileName5 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile2.getOriginalFilename();
-		String fileName6 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile3.getOriginalFilename();
-		
-		// 파일이 존재할 경우 BoardVO 객체에 서브디렉토리명(subDir)과 함께 파일명 저장
-		// ex) 2023/12/19/ef3e51e8_1.jpg
 		if(!mFile4.getOriginalFilename().equals("")) {
 			gclass.setClass_curriculum1(subDir + "/" + fileName4);
 		}
 		
 		if(!mFile5.getOriginalFilename().equals("")) {
-			gclass.setClass_curriculum1(subDir + "/" + fileName5);
+			gclass.setClass_curriculum2(subDir + "/" + fileName5);
 		}
 		
 		if(!mFile6.getOriginalFilename().equals("")) {
-			gclass.setClass_curriculum1(subDir + "/" + fileName6);
+			gclass.setClass_curriculum3(subDir + "/" + fileName6);
 		}
+
+		// 파일이 존재할 경우 BoardVO 객체에 서브디렉토리명(subDir)과 함께 파일명 저장
+		// ex) 2023/12/19/ef3e51e8_1.jpg
 		
-	
-		
+		System.out.println("실제 업로드 파일명1 : " + gclass.getClass_pic1());
+		System.out.println("실제 업로드 파일명2 : " + gclass.getClass_pic2());
+		System.out.println("실제 업로드 파일명3 : " + gclass.getClass_pic3());
 		System.out.println("실제 업로드 파일명4 : " + gclass.getClass_curriculum1());
 		System.out.println("실제 업로드 파일명5 : " + gclass.getClass_curriculum2());
 		System.out.println("실제 업로드 파일명6 : " + gclass.getClass_curriculum3());
 		
+				
 		//------------------------------------------------------------------------------------------------------
 		//검색태그 공백제거하기
 		gclass.setClass_tag(gclass.getClass_tag().trim());
@@ -278,6 +279,38 @@ public class CompanyController {
 		}
 
 	}
+	
+	// ================================================================
+	// @InitBinder를 사용하여 커스텀 에디터를 등록하는 메소드 추가
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+	    // String 타입의 시간 데이터를 java.sql.Time 타입으로 변환하는 커스텀 에디터
+	    binder.registerCustomEditor(Time.class, (PropertyEditor) new PropertyEditorSupport() {
+	        @Override
+	        public void setAsText(String text) throws IllegalArgumentException {
+	            try {
+	                // "HH:mm" 형식의 문자열을 java.sql.Time 객체로 변환
+	                SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+	                Time time = new Time(format.parse(text).getTime());
+	                setValue(time);
+	            } catch (java.text.ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	        }
+
+	        @Override
+	        public String getAsText() {
+	            // Time 객체를 "HH:mm" 형식의 문자열로 변환
+	            Time value = (Time) getValue();
+	            return (value != null ? new SimpleDateFormat("HH:mm").format(value) : "");
+	        }
+	    });
+	}
+	
+
+	// ================================================================
+	
 	
 	// [ 반장회원 전환 신청 ] -> 일반 회원의 기존 정보 가져오기
 	@GetMapping("company/banjang/register")

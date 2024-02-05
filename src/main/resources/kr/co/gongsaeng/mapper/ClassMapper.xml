@@ -9,28 +9,28 @@
 		INTO class
 		VALUES (
 			#{class_idx}
-			,1		
+			,'lottegiants22'		
 			,#{class_title}		
 			,#{class_category}		
 			,#{class_times}		
 			,#{class_price}		
-			,#{class_date}		
+			,now()		
 			,#{class_start_time}		
 			,#{class_end_time}		
 			,#{class_start_date}		
 			,#{class_end_date}		
 			,#{class_day}		
 			,#{class_member_count}		
-			,1	 	
-			,1		
-			,1		
+			,#{class_pic1}	 	
+			,#{class_pic2}	 	
+			,#{class_pic3}	 	
 			,#{class_post_code}		
 			,#{class_address1}		
 			,#{class_address2}		
 			,#{class_introduction}		
-			,1		
-			,1 
-			,1 
+			,#{class_curriculum1}		
+			,#{class_curriculum2}		
+			,#{class_curriculum3}		
 			,#{class_curriculum_detail1}		
 			,#{class_curriculum_detail2}		
 			,#{class_curriculum_detail3}		

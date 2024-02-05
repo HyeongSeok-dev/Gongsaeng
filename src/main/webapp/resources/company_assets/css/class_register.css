@@ -266,8 +266,8 @@ textarea.form-control {
 } 
 
 .wrapper, .main-panel {
-/* 	overflow-y: hidden!important; /* 가로 스크롤 숨김 */ */
-/* 	overflow-y: auto!important; /* 세로 스크롤 자동 조정 */ */
+/* 	overflow-y: hidden!important; /* 가로 스크롤 숨김 */ 
+/* 	overflow-y: auto!important; /* 세로 스크롤 자동 조정 */ 
 }
 
 button {

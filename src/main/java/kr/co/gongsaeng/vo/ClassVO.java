@@ -28,31 +28,30 @@ public class ClassVO {
 	private String class_pic1;
 	private String class_pic2;
 	private String class_pic3;
+	private String class_curriculum1;
+	private String class_curriculum2;
+	private String class_curriculum3;
 	// ------------------------------------------------------------------------------------
 	// 업로드되는 실제 파일을 다룰 MultipartFile 타입 멤버변수 추가
 	// => 멤버변수명은 form 태그 내의 파일의 name 속성값과 동일해야함
 	private MultipartFile file1;
 	private MultipartFile file2;
 	private MultipartFile file3;
+	private MultipartFile file4;
+	private MultipartFile file5;
+	private MultipartFile file6;
 	// ------------------------------------------------------------------------------------
 	private String class_post_code;
 	private String class_address1;
 	private String class_address2;
 	// ------------------------------------------------------------------------------------
-	// String 타입으로 지정하는 파일 관련 멤버변수는 실제 파일이 아닌 파일의 이름을 다룰 용도로 사용
-	private String class_curriculum1;
-	private String class_curriculum2;
-	private String class_curriculum3;
-	// ------------------------------------------------------------------------------------
-	private MultipartFile file4;
-	private MultipartFile file5;
-	private MultipartFile file6;
-	
-	
-	// ------------------------------------------------------------------------------------
+//	private String class_curriculum_detail1;
 	private String class_curriculum_detail1;
 	private String class_curriculum_detail2;
 	private String class_curriculum_detail3;
+	
+	
+	// ------------------------------------------------------------------------------------	
 	private int class_main_category;
 	private int class_sub_category;
 	private int class_offering;
@@ -64,6 +63,8 @@ public class ClassVO {
 	private String class_answer2;
 	private String class_question3;
 	private String class_answer3;
+	
+	private String class_introduction;
 	
 	
 	// [관리자 페이지]

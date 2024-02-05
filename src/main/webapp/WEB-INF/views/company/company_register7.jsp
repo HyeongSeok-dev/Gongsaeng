@@ -5,11 +5,12 @@
 <head>
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath }/resources/company_assets/img/apple-icon.png">
-<%--   <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/company_assets/img/favicon.png"> --%>
+  
+  <!-- favicon 넣는 자리 -->	
+  <%--   <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/company_assets/img/favicon.png"> --%>
+  
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>
-    공생 | 클래스 등록 - 기본 정보
-  </title>
+  <title> 공생 | 클래스 등록 - 기본 정보 </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
@@ -20,40 +21,71 @@
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="${pageContext.request.contextPath }/resources/company_assets/demo/demo.css" rel="stylesheet" />
   
-<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+  
+ <!-- FullCalendar 필요한 라이브러리 추가 -->
+ <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css' rel='stylesheet' />
   <!-- 이미지 업로드 자바스크립트 -->
  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-<!--  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> -->
- 	<!--   Core JS Files   -->
-  <script src="${pageContext.request.contextPath }/resources/company_assets/js/core/jquery.min.js"></script>
-  <script src="${pageContext.request.contextPath }/resources/company_assets/js/core/popper.min.js"></script>
-  <script src="${pageContext.request.contextPath }/resources/company_assets/js/core/bootstrap.min.js"></script>
-<%--   <script src="${pageContext.request.contextPath }/resources/company_assets/js/plugins/perfect-scrollbar.jquery.min.js"></script> --%>
-  <!--  Google Maps Plugin    -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-  <!-- Chart JS -->
-  <script src="${pageContext.request.contextPath }/resources/company_assets/js/plugins/chartjs.min.js"></script>
-  <!--  Notifications Plugin    -->
-  <script src="${pageContext.request.contextPath }/resources/company_assets/js/plugins/bootstrap-notify.js"></script>
-  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="${pageContext.request.contextPath }/resources/company_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
-  <script src="${pageContext.request.contextPath }/resources/company_assets/demo/demo.js"></script>
-  <!-- 다음 주소검색 API 사용을 위한 라이브러리 추가 -->
-  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
- 
- <!-- 등록페이지 CSS / JS -->
- <link href="${pageContext.request.contextPath}/resources/company_assets/css/class_register.css" rel="stylesheet">
-<%--  <script src="${pageContext.request.contextPath}/resources/js/class_register.js"></script> --%>
-<%--  <script src="${pageContext.request.contextPath}/resources/company_assets/js/class_register.js"></script> --%>
- <script src="${pageContext.request.contextPath}/resources/company_assets/js/class_register1.js"></script>
- 
+ <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <!-- Global CSS -->
  <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet" />
+ <link href="${pageContext.request.contextPath}/resources/company_assets/css/class_register.css" rel="stylesheet">
 
-</head>
-<body>
+ <style type="text/css">
+ 
+ /* 새로운 파일 업로드 버튼 스타일 */
+.custom-file-input {
+    opacity: 1!important; /* 투명도 재설정 */
+    position: relative!important; /* 절대 위치 대신 상대 위치 사용 */
+    z-index: auto!important; /* z-index 재설정 */
+    width: 100%!important; /* Make the file input take up 100% of its parent's width */
+    
+}
+
+.input-group-curri {
+  margin-bottom: 15px; /* 두 입력 필드 사이의 간격 조정 */
+  overflow: visible; /* 스크롤바가 생기지 않도록 overflow 속성 조정 */
+  
+
+}
+
+
+.input-group-custom {
+  margin-bottom: 5px; /* 간격 조정을 위한 마진 값 */
+}
+
+.custom-file-input {
+  margin-bottom: 0; /* 기본 마진 제거 */
+}
+
+#scheduleTable {
+    font-size: 15px!important;
+    margin-left: 10px;
+}
+
+.main-panel {
+	background-color: #fff!important;
+	
+}    
+
+.footer .wrapper {
+	background-color: #fff!important;
+
+}
+
+.wrapper {
+	background-color: #fff!important;
+
+}
+    
+ </style>
+
+ </head>
+ <body>
 	<div class="wrapper ">
 		<div class="sidebar" data-color="orange">
 			<jsp:include page="./sidebar_wrapper.jsp" />
@@ -133,23 +165,28 @@
 				<!-- Nav tabs -->
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
 					<li class="nav-item">
-						<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">탭 1</a>
+						<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">기본 정보</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">탭 2</a>
+						<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">스케줄 및 부가정보</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">탭 3</a>
+<!-- 						<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">기타 제공사항</a> -->
+							<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">기타 제공사항</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" id="extra-tab" data-toggle="tab" href="#extra" role="tab" aria-controls="extra" aria-selected="false">탭 4</a>
+						<a class="nav-link" id="extra-tab" data-toggle="tab" href="#extra" role="tab" aria-controls="extra" aria-selected="false">검수 요청 및 약관 동의</a>
 					</li>
 				</ul>
 
 				<!-- Tab panes -->
+<!-- 			<form action="classRegisterPro" method="post" name="classResgisterform" enctype="multipart/form-data">						 -->
+			<form action="classRegisterPro" method="post" enctype="multipart/form-data">
+			
 				<div class="tab-content">
 					<div class="tab-pane active" id="home" role="tabpanel"
 						aria-labelledby="home-tab">
+						
 						<!-- 1번째 탭 -->
 						<!--  본문 시작 -->
 						<div class="col-md-11">
@@ -270,20 +307,20 @@
 												<!-- 주소 입력 필드, 처음에는 숨겨져 있음 -->
 												<div id="additionalAddress" style="display: none;">
 													<div class="row">
-														<div class="col-md-8 offset-md-1">
+														<div class="col-md-12 offset-md-1">
 															<div class="form-group">
 																<div class="row address-row">
 																	<div class="col-6">
-																		<input class="form-control smaller-input" type="text" name="post_code" id="postCode" required>
+																		<input class="form-control smaller-input" type="text" name="class_post_code" id="postCode" required>
 																	</div>
 																	<div class="col-6">
 																		<input type="button" class="form-control smaller-input btn-primary" id="btnSearchAddress" value="주소검색">
 																	</div>
 																</div>
 																	<br> 
-																<input class="form-control smaller-input" type="text" name="address1" id="address1" placeholder="기본주소" required> 
+																<input class="form-control smaller-input" type="text" name="class_address1" id="address1" placeholder="기본주소" required> 
 																	<br> 
-																<input class="form-control smaller-input" type="text" name="address2" id="address2" placeholder="상세주소" required>
+																<input class="form-control smaller-input" type="text" name="class_address2" id="address2" placeholder="상세주소" required>
 															</div>
 														</div>
 													</div>
@@ -301,12 +338,29 @@
 										</div>
 									</div>
 <!-- 								</form> -->
+												<div class="col-md-12">
+								<div class="d-flex justify-content-end">
+								    <!-- 이전 버튼 -->
+<!-- 								    <button type="button" class="btn btn-default btn-col-md-4 mr-2 custom-font-size" id="goToPreviousTab">이전</button> -->
+								    <!-- 다음 버튼 -->
+								    <button type="button" class="btn btn-default btn-col-md-4 custom-font-size" id="goTo2Tab">다음</button>
+								</div>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+					
 						<!-- 2번째 탭 -->
+					 <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+					 
+					 
 						<div class="col-md-10 pl-1">
+						 <div class="card">
+						    <div class="card-header">
+                                <h5 class="title">클래스 등록 - 스케줄 및 부가정보</h5>
+                             </div>
+                      	<div class="card-body">
+                             
 							<div class="form-group">
 								<label for="modal_title">일정 설정</label>
 								<!-- 새로운 div에 '일정 등록' 버튼 추가 -->
@@ -347,25 +401,25 @@
 																	<span class="modal_title">요일</span><br>
 																	<!-- ====================================== -->
 																	<div class="modal_check">
-																		<input type="checkbox" id="mon_checkbox" onclick="updateCheckboxValue(this);"> 
+																		<input type="checkbox" id="mon_checkbox" onclick="updateCheckboxValue(this);" name="class_day"> 
 																		<label for="mon_checkbox" class="checkbox-label">월</label> 
 																		<input type="hidden" name="class_day" value="1"> 
-																		<input type="checkbox" id="tue_checkbox" onclick="updateCheckboxValue(this);"> 
+																		<input type="checkbox" id="tue_checkbox" onclick="updateCheckboxValue(this);" name="class_day"> 
 																		<label for="tue_checkbox" class="checkbox-label">화</label> 
 																		<input type="hidden" name="class_day" value="2"> 
-																		<input type="checkbox" id="wed_checkbox" onclick="updateCheckboxValue(this);"> 
+																		<input type="checkbox" id="wed_checkbox" onclick="updateCheckboxValue(this);" name="class_day"> 
 																		<label for="wed_checkbox" class="checkbox-label">수</label> 
 																		<input type="hidden" name="class_day" value="3"> 
-																		<input type="checkbox" id="thr_checkbox" onclick="updateCheckboxValue(this);"> 
+																		<input type="checkbox" id="thr_checkbox" onclick="updateCheckboxValue(this);" name="class_day"> 
 																		<label for="thr_checkbox" class="checkbox-label">목</label> 
 																		<input type="hidden" name="class_day" value="4"> 
-																		<input type="checkbox" id="fri_checkbox" onclick="updateCheckboxValue(this);"> 
+																		<input type="checkbox" id="fri_checkbox" onclick="updateCheckboxValue(this);" name="class_day"> 
 																		<label for="fri_checkbox" class="checkbox-label">금</label> 
 																		<input type="hidden" name="class_day" value="5"> 
-																		<input type="checkbox" id="sat_checkbox" onclick="updateCheckboxValue(this);"> 
+																		<input type="checkbox" id="sat_checkbox" onclick="updateCheckboxValue(this);" name="class_day"> 
 																		<label for="sat_checkbox" class="checkbox-label">토</label> 
 																		<input type="hidden" name="class_day" value="6"> 
-																		<input type="checkbox" id="sun_checkbox" onclick="updateCheckboxValue(this);"> 
+																		<input type="checkbox" id="sun_checkbox" onclick="updateCheckboxValue(this);" name="class_day"> 
 																		<label for="sun_checkbox" class="checkbox-label">일</label> 
 																		<input type="hidden" name="class_day" value="0"> <br>
 																	</div>
@@ -381,8 +435,8 @@
 																	<br>
 																<div class="modal_date">
 																	<div class="form-group">
-																		<input type="date" id="startDate">&nbsp; ~
-																		&nbsp;<input type="date" id="endDate"> <br>
+																		<input type="date" id="startDate" name="class_start_date">&nbsp; ~
+																		&nbsp;<input type="date" id="endDate" name="class_end_date"> <br>
 																	</div>
 																</div>
 															</div>
@@ -393,8 +447,8 @@
 																	<span class="modal_title">클래스 운영시간(한 타임당)</span>
 																		<br>
 																	<div class="modal_time">
-																		<input type="time" id="startTime">&nbsp; ~
-																		&nbsp;<input type="time" id="endTime">
+																		<input type="time" id="startTime" name="class_start_time">&nbsp; ~
+																		&nbsp;<input type="time" id="endTime" name="class_end_time">
 																	</div>
 																</div>
 															</div>
@@ -404,7 +458,7 @@
 																<div class="form-group">
 																	<span class="modal_title">클래스 최대 인원(한 타임당)</span>
 																	<div class="modal_select">
-																		<select class="form-control">
+																		<select class="form-control" name="class_member_count">
 																			<option value="1">1명</option>
 																			<option value="2">2명</option>
 																			<option value="3">3명</option>
@@ -435,131 +489,85 @@
 									</div>
 								</div>
 							</div>
-						</div>
 						<div class="col-md-12 pr-7">
 							<div class="form-group">
-								<label>커리큘럼 상세 사진등록</label> 
-								<span class="pro_info" id="img_number">(0/3)</span>
+								<!--  =================================================================================== -->
+<!-- 								<span class="pro_info" id="img_number">(0/3)</span> -->
 								<div class="pic_instruction">
-									- 사진은 대표 이미지 포함 최대 3장까지 첨부할 수 있습니다.<br> &nbsp;&nbsp;(1:1
-									비율 권장 / 최소 800px 이상 / 한 장당 최대 10MB)<br> - 등록된 사진은 공생 SNS,
-									광고 등 외부 채널에 클래스 홍보 목적으로 사용될 수 있습니다.<br>
+<!-- 									- 사진은 대표 이미지 포함 최대 3장까지 첨부할 수 있습니다.<br> &nbsp;&nbsp;(1:1 -->
+<!-- 									비율 권장 / 최소 800px 이상 / 한 장당 최대 10MB)<br> - 등록된 사진은 공생 SNS, -->
+<!-- 									광고 등 외부 채널에 클래스 홍보 목적으로 사용될 수 있습니다.<br> -->
 								</div>
-								<!--                         <input type="text" class="form-control" placeholder="Company" value="Mike"> -->
 								<!-- ========================================================================== -->
-								<!-- 파일업로드 용 폼 -->
-								<input type="file" id="imageFile3" style="display: none;" name="file4" accept=".jpg, .jpeg, .png"> 
-								<input type="file" id="imageFile4" style="display: none;" name="file5" accept=".jpg, .jpeg, .png"> 
-								<input type="file" id="imageFile5" style="display: none;" name="file6" accept=".jpg, .jpeg, .png">
-								<table style="margin-top: 30px;">
-									<tr>
-										<td class="td2 curriculum-detail" align="left">
-											<!-- 이미지 등록 영역 -->
-											<div id="img_zone">
-												<div id="img_preview3">
-													<input type="image" id="imgup_sum" onclick="send_3();" src="" width="150px" height="150px"> 
-													<span id="sum_style">대표 이미지</span>
-													<!-- 삭제버튼 -->
-													<span id="del_sum" class="chk_style" onclick="del_img3();">x</span>
-												</div>
-												<div id="img_preview4">
-													<input type="image" id="imgup_1" onclick="send_4();" src="" width="150px" height="150px">
-													<!-- 삭제버튼 -->
-													<span id="del_img1" class="chk_style" onclick="del_img4();">x</span>
-												</div>
-												<div id="img_preview5">
-													<input type="image" id="imgup_5" onclick="send_5();" src="" width="150px" height="150px"> 
-													<span id="del_img5" class="chk_style" onclick="del_img5 ();">x</span>
-												</div>
-											</div>
-										</td>
-									</tr>
-									<!-- 이미지영역끝 -->
-									<tr>
-										<td class="td1" align="left">
-										<input type="button" id="imgup" onclick="img_preview();" value="대표 이미지 업로드"
-											style="width: 150px; height: 50px; border-radius: 10px; border: 1px solid; background-image: url('${ pageContext.request.contextPath }/resources/img/image_upload.png'); background-size: cover;">
-										</td>
-									</tr>
-								</table>
-								<br> <br>
-								<!-- ========================================================================== -->
+							  <!-- 파일업로드 용 폼 -->
+
+<!-- 					    </div> -->
+<!-- 					</div> -->
+								<!--  =================================================================================== -->
 								<hr>
 								<div class="row">
-									<div class="col-md-12 pl-1">
-										<label>1단계) 상세 내용</label>
-										<div class="input-group">
-											<input type="text" class="form-control" placeholder="커리큘럼 1단계 상세내용을 입력해주세요">
+								<label><b>커리큘럼 상세 등록</b></label> 
+									<div class="col-md-12 pl-1" >
+										<label>1단계) 상세 내용</label>										
+										<div class="input-group-curri">
+											<input type="file" id="curriculum_imageFile0" name="file4" accept=".jpg, .jpeg, .png" class="custom-file-input">
+											<input type="text" class="form-control" name="class_curriculum_detail1" placeholder="커리큘럼 1단계 상세내용을 입력해주세요">
 										</div>
 									</div>
 									<div class="col-md-12 pl-1">
 										<label>2단계) 상세 내용</label>
-										<div class="input-group">
-											<input type="text" class="form-control" placeholder="커리큘럼 2단계 상세내용을 입력해주세요">
+										<div class="input-group-curri">
+											<input type="file" id="curriculum_imageFile1" name="file5" accept=".jpg, .jpeg, .png" class="custom-file-input">
+											<input type="text" class="form-control"  name="class_curriculum_detail2" placeholder="커리큘럼 2단계 상세내용을 입력해주세요">
 										</div>
 									</div>
 									<div class="col-md-12 pl-1">
 										<label>3단계) 상세 내용</label>
-										<div class="input-group">
-											<input type="text" class="form-control" placeholder="커리큘럼 3단계 상세내용을 입력해주세요">
+										<div class="input-group-curri">
+											<input type="file" id="curriculum_imageFile2" name="file6" accept=".jpg, .jpeg, .png" class="custom-file-input">
+											<input type="text" class="form-control" name="class_curriculum_detail3"  placeholder="커리큘럼 3단계 상세내용을 입력해주세요">
 										</div>
 									</div>
 									<br> <br>
 									<div class="col-md-4 pl-1">
 										<hr>
-										<label>판매가격</label>
+										<label>판매가격(원 단위)</label>
 										<div class="input-group">
-											<input type="text" class="form-control" placeholder="ex) 100,000">
-											<div class="input-group-append">
-												<span class="input-group-text">원</span>
-											</div>
+											<input type="text" class="form-control" placeholder="ex) 100,000" name="class_price">
+<!-- 											<div class="input-group-append"> -->
+<!-- 												<span class="input-group-text">원</span> -->
+<!-- 											</div> -->
 										</div>
 									</div>
 								</div>
 							</div>
+							
+							</div>
+							</div>
+								<div class="d-flex justify-content-end">
+								    <!-- 이전 버튼 -->
+								    <button type="button" class="btn btn-default btn-col-md-4 mr-2 custom-font-size" id="goToHomeFromProfile">이전</button>
+								    <!-- 다음 버튼 -->
+								    <button type="button" class="btn btn-default btn-col-md-4 custom-font-size" id="goTo3Tab">다음</button>
+								</div>
+						</div>
 						</div>
 					</div>
+					
+					
+					
 					<!-- 3번째 탭 -->
 					<div class="tab-pane" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+					
+					   <div class="card">
+                     <div class="card-header">
+	                      <h5 class="title">클래스 등록 - 기타 제공사항</h5>
+                       </div>
 						<div class="card-body">
-<!-- 							<form action="company/class/register4" method="post" enctype="multipart/form-data"> -->
-								<%-- ============================================================================= --%> 
-								<input type="hidden" name="class_category" value="${gclass.class_category}">
-							    <input type="hidden" name="class_main_category" value="${gclass.class_main_category}">
-							    <input type="hidden" name="class_sub_category" value="${gclass.class_sub_category}">
-							    <input type="hidden" name="class_title" value="${gclass.class_title}">
-<%-- 							    <input type="hidden" name="file1" value="${file1}"> --%>
-<%-- 							    <input type="hidden" name="file2" value="${file2}"> --%>
-<%-- 							    <input type="hidden" name="file3" value="${file3}"> --%>
-							    <input type="hidden" name="address1" value="${gclass.address1}">
-							    <input type="hidden" name="address2" value="${gclass.address2}">
-							    <input type="hidden" name="class_introduction" value="${gclass.class_introduction}">
-								<%-- ============================================================================= --%> 
-							    <input type="hidden" name="class_day" value="${gclass.class_day}">
-							    <input type="hidden" name="class_start_date" value="${gclass.class_start_date}">
-							    <input type="hidden" name="class_end_date" value="${gclass.class_end_date}">
-							    <input type="hidden" name="class_start_time" value="${gclass.class_start_time}">
-							    <input type="hidden" name="class_end_time" value="${gclass.class_end_time}">
-							    <input type="hidden" name="class_member_count" value="${gclass.class_member_count}">
-							    <input type="hidden" name="class_curriculum_detail1" value="${gclass.class_curriculum_detail1}">
-							    <input type="hidden" name="class_curriculum_detail2" value="${gclass.class_curriculum_detail2}">
-							    <input type="hidden" name="class_curriculum_detail3" value="${gclass.class_curriculum_detail3}">
-							    <input type="hidden" name="class_price" value="${gclass.class_price}">
-								<%-- ============================================================================= --%> 
-							    <input type="hidden" name="class_offering" value="${gclass.class_offering}">
-							    <input type="hidden" name="class_caution" value="${gclass.class_caution}">
-							    <input type="hidden" name="class_tag" value="${gclass.class_tag}">
-							    <input type="hidden" name="class_question1" value="${gclass.class_question1}">
-							    <input type="hidden" name="class_answer1" value="${gclass.class_answer1}">
-							    <input type="hidden" name="class_question2" value="${gclass.class_question2}">
-							    <input type="hidden" name="class_answer2" value="${gclass.class_answer2}">
-							    <input type="hidden" name="class_question3" value="${gclass.class_question3}">
-							    <input type="hidden" name="class_answer3" value="${gclass.class_answer3}">
-								<%-- ============================================================================= --%> 
 						   <label>기타 제공사항 선택</label><br>         
 								<div class="card_small">
 									<div class="row">
-									    <div class="col-md-12">
+									    <div class="col-md-10">
 									        <div class="form-group">
 									            <input type="checkbox" value="1" id="workshop">&nbsp;
 									            <label for="workshop" class="register3_text_label">공방 보유</label>
@@ -650,9 +658,23 @@
 											</div>
 										</div>
 									</div>
+										<div class="d-flex justify-content-end">
+										    <!-- 이전 버튼 -->
+										    <button type="button" class="btn btn-default btn-col-md-4 mr-2 custom-font-size" id="goToProfileFromContact">이전</button>
+										    <!-- 다음 버튼 -->
+										    <button type="button" class="btn btn-default btn-col-md-4 custom-font-size" id="goTo4Tab">다음</button>
+										</div>
+								</div>
 							</div>
 						</div>
+						
+					<!-- 4번째 탭 -->	
 					<div class="tab-pane" id="extra" role="tabpanel" aria-labelledby="extra-tab">
+					
+				<div class="card">
+					<div class="card-header">
+                       <h5 class="title">클래스 등록 - 기본 정보</h5>
+                     </div>
 						<div class="card-body">
 							<div class="row">
 								<div class="col-md-7 pr-1">
@@ -672,66 +694,82 @@
 											<label>
 												<input type="checkbox" id="refundPolicyAgreement" value="">&nbsp;&nbsp;공생 환불 규정에 동의(필수)
 											</label>
-											</form>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 <!-- 					</form> -->
+			<!-- ============================================================================================= -->
+			<div class="col-md-12 pl-1">
+<!-- 				<div class="submit_btn d-flex justify-content-end"> -->
+<!-- 					<button type="button" -->
+<!-- 						class="btn btn-default btn-col-md-4 mr-2 custom-font-size" -->
+<%-- 						onclick="location.href='${pageContext.request.contextPath}/company/class/register3'">이전</button> --%>
+<%-- 						onclick="location.href='${pageContext.request.contextPath}/company/class/register3'">이전</button> --%>
+					<div class="d-flex justify-content-end">
+			<button type="button" class="btn btn-default btn-col-md-4 mr-2 custom-font-size" id="goToContactFromExtra">이전</button>
+					<input type="submit" class="btn btn-col-md-4 mr-2 custom-font-size examination" onclick="submitReview()" value="검수 신청">
+					</div>
+<!-- 				</div> -->
+			</div>
+			<!-- ============================================================================================= -->
+					</div>
 					</div>
 				</div> 
 			</div>
-			<div class="col-md-11 pl-1">
-		<div class="submit_btn d-flex justify-content-end">
-			<button type="button" class="btn btn-danger btn-col-md-4 mr-2 custom-font-size">
-				취소
-			</button>
-			<button type="button" class="btn btn-default btn-col-md-4  custom-font-size" onclick="location.href='${pageContext.request.contextPath}/company/class/register2'">
-				다음
-			</button>
-		</div>
-	</div>
+			<!-- ============================================================================================= -->
+<!-- 			<div class="col-md-11 pl-1"> -->
+<!-- 				<div class="submit_btn d-flex justify-content-end"> -->
+<!-- 					<button type="button" -->
+<!-- 						class="btn btn-default btn-col-md-4 mr-2 custom-font-size" -->
+<%-- 						onclick="location.href='${pageContext.request.contextPath}/company/class/register3'">이전</button> --%>
+<!-- 					<input type="submit" class="btn btn-col-md-4 mr-2 custom-font-size examination" onclick="submitReview()" value="검수 신청"> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+			<!-- ============================================================================================= -->
+			</form> <!-- 여기에서 form 태그 종료 -->
+        </div> <!-- container 종료 -->
+        <!-- 생략된 코드... -->
+    </div>
+</div>
+	<!-- ============================================================================================== -->
+		<footer class="footer"> </footer>
+	<!-- 하단에 위치시킨 단일 jQuery 라이브러리 -->
+    <!-- jQuery 라이브러리 -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
- 
- <script type="text/javascript">
- 
- document.getElementById('newAddress').addEventListener('change', function() {
-     if(this.checked) {
-         document.getElementById('additionalAddress').style.display = 'block';
-     }
- });
+    <!-- jQuery UI 라이브러리 -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
- document.getElementById('existingAddress').addEventListener('change', function() {
-     if(this.checked) {
-         document.getElementById('additionalAddress').style.display = 'none';
-     }
- });
- 
-	// =====================================================================
-	// 주소 검색 API 활용 기능 추가
-	// "t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js" 스크립트 파일 로딩 필수!
-	document.querySelector("#btnSearchAddress").onclick = function() {
-	    new daum.Postcode({
-	        oncomplete: function(data) {
-	            // 우편번호(zonecode) 가져와서 우편번호 항목(postCode)에 출력
-	            document.getElementById('postCode').value = data.zonecode; 
-	            
-	            // 기본주소(address) 가져와서 기본주소 항목(address1)에 출력
-	            let address = data.address;
-	            if(data.buildingName != "") {
-	                address += " (" + data.buildingName + ")";
-	            }
-	            document.getElementById('address1').value = address;
+    <!-- Bootstrap과 관련된 스크립트 -->
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/locale/ko.js"></script>
 	
-	            // 상세주소 항목(address2)에 포커스 요청
-	            document.getElementById('address2').focus();
-	        }
-	    }).open();
-	};
-	
+	<!-- 다음 주소검색 API 사용을 위한 라이브러리 추가 -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
- </script>
+	<!--   Core JS Files   -->
+	<!-- Popper.js, then Bootstrap JS -->
+	<script src="${pageContext.request.contextPath }/resources/company_assets/js/core/popper.min.js"></script>
+	<script src="${pageContext.request.contextPath }/resources/company_assets/js/core/bootstrap.min.js"></script>
+<%-- 	<script src="${pageContext.request.contextPath }/resources/company_assets/js/plugins/perfect-scrollbar.jquery.min.js"></script> --%>
+	<!-- ... 나머지 스크립트 파일 ... -->
+	<!-- Chart JS -->
+	<script src="${pageContext.request.contextPath }/resources/company_assets/js/plugins/chartjs.min.js"></script>
+	<!--  Notifications Plugin    -->
+	<script src="${pageContext.request.contextPath }/resources/company_assets/js/plugins/bootstrap-notify.js"></script>
+	<!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+	<script src="${pageContext.request.contextPath }/resources/company_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script>
+	<!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
+	<script src="${pageContext.request.contextPath }/resources/company_assets/demo/demo.js"></script>
+	<!-- ============================================================================================== -->
+	 <script src="${pageContext.request.contextPath}/resources/company_assets/js/class_register1.js"></script>
+	
+	
+	
 </body>
-
 </html>
