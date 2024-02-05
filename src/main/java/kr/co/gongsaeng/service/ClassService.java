@@ -1,5 +1,8 @@
 package kr.co.gongsaeng.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +18,12 @@ public class ClassService {
 	public int registClass(ClassVO gclass) {
 		
 		return mapper.insertClass(gclass);
+	}
+
+	// [ 클래스 내역 출력 ]
+	public List<Map<String, Object>> getClassList(String sId) {
+
+		return mapper.selectClassList(sId);
 	}
 
 	

@@ -47,4 +47,14 @@
 			,#{class_answer3}		
 		) 
 	</insert>
+	
+	
+	<!-- 클래스 내역 출력 -->
+	<select id="selectClassList" resultType="gclass">
+	    SELECT *
+	    FROM class
+	    WHERE member_id = #{member_id}
+	    ORDER BY class_start_date
+	</select>
+	
 </mapper>
