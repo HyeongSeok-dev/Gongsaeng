@@ -54,10 +54,11 @@
 <script src="${pageContext.request.contextPath }/resources/assets/js/wow.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
-<script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
+<%-- <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script> --%>
 <script src="${pageContext.request.contextPath }/resources/js/mypage.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/community.js"></script>
 </head>
 <body>
@@ -96,23 +97,70 @@
                 <textarea class="form-control" name="board_content" rows="25" placeholder="내용을 입력하세요" required></textarea>
             </div>
             <div class="form-group">
- 			<div class="image-upload">
-		    <label for="file-input">
-		        <i class="fa fa-camera">  첨부파일</i>
-		        <span class="file-count">(0/3)</span>
-		    </label>
-		    <input id="file-input" type="file" name="file" multiple />
+            <div class="col-md-12 pr-7">
+				<div class="form-group">
+							<div class="td1" align="left">
+								<input type="button" id="imgup" onclick="img_preview();" value="이미지 업로드"
+									style="width: 150px; height: 50px; border-radius: 10px; border: 1px solid; 
+								background-image: url('${ pageContext.request.contextPath }/resources/img/image_upload.png'); background-size: cover;">
+							</div>
+					<!-- ========================================================================== -->
+					<!-- 파일업로드용 -->
+					<input type="file" id="sumimage" name="file1" style="display: none;" accept=".jpg, .jpeg, .png">
+					<input type="file" id="imageFile1" name="file2" style="display: none;" accept=".jpg, .jpeg, .png">
+					<input type="file" id="imageFile2" name="file3" style="display: none;" accept=".jpg, .jpeg, .png">
+					<!-- 	</form> -->
+					<table style="margin-top: 30px;">
+						<tr>
+							<td class="td2" align="left">
+								<!-- 이미지 등록 영역 -->
+								<!-- 프리뷰 이미지1 -->
+								<div id="img_zone">
+									<div id="img_preview0">
+										<input type="image" class="image" id="imgup_sum" onclick="send_0();" src="" width="150px" height="150px"/> 
+										<span id="sum_style">대표 이미지</span>
+										<!-- 삭제버튼 -->
+										<span id="del_sum" class="chk_style" onclick="del_sum();">x</span>
+									</div>
+	
+	
+								<!-- 프리뷰 이미지2 -->
+									<div id="img_preview1">
+										<input type="image" class="image" id="imgup_1" onclick="send_1();" src="" width="150px" height="150px" />
+										<!-- 삭제버튼 -->
+										<span id="del_img1" class="chk_style" onclick="del_img1();">x</span>
+									</div>
+	
+	
+								<!-- 프리뷰 이미지3 -->
+									<div id="img_preview2">
+										<input type="image" class="image" id="imgup_2" onclick="send_2();" src="" width="150px" height="150px" /> 
+										<span id="del_img2" class="chk_style" onclick="del_img2();">x</span>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<!-- 이미지영역끝 -->
+					</table>
+					<!-- ========================================================================== -->
+					<span style="font-weight: bold">대표 사진 등록</span> 
+					<span class="pro_info" id="img_number" style="font-weight: bold">(0/3)</span>
+					<div class="pic_instruction">
+						- 사진은 대표 이미지 포함 최대 3장까지 첨부할 수 있습니다.<br>
+						&nbsp;&nbsp;(1:1 비율 권장 / 최소 800px 이상 / 한 장당 최대 10MB)<br>
+						- 등록된 사진은 공생 SNS, 광고 등 외부 채널에 클래스 홍보 목적으로 사용될 수 있습니다.<br>
+		        	<br>
+					</div>
+				</div>
 			</div>
-			<div class="image-preview" id="image-preview">
-			    <div class="image-preview__image"></div>
-			    <span class="image-preview__default-text"></span>
-			</div>
-            <div class="form-group btn-container">
-                <button type="submit" class="btn btn-primary">등록</button>
-                <button type="button" class="btn btn-default" onclick="history.back()">취소</button>
-            </div>
-            </div>
-            </div>
+        	</div>
+        		<div class="col-md-12 pr-7">
+					<div class="form-group" style="text-align: center;">
+			            <button type="submit" class="btn btn-primary">등록</button>
+			            <button type="button" class="btn btn-default" onclick="history.back()">취소</button>
+		            </div>
+	            </div>
+        </div>
         </form>
     </div>
 </body>

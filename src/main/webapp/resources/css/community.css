@@ -170,7 +170,7 @@
 
 /* 글쓰기 */
 
-.form-group input, .form-group textarea {
+.form-group input, .form-group textarea, .pic_instruction {
      border: none;
      border-bottom: 1px solid lightgray;
      box-shadow: none;
@@ -225,5 +225,142 @@
     color: red;
 	margin-right: 20px;
 	margin-left: 10px;
+}
+
+
+
+
+
+
+/* 이미지 미리보기 css */
+#img_preview0, #img_preview1, #img_preview2, #img_preview3,
+	#img_preview4, #img_preview5 {
+	display: none;
+	position: relative;
+	margin: 5px;
+	width: 150px;
+	height: 150px;
+
+	/* 		border: 2px solid black; */
+}
+/* 미리보기 삭제버튼 css */
+#sum_style {
+	text-align: center;
+	width: 75px;
+	height: 20spx;
+	position: absolute;
+	font-size: 12px;
+	outline: none;
+	border: none;
+	border-radius: 15px;
+	right: 70px;
+	bottom: 130px;
+	/* z-index:1; */
+	background-color: rgba(0, 0, 0, 0.5);
+	color: white;
+}
+
+.chk_style {
+	vertical-align: middle;
+	text-align: center;
+	width: 28px;
+	height: 28px;
+	position: absolute;
+	/* font-size:20px; */
+	outline: none;
+	border: none;
+	border-radius: 18px;
+	right: 9px;
+	bottom: 115px;
+	/* z-index:1; */
+	background-color: rgba(0, 0, 0, 0.5);
+	color: #ffcccc;
+}
+
+/* 미리보기 삭제 css */
+#del_img1, #del_img2, #del_img3, #del_img4, #del_img5, #del_sum {
+	cursor: pointer;
+	display: none;
+}
+
+#imgup {
+	margin-top: 5px;
+}
+
+/* 이미지 미리보기 css */
+#imgup_1, #imgup_2, #imgup_3, #imgup_4, #imgup_5, #imgup_sum {
+	cursor: pointer;
+	display: none;
+}
+
+.input-tag:focus {
+	outline: none;
+	border: 1px solid black;
+}
+
+/* 테이블 간의 간격 */
+td {
+	width: 1020px;
+	padding: 0.8em 1.4em 0.5em 0.8em;
+}
+
+.td1 {
+	width: 20%;
+	vertical-align: top;
+}
+
+.td2 {
+	width: 80%;
+}
+
+#img_zone {
+	/* background-color: black; */
+	/* 		margin: auto;  */
+	width: 100%;
+	min-height: 50px;
+	margin-bottom: 50px;
+}
+
+#img_intro {
+	font-size: 16px;
+	color: skyblue;
+	/* background-color: #ccffcc; */
+	margin: auto;
+	width: 65%;
+	min-height: 50px;
+}
+
+/* 대표 사진 등록 */
+.pic_instruction {
+	font-size: 14px;
+	color: #666A73;
+}
+
+.custom-font-size {
+	font-size: 18px;
+}
+
+.card {
+	border: none;
+	-webkit-box-shadow: 1px 0 20px rgba(96, 93, 175, .05);
+	box-shadow: 1px 0 20px rgba(96, 93, 175, .05);
+	margin-bottom: 30px;
+	background-color: #F1F3F5 !important;
+}
+
+.content {
+	background-color: #fff !important;
+}
+
+.card label {
+	color: #666A73 !important;
+}
+
+.form-control search {
+	color: #000;
+}
+
+textarea.form-control {
+	border-radius: 10px !important;
 }
 
