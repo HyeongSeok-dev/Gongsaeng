@@ -1,0 +1,77 @@
+@charset "UTF-8";
+.navbar-brand.title {
+	font-size: 25px;
+}
+
+.panel-header-lg {
+    min-height: 400px;
+    max-height: 600px;
+}
+
+.now_total {
+	margin-left: 30px;
+	color: white;
+	font-size: 27px;
+	text-align: center;
+}
+.now_dateTime {
+	margin-top: 10px;
+	position: relative;
+	top: 10px;
+}
+.row.row_main {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center
+}
+
+.card {
+	text-align: center;
+}
+.card-header {
+	font-size: 20px;
+	font-weight: 600;
+	color: #494C53;
+}
+
+.todo_count>a{
+	font-size: 18px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.todo_count {
+	display: flex;
+	flex-direction: column;
+    align-items: center;
+}
+
+.todo_count>a:hover {
+	border-bottom: 1px solid;
+}
+
+.tr_hover:hover{
+	border: 1.5px solid #888;
+	background-color: #fff;
+}
+
+.card>hr{
+	width: 40%;
+	margin-left : auto;
+	margin-right : auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	background-color: #afb3b8;
+}
+
+.more_dashboard {
+	display: flex;
+	color:  #494C53;
+	font-weight: 600;
+}
+.more_dashboard:hover {
+	color:  #fff;
+	font-weight: 600;
+	background-color: #494C53;
+	text-decoration-line: none;
+}
