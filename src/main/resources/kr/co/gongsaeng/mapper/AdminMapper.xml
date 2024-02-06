@@ -102,13 +102,13 @@
 		WHERE member_id = #{member_id};
 	</select>
 	
-	<!-- 클래스등록수 조회 -->
+	<!-- 클래스등록수 조회 --> 
 	<select id="selectClassCount" resultType="gclass">
 		SELECT COUNT(class_idx) AS 'totalClass'
-		, (SELECT COUNT(class_category) FROM class WHERE class_category = 2) AS 'oneDayClass'
-		, (SELECT COUNT(class_category) FROM class WHERE class_category = 1) AS 'regularClass'
+		, (SELECT COUNT(class_category) FROM class WHERE class_category = 2 AND member_id = #{member_id}) AS 'oneDayClass'
+		, (SELECT COUNT(class_category) FROM class WHERE class_category = 1 AND member_id = #{member_id}) AS 'regularClass'
 		FROM class
-		WHERE member_id = #{member_id};
+		WHERE member_id = #{member_id}
 	</select>
 	
 	<!-- 회원정보 수정 -->
@@ -147,12 +147,26 @@
 		INNER JOIN class ON class.class_idx = payment.class_idx
 		WHERE payment.member_id = #{member_id}
 	</select>
+	
+	<!-- review.jsp -->
+	<!-- 특정회원의 리뷰 내역 -->
+	<select id="selectMemberReviewList" resultType="review">
+		SELECT review.*, class.class_title
+		FROM review, class
+		WHERE review.member_id = #{member_id} AND class.class_idx = review.class_idx
+	</select>
 
 	<!-- company.jsp -->
 	<!-- 사업체 목록 조회 -->
 	<select id="selectCompanyList" resultType="company">
 		SELECT *
 		FROM company; 
+	</select>
+
+	<!-- 사업체 환급금 목록 조회 -->
+	<select id="selectRefundList" resultType="payment">
+		SELECT p.
+		FROM payment; 
 	</select>
 
 	<!-- class.jsp -->
@@ -199,7 +213,7 @@
 	<!-- report_class.jsp -->
 	<!-- 클래스신고 목록 -->
 	<select id="selectReportClassList" resultType="report">
-	SELECT report.*, class.class_title, class.member_id, company.com_name
+	SELECT report.*, class.class_title 'class_title', class.member_id 'banjangMember_id', company.com_name 'com_name'
 	FROM report , class , company
 	WHERE report.class_idx = class.class_idx and class.member_id = company.member_id
 
@@ -207,8 +221,9 @@
 	<!-- report_review.jsp -->
 	<!-- 리뷰신고 목록 -->
 	<select id="selectReportReviewList" resultType="report">
-	SELECT report *,
-	FROM report, review
+	SELECT report.*, review.member_id 'reviewerMember_id'
+	FROM report , review
+	WHERE report.review_idx = review.review_idx
 	</select>
 	
 	

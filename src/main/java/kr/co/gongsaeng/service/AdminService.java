@@ -120,5 +120,17 @@ public class AdminService {
 		return mapper.selectReportReviewList();
 	}
 
+	public List<ReviewVO> getMemberReviewList(String member_id) {
+		return mapper.selectMemberReviewList(member_id);
+	}
+
+	public List<PaymentVO> getRefundList() {
+		return mapper.selectRefundList();
+	}
+
+//	public List<BoardVO> getNotice() {
+//		return mapper.selectNoticeList();
+//	}
+
 
 }

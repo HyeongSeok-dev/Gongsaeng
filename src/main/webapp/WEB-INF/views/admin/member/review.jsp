@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/admin_assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-   공생|관리자페이지 신고
+   공생|관리자페이지 회원
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -43,7 +43,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand title" href="#pablo">리뷰신고 관리</a>
+            <a class="navbar-brand title" href="#pablo">회원관리</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -100,91 +100,79 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h5 class="title">리뷰 신고 목록</h5>
+                <h5 class="title">${member_id}님 리뷰 목록</h5>
               </div>
               <div class="card-body">
-				<div class="row">
-	              	<div class="col-md-6 col_checkbox">
-						<input type="checkbox" value="0" id="reportStatusAllCheck"> &nbsp;전체선택&nbsp;
-	        	      	<input type="checkbox" value="1" name="report_status" class="report_status"> &nbsp;처리중&nbsp;
-		              	<input type="checkbox" value="2" name="report_status" class="report_status"> &nbsp;승인&nbsp;
-		              	<input type="checkbox" value="3" name="report_status" class="report_status"> &nbsp;반려&nbsp;
-	              	</div>
-	              	<div class="col-md-6">
-	              		<form action="" class="member_date filter_search">
-	              			<div class="search_bar_admin">
+           		<form action="" class="member_date">
+	               <div class="row">
+              			<div class="search_bar_admin">
+			              	<div>
+			              		<select name="class_state">
+					              	<option value="0">전체일자</option>
+					              	<option value="1">등록일자</option>
+					              	<option value="2">폐업일자</option>
+			              		</select>
 			              		<input type="date" id="start_date">&nbsp;&nbsp;~&nbsp;&nbsp;<input type="date" id="end_date">
-		              		</div>
-		              		<div class="search_bar_admin">
-								<select>
-									<option>전체검색</option>
-									<option>신고자아이디</option>
-									<option>피신고자아이디</option>
-									<option>클래스명</option>
-									<option>신고사유</option>
-								</select>&nbsp;
-	              				<input type="search">&nbsp;
-			              		<button type="submit" class="btn btn_default" value="검색">검색</button>
-		              		</div>	
-	              		</form>
+			              	</div>
+	              		</div>
 	              	</div>
-              	</div>		
-	              	
-                <table class="table table-bordered">
-			        <colgroup>
-		            	<col width="15%"/>
-		            	<col width="20%"/>
-		            	<col width="15%"/>
-		            	<col width="15%"/>
-		            	<col width="30%"/>
-		            	<col width="5%"/>
-		            </colgroup>
-		            <tr>
-		                <th>신고일자</th>
-		                <th>리뷰번호</th>
-		                <th>신고자아이디</th>
-		                <th>피신고자아이디</th>
-		                <th>신고사유</th>
-		                <th>처리<br>상태</th>
-		            </tr>
-		            <!-- 회원 데이터 로우 -->
-	       		    <c:forEach var="report" items="${reportList }">
-		            	<c:if test="${report.report_category eq 1 }">
-				            <tr class="tr_hover" onclick="location.href='${pageContext.request.contextPath }/admin/report/detail'">
-				                <td>${report.report_date }</td>
-				                <td>${report.review_idx }</td>
-				                <td>${report.member_id }</td>
-				                <td>${report.reviewerMember_id }</td>
+	               <div class="row">
+	              		<div class="search_bar_admin">
+							<select>
+								<option>전체검색</option>
+								<option>사업체명</option>
+								<option>클래스명</option>
+							</select>&nbsp;
+              				<input type="search">&nbsp;
+		              		<button type="submit" class="btn btn_default" value="검색">검색</button>
+	              		</div>	
+	              	</div>
+	              	<br>
+                	<table class="table table-bordered">
+                		<colgroup>
+                			<col width="15%"/>
+                			<col width="20%"/>
+                			<col width="20%"/>
+                			<col width="25%"/>
+                			<col width="10%"/>
+                			<col width="10%"/>
+                		</colgroup>
+			            <tr>
+			                <th>리뷰등록일자</th>
+			                <th>클래스명</th>
+			                <th>리뷰제목</th>
+			                <th>리뷰내용</th>
+			                <th>리뷰별점</th>
+			                <th>
+			                	<select>
+									<option>리뷰상태</option>
+									<option>정상</option>
+									<option>블라인드</option>
+								</select>
+			                </th>
+			            </tr>
+			            <!-- 회원 데이터 로우 -->
+			            <c:forEach var="review" items="${memberReviewList}">
+				            <tr>
+				                <td>${review.review_regdate}</td>
+				                <td>${review.class_title }</td>
+				                <td>${review.review_subject }</td>
+				                <td>${review.review_content}</td>
+				                <td>${review.review_score } 점</td>
 				                <td>
-								<c:choose>
-									<c:when test="${report.report_reason eq 5 }">
-										신뢰하기 어려운 홍보
-									</c:when>
-									<c:when test="${report.report_reason eq 6 }">
-										음란성, 부적절
-									</c:when>
-									<c:when test="${report.report_reason eq 7 }">
-										명예훼손 및 저작권침해
-									</c:when>
-								</c:choose>			                
-				                </td>
-				                <td>
-								<c:choose>
-									<c:when test="${report.report_status eq 1 }">
-										접수
-									</c:when>
-									<c:when test="${report.report_status eq 2 }">
-										승인
-									</c:when>
-									<c:when test="${report.report_status eq 3 }">
-										반려
-									</c:when>
-								</c:choose>			                
+				                	<c:choose>
+				                		<c:when test="${review.review_status eq 1}">
+				                			정상
+				                		</c:when>
+				                		<c:when test="${review.review_status eq 2}">
+				                			블라인드
+				                		</c:when>
+				                	</c:choose>
 				                </td>
 				            </tr>
-			            </c:if>
-		            </c:forEach>
-			    </table>
+			            </c:forEach>
+			    	</table>
+			    </form>
               </div>
             </div>
           </div>
@@ -195,44 +183,6 @@
       </footer>
     </div>
   </div>
-  
-   <!-- 모달 창 -->
-    <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="filterModalLabel">회원 유형 선택</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="allCheck">
-                        <label class="form-check-label" for="allCheck">
-                            전체 선택
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="leaderCheck">
-                        <label class="form-check-label" for="leaderCheck">
-                            반장 회원
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="generalCheck">
-                        <label class="form-check-label" for="generalCheck">
-                            일반 회원
-                        </label>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                    <button type="button" class="btn btn-primary">적용</button>
-                </div>
-            </div>
-        </div>
-    </div>
   <!--   Core JS Files   -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/popper.min.js"></script>
@@ -247,7 +197,18 @@
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.js"></script>
-  <script src="${pageContext.request.contextPath }/resources/admin_assets/js/report.js"></script>
+	<script>
+        $(document).ready(function() {
+            // 필터 기능 구현
+            $('#leaderFilter, #withdrawalFilter').change(function() {
+                var leaderFilter = $('#leaderFilter').val();
+                var withdrawalFilter = $('#withdrawalFilter').val();
+                
+                // 로직에 따라 회원 데이터 필터링 및 표시
+            });
+        });
+    </script>
+
 </body>
 
 </html>

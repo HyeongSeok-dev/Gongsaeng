@@ -23,7 +23,7 @@
   <link href="${pageContext.request.contextPath }/resources/admin_assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.css" rel="stylesheet" />
-  <link href="${pageContext.request.contextPath }/resources/admin_assets/css/class.css" rel="stylesheet" />
+  <link href="${pageContext.request.contextPath }/resources/admin_assets/css/admin.css" rel="stylesheet" />
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
   <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">
 </head>
@@ -130,9 +130,9 @@
 	              	
                 <table class="table table-bordered">
                 	<colgroup>
-                		<col width="15%" />
-                		<col width="15%" />
-                		<col width="15%" />
+                		<col width="20%" />
+                		<col width="10%" />
+                		<col width="10%" />
                 		<col width="45%" />
                 	</colgroup>
 		            <tr>

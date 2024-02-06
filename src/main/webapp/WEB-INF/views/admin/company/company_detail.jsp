@@ -108,8 +108,17 @@
 	           		<img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-circle img-thumbnail" alt="avatar">
 					<input type="file" class="form-control profileImg" accept="image/*">
 					<div class="profileImg" >
-    	       		 	<button type="button" class="btn">파일선택</button>
-	           		 	<span>파일명</span>
+   	       		 		<br>
+	           		 	<c:choose>
+							<c:when test="${empty company.com_img}">
+		    	       		 	<button type="button" id="uploadFileBtn" class="btn btn_default">파일선택</button>
+			           		 	<span id="fileLabel">파일명</span>
+							</c:when>
+							<c:otherwise>
+		    	       		 	<button type="button" id="uploadFileBtn" class="btn btn_default">파일선택</button>
+			           		 	<span id="fileLabel">${company.com_img}</span>
+							</c:otherwise>
+						</c:choose>
 					</div>
            		 </div>
               	 <br>

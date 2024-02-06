@@ -1,4 +1,14 @@
 @charset "UTF-8";
+.navbar-brand.title {
+	font-size: 25px;
+}
+
+.panel-header-lg {
+    min-height: 400px;
+    max-height: 600px;
+}
+
+
 .now_total {
 	margin-left: 30px;
 	color: white;

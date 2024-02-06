@@ -106,11 +106,11 @@
 	              <div class="row">
 	               		<div class="col-md-6 col_checkbox">
 		               		<div class=" col_checkbox">
-				              	<input type="checkbox" value="전체선택" name="member_category"> &nbsp;전체선택&nbsp;
-				              	<input type="checkbox" value="1" name="member_category"> &nbsp;신규신청&nbsp;
-				              	<input type="checkbox" value="2" name="member_category"> &nbsp;환급승인&nbsp;
-				              	<input type="checkbox" value="3" name="member_category"> &nbsp;환급완료&nbsp;
-				              	<input type="checkbox" value="4" name="member_category"> &nbsp;환급거절&nbsp;
+				              	<input type="checkbox" value="전체선택" id="calStausAllCheck"> &nbsp;전체선택&nbsp;
+				              	<input type="checkbox" value="1" name="pay_cal_staus" class="pay_cal_staus"> &nbsp;신규신청&nbsp;
+				              	<input type="checkbox" value="2" name="pay_cal_staus" class="pay_cal_staus"> &nbsp;환급승인&nbsp;
+				              	<input type="checkbox" value="3" name="pay_cal_staus" class="pay_cal_staus"> &nbsp;환급완료&nbsp;
+				              	<input type="checkbox" value="4" name="pay_cal_staus" class="pay_cal_staus"> &nbsp;환급거절&nbsp;
 			              	</div>
 		              	</div>
 		              	<div class="col-md-6">

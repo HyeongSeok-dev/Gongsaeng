@@ -102,7 +102,7 @@
 	          <div class="col-md-12">
 	            <div class="card">
 	              <div class="card-header">
-	                <h5 class="title">${member.member_nick}님
+	                <h5 class="title">${member.member_id}님
 	                <c:if test="${member.member_category eq 2}">
 	                	(반장)
 	                </c:if>
@@ -345,7 +345,7 @@
 		             		<th rowspan="2">
 		             			남긴 리뷰 수<br>
 		             			<!-- 리뷰리스트랑 같이씀 member_id들고가기 -->
-		             			<a class="more_info" href="${pageContext.request.contextPath }/admin/review?member_id=${member.member_id}">더보기</a>
+		             			<a class="more_info" href="${pageContext.request.contextPath }/admin/member/review?member_id=${member.member_id}">더보기</a>
 		             		</th>
 							<th class="detail_table">이달</th>
 							<th class="detail_table">누적</th>

@@ -66,8 +66,8 @@ public class AdminController {
 		
 		return "admin/main";
 	}
-	@GetMapping("admin/dashboard")
-	public String dashboard() {
+	@GetMapping("admin/dashboard/member")
+	public String dashboardMember(HttpSession session, Model model) {
 //		if(session.getAttribute("sId") == null) {
 //			model.addAttribute("msg", "로그인이 필요합니다");
 //			model.addAttribute("targetURL", "/gongsaeng/member/login");
@@ -77,9 +77,37 @@ public class AdminController {
 //			return "fail_back";
 //		}
 		
-		return "admin/dashboard";
+		return "admin/dashboard/member";
+	}
+	@GetMapping("admin/dashboard/sales")
+	public String dashboardSales(HttpSession session, Model model) {
+//		if(session.getAttribute("sId") == null) {
+//			model.addAttribute("msg", "로그인이 필요합니다");
+//			model.addAttribute("targetURL", "/gongsaeng/member/login");
+//			return "forward";
+//		} else if(!session.getAttribute("sId").equals("admin")) {
+//			model.addAttribute("msg", "잘못된 접근 입니다.");
+//			return "fail_back";
+//		}
+		
+		return "admin/dashboard/sales";
+	}
+	@GetMapping("admin/dashboard/company")
+	public String dashboardCompany(HttpSession session, Model model) {
+//		if(session.getAttribute("sId") == null) {
+//			model.addAttribute("msg", "로그인이 필요합니다");
+//			model.addAttribute("targetURL", "/gongsaeng/member/login");
+//			return "forward";
+//		} else if(!session.getAttribute("sId").equals("admin")) {
+//			model.addAttribute("msg", "잘못된 접근 입니다.");
+//			return "fail_back";
+//		}
+		
+		return "admin/dashboard/company";
 	}
 	
+	//========================================회원 관리
+	// 회원 목록
 	@GetMapping("admin/member")
 	public String memberListForm(HttpSession session, Model model) {
 
@@ -185,7 +213,7 @@ public class AdminController {
 		
 		
 		System.out.println("reviewCount >>>" + reviewCount);
-		System.out.println("clascount >>>" + classCount);
+		System.out.println("classCount >>>" + classCount);
 		System.out.println("company >>>" + company);
 		model.addAttribute("member", member);
 		model.addAttribute("account", account);
@@ -238,6 +266,7 @@ public class AdminController {
 		return "false";
 	}
 	
+	// 회원정보 수정
 	@PostMapping("admin/member/modifyPro") 
 	public String memberDetailModifyPro(HttpSession session, Model model, MemberVO member) {
 //		if(session.getAttribute("sId") == null) {
@@ -302,6 +331,7 @@ public class AdminController {
 		
 	}
 	
+	// 회원상세페이지의 특정회원 예약내역
 	@GetMapping("admin/member/reservation/class")
 	public String memberDetailClass(HttpSession session, Model model, @RequestParam String member_id) {
 //		if(session.getAttribute("sId") == null) {
@@ -331,6 +361,7 @@ public class AdminController {
 		return "admin/member/reservation_class";
 	}
 	
+	// 회원상세의 특정회원 남긴리뷰내역
 	@GetMapping("admin/member/review")
 	public String memberDetailCompany(HttpSession session, Model model, @RequestParam String member_id) {
 //		if(session.getAttribute("sId") == null) {
@@ -341,12 +372,15 @@ public class AdminController {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}
+		List<ReviewVO> memberReviewList = service.getMemberReviewList(member_id);
 		
+		model.addAttribute("memberReviewList",memberReviewList);
+		model.addAttribute("member_id",member_id);
 		return "admin/member/review";
 	}
 	
-
-	//----------------------------------
+	//=================================================사업체 관리
+	//사업체 목록
 	@GetMapping("admin/company")
 	public String companyForm(HttpSession session, Model model) {
 //		if(session.getAttribute("sId") == null) {
@@ -364,14 +398,30 @@ public class AdminController {
 		return "admin/company/company";
 	}
 
+	// 사업체 환급금 목록
 	@GetMapping("admin/company/refund")
-	public String companyRefund() {
+	public String companyRefundForm(HttpSession session, Model model) {
+//		if(session.getAttribute("sId") == null) {
+//		model.addAttribute("msg", "로그인이 필요합니다");
+//		model.addAttribute("targetURL", "/gongsaeng/login");
+//		return "forward";
+//	} else if(!session.getAttribute("sId").equals("admin")) {
+//		model.addAttribute("msg", "잘못된 접근 입니다.");
+//		return "fail_back";
+//	}
+		
+		List<PaymentVO> refundList = service.getRefundList();
+		
 		return "admin/company/company_refund";
 	}
+	
+	// 사업체 상세 페이지
 	@GetMapping("admin/company/detail")
-	public String companyDetail() {
+	public String companyDetail(HttpSession session, Model model) {
 		return "admin/company/company_detail";
 	}
+	
+	// 사업체 등록 클래스 목록
 	@GetMapping("admin/company/class")
 	public String companyClassForm(HttpSession session, Model model) {
 		
@@ -381,10 +431,14 @@ public class AdminController {
 		model.addAttribute("classList", classList);
 		return "admin/company/class";
 	}
+	
+	// 사업체 클래스 상세
 	@GetMapping("admin/company/class/detail")
-	public String companyClassDetail() {
+	public String companyClassDetail(HttpSession session, Model model) {
 		return "admin/company/class_detail";
 	}
+	
+	// 페이와 연동된 회원계좌목록
 	@GetMapping("admin/OPay/account")
 	public String accountMemberForm(HttpSession session, Model model) {
 //		if(session.getAttribute("sId") == null) {
@@ -402,6 +456,7 @@ public class AdminController {
 		return "admin/OPay/account_member";
 	}
 	
+	// 회원계좌 상세페이지
 	@GetMapping("admin/OPay/account/detail")
 	public String accountMemberDetail(HttpSession session, Model model) {
 //		if(session.getAttribute("sId") == null) {
@@ -416,6 +471,7 @@ public class AdminController {
 		return "admin/OPay/account_member_detail";
 	}
 	
+	// 페이 충전/송금 목록
 	@GetMapping("admin/OPay/deposit/withdraw")
 	public String OPayDepositWithdrawForm(HttpSession session, Model model) {
 //		if(session.getAttribute("sId") == null) {
@@ -433,7 +489,7 @@ public class AdminController {
 	}
 	
 	@GetMapping("admin/OPay/deposit/withdraw/detail")
-	public String OPayDepositWithdrawDetail() {
+	public String OPayDepositWithdrawDetail(HttpSession session, Model model) {
 //		if(session.getAttribute("sId") == null) {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
@@ -444,6 +500,8 @@ public class AdminController {
 //	}
 		return "admin/OPay/OPay_deposit_withdraw_detail";
 	}
+	
+	// 페이 사용/환불 목록
 	@GetMapping("admin/OPay/use")
 	public String OPayUse(HttpSession session, Model model) {
 //		if(session.getAttribute("sId") == null) {
@@ -485,6 +543,7 @@ public class AdminController {
 		List<ReportVO> reportList = service.getReportClassList();
 		
 		model.addAttribute("reportList", reportList);
+		log.info("reportList>>>>" + reportList);
 		return "admin/report/report_class";
 	}
 	@GetMapping("admin/report/review")
@@ -553,11 +612,32 @@ public class AdminController {
 		return "admin/cs/chat";
 	}
 	@GetMapping("admin/cs/faq")
-	public String csFaq() {
+	public String csFaq(HttpSession session, Model model) {
+//		if(session.getAttribute("sId") == null) {
+//		model.addAttribute("msg", "로그인이 필요합니다");
+//		model.addAttribute("targetURL", "/gongsaeng/login");
+//		return "forward";
+//	} else if(!session.getAttribute("sId").equals("admin")) {
+//		model.addAttribute("msg", "잘못된 접근 입니다.");
+//		return "fail_back";
+//	}
+//		List<BoardVO> boardList = service.getNotice();
+		
+		
+//		model.addAttribute("boardList",boardList);
 		return "admin/cs/faq";
 	}
 	@GetMapping("admin/cs/notice")
-	public String csNotice() {
+	public String csNotice(HttpSession session, Model model) {
+//		if(session.getAttribute("sId") == null) {
+//		model.addAttribute("msg", "로그인이 필요합니다");
+//		model.addAttribute("targetURL", "/gongsaeng/login");
+//		return "forward";
+//	} else if(!session.getAttribute("sId").equals("admin")) {
+//		model.addAttribute("msg", "잘못된 접근 입니다.");
+//		return "fail_back";
+//	}
+		
 		return "admin/cs/notice";
 	}
 	@GetMapping("admin/cs/notice/register")

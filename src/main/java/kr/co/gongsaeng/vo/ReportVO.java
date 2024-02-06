@@ -15,5 +15,12 @@ public class ReportVO {
 	private int report_status;
 	private String member_phone;
 	private int report_category;
+	private String report_date;
 	
+	// [관리자 페이지]
+	// 클래스 신고
+	private String class_title;
+	private String banjangMember_id;
+	private String reviewerMember_id;
+	private String com_name;
 }

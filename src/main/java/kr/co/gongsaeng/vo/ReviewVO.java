@@ -60,9 +60,11 @@ public class ReviewVO {
 	private int point_idx;
 	
 	
-	// 관리자 페이지
-	// [회원상세조회]
+	// [관리자 페이지]
+	// 회원상세조회
 	private String reviewMonth; // 회원 남긴 리뷰 이달
 	private String reviewTotal; // 회원 남긴 리뷰 누적
 	private String reviewReport; // 남긴 리뷰 피신고건수
+	// 특정회원리뷰리스트
+	private String class_title;
 }

@@ -19,7 +19,11 @@ public class PaymentVO {
 	private String per_Info_consent;
 	private int pay_status;
 	private int pay_category;
-	private int pay_cal_staus;
+	private int pay_cal_staus; //환급상태
+	private int res_visit_date; // 예약일
+	private int refund_request_date; //환급신청일
+	private int refund_date; //환급완료일
+	
 	
 	//[ 관리자 페이지 ]
 	// 회원상세 페이지
@@ -32,6 +36,10 @@ public class PaymentVO {
 	
 	//회원 예약(결제)내역 페이지
 	private String com_name;
-	private String class_name;
+	private String class_title;
 	private String class_category;
+	
+	//사업체 환급금 목록 페이지
+	private int requestAmount; //신청금액
+	private int refundableAmount; //환급 가능금액 
 }

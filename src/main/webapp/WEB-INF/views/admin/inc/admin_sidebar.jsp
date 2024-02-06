@@ -29,7 +29,7 @@
 	                <ul class="nav">
 	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/dashboard/member">회원</a></li>
 	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/dashboard/company">사업체</a></li>
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/dashboard/sale">매출</a></li>
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/dashboard/sales">매출</a></li>
 	                </ul>
 	            </div>
 	        </li>

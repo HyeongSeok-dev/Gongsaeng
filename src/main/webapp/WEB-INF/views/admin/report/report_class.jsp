@@ -105,10 +105,10 @@
               <div class="card-body">
               	 <div class="row">
 		              	<div class="col-md-6 col_checkbox">
-				              	<input type="checkbox" value="0" id="reportStatusAllCheck"> &nbsp;전체선택&nbsp;
-				              	<input type="checkbox" value="1" name="report_status" class="report_status"> &nbsp;처리중&nbsp;
-				              	<input type="checkbox" value="2" name="report_status" class="report_status"> &nbsp;승인&nbsp;
-				              	<input type="checkbox" value="3" name="report_status" class="report_status"> &nbsp;반려&nbsp;
+			              	<input type="checkbox" value="0" id="reportStatusAllCheck"> &nbsp;전체선택&nbsp;
+			              	<input type="checkbox" value="1" name="report_status" class="report_status"> &nbsp;처리중&nbsp;
+			              	<input type="checkbox" value="2" name="report_status" class="report_status"> &nbsp;승인&nbsp;
+			              	<input type="checkbox" value="3" name="report_status" class="report_status"> &nbsp;반려&nbsp;
 		              	</div>
 		              	<div class="col-md-6">
 		              		<form action="" class="member_date filter_search">
@@ -133,11 +133,12 @@
                 <table class="table table-bordered">
 		            <colgroup>
 		            	<col width="15%"/>
-		            	<col width="15%"/>
-		            	<col width="15%"/>
-		            	<col width="20%"/>
-		            	<col width="25%"/>
+		            	<col width="21%"/>
+		            	<col width="13%"/>
+		            	<col width="13%"/>
+		            	<col width="21%"/>
 		            	<col width="10%"/>
+		            	<col width="7%"/>
 		            </colgroup>
 		            <tr>
 		                <th>신고일자</th>
@@ -145,18 +146,49 @@
 		                <th>신고자 아이디</th>
 		                <th>반장아이디</th>
 		                <th>사업체명</th>
-		                <th>처리상태</th>
+		                <th>신고사유</th>
+		                <th>처리<br>상태</th>
 		            </tr>
 		            <!-- 회원 데이터 로우 -->
 		            <c:forEach var="report" items="${reportList }">
-			            <tr class="tr_hover" onclick="location.href='${pageContext.request.contextPath }/admin/report/detail'">
-			                <td>신고일</td>
-			                <td>클래스명</td>
-			                <td>신고자 아이디</td>
-			                <td>반장아이디</td>
-			                <td>사업체명</td>
-			                <td>처리상태</td>
-			            </tr>
+		            	<c:if test="${report.report_category eq 2 }">
+				            <tr class="tr_hover" onclick="location.href='${pageContext.request.contextPath }/admin/report/detail'">
+				                <td>${report.report_date }</td>
+				                <td>${report.class_title }</td>
+				                <td>${report.member_id }</td>
+				                <td>${report.banjangMember_id }</td>
+				                <td>${report.com_name}</td>
+				                <td>
+								<c:choose>
+									<c:when test="${report.report_reason eq 1 }">
+										불친절함
+									</c:when>
+									<c:when test="${report.report_reason eq 2 }">
+										환불
+									</c:when>
+									<c:when test="${report.report_reason eq 3 }">
+										커리큘럼
+									</c:when>
+									<c:when test="${report.report_reason eq 4 }">
+										기타
+									</c:when>
+								</c:choose>			                
+				                </td>
+				                <td>
+								<c:choose>
+									<c:when test="${report.report_status eq 1 }">
+										접수
+									</c:when>
+									<c:when test="${report.report_status eq 2 }">
+										승인
+									</c:when>
+									<c:when test="${report.report_status eq 3 }">
+										반려
+									</c:when>
+								</c:choose>			                
+				                </td>
+				            </tr>
+			            </c:if>
 		            </c:forEach>
 			    </table>
               </div>

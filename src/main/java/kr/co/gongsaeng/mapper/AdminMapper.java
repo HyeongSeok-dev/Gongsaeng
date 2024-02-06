@@ -51,6 +51,8 @@ public interface AdminMapper {
 	// reservation_class.jsp
 	// 특정회원의 클래스 결제(예약)내역
 	List<PaymentVO> selectClassPayList(String member_id);
+	//review.jsp
+	List<ReviewVO> selectMemberReviewList(String member_id);
 
 	// company.jsp
 	// 사업체 목록 
@@ -76,8 +78,16 @@ public interface AdminMapper {
 	
 	//report_class.jsp
 	List<ReportVO> selectReportClassList();
+	
 	//report_review.jsp
 	List<ReportVO> selectReportReviewList();
+	
+	//cs_notice.jsp
+	List<BoardVO> selectNoticeList();
+	
+	// company_refund.jsp
+	List<PaymentVO> selectRefundList();
+	
 	
 	
 
