@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
-<html>="en">
+<html>
 
 <head>
   <meta charset="utf-8" />
@@ -251,36 +252,66 @@ tbody {
 											          <thead class="thead-dark">
 											            <tr>
 											              <th scope="col">#</th>
-											              <th scope="col">정산번호</th>
+											              <th scope="col">결제번호</th>
 											              <th scope="col">정산 상태</th>
 											              <th scope="col">정산 신청일</th>
-											              <th scope="col">결제 건수</th>
-											              <th scope="col">정산 계좌</th>
-											              <th scope="col">정산 금액</th>
-											              <th scope="col">클래스 수익 금액</th>
-											              <th scope="col">쿠폰 사용 금액</th>
-											              <th scope="col">포인트 사용 금액</th>
+<!-- 											              <th scope="col">결제 건수</th> -->
+<!-- 											              <th scope="col">정산 계좌</th> -->
+											              <th scope="col">총 결제 금액</th>
+<!-- 											              <th scope="col">클래스 수익 금액</th> -->
+											              <th scope="col">할인 금액(쿠폰/포인트)</th>
+<!-- 											              <th scope="col">포인트 사용 금액</th> -->
 											              <th scope="col">수수료</th>
+											              <th scope="col">정산 금액</th>
+											              <th scope="col">환급완료일</th>
 											              <th scope="col">정산신청</th>
 											            </tr>
 											          </thead>
 											          <tbody>
 											            <!-- 여기에 각 행을 추가하세요. 예를 들어: -->
+											            <c:forEach items="${paymentInfo}" var="payment">
 											            <tr>
-											              <th scope="row">1</th>
-											              <td>1</td>
-											              <td>완료</td>
-											              <td>2024-12-31</td>
-											              <td>7</td>
-											              <td>11790204135187</td>
-											              <td>1,000,000</td>
-											              <td>1,000,000</td>
-											              <td>0</td>
-											              <td>0</td>
-											              <td>50,000</td>
-											              <td><input type="button" value="정산신청"></td>
+											              <th scope="row">1</th> <!-- 인덱스 -->
+											              <td>${payment.pay_num }</td> <!-- 결제번호 -->
+											              <!-- 정산상태 -->
+											              <td>
+											              	<c:choose>
+											              		<c:when test="${payment.pay_cal_status == 1}">
+																	미정산
+																</c:when>											              		
+											              		<c:when test="${payment.pay_cal_status == 2}">
+																	정산 신청완료		
+																</c:when>											              		
+											              		<c:when test="${payment.pay_cal_status == 3}">
+																	정산 승인중
+																</c:when>											              		
+											              		<c:when test="${payment.pay_cal_status == 4}">
+																	정산완료
+																</c:when>											              		
+											              	</c:choose>
+											              </td> 
+											              <td>${payment.refund_request_date }</td> <!-- 정산신청일 -->
+<!-- 											              <td>7</td> 결제건수 -->
+<!-- 											              <td>11790204135187</td> 정산계좌 -->
+																<td><fmt:formatNumber value="${payment.payment + payment.discount_payment}" type="number" pattern="#,##0"/></td> <!-- 정산금액 -->
+<!-- 											              <td>1,000,000</td> 클래스 수익 금액 -->
+											              <td>- <fmt:formatNumber value="${payment.discount_payment }" type="number" pattern="#,##0"/></td> <!-- 할인 금액 -->
+<!-- 											              <td>0</td> 포인트 사용 금액 -->
+<%-- 											              <td>${payment.payment } * 0.1 </td> <!-- 수수료 --> --%>
+																<td>- <fmt:formatNumber value="${payment.payment * 0.1}" type="number" pattern="#,##0"/></td> <!-- 수수료 -->
+																<td><fmt:formatNumber value="${payment.payment * 0.9}"  type="number" pattern="#,##0"/></td> <!-- 정산금액 -->
+											              <td>${payment.refund_date}</td> <!-- 환급완료일 -->
+											             <td>
+											              	<!-- 누르면 pay_cal_status 변경 ( 1 => 2 ) -->
+											              <c:if test="${payment.pay_cal_status == 1}">
+											              	<form action="updatePayCalStatus" method="post">
+												              	<input type="hidden" name="payNum" value="${payment.pay_num}">
+												              	<input type="button" value="정산 신청">
+											              	</form>
+											              </c:if>
+											             </td>
 											            </tr>
-											            <!-- 더 많은 행을 추가할 수 있습니다. -->
+											            </c:forEach>
 											          </tbody>
 											        </table>
 				            </form>

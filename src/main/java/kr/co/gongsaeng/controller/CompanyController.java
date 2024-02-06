@@ -27,7 +27,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.protobuf.TextFormat.ParseException;
 
@@ -36,6 +38,7 @@ import kr.co.gongsaeng.service.CompanyService;
 import kr.co.gongsaeng.vo.ClassVO;
 import kr.co.gongsaeng.vo.CompanyVO;
 import kr.co.gongsaeng.vo.MemberVO;
+import kr.co.gongsaeng.vo.PaymentVO;
 
 @Controller
 public class CompanyController {
@@ -45,8 +48,8 @@ public class CompanyController {
 	
 	@Autowired
 	private ClassService classService;
-	
 
+	
 	// 클래스 등록
 	@GetMapping("classRegisterForm")
 	public String classRegisterForm(HttpSession session, Model model) {
@@ -298,8 +301,8 @@ public class CompanyController {
 	                Time time = new Time(format.parse(text).getTime());
 	                setValue(time);
 	            } catch (java.text.ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+
+	            	e.printStackTrace();
 				}
 	        }
 
@@ -404,63 +407,123 @@ public class CompanyController {
 					
 				}
 	
-	
-
 	// =============================================================
 	// 클래스 내역
 	@GetMapping("company/class") 
 	public String classList(HttpSession session, Model model, ClassVO gclass, HttpServletRequest request) {
 	    String sId = (String)session.getAttribute("sId");
-	    
 	    System.out.println("Current sId from session: >>>>>>>>>>>>> " + sId);
 	    
-	       gclass.setMember_id(sId);
-		   model.addAttribute("gclass",gclass);
-		    
-		   List<Map<String, Object>> classList = classService.getClassList(sId);
-		   
-		   model.addAttribute("classList", classList); // 클래스 목록을 모델에 추가
-
-		    
-		    return "company/company_class";
-		}
+       gclass.setMember_id(sId);
+	   model.addAttribute("gclass",gclass);
+	    
+	   List<Map<String, Object>> classList = classService.getClassList(sId);
+	   model.addAttribute("classList", classList); // 클래스 목록을 모델에 추가
+	    
+	    return "company/company_class";
 		
+	}
+	// =============================================================		
+	// 클래스 일정(캘린더 출력) -> 안됨 ㅡㅡ 
+	@GetMapping("company/reservation")
+	public String classReservation(HttpSession session, Model model, ClassVO gclass, HttpServletRequest request) {
+		String sId = (String)session.getAttribute("sId");
+		System.out.println("Current sId from session: >>>>>>>>>>>>> " + sId);
+		
+	    List<ClassVO> classList = classService.getClassSchedulesByMemberId(sId);
+	    model.addAttribute("classList", classList);
+		
+		return "company/reservation2";
+	}
+	// =============================================================		
+	// 매출 현황
+	@GetMapping("company/sales")
+	public String company_sales(HttpSession session, Model model, PaymentVO payment) {
+		String sId = (String)session.getAttribute("sId");
+		System.out.println("Current sId from session: >>>>>>>>>>>>> " + sId);
+		
+		Integer comIdx = companyService.findComIdxBysId(sId);
+		System.out.println("Current comIdx from session: >>>>>>>>>>>>> " + comIdx);
+		
+		 // comIdx를 이용하여 매출 목록 조회
+		 // class_idx를 이용하여 클래스명 출력
+		List<Map<String, Object>> saleList = companyService.getSaleListByComIdx(comIdx);
+	    for (Map<String, Object> sale : saleList) {
+	        int classIdx = (Integer) sale.get("class_idx");
+	        String class_title = companyService.findClassNameByClassIdx(classIdx);
+	        sale.put("class_title", class_title); // saleList에 class_title 추가
+	    }
+	    model.addAttribute("saleList", saleList);
+	    
+		return "company/company_sales";
+	}
 	
+	// 매출 현황 삭제
+	 @PostMapping("company/deleteSale")
+	 public String deleteSale(@RequestParam("pay_num") String payNum, Model model) {
+	   
+		 int deleteCount = companyService.removeSaleList(payNum);
+		 if(deleteCount > 0) { // 삭제 성공
+				model.addAttribute("msg", "매출 정보가 삭제되었습니다.");
+		 } else {
+			 model.addAttribute("msg", "매출 정보 삭제처리가 실패했습니다.");			 
+		 } 
+
+		 return "redirect:/company/sales";
+	 }
+	 // =============================================================		
+	 // 정산 신청 메인
+	 @GetMapping("company/income")
+	 public String company_income(HttpSession session, Model model, PaymentVO payment, CompanyVO company) {
+		
+		// 정산금액 산출(수수료 : 10%)
+		String sId = (String)session.getAttribute("sId");
+		System.out.println("Current sId from session: >>>>>>>>>>>>> " + sId);
+			
+		Integer comIdx = companyService.findComIdxBysId(sId);
+		System.out.println("Current comIdx from session: >>>>>>>>>>>>> " + comIdx);
+		 
+		int income = companyService.calculateIncome(comIdx);
+		model.addAttribute("income",income);
+		
+	    // 계좌정보 조회
+	    List<CompanyVO> companyAccountInfo = companyService.getCompanyAccountInfo(comIdx);
+	    model.addAttribute("companyAccountInfo", companyAccountInfo);
+			 
+		 return "company/company_income";
+	 }
+	 
+	 // 정산 내역
+	 @GetMapping("company/income/list")
+	 public String company_income_list(HttpSession session, Model model, PaymentVO payment) {
+
+		 String sId = (String)session.getAttribute("sId");
+		 System.out.println("Current sId from session: >>>>>>>>>>>>> " + sId);
+		 
+		 Integer comIdx = companyService.findComIdxBysId(sId);
+		 System.out.println("Current comIdx from session: >>>>>>>>>>>>> " + comIdx);
+
+		 // payment 테이블 조회
+		 List<PaymentVO> paymentInfo = companyService.getCompanyPaymentInfo(comIdx);
+		 model.addAttribute("paymentInfo",paymentInfo);
+		 
+		 return "company/company_income_list";
+	 }
+	 
+	 // 정산신청
+	
+	 
+	 
+	 
+	 
 	@GetMapping("company/main")
 	public String company_main() {
 		return "company/company_main";
-	}
-		
-	
-
-//	@GetMapping("company/reservation")
-//	public String company_reservation() {
-//		return "company/company_reservation";
-//	}
-
-	@GetMapping("company/reservation")
-	public String company_reservation2() {
-		return "company/company_reservation2";
-	}
-		
-	@GetMapping("company/sales")
-	public String company_sales() {
-		return "company/company_sales";
 	}
 	
 	@GetMapping("company/sales2")
 	public String company_sales2() {
 		return "company/company_sales2";
-	}
-
-	@GetMapping("company/income")
-	public String company_income() {
-		return "company/company_income";
-	}
-	
-	@GetMapping("company/income/list")
-	public String company_income_list() {
-		return "company/company_income_list";
 	}
 
 	@GetMapping("company/member")

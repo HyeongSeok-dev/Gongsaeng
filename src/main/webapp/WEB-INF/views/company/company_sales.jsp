@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -279,40 +280,64 @@ tbody {
 											            <tr>
 											              <th scope="col">#</th>
 											              <th scope="col">결제상태</th>
-											              <th scope="col">클래스 번호</th>
-											              <th scope="col">결제 수단</th>
-											              <th scope="col">클래스 구매일</th>
-											              <th scope="col">수업일</th>
+											              <th scope="col">결제번호</th>
 											              <th scope="col">클래스명</th>
-											              <th scope="col">구매자</th>
-											              <th scope="col">연락처</th>
+											              <th scope="col">결제 수단</th>
+											              <th scope="col">결제 금액</th>  
+											              <th scope="col">클래스 구매일</th>
+											              <th scope="col">구매자(ID)</th>
 											              <th scope="col">수정/삭제</th>
 											            </tr>
 											          </thead>
 											          <tbody>
-											            <!-- 여기에 각 행을 추가하세요. 예를 들어: -->
+											            <c:forEach items="${saleList}" var="sale">
 											            <tr>
-											              <th scope="row">1</th>
-											              <td>결제완료</td>
-											              <td>클래스 번호</td>
-											              <td>O페이 결제</td>
-											              <td>2024-12-31</td>
-											              <td>2024-12-31</td>
-											              <td>인테리어 클래스</td>
-											              <td>나야나</td>
-											              <td>010-0000-0000</td>
-											              <td><input type="button" value="수정">&nbsp;&nbsp;<input type="button" value="삭제"></td>
+											              <th scope="row">1</th> <!-- # -->
+											              <td>
+											              <c:choose>
+											              	<c:when test="${sale.pay_status == 1}">
+											              		정상
+											              	</c:when>
+											              	<c:when test="${sale.pay_status == 2}">
+											              		취소
+											              	</c:when>
+											              </c:choose>
+											              </td> <!-- 결제 상태 -->
+											              <td>${sale.pay_num}</td> <!-- 결제 번호  -->
+											              <td>${sale.class_title }</td> <!-- 클래스명 -->
+											              <td>
+											              <c:choose>
+											              	<c:when test="${sale.pay_category == 1}">
+											              		일반 결제
+											              	</c:when>
+											              	<c:when test="${sale.pay_category == 1}">
+											              		포인트 결제
+											              	</c:when>
+											              </c:choose>
+											              </td> <!-- 결제 수단 -->
+											              <td>${sale.payment}</td> <!-- 결제 금액 -->
+<%-- 											             <td>${sale.pay_date }</td> <!-- 클래스 구매일 --> --%>
+					                                      <td>
+					                                      ${sale.pay_date }
+											              </td>
+											              <td>${sale.member_id}</td> <!-- 구매자 -->
+											              <td>
+												              <input type="button" value="상세">
+												              &nbsp;&nbsp;
+<!-- 												              <input type="button" value="삭제"> -->
+											              	  <input type="button" value="삭제" class="delete-btn" data-pay-num="${sale.pay_num}">
+											              	</td>
 											            </tr>
-											            <!-- 더 많은 행을 추가할 수 있습니다. -->
+											    		</c:forEach>
 											          </tbody>
 											        </table>
-				            </form>
-				          </div>
-				        </div>
-				      </div>
-				    </div>
-				  </div>
-				</div>
+									            </form>
+									          </div>
+									        </div>
+									      </div>
+									    </div>
+									  </div>
+									</div>
 <!-- 		      </div> -->
 		    </div>
 		  </div>
@@ -334,6 +359,37 @@ tbody {
 				<script>
 					document.getElementById('copyright').appendChild(
 							document.createTextNode(new Date().getFullYear()))
+							
+							
+				//--------------------------------
+		document.addEventListener('DOMContentLoaded', function() {
+        var deleteButtons = document.querySelectorAll('.delete-btn');
+        deleteButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                var payNum = this.getAttribute('data-pay-num');
+                if (confirm('해당 매출 정보를 삭제하시겠습니까?')) {
+                    // AJAX 요청으로 서버에 삭제를 요청
+                    $.ajax({
+                        url: '${pageContext.request.contextPath}/company/deleteSale', // 서버의 URL 주소
+                        type: 'POST', // HTTP 요청 방식
+                        data: { 'pay_num': payNum }, // 키 이름을 'pay_num'으로 변경
+                        success: function(response) {
+                            // 성공 시 페이지 리로드 또는 DOM 조작을 통해 화면에서 해당 항목 제거
+                            location.reload(); // 페이지 리로드로 간단히 처리
+                        },
+                        error: function(xhr, status, error) {
+                            // 실패 시 오류 처리
+                            alert('삭제 처리 중 오류가 발생했습니다.');
+                        }
+                    });
+                }
+            });
+        });
+    });
+							
+							
+							
+							
 				</script>
 				, Designed by <a href="https://www.invisionapp.com" target="_blank">Invision</a>.
 				Coded by <a href="https://www.creative-tim.com" target="_blank">Creative

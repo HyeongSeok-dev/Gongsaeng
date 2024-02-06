@@ -143,9 +143,31 @@ height: auto;
 
 </style>  
 <!-- Global CSS -->
-<link
-	href="${pageContext.request.contextPath }/resources/css/global.css"
-	rel="stylesheet" />  
+<link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet" />  
+
+<script>
+$(document).ready(function() {
+    $('#calendar').fullCalendar({
+        locale: 'ko',
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+        },
+        defaultDate: moment().format('YYYY-MM-DD'),
+        events: [
+            <c:forEach items="${classList}" var="class">
+            {
+                title: '${class.class_title}',
+                start: '${class.class_start_date}T${class.class_start_time}',
+                end: '${class.class_end_date}T${class.class_end_time}',
+            },
+            </c:forEach>
+        ],
+        timeFormat: 'H(:mm)',
+    });
+});
+</script>
 </head>
 
 <body class="">
@@ -227,129 +249,6 @@ height: auto;
 			</div>
 		</div>
 		<div class="content">
-			<div class="row justify-content-end">
-				<!-- 오른쪽 정렬을 위해 justify-content-end 사용 -->
-				<div class="col-xl-4">
-					<!-- col-auto는 버튼의 너비만큼 공간을 사용하게 함 -->
-					<div class="row">
-						<div class="col-xl-5">
-							<!-- 여기에서 ml-auto는 왼쪽에 자동 마진을 적용하므로, 필요하지 않다면 제거하세요 -->
-							<button type="button" class="btn btn-secondary mt-3 mb-3"
-								data-toggle="modal" data-target="#scheduleModal">일정 등록</button>
-						</div>
-					</div>
-					<!-- 모달창 -->
-					<div class="modal fade" id="scheduleModal" tabindex="-1"
-						role="dialog" aria-labelledby="scheduleModalLabel"
-						aria-hidden="true">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h5 class="modal-title" id="scheduleModalLabel">일정 등록</h5>
-									<button type="button" class="close" data-dismiss="modal"
-										aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-								</div>
-								<div class="modal-body">
-									<form>
-										<div class="row">
-											<div class="col-md-12 pr-1 mb-3">
-												<div class="form-group">
-													<span class="modal_title">요일</span><br>
-													<!-- ====================================== -->
-													<div class="modal_check">
-														<input type="checkbox" id="mon_checkbox"
-															onclick="updateCheckboxValue(this);"> <label
-															for="mon_checkbox" class="checkbox-label">월</label> <input
-															type="hidden" name="class_day" value="1"> <input
-															type="checkbox" id="tue_checkbox"
-															onclick="updateCheckboxValue(this);"> <label
-															for="tue_checkbox" class="checkbox-label">화</label> <input
-															type="hidden" name="class_day" value="２1"> <input
-															type="checkbox" id="wed_checkbox"
-															onclick="updateCheckboxValue(this);"> <label
-															for="wed_checkbox" class="checkbox-label">수</label> <input
-															type="hidden" name="class_day" value="３1"> <input
-															type="checkbox" id="thr_checkbox"
-															onclick="updateCheckboxValue(this);"> <label
-															for="thr_checkbox" class="checkbox-label">목</label> <input
-															type="hidden" name="class_day" value="4"> <input
-															type="checkbox" id="fri_checkbox"
-															onclick="updateCheckboxValue(this);"> <label
-															for="fri_checkbox" class="checkbox-label">금</label> <input
-															type="hidden" name="class_day" value="5"> <input
-															type="checkbox" id="sat_checkbox"
-															onclick="updateCheckboxValue(this);"> <label
-															for="sat_checkbox" class="checkbox-label">토</label> <input
-															type="hidden" name="class_day" value="6"> <input
-															type="checkbox" id="sun_checkbox"
-															onclick="updateCheckboxValue(this);"> <label
-															for="sun_checkbox" class="checkbox-label">일</label> <input
-															type="hidden" name="class_day" value="0"> <br>
-													</div>
-													<p class="modal_day_instruction">하나 이상의 운영요일이 선택되어야
-														합니다.</p>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-9 pr-1 mb-3">
-												<span class="modal_title">날짜</span><br>
-												<div class="modal_date">
-													<div class="form-group">
-														<input type="date">&nbsp; ~ &nbsp;<input
-															type="date"> <br>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-8 pr-1 mb-3">
-												<div class="form-group">
-													<span class="modal_title">클래스 운영시간(한 타임당)</span><br>
-													<div class="modal_time">
-														<input type="time">&nbsp; ~ &nbsp;<input
-															type="time"> <br>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-8 pr-1 mb-2">
-												<div class="form-group">
-													<span class="modal_title">클래스 최대 인원(한 타임당)</span>
-													<div class="modal_select">
-														<select class="form-control">
-															<option>1명</option>
-															<option>2명</option>
-															<option>3명</option>
-															<option>4명</option>
-															<option>5명</option>
-															<option>6명</option>
-															<option>7명</option>
-															<option>8명</option>
-															<option>9명</option>
-															<option>10명</option>
-														</select>
-													</div>
-												</div>
-											</div>
-										</div>
-								</div>
-								<!-- 모달 내부 -->
-								<div class="modal-footer">
-									<!-- 															        <button type="button" class="btn btn-primary">저장</button> -->
-									<!-- 															        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button> -->
-									<button type="button" class="btn btn-primary" id="saveButton">저장</button>
-									<button type="button" class="btn btn-secondary"
-										data-dismiss="modal">닫기</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 			<div class="row">
 				<div class="col-md-9">
 					<div class="card">

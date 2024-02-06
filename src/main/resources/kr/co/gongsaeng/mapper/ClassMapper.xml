@@ -57,4 +57,11 @@
 	    ORDER BY class_start_date
 	</select>
 	
+	<!-- 클래스 일정 출력(캘린더) -->
+	<select id="selectClassScheduleByMemberId" resultType="gclass">
+		SELECT *
+		FROM class
+		WHERE member_id = #{member_id}
+	</select>
+	
 </mapper>

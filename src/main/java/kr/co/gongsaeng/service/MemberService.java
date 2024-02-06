@@ -105,5 +105,10 @@ public class MemberService {
 		 return mapper.selectIdAuth(authInfo);
 	}
 
+	public MemberVO getMemberForValid(MemberVO member) {
+		// TODO Auto-generated method stub
+		return mapper.selectMemberForValid(member);
+	}
+
 
 }

@@ -35,4 +35,58 @@
 			,now()
 		)
 	</insert>
+	
+	<!-- member_id로 com_idx 찾기 (SELECT) -->
+	<select id="findComIdxBysId" resultType="int">
+		SELECT com_idx
+		FROM company
+		WHERE member_id = #{member_id}
+	</select>
+	
+	<!-- com_idx로 매출내역 출력 -->
+	<select id="selectSaleList" parameterType="Integer" resultType="map">
+		SELECT *
+		FROM payment
+		WHERE com_idx = #{comIdx}
+	</select>
+	
+	<!-- 클래스명 출력(매출내역) -->
+	<select id="selectClassTitle" resultType="String">
+	    SELECT class_title
+	    FROM class
+	    WHERE class_idx = #{classIdx}
+	</select>
+	
+	<!-- 매출내역 삭제 -->
+	<delete id="deleteSaleList" parameterType="String">
+		DELETE
+		FROM payment
+		WHERE pay_num = #{payNum}
+	</delete>
+	
+	<!-- 정산내역 계산 -->
+	<select id="selectIncome" parameterType="map">
+		SELECT SUM(payment) * 0.9 AS totalIncome
+		FROM payment
+		WHERE com_idx = #{comIdx}
+		AND pay_cal_status = 1
+	</select>
+	
+	<!-- 계좌 정보 출력 -->
+	<select id="selectCompanyAccountInfo" resultType="company">
+		SELECT *
+		FROM company
+		WHERE com_idx = #{comIdx}
+	</select>
+	
+	<!-- 정산내역 출력 -->
+	<select id="selectCompanyPaymentInfo" resultType="payment">
+		SELECT *
+		FROM payment
+		WHERE com_idx = #{comIdx}
+	</select>
+	
+	
+	
+	
 </mapper>

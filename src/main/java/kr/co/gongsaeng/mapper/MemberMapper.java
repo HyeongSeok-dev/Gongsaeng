@@ -32,4 +32,6 @@ public interface MemberMapper {
 	
 	// 아이디 가져와서 이메일 매칭
 	MemberVO selectIdAuth(MailAuthInfoVO authInfo);
+
+	MemberVO selectMemberForValid(MemberVO member);
 }

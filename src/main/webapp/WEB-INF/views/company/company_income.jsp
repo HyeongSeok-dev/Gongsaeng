@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -151,15 +152,17 @@ body {
     <div class="card">
         <div class="card-header"></div>
         <br>
-        <h5 class="card-title">&nbsp;&nbsp;&nbsp;1,000,000원</h5>
+        <h5 class="card-title">&nbsp;&nbsp;&nbsp;<fmt:formatNumber value="${income}" groupingUsed="true" pattern="#,##0" />원</h5>
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center">
                 <!-- 계좌 정보 -->
+                <c:forEach items="${companyAccountInfo}" var="company">
                 <div>
                     <span class="account-number">[ 계좌정보 ]</span><br>
-                    <span class="account-number">국민은행</span><br>
-                    <span class="account-number">11790204135187 조혜진</span>
+                    <span class="account-number">${company.com_bank}</span><br>
+                    <span class="account-number">${company.com_account}  ${company.com_account_name}</span>
                 </div>
+                </c:forEach>
                 <!-- 정산 신청 버튼 -->
                 <div>
                     <button type="button" class="btn btn-danger">정산 신청</button>
@@ -173,7 +176,9 @@ body {
 					<div class="card">
 						<div class="card-header"></div>
 						<br>
-							<h5 class="card-title">&nbsp;&nbsp;&nbsp;1,000,000원</h5>
+<%-- 							<h5 class="card-title">&nbsp;&nbsp;&nbsp;${income}</h5> --%>
+							<h5 class="card-title">&nbsp;&nbsp;&nbsp;
+</h5>
 							
 						<div class="card-body">
           					 <div class="income_btn d-flex justify-content-end">
