@@ -410,8 +410,12 @@ public class AdminController {
 //		return "fail_back";
 //	}
 		
+		// 환급금 상태
 		List<PaymentVO> refundList = service.getRefundList();
 		
+		log.info("><refundList>" + refundList);
+		
+		model.addAttribute("refundList", refundList);
 		return "admin/company/company_refund";
 	}
 	

@@ -107,10 +107,9 @@
 	               		<div class="col-md-6 col_checkbox">
 		               		<div class=" col_checkbox">
 				              	<input type="checkbox" value="전체선택" id="calStausAllCheck"> &nbsp;전체선택&nbsp;
-				              	<input type="checkbox" value="1" name="pay_cal_staus" class="pay_cal_staus"> &nbsp;신규신청&nbsp;
-				              	<input type="checkbox" value="2" name="pay_cal_staus" class="pay_cal_staus"> &nbsp;환급승인&nbsp;
-				              	<input type="checkbox" value="3" name="pay_cal_staus" class="pay_cal_staus"> &nbsp;환급완료&nbsp;
-				              	<input type="checkbox" value="4" name="pay_cal_staus" class="pay_cal_staus"> &nbsp;환급거절&nbsp;
+				              	<input type="checkbox" value="2" name="pay_cal_staus" class="pay_cal_staus"> &nbsp;신규신청&nbsp;
+				              	<input type="checkbox" value="3" name="pay_cal_staus" class="pay_cal_staus"> &nbsp;환급승인&nbsp;
+				              	<input type="checkbox" value="4" name="pay_cal_staus" class="pay_cal_staus"> &nbsp;환급완료&nbsp;
 			              	</div>
 		              	</div>
 		              	<div class="col-md-6">
@@ -140,28 +139,52 @@
 	              	</div>
 	              	
                 <table class="table table-bordered">
+                	<colgroup>
+	             		<col width="15%" />
+	             		<col width="15%" />
+	             		<col width="15%" />
+	             		<col width="12%" />
+	             		<col width="10%" />
+	             		<col width="13%" />
+	             		<col width="15%" />
+	             		<col width="10%" />
+		            </colgroup>
+		            <tr>
+		                <th>신청일자</th>
+		                <th>정산일자</th>
+		                <th>사업체명</th>
+		                <th>신청금액</th>
+		                <th>수수료</th>
+		                <th>최종환급금액</th>
+		                <th>처리상태</th>
+		            </tr>
+		            <!-- 회원 데이터 로우 -->
+		           
+		            <c:forEach var="refund" items="${refundList }">
+			       	<c:if test="${refund.pay_cal_status > 1 }">
 			            <tr>
-			                <th>신청/처리일자</th>
-			                <th>아이디</th>
-			                <th>사업체명</th>
-			                <th>신청금액</th>
-			                <th>환급가능금액</th>
-			                <th>처리상태</th>
-			                <th></th>
-			            </tr>
-			            <!-- 회원 데이터 로우 -->
-			            <tr>
-			                <td>신청/환급일자</td>
-			                <td>아이디</td>
-			                <td>사업체명</td>
-			                <td>신청금액</td>
-			                <td>환급가능금액</td>
-			                <td>처리상태</td>
+			                <td>${refund.refund_request_date}</td>
+			                <td>${refund.refund_date}</td>
+			                <td>${refund.com_name }</td>
+			                <td class="int">${refund.payment}</td>
+			                <td class="int">${refund.payment * 0.1}</td>
+			                <td class="int">${refund.payment * 0.9}</td>
 			                <td>
-			                	<button type="button" class="btn btn_default" value="환급승인" >환급승인</button>
-			                	<button type="button" class="btn btn_default" value="환급거절" >환급거절</button>
+								<c:choose>
+									<c:when test="${refund.pay_cal_status eq 2 }"> <%-- 정산신청 --%>
+					                	<button type="button" class="btn btn_default" value="환급승인" >승인</button>
+					                	<button type="button" class="btn btn_default" value="환급거절" >거절</button>
+									</c:when>
+									<c:when test="${refund.pay_cal_status eq 3 }"> <%-- 정산승인 처리중 --%>
+						                승인(정산중)
+									</c:when>
+									<c:when test="${refund.pay_cal_status eq 4 }"> <%-- 정산완료 --%>
+						                환급완료
+									</c:when>
+								</c:choose>
 			                </td>
-			            </tr>
+			       	</c:if>
+		            </c:forEach>
 			    </table>
               </div>
             </div>

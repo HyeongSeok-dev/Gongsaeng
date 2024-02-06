@@ -134,11 +134,9 @@
 			            <!-- 회원 데이터 로우 -->
 			            <c:forEach var="acc" items="${accountList }">
 				            <tr class="tr_hover" onclick="location.href='${pageContext.request.contextPath }/admin/OPay/account/detail'">
-				                <td>등록일자필요</td>
-<%-- 				                <td>${acc. }</td> --%>
+				                <td>${acc.account_date }</td>
 				                <td>${acc.member_id }</td>
-<%-- 				                <td>${acc. }</td> --%>
-				                <td>은행명필요</td>
+				                <td>${acc.account_bank }</td>
 				                <td>${acc.account_num_masked}</td>
 				            </tr>
 			            </c:forEach>

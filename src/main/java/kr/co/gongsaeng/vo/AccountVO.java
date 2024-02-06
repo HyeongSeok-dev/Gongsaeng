@@ -12,5 +12,7 @@ public class AccountVO {
 	private String account_user_name; //이용자이름
 	private String account_fintech_use_num; //핀테크번호
 	private String account_num_masked; //계좌번호
+	private String account_bank; //은행
+	private String account_date; //계좌등록일
 
 }//accountVO

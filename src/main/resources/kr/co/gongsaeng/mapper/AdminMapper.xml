@@ -160,13 +160,16 @@
 	<!-- 사업체 목록 조회 -->
 	<select id="selectCompanyList" resultType="company">
 		SELECT *
-		FROM company; 
+		FROM company
 	</select>
 
+	<!-- company_refund.jsp -->
 	<!-- 사업체 환급금 목록 조회 -->
+	<!-- 신청금 -->
 	<select id="selectRefundList" resultType="payment">
-		SELECT p.
-		FROM payment; 
+		SELECT p.refund_request_date,p.refund_date, p.payment ,p.pay_cal_status , c.com_name 
+		FROM payment p ,company c
+		WHERE  p.com_idx = c.com_idx
 	</select>
 
 	<!-- class.jsp -->
