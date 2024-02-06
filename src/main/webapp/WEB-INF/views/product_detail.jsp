@@ -44,20 +44,20 @@
 		<link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">      
       
         <!-- js  -->
-        <script src="${pageContext.request.contextPath }/resources/assets/js/modernizr-2.6.2.min.js"></script>
+<%--         <script src="${pageContext.request.contextPath }/resources/assets/js/modernizr-2.6.2.min.js"></script> --%>
         <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script> 
-<%--         <script src="${pageContext.request.contextPath }/resources/assets/js/jquery-1.10.2.min.js"></script>  --%>
-<%--         <script src="${pageContext.request.contextPath }/resources/bootstrap/js/bootstrap.min.js"></script> --%>
-<%--         <script src="${pageContext.request.contextPath }/resources/assets/js/bootstrap-select.min.js"></script> --%>
-<%--         <script src="${pageContext.request.contextPath }/resources/assets/js/bootstrap-hover-dropdown.js"></script> --%>
-<%--         <script src="${pageContext.request.contextPath }/resources/assets/js/easypiechart.min.js"></script> --%>
-<%--         <script src="${pageContext.request.contextPath }/resources/assets/js/jquery.easypiechart.min.js"></script> --%>
-<%--         <script src="${pageContext.request.contextPath }/resources/assets/js/owl.carousel.min.js"></script> --%>
-<%--         <script src="${pageContext.request.contextPath }/resources/assets/js/wow.js"></script> --%>
-<%--         <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script> --%>
-<%--         <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script> --%>
-<%--         <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script> --%>
-<%--         <script src="${pageContext.request.contextPath }/resources/js/product_detail.js"></script> --%>
+        <script src="${pageContext.request.contextPath }/resources/assets/js/jquery-1.10.2.min.js"></script> 
+        <script src="${pageContext.request.contextPath }/resources/bootstrap/js/bootstrap.min.js"></script>
+        <script src="${pageContext.request.contextPath }/resources/assets/js/bootstrap-select.min.js"></script>
+        <script src="${pageContext.request.contextPath }/resources/assets/js/bootstrap-hover-dropdown.js"></script>
+        <script src="${pageContext.request.contextPath }/resources/assets/js/easypiechart.min.js"></script>
+        <script src="${pageContext.request.contextPath }/resources/assets/js/jquery.easypiechart.min.js"></script>
+        <script src="${pageContext.request.contextPath }/resources/assets/js/owl.carousel.min.js"></script>
+        <script src="${pageContext.request.contextPath }/resources/assets/js/wow.js"></script>
+        <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
+        <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
+        <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
+        <script src="${pageContext.request.contextPath }/resources/js/product_detail.js"></script>
     </head>
     <body>
 

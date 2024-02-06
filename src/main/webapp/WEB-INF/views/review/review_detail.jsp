@@ -4,7 +4,7 @@
 <%-- 날짜 출력 형식 변경을 위해 JSTL - format(fmt) 라이브러리 등록 --%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- 기존의 CSS 및 JavaScript 링크 -->
-<c:set var="comId" value="${param.com_id}" />
+<c:set var="classIdx" value="${param.class_idx}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,9 +54,9 @@ var sId = '<c:out value="${sessionScope.sId}"/>';
 // ===============================
 // 댓글 아이콘 클릭 시 댓글창을 여는 함수
 function showCommentForm(element) {
-    var reviewNum = element.getAttribute('data-review-num');
-    var comId = getParameterByName('com_id');
-    var url = contextPath + "/review/comment?com_id=" + comId + "&review_num=" + reviewNum;
+    var reviewIdx = element.getAttribute('data-review-num');
+    var classIdx = getParameterByName('class_idx');
+    var url = contextPath + "/review/comment?class_idx=" + comId + "&review_idx=" + reviewIdx;
     var windowName = "commentPopup";
     var windowSize = "width=565,height=632";
     window.open(url, windowName, windowSize);
