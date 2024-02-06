@@ -21,11 +21,11 @@
 			, #{token.refresh_token}
 			, #{token.user_seq_no}
 			, null
-			, ""
-			, ""
-			, ""
-			,""
-			,""
+			, #{name}
+			, #{fintech}
+			, #{account}
+			, #{bank}
+			, now()
 		)
 	</insert>
 	

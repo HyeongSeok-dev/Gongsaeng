@@ -36,7 +36,7 @@ $(document).ready(function() {
 	
 	//==============================================================================
 	//'결제하기'버튼 클릭시
-	$("#payBtn").on("click",function(e) {
+	$("#payBtn").on("click",function() {
 		
 		// 라디오버튼에 따른 결제팝업 변경
 		
@@ -44,8 +44,15 @@ $(document).ready(function() {
 		IMP.init('imp22106057');
 		
 		if($('input[name="pay_method"]:checked').length == 0) { //결제수단에서 라디오버튼 미 선택시 경고창 출력
-				alert("결제수단을 선택해주세요.");
-				return;
+                alert("결제수단을 선택해주세요.");
+                return;
+            }else if (!$('#payAgree').is(':checked')) {   // 결제이용 약관 체크박스가 체크되지 않았을 때 경고창 출력
+              alert("결제이용 약관을 동의해주세요.");
+              return;
+            } else if (!$('#payBackAgree').is(':checked')) { // 환불정책 약관 체크박스가 체크되지 않았을 때 경고창 출력
+              alert("환불정책 약관을 동의해주세요.");
+              return;
+            //===========================================================================
 			} else if($('input[type=radio][value="1"]').is(':checked')) {//카카오페이
 					// V1방법 카카오페이 연동
 					console.log("kakao");
@@ -189,20 +196,6 @@ $(document).ready(function() {
 				});
 			} //결제수단선택
 			
-		//결제이용약관 필수처리
-    	if (!$('#payAgree').is(':checked')) {
-        	alert('결제이용 약관을 동의해주세요');
-	        e.preventDefault();
-        	return; 
-   		 }
-   		 
-   		//환불정책동의 필수처리
-	    if (!$('#payBackAgree').is(':checked')) {
-	        alert('환불정책 약관을 동의해주세요');
-	        e.preventDefault();
-        	return; 
-	    }
-         
 	}); //payBtn
 	
 	

@@ -5,9 +5,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>공생 | 공간을 생각하다</title>
@@ -56,7 +53,7 @@
         <script src="${pageContext.request.contextPath }/resources/assets/js/wow.js"></script>
         <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
         <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
-        <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
+<%--         <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script> --%>
 		<script src="${pageContext.request.contextPath }/resources/js/cart.js"></script>
         
     </head>
@@ -80,42 +77,50 @@
 <div class="container">
 <form action="">
 	<div class="row justify-content-center">
-	<!-- 중간에 오게하기이해 div추가 -->
+	<!-- 중간에 오게하기위해 div추가 -->
 	<div class="col-12 col-8 offset-2">
 <!-- 	<div class="col-xs-12 col-xs-offset-2"> -->
 		<div class="col-xs-12" style="margin-top: 70px; margin-bottom: 70px;">
 			<div class="panel panel-info">
 			
-<%-- 	    	<c:forEach var="cart" items="${cartList}" >  --%>
+	    	<c:forEach var="cart" items="${cartList}" varStatus="status"> 
 				<div class="panel-body">
 					<div class="row">
+						<div><!-- 사진이랑 상세정보 정렬하기위한 div -->
+						<!-- 대표사진 -->
 					    <div class="col-xs-2">
 					        <img class="img-responsive" src="${pageContext.request.contextPath }/resources/img/payment_test.png">
 					    </div>
 					    <!-- 클래스이름 -->
-					    <div class="col-xs-4">
-					        <h3 class="product-name"><strong>셀프 도배 시공</strong></h3>
-					        <h4 class="product-name">방문날짜/시간</h4>
+					    <div class="col-xs-4" style="margin-top: -10px;">
+					        <h3 class="product-name"><strong>${cart.class_title}</strong></h3>
+					        <h6 class="product-name2">방문 날짜 : ${cart.res_visit_date}</h6>
+					        <h6 class="product-name3">방문 시간 : ${cart.res_visit_time}</h6>
 					    </div>
+					    </div><!-- 사진이랑 상세정보 정렬하기위한 div -->
+					    
 					    <div class="col-xs-6">
+					    
 					        <div class="row">
 					            <div class="col-xs-6 text-right">
-					                <h6><strong>15,000원<span class="text-muted">&nbsp;&nbsp;&nbsp;x</span></strong></h6>
+					                <h6><strong><span class="text-muted">${cart.class_price}</span>&nbsp;&nbsp;&nbsp;x</strong></h6>
 					            </div>
-					            <div class="col-xs-4">
-					                <input type="number" class="form-control input-sm" id="res_person" value="{res_person}"  min="1" max="20">
+					            <div class="col-xs-4" style="margin-top: 15px;">
+<%-- 					                <input type="number" class="form-control input-sm res_person" id="res_person" min="1" max="20" value="${cart.res_member_count}"> --%>
+					            	<input type="number" class="form-control input-sm res_person" min="1" max="20" value="${cart.res_member_count}">
 					            </div>
 					        </div>
+					        
 					        <div class="row move-right">
 						        <!-- 수정하기 버튼-->
 					            <div class="col-xs-6">
-					                <button type="button" id="update" class="btn btn-default btn-sm btn-block" style="color: #F0F0F0; width: 272px;">
-					                    수정하기
+					                <button type="button" value="${cart.cart_idx}" class="btn btn-default btn-sm btn-block update" style="color: #F0F0F0; width: 272px;">
+					                수정하기
 					                </button>
 					            </div>
 					            <!-- 삭제하기 이모티콘 -->
 					            <div class="col-xs-6">
-					                <button type="button" id="delet" class="btn btn-link btn-xs">
+					                <button type="button" class="btn btn-link btn-xs delet" value="${cart.cart_idx}">
 					                    <span class="glyphicon glyphicon-trash"> </span>
 					                </button>
 					            </div>
@@ -124,12 +129,12 @@
 					</div>
 					<hr>
 				 </div>
-<%-- 			    </c:forEach>  --%>
+			    </c:forEach> 
 
 				<div class="panel-footer">
 					<div class="row text-center">
 						<div class="col-xs-9">
-							<h4 class="text-right">총결제금액 <strong>15,000원</strong></h4>
+							<h4 class="text-right">총결제금액 <strong id="total"></strong></h4>
 						</div>
 						<div class="col-xs-3">
 							<button type="button" id="payment" class="btn btn-success btn-block">
@@ -138,6 +143,7 @@
 						</div>
 					</div>
 				</div>
+				
 			</div>
 		</div>
 		</div><!-- 중간에오게하기위해 div추가 -->

@@ -6,6 +6,9 @@
 /*     min-height: 100px; */
 /* } */
 
+/* 클래스가격 X 인원수 div */
+
+
 /* 결제하기 버튼 위치 */
 #payment {
     margin-top: 20px;
@@ -21,11 +24,6 @@
         position: relative;
         left: 185px;
     }
-
-/* 예약인원수 박스위치*/
-#resPerson{
-	margin-top: 20px;
-}
 
 /* 클래스대표 이미지 */
 .img-responsive {

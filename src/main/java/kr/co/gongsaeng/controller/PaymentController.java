@@ -1,5 +1,6 @@
 package kr.co.gongsaeng.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,13 +40,13 @@ public class PaymentController {
 	}
 	
 	//약관동의
-	@GetMapping("charge/agree")
+	@GetMapping("payment/charge/agree")
 	public String chargeAgree() {
 		return "payment/charge_agree";
 	}
 	
 	//메인화면
-	@GetMapping("payment/charge/main")
+	@PostMapping("payment/charge/main")
 	public String chargeMain() {
 		return "payment/charge_main";
 	}
@@ -89,9 +90,25 @@ public class PaymentController {
 		if(responseToken == null || responseToken.getAccess_token() == null) {
 			model.addAttribute("msg", "토큰 발급 실패! 다시 인증하세요!");
 			model.addAttribute("isClose", true);
-			model.addAttribute("targetURL", "payment/charge_agree");
+			model.addAttribute("targetURL", "/gongsaeng");
 			return "forward";
 		}
+		
+		//==============================================================================
+		//데이터베이스에 은행명과 계좌 등록일저장
+		Map<String, String> accessTokenMap = new HashMap<String, String>(); 
+		//요청에 사용할 엑세스 토큰(세션)을 map객체에 추가
+		accessTokenMap.put("access_token", responseToken.getAccess_token());
+		accessTokenMap.put("user_seq_no", responseToken.getUser_seq_no());
+		
+		Map<String, Object> bankDetail = bankService.requestUserInfo(accessTokenMap);
+		
+		//res_list 배열요소를 저장하기 위해 배열분해
+		Map<String, Object> res_list = null;
+		for(Map<String, Object> map : (ArrayList<Map<String, Object>>)bankDetail.get("res_list")) {
+			res_list = map;
+		}
+		//==============================================================================
 		
 		// BankApiService - registAccessToken() 메서드 호출하여 토큰 관련 정보 저장 요청
 		String id = (String)session.getAttribute("sId");
@@ -99,6 +116,10 @@ public class PaymentController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
 		map.put("token", responseToken);
+		map.put("name", bankDetail.get("user_name")); //사용자이름
+		map.put("fintech", res_list.get("fintech_use_num")); //펜테크번호
+		map.put("account", res_list.get("account_num_masked")); //계좌번호
+		map.put("bank", res_list.get("bank_name")); //은행명
 		bankService.registAccessToken(map);
 		
 		// 세션 객체에 엑세스 토큰(access_token), 사용자번호(user_seq_no) 저장
@@ -120,11 +141,11 @@ public class PaymentController {
 		
 		if(session.getAttribute("sId") == null) {
 			model.addAttribute("msg", "로그인 필수");
-			model.addAttribute("isClose", true);
+			model.addAttribute("targetURL", "/gongsaeng/member/login");
 			return "forward";
 		}else if(session.getAttribute("access_token") == null) {
 			model.addAttribute("msg", "계좌 인증 필수");
-			model.addAttribute("isClose", true);
+			model.addAttribute("targetURL", "/gongsaeng");
 			return "forward";
 		}
 		
@@ -148,11 +169,11 @@ public class PaymentController {
 		//로그인, 계좌인증 필수처리
 		if(session.getAttribute("sId") == null) {
 			model.addAttribute("msg", "로그인 필수");
-			model.addAttribute("isClose", true);
+			model.addAttribute("targetURL", "/gongsaeng/member/login");
 			return "forward";
 		}else if(session.getAttribute("access_token") == null) {
 			model.addAttribute("msg", "계좌 인증 필수");
-			model.addAttribute("isClose", true);
+			model.addAttribute("targetURL", "/gongsaeng");
 			return "forward";
 		}
 		

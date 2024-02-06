@@ -77,7 +77,7 @@
 	//개인정보 동의 페이지(charge_agree)페이지로 이동
 	function agreePage() {
 	    alert('계좌를 등록해주세요.');
-	    window.open('charge/agree', '_blank', 'width=600, height=800 ');
+	    window.open('payment/charge/agree', '_blank', 'width=600, height=800 ');
 	}
 	
 </script>
