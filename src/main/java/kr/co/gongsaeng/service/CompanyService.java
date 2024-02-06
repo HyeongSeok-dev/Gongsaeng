@@ -3,6 +3,7 @@ package kr.co.gongsaeng.service;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ import kr.co.gongsaeng.mapper.CompanyMapper;
 import kr.co.gongsaeng.vo.ClassVO;
 import kr.co.gongsaeng.vo.CompanyVO;
 import kr.co.gongsaeng.vo.MemberVO;
+import kr.co.gongsaeng.vo.PaymentVO;
 @Service
 public class CompanyService {
 	
@@ -53,7 +55,27 @@ public class CompanyService {
 		return mapper.deleteSaleList(payNum);
 	}
 
+	// [ 정산 금액 ]
+	public int calculateIncome(Integer comIdx) {
+
+		return mapper.selectIncome(comIdx);
+	}
+
+	// [ 계좌 정보 출력 ] 
+	public List<CompanyVO> getCompanyAccountInfo(int comIdx) {
+
+		return mapper.selectCompanyAccountInfo(comIdx);
+	}
+
+	// [ 정산 내역 출력 ]
+	public List<PaymentVO> getCompanyPaymentInfo(Integer comIdx) {
+
+		return mapper.selectCompanyPaymentInfo(comIdx);
+	}
+
+
+}
+
 
 	
 	
-}

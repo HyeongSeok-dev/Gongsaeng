@@ -1,5 +1,7 @@
 package kr.co.gongsaeng.vo;
 
+import java.sql.Date;
+
 import lombok.Data;
 
 @Data
@@ -19,10 +21,10 @@ public class PaymentVO {
 	private String per_Info_consent;
 	private int pay_status;
 	private int pay_category;
-	private int pay_cal_staus; //환급상태
-	private int res_visit_date; // 예약일
-	private int refund_request_date; //환급신청일
-	private int refund_date; //환급완료일
+	private int pay_cal_status; //환급상태
+	private Date res_visit_date; // 예약일
+	private Date refund_request_date; //환급신청일
+	private Date refund_date; //환급완료일
 	
 	
 	//[ 관리자 페이지 ]

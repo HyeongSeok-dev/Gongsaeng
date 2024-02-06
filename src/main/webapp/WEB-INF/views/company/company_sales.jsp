@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -280,7 +281,6 @@ tbody {
 											              <th scope="col">#</th>
 											              <th scope="col">결제상태</th>
 											              <th scope="col">결제번호</th>
-<!-- 											              <th scope="col">클래스 번호</th> -->
 											              <th scope="col">클래스명</th>
 											              <th scope="col">결제 수단</th>
 											              <th scope="col">결제 금액</th>  
@@ -293,17 +293,34 @@ tbody {
 											            <c:forEach items="${saleList}" var="sale">
 											            <tr>
 											              <th scope="row">1</th> <!-- # -->
-											              <td>${sale.pay_status}</td> <!-- 결제 상태 -->
+											              <td>
+											              <c:choose>
+											              	<c:when test="${sale.pay_status == 1}">
+											              		정상
+											              	</c:when>
+											              	<c:when test="${sale.pay_status == 2}">
+											              		취소
+											              	</c:when>
+											              </c:choose>
+											              </td> <!-- 결제 상태 -->
 											              <td>${sale.pay_num}</td> <!-- 결제 번호  -->
-<%-- 											              <td>${sale.class_idx}</td> <!-- 클래스 번호 --> --%>
 											              <td>${sale.class_title }</td> <!-- 클래스명 -->
-											              <td>${sale.pay_category}</td> <!-- 결제 수단 -->
+											              <td>
+											              <c:choose>
+											              	<c:when test="${sale.pay_category == 1}">
+											              		일반 결제
+											              	</c:when>
+											              	<c:when test="${sale.pay_category == 1}">
+											              		포인트 결제
+											              	</c:when>
+											              </c:choose>
+											              </td> <!-- 결제 수단 -->
 											              <td>${sale.payment}</td> <!-- 결제 금액 -->
-											              <td>${sale.pay_date }</td> <!-- 클래스 구매일 -->
+<%-- 											             <td>${sale.pay_date }</td> <!-- 클래스 구매일 --> --%>
+					                                      <td>
+					                                      ${sale.pay_date }
+											              </td>
 											              <td>${sale.member_id}</td> <!-- 구매자 -->
-<!-- 											              <td>인테리어 클</td> -->
-<!-- 											              <td>나야나</td> -->
-<!-- 											              <td>010-0000-0000</td> -->
 											              <td>
 												              <input type="button" value="상세">
 												              &nbsp;&nbsp;

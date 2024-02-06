@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import kr.co.gongsaeng.vo.CompanyVO;
 import kr.co.gongsaeng.vo.MemberVO;
+import kr.co.gongsaeng.vo.PaymentVO;
 
 @Mapper
 public interface CompanyMapper {
@@ -28,6 +29,16 @@ public interface CompanyMapper {
 
 	// 매출내역 삭제
 	int deleteSaleList(String payNum);
+
+	// 정산 내역 출력
+	int selectIncome(Integer comIdx);
+
+	// 계좌정보 출력
+	List<CompanyVO> selectCompanyAccountInfo(int comIdx);
+
+	// 정산내역 출력
+	List<PaymentVO> selectCompanyPaymentInfo(Integer comIdx);
+
 
 
 	

@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.protobuf.TextFormat.ParseException;
 
@@ -47,8 +48,8 @@ public class CompanyController {
 	
 	@Autowired
 	private ClassService classService;
-	
 
+	
 	// 클래스 등록
 	@GetMapping("classRegisterForm")
 	public String classRegisterForm(HttpSession session, Model model) {
@@ -300,8 +301,8 @@ public class CompanyController {
 	                Time time = new Time(format.parse(text).getTime());
 	                setValue(time);
 	            } catch (java.text.ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+
+	            	e.printStackTrace();
 				}
 	        }
 
@@ -406,8 +407,6 @@ public class CompanyController {
 					
 				}
 	
-	
-
 	// =============================================================
 	// 클래스 내역
 	@GetMapping("company/class") 
@@ -469,43 +468,62 @@ public class CompanyController {
 		 } else {
 			 model.addAttribute("msg", "매출 정보 삭제처리가 실패했습니다.");			 
 		 } 
-	 
-	 
-	 
-	 
+
 		 return "redirect:/company/sales";
 	 }
+	 // =============================================================		
+	 // 정산 신청 메인
+	 @GetMapping("company/income")
+	 public String company_income(HttpSession session, Model model, PaymentVO payment, CompanyVO company) {
+		
+		// 정산금액 산출(수수료 : 10%)
+		String sId = (String)session.getAttribute("sId");
+		System.out.println("Current sId from session: >>>>>>>>>>>>> " + sId);
+			
+		Integer comIdx = companyService.findComIdxBysId(sId);
+		System.out.println("Current comIdx from session: >>>>>>>>>>>>> " + comIdx);
+		 
+		int income = companyService.calculateIncome(comIdx);
+		model.addAttribute("income",income);
+		
+	    // 계좌정보 조회
+	    List<CompanyVO> companyAccountInfo = companyService.getCompanyAccountInfo(comIdx);
+	    model.addAttribute("companyAccountInfo", companyAccountInfo);
+			 
+		 return "company/company_income";
+	 }
+	 
+	 // 정산 내역
+	 @GetMapping("company/income/list")
+	 public String company_income_list(HttpSession session, Model model, PaymentVO payment) {
+
+		 String sId = (String)session.getAttribute("sId");
+		 System.out.println("Current sId from session: >>>>>>>>>>>>> " + sId);
+		 
+		 Integer comIdx = companyService.findComIdxBysId(sId);
+		 System.out.println("Current comIdx from session: >>>>>>>>>>>>> " + comIdx);
+
+		 // payment 테이블 조회
+		 List<PaymentVO> paymentInfo = companyService.getCompanyPaymentInfo(comIdx);
+		 model.addAttribute("paymentInfo",paymentInfo);
+		 
+		 return "company/company_income_list";
+	 }
+	 
+	 // 정산신청
 	
-	
-	
-	
-	
-	
-	
+	 
+	 
+	 
+	 
 	@GetMapping("company/main")
 	public String company_main() {
 		return "company/company_main";
 	}
-		
 	
-
-//	@GetMapping("company/reservation")
-//	public String company_reservation() {
-//		return "company/company_reservation";
-//	}
 	@GetMapping("company/sales2")
 	public String company_sales2() {
 		return "company/company_sales2";
-	}
-
-	@GetMapping("company/income")
-	public String company_income() {
-		return "company/company_income";
-	}
-	
-	@GetMapping("company/income/list")
-	public String company_income_list() {
-		return "company/company_income_list";
 	}
 
 	@GetMapping("company/member")
