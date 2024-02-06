@@ -4,9 +4,8 @@ import lombok.Data;
 
 @Data
 public class CartVO {
-	private int cart_idx; //장바구니 번호
-	private String member_id; //회원아이디
-	private int class_idx; //클래스번호
-//	private date 
+	private int cart_idx; //장바구니 번호 -cart
+	private String member_id; //회원아이디 -cart
+	private int class_idx; //클래스번호 -cart
 
 }//cartVO

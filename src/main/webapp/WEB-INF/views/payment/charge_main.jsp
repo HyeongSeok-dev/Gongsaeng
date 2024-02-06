@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +34,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/responsive.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/global.css">
         
-        <link href="${pageContext.request.contextPath }/resources/css/payment_agree.css" rel="stylesheet" type="text/css">
+        <link href="${pageContext.request.contextPath }/resources/css/charge_main.css" rel="stylesheet" type="text/css">
         
         
         <script src="${pageContext.request.contextPath }/resources/assets/js/modernizr-2.6.2.min.js"></script>
@@ -59,11 +60,42 @@
 <body>
 	<div class="container" >
     <div class="page-header text-center">
-        <h3>${member_name}님의 0페이 현재잔액<span class="pull-right label label-default"></span></h3><br>
+        <h3>{userInfo.user_name}님의 0페이 현재잔액<span class="pull-right label label-default"></span></h3><br>
         <h1>{}원</h1>
     </div>
     <div class="row">
      <div class="col-md-3"></div> <!-- 앞의 3칼럼을 비워둠 -->
+     
+     <table class="table table-striped custab">
+			    <thead>
+			        <tr>
+			            <th>은행</th>
+			            <th>계좌번호</th>
+			            <th>핀테크이용번호</th>
+			            <th class="text-center"></th>
+			        </tr>
+			    </thead>
+	            
+	            <c:forEach var="accounCt" items="${userInfo.res_list}">
+		            <tr>
+		                <td>{account.bank_name}</td>
+		                <td>{account.account_num_masked}</td>
+		                <td>{account.fintech_use_num}</td>
+		                <td>
+			                <%--잔액조회 API서비스 요청을 위한 데이터 전송폼 생성 --%>
+			                <form action="main" method="post">
+								<input type="hidden" name="fintech_use_num" value="${account.fintech_use_num}">
+								<input type="hidden" name="user_name" value="${userInfo.user_name}">
+								<input type="hidden" name="account_num_masked" value="${account.account_num_masked}">
+				                <input type="submit" value="선택">
+							</form>
+		                </td>
+		            </tr>
+	            </c:forEach>
+	            
+	           
+		    </table>
+     
     	<div class="col-md-6">
             <div class="panel with-nav-tabs panel-default">
                 <div class="panel-heading">

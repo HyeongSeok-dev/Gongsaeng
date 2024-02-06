@@ -34,7 +34,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/responsive.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/global.css">
         
-        	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/payment_agree.css">
+        	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/charge_agree.css">
         
         
         <script src="${pageContext.request.contextPath }/resources/assets/js/modernizr-2.6.2.min.js"></script>
@@ -77,10 +77,10 @@ table thead {
       background-color: #f2f2f2 !important; /* 원하는 색상으로 변경하세요. */
 } 
 
-input[type="button"]:hover {
+input[type="submit"]:hover {
        background-color: #b3b3b3; /* 마우스를 올렸을 때의 색상 */
 }
-input[type="button"]:active {
+input[type="submit"]:active {
     background-color: #f2f2f2; /* 클릭했을 때의 색상 */
 }
 /* table th, table td { */
@@ -95,7 +95,9 @@ input[type="button"]:active {
 	<div class="container">
 	    <div class="row col-md-12 mx-auto custyle">
 	    
-	     <h2>${userInfo.user_name} 고객님의 계좌 정보</h2>
+	     <br><br>
+	     <h2 style="text-align: center;">${userInfo.user_name} 고객님의 계좌 정보</h2>
+	     <br>
 	     
 		    <table class="table table-striped custab">
 			    <thead>
@@ -114,7 +116,7 @@ input[type="button"]:active {
 		                <td>${account.fintech_use_num}</td>
 		                <td>
 			                <%--잔액조회 API서비스 요청을 위한 데이터 전송폼 생성 --%>
-			                <form action="BankAccountDetail" method="post">
+			                <form action="main" method="post">
 								<input type="hidden" name="fintech_use_num" value="${account.fintech_use_num}">
 								<input type="hidden" name="user_name" value="${userInfo.user_name}">
 								<input type="hidden" name="account_num_masked" value="${account.account_num_masked}">

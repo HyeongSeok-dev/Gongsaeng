@@ -69,7 +69,36 @@ public interface ReviewMapper {
 
 	int updateReview(ReviewVO review);
 
+	List<ReviewVO> getSortedReviews(@Param("comId") int comId, 
+			@Param("classIdx")int classIdx, 
+			@Param("sortType") String sortType, 
+			@Param("photoOnly") boolean photoOnly);
+
+	// 각 리뷰에 대한 댓글 갯수 카운트
+	int selectCountComment(int review_idx);
+
+	// 이런 곳 좋아요 출력
+	int getCompanyLike(int classIdx);
+	
+	// 리뷰 내용 가져오기
+	ReviewVO getReview(int reviewNum);
+
 	// 리뷰 수정 업데이트
 //	int updateReview(ReviewVO review);
+	
+	// 리뷰 정렬 
+	List<ReviewVO> selectReviewsByNewest(int comId);
+
+	// 예약번호 1개당 1개의 리뷰만 작성 가능
+	List<Map<String, String>> selectReservationList(@Param("memberId")String memberId, @Param("classIdx")int classIdx, @Param("payNum")int payNum);
+
+	// 댓글 작성자 조회 요청
+	Map<String, String> selectTinyReplyReviewWriter(Map<String, String> map);
+
+	int deleteTinyReplyReview(Map<String, String> map);
+
+//	List<ReviewVO> selectReviewsByHighestScore(int comId);
+//
+//	List<ReviewVO> selectReviewsByLowestScore(int comId);
 
 }

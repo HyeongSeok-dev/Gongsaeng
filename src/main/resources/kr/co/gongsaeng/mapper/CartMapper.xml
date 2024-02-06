@@ -26,15 +26,17 @@
 	
 	<!-- 장바구니 조회하기 -->
 	<select id="cartList" resultSets="cartList">
-		SELECT *
-		FROM cart
-		WHERE member_id = #{member_id}
+		SELECT c.member_id, c.cart_idx, c.class_idx, c.res_member_count, c.res_visit_date,
+	       	   c.res_visit_time, cl.class_title, cl.class_pic1, cl.class_price
+		FROM cart c
+		JOIN class cl ON c.class_idx = cl.class_idx
+		WHERE c.member_id = #{member_id}
 	</select>
 	
 	<!-- 장바구니 수량수정 -->
 	<update id="updateCart">
 		UPDATE cart
-		SET res_person = #{res_person}
+		SET res_member_count = #{res_person}
 		WHERE cart_idx = #{cart_idx}
 	</update>
 	

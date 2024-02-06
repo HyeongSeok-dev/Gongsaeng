@@ -8,16 +8,15 @@
 		INSERT 
 		INTO review
 		VALUES (#{review_idx}
-				,'user12345'
-				,'0'
+				,#{member_id}
 				,#{review_content}
 				,#{review_score}
 				,1
 				,1
 				,now()
 				,#{review_img_1}
-				,NULL
-				,NULL
+				,null
+				,null
 				,1
 				,#{review_kind}
 				,#{review_detail}
@@ -32,6 +31,8 @@
 				,#{review_clean_toilet}
 				,#{review_etc_fast}
 				,#{review_no_keyword}
+				,#{review_like}
+				,0
 				)
 	</insert>
 
@@ -62,25 +63,25 @@
 	</select>
 	
 	<!-- 예약번호 1개당 1개의 리뷰만 작성 가능 -->
-<!-- 	<select id="selectReservationList" resultType="map"> -->
-<!-- 		SELECT  -->
-<!-- 		    p.pay_num,  -->
-<!-- 		    COALESCE(a.review_count, 0) AS review_num -->
-<!-- 		FROM  -->
-<!-- 		    payment p -->
-<!-- 		LEFT JOIN  -->
-<!-- 		    (SELECT  -->
-<!-- 		         pay_num,  -->
-<!-- 		         COUNT(*) AS review_count  -->
-<!-- 		     FROM  -->
-<!-- 		         review -->
-<!-- 		     GROUP BY  -->
-<!-- 		         res_idx) a ON r.res_idx = a.res_idx -->
-<!-- 		WHERE  -->
-<!-- 		    r.user_idx = #{userIdx}  -->
-<!-- 		    AND r.com_id = #{comId} -->
-<!-- 		    AND r.res_status = 3; -->
-<!-- 	</select>	 -->
+	<select id="selectReservationList" resultType="map">
+		SELECT 
+		    p.pay_num, 
+		    COALESCE(a.review_count, 0) AS review_idx
+		FROM 
+		    payment p
+		LEFT JOIN 
+		    (SELECT 
+		         pay_num, 
+		         COUNT(*) AS review_count 
+		     FROM 
+		         review
+		     GROUP BY 
+		         res_idx) a ON r.res_idx = a.res_idx
+		WHERE 
+		    r.user_idx = #{userIdx} 
+		    AND r.com_id = #{comId}
+		    AND r.res_status = 3;
+	</select>	
 	
 	<!-- 리뷰작성 포인트 적립 -->
 	<insert id="updatePoint">
@@ -131,14 +132,14 @@
 	
 	<!-- 댓글 작성자 조회 - SELECT -->
 	<!-- 단, 조회 결과를 동일한 Map 객체에 저장하기 위해 댓글번호도 함께 조회(생략 시 작성자만 저장됨) -->
-<!-- 	<select id="selectTinyReplyReviewWriter" resultType="map"> -->
-<!-- 		SELECT  -->
-<!-- 			comment_num -->
-<!-- 			, member_id -->
-<!-- 		FROM comment -->
-<!-- 		WHERE -->
-<!-- 		 comment_num = #{comment_num} -->
-<!-- 	</select> -->
+	<select id="selectTinyReplyReviewWriter" resultType="map">
+		SELECT 
+			comment_num
+			, member_id
+		FROM comment
+		WHERE
+		 comment_num = #{comment_num}
+	</select>
 
 	<!-- 댓글 목록 조회 (SELECT) -->
 <!-- 	<select id="selectTinyReplyReviewList" resultType="map"> -->
@@ -152,14 +153,6 @@
 <!-- 			, c.comment_re_seq ASC -->
 <!-- 	</select> -->
 
-	<!-- 일치하는 레코드 내의 파일명 삭제(널스트링으로 값 수정) - UPDATE -->
-<!-- 	<update id="updateReviewFile"> -->
-<!-- 		UPDATE review -->
-<!-- 		SET  -->
-<!-- 			review_img_1 = CASE WHEN review_img_1 = #{review_img_1} THEN '' ELSE review_img_1 END -->
-<!-- 		WHERE -->
-<!-- 			review_idx = #{review_idx}	 -->
-<!-- 	</update> -->
 
 
 	<!-- 리뷰 리스트 -->
@@ -235,7 +228,7 @@
 	    WHERE class_idx = #{class_idx}
 	</select>
 	
-		<!-- 이런 점이 좋았어요 -->
+	<!-- 이런 점이 좋았어요 -->
 	<select id="countReviewsByComId" resultType="reviewcount">
 	    SELECT
 	        class_idx,
@@ -257,7 +250,21 @@
 	    GROUP BY class_idx
 	</select>
 	
-		<insert id="insertTinyReReplyReview">
+	<!-- 리뷰 정렬 -->
+	<select id="selectReviewsByNewest" parameterType="int" resultType="review">
+    	SELECT * 
+    	FROM review 
+    	WHERE class_idx = #{class_idx} 
+    	ORDER BY review_date DESC
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	<insert id="insertTinyReReplyReview">
 		<selectKey keyProperty="result" resultType="map" order="BEFORE">
 			SELECT 
 				IFNULL(MAX(comment_num), 0) AS comment_num
@@ -293,29 +300,83 @@
 	<update id="updateReview" parameterType="kr.co.gongsaeng.vo.ReviewVO">
 	    UPDATE review
 	    SET
-	        <if test="user_id != null"> member_id = #{v}</if>
+	        <if test="member_id != null"> member_id = #{v}</if>
 	        <if test="review_content != null">, review_content = #{review_content}</if>
 	        <if test="review_score != null">, review_score = #{review_score}</if>
-	        <if test="review_mood_interior != null">, review_mood_interior = #{review_mood_interior}</if>
-	        <if test="review_mood_alone != null">, review_mood_alone = #{review_mood_alone}</if>
-	        <if test="review_mood_large != null">, review_mood_large = #{review_mood_large}</if>
-	        <if test="review_mood_meeting != null">, review_mood_meeting = #{review_mood_meeting}</if>
-	        <if test="review_mood_view != null">, review_mood_view = #{review_mood_view}</if>
-	        <if test="review_food_big != null">, review_food_big = #{review_food_big}</if>
-	        <if test="review_food_deli != null">, review_food_deli = #{review_food_deli}</if>
-	        <if test="review_food_cheap != null">, review_food_cheap = #{review_food_cheap}</if>
-	        <if test="review_food_fresh != null">, review_food_fresh = #{review_food_fresh}</if>
-	        <if test="review_food_healthy != null">, review_food_healthy = #{review_food_healthy}</if>
-	        <if test="review_etc_kind != null">, review_etc_kind = #{review_etc_kind}</if>
-	        <if test="review_etc_parking != null">, review_etc_parking = #{review_etc_parking}</if>
-	        <if test="review_etc_toilet != null">, review_etc_toilet = #{review_etc_toilet}</if>
+	        <if test="review_kind != null">, review_kind = #{review_kind}</if>
+	        <if test="review_detail != null">, review_detail = #{review_detail}</if>
+	        <if test="review_cheap != null">, review_cheap = #{review_cheap}</if>
+	        <if test="review_explanation != null">, review_explanation = #{review_explanation}</if>
+	        <if test="review_interior != null">, review_interior = #{review_interior}</if>
+	        <if test="review_trendy != null">, review_trendy = #{review_trendy}</if>
+	        <if test="review_large != null">, review_large = #{review_large}</if>
+	        <if test="review_meeting != null">, review_meeting = #{review_meeting}</if>
+	        <if test="review_comfortable != null">, review_comfortable = #{review_comfortable}</if>
+	        <if test="review_parking != null">, review_parking = #{review_parking}</if>
+	        <if test="review_clean_toilet != null">, review_clean_toilet = #{review_clean_toilet}</if>
 	        <if test="review_etc_fast != null">, review_etc_fast = #{review_etc_fast}</if>
-	        <if test="review_etc_child != null">, review_etc_child = #{review_etc_child}</if>
 	        <if test="review_no_keyword != null">, review_no_keyword = #{review_no_keyword}</if>
 	        <if test="review_img_1 != null and review_img_1 != ''">, review_img_1 = #{review_img_1}</if>
 	        <if test="review_like != null">, review_like = #{review_like}</if>
-	    WHERE review_num = #{review_num}
+	    WHERE review_idx = #{review_idx}
 	</update>
+	
+	<!-- 리뷰 내용 가져오기 -->
+	<select id="getReview" parameterType="int" resultType="review">
+		SELECT *
+		FROM review
+		WHERE review_idx = #{review_idx}
+	</select>
+	
+	<!-- 리뷰 정렬(최신순|별점높은순|별점낮은순 ~ 사진/영상 리뷰만 보기) -->
+		<select id="getSortedReviews" resultType="review">
+	    SELECT * , m.member_nick
+	    FROM review r
+		LEFT JOIN member m ON r.member_id = m.member_id
+	    WHERE class_idx = #{classIdx}
+	    
+	    <if test="photoOnly">
+	        AND review_img_1 IS NOT NULL
+	    </if>
+	    <choose>
+	        <when test="sortType == 'newest'">
+	            ORDER BY review_update DESC
+	        </when>
+	        <when test="sortType == 'highest'">
+	            ORDER BY review_score DESC, review_update DESC
+	        </when>
+	        <when test="sortType == 'lowest'">
+	            ORDER BY review_score ASC, review_update DESC
+	        </when>
+<!-- 	        <when test="sortType == 'likes'"> -->
+<!-- 	            ORDER BY likes_count DESC, review_update DESC -->
+<!-- 	        </when> -->
+	        <otherwise>
+	            ORDER BY review_update DESC
+	        </otherwise>
+	    </choose>
+	</select>
 
+	<!-- 각 리뷰에 대한 댓글 갯수 카운트 -->
+	<select id="selectCountComment" parameterType="int" resultType="int">
+		SELECT COUNT(*)
+		FROM comment
+		WHERE review_idx = #{review_idx}	
+	</select>
+	
+		<!-- 이런 곳 좋아요 출력 -->
+	<select id="getCompanyLike" resultType="int">
+	    SELECT COUNT(*)
+	    FROM review
+	    WHERE class_idx = #{classIdx} AND review_like = 1;
+	</select>
+	
+		<!-- 댓글 삭제 - DELETE -->
+	<delete id="deleteTinyReplyReview">
+		DELETE
+		FROM comment
+		WHERE
+			comment_num = #{comment_num}
+	</delete>
 
 </mapper>

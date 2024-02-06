@@ -38,9 +38,134 @@ public class ReviewController {
 	@Autowired
 	private ReviewService service;
 	
+	// ===================================================================
+	// [ 리뷰 상세 페이지 ]
+	@GetMapping("review/detail")
+	public String detail(@RequestParam("class_idx") int classIdx, 
+			@RequestParam(defaultValue = "1") int comIdx,
+			//			@RequestParam("review_num") int reviewNum, 	
+			//			@RequestParam("user_id") String userId, 
+			@RequestParam(value = "sortType", required = false, defaultValue = "newest") String sortType,
+			@RequestParam(value = "photoOnly", required = false, defaultValue = "false") boolean photoOnly,
+			@RequestParam(value = "menuName", required = false) String menuName,
+			HttpSession session,
+			Model model,
+			HttpServletResponse response,
+			ReviewVO review) {
+		
+		// 세션 값 저장해두기
+		String sId = (String) session.getAttribute("sId");
+		
+		session.setAttribute("classIdx", classIdx);
+//	    session.setAttribute("review_num", reviewNum);
+		session.setAttribute("member_id", sId);
+		
+		// 업체 이름 불러오기
+		String comName = service.getCompanyName(comIdx);
+		//클래스명 불러오기
+		String classTitle = service.getClassTitle(classIdx);
+		model.addAttribute("classIdx", classIdx);
+		model.addAttribute("comName",comName);
+		model.addAttribute("classTitle",classTitle);
+//		System.out.println("작성페이지 comid>>>>>>>" + comId);
+//		System.out.println("작성페이지 comname>>>>>>>" + comName);
+		
+		// 리뷰 갯수
+		int reviewCount = service.getReviewCount(classIdx);
+		model.addAttribute("reviewCount",reviewCount);
+		
+		// 리뷰 별점 평균
+		Double reviewAverage = service.getReviewAverage(classIdx);
+		model.addAttribute("reviewAverage",reviewAverage);
+		
+		// 리뷰 리스트 불러오기
+		List<ReviewVO> reviews = service.getAllReviews(classIdx);
+//		System.out.println("리뷰리스트 불러오기>>>>>>>>>>>>>>>>>" + reviews);
+		
+		// 이런 점이 좋았어요 차트 수정
+		List<ReviewCountVO> reviewCounts = service.getReviewCountsByComId(classIdx);
+		String reviewCountsJson = new Gson().toJson(reviewCounts);
+		model.addAttribute("reviewCountsJson", reviewCountsJson);		
+		model.addAttribute("reviews", reviews);
+		
+//		if (!photoOnly && menuName != null && !menuName.isEmpty()) {
+//		    // 메뉴 이름으로 리뷰 필터링
+//		    reviews = service.getReviewsByMenuName(classIdx, menuName);
+//		} else {
+//		    // sortType에 따라 리뷰 정렬
+//		    switch (sortType) {
+//		        case "highest":
+//		            reviews = service.getReviewsSortedByScore(classIdx, true);
+//		            break;
+//		        case "lowest":
+//		            reviews = service.getReviewsSortedByScore(classIdx, false);
+//		            break;
+//		        case "newest":
+//		        default:
+//		            reviews = service.getAllReviews(classIdx); // 기본적으로 모든 리뷰 가져옴
+//		            break;
+//		    }
+//		}
+		// 카테고리별 리뷰 개수 가져오기
+//        ReviewCategoryCountVO categoryCount = service.categoryCount(classIdx);
+//        model.addAttribute("categoryCount",categoryCount);
+//        
+		// 이런 곳 좋아요 출력
+		int likeCount = service.getLikeCount(classIdx);
+		model.addAttribute("likeCount", likeCount);
+		
+		model.addAttribute("reviews", reviews);
+		
+		// 예약 완료 0번일 시 리뷰 작성 불가 메세지 출력 및 리뷰작성 
+//        if (sId != null) {
+//            Integer userIdx = service.findUserIdx(sId);
+//            int visitCount = service.getReservationCount(userIdx, classIdx);
+//            model.addAttribute("visitCount", visitCount);
+//        } else {
+//            model.addAttribute("visitCount", 0);
+//        }
+		
+		return "review/review_detail";
+	}
 	
+	// ===================================================================
+    // [ AJAX 요청 처리: 정렬된 리뷰 목록 출력 ]
+    @GetMapping("/review/redetail/sortedReviews")
+    @ResponseBody
+    public List<ReviewVO> getSortedReviews(@RequestParam("comId") int comId, 
+    										@RequestParam("classIdx") int classIdx,
+                                           @RequestParam("sortType") String sortType,
+                                           @RequestParam(value = "photoOnly", defaultValue = "false") boolean photoOnly
+                                           ) {
+    	
+        List<ReviewVO> reviews = service.getSortedReviews(comId, classIdx, sortType, photoOnly);
+        
+        for (ReviewVO review : reviews) {
+            int commentCount = service.getCommentCount(review.getReview_idx());
+            review.setCommentCount(commentCount);
+        }
+        
+//        System.out.println("메인에 뿌리는 리뷰 >>>>>>>>>>>" + reviews);
+        return reviews;
+    }
+    
+//    // ===================================================================
+//    // [ 키워드 검색 ] 추가하기
+//    @ResponseBody
+//    @GetMapping("/review/redetail/filterByCategory")
+//    public List<ReviewVO> filterReviewsByCategory(@RequestParam("comId") int comId,@RequestParam("category") String category) {
+//    	
+//    	return service.filterReviewsByCategory(comId, category);
+//    }  
+    
+	
+    // ===================================================================
+  	// [ 리뷰 작성 ] 
 	@GetMapping("review/write")
-	public String reviewWrite(HttpSession session, Model model, @RequestParam(defaultValue = "1") int comIdx, ReviewVO review, @RequestParam(defaultValue = "1") int payNum, @RequestParam(defaultValue = "1") int classIdx) {
+	public String reviewWrite(HttpSession session, Model model,ReviewVO review,
+			@RequestParam(defaultValue = "1") int comIdx,
+			 @RequestParam(defaultValue = "1") int payNum,
+			@RequestParam(defaultValue = "1") int classIdx) {
 		
 		System.out.println(classIdx);
 		
@@ -69,12 +194,12 @@ public class ReviewController {
 //	    Integer memberIdx = service.findUserIdx(userId);		
 		
 		// 작성자 방문횟수 계산
-		int visitCount = service.getReservationCount(memberId, comIdx);
+		int visitCount = service.getReservationCount(memberId, classIdx);
 		
 		// 예약번호 1개당 1개의 리뷰만 작성 가능
-//		List<Map<String, String>> res_list = service.getReservationList(memberId, comIdx, payNum);
-//		model.addAttribute("res_list",res_list);
-//		System.out.println("res_list >>>>>>>>>>>>>>>>>>>>>>>" + res_list);
+		List<Map<String, String>> res_list = service.getReservationList(memberId, classIdx, payNum);
+		model.addAttribute("res_list",res_list);
+		System.out.println("res_list >>>>>>>>>>>>>>>>>>>>>>>" + res_list);
 		
 	    model.addAttribute("comIdx", comIdx);
 	    model.addAttribute("comName", comName);
@@ -85,107 +210,108 @@ public class ReviewController {
 	}
 	
 	// "ReviewWritePro" 서블릿 요청에 대한 글쓰기 비즈니스 로직 처리
-		@PostMapping("review/reviewWritePro")
-		public String reviewWritePro(ReviewVO review, HttpSession session, Model model, RedirectAttributes redirectAttributes) {
-			
-			// 세션에서 user_id 가져오기
-			String memberId = (String) session.getAttribute("sId");
-//			if (userId == null) {
-//				model.addAttribute("msg", "로그인이 필요합니다");
-//				// targetURL 속성명으로 로그인 폼 페이지 서블릿 주소 저장
-//				model.addAttribute("targetURL", "/zzimkong/login");
-//				return "forward";
-//			}
-			review.setMember_id(memberId);
-			System.out.println("reviewVO값: " + review);
-
-			// user_idx 조회
-//			int userIdx = service.findUserIdx(userId);
-//		    model.addAttribute("userIdx", userIdx);
-			
-			// 가상의 디렉토리 생성
-			String uploadDir = "/resources/upload"; // 가상의 경로
-			// 가상 디렉토리에 대한 실제 경로
-			String saveDir = session.getServletContext().getRealPath(uploadDir);
-			// 날짜별 파일 분류
-			String subDir = "";		
-			// java.time.LocalXXX 클래스 활용
-			LocalDate now = LocalDate.now();
-			// LocalXXX 타입 객체의 날짜 포맷 변경(java.time.format.DateTimeFormatter)
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-			// 지정한 포맷을 적용하여 날짜 형식 변경한 결과를 변수(subDir)에 저장
-			subDir = now.format(dtf);
-			// 기존 업로드 경로(실제경로)에 서브디렉토리(날짜 경로) 결합
-			saveDir += File.separator + subDir;
-
-			try {
-				// 업로드 경로에 해당하는 Path 객체 리턴 받기
-				Path path = Paths.get(saveDir);
-				// Files.createDirectories() 메서드 호출하여 실제 경로 생성
-				Files.createDirectories(path); // 파라미터로 Path 객체 전달
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
-			// ReviesVO 객체에 전달(저장)된 실제 파일 정보가 관리되는 MultipartFile 타입 객체 꺼내기
-			MultipartFile mFile1 = review.getFile1();
-			// MultipartFile 객체의 getOriginalFilename() 메서드 호출 시 업로드 된 파일명 리턴
-			System.out.println("원본파일명1 : " + mFile1.getOriginalFilename());
-
-			// Board_file1 = DB컬럼명 = review_img_1
-			// file1 = file1 (= form태그내의 name속성값과 동일)
-			// fileName1 = fileName1
-			// --------------------------
-			// [ 파일명 중복방지 ]
-			review.setReview_img_1("");
-
-			String fileName1 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile1.getOriginalFilename();
-
-			// 파일이 존재할 경우 BoardVO 객체에 서브 디렉토리명(subDir)과 함께 파일명 저장
-			if (!mFile1.getOriginalFilename().equals("")) {
-				review.setReview_img_1(subDir + "/" + fileName1);
-			}
-
-//			System.out.println("실제 업로드 파일명1 : " + review.getReview_img_1());
-//			System.out.println("파일 실제 경로>>>>>>>>>>>>>>>> : " + subDir);
-//			System.out.println("실제경로!!!!!!!>>>>>>>>>>>>>>" + uploadDir);
-
-
-			// ----------------------------------------------------------------------
-			// ReviewService - registReview() 메서드 호출하여 리뷰글 등록 요청
-			// 파라미터 : ReviewVO객체 리턴타입 : int(insertCount)
-			System.out.println("리뷰오류>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + review);
-			int insertCount = service.registReview(review);
+	@PostMapping("review/reviewWritePro")
+	public String reviewWritePro(ReviewVO review, HttpSession session, Model model, RedirectAttributes redirectAttributes) {
 		
+		// 세션에서 user_id 가져오기
+		String memberId = (String) session.getAttribute("sId");
+//				if (userId == null) {
+//					model.addAttribute("msg", "로그인이 필요합니다");
+//					// targetURL 속성명으로 로그인 폼 페이지 서블릿 주소 저장
+//					model.addAttribute("targetURL", "/zzimkong/login");
+//					return "forward";
+//				}
+		review.setMember_id(memberId);
+		System.out.println("reviewVO값: " + review);
 
-			// 게시물 등록 작업 요청 결과 판별
-			if (insertCount > 0) {
-					// 리뷰 작성시 포인트 적립
-					review.setMember_id((String)session.getAttribute("sId"));
-					service.givePoint(review);
-				try {
-					if (!mFile1.getOriginalFilename().equals("")) {
-						mFile1.transferTo(new File(saveDir, fileName1));
-					}
-				} catch (IllegalStateException | IOException e) {
-					e.printStackTrace();
-				}
-				//com_id를 전달
-		        redirectAttributes.addAttribute("com_id", review.getClass_idx());
+		// user_idx 조회
+//				int userIdx = service.findUserIdx(userId);
+//			    model.addAttribute("userIdx", userIdx);
+		
+		// 가상의 디렉토리 생성
+		String uploadDir = "/resources/upload"; // 가상의 경로
+		// 가상 디렉토리에 대한 실제 경로
+		String saveDir = session.getServletContext().getRealPath(uploadDir);
+		// 날짜별 파일 분류
+		String subDir = "";		
+		// java.time.LocalXXX 클래스 활용
+		LocalDate now = LocalDate.now();
+		// LocalXXX 타입 객체의 날짜 포맷 변경(java.time.format.DateTimeFormatter)
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+		// 지정한 포맷을 적용하여 날짜 형식 변경한 결과를 변수(subDir)에 저장
+		subDir = now.format(dtf);
+		// 기존 업로드 경로(실제경로)에 서브디렉토리(날짜 경로) 결합
+		saveDir += File.separator + subDir;
 
-		        // 리뷰 작성 완료 페이지로 리다이렉트
-		        return "redirect:/review/complete";
+		try {
+			// 업로드 경로에 해당하는 Path 객체 리턴 받기
+			Path path = Paths.get(saveDir);
+			// Files.createDirectories() 메서드 호출하여 실제 경로 생성
+			Files.createDirectories(path); // 파라미터로 Path 객체 전달
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-			} else {
-				model.addAttribute("msg", "리뷰글 작성 실패!");
-				return "fail_back";
-			}
-	}
+		// ReviesVO 객체에 전달(저장)된 실제 파일 정보가 관리되는 MultipartFile 타입 객체 꺼내기
+		MultipartFile mFile1 = review.getFile1();
+		// MultipartFile 객체의 getOriginalFilename() 메서드 호출 시 업로드 된 파일명 리턴
+		System.out.println("원본파일명1 : " + mFile1.getOriginalFilename());
+
+		// Board_file1 = DB컬럼명 = review_img_1
+		// file1 = file1 (= form태그내의 name속성값과 동일)
+		// fileName1 = fileName1
+		// --------------------------
+		// [ 파일명 중복방지 ]
+		review.setReview_img_1("");
+
+		String fileName1 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile1.getOriginalFilename();
+
+		// 파일이 존재할 경우 BoardVO 객체에 서브 디렉토리명(subDir)과 함께 파일명 저장
+		if (!mFile1.getOriginalFilename().equals("")) {
+			review.setReview_img_1(subDir + "/" + fileName1);
+		}
+
+//				System.out.println("실제 업로드 파일명1 : " + review.getReview_img_1());
+//				System.out.println("파일 실제 경로>>>>>>>>>>>>>>>> : " + subDir);
+//				System.out.println("실제경로!!!!!!!>>>>>>>>>>>>>>" + uploadDir);
+
+
+		// ----------------------------------------------------------------------
+		// ReviewService - registReview() 메서드 호출하여 리뷰글 등록 요청
+		// 파라미터 : ReviewVO객체 리턴타입 : int(insertCount)
+		System.out.println("리뷰오류>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + review);
+		int insertCount = service.registReview(review);
 	
 
+		// 게시물 등록 작업 요청 결과 판별
+		if (insertCount > 0) {
+				// 리뷰 작성시 포인트 적립
+				review.setMember_id((String)session.getAttribute("sId"));
+				service.givePoint(review);
+			try {
+				if (!mFile1.getOriginalFilename().equals("")) {
+					mFile1.transferTo(new File(saveDir, fileName1));
+				}
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+			}
+			//com_id를 전달
+	        redirectAttributes.addAttribute("class_idx", review.getClass_idx());
+
+	        // 리뷰 작성 완료 페이지로 리다이렉트
+	        return "redirect:/review/complete";
+
+		} else {
+			model.addAttribute("msg", "리뷰글 작성 실패!");
+			return "fail_back";
+		}
+	}
+	
+	// ===================================================================
+	// [ 리뷰 수정 ] 
 	@GetMapping("review/modify")
 	public String modify(ReviewVO review,
-						@RequestParam(defaultValue = "1") int reviewIdx,
+						@RequestParam(defaultValue = "33") int reviewIdx,
 						@RequestParam(defaultValue = "1") int comIdx,
 						@RequestParam(defaultValue = "1") int classIdx,
 						Model model,
@@ -195,7 +321,7 @@ public class ReviewController {
 		String sId = (String) session.getAttribute("sId");
 //		if (sId == null)  {
 //			model.addAttribute("msg","로그인이 필요합니다!");
-//			model.addAttribute("targetURL","/zzimkong/login");
+//			model.addAttribute("targetURL","/gongsaeng/login");
 //			return "forward";
 //		}
 		// ReviewService - getRivews() 메서드 재사용하여 게시물 1개 정보 조회
@@ -207,12 +333,12 @@ public class ReviewController {
 		
 		// 리뷰 정보 가져오기
 		review = service.getReview(reviewIdx);
-//		if(review == null || !sId.equals(review.getMember_id()) && !sId.equals("admin")){
-//			model.addAttribute("msg","잘못된 접근입니다!");
-//			return "fail_back";
-//		}
+		if(review == null || !sId.equals(review.getMember_id()) && !sId.equals("admin")){
+			model.addAttribute("msg","잘못된 접근입니다!");
+			return "fail_back";
+		}
 		
-		
+		// 클래스 이름 가져오기
 		String classTitle = service.getClassTitle(classIdx);
 		// 업체 이름 가져오기
 	    String comName = service.getCompanyName(comIdx);
@@ -259,15 +385,15 @@ public class ReviewController {
 	
 	
 	// "ReviewModifyPro" 서블릿 요청에 대한 글 수정 요청 비즈니스 로직 처리
-		@PostMapping("/gongsaeng/review/ReviewModifyPro")
-		public String modifyPro(
-			ReviewVO review,
-			@RequestParam("review_idx") int reviewIdx,// 선생님은 페이지번호 였지만 난 reviewNum으로
-			@RequestParam("com_idx") int comIdx,
-			@RequestParam("class_idx") int classIdx,
-			HttpSession session, Model model ) {
-			// 세션 아이디에 따른 차단 처리
-				String sId = (String)session.getAttribute("sId");
+	@PostMapping("/gongsaeng/review/ReviewModifyPro")
+	public String modifyPro(
+		ReviewVO review,
+		@RequestParam("review_idx") int reviewIdx,// 선생님은 페이지번호 였지만 난 reviewNum으로
+		@RequestParam("com_idx") int comIdx,
+		@RequestParam("class_idx") int classIdx,
+		HttpSession session, Model model ) {
+		// 세션 아이디에 따른 차단 처리
+			String sId = (String)session.getAttribute("sId");
 //						if(sId == null) {
 //							model.addAttribute("msg", "로그인이 필요합니다");
 //							// targetURL 속성명으로 로그인 폼 페이지 서블릿 주소 저장
@@ -334,7 +460,7 @@ public class ReviewController {
 				e.printStackTrace();
 			}
 			
-	        return "redirect:/review/redetail?com_id=" + comIdx;
+	        return "redirect:/review/detail?class_idx=" + classIdx;
 			
 		} else {
 			model.addAttribute("msg","리뷰 수정 실패!");
@@ -343,175 +469,13 @@ public class ReviewController {
 		
 	}
 
-	
-	
-	@GetMapping("review/report")
-	public String report(HttpSession session, Model model,
-			@RequestParam(defaultValue = "1") int classIdx,
-			@RequestParam(defaultValue = "2") int reviewIdx) {
-		
-		// review_idx과 class_idx를 모델에 추가
-	    model.addAttribute("reviewIdx", reviewIdx);
-	    model.addAttribute("classIdx", classIdx);
-		
-	    String memberId = (String) session.getAttribute("member_id");
-		// 세션 아이디 없을 경우 "로그인이 필요합니다" 처리를 위해 "forward.jsp" 페이지 포워딩
-				String sId = (String) session.getAttribute("sId");
-//				if (sId == null){
-//					model.addAttribute("msg", "로그인이 필요합니다");
-//					model.addAttribute("targetURL", "/gongsaeng/login");
-//					return "forward";
-//				}
-
-				MemberVO member = service.getUserInfo(sId);	
-				model.addAttribute("member",member);
-				model.addAttribute("memberId", memberId);
-
-			    // 리뷰정보 가져와서 쓸 수 있음!(신고페이지에서)
-//			    ReviewVO review = service.getReview(reviewNum);
-//			    model.addAttribute("review", review);
-				
-		return "review/review_report";
-	}
-	
-	
-	
-	// "ReviewWritePro" 서블릿 요청에 대한 글쓰기 비즈니스 로직 처리
-			@PostMapping("review/reviewReportPro")
-			public String reviewReportPro(ReviewVO review, HttpSession session, Model model, 
-					@RequestParam("member_id") String memberId) {
-				String sId = (String) session.getAttribute("sId");
-				// 세션에서 user_id 가져오기
-//				if (sId == null) {
-//					model.addAttribute("msg", "로그인이 필요합니다");
-//					model.addAttribute("targetURL", "/gongsaeng/login");
-//					return "forward";
-//				}
-				
-			    // ReviewVO 객체에 세션에서 가져온 user_id 값을 설정
-			    review.setMember_id(sId);
-			    // 나머지 필요한 정보 (com_id, report_num)를 세션에서 가져오기
-			    Integer classIdx = (Integer) session.getAttribute("class_idx");
-
-				
-			// ----------------------------------------------------------------------
-			// ReviewService - registReviewReport() 메서드 호출하여 게시물 등록 작업 요청
-			// => 파라미터 : ReviewVO 객체   리턴타입 : int(insertCount)
-			int insertCount = service.registReviewReport(review);
-			
-			if(insertCount > 0) {
-				model.addAttribute("msg","신고가 정상적으로 처리되었습니다!");
-				model.addAttribute("targetURL","/gongsaeng/review/redetail?class_idx=" + classIdx);
-				return "forward";
-			
-				} else {
-			        model.addAttribute("msg", "신고 처리에 실패했습니다.");
-					model.addAttribute("targetURL","/gongsaeng/review/report?review_idx=" + review.getReview_idx() 
-										+ "&class_idx=" + review.getClass_idx() + "&member_id=" + review.getMember_id());
-			        return "forward";
-				}
-			}
-	
-	
-	
-	
-	
-	
-	@GetMapping("review/detail")
-	public String detail(@RequestParam("class_idx") int classIdx, 
-						@RequestParam(defaultValue = "1") int comIdx,
-			//			@RequestParam("review_num") int reviewNum, 	
-			//			@RequestParam("user_id") String userId, 
-						@RequestParam(value = "sortType", required = false, defaultValue = "newest") String sortType,
-			            @RequestParam(value = "photoOnly", required = false, defaultValue = "false") boolean photoOnly,
-			            @RequestParam(value = "menuName", required = false) String menuName,
-						HttpSession session,
-			            Model model,
-			            HttpServletResponse response,
-			            ReviewVO review) {
-		
-		// 세션 값 저장해두기
-		String sId = (String) session.getAttribute("sId");
-		
-		session.setAttribute("classIdx", classIdx);
-//	    session.setAttribute("review_num", reviewNum);
-	    session.setAttribute("member_id", sId);
-	    		
-		// 업체 이름 불러오기
-		String comName = service.getCompanyName(comIdx);
-		//클래스명ㄴ
-		String classTitle = service.getClassTitle(classIdx);
-	    model.addAttribute("classIdx", classIdx);
-		model.addAttribute("comName",comName);
-		model.addAttribute("classTitle",classTitle);
-//		System.out.println("작성페이지 comid>>>>>>>" + comId);
-//		System.out.println("작성페이지 comname>>>>>>>" + comName);
-		
-		// 리뷰 갯수
-		int reviewCount = service.getReviewCount(classIdx);
-		model.addAttribute("reviewCount",reviewCount);
-		
-		// 리뷰 별점 평균
-		Double reviewAverage = service.getReviewAverage(classIdx);
-		model.addAttribute("reviewAverage",reviewAverage);
-
-		// 리뷰 리스트 불러오기
-		List<ReviewVO> reviews = service.getAllReviews(classIdx);
-//		System.out.println("리뷰리스트 불러오기>>>>>>>>>>>>>>>>>" + reviews);
-
-		// 이런 점이 좋았어요 차트 수정
-        List<ReviewCountVO> reviewCounts = service.getReviewCountsByComId(classIdx);
-        String reviewCountsJson = new Gson().toJson(reviewCounts);
-        model.addAttribute("reviewCountsJson", reviewCountsJson);		
-		model.addAttribute("reviews", reviews);
-
-//		if (!photoOnly && menuName != null && !menuName.isEmpty()) {
-//		    // 메뉴 이름으로 리뷰 필터링
-//		    reviews = service.getReviewsByMenuName(classIdx, menuName);
-//		} else {
-//		    // sortType에 따라 리뷰 정렬
-//		    switch (sortType) {
-//		        case "highest":
-//		            reviews = service.getReviewsSortedByScore(classIdx, true);
-//		            break;
-//		        case "lowest":
-//		            reviews = service.getReviewsSortedByScore(classIdx, false);
-//		            break;
-//		        case "newest":
-//		        default:
-//		            reviews = service.getAllReviews(classIdx); // 기본적으로 모든 리뷰 가져옴
-//		            break;
-//		    }
-//		}
-        // 카테고리별 리뷰 개수 가져오기
-//        ReviewCategoryCountVO categoryCount = service.categoryCount(classIdx);
-//        model.addAttribute("categoryCount",categoryCount);
-//        
-//        // 이런 곳 좋아요 출력
-//        int likeCount = service.getLikeCount(classIdx);
-//        model.addAttribute("likeCount", likeCount);
-//        
-//        model.addAttribute("reviews", reviews);
-        
-        // 예약 완료 0번일 시 리뷰 작성 불가 메세지 출력 및 리뷰작성 
-//        if (sId != null) {
-//            Integer userIdx = service.findUserIdx(sId);
-//            int visitCount = service.getReservationCount(userIdx, classIdx);
-//            model.addAttribute("visitCount", visitCount);
-//        } else {
-//            model.addAttribute("visitCount", 0);
-//        }
-		
-		return "review/review_detail";
-	}
-	
 	// ===================================================================
 	// [ 리뷰 삭제 ]
 	@PostMapping("/gongsaeng/review/delete")//ooo
 	public String reviewDelete(
 			ReviewVO review,
 			@RequestParam(defaultValue = "1") int reviewIdx,
-//			@RequestParam("com_id") int comId,
+//				@RequestParam("com_id") int comId,
 			HttpSession session,
 			Model model,
 			HttpServletRequest request) {
@@ -520,15 +484,15 @@ public class ReviewController {
 		// 세션 아이디 없을 경우 처리
 		// ---------------------------------------------------
 		String sId = (String)session.getAttribute("sId");
-//		if(sId == null) {
-//			model.addAttribute("msg", "로그인이 필요합니다");
-//			// targetURL 속성명으로 로그인 폼 페이지 서블릿 주소 저장
-//			model.addAttribute("targetURL", "/gongsaeng/login");
-//			return "forward";
-//		}
+//			if(sId == null) {
+//				model.addAttribute("msg", "로그인이 필요합니다");
+//				// targetURL 속성명으로 로그인 폼 페이지 서블릿 주소 저장
+//				model.addAttribute("targetURL", "/gongsaeng/login");
+//				return "forward";
+//			}
 		// ---------------------------------------------------
 		// ReviewService - getReview() 메서드 재사용
-		ReviewVO dbReview = service.getReview(review.getReview_idx());
+		ReviewVO dbReview = service.getReivew(review.getReview_idx());
 	    String referer = request.getHeader("Referer");		
 		// ---------------------------------------------------
 		if(dbReview == null || !sId.equals(dbReview.getMember_id()) && !sId.equals("admin")) {
@@ -574,18 +538,76 @@ public class ReviewController {
 		
 	}
 	
+	// ===================================================================
+	// [ 리뷰 신고 ]
+	@GetMapping("review/report")
+	public String report(HttpSession session, Model model,
+			@RequestParam(defaultValue = "1") int classIdx,
+			@RequestParam(defaultValue = "2") int reviewIdx) {
+		
+		// review_idx과 class_idx를 모델에 추가
+	    model.addAttribute("reviewIdx", reviewIdx);
+	    model.addAttribute("classIdx", classIdx);
+		
+	    String memberId = (String) session.getAttribute("member_id");
+		// 세션 아이디 없을 경우 "로그인이 필요합니다" 처리를 위해 "forward.jsp" 페이지 포워딩
+				String sId = (String) session.getAttribute("sId");
+//				if (sId == null){
+//					model.addAttribute("msg", "로그인이 필요합니다");
+//					model.addAttribute("targetURL", "/gongsaeng/login");
+//					return "forward";
+//				}
+
+				MemberVO member = service.getUserInfo(sId);	
+				model.addAttribute("member",member);
+				model.addAttribute("memberId", memberId);
+
+			    // 리뷰정보 가져와서 쓸 수 있음!(신고페이지에서)
+//			    ReviewVO review = service.getReview(reviewNum);
+//			    model.addAttribute("review", review);
+				
+		return "review/review_report";
+	}
 	
 	
 	
+	// "ReviewWritePro" 서블릿 요청에 대한 글쓰기 비즈니스 로직 처리
+	@PostMapping("review/reviewReportPro")
+	public String reviewReportPro(ReviewVO review, HttpSession session, Model model, 
+			@RequestParam("member_id") String memberId) {
+		String sId = (String) session.getAttribute("sId");
+		// 세션에서 user_id 가져오기
+//				if (sId == null) {
+//					model.addAttribute("msg", "로그인이 필요합니다");
+//					model.addAttribute("targetURL", "/gongsaeng/login");
+//					return "forward";
+//				}
+		
+	    // ReviewVO 객체에 세션에서 가져온 user_id 값을 설정
+	    review.setMember_id(sId);
+	    // 나머지 필요한 정보 (com_id, report_num)를 세션에서 가져오기
+	    Integer classIdx = (Integer) session.getAttribute("class_idx");
+
+		
+	// ----------------------------------------------------------------------
+	// ReviewService - registReviewReport() 메서드 호출하여 게시물 등록 작업 요청
+	// => 파라미터 : ReviewVO 객체   리턴타입 : int(insertCount)
+	int insertCount = service.registReviewReport(review);
 	
+	if(insertCount > 0) {
+		model.addAttribute("msg","신고가 정상적으로 처리되었습니다!");
+		model.addAttribute("targetURL","/gongsaeng/review/detail?class_idx=" + classIdx);
+		return "forward";
 	
-	
-	
-	
-	
-	
-	
-	@GetMapping("review/complete")//ooo
+		} else {
+	        model.addAttribute("msg", "신고 처리에 실패했습니다.");
+			model.addAttribute("targetURL","/gongsaeng/review/report?review_idx=" + review.getReview_idx() 
+								+ "&class_idx=" + review.getClass_idx() + "&member_id=" + review.getMember_id());
+	        return "forward";
+		}
+	}
+
+	@GetMapping("review/complete")
 	public String complete(@RequestParam(defaultValue = "1") int comIdx,
 						@RequestParam(defaultValue = "1") int classIdx, Model model) {
 		List<ReviewVO> reviews = service.getAllReviews(classIdx);
@@ -594,12 +616,14 @@ public class ReviewController {
 		return "review/review_complete";
 	}
 	
+	// ===================================================================
+	// [ 리뷰 댓글 기능 ] 	
 	@GetMapping("review/comment")//ooo
 	public String comment( @RequestParam("com_idx") int comIdx, 
 							@RequestParam("class_idx") int classIdx,
 							 @RequestParam("review_idx") int reviewIdx,
 							 Model model, HttpSession session) {
-		// review_num과 com_id를 모델에 추가
+		// review_idx과 class_idx를 모델에 추가
 		model.addAttribute("reviewIdx", reviewIdx);
 		model.addAttribute("com_idx", comIdx);
 		model.addAttribute("class_idx", classIdx);
@@ -676,6 +700,42 @@ public class ReviewController {
 		
 	}
 	
+	
+	// "BoardTinyReplyDelete" 서블릿 요청에 대한 댓글 삭제 작업 처리!
+	@ResponseBody
+	@GetMapping("review/ReviewTinyReplyDelete")//ooo
+	public String deleteTinyReply(@RequestParam Map<String, String> map, HttpSession session) {
+		// 세션 아이디가 없을 경우 "invalidSession" 문자열 리턴
+		String sId = (String)session.getAttribute("sId");
+		if(sId == null) {
+			return "invalidSession";
+		}
+		
+		// BoardService - getTinyReplyWriter() 메서드 호출하여 댓글 작성자 조회
+		// => 파라미터 : Map 객체   리턴타입 : Map(map)
+		map = service.getTinyReplyWriter(map);
+//			System.out.println(map);
+		
+		// 댓글 작성자가 세션 아이디와 동일하거나 세션 아이디가 관리자일 경우에만
+		// BoardService - removeTinyReplyBoard() 메서드 호출하여 댓글 삭제 작업 요청
+		// (아니면 "invalidSession" 리턴)
+		// => 파라미터 : Map 객체   리턴타입 : int(deleteCount)
+		if(sId.equals(map.get("member_id")) || sId.equals("admin")) {
+			int deleteCount = service.removeTinyReplyReview(map);
+			
+			// 삭제 요청 결과 판별
+			// => 성공 시 "true", 실패 시 "false" 리턴
+			if(deleteCount > 0) {
+				return "true";
+			} else {
+				return "false";
+			}
+		} else {
+			return "invalidSession";
+		}
+		
+	}	
+	
 	// "BoardTinyReReplyWrite" 서블릿 요청에 대한 대댓글 작성 비즈니스 로직 처리
 	// => AJAX 요청에 대한 응답 처리를 위해 @ResponseBody 적용
 	@ResponseBody
@@ -698,6 +758,8 @@ public class ReviewController {
 		}
 		
 	}
+	
+
 	
 	
 	

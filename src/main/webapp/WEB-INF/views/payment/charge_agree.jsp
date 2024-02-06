@@ -33,7 +33,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/responsive.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/global.css">
         
-        <link href="${pageContext.request.contextPath }/resources/css/payment_agree.css" rel="stylesheet" type="text/css">
+        <link href="${pageContext.request.contextPath }/resources/css/charge_agree.css" rel="stylesheet" type="text/css">
         
         
         <script src="${pageContext.request.contextPath }/resources/assets/js/modernizr-2.6.2.min.js"></script>

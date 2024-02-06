@@ -1,3 +1,18 @@
+//총결제금액 계산
+function calculateTotal() {
+    var total = 0;
+
+    $(".panel-body").each(function() {
+        var price = parseInt($(this).find(".text-muted").text(), 10);
+        var quantity = parseInt($(this).find(".res_person").val(), 10);
+
+        total += price * quantity;
+    });
+
+    $("#total").text(total);
+}
+
+
 $(document).ready(function() {
 //$(function() {	
 	
@@ -39,20 +54,21 @@ $(document).ready(function() {
 	});
 	
 	//장바구니에 물건삭제===============================================
-	$("#delet").click(function() {
-//    var class_idx = $("#class_idx").val(); // 삭제하려는 상품의 클래스 번호
-    var class_idx = "1"; // 하드코딩
-
+	$(".delet").click(function() {
 	console.log("삭제버튼 작동");
+	
+    var cart_idx = $(this).val(); // 삭제하려는 상품의 클래스 번호
+	console.log("cart_idx : " + cart_idx);
+
 
     $.ajax({
         type: "POST",
         url: "deleteCart",
-        data: { class_idx: class_idx },
+        data: { cart_idx: cart_idx },
         success: function(response) {
-            if(response) { // 성공
+            if(response == "true") { // 성공
                 alert("상품을 장바구니에서 삭제했습니다.");
-                window.reload();
+                 location.reload();
             } else { // 실패
                 alert("상품을 장바구니에서 삭제하는데 실패했습니다.");
               }
@@ -61,13 +77,16 @@ $(document).ready(function() {
 	});
 	
 	//장바구니에 수량변경===============================================
-	$("#update").click(function() {
-//	    var cart_idx = $("#cart_idx").val(); // 변경하려는 카트번호
-	    var cart_idx = "1"; // 변경하려는 카트번호
-	    var res_person = $("#res_person").val(); // 수량
-	
-		console.log("수정하기버튼 작동");
+	$(".update").click(function() {
+    console.log("수정하기버튼 작동");
 		
+    // 총 결제금액 계산
+    calculateTotal();
+    
+	var cart_idx = $(this).val(); // 변경하려는 카트번호
+	console.log("cart_idx : " + cart_idx);
+    var res_person = $(this).closest(".panel-body").find(".res_person").val(); // 예약인원수
+
 	    $.ajax({
 	        type: "POST",
 	        url: "updateCart",
@@ -82,9 +101,11 @@ $(document).ready(function() {
 	                alert("상품 수량을 수정하는데 실패했습니다.");
 	            }
 	        }
-	    });//ajax
+	    }); //ajax
 	});
 
-
+	//총결제금액 계산=====================================================
+ 	calculateTotal();
+	 
 
 }); //$(document).ready(function() {
