@@ -42,4 +42,6 @@ public class PaymentVO {
 	//사업체 환급금 목록 페이지
 	private int requestAmount; //신청금액
 	private int refundableAmount; //환급 가능금액 
+
+
 }

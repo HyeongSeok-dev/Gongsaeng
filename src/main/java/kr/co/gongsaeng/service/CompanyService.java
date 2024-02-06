@@ -1,5 +1,8 @@
 package kr.co.gongsaeng.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +28,30 @@ public class CompanyService {
 		
 		return mapper.insertCompany(company);
 	}
-	
+
+	// [ member_id로 com_idx 찾기 ]
+	public Integer findComIdxBysId(String sId) {
+
+		return mapper.findComIdxBysId(sId);
+	}
+
+	// [ 매출내역 출력(com_idx) ]
+	public List<Map<String, Object>> getSaleListByComIdx(Integer comIdx) {
+
+		return mapper.selectSaleList(comIdx);
+	}
+
+	// [ 클래스명 출력 ]
+	public String findClassNameByClassIdx(int classIdx) {
+
+		return mapper.selectClassTitle(classIdx);
+	}
+
+	// [ 매출현황 삭제 ]
+	public int removeSaleList(String payNum) {
+
+		return mapper.deleteSaleList(payNum);
+	}
 
 
 	

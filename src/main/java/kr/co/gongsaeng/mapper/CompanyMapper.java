@@ -1,5 +1,8 @@
 package kr.co.gongsaeng.mapper;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import kr.co.gongsaeng.vo.CompanyVO;
@@ -13,6 +16,19 @@ public interface CompanyMapper {
 
 	// 반장회원 등록
 	int insertCompany(CompanyVO company);
+
+	// member_id로 com_idx 찾기
+	Integer findComIdxBysId(String sId);
+
+	// 매출내역(com_idx)
+	List<Map<String, Object>> selectSaleList(Integer comIdx);
+
+	// 클래스명 출력
+	String selectClassTitle(int classIdx);
+
+	// 매출내역 삭제
+	int deleteSaleList(String payNum);
+
 
 	
 

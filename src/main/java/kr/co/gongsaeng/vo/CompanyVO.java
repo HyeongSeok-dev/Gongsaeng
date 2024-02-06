@@ -27,4 +27,6 @@ public class CompanyVO {
 	private int com_status;
 	private String com_date;
 	
+	private String class_title;
+	
 }

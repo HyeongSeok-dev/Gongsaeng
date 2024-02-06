@@ -26,6 +26,15 @@ public class ClassService {
 		return mapper.selectClassList(sId);
 	}
 
+	// [ 클래스 예약일정 캘린더 출력 ]
+	public List<ClassVO> getClassSchedulesByMemberId(String sId) {
+		
+		return mapper.selectClassScheduleByMemberId(sId);
+	}
+
+	// [ 매출내역 출력 ]
+
+
 	
 	
 }
