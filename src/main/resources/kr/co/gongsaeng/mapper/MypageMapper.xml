@@ -141,7 +141,7 @@
 			,1
 			,#{member_phone}
 			,2
-			,now
+			,now()
 		)
 	</insert>
 	

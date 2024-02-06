@@ -14,18 +14,24 @@
 			#{member_id}
 			, #{member_passwd}
 			, #{member_nick}
-			, CONCAT(#{member_email1}, '@',#{member_email2})
+			<choose>
+				<when test="member_email == null and member_email.equals('')">
+					, CONCAT(#{member_email1}, '@',#{member_email2})
+				</when>
+				<otherwise>
+					, #{member_email}
+				</otherwise>
+			</choose>
 			, #{member_name}
 			, #{member_birthday}
 			, #{member_gender}
 			, #{member_phone}
-			, null
+			, #{member_img}
 			, 1
 			, 1
 			, now()
 			, #{member_alert_status}
 			)
-		
 	</insert>
 	
 	
@@ -139,6 +145,13 @@
 		FROM member
 		WHERE member_email = #{mail_auth_email}
 	</select>
-
+	
+	<select id="selectMemberForValid" resultType="member">
+		SELECT *
+		FROM member
+		WHERE member_email = #{member_email}
+		OR member_phone = #{member_phone}
+	</select>
+	
 	
 </mapper>
