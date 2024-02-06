@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import kr.co.gongsaeng.vo.CompanyVO;
 import kr.co.gongsaeng.vo.MemberVO;
@@ -38,6 +39,9 @@ public interface CompanyMapper {
 
 	// 정산내역 출력
 	List<PaymentVO> selectCompanyPaymentInfo(Integer comIdx);
+
+	// 정산신청 상태 변경
+	int updatePayCalStatus(@Param("payNum") String payNum, @Param("payCalStatus") int payCalStatus);
 
 
 

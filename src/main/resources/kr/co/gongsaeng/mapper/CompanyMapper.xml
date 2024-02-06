@@ -86,7 +86,13 @@
 		WHERE com_idx = #{comIdx}
 	</select>
 	
-	
-	
+	<!-- 정산신청 상태 변경 -->
+	<update id="updatePayCalStatus">
+	    UPDATE payment
+	    SET 
+	    	pay_cal_status = #{payCalStatus}
+   	        ,refund_request_date = NOW() <!-- 현재 타임스탬프로 업데이트 -->
+	    WHERE pay_num = #{payNum}
+	</update>
 	
 </mapper>

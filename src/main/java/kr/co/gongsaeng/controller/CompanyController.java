@@ -20,8 +20,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -510,10 +513,35 @@ public class CompanyController {
 		 return "company/company_income_list";
 	 }
 	 
-	 // 정산신청
-	
-	 
-	 
+		// 정산신청
+	 @PostMapping("/company/income/updatePayCalStatus")
+	 @ResponseBody
+	 public ResponseEntity<?> updatePayCalStatus(@RequestParam("pay_num") String payNum, 
+	                                             @RequestParam("pay_cal_status") int payCalStatus) {
+	     Map<String, Object> map = new HashMap<>();
+	     try {
+	         // updatePayCalStatus 메서드가 반환하는 int 값을 updateResult 변수에 저장
+	         int updateResult = companyService.updatePayCalStatus(payNum, payCalStatus);
+	         
+	         // 업데이트된 행의 수가 0보다 크면 true, 아니면 false
+	         boolean isSuccess = updateResult > 0;
+	         
+	         if (isSuccess) {
+	             map.put("success", true);
+	             map.put("message", "정산 신청이 완료되었습니다.");
+	             return ResponseEntity.ok(map);
+	         } else {
+	        	 map.put("success", false);
+	        	 map.put("message", "정산 신청 처리에 실패했습니다. 해당 결제 번호가 존재하지 않습니다.");
+	             return ResponseEntity.badRequest().body(map);
+		         }
+		     } catch (Exception e) {
+		    	 map.put("success", false);
+		         map.put("message", "서버 내부 오류로 인해 정산 신청을 처리할 수 없습니다.");
+		         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(map);
+		     }
+	 }
+
 	 
 	 
 	@GetMapping("company/main")

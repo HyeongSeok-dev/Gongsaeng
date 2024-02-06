@@ -73,6 +73,18 @@ public class CompanyService {
 		return mapper.selectCompanyPaymentInfo(comIdx);
 	}
 
+	// [ 정산신청 상태 변경 ]
+//	public Object updatePayCalStatus(String payNum, int pay_cal_status) {
+	
+//		return mapper.updatePayCalStatus(payNum, pay_cal_status);
+//		return mapper.updatePayCalStatus(payNum, pay_cal_status);
+//	}
+	
+	public int updatePayCalStatus(String payNum, int payCalStatus) throws Exception {
+	    return mapper.updatePayCalStatus(payNum, payCalStatus);
+	}
+	
+	
 
 }
 

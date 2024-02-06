@@ -109,10 +109,11 @@ tbody {
     margin-top: 25px;
 }
 </style>  
-  
+ 
 </head>
 
-<body class="">
+<body>
+
 <!--   <div class="wrapper "> -->
     <div class="sidebar" data-color="orange">
       <!--
@@ -252,7 +253,7 @@ tbody {
 											          <thead class="thead-dark">
 											            <tr>
 											              <th scope="col">#</th>
-											              <th scope="col">결제번호</th>
+											              <th scope="col">결제 번호</th>
 											              <th scope="col">정산 상태</th>
 											              <th scope="col">정산 신청일</th>
 <!-- 											              <th scope="col">결제 건수</th> -->
@@ -261,10 +262,10 @@ tbody {
 <!-- 											              <th scope="col">클래스 수익 금액</th> -->
 											              <th scope="col">할인 금액(쿠폰/포인트)</th>
 <!-- 											              <th scope="col">포인트 사용 금액</th> -->
-											              <th scope="col">수수료</th>
+											              <th scope="col">수수료 (10%)</th>
 											              <th scope="col">정산 금액</th>
-											              <th scope="col">환급완료일</th>
-											              <th scope="col">정산신청</th>
+											              <th scope="col">환급 완료일</th>
+											              <th scope="col">정산 신청</th>
 											            </tr>
 											          </thead>
 											          <tbody>
@@ -304,23 +305,20 @@ tbody {
 											             <td>
 											              	<!-- 누르면 pay_cal_status 변경 ( 1 => 2 ) -->
 											              <c:if test="${payment.pay_cal_status == 1}">
-											              	<form action="updatePayCalStatus" method="post">
-												              	<input type="hidden" name="payNum" value="${payment.pay_num}">
-												              	<input type="button" value="정산 신청">
-											              	</form>
+															<button type="button" class="submit-calculation-request" data-pay-num="${payment.pay_num}">정산 신청</button>
 											              </c:if>
 											             </td>
 											            </tr>
 											            </c:forEach>
 											          </tbody>
-											        </table>
-				            </form>
-				          </div>
-				        </div>
-				      </div>
-				    </div>
-				  </div>
-				</div>
+													 </table>
+										            </form>
+										          </div>
+										        </div>
+										      </div>
+										    </div>
+										  </div>
+										</div>
 <!-- 		      </div> -->
 		    </div>
       <footer class="footer">
@@ -367,6 +365,37 @@ tbody {
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="${pageContext.request.contextPath }/resources/company_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="${pageContext.request.contextPath }/resources/company_assets/demo/demo.js"></script>
+<!--   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+  
+     <script>
+     $(document).ready(function() {
+    	    $('.submit-calculation-request').click(function(e) {
+    	        e.preventDefault();
+    	        var payNum = $(this).data('pay-num');
+    	        $.ajax({
+    	            url: '${pageContext.request.contextPath}/company/income/updatePayCalStatus',
+    	            type: 'POST',
+    	            data: {
+    	                'pay_num': payNum,
+    	                'pay_cal_status': 2
+    	            },
+    	            success: function(response) {
+    	                if (response.success) {
+    	                    alert(response.message);
+    	                    location.reload();
+    	                } else {
+    	                    alert(response.message);
+    	                }
+    	            },
+    	            error: function(xhr) {
+    	                var response = JSON.parse(xhr.responseText);
+    	                alert("정산 신청에 실패했습니다: " + response.message);
+    	            }
+    	        });
+    	    });
+    	});
+
+    </script>
 </body>
 
 </html>
