@@ -105,74 +105,88 @@
 					<div class="div_left_box">
 					
 					<!-- 수강클래스====================================================== -->
-					<section id="leftSec01" class="section_box">
-					<h2>{class_title}</h2>
-					<table class="info_tag" >
-					    <tr>
-					        <td rowspan="4">
-					            <img src="${pageContext.request.contextPath }/resources/img/payment_test.png" width="140" id="kakao">
-					        </td>
-					    </tr>
-					    
-					    <tr>
-					        <td width="130">
-					            <span class="info_title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;수강인원</span>
-					        </td>
-					        <td>
-					        	{res_person}
-					        </td>
-					    </tr>
-					    <tr>
-					        <td>
-					            <span class="info_title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;방문날짜/시간</span>
-					        </td>
-					        <td>
-					        	{class_start_date}
-					        	{class_start_time}
-					        </td>
-					    </tr>
-					    <tr>
-					        <td>
-					            <span class="info_title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;결제 금액</span>
-					        </td>
-					        <td>
-					        	{payment}
-					        </td>
-					    </tr>
-					</table>
-
-				</section>
+					<c:forEach var="List" items="${List}">
+						<section id="leftSec01" class="section_box">
+						<h2>${List.class_title}</h2>
+						<table class="info_tag">
+							<%-- 대표사진 --%>
+						    <tr>
+						        <td rowspan="5">
+						            <img src="${pageContext.request.contextPath }/resources/img/payment_test.png" width="140" id="kakao">
+						        </td>
+						    </tr>
+						    <%-- 수강인원 --%>
+						    <tr>
+						        <td width="130">
+						            <span class="info_title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;수강인원</span>
+						        </td>
+						        <td>
+						        	${List.res_member_count}명
+						        </td>
+						    </tr>
+						    <%-- 방문날짜 --%>
+						    <tr>
+						        <td>
+						            <span class="info_title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;방문날짜</span>
+						        </td>
+						        <td>
+						        	${List.res_visit_date}
+						        </td>
+						    </tr>
+						    <%-- 방문시간 --%>
+						    <tr>
+						        <td>
+						            <span class="info_title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;방문시간</span>
+						        </td>
+						        <td>
+						        	${List.res_visit_time} 
+						        </td>
+						    </tr>
+						    <%-- 결제금액 --%>
+						    <tr>
+						        <td>
+						            <span class="info_title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;결제 금액</span>
+						        </td>
+						        <td>
+						        	${List.class_price * List.res_member_count}원
+						        </td>
+						    </tr>
+						</table>
+	
+					</section>
+				</c:forEach>
 					
 				<!-- 쿠폰선택========================================================== -->
 				<section id="leftSec02" class="section_box">
 					<h2>쿠폰선택</h2><br>
-					<select>
-				        <option value="">쿠폰을 선택하세요</option>
-				        <option value="coupon1">쿠폰 1</option>
-				        <option value="coupon2">쿠폰 2</option>
-				        <option value="coupon3">쿠폰 3</option>
-				    </select>
+					<c:forEach var="couponList" items="${couponList}">
+						<select>
+					        <option value="">쿠폰을 선택하세요</option>
+					        <option value="coupon1">${couponList.coupon_name}</option>
+					    </select>
+				    </c:forEach>
 				</section>
 					
 				<!-- 포인트============================================================ -->
-				<section id="leftSec03" class="section_box">
-					<h2>포인트</h2>
-						<div class="point">
-							<div class="point_result">
-<!-- 									<span class="font_stlye">포인트</span>  -->
-								<span class="point_available">
-									&nbsp;&nbsp;사용가능금액&nbsp;
-									<span id="useablePoint">
-											${map.paymentInfo.totalPoint}
-									</span>
-									원
-									 &nbsp; <span><a id="useAllPoint">전액사용</a></span>
-								</span>
-							</div>
-							<input type="text" value="" placeholder="사용할 포인트를 입력해 주세요" class="point_to_use" name="pointToUse"/><span class="won">원</span>
-							<button id="usePoint" class="use_button"  type="button">사용하기</button>
-						</div>
-				</section>
+				
+<!-- 				<section id="leftSec03" class="section_box"> -->
+<!-- 					<h2>포인트</h2> -->
+<!-- 						<div class="point"> -->
+<!-- 							<div class="point_result"> -->
+<!-- <!-- 									<span class="font_stlye">포인트</span>  --> 
+<!-- 								<span class="point_available"> -->
+<!-- 									&nbsp;&nbsp;사용가능금액&nbsp; -->
+<!-- 									<span id="useablePoint"> -->
+<%-- 											${map.paymentInfo.totalPoint} --%>
+<!-- 									</span> -->
+<!-- 									원 -->
+<!-- 									 &nbsp; <span><a id="useAllPoint">전액사용</a></span> -->
+<!-- 								</span> -->
+<!-- 							</div> -->
+<!-- 							<input type="text" value="" placeholder="사용할 포인트를 입력해 주세요" class="point_to_use" name="pointToUse"/><span class="won">원</span> -->
+<!-- 							<button id="usePoint" class="use_button"  type="button">사용하기</button> -->
+<!-- 						</div> -->
+<!-- 				</section> -->
 				
 				<!-- 0페이============================================================ -->
 				<section id="leftSec03" class="section_box">
@@ -306,7 +320,7 @@
 							<div class="price_detail">
 								<div>
 									<span class="detail">결제금액</span>
-									<span class="detail_price"><span id="reservationPrice">${map.paymentInfo.res_table_price}</span> 원</span>
+									<span class="detail_price"><span id="reservationPrice">${total}</span> 원</span>
 									<%--paymentVO --%>
 					 <%-- param--%> <input type="hidden" value="${map.res.res_table_price}" name="pay_per_price"/>
 								</div>
@@ -321,8 +335,17 @@
 									</span>
 								</div> 
 								<!-- 포인트할인 -->
+<!-- 								<div> -->
+<!-- 									<span class="detail">포인트할인</span> -->
+<!-- 									<span class="detail_price"> -->
+<!-- 										-  -->
+<!-- 										<span id="discountPoint_text">0</span> -->
+<!-- 										원 -->
+<!-- 									</span> -->
+<!-- 								</div>  -->
+								<!-- 0페이사용 -->
 								<div>
-									<span class="detail">포인트할인</span>
+									<span class="detail">0페이결제</span>
 									<span class="detail_price">
 										- 
 										<span id="discountPoint_text">0</span>
@@ -330,39 +353,39 @@
 									</span>
 								</div> 
 							</div>
-							<div class="point">
-								<div class="points_earn">
-									<span class="detail">적립예정 포인트</span>
-									<span class="detail_price">
-										<span id="earnedPoints_text">0</span> 원
-									</span>
-								</div>
-								<div>
-									<span class="detail"> </span>
-									<span class="detail_price">
-										<div class="info_price">
-											<span></span>
-											<span class="menu_name2">현재 포인트</span>
-											<span class="price" >
-												<span id="nowPoint">${map.paymentInfo.totalPoint}</span>
-												원
-											</span>
-										</div>
-										<div class="info_price">
-											<span></span>
-											<span class="menu_name2">총 포인트</span>
-											<span class="price">
-												<span id="totalPoint">0</span>
-												원
-											</span>
-										</div>
-									</span>
-								</div> 
-							</div>
+<!-- 							<div class="point"> -->
+<!-- 								<div class="points_earn"> -->
+<!-- 									<span class="detail">적립예정 포인트</span> -->
+<!-- 									<span class="detail_price"> -->
+<!-- 										<span id="earnedPoints_text">0</span> 원 -->
+<!-- 									</span> -->
+<!-- 								</div> -->
+<!-- 								<div> -->
+<!-- 									<span class="detail"> </span> -->
+<!-- 									<span class="detail_price"> -->
+<!-- 										<div class="info_price"> -->
+<!-- 											<span></span> -->
+<!-- 											<span class="menu_name2">현재 포인트</span> -->
+<!-- 											<span class="price" > -->
+<%-- 												<span id="nowPoint">${map.paymentInfo.totalPoint}</span> --%>
+<!-- 												원 -->
+<!-- 											</span> -->
+<!-- 										</div> -->
+<!-- 										<div class="info_price"> -->
+<!-- 											<span></span> -->
+<!-- 											<span class="menu_name2">총 포인트</span> -->
+<!-- 											<span class="price"> -->
+<!-- 												<span id="totalPoint">0</span> -->
+<!-- 												원 -->
+<!-- 											</span> -->
+<!-- 										</div> -->
+<!-- 									</span> -->
+<!-- 								</div>  -->
+<!-- 							</div> -->
 							<div class="total_detail">
 								<span class="total_info">총 결제 금액</span>
 								<span class="total_price" >
-									<span id="totalPayment_text">${map.paymentInfo.totalPrice}</span>
+									<span id="totalPayment_text">{total}</span>
 									원
 								</span>
 							</div>

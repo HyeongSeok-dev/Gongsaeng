@@ -58,22 +58,13 @@ $(document).ready(function() {
 					console.log("kakao");
 					IMP.request_pay({
 					  pg: "kakaopay",
-//					  merchant_uid: $("#res_num").val(), //상품번호(클래스아이디)
-//					  name: "공생 클래스 수강 - " + $("#class_title").val() +" "+ $("#class_ctart_date").val() +
-//					  	"" + $("#class_start_time") + "부터시작" + $("#res_person").val() + "명",
-//					  amount: parseInt($("#totalPayment_text").text().trim().replace(/,/g, '')), //할인된금액(최종결제금액)
-//					  buyer_email: $("#member_email").val(), //생략가능(pg사에 따라 다름)
-//					  buyer_name: $("#member_name").val() //생략가능(pg사에 따라 다름)
-//================================================================================
-					  merchant_uid: "order_no_0001", // 상점에서 생성한 고유 주문번호
-					  name: "주문명:결제테스트",
-					  amount: 1004,
-					  buyer_email: "test@portone.io",
-					  buyer_name: "구매자이름",
-					  buyer_tel: "010-1234-5678",
-					  buyer_addr: "서울특별시 강남구 삼성동",
-					  buyer_postcode: "123-456",
-					  m_redirect_url: "{모바일에서 결제 완료 후 리디렉션 될 URL}"
+					  merchant_uid: $("#class_idx").val(), //상품번호(클래스아이디)
+					  name: "공생 클래스 수강 - " + $("#class_title").val() +" "+ $("#res_visit_date").val() +
+					  	"" + $("#res_visit_time") + "부터시작" + $("#res_member_count").val() + "명",
+//					  amount: parseInt($("#payment").text().trim().replace(/,/g, '')), //할인된금액(최종결제금액)
+					  amount: $("#payment"), //할인된금액(최종결제금액)
+					  buyer_email: $("#member_email").val(), //생략가능(pg사에 따라 다름)
+					  buyer_name: $("#member_name").val() //생략가능(pg사에 따라 다름)
 					}, function (rsp) { 
 						console.log("function");
 						console.log("rsp : " + rsp);

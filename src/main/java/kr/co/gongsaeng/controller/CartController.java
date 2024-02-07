@@ -80,6 +80,7 @@ public class CartController {
     }//addToCart
 	 
 	 //장바구니 물건삭제
+	@ResponseBody
 	@PostMapping("deleteCart")
 	public String deleteCart(@RequestParam int cart_idx) {
 	       int deletCart = cartService.deleteFromCart(cart_idx);

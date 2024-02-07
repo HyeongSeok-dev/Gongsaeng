@@ -1,5 +1,18 @@
 $(document).ready(function() {
+	
+	
 	var contextRoot = window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
+
+	//결제하기버튼 누르면 결제페이지로 이동
+    $("#payment").click(function() {
+		console.log("결제하기 버튼 작동");
+	    //결제하기 화면으로 넘길때 "pay" 도 같이 넘기기
+	     var url = "payment?type=pay";
+	
+	    window.location.href = url;
+	
+	    console.log(url);
+    });
 
 	fetchRestaurants('near');
 	//즐겨찾기 누르기

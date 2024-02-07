@@ -31,7 +31,6 @@ public class PaymentVO {
 //	private String refund_date; //환급완료일
 	
 	
-	
 	//[ 관리자 페이지 ]
 	// 회원상세 페이지
 	private String classRes; // 총 수업 예약

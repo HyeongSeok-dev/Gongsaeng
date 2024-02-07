@@ -1,6 +1,9 @@
+$(document).ready(function() {
+//최종 결제금액
+var total = 0;
+	
 //총결제금액 계산
 function calculateTotal() {
-    var total = 0;
 
     $(".panel-body").each(function() {
         var price = parseInt($(this).find(".text-muted").text(), 10);
@@ -11,14 +14,17 @@ function calculateTotal() {
 
     $("#total").text(total);
 }
-
-
-$(document).ready(function() {
-//$(function() {	
-	
 	//결제하기버튼 누르면 결제페이지로 이동============================
 	$("#payment").click(function() {
-    	window.location.href = "payment";
+		
+    	console.log(total);
+		
+		//결제하기 화면으로 넘길때 "cart" 도 같이 넘기기
+    	 var url = "payment?type=cart&total="+total;
+    	 
+    	window.location.href = url;
+    	
+    	console.log(url);
 	});
 	
 	//장바구니에 물건담기===============================================
@@ -64,9 +70,9 @@ $(document).ready(function() {
     $.ajax({
         type: "POST",
         url: "deleteCart",
-        data: { cart_idx: cart_idx },
+        data: { cart_idx : cart_idx },
         success: function(response) {
-            if(response == "true") { // 성공
+            if(response) { // 성공
                 alert("상품을 장바구니에서 삭제했습니다.");
                  location.reload();
             } else { // 실패
@@ -97,6 +103,7 @@ $(document).ready(function() {
 	        success: function(response) {
 	            if(response) { // 성공
 	                alert("상품 수량을 수정했습니다.");
+	                location.reload();
 	            } else { // 실패
 	                alert("상품 수량을 수정하는데 실패했습니다.");
 	            }

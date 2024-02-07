@@ -2,6 +2,7 @@ package kr.co.gongsaeng.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -15,6 +16,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import kr.co.gongsaeng.service.BankService;
+import kr.co.gongsaeng.service.CartService;
+import kr.co.gongsaeng.service.PaymentService;
+import kr.co.gongsaeng.vo.CartListVO;
+import kr.co.gongsaeng.vo.CouponVO;
+import kr.co.gongsaeng.vo.PaymentVO;
 import kr.co.gongsaeng.vo.ResponseTokenVO;
 
 @Controller
@@ -23,18 +29,53 @@ public class PaymentController {
 	@Autowired
 	private BankService bankService;
 	
+	@Autowired
+	private PaymentService paymentService;
+	
+	@Autowired
+	private CartService cartService;
+	
 	//로그출력을 위한 기본 라이브러리
 	private static final Logger logger = LoggerFactory.getLogger(PaymentController.class);
 	
 	//결제하기
 	@GetMapping("payment")
-	public String payment(HttpSession sesison, Model model) {
+	public String payment(@RequestParam("type") String type, @RequestParam("total") int total, HttpSession session, Model model) {
+		//============================================================================
 		//랜던값 활용 난수 생성
 		String rNum = RandomStringUtils.randomNumeric(32);
-		sesison.setAttribute("state", rNum);
+		session.setAttribute("state", rNum);
 		
 		System.out.println(rNum);
-		System.out.println("state : " + sesison.getAttribute("state"));
+		System.out.println("state : " + session.getAttribute("state"));
+		
+		//============================================================================
+		//결제하는 클래스내역 조회 
+		
+		System.out.println("결제하는 아이디 : " + session.getAttribute("sId"));
+		String member_id = session.getAttribute("sId").toString();		
+		
+		//장바구니에 목록이 없을경우 상세페이지에서 넘어온 클래스내역 출력
+//		int class_idx = (int) session.getAttribute("class_idx");
+		int class_idx = 1; //하드코딩
+		System.out.println("바로결제하기에서 넘어오는 class_idx : " + class_idx);
+		
+		if (type.equals("cart")) {
+			//장바구니에서 넘어올때
+            model.addAttribute("List", cartService.getCartListSelect(member_id));
+        } else if (type.equals("pay")) {
+        	//상세페이지에서 넘어올때
+            model.addAttribute("List", paymentService.getPaymentListSelect(class_idx));
+        }
+				
+		//============================================================================
+		//쿠폰내역 조회
+		List<CouponVO> couponList = paymentService.getCouponListSelect(member_id);
+		model.addAttribute("couponList", couponList);
+		
+		//============================================================================
+		//최종결제금액 파라미터로 넘김
+		model.addAttribute("total", total);
 		
 		return "payment/payment";
 	}
