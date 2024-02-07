@@ -188,7 +188,6 @@ tbody {
       <div class="panel-header">
         <div class="header text-center">
           <h2 class="title">회원 목록</h2>
-<!--           <p class="category">Handcrafted by our friend <a target="_blank" href="https://github.com/mouse0270">Robert McIntosh</a>. Please checkout the <a href="http://bootstrap-notify.remabledesigns.com/" target="_blank">full documentation.</a></p> -->
         </div>
       </div>
 		<div class="content">
@@ -283,20 +282,19 @@ tbody {
 											</thead>
 											<tbody>
 												<!-- 여기에 각 행을 추가하세요. 예를 들어: -->
+													<c:forEach items="${companyClassMember}" var="classMember">
 												<tr>
 													<th scope="row">1</th>
 													<td>진행중</td>
-													<td>lottegiants22</td>
-													<td>구승민</td>
-													<td>2024/12/25</td>
-													<td>인테리어 클래스</td>
-													<td>남</td>
+													<td>${classMember.member_id}</td>
+													<td>${classMember.member_name} </td>
+													<td>${classMember.pay_date} </td>
+													<td>${classMember.class_title} </td>
+													<td>${classMember.memeber_gender}</td>
 <!-- 													<td>#인테리어</td> -->
-													<td><input type="button" value="채팅보내기"></td>
-<!-- 													<td>0</td> -->
-<!-- 													<td>50,000</td> -->
-<!-- 													<td><input type="button" value="정산신청"></td> -->
+													<td><input type="button" value="채팅 보내기"></td>
 												</tr>
+													</c:forEach>
 												<!-- 더 많은 행을 추가할 수 있습니다. -->
 											</tbody>
 										</table>

@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import kr.co.gongsaeng.mapper.ClassMapper;
 import kr.co.gongsaeng.mapper.CompanyMapper;
 import kr.co.gongsaeng.vo.ClassVO;
+import kr.co.gongsaeng.vo.CompanyClassVO;
+import kr.co.gongsaeng.vo.CompanyReviewDetailVO;
 import kr.co.gongsaeng.vo.CompanyVO;
 import kr.co.gongsaeng.vo.MemberVO;
 import kr.co.gongsaeng.vo.PaymentVO;
@@ -78,8 +80,20 @@ public class CompanyService {
 	 
 		return mapper.updatePayCalStatus(payNum, payCalStatus);
 	}
-	
-	
+
+	// [ 회원 목록 출력 ]
+	public List<CompanyClassVO> getPaymentClassMembers(Integer comIdx) {
+
+		return mapper.selectCompanyClassMember(comIdx);
+	}
+
+	// [ 리뷰 상세 내역 출력 ]
+	public List<CompanyReviewDetailVO> getReviewDetail(Integer comIdx) {
+		
+		return mapper.selectCompanyReviewDetail(comIdx);
+	}
+
+
 
 }
 

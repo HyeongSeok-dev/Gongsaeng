@@ -6,6 +6,8 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import kr.co.gongsaeng.vo.CompanyClassVO;
+import kr.co.gongsaeng.vo.CompanyReviewDetailVO;
 import kr.co.gongsaeng.vo.CompanyVO;
 import kr.co.gongsaeng.vo.MemberVO;
 import kr.co.gongsaeng.vo.PaymentVO;
@@ -42,6 +44,12 @@ public interface CompanyMapper {
 
 	// 정산신청 상태 변경
 	int updatePayCalStatus(@Param("payNum") String payNum, @Param("payCalStatus") int payCalStatus);
+
+	// 회원 목록 출력
+	List<CompanyClassVO> selectCompanyClassMember(Integer comIdx);
+
+	// 리뷰 목록 출력
+	List<CompanyReviewDetailVO> selectCompanyReviewDetail(Integer comIdx);
 
 
 

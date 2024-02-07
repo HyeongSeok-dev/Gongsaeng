@@ -39,6 +39,8 @@ import com.google.protobuf.TextFormat.ParseException;
 import kr.co.gongsaeng.service.ClassService;
 import kr.co.gongsaeng.service.CompanyService;
 import kr.co.gongsaeng.vo.ClassVO;
+import kr.co.gongsaeng.vo.CompanyClassVO;
+import kr.co.gongsaeng.vo.CompanyReviewDetailVO;
 import kr.co.gongsaeng.vo.CompanyVO;
 import kr.co.gongsaeng.vo.MemberVO;
 import kr.co.gongsaeng.vo.PaymentVO;
@@ -513,7 +515,7 @@ public class CompanyController {
 		 return "company/company_income_list";
 	 }
 	 
-	// 정산신청
+	// 정산 신청
 	 @PostMapping("/company/income/updatePayCalStatusBatch")
 	 @ResponseBody
 	 public ResponseEntity<?> updatePayCalStatusBatch(@RequestParam("payNums") List<String> payNums, 
@@ -542,6 +544,39 @@ public class CompanyController {
 	     }
 	 }
 
+
+	// 회원목록 출력
+	@GetMapping("company/member")
+	public String companyMember(HttpSession session, Model model) {
+		
+		 String sId = (String)session.getAttribute("sId");
+		 System.out.println("Current sId from session: >>>>>>>>>>>>> " + sId);
+		 
+		 Integer comIdx = companyService.findComIdxBysId(sId);
+		 System.out.println("Current comIdx from session: >>>>>>>>>>>>> " + comIdx);
+		
+		 List<CompanyClassVO> companyClassMember = companyService.getPaymentClassMembers(comIdx);
+		 model.addAttribute("companyClassMember", companyClassMember);
+    
+			return "company/company_member";
+	    }
+	
+	// 리뷰 목록 출력
+	@GetMapping("company/review")
+	public String company_review(HttpSession session, Model model) {
+		String sId = (String)session.getAttribute("sId");
+		System.out.println("Current sId from session: >>>>>>>>>>>>> " + sId);
+		
+		Integer comIdx = companyService.findComIdxBysId(sId);
+		System.out.println("Current comIdx from session: >>>>>>>>>>>>> " + comIdx);
+		
+		List<CompanyReviewDetailVO> companyReviewDetail = companyService.getReviewDetail(comIdx);
+		model.addAttribute("companyReviewDetail",companyReviewDetail);
+		
+		
+		return "company/company_review";
+	}
+	 
 	 
 	 
 	@GetMapping("company/main")
@@ -553,16 +588,7 @@ public class CompanyController {
 	public String company_sales2() {
 		return "company/company_sales2";
 	}
-
-	@GetMapping("company/member")
-	public String company_member() {
-		return "company/company_member";
-	}
 	
-	@GetMapping("company/review")
-	public String company_review() {
-		return "company/company_review";
-	}
 	
 	@GetMapping("company/chat")
 	public String company_chat() {
