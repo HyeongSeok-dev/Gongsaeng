@@ -143,6 +143,9 @@
 						<h4 class="panel-title">예약 내역</h4>
 					</div>
 					<br>
+					<c:if test="${empty resList}">
+						<div class="panel-body">예약내역이 없습니다.</div>
+					</c:if>
 					<c:forEach var="res" items="${resList}">
 					<div class="panel panel-default">
 						<div class="panel-heading">

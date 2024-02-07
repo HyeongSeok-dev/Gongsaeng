@@ -155,11 +155,12 @@
 					</div>
 					<div class="panel-body">
 						<div class="row text-center">
-							<div class="col-xs-2">${myMainInfo.coupon_count}개</div>
-							<div class="col-xs-2">${myMainInfo.total_cash}원</div>
-							<div class="col-xs-2">${myMainInfo.total_point}포인트</div>
-							<div class="col-xs-3">${myMainInfo.res_count}건</div>
-							<div class="col-xs-3">${myMainInfo.cancel_count}건</div>
+						
+							<div class="col-xs-2"><c:if test="${empty myMainInfo.coupon_count}">0</c:if>${myMainInfo.coupon_count}개</div>
+							<div class="col-xs-2"><c:if test="${empty myMainInfo.total_cash}">0</c:if>${myMainInfo.total_cash}원</div>
+							<div class="col-xs-2"><c:if test="${empty myMainInfo.total_point}">0</c:if>${myMainInfo.total_point}포인트</div>
+							<div class="col-xs-3"><c:if test="${empty myMainInfo.res_count}">0</c:if>${myMainInfo.res_count}건</div>
+							<div class="col-xs-3"><c:if test="${empty myMainInfo.cancel_count}">0</c:if>${myMainInfo.cancel_count}건</div>
 						</div>
 					</div>
 				</div>
@@ -171,6 +172,7 @@
 							<div class="panel-heading" onclick="javascript:location.href='chat'">안 읽은 채팅</div>
 							<div class="panel-body">
 								<div class="row">
+									<c:if test="${empty unReadChats}">안 읽은 채팅이 없습니다.</c:if>
 									<c:forEach var="chat" items="${unReadChats}">
 										<div class="col-xs-6 text-left">${chat.chat_sender}</div>
 										<div class="col-xs-6 text-right">${chat.chat_content}</div>
@@ -184,6 +186,7 @@
 							<div class="panel-heading" onclick="javascript:location.href='alert'">안 읽은 알림</div>
 							<div class="panel-body">
 								<div class="row">
+									<c:if test="${empty unReadAlert}">안 읽은 알림이 없습니다.</c:if>
 									<c:forEach var="alert" items="${unReadAlert}">
 										<div class="col-xs-6 text-left">
 											<c:choose>

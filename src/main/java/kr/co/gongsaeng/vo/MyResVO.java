@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class MyResVO {
 	private String pay_num;
+	private String res_num;
 	private int com_idx;
 	private int class_idx;
 	private String member_id;
@@ -12,7 +13,17 @@ public class MyResVO {
 	private int discount_payment;
 	private String pay_method;
 	private String pay_date;
+	private String pay_card_co;
 	private int pay_status;
+	private int pay_category;
+	private int pay_cal_status;
+	private String refund_request_date;
+	private String refund_date;
+	private String res_visit_date;
+	private String res_visit_time;
+	private String res_request;
+	private int res_member_count;
+	
 	private String class_pic1;
 	private String com_name;
 	private String class_title;

@@ -148,6 +148,9 @@
 					</div>
 					<div class="panel panel-default">
 						<div class="panel-body">
+								<c:if test="${empty recentClasses}">
+									<div class="panel-body">최근본 클래스가 없습니다.</div>
+								</c:if>
 							<c:forEach var="recentClass" items="${recentClasses}">
 								<div class="row">
 									<div class="col-md-4 col-sm-12">

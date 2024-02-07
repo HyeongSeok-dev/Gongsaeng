@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 
 <!DOCTYPE html>
@@ -72,8 +72,7 @@
 							onclick="location.href='modifyProfile'">
 					</c:when>
 					<c:when test="${fn:contains(member.member_img,'http')}">
-						<img alt="profile" src="${member.member_img}" style="cursor: pointer;"
-							onclick="location.href='modifyProfile'">
+						<img alt="profile" src="${member.member_img}" style="cursor: pointer;" onclick="location.href='modifyProfile'">
 					</c:when>
 					<c:otherwise>
 						<img alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}" style="cursor: pointer;"
@@ -150,7 +149,10 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-sm-6">
-								<p>현재 캐쉬: ${totalCash.total_cash}캐쉬</p>
+
+								<p>
+									현재 캐쉬:
+									<c:if test="${empty totalCash.total_cash}">0</c:if>${totalCash.total_cash}캐쉬</p>
 							</div>
 							<div class="col-sm-6 text-right">
 								<button class="btn btn-primary">캐쉬 충전</button>
@@ -165,6 +167,11 @@
 								</tr>
 							</thead>
 							<tbody>
+								<c:if test="${empty cashList}">
+									<tr>
+										<td colspan="3" class="text-center">캐시 내역이 없습니다.</td>
+									</tr>
+								</c:if>
 								<c:forEach var="cash" items="${cashList}">
 									<tr>
 										<c:choose>
@@ -185,10 +192,8 @@
 											</c:when>
 										</c:choose>
 										<td>${cash.cash_value}원</td>
-										<td>
-											<fmt:parseDate var="parsedDate" value="${cash.cash_date}" pattern="yyyy-MM-dd'T'HH:mm:ss" /> 
-											<fmt:formatDate value="${parsedDate}" pattern="yyyy-MM-dd HH:mm:ss" />
-										</td>
+										<td><fmt:parseDate var="parsedDate" value="${cash.cash_date}" pattern="yyyy-MM-dd'T'HH:mm:ss" /> <fmt:formatDate value="${parsedDate}"
+												pattern="yyyy-MM-dd HH:mm:ss" /></td>
 									</tr>
 								</c:forEach>
 							</tbody>

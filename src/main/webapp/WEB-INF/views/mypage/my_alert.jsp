@@ -153,6 +153,9 @@
 						</tr>
 					</thead>
 					<tbody>
+					<c:if test="${empty alertList}">
+						<tr><td colspan="3" class="text-center">받은 알림이 없습니다.</td></tr>
+					</c:if>
 						<c:forEach var="alert" items="${alertList}">
 							<tr>
 								<td><c:choose>

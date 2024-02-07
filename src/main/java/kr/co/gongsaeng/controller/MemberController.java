@@ -402,7 +402,7 @@ public class MemberController {
 
 		String birthday = kakao_account.get("birthday").substring(0, 2) + "-"
 				+ kakao_account.get("birthday").substring(2);
-		member.setMember_id(kakao_account.get("email"));
+		member.setMember_id("K_" + kakao_account.get("email"));
 		member.setMember_nick(properties.get("nickname"));
 		member.setMember_email(kakao_account.get("email"));
 		member.setMember_name(kakao_account.get("name"));
@@ -502,7 +502,7 @@ public class MemberController {
 		Map<String, String> response = (Map<String, String>) naverMemberInfo.get("response");
 		
 		String mobile = response.get("mobile");
-		member.setMember_id(response.get("email"));
+		member.setMember_id("N_" + response.get("email"));
 		member.setMember_nick(response.get("nickname"));
 		member.setMember_email(response.get("email"));
 		member.setMember_phone(mobile.replace("-", ""));

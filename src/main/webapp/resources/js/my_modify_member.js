@@ -91,6 +91,7 @@ $(document).ready(function() {
 			reader.readAsDataURL(file); // 이미지 파일 읽기
 		}
 	});
+	
 	function checkPasswdMatch() {
 		let passwd = document.getElementById('passwd').value;
 		let passwd2 = document.getElementById('passwd2').value;
