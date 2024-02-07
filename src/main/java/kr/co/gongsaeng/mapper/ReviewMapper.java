@@ -60,7 +60,7 @@ public interface ReviewMapper {
 //	List<ReviewVO> selectReviewsByLowestScore(int comId);
 	
 	// 사진/영상만 보기
-	List<ReviewVO> getSortedReviews(@Param("comId") int comId, 
+	List<ReviewVO> getSortedReviews(
 			@Param("classIdx")int classIdx, 
 			@Param("sortType") String sortType, 
 			@Param("photoOnly") boolean photoOnly);
@@ -111,10 +111,13 @@ public interface ReviewMapper {
 	// 예약번호 1개당 1개의 리뷰만 작성 가능
 	List<Map<String, String>> selectReservationList(@Param("member_id") String memberId,
 													@Param("classIdx") int classIdx,
-													@Param("pay_num") int payNum);
+													@Param("pay_num") String payNum);
 
 	//리뷰포인트 적립
 	void updatePoint(ReviewVO review);
+
+//	//class_idx불러오기
+//	int selectClassIdxInfo(String pay_num);
 	
 
 

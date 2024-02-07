@@ -64,24 +64,26 @@ function addResIdx(pay_num) {
 	<div class="container">
 		<form action="reviewWritePro" name="reviewWriteForm" method="POST" enctype="multipart/form-data" >
 		<div class="restaurant_info">
-			<h1 class="comName"><a href="${pageContext.request.contextPath}/review/redetail?com_id=${com_id}">${comName}</a></h1>
-			<h1 class="classTitle"><a href="${pageContext.request.contextPath}/review/redetail?com_id=${com_id}">${classTitle}</a></h1>
+			<h1 class="comName"><a href="${pageContext.request.contextPath}/review/detail?com_id=${com_id}">${comName}</a></h1>
+			<h1 class="classTitle"><a href="${pageContext.request.contextPath}/review/detail?class_idx=${class_idx}">${classTitle}</a></h1>
+			
 		<span id="visitCountNumber">${visitCount}</span><span id="visitCount">번째 방문</span>
 		<span>
 		<select onchange="addResIdx(this.value)">
 		<c:forEach var="reviewItem" items="${res_list}">
 			<option value="${reviewItem.res_idx}"  
-			<c:if test="${reviewItem.review_num ne '0'}">disabled</c:if>
-			<c:if test="${reviewItem.res_idx eq param.res_idx}">selected</c:if>
+			<c:if test="${reviewItem.review_idx ne '0'}">disabled</c:if>
+			<c:if test="${reviewItem.pay_num eq param.pay_num}">selected</c:if>
 			>
 					${reviewItem.res_date}
 					${reviewItem.res_time}
-				<c:if test="${reviewItem.review_num ne '0'}">(작성완료)</c:if>
+				<c:if test="${reviewItem.review_idx ne '0'}">(작성완료)</c:if>
 		</c:forEach>
 		</select>
 		</span>
 		</div>
 	    <input type="hidden" name="com_idx" value="${param.com_idx}">		
+	    <input type="hidden" name="class_idx" value="${param.class_idx}">	
 	    <input type="hidden" name="res_Num" value="${param.res_num}" id="resNum">
 		<div class="separator"></div>
 		<div class="review_rate_1" style="text-align: center;">
@@ -212,7 +214,8 @@ function addResIdx(pay_num) {
 				name="review_content" placeholder="업주와 다른 사용자들이 상처받지 않도록 좋은 표현을 사용해주세요.(500자수 제한)"></textarea>
 			<a class="caution_link" href="#" onclick="openPopup()">리뷰 작성 유의사항</a>
 			<section id="commandCell">
-				<button class="register_button" onclick="location.href='${pageContext.request.contextPath}/review/complete?class_idx=1">등록하기</button>
+				<button class="register_button" onclick="location.href='${pageContext.request.contextPath}/review/complete?class_idx=${class_idx}">등록하기</button>
+				console.log
 <%-- 		    <a href="${pageContext.request.contextPath}/review/write?com_id=${param.com_id}"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a> --%>
 			</section>
 		</div>

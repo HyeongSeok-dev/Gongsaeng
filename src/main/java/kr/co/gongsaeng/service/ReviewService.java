@@ -94,8 +94,8 @@ public class ReviewService {
 //	    				   mapper.selectReviewsByLowestScore(comId);
 //	}
 	
-	public List<ReviewVO> getSortedReviews(int comId, int classIdx, String sortType, boolean photoOnly) {
-		return mapper.getSortedReviews(comId, classIdx, sortType, photoOnly);
+	public List<ReviewVO> getSortedReviews(int classIdx, String sortType, boolean photoOnly) {
+		return mapper.getSortedReviews(classIdx, sortType, photoOnly);
 	}
 	
 	// =========================================================================
@@ -181,7 +181,7 @@ public class ReviewService {
 	}
 	
 	// 예약번호 1개당 1개의 리뷰만 작성 가능
-	public List<Map<String, String>> getReservationList(String memberId, int classIdx, int payNum) {
+	public List<Map<String, String>> getReservationList(String memberId, int classIdx, String payNum) {
 		return mapper.selectReservationList(memberId, classIdx, payNum);
 	}
 
@@ -189,6 +189,11 @@ public class ReviewService {
 	public void givePoint(ReviewVO review) {
 		mapper.updatePoint(review);
 	}
+
+//	//class_idx가져오기
+//	public int getclassIdxInfo(String pay_num) {
+//		return mapper.selectClassIdxInfo(pay_num);
+//	}
 
 
 

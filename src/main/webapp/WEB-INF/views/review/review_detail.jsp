@@ -54,9 +54,9 @@ var sId = '<c:out value="${sessionScope.sId}"/>';
 // ===============================
 // 댓글 아이콘 클릭 시 댓글창을 여는 함수
 function showCommentForm(element) {
-    var reviewIdx = element.getAttribute('data-review-num');
+    var reviewIdx = element.getAttribute('data-review-idx');
     var classIdx = getParameterByName('class_idx');
-    var url = contextPath + "/review/comment?class_idx=" + comId + "&review_idx=" + reviewIdx;
+    var url = contextPath + "/review/comment?class_idx=" + classIdx + "&review_idx=" + reviewIdx;
     var windowName = "commentPopup";
     var windowSize = "width=565,height=632";
     window.open(url, windowName, windowSize);
@@ -134,21 +134,19 @@ function showCommentForm(element) {
 	}); 
 	// ===================================================================
     var reviewCountsJson = '${reviewCountsJson}'.replace(/&quot;/g, '"');
-    var reviewCounts = JSON.parse(reviewCountsJson)[0]; // 첫 번째 객체만 사용
+    var reviewCounts = JSON.parse()[0]; // 첫 번째 객체만 사용
 //     var reviewCounts = JSON.parse(reviewCountsJson)[0]; // 첫 번째 객체만 사용
-    var labels = [
-        "인테리어가 멋져요", "혼밥하기 좋아요", "매장이 넓어요", "단체 모임 하기 좋아요", "뷰가 좋아요", 
-        "양이 많아요", "음식이 맛있어요", "가성비가 좋아요", "재료가 신선해요", 
-        "건강한 맛이에요", "친절해요", "주차하기 편해요", "화장실이 깨끗해요", 
-        "음식이 빨리 나와요", "아이와 가기 좋아요", "선택할 키워드가 없어요"
+   var labels = [
+        "친절해요", "꼼꼼해요", "가격이 합리적이에요", "설명을 잘 해주세요", "인테리어가 멋져요", 
+        "트렌디해요", "매장이 넓어요", "단체로 갈 수 있어요", "분위기가 편해요", 
+        "주차하기 편해요", "화장실이 깨끗해요", "찾아가기 쉬워요", "선택할 키워드가 없어요"
     ];
-    
+
     var data = [
-        reviewCounts.review_mood_interior, reviewCounts.review_mood_alone, reviewCounts.review_mood_large, 
-        reviewCounts.review_mood_meeting, reviewCounts.review_mood_view, reviewCounts.review_food_big, 
-        reviewCounts.review_food_deli, reviewCounts.review_food_cheap, reviewCounts.review_food_fresh, 
-        reviewCounts.review_food_healthy, reviewCounts.review_etc_kind, reviewCounts.review_etc_parking, 
-        reviewCounts.review_etc_toilet, reviewCounts.review_etc_fast, reviewCounts.review_etc_child, 
+        reviewCounts.review_kind, reviewCounts.review_detail, reviewCounts.review_cheap, 
+        reviewCounts.review_explanation, reviewCounts.review_interior, reviewCounts.review_trendy, 
+        reviewCounts.review_large, reviewCounts.review_meeting, reviewCounts.review_comfortable, 
+        reviewCounts.review_parking, reviewCounts.review_clean_toilet, reviewCounts.review_etc_fast,
         reviewCounts.review_no_keyword
     ];
 
@@ -254,7 +252,7 @@ function showCommentForm(element) {
 	    var initialSortType = $('.sort-link.active').data('sort-type') || 'newest';
 	    var photoOnly = $('#photoReviewCheckbox').is(':checked');
 // 	    var menuNames = getMenuNames();
-	    comId = getParameterByName('com_id');  // comId 초기화
+	    classIdx = getParameterByName('class_idx');  // comId 초기화
 
 
 	 // 초기 리뷰 목록 로드
@@ -327,145 +325,144 @@ function showCommentForm(element) {
 		    }
 		}
 		// =================================================================	
-		function sortReviews(sortType, photoOnly,menuNames) { // photoOnly 매개변수 추가
-		    console.log("메뉴 네임 넘어오는지 확인: >>>>>>>>>>>>>>" +  sortType +  photoOnly + menuNames); // 로그 출력
-		    var comId = getParameterByName('com_id'); // com_id 값을 가져옴
+// 		function sortReviews(sortType, photoOnly) { // photoOnly 매개변수 추가
+// 		    console.log("메뉴 네임 넘어오는지 확인: >>>>>>>>>>>>>>" +  sortType +  photoOnly); // 로그 출력
+// 		    var comId = getParameterByName('com_id'); // com_id 값을 가져옴
 	
-		    var requestData = {
-		            comId: comId,
-		            sortType: sortType,
-		            photoOnly: photoOnly,
-		            menuName: menuNames
-		        };
+// 		    var requestData = {
+// 		            classIdx: classIdx,
+// 		            sortType: sortType,
+// 		            photoOnly: photoOnly
+// 		        };
 	    
-	    // 체크된 메뉴 이름이 있을 경우에만 requestData 객체에 추가
-		  if (checkedMenuNames) {
-	        requestData.menuName = checkedMenuNames;
-	    }
+// 	    // 체크된 메뉴 이름이 있을 경우에만 requestData 객체에 추가
+// 		  if (checkedMenuNames) {
+// 	        requestData.menuName = checkedMenuNames;
+// 	    }
 		    
-		    // 체크된 메뉴 이름들을 수집
-		    var checkedMenuNames = $('.menu_checkbox:checked').map(function() {
-		        return this.value;
-		    }).get().join(', ');
+// 		    // 체크된 메뉴 이름들을 수집
+// 		    var checkedMenuNames = $('.menu_checkbox:checked').map(function() {
+// 		        return this.value;
+// 		    }).get().join(', ');
 		    
-		    console.log(">>>Sorting reviews by: ", sortType, ", Photo only: ", photoOnly, ", Menu Names:<<<< ", checkedMenuNames);
+// 		    console.log(">>>Sorting reviews by: ", sortType, ", Photo only: ", photoOnly, ", Menu Names:<<<< ", checkedMenuNames);
 		    
-		    $.ajax({
-	  			url: '/gongsaeng/review/redetail/sortedReviews', 
-				type: 'GET',
-		        data: requestData,
-		        dataType: 'json', 
-		        success: function(response) {
-	            // response 형식이 JSON이고, reviews 배열을 포함하는지 확인 필요
-		// =================================================================	
-	            var reviews = response;
-	            var reviewsContainer = $('#reviewsContainer');
+// 		    $.ajax({
+// 	  			url: '/gongsaeng/review/detail/sortedReviews', 
+// 				type: 'GET',
+// 		        data: requestData,
+// 		        dataType: 'json', 
+// 		        success: function(response) {
+// 	            // response 형식이 JSON이고, reviews 배열을 포함하는지 확인 필요
+// 		// =================================================================	
+// 	            var reviews = response;
+// 	            var reviewsContainer = $('#reviewsContainer');
 
-	            reviewsContainer.empty(); // 기존 리뷰 목록을 비움
+// 	            reviewsContainer.empty(); // 기존 리뷰 목록을 비움
 
-		reviews.forEach(function(review) {
+// 		reviews.forEach(function(review) {
 			
-// 	        var reviewerName = review.user_nick;
-	        // photoOnly가 true일 때, 이미지가 없는 리뷰는 건너뜀
-	        if (photoOnly && !review.review_img_1) {
-	            return;
-	        }
+// // 	        var reviewerName = review.user_nick;
+// 	        // photoOnly가 true일 때, 이미지가 없는 리뷰는 건너뜀
+// 	        if (photoOnly && !review.review_img_1) {
+// 	            return;
+// 	        }
 	
-	    var commentCount = review.commentCount; // commentCount 추출
-	    var formattedDate = formatDate(review.review_update);
+// 	    var commentCount = review.commentCount; // commentCount 추출
+// 	    var formattedDate = formatDate(review.review_update);
 	
-	    var deleteFormHtml = '';
-	    var modifyButtonHtml = '';
-	    var reportButtonHtml = '';
+// 	    var deleteFormHtml = '';
+// 	    var modifyButtonHtml = '';
+// 	    var reportButtonHtml = '';
 
-	    // sId가 review.user_id와 같거나, sId가 'admin'일 경우에만 삭제 및 수정 버튼 생성
-	    if (sId === review.user_id || sId === 'admin') {
-	        deleteFormHtml = 
-	            '<form action="' + contextPath + '/zzimkong/review/delete" method="POST">' +
-	                '<input type="hidden" name="review_num" value="' + review.review_num + '">' +
-	                '<input type="submit" class="review_delete" value="삭제" onclick="return confirm(\'리뷰를 삭제하시겠습니까?\');">' +
-	            '</form>';
+// 	    // sId가 review.user_id와 같거나, sId가 'admin'일 경우에만 삭제 및 수정 버튼 생성
+// 	    if (sId === review.member_id || sId === 'admin') {
+// 	        deleteFormHtml = 
+// 	            '<form action="' + contextPath + '/gongsaeng/review/delete" method="POST">' +
+// 	                '<input type="hidden" name="review_idx" value="' + review.review_idx + '">' +
+// 	                '<input type="submit" class="review_delete" value="삭제" onclick="return confirm(\'리뷰를 삭제하시겠습니까?\');">' +
+// 	            '</form>';
 
-	        modifyButtonHtml = 
-// 	            '<a href="modify?review_num=' + review.review_num + '">' +
-// 	                '<button class="review_modify">수정</button>' +
-// 	            '</a>';
-	        	'<a href="modify?review_num=' + review.review_num + '&com_id=' + review.com_id + '">' +
-	            '<button class="review_modify">수정</button>' +
-	        	'</a>';
-	    } else {
-	        // sId가 review.user_id나 'admin'이 아닐 때만 신고 버튼 생성
-	        reportButtonHtml = 
-	            '<a href="' + contextPath + '/review/report?review_num=' + review.review_num + '&com_id=' + review.com_id + '" class="review_report_btn" role="button">리뷰 신고하기</a>';
-	    }
+// 	        modifyButtonHtml = 
+// // 	            '<a href="modify?review_num=' + review.review_num + '">' +
+// // 	                '<button class="review_modify">수정</button>' +
+// // 	            '</a>';
+// 	        	'<a href="modify?review_idx=' + review.review_idx + '&class_idx=' + review.class_idx + '">' +
+// 	            '<button class="review_modify">수정</button>' +
+// 	        	'</a>';
+// 	    } else {
+// 	        // sId가 review.user_id나 'admin'이 아닐 때만 신고 버튼 생성
+// 	        reportButtonHtml = 
+// 	            '<a href="' + contextPath + '/review/report?review_idx=' + review.review_idx + '&class_idx=' + review.class_idx + '" class="review_report_btn" role="button">리뷰 신고하기</a>';
+// 	    }
 
-// 	    var reportButtonHtml = 
-// '<a href="' + contextPath + '/review/report?review_num=' + review.review_num + '&com_id=' + review.com_id + '" class="review_report_btn" role="button">리뷰 신고하기</a>';
-	    var imagePopupHtml = '';
-	    if (review.review_img_1) {
-	        imagePopupHtml = 
-	            '<div class="review_photos">' +
-	            	// 이미지경로 수정 - 2 (240110)
-	                '<img src="${pageContext.request.contextPath}/resources/upload/' + review.review_img_1 + '" alt="Review Image">' +
-//                 '<img src="' + contextPath + '/resources${pageContext.request.contextPath }/resources/upload/' + review.review_img_1 + '" alt="Review Image">' +
-	                '<div id="image-popup" class="image-popup" style="display: none;">' +
-	                    '<span class="close-popup">&times;</span>' +
-	                    '<img id="popup-img" class="popup-content">' +
-	                '</div>' +
-	            '</div>';
-	    }
+// // 	    var reportButtonHtml = 
+// // '<a href="' + contextPath + '/review/report?review_num=' + review.review_num + '&com_id=' + review.com_id + '" class="review_report_btn" role="button">리뷰 신고하기</a>';
+// 	    var imagePopupHtml = '';
+// 	    if (review.review_img_1) {
+// 	        imagePopupHtml = 
+// 	            '<div class="review_photos">' +
+// 	            	// 이미지경로 수정 - 2 (240110)
+// 	                '<img src="${pageContext.request.contextPath}/resources/upload/' + review.review_img_1 + '" alt="Review Image">' +
+// //                 '<img src="' + contextPath + '/resources${pageContext.request.contextPath }/resources/upload/' + review.review_img_1 + '" alt="Review Image">' +
+// 	                '<div id="image-popup" class="image-popup" style="display: none;">' +
+// 	                    '<span class="close-popup">&times;</span>' +
+// 	                    '<img id="popup-img" class="popup-content">' +
+// 	                '</div>' +
+// 	            '</div>';
+// 	    }
 	
-	    var reviewHtml = 
-	        '<ul class="review_list">' +
-	            '<li class="review_list1">' +
-	                '<div class="reviewer">' +
-	                    '<div class="reviewer_photo">' +
-	                        '<a href="#" target="_blank" class="profile_link">' +
-	                            '<div class="profile_image">' +
-	                                '<img src="' + contextPath + '/resources/img/profile.png" alt="프로필" width="38" height="38">' +
-	                            '</div>' +
-	                        '</a>' +
-	                    '</div>' +
-	                    '<div class="reviewer_info">' +
-// 	                        '<div class="reviewer_name">' + review.user_id + '</div>' +
-	                        '<div class="reviewer_name">' + review.user_nick + '</div>' +
-	                        '<div class="score1">' +
-	                            '<img src="' + contextPath + '/resources/img/review_star.png" width="15" height="15">' +
-	                            (review.review_score / 2).toFixed(1) +
-	                        '</div>' +
-	                    '</div>' +
-	                '</div>' +
-	                imagePopupHtml +
-	                '<p class="review_content">' + review.review_content + '</p>' +
-	                '<div class="review-actions">' +
-	                    '<div class="review-action1">' +
-// 	'<i class="far fa-comment" data-review-num="' + review.review_num + '" style="cursor: pointer;" onclick="showCommentForm(this);"></i> <span class="comment_count_number">' + commentCount + '</span>' +
-	'<div class="comment-section">' +
-    '<i class="far fa-comment" data-review-num="' + review.review_num + '" style="cursor: pointer;" onclick="showCommentForm(this);"></i>' + '<span class="comment_count_number">' + commentCount + '</span>' +'</div>'+
-// 						'<i class="far fa-heart" id="heartIcon" style="cursor: pointer;"></i>' + // 리뷰 좋아요 보류
-	                    '</div>' +
-	                    '<div class="review-action2">' +
-	                        '<div class="review-action-buttons">' +
-	                            deleteFormHtml +
-	                            modifyButtonHtml +
-	                            reportButtonHtml +
-	                        '</div>' +
-	                        '<span class="comment-icon" onclick="showCommentForm()"></span><br><br>'+
-	    				    '<div class="review_date">' + formattedDate + ' 작성</div>' + 
-	                 		'<div class="separator"></div>' + 
-	                    '</div>' +
-	                '</div>' +
-	            '</li>' +
-	        '</ul>';
+// 	    var reviewHtml = 
+// 	        '<ul class="review_list">' +
+// 	            '<li class="review_list1">' +
+// 	                '<div class="reviewer">' +
+// 	                    '<div class="reviewer_photo">' +
+// 	                        '<a href="#" target="_blank" class="profile_link">' +
+// 	                            '<div class="profile_image">' +
+// 	                                '<img src="' + contextPath + '/resources/img/profile.png" alt="프로필" width="38" height="38">' +
+// 	                            '</div>' +
+// 	                        '</a>' +
+// 	                    '</div>' +
+// 	                    '<div class="reviewer_info">' +
+// // 	                        '<div class="reviewer_name">' + review.user_id + '</div>' +
+// 	                        '<div class="reviewer_name">' + review.member_nick + '</div>' +
+// 	                        '<div class="score1">' +
+// 	                            '<img src="' + contextPath + '/resources/img/review_star.png" width="15" height="15">' +
+// 	                            (review.review_score / 2).toFixed(1) +
+// 	                        '</div>' +
+// 	                    '</div>' +
+// 	                '</div>' +
+// 	                imagePopupHtml +
+// 	                '<p class="review_content">' + review.review_content + '</p>' +
+// 	                '<div class="review-actions">' +
+// 	                    '<div class="review-action1">' +
+// // 	'<i class="far fa-comment" data-review-num="' + review.review_num + '" style="cursor: pointer;" onclick="showCommentForm(this);"></i> <span class="comment_count_number">' + commentCount + '</span>' +
+// 	'<div class="comment-section">' +
+//     '<i class="far fa-comment" data-review-idx="' + review.review_idx + '" style="cursor: pointer;" onclick="showCommentForm(this);"></i>' + '<span class="comment_count_number">' + commentCount + '</span>' +'</div>'+
+// // 						'<i class="far fa-heart" id="heartIcon" style="cursor: pointer;"></i>' + // 리뷰 좋아요 보류
+// 	                    '</div>' +
+// 	                    '<div class="review-action2">' +
+// 	                        '<div class="review-action-buttons">' +
+// 	                            deleteFormHtml +
+// 	                            modifyButtonHtml +
+// 	                            reportButtonHtml +
+// 	                        '</div>' +
+// 	                        '<span class="comment-icon" onclick="showCommentForm()"></span><br><br>'+
+// 	    				    '<div class="review_date">' + formattedDate + ' 작성</div>' + 
+// 	                 		'<div class="separator"></div>' + 
+// 	                    '</div>' +
+// 	                '</div>' +
+// 	            '</li>' +
+// 	        '</ul>';
 	
-	    $('#reviewsContainer').append(reviewHtml);
-	});
-		        },
-		        error: function(error) {
-		            console.error("Error: ", error);
-		        }
-		    });
-		}
+// 	    $('#reviewsContainer').append(reviewHtml);
+// 	});
+// 		        },
+// 		        error: function(error) {
+// 		            console.error("Error: ", error);
+// 		        }
+// 		    });
+// 		}
 	
 	// 체크박스 선택 시 해당 리뷰출력 
 	// =================================================================	
@@ -495,28 +492,28 @@ function showCommentForm(element) {
    // 카테고리 버튼 클릭 이벤트 핸들러
     $('.category_button').click(function() {
         var category = $(this).data('category');
-        var comId = Number(getParameterByName('com_id'));
-        loadReviewsByCategory(category,comId);
+        var classIdx = Number(getParameterByName('class_idx'));
+        loadReviewsByCategory(category,classIdx);
     });
 
 	// 카테고리별 리뷰 로드 함수
-	function loadReviewsByCategory(category,comId) {
+// 	function loadReviewsByCategory(category,classIdx) {
 
-	    $.ajax({
-  			url: '/zzimkong/review/redetail/filterByCategory', 
-	        type: 'GET',
-	        data: { category: category, 
-	        	comId: comId},
-	        dataType: 'json',
-	        success: function(reviews) {
-	            displayReviews(reviews);
-// 	            console.log("업체아이디!!!!! >>>>>>" + comId)
-	        },
-	        error: function(xhr, status, error) {
-	            console.error("Error occurred: " + error);
-	        }
-	    });
-	}
+// 	    $.ajax({
+//   			url: '/gongsaeng/review/detail/filterByCategory', 
+// 	        type: 'GET',
+// 	        data: { category: category, 
+// 	        	comId: comId},
+// 	        dataType: 'json',
+// 	        success: function(reviews) {
+// 	            displayReviews(reviews);
+// // 	            console.log("업체아이디!!!!! >>>>>>" + comId)
+// 	        },
+// 	        error: function(xhr, status, error) {
+// 	            console.error("Error occurred: " + error);
+// 	        }
+// 	    });
+// 	}
 	
 	// 리뷰 표시 함수
 	function displayReviews(reviews) {
@@ -539,22 +536,22 @@ function showCommentForm(element) {
 	    var reportButtonHtml = '';
 
 
-    // sId가 review.user_id와 같거나, sId가 'admin'일 경우에만 삭제 및 수정 버튼 생성
-    if (sId === review.user_id || sId === 'admin') {
+    // sId가 review.member_id와 같거나, sId가 'admin'일 경우에만 삭제 및 수정 버튼 생성
+    if (sId === review.member_id || sId === 'admin') {
         deleteFormHtml = 
-            '<form action="' + contextPath + '/zzimkong/review/delete" method="POST">' +
-                '<input type="hidden" name="review_num" value="' + review.review_num + '">' +
+            '<form action="' + contextPath + '/gongsaeng/review/delete" method="POST">' +
+                '<input type="hidden" name="review_idx" value="' + review.review_idx + '">' +
                 '<input type="submit" class="review_delete" value="삭제" onclick="return confirm(\'리뷰를 삭제하시겠습니까?\');">' +
             '</form>';
 
         modifyButtonHtml = 
-            '<a href="modify?review_num=' + review.review_num + '">' +
+            '<a href="modify?review_idx=' + review.review_idx + '">' +
                 '<button class="review_modify">수정</button>' +
             '</a>';
     }	else {
         // sId가 review.user_id나 'admin'이 아닐 때만 신고 버튼 생성
         reportButtonHtml = 
-            '<a href="' + contextPath + '/review/report?review_num=' + review.review_num + '&com_id=' + review.com_id + '" class="review_report_btn" role="button">리뷰 신고하기</a>';
+            '<a href="' + contextPath + '/review/report?review_idx=' + review.review_idx + '&class_idx=' + review.class_idx + '" class="review_report_btn" role="button">리뷰 신고하기</a>';
     }
 
 //     var reportButtonHtml = 
@@ -586,7 +583,7 @@ function showCommentForm(element) {
                     '</div>' +
                     '<div class="reviewer_info">' +
 //                         '<div class="reviewer_name">' + review.user_id + '</div>' +
-	                        '<div class="reviewer_name">' + review.user_nick + '</div>' +
+	                        '<div class="reviewer_name">' + review.member_nick + '</div>' +
                         '<div class="score1">' +
                             '<img src="' + contextPath + '/resources/img/review_star.png" width="15" height="15">' +
                             (review.review_score / 2).toFixed(1) +
@@ -599,7 +596,7 @@ function showCommentForm(element) {
                     '<div class="review-action1">' +
 // 					'<i class="far fa-comment" data-review-num="' + review.review_num + '" style="cursor: pointer;" onclick="showCommentForm(this);"></i>' + commentCount + 
 '<div class="comment-section">' +
-    '<i class="far fa-comment" data-review-num="' + review.review_num + '" style="cursor: pointer;" onclick="showCommentForm(this);"></i>' + '<span class="comment_count_number">' + commentCount + '</span>' +'</div>'+
+    '<i class="far fa-comment" data-review-idx="' + review.review_idx + '" style="cursor: pointer;" onclick="showCommentForm(this);"></i>' + '<span class="comment_count_number">' + commentCount + '</span>' +'</div>'+
 //   						  '<i class="far fa-heart" id="heartIcon" style="cursor: pointer;"></i>' + // 리뷰 좋아요 보류
                     '</div>' +
                     '<div class="review-action2">' +
@@ -641,34 +638,34 @@ function showCommentForm(element) {
     });
 	// =================================================================	
     // 메뉴 이름 불러오기 (24/01/08 주석 처리)
-	    var comId = getParameterByName('com_id');
-	    $.ajax({
-	        url: contextPath + '/review_menus', // URL 수정
-	        type: 'GET',
-	        data: { comId: comId }, // 데이터 추가
-	        dataType: 'json',
-	        success: function(menus) {
-	            var menuContainer = $('.menu_select');
-	            menus.forEach(function(menu) {
-	            	   // sanitizedMenu : 메뉴 이름에서 공백과 특수 문자를 제거하거나 대체(메뉴이름 안전하게 처리)
-	                var sanitizedMenu = menu.replace(/[^a-zA-Z0-9]/g, '_');
+// 	    var comId = getParameterByName('com_id');
+// 	    $.ajax({
+// 	        url: contextPath + '/review_menus', // URL 수정
+// 	        type: 'GET',
+// 	        data: { comId: comId }, // 데이터 추가
+// 	        dataType: 'json',
+// 	        success: function(menus) {
+// 	            var menuContainer = $('.menu_select');
+// 	            menus.forEach(function(menu) {
+// 	            	   // sanitizedMenu : 메뉴 이름에서 공백과 특수 문자를 제거하거나 대체(메뉴이름 안전하게 처리)
+// 	                var sanitizedMenu = menu.replace(/[^a-zA-Z0-9]/g, '_');
 
-	                var checkboxHtml = 
-	                    '<div class="menu_checkbox_container">' +
-	                        '<input type="checkbox" id="menu_checkbox_' + sanitizedMenu + '" class="menu_checkbox" value="' + menu + '">' +
-	                        '<label for="menu_checkbox_' + sanitizedMenu + '" class="menu_button">' + menu + '</label>' +
-	                    '</div>';
-	                menuContainer.append(checkboxHtml);
+// 	                var checkboxHtml = 
+// 	                    '<div class="menu_checkbox_container">' +
+// 	                        '<input type="checkbox" id="menu_checkbox_' + sanitizedMenu + '" class="menu_checkbox" value="' + menu + '">' +
+// 	                        '<label for="menu_checkbox_' + sanitizedMenu + '" class="menu_button">' + menu + '</label>' +
+// 	                    '</div>';
+// 	                menuContainer.append(checkboxHtml);
 
-	            });
-	        },
-	        error: function(xhr, status, error) {
-	            console.error("Error occurred: ", error);
-	            console.error("Status: ", status);
-	            console.error("Response: ", xhr.responseText);
-	        }
-		});
-	});
+// 	            });
+// 	        },
+// 	        error: function(xhr, status, error) {
+// 	            console.error("Error occurred: ", error);
+// 	            console.error("Status: ", status);
+// 	            console.error("Response: ", xhr.responseText);
+// 	        }
+// 		});
+// 	});
 	// =================================================================	
       // 리뷰 컨테이너 내에서 댓글 및 하트 아이콘에 대한 이벤트 위임
     $('#reviewsContainer').on('click', '.fa-comment, .fa-heart', function() {
@@ -695,13 +692,14 @@ function showCommentForm(element) {
                 this.classList.add('active'); // 클릭된 링크에 'active' 클래스 추가
             });
         });
+        });
 </script>
 	<!-- ================================================================================================= -->
 </head>
 <body>
 <div class="restaurant_name_with_likes">
     <div class="restaurant_name">
-   		<h2><a href="${pageContext.request.contextPath}/product/detail?com_id=${comId}">${comName}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart" aria-hidden="true"></i>
+   		<h2><a href="${pageContext.request.contextPath}/product/detail?class_idx=${classIdx}">${comName}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart" aria-hidden="true"></i>
 <%--    		<h2><a href="${pageContext.request.contextPath}/product/detail?com_id=${comId}">${comName}</h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart" aria-hidden="true"></i></a> --%>
 <%--        <h2><a href="${pageContext.request.contextPath}/product/detail">${comName}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart" aria-hidden="true"></i></h2> --%>
          <span class="like_count_top">${likeCount}</span><span class="like_text">&nbsp;&nbsp;이런 곳 좋아요</span>

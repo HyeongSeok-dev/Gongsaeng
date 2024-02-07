@@ -11,8 +11,8 @@
 				,#{member_id}
 				,#{review_content}
 				,#{review_score}
-				,1
-				,1
+				,#{pay_num}
+				,#{class_idx}
 				,now()
 				,#{review_img_1}
 				,null
@@ -494,6 +494,12 @@
 		com_idx = #{comIdx}
 	</select>
 	
+	<!-- class_idx값 구하기 -->
+<!-- 	<select id="selectClassIdxInfo" resultType="int"> -->
+<!-- 		SELECT class_idx -->
+<!-- 	    FROM payment -->
+<!-- 	    WHERE pay_num = #{pay_num} -->
+<!-- 	</select> -->
 	
 
 

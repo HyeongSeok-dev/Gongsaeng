@@ -615,7 +615,7 @@
         <div class="footer-area">
 			<jsp:include page="./inc/bottom.jsp"/>
 		</div>
-			<button onclick="location.href='${pageContext.request.contextPath}/review/write'">리뷰쓰기</button>
+			<button onclick="location.href='${pageContext.request.contextPath}/mypage/review/write'">리뷰쓰기</button>
 			<button onclick="location.href='${pageContext.request.contextPath}/review/report'">리뷰신고</button>
 			<button onclick="location.href='${pageContext.request.contextPath}/review/modify'">리뷰수정</button>
 			<button onclick="location.href='${pageContext.request.contextPath}/review/detail'">리뷰리스트</button>

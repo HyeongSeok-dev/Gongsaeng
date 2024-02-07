@@ -130,15 +130,15 @@ public class ReviewController {
 	
 	// ===================================================================
     // [ AJAX 요청 처리: 정렬된 리뷰 목록 출력 ]
-    @GetMapping("/review/redetail/sortedReviews")
+    @GetMapping("/review/detail/sortedReviews")
     @ResponseBody
-    public List<ReviewVO> getSortedReviews(@RequestParam("comId") int comId, 
+    public List<ReviewVO> getSortedReviews(
     										@RequestParam("classIdx") int classIdx,
                                            @RequestParam("sortType") String sortType,
                                            @RequestParam(value = "photoOnly", defaultValue = "false") boolean photoOnly
                                            ) {
     	
-        List<ReviewVO> reviews = service.getSortedReviews(comId, classIdx, sortType, photoOnly);
+        List<ReviewVO> reviews = service.getSortedReviews(classIdx, sortType, photoOnly);
         
         for (ReviewVO review : reviews) {
             int commentCount = service.getCommentCount(review.getReview_idx());
@@ -161,18 +161,24 @@ public class ReviewController {
 	
     // ===================================================================
   	// [ 리뷰 작성 ] 
-	@GetMapping("review/write")
+	@GetMapping("mypage/review/write")
 	public String reviewWrite(HttpSession session, Model model,ReviewVO review,
 			@RequestParam(defaultValue = "1") int comIdx,
-			 @RequestParam(defaultValue = "1") int payNum,
-			@RequestParam(defaultValue = "1") int classIdx) {
+			 @RequestParam(defaultValue = "") String payNum,
+			@RequestParam(defaultValue = "1") int classIdx
+			) {
+		System.out.println(payNum);
 		
-		System.out.println(classIdx);
 		
+//		//class_idx가져오기
+//		int classIdx = service.getclassIdxInfo(pay_num);
+		
+//		System.out.println("클래스아이디엑스!!!" + classIdx);
 		
 		//업체명
-		String comName = service.getCompanyName(comIdx);
-		//클래스명
+//		String comName = service.getCompanyName(comIdx);
+		
+//		//클래스명
 		String classTitle = service.getClassTitle(classIdx);
 		String sId = (String) session.getAttribute("sId");
 		
@@ -183,11 +189,11 @@ public class ReviewController {
 //		    session.setAttribute("sId", sId);
 //		    session.getAttribute(sId);
 //		    
-//		if (sId == null){
-//			model.addAttribute("msg", "로그인이 필요합니다");
-//			model.addAttribute("targetURL", "/gongsaeng/login");
-//			return "forward";
-//		}
+		if (sId == null){
+			model.addAttribute("msg", "로그인이 필요합니다");
+			model.addAttribute("targetURL", "/gongsaeng/member/login");
+			return "forward";
+		}
 		// ---------------------------------------------------------------------
 		
 	    // member_id를 사용하여 member 테이블에서 member_idx 찾기
@@ -201,8 +207,8 @@ public class ReviewController {
 		model.addAttribute("res_list",res_list);
 		System.out.println("res_list >>>>>>>>>>>>>>>>>>>>>>>" + res_list);
 		
-	    model.addAttribute("comIdx", comIdx);
-	    model.addAttribute("comName", comName);
+//	    model.addAttribute("comIdx", comIdx);
+//	    model.addAttribute("comName", comName);
 	    model.addAttribute("classTitle", classTitle);
 	    model.addAttribute("visitCount", visitCount);
 		
@@ -210,7 +216,7 @@ public class ReviewController {
 	}
 	
 	// "ReviewWritePro" 서블릿 요청에 대한 글쓰기 비즈니스 로직 처리
-	@PostMapping("review/reviewWritePro")
+	@PostMapping("mypage/review/reviewWritePro")
 	public String reviewWritePro(ReviewVO review, HttpSession session, Model model, RedirectAttributes redirectAttributes) {
 		
 		// 세션에서 user_id 가져오기
