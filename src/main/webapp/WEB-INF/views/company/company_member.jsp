@@ -274,7 +274,7 @@ tbody {
 													<th scope="col">클래스 등록일</th>
 													<th scope="col">클래스명</th>
 													<th scope="col">성별</th>
-													<th scope="col">관심정보</th>
+<!-- 													<th scope="col">관심정보</th> -->
 													<th scope="col">채팅</th>
 <!-- 													<th scope="col">포인트 사용 금액</th> -->
 <!-- 													<th scope="col">수수료</th> -->
@@ -291,7 +291,7 @@ tbody {
 													<td>2024/12/25</td>
 													<td>인테리어 클래스</td>
 													<td>남</td>
-													<td>#인테리어</td>
+<!-- 													<td>#인테리어</td> -->
 													<td><input type="button" value="채팅보내기"></td>
 <!-- 													<td>0</td> -->
 <!-- 													<td>50,000</td> -->

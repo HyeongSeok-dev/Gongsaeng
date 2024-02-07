@@ -266,7 +266,15 @@ tbody {
 											            <c:forEach items="${paymentInfo}" var="payment">
 											            <tr>
 											              <td>
-											              	<input type="checkbox" name="payNums" value="${payment.pay_num}"></td>
+											              	 <c:choose>
+												              	<c:when test="${payment.pay_cal_status == 1 }"> 
+													              	<input type="checkbox" name="payNums" value="${payment.pay_num}">
+												              	</c:when>
+												              	<c:otherwise>
+																	
+												              	</c:otherwise>
+												              </c:choose>
+											              </td>
 											              <td>${payment.pay_num }</td> <!-- 결제번호 -->
 											              <!-- 정산상태 -->
 											              <td>
