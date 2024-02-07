@@ -318,10 +318,10 @@ function showCommentForm(element) {
 		    
 		    // 메뉴 이름만 사용하여 리뷰 필터링
 		    if (checkedMenuNames && !photoOnly && sortType === 'newest') {
-		        sortReviews(null, false, checkedMenuNames);
+// 		        sortReviews(null, false, checkedMenuNames);
 		    } else {
 		        // 기존 조건에 따라 리뷰 필터링
-		        sortReviews(sortType, photoOnly, checkedMenuNames);
+// 		        sortReviews(sortType, photoOnly, checkedMenuNames);
 		    }
 		}
 		// =================================================================	
