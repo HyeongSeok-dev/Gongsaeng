@@ -81,15 +81,13 @@
 	background-color: #fff!important;
 }
 
-/* 테이블 내 텍스트의 폰트 사이즈를 조정합니다. */
 .table th, .table td {
-  font-size: 14px!important; /* 원하는 폰트 사이즈로 조정하세요. */
+  font-size: 14px!important; 
   text-align: center!important;
 }
 
-/* 제목의 폰트 사이즈를 줄입니다. */
 h2.title {
-/*   font-size: 24px; /* 원하는 폰트 사이즈로 조정하세요. */ */
+/*   font-size: 24px; /*  */
 }
 
 th {
@@ -116,9 +114,6 @@ tbody {
 
 <!--   <div class="wrapper "> -->
     <div class="sidebar" data-color="orange">
-      <!--
-        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
-    -->
      <jsp:include page="./sidebar_wrapper.jsp"/>
     </div>
     <div class="main-panel" id="main-panel">
@@ -189,7 +184,6 @@ tbody {
       <div class="panel-header">
         <div class="header text-center">
           <h2 class="title">정산 내역</h2>
-<!--           <p class="category">Handcrafted by our friend <a target="_blank" href="https://github.com/mouse0270">Robert McIntosh</a>. Please checkout the <a href="http://bootstrap-notify.remabledesigns.com/" target="_blank">full documentation.</a></p> -->
         </div>
       </div>
 		<div class="content">
@@ -229,7 +223,6 @@ tbody {
 									  <div class="col-xl-6">
 					                      <input type="button" value="초기화" class="btn btn-info m-1">
 					                      <input type="button" value="검색" class="btn btn-info m-1">
-				                      <!-- 여기에 추가 버튼을 계속해서 추가할 수 있습니다. -->
 				                    </div>
 				              </div>
 				            </form>
@@ -252,27 +245,28 @@ tbody {
 								 <table class="table table-bordered">
 											          <thead class="thead-dark">
 											            <tr>
-											              <th scope="col">#</th>
+											            <button id="submitSelected" class="btn btn-primary">선택한 항목 정산 신청</button>
+											            
+											              <!-- 전체 선택 체크박스 -->
+											              <th scope="col">
+											              	<input type="checkbox" id="selectAll">
+											              </th>
 											              <th scope="col">결제 번호</th>
 											              <th scope="col">정산 상태</th>
 											              <th scope="col">정산 신청일</th>
-<!-- 											              <th scope="col">결제 건수</th> -->
-<!-- 											              <th scope="col">정산 계좌</th> -->
 											              <th scope="col">총 결제 금액</th>
-<!-- 											              <th scope="col">클래스 수익 금액</th> -->
 											              <th scope="col">할인 금액(쿠폰/포인트)</th>
-<!-- 											              <th scope="col">포인트 사용 금액</th> -->
 											              <th scope="col">수수료 (10%)</th>
 											              <th scope="col">정산 금액</th>
 											              <th scope="col">환급 완료일</th>
-											              <th scope="col">정산 신청</th>
+<!-- 											              <th scope="col">정산 신청</th> -->
 											            </tr>
 											          </thead>
 											          <tbody>
-											            <!-- 여기에 각 행을 추가하세요. 예를 들어: -->
 											            <c:forEach items="${paymentInfo}" var="payment">
 											            <tr>
-											              <th scope="row">1</th> <!-- 인덱스 -->
+											              <td>
+											              	<input type="checkbox" name="payNums" value="${payment.pay_num}"></td>
 											              <td>${payment.pay_num }</td> <!-- 결제번호 -->
 											              <!-- 정산상태 -->
 											              <td>
@@ -292,22 +286,17 @@ tbody {
 											              	</c:choose>
 											              </td> 
 											              <td>${payment.refund_request_date }</td> <!-- 정산신청일 -->
-<!-- 											              <td>7</td> 결제건수 -->
-<!-- 											              <td>11790204135187</td> 정산계좌 -->
 																<td><fmt:formatNumber value="${payment.payment + payment.discount_payment}" type="number" pattern="#,##0"/></td> <!-- 정산금액 -->
-<!-- 											              <td>1,000,000</td> 클래스 수익 금액 -->
 											              <td>- <fmt:formatNumber value="${payment.discount_payment }" type="number" pattern="#,##0"/></td> <!-- 할인 금액 -->
-<!-- 											              <td>0</td> 포인트 사용 금액 -->
-<%-- 											              <td>${payment.payment } * 0.1 </td> <!-- 수수료 --> --%>
 																<td>- <fmt:formatNumber value="${payment.payment * 0.1}" type="number" pattern="#,##0"/></td> <!-- 수수료 -->
 																<td><fmt:formatNumber value="${payment.payment * 0.9}"  type="number" pattern="#,##0"/></td> <!-- 정산금액 -->
 											              <td>${payment.refund_date}</td> <!-- 환급완료일 -->
-											             <td>
+<!-- 											             <td> -->
 											              	<!-- 누르면 pay_cal_status 변경 ( 1 => 2 ) -->
-											              <c:if test="${payment.pay_cal_status == 1}">
-															<button type="button" class="submit-calculation-request" data-pay-num="${payment.pay_num}">정산 신청</button>
-											              </c:if>
-											             </td>
+<%-- 											              <c:if test="${payment.pay_cal_status == 1}"> --%>
+<%-- 															<button type="button" class="submit-calculation-request" data-pay-num="${payment.pay_num}">정산 신청</button> --%>
+<%-- 											              </c:if> --%>
+<!-- 											             </td> -->
 											            </tr>
 											            </c:forEach>
 											          </tbody>
@@ -319,7 +308,6 @@ tbody {
 										    </div>
 										  </div>
 										</div>
-<!-- 		      </div> -->
 		    </div>
       <footer class="footer">
         <div class=" container-fluid ">
@@ -368,33 +356,69 @@ tbody {
 <!--   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
   
      <script>
-     $(document).ready(function() {
-    	    $('.submit-calculation-request').click(function(e) {
-    	        e.preventDefault();
-    	        var payNum = $(this).data('pay-num');
-    	        $.ajax({
-    	            url: '${pageContext.request.contextPath}/company/income/updatePayCalStatus',
-    	            type: 'POST',
-    	            data: {
-    	                'pay_num': payNum,
-    	                'pay_cal_status': 2
-    	            },
-    	            success: function(response) {
-    	                if (response.success) {
-    	                    alert(response.message);
-    	                    location.reload();
-    	                } else {
-    	                    alert(response.message);
-    	                }
-    	            },
-    	            error: function(xhr) {
-    	                var response = JSON.parse(xhr.responseText);
-    	                alert("정산 신청에 실패했습니다: " + response.message);
-    	            }
-    	        });
-    	    });
-    	});
-
+//      $(document).ready(function() {
+//     	    $('.submit-calculation-request').click(function(e) {
+//     	        e.preventDefault();
+//     	        var payNum = $(this).data('pay-num');
+//     	        $.ajax({
+//     	            url: '${pageContext.request.contextPath}/company/income/updatePayCalStatus',
+//     	            type: 'POST',
+//     	            data: {
+//     	                'pay_num': payNum,
+//     	                'pay_cal_status': 2
+//     	            },
+//     	            success: function(response) {
+//     	                if (response.success) {
+//     	                    alert(response.message);
+//     	                    location.reload();
+//     	                } else {
+//     	                    alert(response.message);
+//     	                }
+//     	            },
+//     	            error: function(xhr) {
+//     	                var response = JSON.parse(xhr.responseText);
+//     	                alert("정산 신청에 실패했습니다: " + response.message);
+//     	            }
+//     	        });
+//     	    });
+//     	});
+	$(document).ready(function() {
+	    $('#selectAll').click(function(e) {
+	        $('input[name="payNums"]').prop('checked', this.checked);
+	    });
+	
+	    $('#submitSelected').click(function(e) {
+	        e.preventDefault();
+	        var selectedPayNums = $('input[name="payNums"]:checked').map(function() {
+	            return $(this).val();
+	        }).get();
+	
+	        if (selectedPayNums.length > 0) {
+	            $.ajax({
+	                url: '${pageContext.request.contextPath}/company/income/updatePayCalStatusBatch', // 수정된 경로
+	                type: 'POST',
+	                traditional: true,
+	                data: {
+	                    'payNums': selectedPayNums,
+	                    'pay_cal_status': 2
+	                },
+	                success: function(response) {
+	                    if(response.success) {
+	                        alert(response.message);
+	                        location.reload();
+	                    } else {
+	                        alert(response.message);
+	                    }
+	                },
+	                error: function(xhr, status, error) {
+	                    alert("정산 신청에 실패했습니다.");
+	                }
+	            });
+	        } else {
+	            alert("정산 신청할 항목을 선택하세요.");
+	        }
+	    });
+	});
     </script>
 </body>
 
