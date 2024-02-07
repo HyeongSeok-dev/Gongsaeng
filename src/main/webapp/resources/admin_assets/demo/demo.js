@@ -1,3 +1,6 @@
+$(function(){
+	var jan = $("#jan").val();
+	console.log("jan : " +  jan);
 demo = {
   initPickColor: function() {
     $('.pick-class-label').click(function() {
@@ -106,7 +109,7 @@ demo = {
 
   initDashboardPageCharts: function() {
 
-    chartColor = "#FFFFFF";
+    chartColor = "#2C2C2C";
 
     // General configuration for the charts with Line gradientStroke
     gradientChartOptionsConfiguration = {
@@ -219,10 +222,11 @@ demo = {
     gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
     gradientFill.addColorStop(1, "rgba(255, 255, 255, 0.24)");
 
+	console.log($(".jan").val() + " ," + $(".feb").val());
     var myChart = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
+        labels: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
         datasets: [{
           label: "Data",
           borderColor: chartColor,
@@ -237,13 +241,14 @@ demo = {
           fill: true,
           backgroundColor: gradientFill,
           borderWidth: 2,
-          data: [50, 150, 100, 190, 130, 90, 150, 160, 120, 140, 190, 95]
+          data: [$(".jan").val(), $(".feb").val(), $(".mar").val(), $(".apr").val(), $(".may").val(), $(".jun").val(),
+          		 $(".jul").val(), $(".aug").val(), $(".sep").val(), $(".oct").val(), $(".nov").val(), $(".dec").val()]
         }]
       },
       options: {
         layout: {
           padding: {
-            left: 20,
+            left: 10,
             right: 20,
             top: 0,
             bottom: 0
@@ -298,6 +303,88 @@ demo = {
         }
       }
     });
+
+//	myChart = new Chart(ctx, {
+//      type: 'line',
+//      data: {
+//        labels: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+//        datasets: [{
+//          label: "Data",
+//          borderColor: "#C0C0C0",
+//          pointBorderColor: "#C0C0C0",
+//          pointBackgroundColor: "#1e3d60",
+//          pointHoverBackgroundColor: "#1e3d60",
+//          pointHoverBorderColor: chartColor,
+//          pointBorderWidth: 1,
+//          pointHoverRadius: 7,
+//          pointHoverBorderWidth: 2,
+//          pointRadius: 5,
+//          fill: true,
+//          backgroundColor: gradientFill,
+//          borderWidth: 2,
+//          data: [$().val(), $().val(), $().val(), $().val(), $().val(), $().val(),
+//          		 $().val(), $().val(), $().val(), $().val(), $().val(), $().val()]
+//        }]
+//      },
+//      options: {
+//        layout: {
+//          padding: {
+//            left: 10,
+//            right: 20,
+//            top: 0,
+//            bottom: 0
+//          }
+//        },
+//        maintainAspectRatio: false,
+//        tooltips: {
+//          backgroundColor: '#fff',
+//          titleFontColor: '#333',
+//          bodyFontColor: '#666',
+//          bodySpacing: 4,
+//          xPadding: 12,
+//          mode: "nearest",
+//          intersect: 0,
+//          position: "nearest"
+//        },
+//        legend: {
+//          position: "bottom",
+//          fillStyle: "#FFF",
+//          display: false
+//        },
+//        scales: {
+//          yAxes: [{
+//            ticks: {
+//              fontColor: "rgba(255,255,255,0.4)",
+//              fontStyle: "bold",
+//              beginAtZero: true,
+//              maxTicksLimit: 5,
+//              padding: 10
+//            },
+//            gridLines: {
+//              drawTicks: true,
+//              drawBorder: false,
+//              display: true,
+//              color: "rgba(255,255,255,0.1)",
+//              zeroLineColor: "transparent"
+//            }
+//
+//          }],
+//          xAxes: [{
+//            gridLines: {
+//              zeroLineColor: "transparent",
+//              display: false,
+//
+//            },
+//            ticks: {
+//              padding: 10,
+//              fontColor: "rgba(255,255,255,0.4)",
+//              fontStyle: "bold"
+//            }
+//          }]
+//        }
+//      }
+//    });
+
 
     var cardStatsMiniLineColor = "#fff",
       cardStatsMiniDotColor = "#fff";
@@ -580,3 +667,4 @@ demo = {
     marker.setMap(map);
   }
 };
+});

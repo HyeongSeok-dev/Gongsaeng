@@ -21,9 +21,9 @@
   <link href="${pageContext.request.contextPath }/resources/admin_assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.css" rel="stylesheet" />
-  <link href="${pageContext.request.contextPath }/resources/admin_assets/css/main.css" rel="stylesheet" />
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
   <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath }/resources/admin_assets/css/main.css" rel="stylesheet" />
 <style type="text/css">
 /* .card-body.todo_count>a{ */
 /* 	margin-top: 5px; */
@@ -70,14 +70,14 @@
               </div>
             </form>
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" onclick="window.open">
-                  <i class="now-ui-icons ui-1_calendar-60"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">달력</span>
-                  </p>
-                </a>
-              </li>
+<!--               <li class="nav-item"> -->
+<!--                 <a class="nav-link" onclick="window.open"> -->
+<!--                   <i class="now-ui-icons ui-1_calendar-60"></i> -->
+<!--                   <p> -->
+<!--                     <span class="d-lg-none d-md-block">달력</span> -->
+<!--                   </p> -->
+<!--                 </a> -->
+<!--               </li> -->
               <li class="nav-item">
                 <a class="nav-link" onclick="window.open${pageContext.request.contextPath }/">
                   <i class="now-ui-icons ui-2_chat-round"></i>
@@ -106,16 +106,40 @@
 			<!-- 현재 총 결제 금액 -->
 		    <div class="now_total">
 			    <div class="row row_main">
-			    	<div class="col-md-3">
-			    		<span class="now_dateTime">2024년 1월 25일 목요일</span>
+			    	<div class="col-md-3 currentInfo">
+			    		<span class="now_dateTime">${admin.year}년 ${admin.month}월 ${admin.date}일 ${admin.dayOfWeek}요일</span>
 				   	</div>
-				   	<div class="col-md-3">
+				   	<div class="col-md-3 currentInfo">
 					    <span class="now_total_pay">현재 총 결제 금액 : </span>&nbsp;&nbsp;
-					    <span class="now_total_price"><b style="font-size: 30px;">0 </b>원</span>
+					    <span class="now_total_price">
+						    <b style="font-size: 30px;">
+							    <c:choose>
+							    	<c:when test="${empty admin.totalPayment}">
+										0					    	
+							    	</c:when>
+							    	<c:otherwise>
+									    ${admin.totalPay}
+							    	</c:otherwise>
+							    </c:choose>
+						    </b>
+						    원
+					    </span>
 				   	</div>
-				   	<div class="col-md-3">
+				   	<div class="col-md-3 currentInfo">
 					    <span class="now_total_pay">현재 총 예약 건수 : </span>&nbsp;&nbsp;
-					    <span class="now_total_price"><b style="font-size: 30px;">0 </b>건</span>
+					    <span class="now_total_price">
+						    <b style="font-size: 30px;">
+							    <c:choose>
+							    	<c:when test="${empty admin.countPayment}">
+							    		0
+							    	</c:when>
+							    	<c:otherwise>
+							    		${admin.countPayment}
+							    	</c:otherwise>
+							    </c:choose>
+						    </b>
+						    건
+					    </span>
 			   	 	</div>
 			    </div>
 		    </div>
@@ -124,59 +148,173 @@
      <div class="content">
      <div class="row row_main">
 		<!-- 왼쪽 섹션 -->
-		<div class="col-sm-6">
+		<div class="col-sm-4">
 		    <!-- 오늘의 할일 -->
-		    <div class="card">
-		        <div class="card-header">오늘의 할일</div>
-		        <hr>
+		    <div class="card" style="height: ">
+		        <div class="card-header todo_title">[ 오늘 신청 목록 ]</div>
 		        <div class="card-body todo_count">
-		            <a onclick="location.href='${pageContext.request.contextPath }/admin/company/refund'">환급 신청 : <b>0</b>건</a>
-		            <a onclick="location.href='${pageContext.request.contextPath }/admin/company/class'">신규등록클래스 : <b>0</b>건</a>
-		            <a onclick="location.href='${pageContext.request.contextPath }/admin/cs/chat'">문의 : <b>0</b>건</a>
-		            <a onclick="location.href='${pageContext.request.contextPath }/admin/report/class'">신고 : <b>0</b>건</a>
+		            <a onclick="location.href='${pageContext.request.contextPath }/admin/company/refund'">
+		            	사업체 가입 신청 : <b>
+		            	<c:choose>
+		            		<c:when test="${empty admin.newComRegCount}">
+		            			0
+		            		</c:when>
+		            		<c:otherwise>
+		            			${admin.newComRegCount}
+		            		</c:otherwise>
+		            	</c:choose>
+		            	</b>건
+		            </a>
+		             <hr>
+		            <a onclick="location.href='${pageContext.request.contextPath }/admin/company'">
+		            	사업체 환급 신청 : <b>
+		            	<c:choose>
+		            		<c:when test="${empty admin.newComRefundApp}">
+		            			0
+		            		</c:when>
+		            		<c:otherwise>
+		            			${admin.newComRefundApp}
+		            		</c:otherwise>
+		            	</c:choose>
+		            	</b>건
+		            </a>
+		             <hr>
+		            <a onclick="location.href='${pageContext.request.contextPath }/admin/company/class'">
+		            	클래스 신고 : <b>
+		            	<c:choose>
+		            		<c:when test="${empty admin.newClassReport}">
+		            			0
+		            		</c:when>
+		            		<c:otherwise>
+		            			${admin.newClassReport}
+		            		</c:otherwise>
+		            	</c:choose>
+		            	</b>건
+		            </a>
+		             <hr>
+		            <a onclick="location.href='${pageContext.request.contextPath }/admin/report/class'">
+		            	리뷰 신고 : <b>
+		            	<c:choose>
+		            		<c:when test="${empty admin.newReviewReport}">
+		            			0
+		            		</c:when>
+		            		<c:otherwise>
+		            			${admin.newReviewReport}
+		            		</c:otherwise>
+		            	</c:choose>
+		            	</b>건
+		            </a>
+		             <hr>
+		            <a onclick="location.href='${pageContext.request.contextPath }/admin/cs/chat'">
+		            	채팅 문의 : <b>
+		            	<c:choose>
+		            		<c:when test="${empty admin.newQnaChat}">
+		            			0
+		            		</c:when>
+		            		<c:otherwise>
+		            			${admin.newQnaChat}
+		            		</c:otherwise>
+		            	</c:choose>
+		            	</b>건
+		            </a>
+		             <hr>
+		            <a onclick="location.href='${pageContext.request.contextPath }/admin/cs/chat'">
+		            	뭐하지 : <b>
+		            	<c:choose>
+		            		<c:when test="${empty admin.newQnaChat}">
+		            			0
+		            		</c:when>
+		            		<c:otherwise>
+		            			${admin.newQnaChat}
+		            		</c:otherwise>
+		            	</c:choose>
+		            	</b>건
+		            </a>
 		        </div>
 		        <hr style="border: none;">
 		    <!-- 일정 -->
-		        <div class="card-header">1월 일정</div>
-		        <hr>
-		        <div class="card-body">
-		            <!-- 여기에 일정 표기 -->
-		           <table class="table">
-		                <tr>
-		                    <th>번호</th>
-		                    <th>목록</th>
-		                    <th>시작일</th>
-		                    <th>종료일</th>
-		                </tr>
-		                <tr  class="tr_hover">
-		                    <td>1</td>
-		                    <td>출석체크 이벤트</td>
-		                    <td>2024/01/01</td>
-		                    <td>2024/01/31</td>
-		                </tr>
-		            </table>
-		        </div>
+<!-- 		        <div class="card-header">1월 일정</div> -->
+<!-- 		        <hr> -->
+<!-- 		        <div class="card-body"> -->
+<!-- 		            여기에 일정 표기 -->
+<!-- 		           <table class="table"> -->
+<!-- 		                <tr> -->
+<!-- 		                    <th>번호</th> -->
+<!-- 		                    <th>목록</th> -->
+<!-- 		                    <th>시작일</th> -->
+<!-- 		                    <th>종료일</th> -->
+<!-- 		                </tr> -->
+<!-- 		                <tr  class="tr_hover"> -->
+<!-- 		                    <td>1</td> -->
+<!-- 		                    <td>출석체크 이벤트</td> -->
+<!-- 		                    <td>2024/01/01</td> -->
+<!-- 		                    <td>2024/01/31</td> -->
+<!-- 		                </tr> -->
+<!-- 		            </table> -->
+<!-- 		        </div> -->
 		    </div>
 		</div>
 		
 		<!-- 오른쪽 섹션 -->
-		<div class="col-sm-6">
+		<div class="col-sm-8">
 		    <!-- 통계 표 -->
 		    <div class="row row_main">
 			    <div class="card">
 			        <div class="card-body">
 			            <table class="table">
-			                <tr>
-			                    <th>현재 방문자 수</th>
-			                    <th>누적 방문자 수</th>
+			                <tr class="table_main">
+<!-- 			                    <th>현재 방문자 수</th> -->
+<!-- 			                    <th>누적 방문자 수</th> -->
 			                    <th>신규 가입자 수</th>
 			                    <th>누적 가입자 수</th>
+			                    <th>신규 반장가입자 수</th>
+			                    <th>누적 반장가입자 수</th>
 			                </tr>
-			                <tr>
-			                    <td>0명</td>
-			                    <td>0명</td>
-			                    <td>0명</td>
-			                    <td>0명</td>
+			                <tr class="table_main">
+			                    <td>
+	                    		 <c:choose>
+							    	<c:when test="${empty admin.newMemberCount}">
+							    	0
+							    	</c:when>
+							    	<c:otherwise>
+							    	${admin.newMemberCount}
+							    	</c:otherwise>
+							     </c:choose>
+			                     명
+			                    </td>
+			                    <td>
+	                    		 <c:choose>
+							    	<c:when test="${empty admin.newBanjangCount}">
+							    	0
+							    	</c:when>
+							    	<c:otherwise>
+							    	${admin.newBanjangCount}
+							    	</c:otherwise>
+							     </c:choose>
+			                     명
+			                    </td>
+			                    <td>
+	                    		 <c:choose>
+							    	<c:when test="${empty admin.cumulativeBanjangCount}">
+							    	0
+							    	</c:when>
+							    	<c:otherwise>
+							    	${cumulativeBanjangCount}
+							    	</c:otherwise>
+							     </c:choose>
+			                     명
+			                    </td>
+			                    <td>
+	                    		 <c:choose>
+							    	<c:when test="${empty admin.cumulativePayCount}">
+							    	0
+							    	</c:when>
+							    	<c:otherwise>
+							    	${admin.cumulativePayCount}
+							    	</c:otherwise>
+							     </c:choose>
+			                     명
+			                    </td>
 			                </tr>
 			            </table>
 			        </div>
@@ -186,18 +324,118 @@
 			    <div class="card">
 			        <div class="card-body">
 			            <table class="table">
-			                <tr>
+			                <tr class="table_main">
 			                    <th>이번달 예약 건수 </th>
 			                    <th>누적 예약 건수</th>
 			                    <th>이번달 결제 총 금액</th>
 			                    <th>누적 결제 총 금액</th>
 			                </tr>
-			                <tr>
-			                    <td>0건</td>
-			                    <td>0건</td>
-			                    <td>0원</td>
-			                    <td>0원</td>
+			                <tr class="table_main">
+			                    <td>
+	                    		 <c:choose>
+							    	<c:when test="${empty admin.newMemberCount}">
+							    	0
+							    	</c:when>
+							    	<c:otherwise>
+							    	${admin.newMemberCount}
+							    	</c:otherwise>
+							     </c:choose>
+			                     건
+			                    </td>
+			                    <td>
+	                    		 <c:choose>
+							    	<c:when test="${empty admin.newBanjangCount}">
+							    	0
+							    	</c:when>
+							    	<c:otherwise>
+							    	${admin.newBanjangCount}
+							    	</c:otherwise>
+							     </c:choose>
+			                     건
+			                    </td>
+			                    <td>
+	                    		 <c:choose>
+							    	<c:when test="${empty admin.cumulativeBanjangCount}">
+							    	0
+							    	</c:when>
+							    	<c:otherwise>
+							    	${admin.cumulativeBanjangCount}
+							    	</c:otherwise>
+							     </c:choose>
+			                     원
+			                    </td>
+			                    <td>
+	                    		 <c:choose>
+							    	<c:when test="${empty admin.cumulativePayCount}">
+							    	0
+							    	</c:when>
+							    	<c:otherwise>
+							    	${admin.cumulativePayCount}
+							    	</c:otherwise>
+							     </c:choose>
+			                     원
+			                    </td>
+			               </tr>
+			            </table>
+			        </div>
+			    </div>
+		    </div>
+		    <div class="row">
+			    <div class="card">
+			        <div class="card-body">
+			            <table class="table">
+			                <tr class="table_main">
+			                    <th>이번달 환급금</th>
+			                    <th>누적  환급금</th>
+			                    <th>이번달 환급 수익</th>
+			                    <th>누적 환급 수익</th>
 			                </tr>
+			                <tr class="table_main">
+			                    <td>
+	                    		 <c:choose>
+							    	<c:when test="${empty admin.monthlyRefund}">
+							    	0
+							    	</c:when>
+							    	<c:otherwise>
+							    	${admin.monthlyRefund}
+							    	</c:otherwise>
+							     </c:choose>
+			                     원
+			                    </td>
+			                    <td>
+	                    		 <c:choose>
+							    	<c:when test="${empty admin.cumulativeRefund}">
+							    	0
+							    	</c:when>
+							    	<c:otherwise>
+							    	${admin.cumulativeRefund}
+							    	</c:otherwise>
+							     </c:choose>
+			                     원
+			                    </td>
+			                    <td>
+	                    		 <c:choose>
+							    	<c:when test="${empty admin.monthlyRefundFee}">
+							    	0
+							    	</c:when>
+							    	<c:otherwise>
+							    	${admin.monthlyRefundFee}
+							    	</c:otherwise>
+							     </c:choose>
+			                     원
+			                    </td>
+			                    <td>
+	                    		 <c:choose>
+							    	<c:when test="${empty admin.cumulativeRefundFee}">
+							    	0
+							    	</c:when>
+							    	<c:otherwise>
+							    	${admin.cumulativeRefundFee}
+							    	</c:otherwise>
+							     </c:choose>
+			                     원
+			                    </td>
+			               </tr>
 			            </table>
 			        </div>
 			    </div>
@@ -207,41 +445,48 @@
 	    <div class="row row_main">
 	    	<div style="width: 850px;"></div>
 	    	<div style="width: 850px;"></div>
-		    <a href="${pageContext.request.contextPath }/admin/dashboard" class="more_dashboard">더보기</a>
+		    
 		    <div class="col-sm-12">
-				    <!-- 그래프 공간 -->
-				    <div class="card card-chart">
-				    	<div class="card-header">
-				    		<h5 class="card-category">1월</h5>
-				    		<h4 class="card-title">매출액</h4>
-				    	</div>
-				        <div class="card-body">
-				            <!-- 여기에 그래프를 넣어주세요. -->
-		        	        <canvas id="bigDashboardChart"></canvas>
-				        </div>
-				    </div>
-				    
-				    
-				    
-				    <!-- 더보기 링크 -->
+			    <!-- 그래프 공간 -->
+			    <div class="card card-chart">
+			    	 <div class="card-header">
+				    		<h5 class="card-category">${admin.year}년 공생</h5>
+				    		<h4 class="card-title">총 매출(만원)</h4>
+			    	 </div>
+			    	 <div class="dropdown">
+	                  <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
+	                    <i class="now-ui-icons ui-1_simple-add"></i>
+	                  </button>
+	                 </div>
+			         <div class="card-body">
+			            <!-- 여기에 그래프를 넣어주세요. -->
+	        	        <canvas id="bigDashboardChart"></canvas>
+			         </div>
+			         <input type="hidden" value="${admin.jan }" id="jan">
+			         <input type="hidden" value="${admin.feb }" class="feb">
+			         <input type="hidden" value="${admin.mar }" class="mar">
+			         <input type="hidden" value="${admin.apr }" class="apr">
+			         <input type="hidden" value="${admin.may }" class="may">
+			         <input type="hidden" value="${admin.jun }" class="jun">
+			         <input type="hidden" value="${admin.jul }" class="jul">
+			         <input type="hidden" value="${admin.aug }" class="aug">
+			         <input type="hidden" value="${admin.sep }" class="sep">
+			         <input type="hidden" value="${admin.oct }" class="oct">
+			         <input type="hidden" value="${admin.nov }" class="nov">
+			         <input type="hidden" value="${admin.dec }" class="dec">
+			    </div>
 			</div>
 		</div>
 		 <div class="row row_main">
           <div class="col-lg-4">
             <div class="card card-chart">
               <div class="card-header">
-                <h5 class="card-category">Global Sales</h5>
-                <h4 class="card-title">Shipped Products</h4>
+                <h5 class="card-category">${admin.month}월 회원</h5>
+                <h4 class="card-title">신규 회원수</h4>
                 <div class="dropdown">
                   <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
-                    <i class="now-ui-icons loader_gear"></i>
+                    <i class="now-ui-icons ui-1_simple-add"></i>
                   </button>
-                  <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <a class="dropdown-item text-danger" href="#">Remove Data</a>
-                  </div>
                 </div>
               </div>
               <div class="card-body">
@@ -249,28 +494,17 @@
                   <canvas id="lineChartExample"></canvas>
                 </div>
               </div>
-              <div class="card-footer">
-                <div class="stats">
-                  <i class="now-ui-icons arrows-1_refresh-69"></i> Just Updated
-                </div>
-              </div>
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="card card-chart">
               <div class="card-header">
-                <h5 class="card-category">2018 Sales</h5>
-                <h4 class="card-title">All products</h4>
+                <h5 class="card-category">${admin.month}월 사업자</h5>
+                <h4 class="card-title">신규 사업자수</h4>
                 <div class="dropdown">
                   <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
-                    <i class="now-ui-icons loader_gear"></i>
+                    <i class="now-ui-icons ui-1_simple-add"></i>
                   </button>
-                  <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <a class="dropdown-item text-danger" href="#">Remove Data</a>
-                  </div>
                 </div>
               </div>
               <div class="card-body">
@@ -278,33 +512,40 @@
                   <canvas id="lineChartExampleWithNumbersAndGrid"></canvas>
                 </div>
               </div>
-              <div class="card-footer">
-                <div class="stats">
-                  <i class="now-ui-icons arrows-1_refresh-69"></i> Just Updated
-                </div>
-              </div>
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="card card-chart">
               <div class="card-header">
-                <h5 class="card-category">Email Statistics</h5>
-                <h4 class="card-title">24 Hours Performance</h4>
+                <h5 class="card-category">${admin.month}월 매출</h5>
+                <h4 class="card-title">환급 수익</h4>
+                <div class="dropdown">
+                  <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
+                    <i class="now-ui-icons ui-1_simple-add"></i>
+                  </button>
+                 </div>
               </div>
               <div class="card-body">
                 <div class="chart-area">
                   <canvas id="barChartSimpleGradientsNumbers"></canvas>
                 </div>
               </div>
-              <div class="card-footer">
-                <div class="stats">
-                  <i class="now-ui-icons ui-2_time-alarm"></i> Last 7 days
-                </div>
-              </div>
             </div>
           </div>
         </div>
 <!--       바텀 -->
+<%--         <input type="text" value="${thisYearPay.jan }" class="jan"> --%>
+<%--         <input type="text" value="${thisYearPay.feb }" class="feb"> --%>
+<%--         <input type="text" value="${thisYearPay.mar }" class="mar"> --%>
+<%--         <input type="text" value="${thisYearPay.apr }" class="apr"> --%>
+<%--         <input type="text" value="${thisYearPay.may }" class="may"> --%>
+<%--         <input type="text" value="${thisYearPay.jun }" class="jun"> --%>
+<%--         <input type="text" value="${thisYearPay.jul }" class="jul"> --%>
+<%--         <input type="text" value="${thisYearPay.aug }" class="aug"> --%>
+<%--         <input type="text" value="${thisYearPay.sep }" class="sep"> --%>
+<%--         <input type="text" value="${thisYearPay.oct }" class="oct"> --%>
+<%--         <input type="text" value="${thisYearPay.nov }" class="nov"> --%>
+<%--         <input type="text" value="${thisYearPay.dec }" class="dec"> --%>
       <footer class="footer">
        <jsp:include page="./inc/admin_bottom.jsp"/>
      </footer>
@@ -316,8 +557,9 @@
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/popper.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/bootstrap.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-  <!--  Google Maps Plugin    -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+  <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
+<!--   <!--  Google Maps Plugin    --> -->
+<!--   <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
   <!-- Chart JS -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/plugins/chartjs.min.js"></script>
   <!--  Notifications Plugin    -->
@@ -325,6 +567,7 @@
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.js"></script>
+  <script src="${pageContext.request.contextPath }/resources/admin_assets/js/main.js"></script>
   <script>
     $(document).ready(function() {
       // Javascript method's body can be found in assets/js/demos.js

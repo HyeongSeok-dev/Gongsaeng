@@ -22,6 +22,6 @@
 		<typeAlias type="kr.co.gongsaeng.vo.ReviewCountVO"  alias="reviewcount"/>
 		<typeAlias type="kr.co.gongsaeng.vo.CompanyClassVO"  alias="companyClass"/>
 		<typeAlias type="kr.co.gongsaeng.vo.CompanyReviewDetailVO"  alias="companyReview"/>
-		
+		<typeAlias type="kr.co.gongsaeng.vo.AdminVO"  alias="admin"/>
 	</typeAliases>
 </configuration>

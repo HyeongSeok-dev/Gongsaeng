@@ -8,7 +8,7 @@
 .now_dateTime {
 	margin-top: 10px;
 	position: relative;
-	top: 10px;
+	top: 5px;
 }
 .row.row_main {
 	display: flex;
@@ -26,7 +26,7 @@
 }
 
 .todo_count>a{
-	font-size: 18px;
+	font-size: 25px;
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
@@ -38,7 +38,7 @@
 }
 
 .todo_count>a:hover {
-	border-bottom: 1px solid;
+	background-color: #f0f0f0;
 }
 
 .tr_hover:hover{
@@ -46,8 +46,8 @@
 	background-color: #fff;
 }
 
-.card>hr{
-	width: 40%;
+.todo_count>hr{
+	width: 80%;
 	margin-left : auto;
 	margin-right : auto;
 	margin-top: 10px;
@@ -66,3 +66,10 @@
 	background-color: #494C53;
 	text-decoration-line: none;
 }
+
+.todo_title {
+	font-size: 35px;
+}
+.table_main>th, .table_main>td {
+	font-size: 20px;
+} 
