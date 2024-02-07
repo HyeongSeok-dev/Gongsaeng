@@ -28,6 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.google.gson.Gson;
 
 import kr.co.gongsaeng.service.ReviewService;
+import kr.co.gongsaeng.vo.ClassVO;
 import kr.co.gongsaeng.vo.MemberVO;
 import kr.co.gongsaeng.vo.ReviewCountVO;
 import kr.co.gongsaeng.vo.ReviewVO;
@@ -763,20 +764,6 @@ public class ReviewController {
 			return "false"; 
 		}
 		
-	}
-	
-
-	
-	
-	
-	
-	
-	@GetMapping("product/detail")
-	public String productDetail() {
-		
-
-		
-		return "product_detail";
 	}
 	
 	
