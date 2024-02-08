@@ -129,8 +129,14 @@ public interface AdminMapper {
 	// 채팅문의
 	String selectNewQnaChat();
 	
-	//그래프 올해 매출
+	//그래프 올해 월별 매출
 	AdminVO selectThisYearPay();
+	//그래프 올해 월별 환급수익
+	AdminVO selectThisYearRef();
+	//그래프 올해 월별 사업체 가입수
+	AdminVO selectThisYearCom();
+	//그래프 올해 월별 회원 가입수
+	AdminVO selectThisYearMem();
 	
 	
 	

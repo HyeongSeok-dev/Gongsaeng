@@ -20,32 +20,32 @@
 	<div class="sidebar-wrapper" id="sidebar-wrapper">
 	    <ul class="nav">
 	        <!-- 대쉬보드 드롭다운 메뉴 -->
-	        <li class="nav-item">
-	            <a href="#dashboard" class="nav-link" data-toggle="collapse" aria-expanded="false">
-	                <i class="now-ui-icons business_chart-pie-36"></i>
-	                <p>대쉬보드<b class="caret"></b></p>
-	            </a>
-	            <div id="dashboard" class="collapse" aria-labelledby="dashboard" data-parent="#sidebar-wrapper">
-	                <ul class="nav">
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/dashboard/member">회원</a></li>
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/dashboard/company">사업체</a></li>
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/dashboard/sales">매출</a></li>
-	                </ul>
-	            </div>
-	        </li>
+<!-- 	        <li class="nav-item"> -->
+<!-- 	            <a href="#dashboard" class="nav-link" data-toggle="collapse" aria-expanded="false"> -->
+<!-- 	                <i class="now-ui-icons business_chart-pie-36"></i> -->
+<!-- 	                <p>대쉬보드<b class="caret"></b></p> -->
+<!-- 	            </a> -->
+<!-- 	            <div id="dashboard" class="collapse" aria-labelledby="dashboard" data-parent="#sidebar-wrapper"> -->
+<!-- 	                <ul class="nav"> -->
+<%-- 	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/dashboard/member">회원</a></li> --%>
+<%-- 	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/dashboard/company">사업체</a></li> --%>
+<%-- 	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/dashboard/sales">매출</a></li> --%>
+<!-- 	                </ul> -->
+<!-- 	            </div> -->
+<!-- 	        </li> -->
 	        <!-- 공생 드롭다운 메뉴-->
-	        <li class="nav-item">
-	            <a href="#gongsaeng" class="nav-link" data-toggle="collapse" aria-expanded="false">
-	                <i class="now-ui-icons ui-2_settings-90"></i>
-	                <p>공생<b class="caret"></b></p>
-	            </a>
-	            <div id="gongsaeng" class="collapse" aria-labelledby="gongsaeng" data-parent="#sidebar-wrapper">
-	                <ul class="nav">
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/OPay/account">약정계좌 관리</a></li>
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/OPay/deposit/withdraw">매출 관리</a></li>
-	                </ul>
-	            </div>
-	        </li>
+<!-- 	        <li class="nav-item"> -->
+<!-- 	            <a href="#gongsaeng" class="nav-link" data-toggle="collapse" aria-expanded="false"> -->
+<!-- 	                <i class="now-ui-icons ui-2_settings-90"></i> -->
+<!-- 	                <p>공생<b class="caret"></b></p> -->
+<!-- 	            </a> -->
+<!-- 	            <div id="gongsaeng" class="collapse" aria-labelledby="gongsaeng" data-parent="#sidebar-wrapper"> -->
+<!-- 	                <ul class="nav"> -->
+<%-- 	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/OPay/account">약정계좌 관리</a></li> --%>
+<%-- 	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/OPay/deposit/withdraw">매출 관리</a></li> --%>
+<!-- 	                </ul> -->
+<!-- 	            </div> -->
+<!-- 	        </li> -->
 	        <!-- 회원 드롭다운 메뉴-->
 	        <li class="nav-item">
 	            <a href="${pageContext.request.contextPath}/admin/member">
@@ -97,18 +97,18 @@
 <!-- 	            </div> -->
 <!-- 	        </li> -->
 	        <!-- 마케팅센터 드롭다운 메뉴 -->
-	        <li class="nav-item">
-	            <a href="#marketing" class="nav-link" data-toggle="collapse" aria-expanded="false">
-	                <i class="now-ui-icons ui-1_send"></i>
-	                <p>커뮤니티<b class="caret"></b></p>
-	            </a>
-	            <div id="marketing" class="collapse" aria-labelledby="marketing" data-parent="#sidebar-wrapper">
-	                <ul class="nav">
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/marketing/event">궁금해요 관리</a></li>
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/marketing/coupon">함께해요 관리</a></li>
-	                </ul>
-	            </div>
-	        </li>
+<!-- 	        <li class="nav-item"> -->
+<!-- 	            <a href="#marketing" class="nav-link" data-toggle="collapse" aria-expanded="false"> -->
+<!-- 	                <i class="now-ui-icons ui-1_send"></i> -->
+<!-- 	                <p>커뮤니티<b class="caret"></b></p> -->
+<!-- 	            </a> -->
+<!-- 	            <div id="marketing" class="collapse" aria-labelledby="marketing" data-parent="#sidebar-wrapper"> -->
+<!-- 	                <ul class="nav"> -->
+<%-- 	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/marketing/event">궁금해요 관리</a></li> --%>
+<%-- 	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/marketing/coupon">함께해요 관리</a></li> --%>
+<!-- 	                </ul> -->
+<!-- 	            </div> -->
+<!-- 	        </li> -->
 	        <li class="nav-item">
 	            <a href="#marketing" class="nav-link" data-toggle="collapse" aria-expanded="false">
 	                <i class="now-ui-icons ui-1_bell-53"></i>

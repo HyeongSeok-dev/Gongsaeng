@@ -8,27 +8,27 @@
 
 	<!-- main.jsp -->
 	<!-- 현재 총 매출 -->
-	<select id="selectTotalPayment" resultType="payment">
+	<select id="selectTotalPayment" resultType="String">
 	<![CDATA[
-		SELECT SUM(payment)
+		SELECT SUM(payment) AS 'totalPayment'
 		FROM payment 
 		WHERE pay_status = 1 AND (pay_date <= SUBTIME(now() + INTERVAL  1 day,CURTIME()) AND pay_date > SUBTIME(now(),CURTIME())) 
 	]]>	
 	</select>
 
 	<!-- 현재 총 예약건수 -->
-	<select id="selectCountPayment" resultType="payment">
+	<select id="selectCountPayment" resultType="String">
 	<![CDATA[
-		SELECT COUNT(pay_num)
+		SELECT COUNT(pay_num) AS 'countPayment'
 		FROM payment 
 		WHERE pay_status = 1 AND (pay_date <= SUBTIME(now() + INTERVAL  1 day,CURTIME()) AND pay_date > SUBTIME(now(),CURTIME())) 
 	]]>	
 	</select>
 	
 	<!--신규가입자수  -->
-	<select id="selectNewMemberCount" resultType="member">
+	<select id="selectNewMemberCount" resultType="String">
 	<![CDATA[
-		SELECT COUNT(member_id)
+		SELECT COUNT(member_id) AS 'newMemberCount'
 		FROM member 
 		WHERE member_date <= SUBTIME(now() + INTERVAL  1 day,CURTIME()) AND member_date > SUBTIME(now(),CURTIME()) 
 				AND member_status = 1
@@ -36,16 +36,16 @@
 	</select>
 	
 	<!-- 누적회원수   -->
-	<select id="selectCulmulativeMemberCount" resultType="member">
-		SELECT COUNT(member_id)
+	<select id="selectCulmulativeMemberCount" resultType="String">
+		SELECT COUNT(member_id) AS 'cumulativeMemberCount'
 		FROM member 
 		WHERE member_status = 1
 	</select>
 
 	<!--신규 반장가입자수  -->
-	<select id="selectNewBanjangCount" resultType="member">
+	<select id="selectNewBanjangCount" resultType="String">
 	<![CDATA[
-		SELECT COUNT(member_id)
+		SELECT COUNT(member_id) AS 'newBanjangCount'
 		FROM member 
 		WHERE member_date <= SUBTIME(now() + INTERVAL  1 day,CURTIME()) AND member_date > SUBTIME(now(),CURTIME()) 
 				AND member_status = 1 AND member_category = 2
@@ -53,48 +53,48 @@
 	</select>
 	
 	<!-- 누적반장수   -->
-	<select id="selectCulmulativeBanjangCount" resultType="member">
-		SELECT COUNT(member_id)
+	<select id="selectCulmulativeBanjangCount" resultType="String">
+		SELECT COUNT(member_id) AS 'cumulativeBanjangCount'
 		FROM member 
 		WHERE member_status = 1 AND member_category = 2
 	</select>
 
 	<!-- 이번달 예약건수   -->
-	<select id="selectMonthlyPayCount" resultType="payment">
+	<select id="selectMonthlyPayCount" resultType="String">
 	<![CDATA[
-		SELECT COUNT(pay_num)
+		SELECT COUNT(pay_num) AS 'monthlyPayCount'
 		FROM payment 
 		WHERE pay_status = 1 AND (pay_date >= (last_day(now() - INTERVAL 1 month) + INTERVAL 1 DAY) AND pay_date <= last_day(now()))
 	]]>		
 	</select>
 	
 	<!-- 누적 예약건수   -->
-	<select id="selectCumulativePayCount" resultType="payment">
-		SELECT COUNT(pay_num)
+	<select id="selectCumulativePayCount" resultType="String">
+		SELECT COUNT(pay_num) AS 'cumulativePayCount'
 		FROM payment
 		WHERE pay_status = 1 
 	</select>
 
 	<!-- 이번달 총매출   -->
-	<select id="selectMonthlyTotalPay" resultType="payment">
+	<select id="selectMonthlyTotalPay" resultType="String">
 	<![CDATA[
-		SELECT SUM(payment)
+		SELECT SUM(payment) AS 'monthlyTotalPay'
 		FROM payment 
 		WHERE pay_status = 1 AND (pay_date >= (last_day(now() - INTERVAL 1 month) + INTERVAL 1 DAY) AND pay_date <= last_day(now()))
 	]]>		
 	</select>
 	
 	<!-- 누적 총매출   -->
-	<select id="selectCumulativeTotalPay" resultType="payment">
-		SELECT SUM(payment)
+	<select id="selectCumulativeTotalPay" resultType="String">
+		SELECT SUM(payment) AS 'cumulativeTotalPay'
 		FROM payment
 		WHERE pay_status = 1 
 	</select>
 	
 	<!-- 이번달 환급금   -->
-	<select id="selectMonthlyRefund" resultType="payment">
+	<select id="selectMonthlyRefund" resultType="String">
 	<![CDATA[
-		SELECT SUM(payment)
+		SELECT SUM(payment) AS 'monthlyRefund'
 		FROM payment 
 		WHERE pay_status = 1 AND (pay_date >= (last_day(now() - INTERVAL 1 month) + INTERVAL 1 DAY) AND pay_date <= last_day(now()))
 				AND pay_cal_status = 4
@@ -102,16 +102,16 @@
 	</select>
 	
 	<!-- 누적 환급금   -->
-	<select id="selectCumulativeRefund" resultType="payment">
-		SELECT SUM(payment)
+	<select id="selectCumulativeRefund" resultType="String">
+		SELECT SUM(payment) AS 'cumulativeRefund'
 		FROM payment
 		WHERE pay_status = 1 AND pay_cal_status = 4
 	</select>
 
 	<!-- 이번달 환급 수익   -->
-	<select id="selectMonthlyRefundFee" resultType="payment">
+	<select id="selectMonthlyRefundFee" resultType="String">
 	<![CDATA[
-		SELECT SUM(payment * 0.1)
+		SELECT  FLOOR(SUM(payment * 0.1)) AS 'monthlyRefundFee'
 		FROM payment 
 		WHERE pay_status = 1 AND (pay_date >= (last_day(now() - INTERVAL 1 month) + INTERVAL 1 DAY) AND pay_date <= last_day(now()))
 				AND pay_cal_status = 4
@@ -119,61 +119,117 @@
 	</select>
 	
 	<!-- 누적 환급 수익   -->
-	<select id="selectCumulativeRefundFee" resultType="payment">
-		SELECT SUM(payment * 0.1)
+	<select id="selectCumulativeRefundFee" resultType="String">
+		SELECT  FLOOR(SUM(payment * 0.1)) AS 'cumulativeRefundFee'
 		FROM payment
 		WHERE pay_status = 1 AND pay_cal_status = 4
 	</select>
 	
+	<!-- 오늘의 할일 중 -->
 	<!-- 사업체 가입 신청   -->
-	<select id="selectNewComRegCount" resultType="member">
-		SELECT COUNT(com_idx)
+	<select id="selectNewComRegCount" resultType="String">
+	<![CDATA[
+		SELECT COUNT(com_idx) AS 'newComRegCount'
 		FROM company
-		WHERE com_status = 2
+		WHERE com_status = 2 AND (com_date <= SUBTIME(now() + INTERVAL  1 day,CURTIME()) AND com_date > SUBTIME(now(),CURTIME()))
+	]]>		
 	</select>
 
 	<!-- 사업체 환급 신청   -->
-	<select id="selectComRefundApp" resultType="payment">
-		SELECT COUNT(pay_num)
+	<select id="selectComRefundApp" resultType="String">
+	<![CDATA[
+		SELECT COUNT(pay_num) AS 'newComRefundApp'
 		FROM payment
-		WHERE pay_status = 1 AND pay_cal_status = 2
+		WHERE pay_status = 1 AND pay_cal_status = 2 AND (pay_date <= SUBTIME(now() + INTERVAL  1 day,CURTIME()) AND pay_date > SUBTIME(now(),CURTIME()))
+	]]>		
 	</select>
 	
 	<!-- 클래스 신고 -->
-	<select id="selectNewClassReport" resultType="report">
-		SELECT COUNT(report_idx)
+	<select id="selectNewClassReport" resultType="String">
+	<![CDATA[
+		SELECT COUNT(report_idx) AS 'newClassReport'
 		FROM report
-		WHERE report_status = 1 AND report_category = 2
+		WHERE report_status = 1 AND report_category = 2 AND (report_date <= SUBTIME(now() + INTERVAL  1 day,CURTIME()) AND report_date > SUBTIME(now(),CURTIME()))
+	]]>		
 	</select>
 	
 	<!-- 리뷰 신고 -->
-	<select id="selectNewReviewReport" resultType="report">
-		SELECT COUNT(report_idx)
+	<select id="selectNewReviewReport" resultType="String">
+	<![CDATA[
+		SELECT COUNT(report_idx) AS 'newReviewReport'
 		FROM report
-		WHERE report_status = 1 AND report_category = 1
+		WHERE report_status = 1 AND report_category = 1  AND (report_date <= SUBTIME(now() + INTERVAL  1 day,CURTIME()) AND report_date > SUBTIME(now(),CURTIME()))
+	]]>		
 	</select>
 	
 	<!-- 채팅문의 -->
-	<select id="selectNewQnaChat" resultType="payment">
-		SELECT COUNT(chat_read)
+	<select id="selectNewQnaChat" resultType="String">
+	<![CDATA[
+		SELECT COUNT(chat_read) AS 'newQnaChat'
 		FROM chat
-		WHERE chat_read = 1 AND chat_receiver = 'admin1234'
+		WHERE chat_read = 1 AND chat_receiver = 'admin1234'  AND (chat_date <= SUBTIME(now() + INTERVAL  1 day,CURTIME()) AND chat_date > SUBTIME(now(),CURTIME()))
+	]]>		
 	</select>
 	
 	<!-- 그래프 올해 매출 -->
 	<select id="selectThisYearPay" resultType="admin">
-		SELECT (SELECT SUM(payment) FROM payment WHERE MONTH(pay_date) = 1) AS 'jan'
-			,(SELECT SUM(payment) FROM payment WHERE MONTH(pay_date) = 2) AS 'feb'
-			,(SELECT SUM(payment) FROM payment WHERE MONTH(pay_date) = 3) AS 'mar'
-			,(SELECT SUM(payment) FROM payment WHERE MONTH(pay_date) = 4) AS 'apr'
-			,(SELECT SUM(payment) FROM payment WHERE MONTH(pay_date) = 5) AS 'may'
-			,(SELECT SUM(payment) FROM payment WHERE MONTH(pay_date) = 6) AS 'jun'
-			,(SELECT SUM(payment) FROM payment WHERE MONTH(pay_date) = 7) AS 'jul'
-			,(SELECT SUM(payment) FROM payment WHERE MONTH(pay_date) = 8) AS 'aug'
-			,(SELECT SUM(payment) FROM payment WHERE MONTH(pay_date) = 9) AS 'sep'
-			,(SELECT SUM(payment) FROM payment WHERE MONTH(pay_date) = 10) AS 'oct'
-			,(SELECT SUM(payment) FROM payment WHERE MONTH(pay_date) = 11) AS 'nov'
-			,(SELECT SUM(payment) FROM payment WHERE MONTH(pay_date) = 12) AS 'dec'
+		SELECT (SELECT IFNULL(SUM(payment),0) FROM payment WHERE MONTH(pay_date) = 1 AND YEAR(pay_date) = YEAR(now()) AND pay_status = 1) AS 'jan'
+			,(SELECT IFNULL(SUM(payment),0) FROM payment WHERE MONTH(pay_date) = 2 AND YEAR(pay_date) = YEAR(now()) AND pay_status = 1) AS 'feb'
+			,(SELECT IFNULL(SUM(payment),0) FROM payment WHERE MONTH(pay_date) = 3 AND YEAR(pay_date) = YEAR(now()) AND pay_status = 1) AS 'mar'
+			,(SELECT IFNULL(SUM(payment),0) FROM payment WHERE MONTH(pay_date) = 4 AND YEAR(pay_date) = YEAR(now()) AND pay_status = 1) AS 'apr'
+			,(SELECT IFNULL(SUM(payment),0) FROM payment WHERE MONTH(pay_date) = 5 AND YEAR(pay_date) = YEAR(now()) AND pay_status = 1) AS 'may'
+			,(SELECT IFNULL(SUM(payment),0) FROM payment WHERE MONTH(pay_date) = 6 AND YEAR(pay_date) = YEAR(now()) AND pay_status = 1) AS 'jun'
+			,(SELECT IFNULL(SUM(payment),0) FROM payment WHERE MONTH(pay_date) = 7 AND YEAR(pay_date) = YEAR(now()) AND pay_status = 1) AS 'jul'
+			,(SELECT IFNULL(SUM(payment),0) FROM payment WHERE MONTH(pay_date) = 8 AND YEAR(pay_date) = YEAR(now()) AND pay_status = 1) AS 'aug'
+			,(SELECT IFNULL(SUM(payment),0) FROM payment WHERE MONTH(pay_date) = 9 AND YEAR(pay_date) = YEAR(now()) AND pay_status = 1) AS 'sep'
+			,(SELECT IFNULL(SUM(payment),0) FROM payment WHERE MONTH(pay_date) = 10 AND YEAR(pay_date) = YEAR(now()) AND pay_status = 1) AS 'oct'
+			,(SELECT IFNULL(SUM(payment),0) FROM payment WHERE MONTH(pay_date) = 11 AND YEAR(pay_date) = YEAR(now()) AND pay_status = 1) AS 'nov'
+			,(SELECT IFNULL(SUM(payment),0) FROM payment WHERE MONTH(pay_date) = 12 AND YEAR(pay_date) = YEAR(now()) AND pay_status = 1) AS 'dec'
+	</select>
+	<!-- 그래프 올해 환급수익 -->
+	<select id="selectThisYearRef" resultType="admin">
+		SELECT (SELECT IFNULL(SUM(payment),0) FROM payment WHERE MONTH(pay_date) = 1 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 3  AND pay_status = 1) AS 'jan'
+			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 2 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 3  AND pay_status = 1) AS 'feb'
+			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 3 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 3  AND pay_status = 1) AS 'mar'
+			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 4 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 3  AND pay_status = 1) AS 'apr'
+			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 5 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 3  AND pay_status = 1) AS 'may'
+			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 6 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 3  AND pay_status = 1) AS 'jun'
+			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 7 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 3  AND pay_status = 1) AS 'jul'
+			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 8 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 3  AND pay_status = 1) AS 'aug'
+			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 9 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 3  AND pay_status = 1) AS 'sep'
+			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 10 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 3  AND pay_status = 1) AS 'oct'
+			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 11 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 3  AND pay_status = 1) AS 'nov'
+			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 12 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 3  AND pay_status = 1) AS 'dec'
+	</select>
+	<!-- 그래프 올해 사업체 가입수 -->
+	<select id="selectThisYearCom" resultType="admin">
+		SELECT (SELECT IFNULL(COUNT(com_idx),0) FROM company WHERE MONTH(com_date) = 1 AND YEAR(com_date) = YEAR(now()) AND  com_status = 1) AS 'jan'
+			,(SELECT IFNULL(COUNT(com_idx),0) FROM company WHERE MONTH(com_date) = 2 AND YEAR(com_date) = YEAR(now()) AND  com_status = 1) AS 'feb'
+			,(SELECT IFNULL(COUNT(com_idx),0) FROM company WHERE MONTH(com_date) = 3 AND YEAR(com_date) = YEAR(now()) AND  com_status = 1) AS 'mar'
+			,(SELECT IFNULL(COUNT(com_idx),0) FROM company WHERE MONTH(com_date) = 4 AND YEAR(com_date) = YEAR(now()) AND  com_status = 1) AS 'apr'
+			,(SELECT IFNULL(COUNT(com_idx),0) FROM company WHERE MONTH(com_date) = 5 AND YEAR(com_date) = YEAR(now()) AND  com_status = 1) AS 'may'
+			,(SELECT IFNULL(COUNT(com_idx),0) FROM company WHERE MONTH(com_date) = 6 AND YEAR(com_date) = YEAR(now()) AND  com_status = 1) AS 'jun'
+			,(SELECT IFNULL(COUNT(com_idx),0) FROM company WHERE MONTH(com_date) = 7 AND YEAR(com_date) = YEAR(now()) AND  com_status = 1) AS 'jul'
+			,(SELECT IFNULL(COUNT(com_idx),0) FROM company WHERE MONTH(com_date) = 8 AND YEAR(com_date) = YEAR(now()) AND  com_status = 1) AS 'aug'
+			,(SELECT IFNULL(COUNT(com_idx),0) FROM company WHERE MONTH(com_date) = 9 AND YEAR(com_date) = YEAR(now()) AND  com_status = 1) AS 'sep'
+			,(SELECT IFNULL(COUNT(com_idx),0) FROM company WHERE MONTH(com_date) = 10 AND YEAR(com_date) = YEAR(now()) AND  com_status = 1) AS 'oct'
+			,(SELECT IFNULL(COUNT(com_idx),0) FROM company WHERE MONTH(com_date) = 11 AND YEAR(com_date) = YEAR(now()) AND  com_status = 1) AS 'nov'
+			,(SELECT IFNULL(COUNT(com_idx),0) FROM company WHERE MONTH(com_date) = 12 AND YEAR(com_date) = YEAR(now()) AND  com_status = 1) AS 'dec'
+	</select>
+	<!-- 그래프 올해 회원 가입수 -->
+	<select id="selectThisYearMem" resultType="admin">
+		SELECT (SELECT IFNULL(COUNT(member_id),0) FROM member WHERE MONTH(member_date) = 1 AND YEAR(member_date) = YEAR(now()) AND  member_status = 1) AS 'jan'
+			,(SELECT IFNULL(COUNT(member_id),0) FROM member WHERE MONTH(member_date) = 2 AND YEAR(member_date) = YEAR(now()) AND  member_status = 1) AS 'feb'
+			,(SELECT IFNULL(COUNT(member_id),0) FROM member WHERE MONTH(member_date) = 3 AND YEAR(member_date) = YEAR(now()) AND  member_status = 1) AS 'mar'
+			,(SELECT IFNULL(COUNT(member_id),0) FROM member WHERE MONTH(member_date) = 4 AND YEAR(member_date) = YEAR(now()) AND  member_status = 1) AS 'apr'
+			,(SELECT IFNULL(COUNT(member_id),0) FROM member WHERE MONTH(member_date) = 5 AND YEAR(member_date) = YEAR(now()) AND  member_status = 1) AS 'may'
+			,(SELECT IFNULL(COUNT(member_id),0) FROM member WHERE MONTH(member_date) = 6 AND YEAR(member_date) = YEAR(now()) AND  member_status = 1) AS 'jun'
+			,(SELECT IFNULL(COUNT(member_id),0) FROM member WHERE MONTH(member_date) = 7 AND YEAR(member_date) = YEAR(now()) AND  member_status = 1) AS 'jul'
+			,(SELECT IFNULL(COUNT(member_id),0) FROM member WHERE MONTH(member_date) = 8 AND YEAR(member_date) = YEAR(now()) AND  member_status = 1) AS 'aug'
+			,(SELECT IFNULL(COUNT(member_id),0) FROM member WHERE MONTH(member_date) = 9 AND YEAR(member_date) = YEAR(now()) AND  member_status = 1) AS 'sep'
+			,(SELECT IFNULL(COUNT(member_id),0) FROM member WHERE MONTH(member_date) = 10 AND YEAR(member_date) = YEAR(now()) AND  member_status = 1) AS 'oct'
+			,(SELECT IFNULL(COUNT(member_id),0) FROM member WHERE MONTH(member_date) = 11 AND YEAR(member_date) = YEAR(now()) AND  member_status = 1) AS 'nov'
+			,(SELECT IFNULL(COUNT(member_id),0) FROM member WHERE MONTH(member_date) = 12 AND YEAR(member_date) = YEAR(now()) AND  member_status = 1) AS 'dec'
 	</select>
 	<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 

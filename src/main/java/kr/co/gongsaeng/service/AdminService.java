@@ -219,6 +219,18 @@ public class AdminService {
 		return mapper.selectThisYearPay();
 	}
 
+	public AdminVO getThisYearRef() {
+		return mapper.selectThisYearRef();
+	}
+
+	public AdminVO getThisYearCom() {
+		return mapper.selectThisYearCom();
+	}
+
+	public AdminVO getThisYearMem() {
+		return mapper.selectThisYearMem();
+	}
+
 
 
 

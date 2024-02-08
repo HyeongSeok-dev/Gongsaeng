@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -101,8 +102,6 @@ public class AdminController {
 //		String month = Integer.toString(cal.get(Calendar.MONTH) + 1);
 //		String date = Integer.toString(cal.get(Calendar.DATE));
 		
-		
-		
 		// 현재 결제 금액 / 예약 건수
 		String totalPayment = service.getTotalPayment();
 		admin.setTotalPayment(totalPayment);
@@ -122,7 +121,7 @@ public class AdminController {
 		// 현재 신규 가입자 수
 		String newMemberCount = service.getNewMemberCount();
 		admin.setNewMemberCount(newMemberCount);
-
+		System.out.println(">>>>" + admin.getNewMemberCount());
 		// 누적 가입자 수 
 		String cumulativeMemberCount = service.getCulmulativeMemberCount();
 		admin.setCumulativeMemberCount(cumulativeMemberCount);
@@ -187,9 +186,18 @@ public class AdminController {
 		String newQnaChat = service.getNewQnaChat();
 		admin.setNewQnaChat(newQnaChat);
 		
-		// 그래프 올해 총매출 구하기
+		// 그래프 올해 월별매출 구하기
 		AdminVO thisYearPay = service.getThisYearPay();
+		// 그래프 올해 월별환급수익 구하기
+		AdminVO thisYearRef = service.getThisYearRef();
+		// 그래프 올해 월별 신규사업체수 구하기
+		AdminVO thisYearCom = service.getThisYearCom();
+		// 그래프 올해 월별 신규회원수 구하기
+		AdminVO thisYearMem = service.getThisYearMem();
 		map.put("thisYearPay",thisYearPay);
+		map.put("thisYearRef",thisYearRef);
+		map.put("thisYearCom",thisYearCom);
+		map.put("thisYearMem",thisYearMem);
 
 		map.put("admin",admin);
 		

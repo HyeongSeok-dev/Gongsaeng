@@ -112,58 +112,115 @@ demo = {
     chartColor = "#2C2C2C";
 
     // General configuration for the charts with Line gradientStroke
-    gradientChartOptionsConfiguration = {
-      maintainAspectRatio: false,
-      legend: {
-        display: false
-      },
-      tooltips: {
-        bodySpacing: 4,
-        mode: "nearest",
-        intersect: 0,
-        position: "nearest",
-        xPadding: 10,
-        yPadding: 10,
-        caretPadding: 10
-      },
-      responsive: 1,
-      scales: {
-        yAxes: [{
-          display: 0,
-          gridLines: 0,
-          ticks: {
-            display: false
-          },
-          gridLines: {
-            zeroLineColor: "transparent",
-            drawTicks: false,
-            display: false,
-            drawBorder: false
+    gradientChartOptionsConfiguration =  {
+        layout: {
+          padding: {
+            left: 10,
+            right: 10,
+            top: 0,
+            bottom: 0
           }
-        }],
-        xAxes: [{
-          display: 0,
-          gridLines: 0,
-          ticks: {
-            display: false
-          },
-          gridLines: {
-            zeroLineColor: "transparent",
-            drawTicks: false,
-            display: false,
-            drawBorder: false
-          }
-        }]
-      },
-      layout: {
-        padding: {
-          left: 0,
-          right: 0,
-          top: 15,
-          bottom: 15
+        },
+        maintainAspectRatio: false,
+        tooltips: {
+          backgroundColor: '#fff',
+          titleFontColor: '#333',
+          bodyFontColor: '#666',
+          bodySpacing: 4,
+          xPadding: 12,
+          mode: "nearest",
+          intersect: 0,
+          position: "nearest"
+        },
+        legend: {
+          position: "bottom",
+          fillStyle: "#FFF",
+          display: false
+        },
+        scales: {
+          yAxes: [{
+            ticks: {
+              fontColor: "rgba(255,255,255,0.4)",
+              fontStyle: "bold",
+              beginAtZero: true,
+              maxTicksLimit: 5,
+              padding: 10
+            },
+            gridLines: {
+              drawTicks: true,
+              drawBorder: false,
+              display: true,
+              color: "rgba(255,255,255,0.1)",
+              zeroLineColor: "transparent"
+            }
+
+          }],
+          xAxes: [{
+            gridLines: {
+              zeroLineColor: "transparent",
+              display: false,
+
+            },
+            ticks: {
+              padding: 10,
+              fontColor: "rgba(255,255,255,0.4)",
+              fontStyle: "bold"
+            }
+          }]
         }
-      }
-    };
+      };
+//    gradientChartOptionsConfiguration = {
+//      maintainAspectRatio: false,
+//      legend: {
+//        display: false
+//      },
+//      tooltips: {
+//        bodySpacing: 4,
+//        mode: "nearest",
+//        intersect: 0,
+//        position: "nearest",
+//        xPadding: 10,
+//        yPadding: 10,
+//        caretPadding: 10
+//      },
+//      responsive: 1,
+//      scales: {
+//        yAxes: [{
+//          display: 0,
+//          gridLines: 0,
+//          ticks: {
+//            display: false
+//          },
+//          gridLines: {
+//            zeroLineColor: "transparent",
+//            drawTicks: false,
+//            display: false,
+//            drawBorder: false
+//          }
+//        }],
+//        xAxes: [{
+//          display: 0,
+//          gridLines: 0,
+//          ticks: {
+//            display: false
+//          },
+//          gridLines: {
+//            zeroLineColor: "transparent",
+//            drawTicks: false,
+//            display: false,
+//            drawBorder: false
+//          }
+//        }]
+//      },
+//      layout: {
+//        padding: {
+//          left: 0,
+//          right: 0,
+//          top: 15,
+//          bottom: 15
+//        }
+//      }
+//    };
 
     gradientChartOptionsConfigurationWithNumbersAndGrid = {
       maintainAspectRatio: false,
@@ -219,8 +276,8 @@ demo = {
     gradientStroke.addColorStop(1, chartColor);
 
     var gradientFill = ctx.createLinearGradient(0, 200, 0, 50);
-    gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
-    gradientFill.addColorStop(1, "rgba(255, 255, 255, 0.24)");
+    gradientFill.addColorStop(0, "#8C8C8C");
+    gradientFill.addColorStop(1, "#8C8C8C");
 
 	console.log($(".jan").val() + " ," + $(".feb").val());
     var myChart = new Chart(ctx, {
@@ -241,15 +298,15 @@ demo = {
           fill: true,
           backgroundColor: gradientFill,
           borderWidth: 2,
-          data: [$(".jan").val(), $(".feb").val(), $(".mar").val(), $(".apr").val(), $(".may").val(), $(".jun").val(),
-          		 $(".jul").val(), $(".aug").val(), $(".sep").val(), $(".oct").val(), $(".nov").val(), $(".dec").val()]
+          data: [$("#jan").val(), $("#feb").val(), $("#mar").val(), $("#apr").val(), $("#may").val(), $("#jun").val(),
+          		 $("#jul").val(), $("#aug").val(), $("#sep").val(), $("#oct").val(), $("#nov").val(), $("#dec").val()]
         }]
       },
       options: {
         layout: {
           padding: {
             left: 10,
-            right: 20,
+            right: 10,
             top: 0,
             bottom: 0
           }
@@ -304,87 +361,6 @@ demo = {
       }
     });
 
-//	myChart = new Chart(ctx, {
-//      type: 'line',
-//      data: {
-//        labels: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
-//        datasets: [{
-//          label: "Data",
-//          borderColor: "#C0C0C0",
-//          pointBorderColor: "#C0C0C0",
-//          pointBackgroundColor: "#1e3d60",
-//          pointHoverBackgroundColor: "#1e3d60",
-//          pointHoverBorderColor: chartColor,
-//          pointBorderWidth: 1,
-//          pointHoverRadius: 7,
-//          pointHoverBorderWidth: 2,
-//          pointRadius: 5,
-//          fill: true,
-//          backgroundColor: gradientFill,
-//          borderWidth: 2,
-//          data: [$().val(), $().val(), $().val(), $().val(), $().val(), $().val(),
-//          		 $().val(), $().val(), $().val(), $().val(), $().val(), $().val()]
-//        }]
-//      },
-//      options: {
-//        layout: {
-//          padding: {
-//            left: 10,
-//            right: 20,
-//            top: 0,
-//            bottom: 0
-//          }
-//        },
-//        maintainAspectRatio: false,
-//        tooltips: {
-//          backgroundColor: '#fff',
-//          titleFontColor: '#333',
-//          bodyFontColor: '#666',
-//          bodySpacing: 4,
-//          xPadding: 12,
-//          mode: "nearest",
-//          intersect: 0,
-//          position: "nearest"
-//        },
-//        legend: {
-//          position: "bottom",
-//          fillStyle: "#FFF",
-//          display: false
-//        },
-//        scales: {
-//          yAxes: [{
-//            ticks: {
-//              fontColor: "rgba(255,255,255,0.4)",
-//              fontStyle: "bold",
-//              beginAtZero: true,
-//              maxTicksLimit: 5,
-//              padding: 10
-//            },
-//            gridLines: {
-//              drawTicks: true,
-//              drawBorder: false,
-//              display: true,
-//              color: "rgba(255,255,255,0.1)",
-//              zeroLineColor: "transparent"
-//            }
-//
-//          }],
-//          xAxes: [{
-//            gridLines: {
-//              zeroLineColor: "transparent",
-//              display: false,
-//
-//            },
-//            ticks: {
-//              padding: 10,
-//              fontColor: "rgba(255,255,255,0.4)",
-//              fontStyle: "bold"
-//            }
-//          }]
-//        }
-//      }
-//    });
-
 
     var cardStatsMiniLineColor = "#fff",
       cardStatsMiniDotColor = "#fff";
@@ -403,20 +379,21 @@ demo = {
       type: 'line',
       responsive: true,
       data: {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        labels: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
         datasets: [{
           label: "Active Users",
           borderColor: "#f96332",
           pointBorderColor: "#FFF",
           pointBackgroundColor: "#f96332",
-          pointBorderWidth: 2,
+          pointBorderWidth: 1,
           pointHoverRadius: 4,
-          pointHoverBorderWidth: 1,
+          pointHoverBorderWidth: 2,
           pointRadius: 4,
           fill: true,
           backgroundColor: gradientFill,
           borderWidth: 2,
-          data: [542, 480, 430, 550, 530, 453, 380, 434, 568, 610, 700, 630]
+          data: [$("#janRef").val(), $("#febRef").val(), $("#marRef").val(), $("#aprRef").val(), $("#mayRef").val(), $("#junRef").val(),
+          		 $("#julRef").val(), $("#augRef").val(), $("#sepRef").val(), $("#octRef").val(), $("#novRef").val(), $("#decRef").val()]
         }]
       },
       options: gradientChartOptionsConfiguration
@@ -434,10 +411,10 @@ demo = {
     gradientFill.addColorStop(1, hexToRGB('#18ce0f', 0.4));
 
     myChart = new Chart(ctx, {
-      type: 'line',
+      type: 'bar',
       responsive: true,
       data: {
-        labels: ["12pm,", "3pm", "6pm", "9pm", "12am", "3am", "6am", "9am"],
+        labels: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
         datasets: [{
           label: "Email Stats",
           borderColor: "#18ce0f",
@@ -450,7 +427,8 @@ demo = {
           fill: true,
           backgroundColor: gradientFill,
           borderWidth: 2,
-          data: [40, 500, 650, 700, 1200, 1250, 1300, 1900]
+          data: [$("#janC").val(), $("#febC").val(), $("#marC").val(), $("#aprC").val(), $("#mayC").val(), $("#junC").val(),
+          		 $("#julC").val(), $("#augC").val(), $("#sepC").val(), $("#octC").val(), $("#novC").val(), $("#decC").val()]
         }]
       },
       options: gradientChartOptionsConfigurationWithNumbersAndGrid
@@ -465,7 +443,7 @@ demo = {
     var a = {
       type: "bar",
       data: {
-        labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+        labels: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
         datasets: [{
           label: "Active Countries",
           backgroundColor: gradientFill,
@@ -478,7 +456,8 @@ demo = {
           pointRadius: 4,
           fill: true,
           borderWidth: 1,
-          data: [80, 99, 86, 96, 123, 85, 100, 75, 88, 90, 123, 155]
+          data: [$("#janM").val(), $("#febM").val(), $("#marM").val(), $("#aprM").val(), $("#mayM").val(), $("#junM").val(),
+          		 $("#julM").val(), $("#augM").val(), $("#sepM").val(), $("#octM").val(), $("#novM").val(), $("#decM").val()]
         }]
       },
       options: {

@@ -12,6 +12,8 @@
   <title>
     공생|관리자 페이지
   </title>
+  <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
+  <script src="${pageContext.request.contextPath }/resources/admin_assets/js/main.js"></script>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
 <!--   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" /> -->
@@ -112,13 +114,13 @@
 				   	<div class="col-md-3 currentInfo">
 					    <span class="now_total_pay">현재 총 결제 금액 : </span>&nbsp;&nbsp;
 					    <span class="now_total_price">
-						    <b style="font-size: 30px;">
+						    <b style="font-size: 30px;" id="totalPayment">
 							    <c:choose>
 							    	<c:when test="${empty admin.totalPayment}">
 										0					    	
 							    	</c:when>
 							    	<c:otherwise>
-									    ${admin.totalPay}
+									    ${admin.totalPayment}
 							    	</c:otherwise>
 							    </c:choose>
 						    </b>
@@ -128,7 +130,7 @@
 				   	<div class="col-md-3 currentInfo">
 					    <span class="now_total_pay">현재 총 예약 건수 : </span>&nbsp;&nbsp;
 					    <span class="now_total_price">
-						    <b style="font-size: 30px;">
+						    <b style="font-size: 30px;" id="countPayment">
 							    <c:choose>
 							    	<c:when test="${empty admin.countPayment}">
 							    		0
@@ -152,9 +154,10 @@
 		    <!-- 오늘의 할일 -->
 		    <div class="card" style="height: ">
 		        <div class="card-header todo_title">[ 오늘 신청 목록 ]</div>
+		        <br>
 		        <div class="card-body todo_count">
 		            <a onclick="location.href='${pageContext.request.contextPath }/admin/company/refund'">
-		            	사업체 가입 신청 : <b>
+		            	사업체 가입 신청 : <b id="newComRegCount">
 		            	<c:choose>
 		            		<c:when test="${empty admin.newComRegCount}">
 		            			0
@@ -167,7 +170,7 @@
 		            </a>
 		             <hr>
 		            <a onclick="location.href='${pageContext.request.contextPath }/admin/company'">
-		            	사업체 환급 신청 : <b>
+		            	사업체 환급 신청 : <b id="newComRefundApp">
 		            	<c:choose>
 		            		<c:when test="${empty admin.newComRefundApp}">
 		            			0
@@ -180,7 +183,7 @@
 		            </a>
 		             <hr>
 		            <a onclick="location.href='${pageContext.request.contextPath }/admin/company/class'">
-		            	클래스 신고 : <b>
+		            	클래스 신고 : <b id="newClassReport">
 		            	<c:choose>
 		            		<c:when test="${empty admin.newClassReport}">
 		            			0
@@ -193,7 +196,7 @@
 		            </a>
 		             <hr>
 		            <a onclick="location.href='${pageContext.request.contextPath }/admin/report/class'">
-		            	리뷰 신고 : <b>
+		            	리뷰 신고 : <b id="newReviewReport">
 		            	<c:choose>
 		            		<c:when test="${empty admin.newReviewReport}">
 		            			0
@@ -206,7 +209,7 @@
 		            </a>
 		             <hr>
 		            <a onclick="location.href='${pageContext.request.contextPath }/admin/cs/chat'">
-		            	채팅 문의 : <b>
+		            	채팅 문의 : <b id="newQnaChat">
 		            	<c:choose>
 		            		<c:when test="${empty admin.newQnaChat}">
 		            			0
@@ -218,18 +221,7 @@
 		            	</b>건
 		            </a>
 		             <hr>
-		            <a onclick="location.href='${pageContext.request.contextPath }/admin/cs/chat'">
-		            	뭐하지 : <b>
-		            	<c:choose>
-		            		<c:when test="${empty admin.newQnaChat}">
-		            			0
-		            		</c:when>
-		            		<c:otherwise>
-		            			${admin.newQnaChat}
-		            		</c:otherwise>
-		            	</c:choose>
-		            	</b>건
-		            </a>
+		             <br>
 		        </div>
 		        <hr style="border: none;">
 		    <!-- 일정 -->
@@ -267,53 +259,61 @@
 <!-- 			                    <th>누적 방문자 수</th> -->
 			                    <th>신규 가입자 수</th>
 			                    <th>누적 가입자 수</th>
-			                    <th>신규 반장가입자 수</th>
-			                    <th>누적 반장가입자 수</th>
+			                    <th>신규 사업체 가입 수</th>
+			                    <th>누적 사업체 가입 수</th>
 			                </tr>
 			                <tr class="table_main">
 			                    <td>
-	                    		 <c:choose>
-							    	<c:when test="${empty admin.newMemberCount}">
-							    	0
-							    	</c:when>
-							    	<c:otherwise>
-							    	${admin.newMemberCount}
-							    	</c:otherwise>
-							     </c:choose>
+				                    <span id="newMemberCount">
+			                    		 <c:choose>
+									    	<c:when test="${empty admin.newMemberCount}">
+									    	0
+									    	</c:when>
+									    	<c:otherwise>
+									    	${admin.newMemberCount}
+									    	</c:otherwise>
+									     </c:choose>
+				                    </span>
 			                     명
 			                    </td>
 			                    <td>
-	                    		 <c:choose>
-							    	<c:when test="${empty admin.newBanjangCount}">
-							    	0
-							    	</c:when>
-							    	<c:otherwise>
-							    	${admin.newBanjangCount}
-							    	</c:otherwise>
-							     </c:choose>
+				                    <span id="cumulativeMemberCount">
+		                    		 <c:choose>
+								    	<c:when test="${empty admin.cumulativeMemberCount}">
+								    	0
+								    	</c:when>
+								    	<c:otherwise>
+								    	${admin.cumulativeMemberCount}
+								    	</c:otherwise>
+								     </c:choose>
+				                    </span>
 			                     명
 			                    </td>
 			                    <td>
-	                    		 <c:choose>
-							    	<c:when test="${empty admin.cumulativeBanjangCount}">
-							    	0
-							    	</c:when>
-							    	<c:otherwise>
-							    	${cumulativeBanjangCount}
-							    	</c:otherwise>
-							     </c:choose>
-			                     명
+			                    	<span id="newBanjangCount">
+		                    		 <c:choose>
+								    	<c:when test="${empty admin.newBanjangCount}">
+								    	0
+								    	</c:when>
+								    	<c:otherwise>
+								    	${admin.newBanjangCount}
+								    	</c:otherwise>
+								     </c:choose>
+			                    	</span>
+			                     건
 			                    </td>
 			                    <td>
-	                    		 <c:choose>
-							    	<c:when test="${empty admin.cumulativePayCount}">
-							    	0
-							    	</c:when>
-							    	<c:otherwise>
-							    	${admin.cumulativePayCount}
-							    	</c:otherwise>
-							     </c:choose>
-			                     명
+				                    <span id="cumulativeBanjangCount">
+		                    		 <c:choose>
+								    	<c:when test="${empty admin.cumulativeBanjangCount}">
+								    	0
+								    	</c:when>
+								    	<c:otherwise>
+								    	${admin.cumulativeBanjangCount}
+								    	</c:otherwise>
+								     </c:choose>
+				                    </span>
+			                     건
 			                    </td>
 			                </tr>
 			            </table>
@@ -332,47 +332,55 @@
 			                </tr>
 			                <tr class="table_main">
 			                    <td>
-	                    		 <c:choose>
-							    	<c:when test="${empty admin.newMemberCount}">
-							    	0
-							    	</c:when>
-							    	<c:otherwise>
-							    	${admin.newMemberCount}
-							    	</c:otherwise>
-							     </c:choose>
+				                    <span id="monthlyPayCount">
+		                    		 <c:choose>
+								    	<c:when test="${empty admin.monthlyPayCount}">
+								    	0
+								    	</c:when>
+								    	<c:otherwise>
+								    	${admin.monthlyPayCount}
+								    	</c:otherwise>
+								     </c:choose>
+				                    </span>
 			                     건
 			                    </td>
 			                    <td>
-	                    		 <c:choose>
-							    	<c:when test="${empty admin.newBanjangCount}">
-							    	0
-							    	</c:when>
-							    	<c:otherwise>
-							    	${admin.newBanjangCount}
-							    	</c:otherwise>
-							     </c:choose>
+				                    <span id="cumulativePayCount">
+		                    		 <c:choose>
+								    	<c:when test="${empty admin.cumulativePayCount}">
+								    	0
+								    	</c:when>
+								    	<c:otherwise>
+								    	${admin.cumulativePayCount}
+								    	</c:otherwise>
+								     </c:choose>
+				                    </span>
 			                     건
 			                    </td>
-			                    <td>
-	                    		 <c:choose>
-							    	<c:when test="${empty admin.cumulativeBanjangCount}">
-							    	0
-							    	</c:when>
-							    	<c:otherwise>
-							    	${admin.cumulativeBanjangCount}
-							    	</c:otherwise>
-							     </c:choose>
+			                    <td >
+				                    <span id="monthlyTotalPay">
+		                    		 <c:choose>
+								    	<c:when test="${empty admin.monthlyTotalPay}">
+								    	0
+								    	</c:when>
+								    	<c:otherwise>
+								    	${admin.monthlyTotalPay}
+								    	</c:otherwise>
+								     </c:choose>
+				                    </span>
 			                     원
 			                    </td>
-			                    <td>
-	                    		 <c:choose>
-							    	<c:when test="${empty admin.cumulativePayCount}">
-							    	0
-							    	</c:when>
-							    	<c:otherwise>
-							    	${admin.cumulativePayCount}
-							    	</c:otherwise>
-							     </c:choose>
+			                    <td >
+				                    <span id="cumulativeTotalPay">
+		                    		 <c:choose>
+								    	<c:when test="${empty admin.cumulativeTotalPay}">
+								    	0
+								    	</c:when>
+								    	<c:otherwise>
+								    	${admin.cumulativeTotalPay}
+								    	</c:otherwise>
+								     </c:choose>
+				                    </span>
 			                     원
 			                    </td>
 			               </tr>
@@ -392,6 +400,7 @@
 			                </tr>
 			                <tr class="table_main">
 			                    <td>
+			                    <span id="monthlyRefund">
 	                    		 <c:choose>
 							    	<c:when test="${empty admin.monthlyRefund}">
 							    	0
@@ -400,9 +409,11 @@
 							    	${admin.monthlyRefund}
 							    	</c:otherwise>
 							     </c:choose>
+			                    </span>
 			                     원
 			                    </td>
 			                    <td>
+			                    <span id="cumulativeRefund">
 	                    		 <c:choose>
 							    	<c:when test="${empty admin.cumulativeRefund}">
 							    	0
@@ -411,9 +422,11 @@
 							    	${admin.cumulativeRefund}
 							    	</c:otherwise>
 							     </c:choose>
+			                    </span>
 			                     원
 			                    </td>
 			                    <td>
+			                    <span  id="monthlyRefundFee">
 	                    		 <c:choose>
 							    	<c:when test="${empty admin.monthlyRefundFee}">
 							    	0
@@ -422,9 +435,11 @@
 							    	${admin.monthlyRefundFee}
 							    	</c:otherwise>
 							     </c:choose>
+			                    </span>
 			                     원
 			                    </td>
 			                    <td>
+			                    <span id="cumulativeRefundFee">
 	                    		 <c:choose>
 							    	<c:when test="${empty admin.cumulativeRefundFee}">
 							    	0
@@ -433,6 +448,7 @@
 							    	${admin.cumulativeRefundFee}
 							    	</c:otherwise>
 							     </c:choose>
+			                    </span>
 			                     원
 			                    </td>
 			               </tr>
@@ -443,109 +459,133 @@
 		</div>
 	</div>
 	    <div class="row row_main">
-	    	<div style="width: 850px;"></div>
-	    	<div style="width: 850px;"></div>
-		    
 		    <div class="col-sm-12">
 			    <!-- 그래프 공간 -->
 			    <div class="card card-chart">
 			    	 <div class="card-header">
-				    		<h5 class="card-category">${admin.year}년 공생</h5>
-				    		<h4 class="card-title">총 매출(만원)</h4>
+				    		<h5 class="card-category">${admin.year}년 매출</h5>
+				    		<h4 class="card-title">월별 결제(원)</h4>
 			    	 </div>
-			    	 <div class="dropdown">
-	                  <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
-	                    <i class="now-ui-icons ui-1_simple-add"></i>
-	                  </button>
-	                 </div>
+			    	 <!-- 더보기 버튼 -->
+<!-- 			    	 <div class="dropdown"> -->
+<!-- 	                  <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown"> -->
+<!-- 	                    <i class="now-ui-icons ui-1_simple-add"></i> -->
+<!-- 	                  </button> -->
+<!-- 	                 </div> -->
 			         <div class="card-body">
 			            <!-- 여기에 그래프를 넣어주세요. -->
 	        	        <canvas id="bigDashboardChart"></canvas>
 			         </div>
-			         <input type="hidden" value="${admin.jan }" id="jan">
-			         <input type="hidden" value="${admin.feb }" class="feb">
-			         <input type="hidden" value="${admin.mar }" class="mar">
-			         <input type="hidden" value="${admin.apr }" class="apr">
-			         <input type="hidden" value="${admin.may }" class="may">
-			         <input type="hidden" value="${admin.jun }" class="jun">
-			         <input type="hidden" value="${admin.jul }" class="jul">
-			         <input type="hidden" value="${admin.aug }" class="aug">
-			         <input type="hidden" value="${admin.sep }" class="sep">
-			         <input type="hidden" value="${admin.oct }" class="oct">
-			         <input type="hidden" value="${admin.nov }" class="nov">
-			         <input type="hidden" value="${admin.dec }" class="dec">
+			         <input type="hidden" value="${thisYearPay.jan }" id="jan">
+			         <input type="hidden" value="${thisYearPay.feb }" id="feb">
+			         <input type="hidden" value="${thisYearPay.mar }" id="mar">
+			         <input type="hidden" value="${thisYearPay.apr }" id="apr">
+			         <input type="hidden" value="${thisYearPay.may }" id="may">
+			         <input type="hidden" value="${thisYearPay.jun }" id="jun">
+			         <input type="hidden" value="${thisYearPay.jul }" id="jul">
+			         <input type="hidden" value="${thisYearPay.aug }" id="aug">
+			         <input type="hidden" value="${thisYearPay.sep }" id="sep">
+			         <input type="hidden" value="${thisYearPay.oct }" id="oct">
+			         <input type="hidden" value="${thisYearPay.nov }" id="nov">
+			         <input type="hidden" value="${thisYearPay.dec }" id="dec">
 			    </div>
 			</div>
 		</div>
 		 <div class="row row_main">
-          <div class="col-lg-4">
+          <div class="col-sm-12">
             <div class="card card-chart">
               <div class="card-header">
-                <h5 class="card-category">${admin.month}월 회원</h5>
-                <h4 class="card-title">신규 회원수</h4>
-                <div class="dropdown">
-                  <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
-                    <i class="now-ui-icons ui-1_simple-add"></i>
-                  </button>
-                </div>
+                <h5 class="card-category">${admin.year}년 매출</h5>
+                <h4 class="card-title">월별 환급 수익(원)</h4>
+<!--                 <div class="dropdown"> -->
+<!--                   <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown"> -->
+<!--                     <i class="now-ui-icons ui-1_simple-add"></i> -->
+<!--                   </button> -->
+<!--                 </div> -->
               </div>
               <div class="card-body">
                 <div class="chart-area">
                   <canvas id="lineChartExample"></canvas>
+                  <input type="hidden" value="${thisYearRef.jan }" id="janRef">
+			         <input type="hidden" value="${thisYearRef.feb }" id="febRef">
+			         <input type="hidden" value="${thisYearRef.mar }" id="marRef">
+			         <input type="hidden" value="${thisYearRef.apr }" id="aprRef">
+			         <input type="hidden" value="${thisYearRef.may }" id="mayRef">
+			         <input type="hidden" value="${thisYearRef.jun }" id="junRef">
+			         <input type="hidden" value="${thisYearRef.jul }" id="julRef">
+			         <input type="hidden" value="${thisYearRef.aug }" id="augRef">
+			         <input type="hidden" value="${thisYearRef.sep }" id="sepRef">
+			         <input type="hidden" value="${thisYearRef.oct }" id="octRef">
+			         <input type="hidden" value="${thisYearRef.nov }" id="novRef">
+			         <input type="hidden" value="${thisYearRef.dec }" id="decRef">
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-lg-4 col-md-6">
+          </div>
+		 <div class="row row_main">
+          <div class="col-md-6">
             <div class="card card-chart">
               <div class="card-header">
-                <h5 class="card-category">${admin.month}월 사업자</h5>
-                <h4 class="card-title">신규 사업자수</h4>
-                <div class="dropdown">
-                  <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
-                    <i class="now-ui-icons ui-1_simple-add"></i>
-                  </button>
-                </div>
+                <h5 class="card-category">${admin.year}년 사업체</h5>
+                <h4 class="card-title">신규 사업체수(개)</h4>
+<!--                 <div class="dropdown"> -->
+<!--                   <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown"> -->
+<!--                     <i class="now-ui-icons ui-1_simple-add"></i> -->
+<!--                   </button> -->
+<!--                 </div> -->
               </div>
               <div class="card-body">
                 <div class="chart-area">
                   <canvas id="lineChartExampleWithNumbersAndGrid"></canvas>
+                  <input type="hidden" value="${thisYearCom.jan }" id="janC">
+			         <input type="hidden" value="${thisYearCom.feb }" id="febC">
+			         <input type="hidden" value="${thisYearCom.mar }" id="marC">
+			         <input type="hidden" value="${thisYearCom.apr }" id="aprC">
+			         <input type="hidden" value="${thisYearCom.may }" id="mayC">
+			         <input type="hidden" value="${thisYearCom.jun }" id="junC">
+			         <input type="hidden" value="${thisYearCom.jul }" id="julC">
+			         <input type="hidden" value="${thisYearCom.aug }" id="augC">
+			         <input type="hidden" value="${thisYearCom.sep }" id="sepC">
+			         <input type="hidden" value="${thisYearCom.oct }" id="octC">
+			         <input type="hidden" value="${thisYearCom.nov }" id="novC">
+			         <input type="hidden" value="${thisYearCom.dec }" id="decC">
+                </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
+          <div class="col-md-6">
             <div class="card card-chart">
               <div class="card-header">
-                <h5 class="card-category">${admin.month}월 매출</h5>
-                <h4 class="card-title">환급 수익</h4>
-                <div class="dropdown">
-                  <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
-                    <i class="now-ui-icons ui-1_simple-add"></i>
-                  </button>
-                 </div>
+                <h5 class="card-category">${admin.year}년 회원</h5>
+                <h4 class="card-title">신규 회원수(명)</h4>
+<!--                 <div class="dropdown"> -->
+<!--                   <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown"> -->
+<!--                     <i class="now-ui-icons ui-1_simple-add"></i> -->
+<!--                   </button> -->
+<!--                  </div> -->
               </div>
               <div class="card-body">
                 <div class="chart-area">
                   <canvas id="barChartSimpleGradientsNumbers"></canvas>
+                  <input type="hidden" value="${thisYearMem.jan }" id="janM">
+			         <input type="hidden" value="${thisYearMem.feb }" id="febM">
+			         <input type="hidden" value="${thisYearMem.mar }" id="marM">
+			         <input type="hidden" value="${thisYearMem.apr }" id="aprM">
+			         <input type="hidden" value="${thisYearMem.may }" id="mayM">
+			         <input type="hidden" value="${thisYearMem.jun }" id="junM">
+			         <input type="hidden" value="${thisYearMem.jul }" id="julM">
+			         <input type="hidden" value="${thisYearMem.aug }" id="augM">
+			         <input type="hidden" value="${thisYearMem.sep }" id="sepM">
+			         <input type="hidden" value="${thisYearMem.oct }" id="octM">
+			         <input type="hidden" value="${thisYearMem.nov }" id="novM">
+			         <input type="hidden" value="${thisYearMem.dec }" id="decM">
+                </div>
                 </div>
               </div>
+        	 </div>
             </div>
-          </div>
-        </div>
 <!--       바텀 -->
-<%--         <input type="text" value="${thisYearPay.jan }" class="jan"> --%>
-<%--         <input type="text" value="${thisYearPay.feb }" class="feb"> --%>
-<%--         <input type="text" value="${thisYearPay.mar }" class="mar"> --%>
-<%--         <input type="text" value="${thisYearPay.apr }" class="apr"> --%>
-<%--         <input type="text" value="${thisYearPay.may }" class="may"> --%>
-<%--         <input type="text" value="${thisYearPay.jun }" class="jun"> --%>
-<%--         <input type="text" value="${thisYearPay.jul }" class="jul"> --%>
-<%--         <input type="text" value="${thisYearPay.aug }" class="aug"> --%>
-<%--         <input type="text" value="${thisYearPay.sep }" class="sep"> --%>
-<%--         <input type="text" value="${thisYearPay.oct }" class="oct"> --%>
-<%--         <input type="text" value="${thisYearPay.nov }" class="nov"> --%>
-<%--         <input type="text" value="${thisYearPay.dec }" class="dec"> --%>
       <footer class="footer">
        <jsp:include page="./inc/admin_bottom.jsp"/>
      </footer>
@@ -557,8 +597,8 @@
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/popper.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/bootstrap.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-  <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
-<!--   <!--  Google Maps Plugin    --> -->
+ 
+<!--    Google Maps Plugin    -->
 <!--   <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
   <!-- Chart JS -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/plugins/chartjs.min.js"></script>
@@ -567,7 +607,6 @@
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.js"></script>
-  <script src="${pageContext.request.contextPath }/resources/admin_assets/js/main.js"></script>
   <script>
     $(document).ready(function() {
       // Javascript method's body can be found in assets/js/demos.js

@@ -10,8 +10,8 @@ public class AdminVO {
 	private String dayOfWeek;
 	private String totalPayment; //현재 총매
 	private String countPayment; //현재 예약수
-	private String currentVisitors; // 현재 방문자 수
-	private String cumulativeVisitors; // 누적 방문자 수
+//	private String currentVisitors; // 현재 방문자 수
+//	private String cumulativeVisitors; // 누적 방문자 수
 	private String newMemberCount; // 현재 신규 가입자 수
 	private String cumulativeMemberCount; //누적 가입자 수
 	private String newBanjangCount; //현재 신규 반장 가입자 수
