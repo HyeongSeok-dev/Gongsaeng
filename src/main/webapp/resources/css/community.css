@@ -164,9 +164,26 @@
     -o-transition: border .2s ease-in-out;
     transition: border .2s ease-in-out;
     border-radius: 10px; 
-    width: 150px; 
-    height: 150px;
+    width: 100%; 
+/*     height: 100px; */
 }
+
+ .cm_img {
+     display: flex;  /* Flexbox를 사용 */
+     justify-content: space-between;  /* 사진 사이에 공간을 동일하게 분배 */
+ }
+ .img1 {  /* 첫 번째 이미지에 적용할 스타일 */
+        width: 200px;
+ }
+ .img2 {  /* 두 번째 이미지에 적용할 스타일 */
+     width: 200px;
+ }
+ .img3 {  /* 세 번째 이미지에 적용할 스타일 */
+     width: 200px;
+ }
+ .cm_img a {
+     margin: 0 10px;  
+ }
 
 /* 글쓰기 */
 
@@ -362,5 +379,57 @@ td {
 
 textarea.form-control {
 	border-radius: 10px !important;
+}
+
+/* .pageButton { */
+/*     outline: 0; */
+/*     border: none; */
+/*     width: 100px; */
+/*     height: inherit; */
+/*     color: #333333; */
+/*     font-size: 16px; */
+/*     padding: 5px 15px; */
+/*     border-radius: 3px; */
+/*     font-family: 'NanumSquareNeo-Variable', sans-serif; */
+/* } */
+
+#pageList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+#pageList input[type="button"] {
+    background-color: #fff;
+    color: #B4B4B4;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin: 0 10px;
+    transition: background-color 0.3s;
+}
+
+#pageList input[type="button"]:disabled {
+    background-color: #fff;
+    color: #B4B4B4;
+    cursor: not-allowed;
+}
+
+#pageList b,
+#pageList a {
+    color: #333;
+    font-size: 1.2em;
+    margin: 0 10px;
+    
+}
+
+#pageList a {
+    text-decoration: none;
+    color: #B4B4B4;
+}
+
+#pageList a:hover {
+    color: light-gray;
 }
 

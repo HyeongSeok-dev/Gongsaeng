@@ -76,40 +76,72 @@
 			                    </div>
 			                    <div class="title h2" >
 			                    <div class="category h6" style="font-weight: normal;">
-			                    	<p> 서비스 종류 </p>
+			                    	<p>서비스/ 
+				                    <c:choose>
+						            	<c:when test="${board.board_sub_category eq 1}">시공</c:when>
+						            	<c:when test="${board.board_sub_category eq 2}">설치 및 수리</c:when>
+						            	<c:when test="${board.board_sub_category eq 3}">리모델링</c:when>
+						            	<c:when test="${board.board_sub_category eq 4}">리폼</c:when>
+						            	<c:when test="${board.board_sub_category eq 5}">인테리어</c:when>
+						            	<c:when test="${board.board_sub_category eq 6}">기타</c:when>
+						           	</c:choose>
+			                    	</p>
 			                    </div>
-			                       	<b>셀프페인팅 클래스 같이 들으실 분!</b>
+			                       	<b>${board.board_subject}</b>
 			                    </div>
 			                </div>
 			            </div>
 			            <br><br><br>
 			            <div class="post-heading" style="margin-top: 10px;"> 
 			                <div class="pull-left image">
-			                    <img src="${pageContext.request.contextPath }/resources/img/ddoong2.jpg" class="img-circle avatar" alt="user profile image">
+			                    <img src="${pageContext.request.contextPath }/resources/upload/${board.member_img}" class="img-circle avatar" alt="user profile image">
 			                </div>
 			                <div class="pull-left meta">
 			                    <div class="title h5">
 			                        <b>냥냥펀치</b>
 			                    </div>
-			                    <h6 class="text-muted time" style="font-size: 13px">10분 전</h6>
+			                    <h6 class="text-muted time" style="font-size: 13px">${board.board_date }</h6>
 			                </div>
 			            </div>
 			            <div class="post-description"> 
-			                <p style="margin-top: 20px; margin-bottom: 20px">해가 뜨고 다시 지는 것에 연연하였던 나의 작은방 텅 빈 마음 노랠 불러봤자
-								누군가에겐 소음일 테니 꼭 다문 입 그 새로 삐져나온 보잘것없는 나의 한숨에
-								나 들으라고 내쉰 숨이 더냐 아버지 내게 물으시고 제 발 저려 난 답할 수 없었네
-								우리는 우리는 어째서 어른이 된 걸까 하루하루가 참 무거운 짐이야
-								더는 못 갈 거야 꿈과 책과 힘과 벽 사이를 눈치 보기에 바쁜 나날들
-								소년이여 야망을 가져라 무책임한 격언 따위에 저 바다를 호령하는 거야
-								어처구니없던 나의 어린 꿈 가질 수 없음을 알게 되던 날 두드러기처럼 돋은 심술이
-								끝내 그 이름 더럽히고 말았네</p>
+			                <p style="margin-top: 20px; margin-bottom: 20px">${board.board_content }</p>
 			                <div class="cm_img">
-			                	<a href="${pageContext.request.contextPath}/resources/img/house.png" target="_blank">
-								    <img src="${pageContext.request.contextPath}/resources/img/house.png" alt="이미지">
-								</a>
+<%-- 			                	<a href="${pageContext.request.contextPath}/resources/img/house.png" target="_blank"> --%>
+<%-- 								    <img src="${pageContext.request.contextPath}/resources/img/house.png" alt="이미지"> --%>
+<!-- 								</a> -->
+								<c:choose>
+						            <c:when test="${not empty board.board_img1}">
+							            <a href="${pageContext.request.contextPath}/resources/upload/${board.board_img1}" target="_blank">
+							                <img class="img1" src="${pageContext.request.contextPath }/resources/upload/${board.board_img1}" alt="이미지">
+							            </a>
+						            </c:when>
+						            <c:otherwise>
+						                <!-- board_img1이 없는 경우, 아무것도 출력하지 않음 -->
+						            </c:otherwise>
+						        </c:choose>
+								<c:choose>
+						            <c:when test="${not empty board.board_img2}">
+							            <a href="${pageContext.request.contextPath}/resources/upload/${board.board_img2}" target="_blank">
+							                <img class="img2" src="${pageContext.request.contextPath }/resources/upload/${board.board_img2}" alt="이미지">
+							            </a>
+						            </c:when>
+						            <c:otherwise>
+						                <!-- board_img2이 없는 경우, 아무것도 출력하지 않음 -->
+						            </c:otherwise>
+						        </c:choose>
+								<c:choose>
+						            <c:when test="${not empty board.board_img3}">
+							            <a href="${pageContext.request.contextPath}/resources/upload/${board.board_img3}" target="_blank">
+							                <img class="img3" src="${pageContext.request.contextPath }/resources/upload/${board.board_img3}" alt="이미지">
+							            </a>
+						            </c:when>
+						            <c:otherwise>
+						                <!-- board_img3이 없는 경우, 아무것도 출력하지 않음 -->
+						            </c:otherwise>
+						        </c:choose>
 			                </div>
 							    <span class="fa fa-eye"></span> 
-								<span id="viewCount" style="margin-right: 10px;">29</span>
+								<span id="viewCount" style="margin-right: 10px;">${board.board_readcount }</span>
 								<span class="fa fa-comment"></span> 
 							    <span id="commentCount">3</span>
 			            </div>
@@ -136,7 +168,7 @@
 		                        <ul class="comments-list">
 		                            <li class="comment">
 		                                <a class="pull-left" href="#">
-		                                    <img class="avatar" src="${pageContext.request.contextPath }/resources/img/ddoong2.jpg" alt="avatar">
+		                                    <img class="avatar" src="${pageContext.request.contextPath }/resources/upload/${board.member_img}" alt="avatar">
 		                                </a>
 		                                <div class="comment-body">
 		                                    <div class="comment-heading">

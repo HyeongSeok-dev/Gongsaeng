@@ -18,5 +18,11 @@ public interface BoardMapper {
 	
 	// 함께해요 전체 개수 조회
 	int selectTogetherListCount(String sId);
+	
+	// 함께해요 글 상세보기
+	BoardVO selectTogetherBoard(int board_idx);
+	
+	// 조회수
+	void updateTogetherReadcount(BoardVO board);
 
 }

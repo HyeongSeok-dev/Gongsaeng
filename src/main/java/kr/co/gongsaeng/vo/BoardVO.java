@@ -27,5 +27,8 @@ public class BoardVO {
 	private MultipartFile file1;
 	private MultipartFile file2;
 	private MultipartFile file3;
+	private int board_readcount;
+	
+	private String member_img;
 
 }

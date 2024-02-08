@@ -59,6 +59,11 @@
 
 </head>
 <body>
+	<%-- 페이지네이션 - pageNum 파라미터 가져와서 저장(없을 경우 기본값 1로 설정) --%>
+	<c:set var="pageNum" value="1" />
+	<c:if test="${not empty param.pageNum }">
+		<c:set var="pageNum" value="${param.pageNum }" />
+	</c:if>
     <jsp:include page="../inc/top.jsp"></jsp:include>
     <br>
     <div class="container">
@@ -118,21 +123,28 @@
 					            	<c:when test="${board.board_sub_category eq 6}">기타</c:when>
 					            </c:choose>
 				            </p>
-				            <a href="togetherDetail" class="cm_context">
+				            <a href="togetherDetail?board_idx=${board.board_idx }" class="cm_context">
 				                <!-- 글제목 두껍게 -->
-				                <h4 class="h4_community" style="font-weight: bold;">글제목</h4>
+				                <h4 class="h4_community" style="font-weight: bold;">${board.board_subject}</h4>
 				                <!-- 글 내용과 댓글은 일반 두께로 -->
-				                <p class="text-truncate" style="font-weight: normal;">여기에 글 내용이 들어갑니다. 이 글은 최대 50자까지만 표시됩니다. 더 많은 내용을 보려면 글을 클릭하세요.</p>
+				                <p class="text-truncate" style="font-weight: normal;">${board.board_content}</p>
 				                <p style="font-weight: normal;"><span class="fa fa-comment"></span> 댓글 개수</p>
 				            </a>
 				        </div>
-				        <div class="col-sm-3">
-				            <div class="cm_thumbnail">
-				                <img src="${pageContext.request.contextPath }/resources/img/house.png"  alt="이미지">
-				                <div class="caption text-right">
-				                </div>
-				            </div>
-				        </div>
+						<div class="col-sm-3">
+						    <div class="cm_thumbnail">
+						        <c:choose>
+						            <c:when test="${not empty board.board_img1}">
+						                <img src="${pageContext.request.contextPath }/resources/upload/${board.board_img1}" alt="이미지">
+						            </c:when>
+						            <c:otherwise>
+						                <!-- board_img1이 없는 경우, 아무것도 출력하지 않음 -->
+						            </c:otherwise>
+						        </c:choose>
+						        <div class="caption text-right">
+						        </div>
+						    </div>
+						</div>
 				    </div>
 				</div>
 				<br> 
@@ -180,6 +192,37 @@
 <!-- 				        </div> -->
 <!-- 				    </div> -->
 <!-- 				</div> -->
+				<section id="pageList">
+					<%-- [이전] 버튼 클릭 시 BoardList.bo 서블릿 요청(파라미터 : 현재 페이지번호 - 1) --%>
+					<%-- 단, 현재 페이지 번호(pageNum) 가 1보다 클 경우에만 동작(아니면 비활성화 처리) --%>
+					<input type="button" style="width:100px" value="이전" 
+							onclick="location.href = 'together?pageNum=${pageNum - 1}'"
+							<c:if test="${pageNum <= 1 }">disabled</c:if>
+					>	
+				
+					<%-- 현재 페이지 번호가 저장된 pageInfo 객체를 통해 페이지 번호 출력 --%>
+					<%-- 시작페이지(startPage) 부터 끝페이지(endPage) 까지 표시 --%>
+					<c:forEach var="i" begin="${pageInfo.startPage }" end="${pageInfo.endPage }">
+						<%-- 각 페이지마다 하이퍼링크 설정(페이지번호를 pageNum 파라미터로 전달) --%>
+						<%-- 단, 현재 페이지는 하이퍼링크 제거하고 굵게 표시 --%>
+						<c:choose>
+							<%-- 현재 페이지번호와 표시될 페이지번호가 같을 경우 판별 --%>
+							<c:when test="${pageNum eq i}">
+								<b>${i}</b> <%-- 현재 페이지 번호 --%>
+							</c:when>
+							<c:otherwise>
+								<a href="together?pageNum=${i}">${i}</a> <%-- 다른 페이지 번호 --%>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+					
+					<%-- [다음] 버튼 클릭 시 BoardList.bo 서블릿 요청(파라미터 : 현재 페이지번호 + 1) --%>
+					<%-- 단, 현재 페이지 번호(pageNum) 가 최대 페이지번호 보다 작을 경우에만 동작(아니면 비활성화 처리) --%>
+					<input type="button" style="width:100px" value="다음" 
+						onclick="location.href = 'together?pageNum=${pageNum + 1}'"
+						<c:if test="${pageNum >= pageInfo.maxPage }">disabled</c:if>
+					>	
+				</section>
 			</div>
         </div>
     </div>

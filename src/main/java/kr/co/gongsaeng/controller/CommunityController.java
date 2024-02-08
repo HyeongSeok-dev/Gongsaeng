@@ -153,10 +153,10 @@ public class CommunityController {
 			HttpSession session, Model model, BoardVO board) {
 		
 		String sId = (String) session.getAttribute("sId");
-		System.out.println("toger sId : " + sId);
+		System.out.println("together sId : " + sId);
 		
 		// 페이징 처리를 위해 조회 목록 갯수 조절 시 사용될 변수 선언
-		int listLimit = 10;
+		int listLimit = 7;
 		int startRow = (pageNum - 1) * listLimit;
 		
 		// BoardService - getBoardList() 메서드 호출하여 게시물 목록 조회 요청
@@ -189,7 +189,19 @@ public class CommunityController {
 		
 	
 	@GetMapping("community/togetherDetail")
-	public String togetherDetail() {
+	public String togetherDetail(@RequestParam int board_idx, Model model) {
+		// BoardService - getTogether() 메서드 호출하여 글 상세정보 조회 작업 요청
+		BoardVO board = service.getTogether(board_idx, true);
+		
+		// 만약, 조회 게시물 정보가 없을 경우 "존재하지 않는 게시물입니다" 출력 처리
+		if(board == null) {
+			model.addAttribute("msg", "존재하지 않는 게시물입니다.");
+			return "fail_back";
+		}
+		
+		// Model 객체에 BoardVO 객체 저장
+		model.addAttribute("board", board);
+		
 		return "community/cm_togetherDetail";
 	}
 

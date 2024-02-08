@@ -27,6 +27,18 @@ public class CommunityService {
 	public int getTogetherListCount(String sId) {
 		return mapper.selectTogetherListCount(sId);
 	}
+	
+	// 함께해요 게시물 상세 보기(조회수 증가 여부를 컨트롤러에서 제어하기 위해 isIncreaseReadcount 파라미터 추가)
+	public BoardVO getTogether(int board_idx, boolean isIncreaseReadcount) {
+		BoardVO board = mapper.selectTogetherBoard(board_idx);
+		
+		// 조회 결과가 존재하고 isIncreaseReadcount 가 true 일 경우 조회수 증가 작업 요청
+		if(board != null && isIncreaseReadcount) {
+			mapper.updateTogetherReadcount(board);
+		}
+		
+		return board;
+	}
 
 
 }

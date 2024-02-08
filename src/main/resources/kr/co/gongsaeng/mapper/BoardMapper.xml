@@ -21,6 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		, #{board_img1}
 		, #{board_img2}
 		, #{board_img3}
+		, 0
 	)
 	</insert>
 	
@@ -29,6 +30,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT *
 		FROM board
 		WHERE board_main_category = 6
+		ORDER BY board_idx DESC
+		LIMIT
+			#{startRow}
+			, #{listLimit}
 	</select>
 	
 	<!-- 함께해요 목록 개수 조회 - SELECT -->
@@ -36,5 +41,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT COUNT(*)
 		FROM board
 	</select>
+	
+	<!-- 함께해요 글 상세정보 조회 - SELECT -->
+	<select id="selectTogetherBoard" resultType="board">
+		SELECT *
+		FROM board b
+		JOIN member m ON m.member_id = b.member_id
+		WHERE board_idx = #{board_idx}
+	</select>
+	
+	<!-- 조회수 증가 - UPDATE -->
+	<update id="updateTogetherReadcount">
+		<!-- selectKey 태그의 위치와 상관없이 order 속성값에 따라 실행 순서가 결정됨 -->
+		<selectKey keyProperty="board_readcount" resultType="int" order="AFTER">
+			SELECT board_readcount
+			FROM board
+			WHERE board_idx = #{board_idx}
+		</selectKey>
+		UPDATE board
+		SET board_readcount = board_readcount + 1
+		WHERE board_idx = #{board_idx}
+	</update>
 	
 </mapper>

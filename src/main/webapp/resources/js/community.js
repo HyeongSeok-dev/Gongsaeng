@@ -24,15 +24,8 @@ $(function(){
     $('.tip').tooltip();
 });
 
-document.getElementById('likeButton').addEventListener('click', function(event) {
-    event.preventDefault();
-    var likeCountElement = document.getElementById('likeCount');
-    var likeCount = parseInt(likeCountElement.textContent, 10);
-    likeCountElement.textContent = likeCount + 1;
-});
 
-
-  //<!-- 이미지 추가버튼 스크립트 -->--------------------
+ //<!-- 이미지 추가버튼 스크립트 -->--------------------
 	var preview_array  = [false, false, false];
 	
 //	<!-- 이미지 등록시 미리보기 추가 작업 -->
@@ -333,3 +326,11 @@ document.getElementById('likeButton').addEventListener('click', function(event) 
 		
 		return;
 	}
+	
+	
+	document.getElementById('likeButton').addEventListener('click', function(event) {
+    event.preventDefault();
+    var likeCountElement = document.getElementById('likeCount');
+    var likeCount = parseInt(likeCountElement.textContent, 10);
+    likeCountElement.textContent = likeCount + 1;
+	});
