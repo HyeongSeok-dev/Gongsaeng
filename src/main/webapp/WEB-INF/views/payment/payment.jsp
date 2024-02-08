@@ -159,12 +159,12 @@
 				<!-- 쿠폰선택========================================================== -->
 				<section id="leftSec02" class="section_box">
 					<h2>쿠폰선택</h2><br>
-					<c:forEach var="couponList" items="${couponList}">
 						<select>
 					        <option value="">쿠폰을 선택하세요</option>
-					        <option value="coupon1">${couponList.coupon_name}</option>
+							<c:forEach var="couponList" items="${couponList}">
+						        <option value="coupon1">${couponList.coupon_name}</option>
+						    </c:forEach>
 					    </select>
-				    </c:forEach>
 				</section>
 					
 				<!-- 포인트============================================================ -->
