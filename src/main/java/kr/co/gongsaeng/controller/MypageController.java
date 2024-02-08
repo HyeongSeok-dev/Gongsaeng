@@ -478,7 +478,7 @@ public class MypageController {
 
 			return "forward";
 		}
-
+		System.out.println(member);
 		// 프로필 사진 변경하기
 		String uploadDir = "/resources/upload";
 		String saveDir = session.getServletContext().getRealPath(uploadDir);
@@ -512,8 +512,10 @@ public class MypageController {
 
 		// BCryptPasswordEncoder 클래스를 활용하여 입력받은 기존 패스워드와 DB 패스워드 비교
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
-		member.setMember_passwd(passwordEncoder.encode(member.getMember_passwd()));
+		
+		if(member.getMember_passwd() != null || !member.getMember_passwd().equals("")) {
+			member.setMember_passwd(passwordEncoder.encode(member.getMember_passwd()));
+		}
 
 		member.setMember_email(member.getMember_email1() + "@" + member.getMember_email2());
 		// memberService - modifymember() 메서드 호출하여 회원 정보 수정 요청
