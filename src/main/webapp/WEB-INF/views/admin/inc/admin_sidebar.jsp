@@ -33,6 +33,19 @@
 	                </ul>
 	            </div>
 	        </li>
+	        <!-- 공생 드롭다운 메뉴-->
+	        <li class="nav-item">
+	            <a href="#gongsaeng" class="nav-link" data-toggle="collapse" aria-expanded="false">
+	                <i class="now-ui-icons ui-2_settings-90"></i>
+	                <p>공생<b class="caret"></b></p>
+	            </a>
+	            <div id="gongsaeng" class="collapse" aria-labelledby="gongsaeng" data-parent="#sidebar-wrapper">
+	                <ul class="nav">
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/OPay/account">약정계좌 관리</a></li>
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/OPay/deposit/withdraw">매출 관리</a></li>
+	                </ul>
+	            </div>
+	        </li>
 	        <!-- 회원 드롭다운 메뉴-->
 	        <li class="nav-item">
 	            <a href="${pageContext.request.contextPath}/admin/member">
@@ -71,22 +84,47 @@
 	            </div>
 	        </li>
 	        <!-- 마케팅센터 드롭다운 메뉴 -->
+<!-- 	        <li class="nav-item"> -->
+<!-- 	            <a href="#marketing" class="nav-link" data-toggle="collapse" aria-expanded="false"> -->
+<!-- 	                <i class="now-ui-icons business_bulb-63"></i> -->
+<!-- 	                <p>마케팅센터<b class="caret"></b></p> -->
+<!-- 	            </a> -->
+<!-- 	            <div id="marketing" class="collapse" aria-labelledby="marketing" data-parent="#sidebar-wrapper"> -->
+<!-- 	                <ul class="nav"> -->
+<%-- 	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/marketing/event">이벤트관리</a></li> --%>
+<%-- 	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/marketing/coupon">쿠폰관리</a></li> --%>
+<!-- 	                </ul> -->
+<!-- 	            </div> -->
+<!-- 	        </li> -->
+	        <!-- 마케팅센터 드롭다운 메뉴 -->
 	        <li class="nav-item">
 	            <a href="#marketing" class="nav-link" data-toggle="collapse" aria-expanded="false">
-	                <i class="now-ui-icons business_bulb-63"></i>
-	                <p>마케팅센터<b class="caret"></b></p>
+	                <i class="now-ui-icons ui-1_send"></i>
+	                <p>커뮤니티<b class="caret"></b></p>
 	            </a>
 	            <div id="marketing" class="collapse" aria-labelledby="marketing" data-parent="#sidebar-wrapper">
 	                <ul class="nav">
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/marketing/event">이벤트관리</a></li>
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/marketing/coupon">쿠폰관리</a></li>
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/marketing/event">궁금해요 관리</a></li>
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/marketing/coupon">함께해요 관리</a></li>
+	                </ul>
+	            </div>
+	        </li>
+	        <li class="nav-item">
+	            <a href="#marketing" class="nav-link" data-toggle="collapse" aria-expanded="false">
+	                <i class="now-ui-icons ui-1_bell-53"></i>
+	                <p>알림관리<b class="caret"></b></p>
+	            </a>
+	            <div id="marketing" class="collapse" aria-labelledby="marketing" data-parent="#sidebar-wrapper">
+	                <ul class="nav">
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/marketing/event">알림 보내기</a></li>
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/marketing/coupon">자동 알림 관리</a></li>
 	                </ul>
 	            </div>
 	        </li>
 	         <!-- 신고 드롭다운 메뉴 -->
 	        <li class="nav-item">
 	            <a href="#report" class="nav-link" data-toggle="collapse" aria-expanded="false">
-	                <i class="now-ui-icons ui-1_bell-53"></i>
+	                <i class="now-ui-icons business_bulb-63"></i>
 	                <p>신고<b class="caret"></b></p>
 	            </a>
 	            <div id="report" class="collapse" aria-labelledby="report" data-parent="#sidebar-wrapper">

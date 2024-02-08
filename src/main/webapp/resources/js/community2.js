@@ -8,7 +8,6 @@ $(document).ready(function() {
 		});
 		
 		  
-//	});
 	
     function readURL(input) {
         if (input.files) {

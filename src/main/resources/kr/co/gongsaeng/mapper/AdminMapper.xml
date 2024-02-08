@@ -6,6 +6,177 @@
 
 <mapper namespace="kr.co.gongsaeng.mapper.AdminMapper">
 
+	<!-- main.jsp -->
+	<!-- 현재 총 매출 -->
+	<select id="selectTotalPayment" resultType="payment">
+	<![CDATA[
+		SELECT SUM(payment)
+		FROM payment 
+		WHERE pay_status = 1 AND (pay_date <= SUBTIME(now() + INTERVAL  1 day,CURTIME()) AND pay_date > SUBTIME(now(),CURTIME())) 
+	]]>	
+	</select>
+
+	<!-- 현재 총 예약건수 -->
+	<select id="selectCountPayment" resultType="payment">
+	<![CDATA[
+		SELECT COUNT(pay_num)
+		FROM payment 
+		WHERE pay_status = 1 AND (pay_date <= SUBTIME(now() + INTERVAL  1 day,CURTIME()) AND pay_date > SUBTIME(now(),CURTIME())) 
+	]]>	
+	</select>
+	
+	<!--신규가입자수  -->
+	<select id="selectNewMemberCount" resultType="member">
+	<![CDATA[
+		SELECT COUNT(member_id)
+		FROM member 
+		WHERE member_date <= SUBTIME(now() + INTERVAL  1 day,CURTIME()) AND member_date > SUBTIME(now(),CURTIME()) 
+				AND member_status = 1
+	]]>	
+	</select>
+	
+	<!-- 누적회원수   -->
+	<select id="selectCulmulativeMemberCount" resultType="member">
+		SELECT COUNT(member_id)
+		FROM member 
+		WHERE member_status = 1
+	</select>
+
+	<!--신규 반장가입자수  -->
+	<select id="selectNewBanjangCount" resultType="member">
+	<![CDATA[
+		SELECT COUNT(member_id)
+		FROM member 
+		WHERE member_date <= SUBTIME(now() + INTERVAL  1 day,CURTIME()) AND member_date > SUBTIME(now(),CURTIME()) 
+				AND member_status = 1 AND member_category = 2
+	]]>	
+	</select>
+	
+	<!-- 누적반장수   -->
+	<select id="selectCulmulativeBanjangCount" resultType="member">
+		SELECT COUNT(member_id)
+		FROM member 
+		WHERE member_status = 1 AND member_category = 2
+	</select>
+
+	<!-- 이번달 예약건수   -->
+	<select id="selectMonthlyPayCount" resultType="payment">
+	<![CDATA[
+		SELECT COUNT(pay_num)
+		FROM payment 
+		WHERE pay_status = 1 AND (pay_date >= (last_day(now() - INTERVAL 1 month) + INTERVAL 1 DAY) AND pay_date <= last_day(now()))
+	]]>		
+	</select>
+	
+	<!-- 누적 예약건수   -->
+	<select id="selectCumulativePayCount" resultType="payment">
+		SELECT COUNT(pay_num)
+		FROM payment
+		WHERE pay_status = 1 
+	</select>
+
+	<!-- 이번달 총매출   -->
+	<select id="selectMonthlyTotalPay" resultType="payment">
+	<![CDATA[
+		SELECT SUM(payment)
+		FROM payment 
+		WHERE pay_status = 1 AND (pay_date >= (last_day(now() - INTERVAL 1 month) + INTERVAL 1 DAY) AND pay_date <= last_day(now()))
+	]]>		
+	</select>
+	
+	<!-- 누적 총매출   -->
+	<select id="selectCumulativeTotalPay" resultType="payment">
+		SELECT SUM(payment)
+		FROM payment
+		WHERE pay_status = 1 
+	</select>
+	
+	<!-- 이번달 환급금   -->
+	<select id="selectMonthlyRefund" resultType="payment">
+	<![CDATA[
+		SELECT SUM(payment)
+		FROM payment 
+		WHERE pay_status = 1 AND (pay_date >= (last_day(now() - INTERVAL 1 month) + INTERVAL 1 DAY) AND pay_date <= last_day(now()))
+				AND pay_cal_status = 4
+	]]>		
+	</select>
+	
+	<!-- 누적 환급금   -->
+	<select id="selectCumulativeRefund" resultType="payment">
+		SELECT SUM(payment)
+		FROM payment
+		WHERE pay_status = 1 AND pay_cal_status = 4
+	</select>
+
+	<!-- 이번달 환급 수익   -->
+	<select id="selectMonthlyRefundFee" resultType="payment">
+	<![CDATA[
+		SELECT SUM(payment * 0.1)
+		FROM payment 
+		WHERE pay_status = 1 AND (pay_date >= (last_day(now() - INTERVAL 1 month) + INTERVAL 1 DAY) AND pay_date <= last_day(now()))
+				AND pay_cal_status = 4
+	]]>		
+	</select>
+	
+	<!-- 누적 환급 수익   -->
+	<select id="selectCumulativeRefundFee" resultType="payment">
+		SELECT SUM(payment * 0.1)
+		FROM payment
+		WHERE pay_status = 1 AND pay_cal_status = 4
+	</select>
+	
+	<!-- 사업체 가입 신청   -->
+	<select id="selectNewComRegCount" resultType="member">
+		SELECT COUNT(com_idx)
+		FROM company
+		WHERE com_status = 2
+	</select>
+
+	<!-- 사업체 환급 신청   -->
+	<select id="selectComRefundApp" resultType="payment">
+		SELECT COUNT(pay_num)
+		FROM payment
+		WHERE pay_status = 1 AND pay_cal_status = 2
+	</select>
+	
+	<!-- 클래스 신고 -->
+	<select id="selectNewClassReport" resultType="report">
+		SELECT COUNT(report_idx)
+		FROM report
+		WHERE report_status = 1 AND report_category = 2
+	</select>
+	
+	<!-- 리뷰 신고 -->
+	<select id="selectNewReviewReport" resultType="report">
+		SELECT COUNT(report_idx)
+		FROM report
+		WHERE report_status = 1 AND report_category = 1
+	</select>
+	
+	<!-- 채팅문의 -->
+	<select id="selectNewQnaChat" resultType="payment">
+		SELECT COUNT(chat_read)
+		FROM chat
+		WHERE chat_read = 1 AND chat_receiver = 'admin1234'
+	</select>
+	
+	<!-- 그래프 올해 매출 -->
+	<select id="selectThisYearPay" resultType="admin">
+		SELECT (SELECT SUM(payment) FROM payment WHERE MONTH(pay_date) = 1) AS 'jan'
+			,(SELECT SUM(payment) FROM payment WHERE MONTH(pay_date) = 2) AS 'feb'
+			,(SELECT SUM(payment) FROM payment WHERE MONTH(pay_date) = 3) AS 'mar'
+			,(SELECT SUM(payment) FROM payment WHERE MONTH(pay_date) = 4) AS 'apr'
+			,(SELECT SUM(payment) FROM payment WHERE MONTH(pay_date) = 5) AS 'may'
+			,(SELECT SUM(payment) FROM payment WHERE MONTH(pay_date) = 6) AS 'jun'
+			,(SELECT SUM(payment) FROM payment WHERE MONTH(pay_date) = 7) AS 'jul'
+			,(SELECT SUM(payment) FROM payment WHERE MONTH(pay_date) = 8) AS 'aug'
+			,(SELECT SUM(payment) FROM payment WHERE MONTH(pay_date) = 9) AS 'sep'
+			,(SELECT SUM(payment) FROM payment WHERE MONTH(pay_date) = 10) AS 'oct'
+			,(SELECT SUM(payment) FROM payment WHERE MONTH(pay_date) = 11) AS 'nov'
+			,(SELECT SUM(payment) FROM payment WHERE MONTH(pay_date) = 12) AS 'dec'
+	</select>
+	<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
 	<!-- member.jsp -->
 	<!-- 회원목록(신고수,사업체 상태 포함) 조회 -->
 	<select id="selectMemberList" resultType="member">
@@ -70,7 +241,7 @@
 																				AND pay_date <= last_day(now())) 
 				 															AND p.member_id = #{member_id}) AS 'regularMonthRes'
 			FROM payment
-			WHERE member_id = #{member_id};
+			WHERE member_id = #{member_id} AND pay_status = 1
 		]]>	
 	</select>
 	
@@ -91,7 +262,7 @@
 			  FROM report, review  
 			  WHERE report.review_idx = review.review_idx AND review.member_id = #{member_id} ) AS 'reviewReport' 
 			FROM review 
-			WHERE member_id = #{member_id};
+			WHERE member_id = #{member_id}
 		]]>	
 	</select>
 	
@@ -145,7 +316,7 @@
 		FROM payment
 		INNER JOIN company ON company.com_idx = payment.com_idx
 		INNER JOIN class ON class.class_idx = payment.class_idx
-		WHERE payment.member_id = #{member_id}
+		WHERE payment.member_id = #{member_id} AND pay_status = 1
 	</select>
 	
 	<!-- review.jsp -->
@@ -169,7 +340,7 @@
 	<select id="selectRefundList" resultType="payment">
 		SELECT p.refund_request_date,p.refund_date, p.payment ,p.pay_cal_status , c.com_name 
 		FROM payment p ,company c
-		WHERE  p.com_idx = c.com_idx
+		WHERE  p.com_idx = c.com_idx AND pay_status = 1
 	</select>
 
 	<!-- class.jsp -->
@@ -188,45 +359,44 @@
 	<!-- account_member.jsp -->
 	<!-- 등록계좌 목록 -->
 	<select id="selectAccountList" resultType="account">
-	SELECT *
-	FROM account
+		SELECT *
+		FROM account
 	</select>
 
 	<!-- OPay_*.jsp -->
 	<!-- 페이 충전송금 목록 -->
 	<select id="selectCashList" resultType="cash">
-	SELECT *
-	FROM cash
+		SELECT *
+		FROM cash
 	</select>
 
 	<!-- event.jsp -->
 	<!-- 이벤트 목록 -->
 	<select id="selectEventList" resultType="board">
-	SELECT *
-	FROM board
+		SELECT *
+		FROM board
 	</select>
 
 	<!-- coupon.jsp -->
 	<!-- 쿠폰 목록 -->
 	<select id="selectCouponList" resultType="coupon">
-	SELECT *
-	FROM coupon
+		SELECT *
+		FROM coupon
 	</select>
 
 	<!-- report_class.jsp -->
 	<!-- 클래스신고 목록 -->
 	<select id="selectReportClassList" resultType="report">
-	SELECT report.*, class.class_title 'class_title', class.member_id 'banjangMember_id', company.com_name 'com_name'
-	FROM report , class , company
-	WHERE report.class_idx = class.class_idx and class.member_id = company.member_id
-
+		SELECT report.*, class.class_title 'class_title', class.member_id 'banjangMember_id', company.com_name 'com_name'
+		FROM report , class , company
+		WHERE report.class_idx = class.class_idx and class.member_id = company.member_id
 	</select>
 	<!-- report_review.jsp -->
 	<!-- 리뷰신고 목록 -->
 	<select id="selectReportReviewList" resultType="report">
-	SELECT report.*, review.member_id 'reviewerMember_id'
-	FROM report , review
-	WHERE report.review_idx = review.review_idx
+		SELECT report.*, review.member_id 'reviewerMember_id'
+		FROM report , review
+		WHERE report.review_idx = review.review_idx
 	</select>
 	
 	

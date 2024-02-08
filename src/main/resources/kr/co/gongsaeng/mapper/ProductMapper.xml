@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.gongsaeng.mapper.ProductMapper">
+	<!-- 클래스 정보 -->
+	<select id="selectClassInfo" resultType="gclass">
+		SELECT *
+		FROM class
+		WHERE class_idx = #{class_idx}
+	</select>
+	
+	<!-- 업체정보 -->
+	<select id="selectCompanyInfo" resultType="company"> 
+		SELECT *
+		FROM company
+		WHERE member_id IN (
+		    SELECT member_id
+		    FROM member
+		    WHERE member_category = 2
+		) AND member_id = #{member_id}
+	</select>
+	
+	<!-- 해당 클래스 리뷰 들고오기 -->
+	<select id="selectReviewInfo" resultType="review">
+		SELECT *
+		FROM review
+		WHERE class_idx = #{class_idx}
+	</select>
+	
+	<select id="selectBookmark" resultType="bookmark">
+		SELECT * 
+		FROM bookmark
+		WHERE member_id = #{sId}
+		AND class_idx = #{class_idx}
+	</select>
+</mapper>

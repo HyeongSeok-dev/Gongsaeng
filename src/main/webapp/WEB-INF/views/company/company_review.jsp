@@ -270,10 +270,10 @@ tbody {
 													<th scope="col">#</th>
 													<th scope="col">클래스명</th>
 													<th scope="col">회원아이디</th>
-													<th scope="col">회원명</th>
+<!-- 													<th scope="col">회원명</th> -->
 													<th scope="col">별점</th>
 													<th scope="col">리뷰 내용</th>
-													<th scope="col">등록일</th>
+													<th scope="col">리뷰 등록일</th>
 <!-- 													<th scope="col">클래스명</th> -->
 <!-- 													<th scope="col">채팅</th> -->
 <!-- 													<th scope="col">포인트 사용 금액</th> -->
@@ -283,20 +283,17 @@ tbody {
 											</thead>
 											<tbody>
 												<!-- 여기에 각 행을 추가하세요. 예를 들어: -->
+													<c:forEach items="${companyReviewDetail}" var="review" >
 												<tr>
-													<th scope="row">1</th>
-													<td>인테리어 클래스</td>
-													<td>lottegiants22</td>
-													<td>구승민</td>
-													<td>5</td>
-													<td>인테리어 클래스 너무 좋아요</td>
-													<td>2024/12/25</td>
-<!-- 													<td>#인테리어</td> -->
-<!-- 													<td><input type="button" value="채팅보내기"></td> -->
-<!-- 													<td>0</td> -->
-<!-- 													<td>50,000</td> -->
-<!-- 													<td><input type="button" value="정산신청"></td> -->
+														<th scope="row">1</th>
+														<td>${review.class_title}</td> <!-- 클래스명 -->
+														<td>${review.member_id}</td> <!-- 회원아이디 -->
+<!-- 														<td>구승민</td> -->
+														<td>${review.review_score / 2}</td> <!-- 별점 -->
+														<td>${review.review_content }</td> <!-- 리뷰내용 -->
+														<td>${review.review_regdate }</td> <!-- 리뷰등록일 -->
 												</tr>
+	 												</c:forEach>	
 												<!-- 더 많은 행을 추가할 수 있습니다. -->
 											</tbody>
 										</table>

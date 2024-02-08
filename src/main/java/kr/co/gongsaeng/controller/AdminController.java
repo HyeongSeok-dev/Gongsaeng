@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -32,6 +33,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.gongsaeng.service.AdminService;
 import kr.co.gongsaeng.vo.AccountVO;
+import kr.co.gongsaeng.vo.AdminVO;
 import kr.co.gongsaeng.vo.BoardVO;
 import kr.co.gongsaeng.vo.CashVO;
 import kr.co.gongsaeng.vo.ClassVO;
@@ -53,7 +55,7 @@ public class AdminController {
 	private AdminService service;
 	
 	@GetMapping("admin")
-	public String admin(HttpSession session, Model model) {
+	public String admin(HttpSession session, Model model, Map<String, Object> map) {
 		
 //		if(session.getAttribute("sId") == null) {
 //			model.addAttribute("msg", "로그인이 필요합니다");
@@ -64,8 +66,137 @@ public class AdminController {
 //			return "fail_back";
 //		}
 		
+		// 현재 날짜 정보 불러오기
+		Calendar cal = Calendar.getInstance();
+		
+		AdminVO admin = new AdminVO();
+		admin.setMonth(cal.get(Calendar.MONTH) + 1);
+		admin.setYear(cal.get(Calendar.YEAR));
+		admin.setDate(cal.get(Calendar.DATE));
+
+		int intDay = cal.get(Calendar.DAY_OF_WEEK);
+		switch(intDay) {
+		case 0: admin.setDayOfWeek("일");
+		case 1: admin.setDayOfWeek("월");
+		case 2: admin.setDayOfWeek("화");
+		case 3: admin.setDayOfWeek("수");
+		case 4: admin.setDayOfWeek("목");
+		case 5: admin.setDayOfWeek("금");
+		case 6: admin.setDayOfWeek("토");
+		case 7: admin.setDayOfWeek("일");
+		}
+//		String dayOfWeek = "";
+//		switch(intDay) {
+//			case 0: dayOfWeek = "일";
+//			case 1: dayOfWeek = "월";
+//			case 2: dayOfWeek = "화";
+//			case 3: dayOfWeek = "수";
+//			case 4: dayOfWeek = "목";
+//			case 5: dayOfWeek = "금";
+//			case 6: dayOfWeek = "토";
+//			case 7: dayOfWeek = "일";
+//		}
+		
+//		String year = Integer.toString(cal.get(Calendar.YEAR));
+//		String month = Integer.toString(cal.get(Calendar.MONTH) + 1);
+//		String date = Integer.toString(cal.get(Calendar.DATE));
+		
+		
+		
+		// 현재 결제 금액 / 예약 건수
+		String totalPayment = service.getTotalPayment();
+		admin.setTotalPayment(totalPayment);
+		
+		// 현재 예약수
+		String countPayment = service.getCountPayment();
+		admin.setCountPayment(countPayment);
+		
+//		// 현재 방문자 수
+//		String currentVisitors = service.getCurrentvisit();
+//		map.put("", );
+//
+//		// 누적 방문자 수
+//		String cumulativeVisitors = service.getCumulativeVisitors();
+//		map.put("", );
+
+		// 현재 신규 가입자 수
+		String newMemberCount = service.getNewMemberCount();
+		admin.setNewMemberCount(newMemberCount);
+
+		// 누적 가입자 수 
+		String cumulativeMemberCount = service.getCulmulativeMemberCount();
+		admin.setCumulativeMemberCount(cumulativeMemberCount);
+		
+		// 현재 신규 반장 가입자 수
+		String newBanjangCount = service.getNewBanjangCount();
+		admin.setNewBanjangCount(newBanjangCount);
+		
+		// 누적 반장 가입자 수
+		String cumulativeBanjangCount = service.getCulmulativeBanjangCount();
+		admin.setCumulativeBanjangCount(cumulativeBanjangCount);
+		
+		// 이번달 예약 건수
+		String monthlyPayCount = service.getMonthlyPayCount();
+		admin.setMonthlyPayCount(monthlyPayCount);
+		
+		// 누적 예약 건수
+		String cumulativePayCount = service.getCumulativePayCount();
+		admin.setCumulativePayCount(cumulativePayCount);
+		
+		// 이번달 결제 총 금액 
+		String monthlyTotalPay = service.getMonthlyTotalPay();
+		admin.setMonthlyTotalPay(monthlyTotalPay);
+		
+		// 누적 결제 총 금액
+		String cumulativeTotalPay = service.getCumulativeTotalPay();
+		admin.setCumulativeTotalPay(cumulativeTotalPay);
+		
+		// 이번달 환급금
+		String monthlyRefund = service.getMonthlyRefund();
+		admin.setMonthlyRefund(monthlyRefund);
+		
+		// 누적 환급금
+		String cumulativeRefund = service.getCumulativeRefund();
+		admin.setCumulativeRefund(cumulativeRefund);
+		
+		// 이번달 환급 수익
+		String monthlyRefundFee = service.getMonthlyRefundFee();
+		admin.setMonthlyRefundFee(monthlyRefundFee);
+		
+		// 누적 환급 수익
+		String cumulativeRefundFee = service.getCumulativeRefundFee();
+		admin.setCumulativeRefundFee(cumulativeRefundFee);
+		
+		// 사업체 가입 신청
+		String newComRegCount = service.getNewComRegCount();
+		admin.setNewComRegCount(newComRegCount);
+		
+		// 사업체 환급 신청
+		String newComRefundApp = service.getComRefundApp();
+		admin.setNewComRefundApp(newComRefundApp);
+		
+		// 클래스 신고
+		String newClassReport = service.getNewClassReport();
+		admin.setNewClassReport(newClassReport);
+		
+		// 리뷰 신고
+		String newReviewReport = service.getNewReviewReport();
+		admin.setNewReviewReport(newReviewReport);
+		
+		// 채팅문의
+		String newQnaChat = service.getNewQnaChat();
+		admin.setNewQnaChat(newQnaChat);
+		
+		// 그래프 올해 총매출 구하기
+		AdminVO thisYearPay = service.getThisYearPay();
+		map.put("thisYearPay",thisYearPay);
+
+		map.put("admin",admin);
+		
 		return "admin/main";
 	}
+	
+	
 	@GetMapping("admin/dashboard/member")
 	public String dashboardMember(HttpSession session, Model model) {
 //		if(session.getAttribute("sId") == null) {
@@ -676,7 +807,7 @@ public class AdminController {
 	}
 	@GetMapping("admin/icons")
 	public String icons() {
-		return "admin/icons";
+		return "admin/backup/icons";
 	}
 	@GetMapping("admin/notifications")
 	public String notifications() {

@@ -20,6 +20,9 @@
 		<typeAlias type="kr.co.gongsaeng.vo.CouponVO"  alias="coupon"/>
 		<typeAlias type="kr.co.gongsaeng.vo.MyResVO"  alias="myRes"/>
 		<typeAlias type="kr.co.gongsaeng.vo.ReviewCountVO"  alias="reviewcount"/>
-		
+		<typeAlias type="kr.co.gongsaeng.vo.CompanyClassVO"  alias="companyClass"/>
+		<typeAlias type="kr.co.gongsaeng.vo.CompanyReviewDetailVO"  alias="companyReview"/>
+		<typeAlias type="kr.co.gongsaeng.vo.AdminVO"  alias="admin"/>
+		<typeAlias type="kr.co.gongsaeng.vo.BookmarkVO"  alias="bookmark"/>
 	</typeAliases>
 </configuration>

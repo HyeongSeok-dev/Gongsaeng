@@ -15,7 +15,7 @@
 	<update id="updateMemberInfo">
 		UPDATE member
 		SET 
-		<if test="!member_passwd.equals('')">
+		<if test="member_passwd != null or !member_passwd.equals('')">
 			member_passwd = #{member_passwd}
 		</if>
 			,member_nick = 	#{member_nick}

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.gongsaeng.mapper.AdminMapper;
 import kr.co.gongsaeng.vo.AccountVO;
+import kr.co.gongsaeng.vo.AdminVO;
 import kr.co.gongsaeng.vo.BoardVO;
 import kr.co.gongsaeng.vo.CashVO;
 import kr.co.gongsaeng.vo.ClassVO;
@@ -128,9 +129,99 @@ public class AdminService {
 		return mapper.selectRefundList();
 	}
 
-//	public List<BoardVO> getNotice() {
-//		return mapper.selectNoticeList();
+	//main.jsp
+	public String getTotalPayment() {
+		return mapper.selectTotalPayment();
+	}
+
+	public String getCountPayment() {
+		return mapper.selectCountPayment();
+	}
+
+	//방문자수는 현재어려움
+//	public String getCurrentvisit() {
+//		return mapper.select;
 //	}
+//
+//	public String getCumulativeVisitors() {
+//		return mapper.select;
+//	}
+
+	public String getNewMemberCount() {
+		return mapper.selectNewMemberCount();
+	}
+
+	public String getCulmulativeMemberCount() {
+		return mapper.selectCulmulativeMemberCount();
+	}
+
+	public String getNewBanjangCount() {
+		return mapper.selectNewBanjangCount();
+	}
+	
+	public String getCulmulativeBanjangCount() {
+		return mapper.selectCulmulativeBanjangCount();
+	}
+
+	public String getMonthlyPayCount() {
+		return mapper.selectMonthlyPayCount();
+	}
+
+	public String getCumulativePayCount() {
+		return mapper.selectCumulativePayCount();
+	}
+
+	public String getMonthlyTotalPay() {
+		return mapper.selectMonthlyTotalPay();
+	}
+
+	public String getCumulativeTotalPay() {
+		return mapper.selectCumulativeTotalPay();
+	}
+
+	public String getMonthlyRefund() {
+		return mapper.selectMonthlyRefund();
+	}
+
+	public String getCumulativeRefund() {
+		return mapper.selectCumulativeRefund();
+	}
+
+	public String getMonthlyRefundFee() {
+		return mapper.selectMonthlyRefundFee();
+	}
+
+	public String getCumulativeRefundFee() {
+		return mapper.selectCumulativeRefundFee();
+	}
+
+	public String getNewComRegCount() {
+		return mapper.selectNewComRegCount();
+	}
+
+	public String getComRefundApp() {
+		return mapper.selectComRefundApp();
+	}
+
+	public String getNewClassReport() {
+		return mapper.selectNewClassReport();
+	}
+
+	public String getNewReviewReport() {
+		return mapper.selectNewReviewReport();
+	}
+
+	public String getNewQnaChat() {
+		return mapper.selectNewQnaChat();
+	}
+
+	public AdminVO getThisYearPay() {
+		return mapper.selectThisYearPay();
+	}
+
+
+
+
 
 
 }

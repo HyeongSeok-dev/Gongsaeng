@@ -95,4 +95,18 @@
 	    WHERE pay_num = #{payNum}
 	</update>
 	
+	<!-- 회원목록 출력 -->
+	<select id="selectCompanyClassMember" resultType="companyClass">
+		SELECT *
+		FROM ViewPaymentClassMember	
+		WHERE com_idx = #{comIdx}
+	</select>
+
+	<!-- 리뷰 목록 출력 -->
+	<select id="selectCompanyReviewDetail" resultType="companyReview">
+		SELECT *
+		FROM review_details	
+		WHERE com_idx = #{comIdx}
+	</select>
+	
 </mapper>

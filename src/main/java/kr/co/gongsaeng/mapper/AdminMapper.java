@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import kr.co.gongsaeng.vo.AccountVO;
+import kr.co.gongsaeng.vo.AdminVO;
 import kr.co.gongsaeng.vo.BoardVO;
 import kr.co.gongsaeng.vo.CashVO;
 import kr.co.gongsaeng.vo.ClassVO;
@@ -87,6 +88,49 @@ public interface AdminMapper {
 	
 	// company_refund.jsp
 	List<PaymentVO> selectRefundList();
+	
+	// main.jsp
+	// 오늘 총 매출
+	String selectTotalPayment();
+	// 오늘 예약 건수
+	String selectCountPayment();
+	// 신규회원수
+	String selectNewMemberCount();
+	// 누적 회원수
+	String selectCulmulativeMemberCount();
+	// 신규 반장수
+	String selectNewBanjangCount();
+	// 누적 반장수
+	String selectCulmulativeBanjangCount();
+	// 이번달 예약건수
+	String selectMonthlyPayCount();
+	// 누적 예약건수
+	String selectCumulativePayCount();
+	// 이번달 총매출
+	String selectMonthlyTotalPay();
+	// 누적 총매출
+	String selectCumulativeTotalPay();
+	// 이번달 환급금
+	String selectMonthlyRefund();
+	// 누적 환급금
+	String selectCumulativeRefund();
+	// 이번달 환급 수익
+	String selectMonthlyRefundFee();
+	// 누적 환급 수익
+	String selectCumulativeRefundFee();
+	// 사업체 가입 신청
+	String selectNewComRegCount();
+	// 사업체 환급 신청
+	String selectComRefundApp();
+	// 클래스 신고
+	String selectNewClassReport();
+	// 리뷰 신고
+	String selectNewReviewReport();
+	// 채팅문의
+	String selectNewQnaChat();
+	
+	//그래프 올해 매출
+	AdminVO selectThisYearPay();
 	
 	
 	
