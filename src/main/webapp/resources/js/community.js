@@ -1,37 +1,3 @@
-   
-$(document).ready(function() {   
-    $(".heart-icon").on("click", function() {
-        var $this = $(this);
-        var likeCountElement = $this.closest('.col-sm-4').find('.likeCount');
-        var likeCount = parseInt(likeCountElement.text());
-
-        if ($this.hasClass('fa-heart-o')) {
-            $this.removeClass('fa-heart-o').addClass('fa-heart');
-            likeCountElement.text(likeCount + 1);
-        } else {
-            $this.removeClass('fa-heart').addClass('fa-heart-o');
-            likeCountElement.text(likeCount - 1);
-        }
-
-        // 여기서는 좋아요 수를 로컬 스토리지에 저장하고 있습니다.
-        // 실제 웹사이트에서는 좋아요 수를 서버에 저장하고 불러오는 API를 사용해야 합니다.
-        localStorage.setItem('likeCount', likeCountElement.text());
-    });
-    
-});
-
-$(function(){
-    $('.tip').tooltip();
-});
-
-document.getElementById('likeButton').addEventListener('click', function(event) {
-    event.preventDefault();
-    var likeCountElement = document.getElementById('likeCount');
-    var likeCount = parseInt(likeCountElement.textContent, 10);
-    likeCountElement.textContent = likeCount + 1;
-});
-
-
   //<!-- 이미지 추가버튼 스크립트 -->--------------------
 	var preview_array  = [false, false, false];
 	
@@ -39,6 +5,16 @@ document.getElementById('likeButton').addEventListener('click', function(event) 
 	function img_preview() {
 
 		for(var i=0; i<preview_array.length; i++){
+
+// 			for(var i=0; i<preview_array.length; i++){
+// 				if(i=[i]){
+// 					if(preview_array[i]==false){
+// 						send_[i]();
+// 						return;
+// 					}
+// 				}
+// 			}
+			
 			
 			/* i가 0일때 */
 			if(i==0){

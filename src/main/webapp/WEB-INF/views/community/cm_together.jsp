@@ -104,20 +104,10 @@
 			        </div>
 			    </div>
 				<br>
-				<c:forEach var="board" items="${boardList}">
 				<div class="cm_text">
 				    <div class="row mt-5">
 				        <div class="col-sm-9">
-				            <p>함께해요/
-					            <c:choose>
-					            	<c:when test="${board.board_sub_category eq 1}">시공</c:when>
-					            	<c:when test="${board.board_sub_category eq 2}">설치 및 수리</c:when>
-					            	<c:when test="${board.board_sub_category eq 3}">리모델링</c:when>
-					            	<c:when test="${board.board_sub_category eq 4}">리폼</c:when>
-					            	<c:when test="${board.board_sub_category eq 5}">인테리어</c:when>
-					            	<c:when test="${board.board_sub_category eq 6}">기타</c:when>
-					            </c:choose>
-				            </p>
+				            <p>함께해요/서비스 종류</p>
 				            <a href="togetherDetail" class="cm_context">
 				                <!-- 글제목 두껍게 -->
 				                <h4 class="h4_community" style="font-weight: bold;">글제목</h4>
@@ -135,51 +125,50 @@
 				        </div>
 				    </div>
 				</div>
-				<br> 
-				</c:forEach> 
-<!-- 				<div class="cm_text"> -->
-<!-- 				    <div class="row mt-5"> -->
-<!-- 				        <div class="col-sm-9"> -->
-<!-- 				            <p>함께해요/서비스 종류</p> -->
-<!-- 				            <a href="togetherDetail" class="cm_context"> -->
-<!-- 				                글제목 두껍게 -->
-<!-- 				                <h4 class="h4_community" style="font-weight: bold;">글제목</h4> -->
-<!-- 				                글 내용과 댓글은 일반 두께로 -->
-<!-- 				                <p class="text-truncate" style="font-weight: normal;">여기에 글 내용이 들어갑니다. 이 글은 최대 50자까지만 표시됩니다. 더 많은 내용을 보려면 글을 클릭하세요.</p> -->
-<!-- 				                <p style="font-weight: normal;"><span class="fa fa-comment"></span> 댓글 개수</p> -->
-<!-- 				            </a> -->
-<!-- 				        </div> -->
-<!-- 				        <div class="col-sm-3"> -->
-<!-- 				            <div class="cm_thumbnail"> -->
-<%-- 				                <img src="${pageContext.request.contextPath }/resources/img/house.png"  alt="이미지"> --%>
-<!-- 				                <div class="caption text-right"> -->
-<!-- 				                </div> -->
-<!-- 				            </div> -->
-<!-- 				        </div> -->
-<!-- 				    </div> -->
-<!-- 				</div> -->
-<!-- 				<br>   -->
-<!-- 				<div class="cm_text"> -->
-<!-- 				    <div class="row mt-5"> -->
-<!-- 				        <div class="col-sm-9"> -->
-<!-- 				            <p>함께해요/서비스 종류</p> -->
-<!-- 				            <a href="togetherDetail" class="cm_context"> -->
-<!-- 				                글제목 두껍게 -->
-<!-- 				                <h4 class="h4_community" style="font-weight: bold;">글제목</h4> -->
-<!-- 				                글 내용과 댓글은 일반 두께로 -->
-<!-- 				                <p class="text-truncate" style="font-weight: normal;">여기에 글 내용이 들어갑니다. 이 글은 최대 50자까지만 표시됩니다. 더 많은 내용을 보려면 글을 클릭하세요.</p> -->
-<!-- 				                <p style="font-weight: normal;"><span class="fa fa-comment"></span> 댓글 개수</p> -->
-<!-- 				            </a> -->
-<!-- 				        </div> -->
-<!-- 				        <div class="col-sm-3"> -->
-<!-- 				            <div class="cm_thumbnail"> -->
-<%-- 				                <img src="${pageContext.request.contextPath }/resources/img/house.png"  alt="이미지"> --%>
-<!-- 				                <div class="caption text-right"> -->
-<!-- 				                </div> -->
-<!-- 				            </div> -->
-<!-- 				        </div> -->
-<!-- 				    </div> -->
-<!-- 				</div> -->
+				<br>  
+				<div class="cm_text">
+				    <div class="row mt-5">
+				        <div class="col-sm-9">
+				            <p>함께해요/서비스 종류</p>
+				            <a href="togetherDetail" class="cm_context">
+				                <!-- 글제목 두껍게 -->
+				                <h4 class="h4_community" style="font-weight: bold;">글제목</h4>
+				                <!-- 글 내용과 댓글은 일반 두께로 -->
+				                <p class="text-truncate" style="font-weight: normal;">여기에 글 내용이 들어갑니다. 이 글은 최대 50자까지만 표시됩니다. 더 많은 내용을 보려면 글을 클릭하세요.</p>
+				                <p style="font-weight: normal;"><span class="fa fa-comment"></span> 댓글 개수</p>
+				            </a>
+				        </div>
+				        <div class="col-sm-3">
+				            <div class="cm_thumbnail">
+				                <img src="${pageContext.request.contextPath }/resources/img/house.png"  alt="이미지">
+				                <div class="caption text-right">
+				                </div>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+				<br>  
+				<div class="cm_text">
+				    <div class="row mt-5">
+				        <div class="col-sm-9">
+				            <p>함께해요/서비스 종류</p>
+				            <a href="togetherDetail" class="cm_context">
+				                <!-- 글제목 두껍게 -->
+				                <h4 class="h4_community" style="font-weight: bold;">글제목</h4>
+				                <!-- 글 내용과 댓글은 일반 두께로 -->
+				                <p class="text-truncate" style="font-weight: normal;">여기에 글 내용이 들어갑니다. 이 글은 최대 50자까지만 표시됩니다. 더 많은 내용을 보려면 글을 클릭하세요.</p>
+				                <p style="font-weight: normal;"><span class="fa fa-comment"></span> 댓글 개수</p>
+				            </a>
+				        </div>
+				        <div class="col-sm-3">
+				            <div class="cm_thumbnail">
+				                <img src="${pageContext.request.contextPath }/resources/img/house.png"  alt="이미지">
+				                <div class="caption text-right">
+				                </div>
+				            </div>
+				        </div>
+				    </div>
+				</div>
 			</div>
         </div>
     </div>

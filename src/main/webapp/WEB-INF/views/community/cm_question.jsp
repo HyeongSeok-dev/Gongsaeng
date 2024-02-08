@@ -109,7 +109,7 @@
 				<div class="cm_text">
 				    <div class="row mt-5">
 				        <div class="col-sm-9">
-				            <p>궁금해요/</p>
+				            <p>궁금해요/${board. }</p>
 				            <a href="questionDetail" class="cm_context">
 				                <!-- 글제목 두껍게 -->
 				                <h4 class="h4_community" style="font-weight: bold;">글제목</h4>
