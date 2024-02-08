@@ -12,7 +12,6 @@
 	content="width=device-width, initial-scale=1, minimum-scale=1" />
 <!-- CSS -->
 
-
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/normalize.css">

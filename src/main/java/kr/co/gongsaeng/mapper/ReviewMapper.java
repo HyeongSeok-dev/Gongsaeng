@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import kr.co.gongsaeng.vo.MemberVO;
-import kr.co.gongsaeng.vo.ReviewCategoryCountVO;
 import kr.co.gongsaeng.vo.ReviewCountVO;
 import kr.co.gongsaeng.vo.ReviewVO;
 
