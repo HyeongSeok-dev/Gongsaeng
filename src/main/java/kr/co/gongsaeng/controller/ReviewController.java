@@ -30,6 +30,7 @@ import com.google.gson.Gson;
 import kr.co.gongsaeng.service.ReviewService;
 import kr.co.gongsaeng.vo.ClassVO;
 import kr.co.gongsaeng.vo.MemberVO;
+import kr.co.gongsaeng.vo.ReviewCategoryCountVO;
 import kr.co.gongsaeng.vo.ReviewCountVO;
 import kr.co.gongsaeng.vo.ReviewVO;
 
@@ -42,7 +43,7 @@ public class ReviewController {
 	// ===================================================================
 	// [ 리뷰 상세 페이지 ]
 	@GetMapping("review/detail")
-	public String detail(@RequestParam("class_idx") int classIdx, 
+	public String detail(@RequestParam(defaultValue = "1") int classIdx, 
 			@RequestParam(defaultValue = "1") int comIdx,
 			//			@RequestParam("review_num") int reviewNum, 	
 			//			@RequestParam("user_id") String userId, 
@@ -131,10 +132,10 @@ public class ReviewController {
 	
 	// ===================================================================
     // [ AJAX 요청 처리: 정렬된 리뷰 목록 출력 ]
-    @GetMapping("/review/detail/sortedReviews")
+    @GetMapping("review/detail/sortedReviews")
     @ResponseBody
     public List<ReviewVO> getSortedReviews(
-    										@RequestParam("classIdx") int classIdx,
+    										@RequestParam(defaultValue = "1") int classIdx,
                                            @RequestParam("sortType") String sortType,
                                            @RequestParam(value = "photoOnly", defaultValue = "false") boolean photoOnly
                                            ) {

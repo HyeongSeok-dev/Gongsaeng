@@ -23,8 +23,9 @@
 	
 	<!-- 해당 클래스 리뷰 들고오기 -->
 	<select id="selectReviewInfo" resultType="review">
-		SELECT *
-		FROM review
+		SELECT review_idx, r.member_id, review_content, review_score, pay_num, class_idx, review_regdate, review_img_1, review_img_2, review_img_3, review_status, review_kind, review_detail, review_cheap, review_explanation, review_interior, review_trendy, review_large, review_meeting, review_comfortable, review_parking, review_clean_toilet, review_etc_fast, review_no_keyword, review_like, review_like_count,  m.member_nick, m.member_img 
+		FROM review r
+		JOIN member m ON m.member_id = r.member_id
 		WHERE class_idx = #{class_idx}
 	</select>
 	

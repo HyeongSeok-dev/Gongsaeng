@@ -66,7 +66,7 @@
 
 	<!-- 리뷰 리스트 -->
 	<select id="allReviewList" parameterType="int" resultType="review">
-	    SELECT r.*, m.member_nick
+	    SELECT review_idx, r.member_id, review_content, review_score, pay_num, class_idx, review_regdate, review_img_1, review_img_2, review_img_3, review_status, review_kind, review_detail, review_cheap, review_explanation, review_interior, review_trendy, review_large, review_meeting, review_comfortable, review_parking, review_clean_toilet, review_etc_fast, review_no_keyword, review_like, review_like_count, m.member_img, m.member_nick
 	    FROM review r
 	    LEFT JOIN member m ON r.member_id = m.member_id
 	    WHERE r.class_idx = #{class_idx}
@@ -182,19 +182,19 @@
 	    </if>
 	    <choose>
 	        <when test="sortType == 'newest'">
-	            ORDER BY review_update DESC
+	            ORDER BY review_regdate DESC
 	        </when>
 	        <when test="sortType == 'highest'">
-	            ORDER BY review_score DESC, review_update DESC
+	            ORDER BY review_score DESC, review_regdate DESC
 	        </when>
 	        <when test="sortType == 'lowest'">
-	            ORDER BY review_score ASC, review_update DESC
+	            ORDER BY review_score ASC, review_regdate DESC
 	        </when>
 <!-- 	        <when test="sortType == 'likes'"> -->
 <!-- 	            ORDER BY likes_count DESC, review_update DESC -->
 <!-- 	        </when> -->
 	        <otherwise>
-	            ORDER BY review_update DESC
+	            ORDER BY review_regdate DESC
 	        </otherwise>
 	    </choose>
 	</select>
@@ -295,8 +295,8 @@
 	<!-- 키워드 검색 카운트 -->
 	<select id="categoryCount">
 	    SELECT * 
-	    FROM review_category_count_1
-	    WHERE com_id = #{com_id}
+	    FROM review_category_count
+	    WHERE class_idx = #{class_idx}
 	</select>
 	
 	<!-- 신고 시 회원정보 불러오기(메일/폰번호) -->
