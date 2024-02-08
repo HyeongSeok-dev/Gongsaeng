@@ -5,17 +5,32 @@
 <mapper namespace="kr.co.gongsaeng.mapper.CartMapper">
 
 	<!-- 장바구니에 물건넣기 -->
-	<insert id="insertCart">
-		INSERT
-		INTO cart
-		VALUES(
-			null 
-			, #{member_id}
-			, #{class_idx}
-			, #{res_date}
-			, #{res_person}
-		);
-	</insert>
+<!-- 	<insert id="insertCart"> -->
+<!-- 		INSERT -->
+<!-- 		INTO cart -->
+<!-- 		VALUES( -->
+<!-- 			null  -->
+<!-- 			, #{member_id} -->
+<!-- 			, #{class_idx} -->
+<!-- 			, #{res_date} -->
+<!-- 			, #{res_person} -->
+<!-- 		); -->
+<!-- 	</insert> -->
+	
+	<!-- 장바구니 찾기 (findCart) -->
+<!-- 	<select id="findCart" resultType="cart"> -->
+<!-- 		SELECT * -->
+<!-- 		FROM cart -->
+<!-- 		WHERE class_idx = #{class_idx} AND -->
+<!-- 			  member_id = #{member_id} AND -->
+<!-- 			  date = #{date} -->
+<!-- 	</select> -->
+	
+<!-- 	<update id="cartPlus"> -->
+<!-- 		UPDATE cart -->
+<!-- 		SET res_person = res_person + res_person -->
+<!-- 		WHERE cart_idx = #{cart_idx} -->
+<!-- 	</update> -->
 	
 	<!-- 장바구니에 물건삭제 -->
 	<delete id="deletCart">
@@ -40,19 +55,6 @@
 		WHERE cart_idx = #{cart_idx}
 	</update>
 	
-	<!-- 장바구니 찾기 (findCart) -->
-	<select id="findCart" resultType="cart">
-		SELECT *
-		FROM cart
-		WHERE class_idx = #{class_idx} AND
-			  member_id = #{member_id} AND
-			  date = #{date}
-	</select>
 	
-	<update id="cartPlus">
-		UPDATE cart
-		SET res_person = res_person + res_person
-		WHERE cart_idx = #{cart_idx}
-	</update>
 	
 </mapper>

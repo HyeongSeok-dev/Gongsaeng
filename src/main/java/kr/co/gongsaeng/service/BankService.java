@@ -56,5 +56,11 @@ public class BankService {
 		return bankApiClient.requestAccountDetail(map);
 	}
 
+	//============================================================================
+	//출금 이체 요청
+	public Map<String, Object> requestWithdraw(Map<String, String> map) {
+		return bankApiClient.requestWithdraw(map);
+	}
+
 	
 } //class BankService

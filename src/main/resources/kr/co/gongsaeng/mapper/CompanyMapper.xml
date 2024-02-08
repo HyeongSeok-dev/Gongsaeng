@@ -95,7 +95,7 @@
 	    WHERE pay_num = #{payNum}
 	</update>
 	
-	<!-- 회원목록 출력 -->
+<!-- 	회원목록 출력 -->
 	<select id="selectCompanyClassMember" resultType="companyClass">
 		SELECT *
 		FROM ViewPaymentClassMember	

@@ -104,6 +104,12 @@ public class PaymentController {
 		return "payment/charge_complete";
 	}
 	
+	//페이충전-환급완료
+	@GetMapping("payment/payback/complete")
+	public String paybackComplete() {
+		return "payment/payback_complete";
+	}
+	
 	//callback
 	@GetMapping("callback")
 	public String callback(@RequestParam Map<String, String> authResponse, HttpSession session, Model model) {
@@ -203,8 +209,8 @@ public class PaymentController {
 		return "payment/charge_account";
 	}
 	
-	//페이메인화면(잔액조회 API)
-	@PostMapping("BankAccountDetail")
+	//잔액조회 API
+	@PostMapping("payment/charge/BankAccountDetail")
 	public String accountDetail(@RequestParam Map<String, String> map, HttpSession session, Model model) {
 		
 		//로그인, 계좌인증 필수처리
@@ -220,9 +226,10 @@ public class PaymentController {
 		
 		//요청에 사용할 엑세스 토큰(세션)을 map객체에 추가
 		map.put("access_token", (String)session.getAttribute("access_token"));
-		
 		//계좌상세정보 조회요청
 		Map<String, Object> accountDetail = bankService.requestAccountDetail(map);
+		
+		logger.info("accountDetail>>>>>>>>>>>>>>>>>>>>>" + accountDetail);
 		
 		// 조회결과(Map 객체, 이름, 계좌번호) 저장
 		model.addAttribute("accountDetail", accountDetail);
@@ -230,6 +237,37 @@ public class PaymentController {
 		model.addAttribute("account_num_masked", map.get("account_num_masked"));
 		
 		return "payment/charge_main";
+	}
+	
+	//출금이체API
+	@PostMapping("payment/charge/BankPayment")
+	public String bankPayment(@RequestParam Map<String, String> map, HttpSession session, Model model) {
+		
+		String id = (String)session.getAttribute("sId");
+		
+		//로그인, 계좌인증 필수처리
+		if(id == null) {
+			model.addAttribute("msg", "로그인 필수");
+			model.addAttribute("targetURL", "/gongsaeng/member/login");
+			return "forward";
+		}else if(session.getAttribute("access_token") == null) {
+			model.addAttribute("msg", "계좌 인증 필수");
+			model.addAttribute("targetURL", "/gongsaeng");
+			return "forward";
+		}
+		
+		//요청에 필요한 엑세스토큰과 세션아이디를 Map객체에 추가
+		map.put("access_token", (String)session.getAttribute("access_token"));
+		map.put("id", id);
+		
+		//페이 충전에 대한 지불(출금이체)요청
+		Map<String, Object> withdrawResult = bankService.requestWithdraw(map);
+		logger.info("withdrawResult>>>>>>>>>>>>>>>>>>>>>>>" + withdrawResult);
+		
+		//요청결과를 model객체에 저장
+		model.addAttribute("withdrawResult", withdrawResult);
+		
+		return "payment/charge_complete";
 	}
 	
 	

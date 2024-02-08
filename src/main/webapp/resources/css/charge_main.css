@@ -1,4 +1,54 @@
 @charset "UTF-8";
+   
+.block { 
+	width: 100%; 
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    height: 20px;
+    margin-bottom: 10px;
+    margin-top: 30px;
+} 
+
+.section_box{ /* section태그 밖에 div태그 class */
+	width: 100%; 
+    padding: 40px; 
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: #FAFAFA;
+    border: 1px solid #d9d9d9;
+}
+
+.custab{
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 5% 0;
+    box-shadow: 3px 3px 2px #ccc;
+    transition: 0.5s;
+}
+.custab:hover{
+    box-shadow: 3px 3px 0px transparent;
+    transition: 0.5s;
+}
+        
+table th {
+    background-color: #f2f2f2;  /* 원하는 색상으로 변경하세요. */
+}
+.table-striped tbody tr {
+    background-color: #ffffff !important; /* 흰색 배경 */
+}
+
+input[type="submit"]:hover {
+       background-color: #b3b3b3; /* 마우스를 올렸을 때의 색상 */
+}
+input[type="submit"]:active {
+    background-color: #f2f2f2; /* 클릭했을 때의 색상 */
+}
+/***/
+#tap{
+	width: 100%;
+}
+
 /* 탑버튼 비율 */
 .nav-tabs > li {
     width: 50%;

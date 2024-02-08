@@ -35,49 +35,49 @@ public class CartController {
 		return "cart/cart";
 	}
 	
-	//장바구니에서 찾기
-	@ResponseBody
-	@GetMapping("findCart")
-	public CartVO findCart(int class_idx, String member_id, String date) {
-		 try {
-	         // 장바구니에서 해당 상품 찾기
-			 CartVO cart = cartService.findCart(class_idx, member_id, date);
-		         return cart;
-		 	} catch (Exception e) {
-		        return null;
-		    }
-	}
+//	//장바구니에서 찾기
+//	@ResponseBody
+//	@GetMapping("findCart")
+//	public CartVO findCart(int class_idx, String member_id, String date) {
+//		 try {
+//	         // 장바구니에서 해당 상품 찾기
+//			 CartVO cart = cartService.findCart(class_idx, member_id, date);
+//		         return cart;
+//		 	} catch (Exception e) {
+//		        return null;
+//		    }
+//	}
 	
-	//장바구니에 물건넣기
-	@ResponseBody
-	@PostMapping("addCart")
-    public String addToCart(@RequestParam int class_idx, @RequestParam String member_id, @RequestParam String date, @RequestParam int res_person) {
-		
-		//장바구니에서 물건찾기
-		CartVO cart = cartService.findCart(class_idx, member_id, date);
-		if(cart == null) { // 장바구니에 일치하는게 없으면 추가
-		
-            int insertCart = cartService.addToCart(class_idx, member_id, date, res_person);
-            
-	            if(insertCart > 0) { //성공
-	            	return "true";
-	            }else {
-	            	return "false";
-	            }   
-         
-		}else {
-			
-			//일치하는게 있으면 수량 +1
-			int plusCart = cartService.cartPlus(cart.getCart_idx());
-			
-			if(plusCart > 0) {
-				return "true";
-			}else {
-				return "false";
-			}
-			
-		}
-    }//addToCart
+//	//장바구니에 물건넣기
+//	@ResponseBody
+//	@PostMapping("addCart")
+//    public String addToCart(@RequestParam int class_idx, @RequestParam String member_id, @RequestParam String date, @RequestParam int res_person) {
+//		
+//		//장바구니에서 물건찾기
+//		CartVO cart = cartService.findCart(class_idx, member_id, date);
+//		if(cart == null) { // 장바구니에 일치하는게 없으면 추가
+//		
+//            int insertCart = cartService.addToCart(class_idx, member_id, date, res_person);
+//            
+//	            if(insertCart > 0) { //성공
+//	            	return "true";
+//	            }else {
+//	            	return "false";
+//	            }   
+//         
+//		}else {
+//			
+//			//일치하는게 있으면 수량 +1
+//			int plusCart = cartService.cartPlus(cart.getCart_idx());
+//			
+//			if(plusCart > 0) {
+//				return "true";
+//			}else {
+//				return "false";
+//			}
+//			
+//		}
+//    }//addToCart
 	 
 	 //장바구니 물건삭제
 	@ResponseBody

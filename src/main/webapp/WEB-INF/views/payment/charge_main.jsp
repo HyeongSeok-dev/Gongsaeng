@@ -36,7 +36,6 @@
         
         <link href="${pageContext.request.contextPath }/resources/css/charge_main.css" rel="stylesheet" type="text/css">
         
-        
         <script src="${pageContext.request.contextPath }/resources/assets/js/modernizr-2.6.2.min.js"></script>
         <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script> 
         <script src="${pageContext.request.contextPath }/resources/assets/js/jquery-1.10.2.min.js"></script> 
@@ -51,6 +50,7 @@
         <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
 <%--         <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script> --%>
         <script src="${pageContext.request.contextPath }/resources/assets/js/main_noicheck.js"></script>
+
 </head>
 
 <script type="text/javascript">
@@ -60,44 +60,44 @@
 <body>
 	<div class="container" >
     <div class="page-header text-center">
-        <h3>{userInfo.user_name}님의 0페이 현재잔액<span class="pull-right label label-default"></span></h3><br>
-        <h1>{}원</h1>
+        <h3>${user_name}님의 계좌 상세정보<span class="pull-right label label-default"></span></h3><br>
     </div>
     <div class="row">
      <div class="col-md-3"></div> <!-- 앞의 3칼럼을 비워둠 -->
      
-     <table class="table table-striped custab">
-			    <thead>
-			        <tr>
-			            <th>은행</th>
-			            <th>계좌번호</th>
-			            <th>핀테크이용번호</th>
-			            <th class="text-center"></th>
-			        </tr>
-			    </thead>
-	            
-	            <c:forEach var="accounCt" items="${userInfo.res_list}">
-		            <tr>
-		                <td>{account.bank_name}</td>
-		                <td>{account.account_num_masked}</td>
-		                <td>{account.fintech_use_num}</td>
-		                <td>
-			                <%--잔액조회 API서비스 요청을 위한 데이터 전송폼 생성 --%>
-			                <form action="main" method="post">
-								<input type="hidden" name="fintech_use_num" value="${account.fintech_use_num}">
-								<input type="hidden" name="user_name" value="${userInfo.user_name}">
-								<input type="hidden" name="account_num_masked" value="${account.account_num_masked}">
-				                <input type="submit" value="선택">
-							</form>
-		                </td>
-		            </tr>
-	            </c:forEach>
-	            
-	           
-		    </table>
-     
-    	<div class="col-md-6">
+	     <table class="table table-striped custab" border="1">
+		        <tr>
+		            <th>은행</th>
+		            <td>${accountDetail.bank_name}</td>
+	            <tr>
+	            <tr>
+		            <th>계좌번호</th>
+		            <td>${account_num_masked}</td>
+	            </tr>
+	            <tr>
+	            	<th>상품명</th>
+	            	<td>${accountDetail.product_name}</td>
+	            </tr>
+	            <tr>
+	            	<th>계좌잔고</th>
+	            	<td>${accountDetail.balance_amt} 원</td>
+	            </tr>
+	            <tr>
+		            <th>핀테크이용번호</th>
+	                <td>${accountDetail.fintech_use_num}
+		                <%--잔액조회 API서비스 요청을 위한 데이터 전송폼 생성 --%>
+		                <form action="BankAccountDetail" method="post">
+							<input type="hidden" name="fintech_use_num" value="${account.fintech_use_num}">
+							<input type="hidden" name="user_name" value="${userInfo.user_name}">
+							<input type="hidden" name="account_num_masked" value="${account.account_num_masked}">
+						</form>
+	                </td>
+	            </tr>
+	    </table>
+	     
+    	<div class="col-md-6" id="tap">
             <div class="panel with-nav-tabs panel-default">
+            	<!-- 탭부분 -->
                 <div class="panel-heading">
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#tab1default" data-toggle="tab">충전</a></li>
@@ -113,8 +113,43 @@
 <!--                             </li> -->
                         </ul>
                 </div>
+                <!-- 탭바디 부분 -->
+                 <div class="panel-body">
+		            <div class="tab-content">
+		            	<!-- 충전 -->
+		                <div id="tab1default" class="tab-pane fade in active">
+		            		<div class="section_box">
+		                		<input type="text" placeholder="충전할 금액을 적으세요.">
+			                	<br><br>
+			                	<form action="BankPayment" method="post">
+									<input type="hidden" name="fintech_use_num" value="${accountDetail.fintech_use_num}">
+									<input type="hidden" name="req_client_name" value="${user_name}">
+									<input type="hidden" name="tran_amt" value="5016">
+									<input type="submit" value="충전하기">
+								</form>
+							</div>
+						</div>
+						<!-- 환급 -->
+		                <div id="tab2default" class="tab-pane fade">
+		                	<div class="section_box">
+		                		<input type="text" placeholder="환급받을 금액을 적으세요.">
+			                	<br><br>
+			                	<form action="BankRefund" method="post">
+									<input type="hidden" name="fintech_use_num" value="${accountDetail.fintech_use_num}">
+									<input type="hidden" name="req_client_name" value="${user_name}">
+									<input type="hidden" name="tran_amt" value="5016">
+									<input type="submit" value="환급받기">
+								</form>
+							</div>
+		                </div>
+		            </div>
+		        </div>
+                
                </div>
               </div>
+              
+              <input type="button" value="확인"> 
+              
              </div>
        </div>
       <br/>

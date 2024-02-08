@@ -3,6 +3,7 @@ package kr.co.gongsaeng.handler;
 import java.net.URI;
 import java.util.Map;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
@@ -171,6 +173,59 @@ public class BankApiClient {
 			= restTemplate.exchange(uri, HttpMethod.GET, httpEntity, new ParameterizedTypeReference<Map<String, Object>>() {});
 		
 		//getBody()호출하여 응답데이터 리턴
+		return responseEntity.getBody();
+	}
+
+	//출금이체API
+	public Map<String, Object> requestWithdraw(Map<String, String> map) {
+		
+		//사용자 정보 조회시 토큰값 담아 전송 헤더에 정보 추가
+		HttpHeaders headers = new HttpHeaders();
+		//엑세스 토큰 전달
+		headers.setBearerAuth(map.get("access_token"));
+		//컨텐츠 타입 설정(변경)
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		//요청에 필요한 URL정보 생성 -> 문자열로 바로지정
+		String url = base_url + "/v2.0/transfer/withdraw/fin_num"; 
+		//요청파라미터를 json형식으로 생성, 출금정보를 저장할 객체생성
+		JSONObject jo = new JSONObject();
+		//JSONObject객체의 put메서드 호출하여 요청 파라미터 저장
+		jo.put("bank_tran_id", bankValueGenerator.getBankTranId());
+		
+		// ------------ 핀테크 이용기관 정보 -------------
+		// 약정계좌번호를 약정계좌관리 메뉴의 "출금계좌" 항목에 등록 필수!
+		jo.put("cntr_account_type", "N"); // 약정 계좌/계정 구분("N" : 계좌, "C" : 계정 => N 고정)
+	//				jo.put("cntr_account_num", "23062003999"); // 약정 계좌/계정 번호(핀테크 서비스 기관의 계좌번호)
+		jo.put("cntr_account_num", cntr_account_num); // 약정 계좌/계정 번호(핀테크 서비스 기관의 계좌번호)
+		jo.put("dps_print_content", map.get("id")); // 입금계좌인자내역(결제 요청 사용자 아이디 활용)
+		
+		// ------------ 요청 고객(출금 대상) 정보 ------------
+		jo.put("fintech_use_num", map.get("fintech_use_num")); // 출금계좌 핀테크이용번호
+		jo.put("wd_print_content", "공생_페이충전"); // 출금계좌인자내역
+		jo.put("tran_amt", map.get("tran_amt")); // 거래금액 
+		jo.put("tran_dtime", bankValueGenerator.getTranDTime()); // 요청일시(자동생성)
+		jo.put("req_client_name", map.get("req_client_name")); // 요청고객 성명(출금계좌 예금주명)
+		jo.put("req_client_fintech_use_num", map.get("fintech_use_num")); // 요청고객 핀테크이용번호(출금계좌)
+		// => 주의! 은행기관코드&계좌번호 또는 핀테크이용번호 둘 중 하나만 설정
+		jo.put("req_client_num", map.get("id").toUpperCase()); // 요청고객 회원번호(아이디 활용) => 단, 영문자는 모두 대문자로 변환 
+		jo.put("transfer_purpose", "ST"); // 이체용도(송금(TR), 결제(ST), 충전(RC) 등) 
+		
+		// ----------- 수취 고객(실제 최종 입금 대상) 정보 -----------
+		// 최종적으로 이 돈을 수신하는 계좌에 대한 정보
+		// 이 정보(3개)는 피싱 등의 사고 발생 시 지급 정지를 위한 정보(현재 검증수행은 X)
+		jo.put("recv_client_name", "이연태"); // 
+		jo.put("recv_client_bank_code", "004"); // 
+		jo.put("recv_client_account_num", "23062003999"); // 
+		logger.info(">>>>> 출금 이체 요청 JSON 데이터 : " + jo.toString());
+		
+		//HttpEntity 객체 생성
+		HttpEntity<String> httpEntity = new HttpEntity<String>(jo.toString(), headers);
+		//RestTemplate 객체 생성
+		RestTemplate restTemplate = new RestTemplate();
+		//exchange()메서드 호출 HTTP요청 수행
+		ResponseEntity<Map<String, Object>> responseEntity
+			= restTemplate.exchange(url, HttpMethod.POST, httpEntity, new ParameterizedTypeReference<Map<String, Object>>() {});
+		//getbody()메서드 호출하여 응답 데이터 리턴
 		return responseEntity.getBody();
 	}
 

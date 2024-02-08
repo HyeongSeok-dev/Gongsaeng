@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="utf-8">
+ <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>공생 | 공간을 생각하다</title>
         <meta name="description" content="GARO is a real-estate template">
@@ -34,9 +33,6 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/responsive.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/global.css">
         
-        	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/charge_agree.css">
-        
-        
         <script src="${pageContext.request.contextPath }/resources/assets/js/modernizr-2.6.2.min.js"></script>
         <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script> 
         <script src="${pageContext.request.contextPath }/resources/assets/js/jquery-1.10.2.min.js"></script> 
@@ -53,84 +49,75 @@
         <script src="${pageContext.request.contextPath }/resources/assets/js/main_noicheck.js"></script>
         
 <style type="text/css">
-        
-.custab{
-    border: 1px solid #ccc;
-    padding: 5px;
-    margin: 5% 0;
-    box-shadow: 3px 3px 2px #ccc;
-    transition: 0.5s;
-}
-.custab:hover{
-    box-shadow: 3px 3px 0px transparent;
-    transition: 0.5s;
-}
-        
-table thead {
-    background-color: #f2f2f2;  /* 원하는 색상으로 변경하세요. */
-}
-.table-striped tbody tr {
-    background-color: #ffffff !important; /* 흰색 배경 */
-}
-  
-.table-striped tbody tr:hover {
-      background-color: #f2f2f2 !important; /* 원하는 색상으로 변경하세요. */
-} 
+	
+.review_complete_ment {
+	text-align: center;
+}    
 
-input[type="submit"]:hover {
-       background-color: #b3b3b3; /* 마우스를 올렸을 때의 색상 */
+.review_complete_ment,
+.review_complete_ment .review_complete,
+.review_complete_ment .review_complete_content {
+    color: #fff;
 }
-input[type="submit"]:active {
-    background-color: #f2f2f2; /* 클릭했을 때의 색상 */
+
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	display: flex;
+  	flex-direction: column;
+  	}
+
+body {
+	background: linear-gradient(#A4A4A4, #fff);
+	font-family:'Pretendard-Regular',Apple SD Gothic Neo,sans-serifs;
+	display: flex;
+	align-items: center;
 }
-/* table th, table td { */
-/*     font-family: Arial, sans-serif;  */
-/* } */
 
 
+.review_complete_ment {
+  text-align: center;
+  margin-top: 300px;
+}
 
+.review_complete_ment img {
+  display: block;
+  margin: 0 auto;
+}
+
+.review_complete,
+.review_complete_content {
+  margin: 10px 0;
+}
+
+#check {
+	width: 50px;
+	height: 50px;
+}
+
+#closeImage {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+}
+
+	
 </style>
+
 </head>
 <body>
-	<div class="container">
-	    <div class="row col-md-12 mx-auto custyle">
-	    
-	     <br><br>
-	     <h2 style="text-align: center;">${userInfo.user_name} 고객님의 계좌 정보</h2>
-	     <br>
-	     
-		    <table class="table table-striped custab" >
-			    <thead>
-			        <tr>
-			            <th>은행</th>
-			            <th>계좌번호</th>
-<!-- 			            <th>핀테크이용번호</th> -->
-			            <th class="text-center"></th>
-			        </tr>
-			    </thead>
-	            
-	            <c:forEach var="account" items="${userInfo.res_list}">
-		            <tr>
-		                <td>${account.bank_name}</td>
-		                <td>${account.account_num_masked}</td>
-<%-- 		                <td>${account.fintech_use_num}</td> --%>
-		                <td>
-			                <%--잔액조회 API서비스 요청을 위한 데이터 전송폼 생성 --%>
-			                <form action="BankAccountDetail" method="post">
-								<input type="hidden" name="fintech_use_num" value="${account.fintech_use_num}">
-								<input type="hidden" name="user_name" value="${userInfo.user_name}">
-								<input type="hidden" name="account_num_masked" value="${account.account_num_masked}">
-				                <input type="submit" value="선택">
-							</form>
-		                </td>
-		            </tr>
-	            </c:forEach>
-	            
-	           
-		    </table>
-	    </div>
-	</div>
-									
-	
+	<div class="review_complete_ment">
+	<img src="${pageContext.request.contextPath}/resources/img/complete_check.svg" id="check">
+	<h1 class="review_complete">0페이환급 완료!</h1>
+    <div class="review_complete_content">0페이 환급이 완료되었습니다!</div>
+   	<br>
+    <button type="button" id="ok">
+    	확인
+    </button>
+    
+    </div>
 </body>
 </html>

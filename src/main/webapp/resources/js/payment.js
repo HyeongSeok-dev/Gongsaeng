@@ -101,20 +101,20 @@ $(document).ready(function() {
 				IMP.request_pay({
 				    pg : 'html5_inicis.INIBillTst', //테스트 시 html5_inicis.INIpayTest 기재 
 				    pay_method : 'card',
-//				    merchant_uid: $("#res_num").val(), //상점에서 생성한 고유 주문번호
-//				    name : "공생 클래스 수강 - " + $("#com_name").val() +" "+ $("#res_person").val() + "명",
-////				    amount : parseInt($("#totalPayment_text").text().trim().replace(/,/g, '')),
-//				    amount : parseInt($("#payment").text().trim().replace(/,/g, '')),
-//				    buyer_email : $("#member_email").val(),
-//				    buyer_name : $("#member_name").val(),
-//				    buyer_tel : $("#member_phone").val(),   //필수 파라미터 입니다.
+				    merchant_uid: $("#class_idx").val(), //상점에서 생성한 고유 주문번호
+				     name: "공생 클래스 수강 - " + $("#class_title").val() +" "+ $("#res_visit_date").val() +
+					  	"" + $("#res_visit_time") + "부터시작" + $("#res_member_count").val() + "명",
+				    amount : $("#payment"),
+				    buyer_email: $("#member_email").val(), //생략가능(pg사에 따라 다름)
+				    buyer_name: $("#member_name").val(), //생략가능(pg사에 따라 다름)
+				    buyer_tel : $("#member_phone").val(),   //필수 파라미터 입니다.
 					//========================================================
-					merchant_uid: "order_no_0001", //상점에서 생성한 고유 주문번호
-				    name : '주문명:결제테스트',
-				    amount : 1004,
-				    buyer_email : 'test@portone.io',
-				    buyer_name : '구매자이름',
-				    buyer_tel : '010-1234-5678',   //필수 파라미터 입니다.
+//					merchant_uid: "order_no_0001", //상점에서 생성한 고유 주문번호
+//				    name : '주문명:결제테스트',
+//				    amount : 1004,
+//				    buyer_email : 'test@portone.io',
+//				    buyer_name : '구매자이름',
+//				    buyer_tel : '010-1234-5678',   //필수 파라미터 입니다.
 				}, function(rsp) { // callback 로직
 				console.log(rsp.card_name);
 	//				    $("#pay_card_co").val(rsp.vbank_date.card_name); // 카드사정보 파라미터로 저장
@@ -147,20 +147,21 @@ $(document).ready(function() {
 					  {
 					    pg: "danal",
 					    pay_method: "phone",
-//					    merchant_uid: $("#res_num").val(), // 상점에서 생성한 고유 주문번호
-//					    name: "공생 클래스 수강 - " + $("#com_name").val() +" "+ $("#res_person").val() + "명",
-//					    amount: parseInt($("#totalPayment_text").text().trim().replace(/,/g, '')),
-//					    buyer_email: $("#user_email").val(),
-//					  	buyer_name: $("#user_name").val(),
+					    merchant_uid: $("#class_idx").val(), //상점에서 생성한 고유 주문번호
+				        name: "공생 클래스 수강 - " + $("#class_title").val() +" "+ $("#res_visit_date").val() +
+					  	 "" + $("#res_visit_time") + "부터시작" + $("#res_member_count").val() + "명",
+				        amount : $("#payment"),
+				        buyer_email: $("#member_email").val(), //생략가능(pg사에 따라 다름)
+				        buyer_name: $("#member_name").val(), //생략가능(pg사에 따라 다름)
 						//===================================================
-						 merchant_uid: "order_no_0001", // 상점에서 생성한 고유 주문번호
-					    name: "주문명:결제테스트",
-					    amount: 1004,
-					    buyer_email: "test@portone.io",
-					    buyer_name: "구매자이름",
-					    buyer_tel: "010-1234-5678",
-					    buyer_addr: "서울특별시 강남구 삼성동",
-					    buyer_postcode: "123-456",
+//						merchant_uid: "order_no_0001", // 상점에서 생성한 고유 주문번호
+//					    name: "주문명:결제테스트",
+//					    amount: 1004,
+//					    buyer_email: "test@portone.io",
+//					    buyer_name: "구매자이름",
+//					    buyer_tel: "010-1234-5678",
+//					    buyer_addr: "서울특별시 강남구 삼성동",
+//					    buyer_postcode: "123-456",
 					  },
 					  function (rsp) {
 					    if (rsp.success) {   

@@ -15,16 +15,21 @@ public class CartService {
 	@Autowired
 	private CartMapper mapper;
 	
-	//장바구니 물건찾기
-	public CartVO findCart(int class_idx, String member_id, String date) {
-		return mapper.findCart(class_idx, member_id, date);
-	}
-	
-	//장바구니 물건넣기
-	public int addToCart(int class_idx, String member_id, String date, int res_person) {
-		return mapper.insertCart(class_idx, member_id, date, res_person);
-	}
+//	//장바구니 물건찾기
+//	public CartVO findCart(int class_idx, String member_id, String date) {
+//		return mapper.findCart(class_idx, member_id, date);
+//	}
+//	
+//	//장바구니 물건넣기
+//	public int addToCart(int class_idx, String member_id, String date, int res_person) {
+//		return mapper.insertCart(class_idx, member_id, date, res_person);
+//	}
 
+//	//수량추가
+//	public int cartPlus(int cart_idx) {
+//		return mapper.cartPlus(cart_idx);
+//	}
+	
 	//장바구니 물건삭제
 	public int deleteFromCart(int cart_idx) {
 		return mapper.deletCart(cart_idx);
@@ -43,10 +48,6 @@ public class CartService {
 		return mapper.updateCart(cart_idx, res_person);
 	}
 
-	//수량추가
-	public int cartPlus(int cart_idx) {
-		return mapper.cartPlus(cart_idx);
-	}
 
 	
 
