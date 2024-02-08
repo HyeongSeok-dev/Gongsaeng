@@ -54,8 +54,8 @@
 <script src="${pageContext.request.contextPath }/resources/assets/js/wow.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
-<script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/mypage.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/my_alert.js"></script>
 
 </head>
 <body>
@@ -167,9 +167,10 @@
 								<td>
 									<fmt:parseDate var="parsedDate" value="${alert.alert_datetime}" pattern="yyyy-MM-dd'T'HH:mm:ss" />
 									<fmt:formatDate value="${parsedDate}" pattern="yyyy-MM-dd HH:mm:ss" />
-									<button type="button" class="btn btn-danger btn-xs pull-right">
+									<button type="button" class="btn btn-danger btn-xs pull-right removeAlertButton">
 										<span class="glyphicon glyphicon-remove"></span>
 									</button>
+									<input type="hidden" value="${alert.alert_idx}" class="alert_idx">
 								</td>
 
 							</tr>

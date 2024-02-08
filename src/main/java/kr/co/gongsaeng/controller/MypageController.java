@@ -638,6 +638,26 @@ public class MypageController {
 		}
 	}
 	
+	@ResponseBody
+	@GetMapping("mypage/deleteAlert")
+	public String deleteAlert(@RequestParam Map<String, String> map, HttpSession session, Model model) {
+		String sId = (String) session.getAttribute("sId");
+		if (sId == null) {
+			model.addAttribute("msg", "로그인이 필요합니다");
+			model.addAttribute("targetURL", "/gongsaeng/member/login");
+			
+			return "forward";
+		}
+		System.out.println(map);
+		int deleteCount = service.deleteAlert(map);
+		
+		if (deleteCount > 0) {
+			return "true";
+		} else {
+			return "false";
+		}
+	}
+	
 	
 
 }

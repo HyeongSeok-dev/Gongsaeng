@@ -127,5 +127,10 @@ public class MypageService {
 		return mapper.selectPayInfo(map);
 	}
 
+	public int deleteAlert(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return mapper.deleteAlert(map);
+	}
+
 	
 }

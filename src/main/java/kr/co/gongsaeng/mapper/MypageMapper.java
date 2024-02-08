@@ -53,5 +53,7 @@ public interface MypageMapper {
 
 	int insertCashForCancel(Map<String, Object> map);
 
+	int deleteAlert(Map<String, String> map);
+
 
 }
