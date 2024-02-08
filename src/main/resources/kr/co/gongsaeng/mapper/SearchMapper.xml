@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.gongsaeng.mapper.SearchMapper">
+
+	<!-- 메인 - 클래스(최신순) 뿌리기 -->
+	<select id="selectRecentClassList">
+		SELECT
+			cl.*
+			, co.com_idx
+			, co.com_name
+			, (SELECT COUNT(bo.member_id) 
+				FROM bookmark bo 
+				WHERE bo.class_idx = cl.class_idx
+			) AS 'bookmarkCount'
+			, (SELECT 
+			    bo.bookmark_idx
+				FROM bookmark bo
+				WHERE bo.class_idx = cl.class_idx AND bo.member_id = #{member_id}
+			) AS 'isBookmark_idx'
+		FROM class cl
+			JOIN company co
+				ON co.member_id = cl.member_id
+		WHERE
+			cl.class_end_date >= CURDATE()
+		GROUP BY 
+			cl.class_idx
+			, co.com_idx
+		ORDER BY		
+			cl.class_idx DESC;
+	</select>
+	
+	<!-- 메인 - 클래스(인기순) 뿌리기 -->
+	<select id="selectPopularClassList">
+		SELECT
+			cl.*
+			, co.com_idx
+			, co.com_name
+			, COALESCE(SUM(pa.res_member_count), 0) AS 'resTotalCount'
+			, (SELECT COUNT(bo.member_id) 
+				FROM bookmark bo 
+				WHERE bo.class_idx = cl.class_idx
+			) AS 'bookmarkCount'
+			, (SELECT 
+			    bo.bookmark_idx
+				FROM bookmark bo
+				WHERE bo.class_idx = cl.class_idx AND bo.member_id = #{member_id}
+			) AS 'isBookmark_idx'
+		FROM class cl
+			JOIN company co
+				ON co.member_id = cl.member_id
+			LEFT JOIN payment pa
+				ON pa.class_idx = cl.class_idx
+		WHERE
+			cl.class_end_date >= CURDATE()
+		GROUP BY 
+			cl.class_idx
+			, co.com_idx
+		ORDER BY		
+			resTotalCount DESC
+			, bookmarkCount DESC;
+	</select>
+	
+	<!-- 검색결과 -->
+	<select id="selectSearchClassList">
+		SELECT
+			cl.*
+			, co.com_idx
+			, co.com_name
+			, (SELECT COUNT(bo.member_id) 
+				FROM bookmark bo 
+				WHERE bo.class_idx = cl.class_idx
+			) AS 'bookmarkCount'
+			, (SELECT 
+			    bo.bookmark_idx
+				FROM bookmark bo
+				WHERE bo.class_idx = cl.class_idx AND bo.member_id = #{member_id}
+			) AS 'isBookmark_idx'
+		FROM class cl
+			JOIN company co
+				ON cl.member_id = co.member_id
+		WHERE
+			cl.class_end_date >= CURDATE()
+		<!-- 클래스 타입 -->
+		<if test="searchData.classType != null and !searchData.classType.equals('')">
+		AND
+			cl.class_category = #{searchData.classType}
+		</if>
+		<!-- 클래스명 키워드 -->
+		<if test="searchData.className != null and !searchData.className.equals('')">
+		AND
+			cl.class_title LIKE CONCAT('%',#{searchData.className},'%')
+		</if>
+		<!-- 클래스 카테고리 대분류 -->
+		<if test="searchData.classMainCategory != null and !searchData.classMainCategory.equals('')">
+		AND
+			cl.class_main_category = #{searchData.classMainCategory}
+		</if>
+		<!-- 클래스 카테고리 소분류 -->
+		<if test="searchData.classSubCategory != null and !searchData.classSubCategory.equals('')">
+		AND
+			cl.class_sub_category = #{searchData.classSubCategory}
+		</if>
+<!-- 		AND 클래스 상태 -->
+<!-- 		<if test="searchData.classSubCategory != null"> -->
+<!-- 			cl.classState = #{searchData.} -->
+<!-- 		</if> -->
+		<!-- 클래스 요일 -->
+		<if test="searchData.classDay != null and !searchData.classDay.equals('')">
+		AND
+		<choose>
+			<when test="searchData.classDay != '0000010' or searchData.classDay != '0000001'">
+				cl.class_day = #{searchData.classDay}
+			</when>
+			<otherwise>
+				cl.class_day NOT IN ('0000010', '0000001')
+			</otherwise>
+		</choose>
+		</if>
+		<!-- 클래스 시작일 -->
+		<if test="searchData.classStartDate != null and !searchData.classStartDate.equals('')">
+		AND
+			cl.class_start_Date &gt;= #{searchData.classStartDate}
+		</if>
+		<!-- 클래스 종료일 -->
+		<if test="searchData.classEndDate != null and !searchData.classEndDate.equals('')">
+		AND
+			cl.class_end_Date &lt;= #{searchData.classEndDate}
+		</if>
+		<!-- 클래스 시작시간 -->
+		<if test="searchData.classStartTime != ':00' and !searchData.classStartTime.equals('')">
+		AND
+			cl.class_start_time &gt;= #{searchData.classStartTime}
+		</if>
+		<!-- 클래스 종료시간 -->
+		<if test="searchData.classEndTime != ':00' and !searchData.classEndTime.equals('')">
+		AND
+			cl.class_end_time &lt;= #{searchData.classEndTime}
+		</if>
+		<!-- 기타 제공사항 -->
+		<if test="searchData.classOffering != '0000000' and !searchData.classOffering.equals('')">
+		AND
+			SUBSTRING(class_offering, 1, 1) >= SUBSTRING(#{searchData.classOffering}, 1, 1)
+				AND SUBSTRING(class_offering, 2, 1) >= SUBSTRING(#{searchData.classOffering}, 2, 1)
+				AND SUBSTRING(class_offering, 3, 1) >= SUBSTRING(#{searchData.classOffering}, 3, 1)
+				AND SUBSTRING(class_offering, 4, 1) >= SUBSTRING(#{searchData.classOffering}, 4, 1)
+				AND SUBSTRING(class_offering, 5, 1) >= SUBSTRING(#{searchData.classOffering}, 5, 1)
+				AND SUBSTRING(class_offering, 6, 1) >= SUBSTRING(#{searchData.classOffering}, 6, 1)
+				AND SUBSTRING(class_offering, 7, 1) >= SUBSTRING(#{searchData.classOffering}, 7, 1)
+		</if>
+		<!-- 클래스 금액 -->
+		AND
+			cl.class_price BETWEEN #{searchData.minAmount} AND #{searchData.maxAmount}
+		GROUP BY
+			cl.class_idx
+			, co.com_idx
+<!-- 			, co.com_name -->
+		ORDER BY
+			cl.class_idx DESC
+		LIMIT
+			#{startRow}
+			, #{listLimit}
+	</select>
+	
+	<!-- 검색결과 갯수 -->
+	<select id="selectSearchClassCount" resultType="int">
+		SELECT COUNT(*)
+		FROM (
+			SELECT
+				cl.*
+				, co.com_idx
+				, co.com_name
+				, (SELECT COUNT(bo.member_id) 
+					FROM bookmark bo 
+					WHERE bo.class_idx = cl.class_idx
+				) AS 'bookmarkCount'
+				, (SELECT 
+				    bo.bookmark_idx
+					FROM bookmark bo
+					WHERE bo.class_idx = cl.class_idx AND bo.member_id = #{member_id}
+				) AS 'isBookmark_idx'
+			FROM class cl
+				JOIN company co
+					ON cl.member_id = co.member_id
+			WHERE
+				cl.class_end_date >= CURDATE()
+			<!-- 클래스 타입 -->
+			<if test="searchData.classType != null and !searchData.classType.equals('')">
+			AND
+				cl.class_category = #{searchData.classType}
+			</if>
+			<!-- 클래스명 키워드 -->
+			<if test="searchData.className != null and !searchData.className.equals('')">
+			AND
+				cl.class_title LIKE CONCAT('%',#{searchData.className},'%')
+			</if>
+			<!-- 클래스 카테고리 대분류 -->
+			<if test="searchData.classMainCategory != null and !searchData.classMainCategory.equals('')">
+			AND
+				cl.class_main_category = #{searchData.classMainCategory}
+			</if>
+			<!-- 클래스 카테고리 소분류 -->
+			<if test="searchData.classSubCategory != null and !searchData.classSubCategory.equals('')">
+			AND
+				cl.class_sub_category = #{searchData.classSubCategory}
+			</if>
+	<!-- 		AND 클래스 상태 -->
+	<!-- 		<if test="searchData.classSubCategory != null"> -->
+	<!-- 			cl.classState = #{searchData.} -->
+	<!-- 		</if> -->
+			<!-- 클래스 요일 -->
+			<if test="searchData.classDay != null and !searchData.classDay.equals('')">
+			AND
+			<choose>
+				<when test="searchData.classDay != '0000010' or searchData.classDay != '0000001'">
+					cl.class_day = #{searchData.classDay}
+				</when>
+				<otherwise>
+					cl.class_day NOT IN ('0000010', '0000001')
+				</otherwise>
+			</choose>
+			</if>
+			<!-- 클래스 시작일 -->
+			<if test="searchData.classStartDate != null and !searchData.classStartDate.equals('')">
+			AND
+				cl.class_start_Date &gt;= #{searchData.classStartDate}
+			</if>
+			<!-- 클래스 종료일 -->
+			<if test="searchData.classEndDate != null and !searchData.classEndDate.equals('')">
+			AND
+				cl.class_end_Date &lt;= #{searchData.classEndDate}
+			</if>
+			<!-- 클래스 시작시간 -->
+			<if test="searchData.classStartTime != ':00' and !searchData.classStartTime.equals('')">
+			AND
+				cl.class_start_time &gt;= #{searchData.classStartTime}
+			</if>
+			<!-- 클래스 종료시간 -->
+			<if test="searchData.classEndTime != ':00' and !searchData.classEndTime.equals('')">
+			AND
+				cl.class_end_time &lt;= #{searchData.classEndTime}
+			</if>
+			<!-- 기타 제공사항 -->
+			<if test="searchData.classOffering != '0000000' and !searchData.classOffering.equals('')">
+			AND
+				SUBSTRING(class_offering, 1, 1) >= SUBSTRING(#{searchData.classOffering}, 1, 1)
+					AND SUBSTRING(class_offering, 2, 1) >= SUBSTRING(#{searchData.classOffering}, 2, 1)
+					AND SUBSTRING(class_offering, 3, 1) >= SUBSTRING(#{searchData.classOffering}, 3, 1)
+					AND SUBSTRING(class_offering, 4, 1) >= SUBSTRING(#{searchData.classOffering}, 4, 1)
+					AND SUBSTRING(class_offering, 5, 1) >= SUBSTRING(#{searchData.classOffering}, 5, 1)
+					AND SUBSTRING(class_offering, 6, 1) >= SUBSTRING(#{searchData.classOffering}, 6, 1)
+					AND SUBSTRING(class_offering, 7, 1) >= SUBSTRING(#{searchData.classOffering}, 7, 1)
+			</if>
+			<!-- 클래스 금액 -->
+			AND
+				cl.class_price BETWEEN #{searchData.minAmount} AND #{searchData.maxAmount}
+			GROUP BY
+				cl.class_idx
+				, co.com_idx
+	<!-- 			, co.com_name -->
+		) AS subquery;
+	</select>
+	
+</mapper>

@@ -3969,6 +3969,13 @@ fieldset {
 	vertical-align: top;
 	margin-right: auto;
 }
+/* ### */
+.class_amount {
+	display: inline-flex;
+	vertical-align: top;
+	margin-right: auto;
+}
+
 /* 상세검색 - 클래스 시간 선택 */
 .class_time {
 	display: inline-flex;
@@ -4006,17 +4013,17 @@ fieldset {
 }
 
 /* 상세검색 카테고리 */
-.search_detail_category {
+.search_detail_classType {
     background-color: rgba(0,0,0,0);
     font-size: 16px;
     margin-top: 10px;
     margin-bottom: 30px;
     color: #C2C2C2;
 }
-.search_detail_category:hover {
+.search_detail_classType:hover {
     color: #494C53;
 }
-.search_detail_category.selected {
+.search_detail_classType.selected {
     color: #494C53;
     font-weight: bold;
 }
@@ -4126,9 +4133,33 @@ fieldset {
 .owl-carousel .owl-nav button.owl-next, .owl-carousel .owl-nav button.owl-prev {
     border: 1px solid #494C53;
     border-radius: 20px;
-/*     background: 0 0; */
-/*     color: inherit; */
-/*     padding: 0!important; */
-/*     font: inherit; */
 }
 
+
+@media (min-width: 992px) {
+	.col-md-12 .main_first_area, .list_area {
+	    width: 110% !important;
+	}
+}
+/* @media (min-width: 992px) { */
+/* 	.proerty-th-list .col-sm-6 .list_area { */
+/* 	    width: 100% !important; */
+/* 	} */
+/* } */
+
+/* 금액 텍스트박스 "원" 표시 */
+input.currency {
+    text-align: right;
+    padding-right: 30px; /* '원' 텍스트를 위한 공간 확보 */
+}
+.currency {
+    border-right: 1px solid #DADADA !important;
+}
+.currency-sign {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1em;
+    padding: 0 2px;
+}
