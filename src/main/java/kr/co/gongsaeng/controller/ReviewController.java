@@ -162,7 +162,7 @@ public class ReviewController {
 	
     // ===================================================================
   	// [ 리뷰 작성 ] 
-	@GetMapping("mypage/review/write")
+	@GetMapping("review/write")
 	public String reviewWrite(HttpSession session, Model model,ReviewVO review,
 			@RequestParam(defaultValue = "1") int comIdx,
 			 @RequestParam(defaultValue = "") String payNum,
@@ -217,7 +217,7 @@ public class ReviewController {
 	}
 	
 	// "ReviewWritePro" 서블릿 요청에 대한 글쓰기 비즈니스 로직 처리
-	@PostMapping("mypage/review/reviewWritePro")
+	@PostMapping("review/reviewWritePro")
 	public String reviewWritePro(ReviewVO review, HttpSession session, Model model, RedirectAttributes redirectAttributes) {
 		
 		// 세션에서 user_id 가져오기
