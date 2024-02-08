@@ -101,33 +101,111 @@ function notify_button(value) {
 	});
 }
 
+// 최신순, 인기순 버튼
+$(".order_recently").click(function() {
+	$(".order_recently_area").show();
+	$(".order_popularity_area").hide();
+});
+$(".order_popularity").click(function() {
+	$(".order_popularity_area").show();
+	$(".order_recently_area").hide();
+});
+
+
+
+
+// 북마크 삭제 이벤트
+$(".bookmarkBtnOK").click(function() {
+//	let bookmark_button = this.id;
+	let bookmark_idx = $(this).val();
+//	console.log("bookmark_button : " + bookmark_button);
+//	console.log("bookmark_idx : " + bookmark_idx);
+	
+	if(confirm("북마크를 제거하시겠습니까?")){
+		$.ajax({
+			url: "mypage/deleteBookmark",
+			data: {
+				bookmark_idx: bookmark_idx,
+			},
+			dataType: "json",
+			success: function(result) {
+				if (result == true) {
+					location.reload();
+				} else {
+					alert("북마크 제거에 실패했습니다. 다시 시도해주세요");
+				}
+			}
+		});
+	};
+});
+	
 
 /// 여기서부턴 class_list.jsp
 // 상세검색
 $(document).ready(function () {
 	// 상세검색 카테고리(원데이/정규모집) 클릭 시 해당 카테고리 보여주는 이벤트
-	$('.search_detail_category').on('click', function(event) {
+	// 기본 : 정규모집
+	$('.search_detail_classType').on('click', function(event) {
+	    let classType = event.target.value;
 		// 모든 카테고리에 selected 클래스 삭제
-	    $('.search_detail_category').removeClass('selected');
+	    $('.search_detail_classType').removeClass('selected');
 	    // 선택된 카테고리에 selected 클래스 추가
 	    $(this).addClass('selected');
-	
-	    let searchCategory = event.target.value;
-	    
-	    if(searchCategory == 'searchCategory1') {
-	        $('.class_date_button').hide();
-	        $('.class_oneday_button').show();
-	    } else if(searchCategory == 'searchCategory2') {
-	        $('.class_oneday_button').hide();
+		
+	    if(classType == '1') {  // 정규모집
 	        $('.class_date_button').show();
+	        $('.class_oneday_button').hide();
+	    } else if(classType == '2') { // 원데이
+	        $('.class_oneday_button').show();
+	        $('.class_date_button').hide();
 	    }
+	});
+
+	// 시작일 드롭박스 focus 이벤트
+	$('.class_start_date').on('focus', function() {
+		// input type="text" -> input type="date"
+		this.type = 'date';
+		
+		// input type="hidden"의 id값 삭제 (초기값을 위해 만든 input)
+		// 실제 날짜 선택 드롭박스에 id값 부여
+		$(".hidden_class_start_date").attr("id", "");
+		$(".class_start_date").attr("id", "date1");
+		
+		
+		// 초기화 등의 사유로 id값을 잃어버렸을 경우
+		let idValue = $("date1").attr('id');
+		if(idValue == null) {
+			// input type="hidden"의 id값 부여
+			// 실제 날짜 선택 드롭박스 id 삭제
+			$(".hidden_class_start_date").attr("id", "date1");			
+			$(".class_start_date").attr("id", "");
+		}
+	});
+	// 종료일 드롭박스 focus 이벤트
+	$('.class_end_date').on('focus', function() {
+		// input type="text" -> input type="date"
+		this.type = 'date';
+		
+		// input type="hidden"의 id값 삭제 (초기값을 위해 만든 input)
+		// 실제 날짜 선택 드롭박스에 id값 부여
+		$(".hidden_class_end_date").attr("id", "");
+		$(".class_end_date").attr("id", "date2");
+
+		// 초기화 등의 사유로 id값을 잃어버렸을 경우
+		let idValue = $("date2").attr('id');
+		if(idValue == null) {
+			// input type="hidden"의 id값 부여
+			// 실제 날짜 선택 드롭박스 id 삭제
+			$(".hidden_class_end_date").attr("id", "date2");			
+			$(".class_end_date").attr("id", "");
+		}
 	});
 	
 //    $('#time-range').slider();
 //    $('#property-geo').slider();
-    $('#price-range').slider();
-    $('#min-baths').slider();
-    $('#min-bed').slider();
+//    $('#price-range').slider();
+//    $('#min-baths').slider();
+//    $('#min-bed').slider();
 
 	// timepicker : 클래스 시간 드롭다운 형식 커스텀
 	$('input.timepicker').timepicker({
@@ -142,6 +220,32 @@ $(document).ready(function () {
 //    var RGBChange = function () {
 //        $('#RGB').css('background', '#FDC600')
 //    };
+	
+	// 클래스 금액
+	// 입력숫자 3자리마다 콤마로 구분
+	function formatNumber(n) {
+		return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+	// 1,000,000 초과되면 입력못하게
+	$("#minAmount, #maxAmount").on("input", function() {
+		let value = $(this).val().replace(/\D/g, "");
+	
+		if (value > 1000000) {
+			value = "1000000";
+		}
+		value = formatNumber(value);
+		$(this).val(value);
+	});
+	// 커서를 벗어나면 1,000,000으로 초기화
+	$("#minAmount, #maxAmount").on("blur", function() {
+		var value = $(this).val().replace(/\D/g, "");
+		
+		if (value < 0) {
+			$(this).val("0");
+		} else if (value > 1000000) {
+			$(this).val("1,000,000");
+		}
+	});
 
     // Advanced search toggle
     var $SearchToggle = $('.search-form .search-toggle');
@@ -224,6 +328,7 @@ $(document).ready(function () {
     
 
 });
+
 
 // Initializing WOW.JS
 

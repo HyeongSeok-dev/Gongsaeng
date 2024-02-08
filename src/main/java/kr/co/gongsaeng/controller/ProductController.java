@@ -32,7 +32,7 @@ public class ProductController {
 		
 		//클래스불러오기
 		cla = service.getClassAll(classIdx);
-		System.out.println(cla);
+		System.out.println("클라스" + cla);
 		
 		//업체정보 들고오기
 		com = service.getCompanyAll(cla);
@@ -41,6 +41,8 @@ public class ProductController {
 		//클래스에 맞는 리뷰 들고오기
 		List<ReviewVO> reviews = service.getReviewInfo(cla);
 		System.out.println("립휴" + reviews);
+		
+		
 		
 		//북마크
 		if(sId != null) {
@@ -53,7 +55,7 @@ public class ProductController {
 		}
 		
 		model.addAttribute("reviews", reviews);
-		model.addAttribute("class", cla);
+		model.addAttribute("cla", cla);
 		model.addAttribute("company", com);
 		
 		

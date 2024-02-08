@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.gongsaeng.mapper.ReviewMapper;
 import kr.co.gongsaeng.vo.MemberVO;
+import kr.co.gongsaeng.vo.ReviewCategoryCountVO;
 import kr.co.gongsaeng.vo.ReviewCountVO;
 import kr.co.gongsaeng.vo.ReviewVO;
 
@@ -132,8 +133,8 @@ public class ReviewService {
 	
 	//추가하기
 	// 키워드 카테고리 카운트 : 데이터 뿌리기
-//	public ReviewCategoryCountVO categoryCount(int comId) {
-//		return mapper.categoryCount(comId);
+//	public ReviewCategoryCountVO categoryCount(int classIdx) {
+//		return mapper.categoryCount(classIdx);
 //	}
 	
 	// 리뷰 댓글 작성 요청 

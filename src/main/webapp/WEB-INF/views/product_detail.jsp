@@ -34,14 +34,19 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/price-range.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/owl.carousel.css">  
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/owl.theme.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/owl.transitions.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/lightslider.min.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/style.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/responsive.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/product_detail.css">
+    	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/owl.transitions.css"> 
+        <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/lightslider.min.css"> 
+        
+          
+      <%--   <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/style.css"> --%> 
+       	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/responsive.css"> 
       
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
-		<link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">      
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css"> 
+        <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/product_detail.css">
+		<link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">   
+      
+      
       
         <!-- js  -->
 <%--         <script src="${pageContext.request.contextPath }/resources/assets/js/modernizr-2.6.2.min.js"></script> --%>
@@ -56,7 +61,7 @@
         <script src="${pageContext.request.contextPath }/resources/assets/js/wow.js"></script>
         <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
         <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
-        <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
+<%--         <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script> --%>
         <script src="${pageContext.request.contextPath }/resources/js/product_detail.js"></script>
     </head>
     <body>
@@ -206,9 +211,9 @@
 
                 <div class="clearfix padding-top-40" >
 
-                    <div class="col-md-8 single-property-content prp-style-1 ">
+                    <div class="col-md-8 single-property-content prp-style-1">
                         <div class="row">
-                            <div class="light-slide-item">            
+                            <div class="light-slide-item" style="border: solid red;">            
                                 <div class="clearfix">
                                     <div class="favorite-and-print">
                                         <a class="add-to-fav" href="#login-modal" data-toggle="modal">
@@ -216,7 +221,7 @@
                                         </a>
                                     </div> 
 
-                                    <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
+                                    <ul id="image-gallery" class="gallery list-unstyled " style="border: solid red;">
                                         <li data-thumb="${pageContext.request.contextPath }/resources/assets/img/property-1/table1-1.png"> 
                                             <img src="${pageContext.request.contextPath }/resources/assets/img/property-1/table1-1.png" />
                                         </li>
@@ -231,13 +236,14 @@
 <!--                                         </li>                                          -->
                                     </ul>
                                 </div>
-                            </div>
+                            </div>               
+                            
                         </div>
 
                         <div class="single-property-wrapper">
                             <div class="single-property-header">                                          
-                                <h1 class="property-title pull-left">[원데이 클래스] 나만의 테이블 만들기</h1>
-                                <span class="property-price pull-right">65,000원</span>
+                                <h1 class="property-title pull-left">${cla.class_title }</h1>
+                                <span class="property-price pull-right">${cla.class_price }원</span>
                             </div>
                             
                             
