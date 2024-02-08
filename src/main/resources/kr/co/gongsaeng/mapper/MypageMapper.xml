@@ -15,10 +15,10 @@
 	<update id="updateMemberInfo">
 		UPDATE member
 		SET 
-		<if test="member_passwd != null or !member_passwd.equals('')">
-			member_passwd = #{member_passwd}
+			member_nick = #{member_nick}
+		<if test="!member_passwd.equals('')">
+			,member_passwd = #{member_passwd}
 		</if>
-			,member_nick = 	#{member_nick}
 			,member_name = 	#{member_name}
 			,member_email = #{member_email}
 			,member_phone = #{member_phone}
@@ -78,7 +78,7 @@
 
 
 	<select id="selectResList" resultType="myRes">
-		select pay_num, p.com_idx,p.class_idx, p.member_id ,payment,discount_payment,pay_method,pay_date,pay_status,class_pic1,com_name,class_title
+		select pay_num, p.com_idx,p.class_idx, p.member_id ,payment,discount_payment,pay_method,pay_date,pay_status,class_pic1,com_name,class_title,p.res_visit_date,p.res_visit_time,p.res_request,p.res_member_count,c.class_start_time,c.class_end_time,c.class_category,c.class_start_date,c.class_end_date
 		FROM payment p
 		JOIN class c ON c.class_idx = p.class_idx 
 		JOIN company co ON co.com_idx = p.com_idx 
@@ -87,7 +87,7 @@
 	</select>
 	
 	<select id="selectResInfo" resultType="myRes">
-		select pay_num, p.com_idx,p.class_idx, p.member_id ,payment,discount_payment,pay_method,pay_date,pay_status,class_pic1,com_name,class_title,com_post_code, com_address1,com_address2, member_name, member_phone
+		select pay_num, p.com_idx,p.class_idx, p.member_id ,payment,discount_payment,pay_method,pay_date,pay_status,class_pic1,com_name,class_title,com_post_code, com_address1,com_address2, member_name, member_phone,p.res_visit_date,p.res_visit_time,p.res_request,p.res_member_count,c.class_start_time,c.class_end_time,c.class_category,c.class_start_date,c.class_end_date
 		FROM payment p
 		JOIN class c ON c.class_idx = p.class_idx 
 		JOIN company co ON co.com_idx = p.com_idx 
@@ -154,4 +154,27 @@
 		GROUP BY b.board_idx
 	</select>
 	
+	<update id="updatePayStatusForCancel">
+		UPDATE payment
+		SET pay_status = 2
+		WHERE pay_num = #{pay_num}
+	</update>
+	
+	<select id="selectPayInfo" resultType="map">
+		SELECT *
+		FROM payment
+		WHERE pay_num = #{pay_num}
+	</select>
+	
+	<insert id="insertCashForCancel">
+		INSERT INTO cash
+		VALUES(
+			null
+			,#{member_id}
+			,#{payment}
+			,4
+			,#{pay_num}
+			,now()
+		)
+	</insert>
 </mapper>

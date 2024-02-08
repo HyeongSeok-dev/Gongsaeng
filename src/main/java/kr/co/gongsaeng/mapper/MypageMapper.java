@@ -47,5 +47,11 @@ public interface MypageMapper {
 
 	List<Map<String, String>> selectMyCommunityList(MemberVO member);
 
+	int updatePayStatusForCancel(Map<String, Object> payInfo);
+
+	Map<String, Object> selectPayInfo(Map<String, String> map);
+
+	int insertCashForCancel(Map<String, Object> map);
+
 
 }

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -20,14 +20,12 @@
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/normalize.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/font-awesome.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/fontello.css">
-<link href="${pageContext.request.contextPath }/resources/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css"
-	rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/assets/fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/assets/css/animate.css" rel="stylesheet" media="screen">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/bootstrap-select.min.css">
@@ -65,18 +63,19 @@
 		<div class="row">
 			<!-- 좌측 메뉴바 -->
 			<div class="col-sm-3">
-			<c:choose>
-				<c:when test="${empty member.member_img}">
-					<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" style="cursor: pointer;" onclick="location.href='modifyProfile'">
-				</c:when>
-				<c:when test="${fn:contains(member.member_img,'http')}">
-						<img alt="profile" src="${member.member_img}"
-							style="cursor: pointer;" onclick="location.href='modifyProfile'">
+				<c:choose>
+					<c:when test="${empty member.member_img}">
+						<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" style="cursor: pointer;"
+							onclick="location.href='modifyProfile'">
 					</c:when>
-				<c:otherwise>
-					<img alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}" style="cursor: pointer;" onclick="location.href='modifyProfile'">
-				</c:otherwise>				
-			</c:choose>
+					<c:when test="${fn:contains(member.member_img,'http')}">
+						<img alt="profile" src="${member.member_img}" style="cursor: pointer;" onclick="location.href='modifyProfile'">
+					</c:when>
+					<c:otherwise>
+						<img alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}" style="cursor: pointer;"
+							onclick="location.href='modifyProfile'">
+					</c:otherwise>
+				</c:choose>
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title text-center cursor" onclick="javascript:location.href='main'">마이페이지</h4>
@@ -148,12 +147,20 @@
 					</div>
 					<div class="panel-body">
 						<div class="row">
-							<div class="col-xs-6 text-center">시작 시간: yyyy-mm-dd hh:mm</div>
-							<div class="col-xs-6 text-center">종료 시간: yyyy-mm-dd hh:mm</div>
+							<c:choose>
+								<c:when test="${resInfo.class_category eq 1}">
+									<div class="col-xs-6 text-center">정규수업 시작 일시: ${resInfo.class_start_date} &nbsp; ${fn:substring(resInfo.class_start_time,0,5)}</div>
+									<div class="col-xs-6 text-center">정규수업 종료 일시: ${resInfo.class_end_date} &nbsp; ${fn:substring(resInfo.class_end_time,0,5)}</div>
+								</c:when>
+								<c:otherwise>
+									<div class="col-xs-6 text-center">시작 시간: ${resInfo.res_visit_date} &nbsp; ${fn:substring(resInfo.res_visit_time,0,5)}</div>
+									<div class="col-xs-6 text-center">종료 시간: ${resInfo.res_visit_date} &nbsp; ${fn:substring(resInfo.res_visit_time,0,5)}</div>
+								</c:otherwise>
+							</c:choose>
 						</div>
-						<p class="text-center">예약 인원: 00명</p>
+						<p class="text-center">예약 인원: ${resInfo.res_member_count}명</p>
 						<div class="row">
-							<div class="col-xs-9">업체명 : ${resInfo.com_name}</div>
+							<div class="col-xs-9">반장님 : ${resInfo.com_name}</div>
 							<div class="col-xs-3 text-right">
 								<button class="btn btn-default" onclick="javascript:location.href='chat?com_idx=${resInfo.com_idx}'">채팅 문의</button>
 							</div>
@@ -168,7 +175,7 @@
 					<div class="panel-body">
 						<iframe src="https://maps.google.com/maps?q=${resInfo.com_address1}${resInfo.com_address2}&amp;output=embed" width="100%" height="350" frameborder="0"
 							style="border: 0" allowfullscreen></iframe>
-						<p>주소: ${resInfo.com_address1} ${resInfo.com_address2} </p>
+						<p>주소: ${resInfo.com_address1} ${resInfo.com_address2}</p>
 					</div>
 				</div>
 
@@ -179,7 +186,7 @@
 					<div class="panel-body">
 						<p>예약자: ${resInfo.member_name}</p>
 						<p>연락처: ${resInfo.member_phone}</p>
-						<p>요청사항: 없음</p>
+						<p>요청사항: ${resInfo.res_request}</p>
 					</div>
 				</div>
 

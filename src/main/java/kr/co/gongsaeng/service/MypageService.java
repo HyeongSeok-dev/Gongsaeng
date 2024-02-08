@@ -106,5 +106,26 @@ public class MypageService {
 		return mapper.selectMyCommunityList(member);
 	}
 
+	public boolean cancelReservation(Map<String, Object> payInfo) {
+		// TODO Auto-generated method stub
+		boolean isCanceled = false;
+		
+		int updateCount = mapper.updatePayStatusForCancel(payInfo);
+		
+		if(updateCount > 0 ) {
+			int insertCount = mapper.insertCashForCancel(payInfo);
+			
+			if(insertCount > 0) {
+				isCanceled = true;
+			}
+		}
+		return isCanceled;
+	}
+
+	public Map<String, Object> getPayInfo(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return mapper.selectPayInfo(map);
+	}
+
 	
 }

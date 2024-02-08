@@ -142,7 +142,7 @@ public class MypageController {
 		MyResVO resInfo = service.getResInfo(res);
 		
 		resInfo.setTotal_price(resInfo.getPayment() + resInfo.getDiscount_payment());
-		resInfo.setPoint((int) ((int)resInfo.getPayment()* 0.005));
+		resInfo.setPoint((int) ((int)resInfo.getPayment()* 0.001));
 		
 		model.addAttribute("member", member);
 		model.addAttribute("resInfo", resInfo);
@@ -162,7 +162,7 @@ public class MypageController {
 		member = service.getMemberInfo(member);
 		MyResVO resInfo = service.getResInfo(res);
 		
-		resInfo.setPoint((int) ((int)resInfo.getPayment()* 0.005));
+		resInfo.setPoint((int) ((int)resInfo.getPayment()* 0.001));
 		
 		model.addAttribute("member", member);
 		model.addAttribute("resInfo", resInfo);
@@ -170,7 +170,7 @@ public class MypageController {
 	}
 
 	@PostMapping("mypage/reservationCancelPro")
-	public String reservationCancelPro(HttpSession session, Model model, MemberVO member) {
+	public String reservationCancelPro(HttpSession session, Model model, MemberVO member, @RequestParam Map<String, String> map) {
 		String sId = (String) session.getAttribute("sId");
 		if (sId == null) {
 			model.addAttribute("msg", "로그인이 필요합니다");
@@ -181,7 +181,28 @@ public class MypageController {
 		member.setMember_id(sId);
 		member = service.getMemberInfo(member);
 		model.addAttribute("member", member);
-		return "";
+		System.out.println(map);
+		
+		Map<String, Object> payInfo = service.getPayInfo(map);
+		
+		if(payInfo.get("pay_status").equals("2")) {
+			model.addAttribute("msg", "이미 취소되었습니다.");
+
+			return "fail_back";
+		}
+		
+		boolean isCanceled = service.cancelReservation(payInfo);
+		
+		if(!isCanceled) {
+			model.addAttribute("msg", "취소요청이 실패되었습니다. 다시한번 확인해주세요");
+
+			return "fail_back";
+		}
+		
+		model.addAttribute("msg", "취소가 완료되었습니다. 캐쉬화면에서 출금을 진행하세요");
+		model.addAttribute("targetURL", "cash");
+
+		return "forward";
 	}
 
 	@GetMapping("mypage/alert")
@@ -478,6 +499,7 @@ public class MypageController {
 
 			return "forward";
 		}
+		
 		System.out.println(member);
 		// 프로필 사진 변경하기
 		String uploadDir = "/resources/upload";
@@ -512,8 +534,8 @@ public class MypageController {
 
 		// BCryptPasswordEncoder 클래스를 활용하여 입력받은 기존 패스워드와 DB 패스워드 비교
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		
-		if(member.getMember_passwd() != null || !member.getMember_passwd().equals("")) {
+		System.out.println("비밀번호" + member.getMember_passwd());
+		if(!(member.getMember_passwd() == null || member.getMember_passwd().equals(""))) {
 			member.setMember_passwd(passwordEncoder.encode(member.getMember_passwd()));
 		}
 
@@ -615,6 +637,7 @@ public class MypageController {
 			return "false";
 		}
 	}
+	
 	
 
 }

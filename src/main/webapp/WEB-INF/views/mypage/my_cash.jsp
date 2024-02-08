@@ -155,7 +155,7 @@
 									<c:if test="${empty totalCash.total_cash}">0</c:if>${totalCash.total_cash}캐쉬</p>
 							</div>
 							<div class="col-sm-6 text-right">
-								<button class="btn btn-primary">캐쉬 충전</button>
+								<button class="btn btn-primary">캐쉬 충전/환불</button>
 							</div>
 						</div>
 						<table class="table">

@@ -23,6 +23,12 @@ public class MyResVO {
 	private String res_visit_time;
 	private String res_request;
 	private int res_member_count;
+	private String class_start_time;
+	private String class_end_time;
+	private int class_category;
+	private String class_start_date;
+	private String class_end_date;
+
 	
 	private String class_pic1;
 	private String com_name;

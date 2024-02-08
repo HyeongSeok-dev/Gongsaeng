@@ -37,7 +37,11 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/responsive.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/global.css">
-
+<style type="text/css">
+.gender_radio {
+	width: 20px !important;
+}
+</style>
 <script src="${pageContext.request.contextPath }/resources/assets/js/modernizr-2.6.2.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/jquery-1.10.2.min.js"></script>
@@ -113,9 +117,9 @@
 						<input type="date" id="com_birth" required name="member_birthday" class="form-control">
 					</div>
 					<div class="col-sm-3">
-						<label class="control-label pull-left margin">성별 &nbsp;&nbsp;</label> <input type="radio" id="gender_m" name="member_gender" value="1"
-							class="form-control" required><label for="gender_m" class="control-label">남&nbsp; </label> <input type="radio" id="gender_f" name="member_gender"
-							value="2" class="form-control" required><label for="gender_f" class="control-label">여&nbsp; </label>
+						<label class="control-label pull-left margin">성별 &nbsp;&nbsp;</label>
+						<input type="radio" id="gender_m" name="member_gender" value="1" class="gender_radio" required><label for="gender_m" class="control-label">남&nbsp; </label>
+						<input type="radio" id="gender_f" name="member_gender" value="2" class="gender_radio" required><label for="gender_f" class="control-label">여&nbsp; </label>
 					</div>
 				</div>
 				<div class="form-group">
@@ -146,7 +150,8 @@
 				<div class="form-group">
 					<label for="u_phone" class="col-sm-1 control-label">전화번호</label>
 					<div class="col-sm-5">
-						<input type="text" id="u_phone" required name="member_phone" class="form-control" placeholder="전화번호 (' - ' 를 빼고 입력)" maxlength="100" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+						<input type="text" id="u_phone" required name="member_phone" class="form-control" placeholder="전화번호 (' - ' 를 빼고 입력)" maxlength="100"
+							oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 					</div>
 					<div class="col-sm-3 text-center">
 						<button type="button" class="btn btn-info" id="auth_phone_number_btn" disabled="disabled">인증하기</button>
@@ -156,9 +161,11 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="u_email" class="col-sm-1 control-label">전화번호<br>인증</label>
+					<label for="u_email" class="col-sm-1 control-label">전화번호<br>인증
+					</label>
 					<div class="col-sm-8">
-						<input type="text" id="phone_auth_input" required class="form-control" placeholder="인증번호를 입력하세요" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+						<input type="text" id="phone_auth_input" required class="form-control" placeholder="인증번호를 입력하세요"
+							oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 					</div>
 					<div class="col-sm-3">
 						<span id="phoneAuthResult"></span>

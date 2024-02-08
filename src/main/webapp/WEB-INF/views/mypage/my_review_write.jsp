@@ -188,7 +188,7 @@
 										</div>
 									</div>
 									<div class="col-xs-2">
-										<button class="btn btn-default btn-block" onclick="javascript:location.href='review/write?pay_num=${res.pay_num}'">리뷰쓰기</button>
+										<button class="btn btn-default btn-block" onclick="javascript:location.href='../review/write?pay_num=${res.pay_num}&class_idx=${res.class_idx}'">리뷰쓰기</button>
 										<a onclick="javascript: window.open('report?class_idx=${res.class_idx}', 'report', 'width=500,height=550,top=50%, left=50%');"><button
 												class="btn btn-danger btn-block">신고하기</button></a>
 									</div>

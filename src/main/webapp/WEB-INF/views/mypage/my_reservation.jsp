@@ -145,6 +145,7 @@
 					<br>
 					<c:if test="${empty resList}">
 						<div class="panel-body">예약내역이 없습니다.</div>
+						<button class="btn btn-default btn-block" onclick="javascript:location.href='../class/list'">클래스 보러가기</button>
 					</c:if>
 					<c:forEach var="res" items="${resList}">
 					<div class="panel panel-default">
@@ -172,15 +173,20 @@
 											<img src="${pageContext.request.contextPath }/resources/upload/${res.class_pic1}" alt="클래스 사진" class="thumbnail">
 										</div>
 										<div class="col-xs-10">
-											<p>가게 이름 : ${res.com_name}</p>
+											<p>반장님 이름 : ${res.com_name}</p>
 											<p>클래스 이름 : ${res.class_title}</p>
-											<p>예약한 날짜: yyyy-mm-dd</p>
+											<c:choose>
+												<c:when test="${res.class_category eq 1}"><p>정규수업 일시 : ${fn:substring(res.class_start_date,5,10)} ~ ${fn:substring(res.class_end_date,5,10)} / ${fn:substring(res.class_start_time,0,5)} ~ ${fn:substring(res.class_end_time,0,5)} </p></c:when>
+												<c:otherwise><p>예약한 일시: ${res.res_visit_date} &nbsp; ${fn:substring(res.res_visit_time,0,5)}</p></c:otherwise>
+											</c:choose>
+											
 										</div>
 									</div>
 								</div>
 								<div class="col-xs-2">
+								
 									<button class="btn btn-default btn-block" onclick="javascript:location.href='chat'">채팅 문의</button>
-									<a href="reservationCancel?pay_num=${res.pay_num}"><button class="btn btn-danger btn-block">예약 취소</button></a>
+									<a href="reservationCancel?pay_num=${res.pay_num}"><button class="btn btn-danger btn-block" <c:if test="${res.pay_status eq 2}">disabled</c:if>  >예약 취소</button></a>
 								</div>
 							</div>
 						</div>
