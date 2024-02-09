@@ -31,6 +31,25 @@ public class ClassService {
 		
 		return mapper.selectClassScheduleByMemberId(sId);
 	}
+	
+	// [ 클래스 수정페이지 출력 ] 
+	public Map<String, Object> getClassDetail(int classIdx) {
+
+		return mapper.selectClassDetail(classIdx);
+	}
+
+	// [ 클래스 수정 사진파일 삭제 ]
+	public int removeClassFile(ClassVO gclass) {
+
+		return mapper.updateClassFile(gclass);
+	}
+
+	// [ 클래스 수정 요청]
+	public int modifyClass(ClassVO gclass) {
+
+		return mapper.updateClass(gclass);
+	}
+
 
 	// [ 클래스 삭제 ] 
 	public int removeClass(String class_idx) {

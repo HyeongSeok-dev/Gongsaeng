@@ -319,7 +319,257 @@ public class CompanyController {
 	        }
 	    });
 	}
-	
+
+	// ================================================================
+		// [ 클래스 수정 ]
+		// "ClassModifyForm" 서블릿 요청에 대한 글 수정 폼 포워딩 처리
+		@GetMapping("company/classModifyForm")
+		public String boardModifyForm(@RequestParam("class_idx") int classIdx, HttpSession session, Model model) {
+
+		
+			// 클래스 상세정보 조회 
+			Map<String, Object> classDetail = classService.getClassDetail(classIdx);
+			if(classDetail != null) {
+				model.addAttribute("classDetail",classDetail);
+				System.out.println("클래스 상세정보 >>>>>>>>>" + classDetail);
+				
+				// 회원정보 수정페이지로 이동
+				return "company/company_class_modify";
+				
+			} else {
+		
+				return "redirect:/company/class";
+			}
+		
+		}
+		// ----------------------------------------------------------------
+		// 파일 삭제 AJAX 요청에 대한 응답 데이터 생성 및 전송을 위해 @ResponseBody 지정
+		// 파일 삭제 AJAX 요청에 대한 응답 데이터 생성 및 전송을 위해 @ResponseBody 지정
+			@ResponseBody
+			@PostMapping("ClassDeleteFile")
+			public String deleteFile(ClassVO gclass, HttpSession session) {
+//				System.out.println(board.getBoard_num() + ", " + board.getBoard_file1());
+				
+				// BoardService - removeBoardFile() 메서드 호출하여 지정된 파일명 삭제 요청
+				// => 파라미터 : BoardVO 객체   리턴타입 : int(removeCount)
+				int removeCount = classService.removeClassFile(gclass);
+//				System.out.println(removeCount);
+				
+				try {
+					if(removeCount > 0) { // 레코드의 파일명 삭제(수정) 성공 시
+						// 서버에 업로드 된 실제 파일 삭제
+						String uploadDir = "/resources/upload"; // 가상의 경로(이클립스 프로젝트 상에 생성한 경로)
+						String saveDir = session.getServletContext().getRealPath(uploadDir);
+						
+						// 파일명이 널스트링이 아닐 경우에만 삭제 작업 수행
+						if(!gclass.getClass_pic1().equals("")) {
+							Path path = Paths.get(saveDir + "/" + gclass.getClass_pic1());
+							Files.deleteIfExists(path);
+							
+							// 예외가 발생하지 않을 경우 정상적으로 파일 삭제가 완료되었으므로 "true" 리턴
+							return "true";
+						}
+				
+						if(!gclass.getClass_pic2().equals("")) {
+							Path path = Paths.get(saveDir + "/" + gclass.getClass_pic2());
+							Files.deleteIfExists(path);
+							
+							// 예외가 발생하지 않을 경우 정상적으로 파일 삭제가 완료되었으므로 "true" 리턴
+							return "true";
+						}
+						
+						if(!gclass.getClass_pic3().equals("")) {
+							Path path = Paths.get(saveDir + "/" + gclass.getClass_pic3());
+							Files.deleteIfExists(path);
+							
+							// 예외가 발생하지 않을 경우 정상적으로 파일 삭제가 완료되었으므로 "true" 리턴
+							return "true";
+						}
+						
+						if(!gclass.getClass_curriculum1().equals("")) {
+							Path path = Paths.get(saveDir + "/" + gclass.getClass_curriculum1());
+							Files.deleteIfExists(path);
+							
+							// 예외가 발생하지 않을 경우 정상적으로 파일 삭제가 완료되었으므로 "true" 리턴
+							return "true";
+						}
+						
+						if(!gclass.getClass_curriculum2().equals("")) {
+							Path path = Paths.get(saveDir + "/" + gclass.getClass_curriculum2());
+							Files.deleteIfExists(path);
+							
+							// 예외가 발생하지 않을 경우 정상적으로 파일 삭제가 완료되었으므로 "true" 리턴
+							return "true";
+						}
+						
+						if(!gclass.getClass_curriculum3().equals("")) {
+							Path path = Paths.get(saveDir + "/" + gclass.getClass_curriculum3());
+							Files.deleteIfExists(path);
+							
+							// 예외가 발생하지 않을 경우 정상적으로 파일 삭제가 완료되었으므로 "true" 리턴
+							return "true";
+						}
+					
+					}
+					
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+				// DB 파일명 삭제 실패 또는 서버 업로드 파일 삭제 실패 등의 문제 발생 시 "false" 리턴
+				return "false";
+			}
+		
+		// ================================================================
+		// [ 클래스 수정페이지 ]
+			// "BoardModifyPro" 서블릿 요청에 대한 글 수정 요청 비즈니스 로직 처리
+			@PostMapping("company/classModifyPro")
+			public String modifyPro(ClassVO gclass, HttpSession session, Model model,@RequestParam("class_idx") int classIdx) {
+				// 세션 아이디에 따른 차단 처리
+
+				// -------------------------------------------------------------------
+				// [ 수정 과정에서 파일 업로드 처리 ]
+				String uploadDir = "/resources/upload"; // 가상의 경로(이클립스 프로젝트 상에 생성한 경로)
+				String saveDir = session.getServletContext().getRealPath(uploadDir); // 또는 
+				
+				String subDir = "";
+				LocalDate now = LocalDate.now();
+				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+				subDir = now.format(dtf);
+				
+				saveDir += File.separator + subDir;
+
+				try {
+					Path path = Paths.get(saveDir); // 파라미터로 업로드 경로 전달
+					Files.createDirectories(path); // 파라미터로 Path 객체 전달
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				// -------------------
+				System.out.println(gclass);
+				
+				// ClassVO 객체에 전달(저장)된 실제 파일 정보가 관리되는 MultipartFile 타입 객체 꺼내기
+				// => 단, 수정하지 않은 파일(새로 업로드 항목으로 추가된 파일이 아닌 기존 파일)은
+				//    input 태그를 적용받지 않으므로 파일이 전달되지 않음 => 따라서, null 값이 전달됨
+				MultipartFile mFile1 = gclass.getFile1();
+				MultipartFile mFile2 = gclass.getFile2();
+				MultipartFile mFile3 = gclass.getFile3();
+				MultipartFile mFile4 = gclass.getFile4();
+				MultipartFile mFile5 = gclass.getFile5();
+				MultipartFile mFile6 = gclass.getFile6();
+				
+				// board_fileX 멤버변수값을 모두 널스트링으로 설정
+				gclass.setClass_pic1("");
+				gclass.setClass_pic2("");
+				gclass.setClass_pic3("");
+				gclass.setClass_curriculum1("");
+				gclass.setClass_curriculum2("");
+				gclass.setClass_curriculum3("");
+				
+				
+				// 파일이 존재할 경우 BoardVO 객체에 서브디렉토리명(subDir)과 함께 파일명 저장
+				// ex) 2023/12/19/ef3e51e8_1.jpg
+				String fileName1 = "";
+				String fileName2 = "";
+				String fileName3 = "";
+				String fileName4 = "";
+				String fileName5 = "";
+				String fileName6 = "";
+				
+				if(mFile1 != null && !mFile1.getOriginalFilename().equals("")) {
+					System.out.println("원본파일명1 : " + mFile1.getOriginalFilename());
+					fileName1 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile1.getOriginalFilename();
+					gclass.setClass_pic1(fileName1);
+				}
+				
+				if(mFile2 != null && !mFile2.getOriginalFilename().equals("")) {
+					System.out.println("원본파일명2 : " + mFile2.getOriginalFilename());
+					fileName2 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile2.getOriginalFilename();
+					gclass.setClass_pic2(fileName2);
+				}
+				
+				if(mFile3 != null && !mFile3.getOriginalFilename().equals("")) {
+					System.out.println("원본파일명3 : " + mFile3.getOriginalFilename());
+					fileName3 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile3.getOriginalFilename();
+					gclass.setClass_pic3(fileName3);
+				}
+				
+				if(mFile4 != null && !mFile4.getOriginalFilename().equals("")) {
+					System.out.println("원본파일명4 : " + mFile4.getOriginalFilename());
+					fileName4 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile4.getOriginalFilename();
+					gclass.setClass_curriculum1(fileName4);
+				}
+				
+				if(mFile5 != null && !mFile5.getOriginalFilename().equals("")) {
+					System.out.println("원본파일명5 : " + mFile5.getOriginalFilename());
+					fileName5 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile5.getOriginalFilename();
+					gclass.setClass_curriculum2(fileName5);
+				}
+				
+				if(mFile6 != null && !mFile6.getOriginalFilename().equals("")) {
+					System.out.println("원본파일명6 : " + mFile6.getOriginalFilename());
+					fileName6 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile6.getOriginalFilename();
+					gclass.setClass_curriculum1(fileName6);
+				}
+				
+				System.out.println("실제 업로드 파일명1 : " + gclass.getClass_pic1());
+				System.out.println("실제 업로드 파일명2 : " + gclass.getClass_pic2());
+				System.out.println("실제 업로드 파일명3 : " + gclass.getClass_pic3());
+				System.out.println("실제 업로드 파일명4 : " + gclass.getClass_curriculum1());
+				System.out.println("실제 업로드 파일명5 : " + gclass.getClass_curriculum2());
+				System.out.println("실제 업로드 파일명6 : " + gclass.getClass_curriculum3());
+				// 현재 업로드 될 파일들은 서버 임시 디렉토리에 보관중이며 최종 이동 처리 수행 필요
+				// ----------------------------------------------------------------------------------
+				// BoardService - modifyBoard() 메서드 호출하여 글 수정 작업 요청
+				// => 파라미터 : BoardVO 객체   리턴타입 : int(updateCount)
+				int updateCount = classService.modifyClass(gclass);
+				
+				// DB 작업 요청 처리 결과 판별
+				if(updateCount > 0) {
+					try {
+						// 파일명이 존재하는 파일만 이동 처리 작업 수행
+						if(!gclass.getClass_pic1().equals("")) {
+							mFile1.transferTo(new File(saveDir, fileName1));
+						}
+						
+						if(!gclass.getClass_pic2().equals("")) {
+							mFile1.transferTo(new File(saveDir, fileName2));
+						}
+						
+						if(!gclass.getClass_pic3().equals("")) {
+							mFile1.transferTo(new File(saveDir, fileName3));
+						}
+						
+						if(!gclass.getClass_curriculum1().equals("")) {
+							mFile1.transferTo(new File(saveDir, fileName4));
+						}
+						
+						if(!gclass.getClass_curriculum2().equals("")) {
+							mFile1.transferTo(new File(saveDir, fileName5));
+						}
+						
+						if(!gclass.getClass_curriculum3().equals("")) {
+							mFile1.transferTo(new File(saveDir, fileName6));
+						}
+						
+						
+					} catch (IllegalStateException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					
+					// 글 상세정보 조회 페이지 리다이렉트(파라미터 : 글번호, 페이지번호)
+					return "redirect:/company/class";
+					
+				} else {
+					// "글 수정 실패!" 처리
+					model.addAttribute("msg", "글 수정 실패!");
+					return "fail_back";
+				}
+				
+			}
+		
 
 	// ================================================================
 	// [ 반장회원 전환 신청 ] -> 일반 회원의 기존 정보 가져오기

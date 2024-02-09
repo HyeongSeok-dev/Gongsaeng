@@ -64,6 +64,86 @@
 		WHERE member_id = #{member_id}
 	</select>
 	
+			
+	<!-- 클래스 내역 출력(수정페이지) -->
+	<select id="selectClassDetail" resultType="map">
+		SELECT *
+		FROM class
+		WHERE class_idx = #{classIdx}
+	</select>
+	
+	<!-- 클래스 수정 파일 삭제 -->
+	<update id="updateClassFile">
+		UPDATE class
+		SET
+			class_pic1 = CASE WHEN class_pic1 = #{class_pic1} THEN '' ELSE class_pic1 END,
+			class_pic2 = CASE WHEN class_pic2 = #{class_pic2} THEN '' ELSE class_pic2 END,
+			class_pic3 = CASE WHEN class_pic3 = #{class_pic3} THEN '' ELSE class_pic3 END,
+			class_curriculum1 = CASE WHEN class_curriculum1 = #{class_curriculum1} THEN '' ELSE class_curriculum1 END,
+			class_curriculum2 = CASE WHEN class_curriculum2 = #{class_curriculum2} THEN '' ELSE class_curriculum2 END,
+			class_curriculum3 = CASE WHEN class_curriculum3 = #{class_curriculum3} THEN '' ELSE class_curriculum3 END
+		WHERE 
+			class_idx = #{classIdx}
+	</update>
+	
+	<!-- 글 수정(UPDATE) -->
+	<update id="updateClass">
+		UPDATE class
+		SET
+			class_title = #{class_title}
+			,class_category = #{class_category}		
+			,class_times = #{class_times}		
+			,class_price = #{class_price}		
+			,class_date = now()		
+			,class_start_time = #{class_start_time}		
+			,class_end_time = #{class_end_time}		
+			,class_start_date = #{class_start_date}		
+			,class_end_date = #{class_end_date}		
+			,class_day = #{class_day}		
+			,class_member_count = #{class_member_count}		
+			,class_post_code = #{class_post_code}		
+			,class_address1 = #{class_address1}		
+			,class_address2 = #{class_address2}		
+			,class_introduction = #{class_introduction}		
+			,class_curriculum_detail1 = #{class_curriculum_detail1}		
+			,class_curriculum_detail2 = #{class_curriculum_detail2}		
+			,class_curriculum_detail3 = #{class_curriculum_detail3}		
+			,class_main_category = #{class_main_category}		
+			,class_sub_category = #{class_sub_category}		
+			,class_offering = #{class_offering}		
+			,class_caution = #{class_caution}		
+			,class_tag = #{class_tag}		
+			,class_question1 = #{class_question1}		
+			,class_answer1 = #{class_answer1}		
+			,class_question2 = #{class_question2}		
+			,class_answer2 = #{class_answer2}		
+			,class_question3 = #{class_question3}		
+			,class_answer3 = #{class_answer3}			
+			
+			<if test="class_pic1 != null and !class_pic1.equals('')">
+				, class_pic1 = #{class_pic1}
+			</if>
+			<if test="class_pic2 != null and !class_pic2.equals('')">
+				, class_pic2 = #{class_pic2}
+			</if>
+			<if test="class_pic3 != null and !class_pic3.equals('')">			
+				, class_pic3 = #{class_pic3}
+			</if>
+			<if test="class_curriculum1 != null and !class_curriculum1.equals('')">			
+				, class_curriculum1 = #{class_curriculum1}
+			</if>
+			<if test="class_curriculum2 != null and !class_curriculum2.equals('')">			
+				, class_curriculum2 = #{class_curriculum2}
+			</if>
+			<if test="class_curriculum3 != null and !class_curriculum3.equals('')">			
+				, class_curriculum3 = #{class_curriculum3}
+			</if>
+		
+		WHERE 
+			class_idx = #{class_idx}
+	</update>
+	
+	
 	<!-- 클래스 삭제 -->
 	<delete id="deleteClass">
 		DELETE

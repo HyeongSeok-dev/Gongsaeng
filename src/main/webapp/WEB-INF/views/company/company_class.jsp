@@ -304,7 +304,8 @@ a {
 						                                    </c:otherwise>
 						                                </c:choose>
 														</p>
-														<a class="primary-link" href="#">${classInfo.class_title}</a>
+<%-- 														<a class="primary-link" href="classInfo"> ${classInfo.class_title} </a> --%>
+														<a class="primary-link" href="classModifyForm?class_idx=${classInfo.class_idx}">${classInfo.class_title}</a>
 													</h5>
 													<p class="text-muted mb-2">
 														<c:choose>
@@ -337,10 +338,11 @@ a {
 														<br>
 														<li class="list-inline-item">
 															<i class="fa fa-clock-o" style="font-size:18px"></i>  
-															 ${classInfo.class_start_date} ~ ${classInfo.class_end_date}(${classInfo.class_times}시간/${classInfo.dayString })&nbsp;&nbsp;|&nbsp;&nbsp;<i class="mdi mdi-wallet"></i> ${classInfo.class_price}원
+<%-- 															 ${classInfo.class_start_date} ~ ${classInfo.class_end_date}(${classInfo.class_times}시간/${classInfo.dayString })&nbsp;&nbsp;|&nbsp;&nbsp;<i class="mdi mdi-wallet"></i> ${classInfo.class_price}원 --%>
+															 ${classInfo.class_start_date} ~ ${classInfo.class_end_date}&nbsp;&nbsp;|&nbsp;&nbsp;<i class="mdi mdi-wallet"></i> ${classInfo.class_price}원
 														</li>
-			              	  <input type="button" value="삭제" class="delete-btn" data-pay-num="${classInfo.class_idx}">
 													</ul>
+														<br><br><input type="button" value="클래스 삭제" class="delete-btn" data-pay-num="${classInfo.class_idx}">
 												</div>
 											</div>
 										</div>
@@ -437,7 +439,7 @@ a {
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="${pageContext.request.contextPath }/resources/company_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="${pageContext.request.contextPath }/resources/company_assets/demo/demo.js"></script>
-  <script type="text/javascript">
+   <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', function() {
 	    var deleteButtons = document.querySelectorAll('.delete-btn');
 	    deleteButtons.forEach(function(button) {
@@ -466,7 +468,6 @@ a {
   
   
   </script>
-
 </body>
 
 </html>
