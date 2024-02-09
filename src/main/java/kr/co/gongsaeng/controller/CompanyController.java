@@ -429,6 +429,24 @@ public class CompanyController {
 		
 	}
 	// =============================================================		
+	// [ 클래스 삭제 ]
+	
+	 @PostMapping("company/deleteClass")
+	 public String deleteClass(@RequestParam("class_idx") String class_idx, Model model) {
+	   
+		 int deleteCount = classService.removeClass(class_idx);
+		 if(deleteCount > 0) { // 삭제 성공
+				model.addAttribute("msg", "해당 클래스가 삭제되었습니다.");
+		 } else {
+			 model.addAttribute("msg", "해당 클래스 삭제처리가 실패했습니다.");			 
+		 } 
+
+		 return "redirect:/company/class";
+	 }
+	
+	
+	
+	// =============================================================		
 	// 클래스 일정(캘린더 출력) -> 안됨 ㅡㅡ 
 	@GetMapping("company/reservation")
 	public String classReservation(HttpSession session, Model model, ClassVO gclass, HttpServletRequest request) {

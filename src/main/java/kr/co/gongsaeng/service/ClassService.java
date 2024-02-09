@@ -32,7 +32,12 @@ public class ClassService {
 		return mapper.selectClassScheduleByMemberId(sId);
 	}
 
-	// [ 매출내역 출력 ]
+	// [ 클래스 삭제 ] 
+	public int removeClass(String class_idx) {
+
+		return mapper.deleteClass(class_idx);
+	}
+
 
 
 	

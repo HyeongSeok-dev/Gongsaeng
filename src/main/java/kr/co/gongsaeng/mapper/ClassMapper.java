@@ -16,7 +16,8 @@ public interface ClassMapper {
 	// 클래스 일정 캘린더 출력
 	List<ClassVO> selectClassScheduleByMemberId(String sId);
 
-	// 매출내역 출력
+	// 클래스 삭제
+	int deleteClass(String class_idx);
 
 
 }

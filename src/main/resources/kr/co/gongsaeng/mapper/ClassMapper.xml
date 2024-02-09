@@ -64,4 +64,14 @@
 		WHERE member_id = #{member_id}
 	</select>
 	
+	<!-- 클래스 삭제 -->
+	<delete id="deleteClass">
+		DELETE
+		FROM class
+		WHERE class_idx = #{class_idx}
+	</delete>
+	
+	
+	
+	
 </mapper>

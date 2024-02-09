@@ -339,6 +339,7 @@ a {
 															<i class="fa fa-clock-o" style="font-size:18px"></i>  
 															 ${classInfo.class_start_date} ~ ${classInfo.class_end_date}(${classInfo.class_times}시간/${classInfo.dayString })&nbsp;&nbsp;|&nbsp;&nbsp;<i class="mdi mdi-wallet"></i> ${classInfo.class_price}원
 														</li>
+			              	  <input type="button" value="삭제" class="delete-btn" data-pay-num="${classInfo.class_idx}">
 													</ul>
 												</div>
 											</div>
@@ -436,6 +437,36 @@ a {
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="${pageContext.request.contextPath }/resources/company_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="${pageContext.request.contextPath }/resources/company_assets/demo/demo.js"></script>
+  <script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+	    var deleteButtons = document.querySelectorAll('.delete-btn');
+	    deleteButtons.forEach(function(button) {
+	        button.addEventListener('click', function() {
+	            var class_idx = this.getAttribute('data-pay-num'); // 'class_idx' 변수 정의 수정
+	            if (confirm('해당 클래스를 삭제하시겠습니까?')) {
+	                // AJAX 요청으로 서버에 삭제를 요청
+	                $.ajax({
+	                    url: '${pageContext.request.contextPath}/company/deleteClass', // 서버의 URL 주소
+	                    type: 'POST', // HTTP 요청 방식
+	                    data: { 'class_idx': class_idx }, // 수정: 'class_idx' 값을 정확히 전달
+	                    success: function(response) {
+	                        // 성공 시 페이지 리로드 또는 DOM 조작을 통해 화면에서 해당 항목 제거
+	                        alert('클래스 삭제가 완료되었습니다.')
+	                        location.reload(); // 페이지 리로드로 간단히 처리
+	                    },
+	                    error: function(xhr, status, error) {
+	                        // 실패 시 오류 처리
+	                        alert('삭제 처리 중 오류가 발생했습니다.');
+	                    }
+	                });
+	            }
+	        });
+	    });
+	});
+  
+  
+  </script>
+
 </body>
 
 </html>
