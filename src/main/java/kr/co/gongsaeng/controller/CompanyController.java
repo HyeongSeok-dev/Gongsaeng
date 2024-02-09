@@ -439,7 +439,7 @@ public class CompanyController {
 				model.addAttribute("msg", "해당 클래스가 삭제되었습니다.");
 		 } else {
 			 model.addAttribute("msg", "해당 클래스 삭제처리가 실패했습니다.");			 
-		 } 
+		 }  
 
 		 return "redirect:/company/class";
 	 }
