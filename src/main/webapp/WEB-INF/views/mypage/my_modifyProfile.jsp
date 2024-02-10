@@ -97,7 +97,7 @@
 									<ul class="list-group">
 										<li class="list-group-item cursor" onclick="javascript:location.href='coupon'">쿠폰</li>
 										<li class="list-group-item cursor" onclick="javascript:location.href='cash'">캐쉬</li>
-										<li class="list-group-item cursor " onclick="javascript:location.href='point'">포인트</li>
+										
 									</ul>
 								</div>
 							</li>

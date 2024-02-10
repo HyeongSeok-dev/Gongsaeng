@@ -427,6 +427,7 @@ function openCenteredWindow(url, name, width, height) {
                         <li><a href="${pageContext.request.contextPath}/cs/notice">공지사항</a></li>
                         <li><a href="${pageContext.request.contextPath}/cs/faq">자주 묻는 질문</a></li>
                         <li><a href="javascript:void(0);" onclick="openCenteredWindow('${pageContext.request.contextPath}/cs/qna', 'newwindow', 570, 680); return false;">1:1 문의</a></li>
+                        <li><a href="javascript:void(0);" onclick="openCenteredWindow('${pageContext.request.contextPath}/chat/chatBot', 'newwindow', 600, 800); return false;">챗봇</a></li>
                     </ul>
                 </li>
                 

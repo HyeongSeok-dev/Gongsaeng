@@ -284,25 +284,25 @@ public class MypageController {
 		return "mypage/my_cash";
 	}
 
-	@GetMapping("mypage/point")
-	public String point(HttpSession session, Model model, MemberVO member) {
-		String sId = (String) session.getAttribute("sId");
-		if (sId == null) {
-			model.addAttribute("msg", "로그인이 필요합니다");
-			model.addAttribute("targetURL", "/gongsaeng/member/login");
-
-			return "forward";
-		}
-		member.setMember_id(sId);
-		member = service.getMemberInfo(member);
-		List<Map<String, Object>> pointList = service.getPointList(member);
-		Map<String, String> totalPoint = service.getmyMainInfo(member);
-		
-		model.addAttribute("member", member);
-		model.addAttribute("pointList", pointList);
-		model.addAttribute("totalPoint",totalPoint);
-		return "mypage/my_point";
-	}
+//	@GetMapping("mypage/point")
+//	public String point(HttpSession session, Model model, MemberVO member) {
+//		String sId = (String) session.getAttribute("sId");
+//		if (sId == null) {
+//			model.addAttribute("msg", "로그인이 필요합니다");
+//			model.addAttribute("targetURL", "/gongsaeng/member/login");
+//
+//			return "forward";
+//		}
+//		member.setMember_id(sId);
+//		member = service.getMemberInfo(member);
+//		List<Map<String, Object>> pointList = service.getPointList(member);
+//		Map<String, String> totalPoint = service.getmyMainInfo(member);
+//		
+//		model.addAttribute("member", member);
+//		model.addAttribute("pointList", pointList);
+//		model.addAttribute("totalPoint",totalPoint);
+//		return "mypage/my_point";
+//	}
 
 	@GetMapping("mypage/bookmark")
 	public String bookmark(HttpSession session, Model model, MemberVO member) {
