@@ -74,11 +74,11 @@
 	}
 	
 	//계좌등록을 안했는데 포인트 사용하고 버튼누르면 계좌를 등록하기위한
-	//개인정보 동의 페이지(charge_agree)페이지로 이동
-	function agreePage() {
-	    alert('계좌를 등록해주세요.');
-	    window.open('payment/charge/agree', '_blank', 'width=600, height=800 ');
-	}
+// 	개인정보 동의 페이지(charge_agree)페이지로 이동
+// 	function agreePage() {
+// 	    alert('계좌를 등록해주세요.');
+// 	    window.open('payment/charge/agree', '_blank', 'width=600, height=800 ');
+// 	}
 	
 </script>
 </head>
@@ -162,7 +162,7 @@
 						<select>
 					        <option value="">쿠폰을 선택하세요</option>
 							<c:forEach var="couponList" items="${couponList}">
-						        <option value="coupon1">${couponList.coupon_name}</option>
+						        <option value="coupon" id="coupon" >${couponList.coupon_name}</option>
 						    </c:forEach>
 					    </select>
 				</section>
@@ -195,34 +195,20 @@
 							<div class="pay_result">
 <!-- 									<span class="font_stlye">포인트</span>  -->
 								<span class="pay_available">
-									&nbsp;&nbsp;사용가능페이금액&nbsp;
+									&nbsp;&nbsp;보유중인페이금액&nbsp;
 									<span id="useablePay">
-											${map.paymentInfo.totalPoint}
+									    ${allList[0].cash_value}
 									</span>
 									원
 									 &nbsp; <span><a id="useAllPoint">전액사용</a></span>
 								</span>
 							</div>
-							<input type="text" value="" placeholder="사용할 0페이를 입력해 주세요" class="pay_to_use" name="payToUse" /><span class="won">원</span>
+							<input type="text" value="" placeholder="사용할 0페이를 입력해 주세요" class="pay_to_use" name="payToUse" id="pay" /><span class="won">원</span>
 							
-							<button id="chargePay" class="use_button charge" type="button" onclick="agreePage(); ">사용하기</button>
-							<!-- member_id유무에 따른 버튼 출력 -->
-<%-- 							<c:choose> --%>
-<!-- 								없을때(계좌등록) -->
-<%-- 								<c:when test="${empty sessionScope. }">  --%>
-<!-- 									<button id="chargePay" class="use_button charge"  type="button" onclick="authAccount()">충전하기</button> -->
-<%-- 								</c:when> --%>
-<!-- 								있을때(사용) -->
-<%-- 								<c:when test="${not empty sessionScope. }">  --%>
-<!-- 									<button id="usePay" class="use_button"  type="button">사용하기</button> -->
-<%-- 								</c:when> --%>
-<%-- 							</c:choose> --%>
-							<%--충전하기 임시버튼 --%>
-<!-- 							<br> -->
-<!-- 							<button onclick="charge()">충전하기(임시버튼)</button> -->
+							<button id="chargePay" class="use_button charge" type="button" >사용하기</button>
+					
 						</div>
 				</section>
-				
 				<!-- 결제수단================================================= -->
 				<section id="leftSec04" class="section_box">
 					<h2>결제수단</h2>
@@ -385,31 +371,33 @@
 							<div class="total_detail">
 								<span class="total_info">총 결제 금액</span>
 								<span class="total_price" >
-									<span id="totalPayment_text">{total}</span>
+								 
+									<span id="totalPayment_text">0</span>
 									원
 								</span>
 							</div>
 						</div>
 					</section>
 					
-					
 				</div>
 			</div>
 		</div>
 	</div>
+	<%-- 페이사용하기 버튼을 누르면 계좌 등록여부 판별을 위해 핀테크번호 넘기기  --%>
+ 	<input type="hidden" value="${allList.user_seq_no}" id="user_seq_no">
 			<%--info페이지에 필요한 할인전 예약금액 --%>
 	<%-- 		<input type="hidden" value="${map.paymentInfo.totalPrice}" name="beforeDiscountTotalPrice"/> --%>
-			<input type="hidden" value="${map.res.res_idx}" name="res_idx" id="res_idx"/>
-			<input type="hidden" value="${map.pay}" name="pay_num" id="pay_num"/>
+<%-- 			<input type="hidden" value="${map.res.res_idx}" name="res_idx" id="res_idx"/> --%>
+<%-- 			<input type="hidden" value="${map.pay}" name="pay_num" id="pay_num"/> --%>
 			<!-- 결제자(회원)와 예약자가 다를 수 있기 때문에 결제자 정보 저장 -->
-			<input type="hidden" value="${map.member.user_email}" name="user_email" id="user_email"/>
-			<input type="hidden" value="${map.member.user_name}" name="user_name" id="user_name"/>
-			<input type="hidden" value="${map.member.user_phone}" name="user_phone" id="user_phone"/>
-			<input type="hidden" value="" name="pay_card_co" id="pay_card_co"/>
-			<input type="hidden" value="" name="discountPoint" id="discountPoint"/>
-			<input type="hidden" value="" name="earnedPoints" id="earnedPoints" />
-			<input type="hidden" value="" name="totalPayment"  id="totalPayment"/>
-			<input type="hidden" value="" name="preOrderTotalPrice"  id="preOrderTotalPrice"/>
+<%-- 			<input type="hidden" value="${allList.user_email}" name="user_email" id="user_email"/> --%>
+<%-- 			<input type="hidden" value="${map.member.user_name}" name="user_name" id="user_name"/> --%>
+<%-- 			<input type="hidden" value="${map.member.user_phone}" name="user_phone" id="user_phone"/> --%>
+<!-- 			<input type="hidden" value="" name="pay_card_co" id="pay_card_co"/> -->
+<!-- 			<input type="hidden" value="" name="discountPoint" id="discountPoint"/> -->
+<!-- 			<input type="hidden" value="" name="earnedPoints" id="earnedPoints" /> -->
+<!-- 			<input type="hidden" value="" name="totalPayment"  id="totalPayment"/> -->
+<!-- 			<input type="hidden" value="" name="preOrderTotalPrice"  id="preOrderTotalPrice"/> -->
 		</form>
 	</main>
 	

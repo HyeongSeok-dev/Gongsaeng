@@ -5,9 +5,9 @@
 <mapper namespace="kr.co.gongsaeng.mapper.PaymentMapper">
 
 	<!-- 상세페이지에서 결제하기버튼 눌렀을때 출력되는 리스트 -->
-	<select id="paymentList" resultType="payment">
+	<select id="classList" resultType="gclass">
 		SELECT *
-		FROM payment
+		FROM class
 		WHERE class_idx = #{class_idx}
 	</select>
 	
@@ -16,6 +16,14 @@
 		SELECT *
 		FROM coupon
 		WHERE member_id = #{member_id}
+	</select>
+	
+	<!-- account 테이블, cash테이블 조인해서 모든정보 가지고오기 -->
+	<select id="allListSelect" resultType="cash">
+		 SELECT *
+	    FROM cash
+	    LEFT JOIN account ON cash.member_id = account.member_id
+	    WHERE cash.member_id = #{member_id}
 	</select>
 	
 </mapper>

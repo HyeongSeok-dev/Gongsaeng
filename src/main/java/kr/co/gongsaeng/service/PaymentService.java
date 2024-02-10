@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.gongsaeng.mapper.PaymentMapper;
-import kr.co.gongsaeng.vo.CouponVO;
-import kr.co.gongsaeng.vo.PaymentVO;
+import kr.co.gongsaeng.vo.*;
 
 @Service
 public class PaymentService {
@@ -16,9 +15,9 @@ public class PaymentService {
 	private PaymentMapper mapper;
 
 	//상세페이지에서 결제하기버튼 눌렀을때 출력되는 리스트
-	public List<PaymentVO> getPaymentListSelect(int class_idx) {
+	public List<PaymentVO> getClassListSelect(int class_idx) {
 		
-		List<PaymentVO> result = mapper.paymentList(class_idx);
+		List<PaymentVO> result = mapper.classList(class_idx);
 		
 		return result;
 	}
@@ -30,6 +29,18 @@ public class PaymentService {
 		
 		return result;
 	}
+
+	//account 테이블, cash테이블 조인해서 모든정보 가지고오기
+	public List<CashVO> getAllListSelect(String member_id) {
+		
+		List<CashVO> result = mapper.allListSelect(member_id);
+		
+		return result;
+	}
+
+
+	
+	
 
 
 	

@@ -66,20 +66,23 @@ function calculateTotal() {
     var cart_idx = $(this).val(); // 삭제하려는 상품의 클래스 번호
 	console.log("cart_idx : " + cart_idx);
 
+	var result = confirm("상품을 장바구니에서 삭제하시겠습니까?");
 
-    $.ajax({
-        type: "POST",
-        url: "deleteCart",
-        data: { cart_idx : cart_idx },
-        success: function(response) {
-            if(response) { // 성공
-                alert("상품을 장바구니에서 삭제했습니다.");
-                 location.reload();
-            } else { // 실패
-                alert("상품을 장바구니에서 삭제하는데 실패했습니다.");
-              }
-	        }    
-	    });//ajax
+			if(result) { // '확인'을 눌렀을 때
+			    $.ajax({
+			        type: "POST",
+			        url: "deleteCart",
+			        data: { cart_idx : cart_idx },
+			        success: function(response) {
+			            if(response) { // 성공
+			                alert("상품을 장바구니에서 삭제했습니다.");
+			                location.reload();
+			            } else { // 실패
+			                alert("상품을 장바구니에서 삭제하는데 실패했습니다.");
+			            }
+			        }    
+			    }); //ajax
+			} 
 	});
 	
 	//장바구니에 수량변경===============================================

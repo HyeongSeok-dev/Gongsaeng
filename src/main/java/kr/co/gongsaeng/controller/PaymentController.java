@@ -18,10 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import kr.co.gongsaeng.service.BankService;
 import kr.co.gongsaeng.service.CartService;
 import kr.co.gongsaeng.service.PaymentService;
-import kr.co.gongsaeng.vo.CartListVO;
-import kr.co.gongsaeng.vo.CouponVO;
-import kr.co.gongsaeng.vo.PaymentVO;
-import kr.co.gongsaeng.vo.ResponseTokenVO;
+import kr.co.gongsaeng.vo.*;
 
 @Controller
 public class PaymentController {
@@ -65,7 +62,7 @@ public class PaymentController {
             model.addAttribute("List", cartService.getCartListSelect(member_id));
         } else if (type.equals("pay")) {
         	//상세페이지에서 넘어올때
-            model.addAttribute("List", paymentService.getPaymentListSelect(class_idx));
+            model.addAttribute("List", paymentService.getClassListSelect(class_idx));
         }
 				
 		//============================================================================
@@ -76,6 +73,12 @@ public class PaymentController {
 		//============================================================================
 		//최종결제금액 파라미터로 넘김
 		model.addAttribute("total", total);
+		
+		//account 테이블, cash테이블 조인해서 모든정보 가지고오기
+		List<CashVO> allList = paymentService.getAllListSelect(member_id);
+		model.addAttribute("allList", allList);
+		
+		logger.info("allList.toString()  : " + allList.toString());
 		
 		return "payment/payment";
 	}
