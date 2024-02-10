@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -65,7 +66,7 @@
     <jsp:include page="../inc/top.jsp"></jsp:include>
     <br>
      <div class="container">
-        <form action="writePro" method="post" enctype="multipart/form-data">
+        <form action="modifyPro" method="post" enctype="multipart/form-data">
         <div class="col-lg-10 col-lg-offset-1">
             <div class="form-group">
                 <div class="row">
@@ -120,18 +121,6 @@
 							</div>
 					<!-- ========================================================================== -->
 					<!-- 파일업로드용 -->
-					<c:choose>
-						<c:when test="${not empty board.board_file1}">
-							<c:set var="original_file_name1" value="${fn:substringAfter(board.board_img1, '_')}"/>
-							<a href="${pageContext.request.contextPath }/resources/upload/${board.board_img1}" download="${original_file_name1}">${original_file_name1}</a>
-							<a href="javascript:deleteFile(${board.board_num}, '${board.board_file1}', 1)">
-								<img src="${pageContext.request.contextPath }/resources/images/delete-icon.png" class="img_btnDelete">
-							</a>
-						</c:when>
-						<c:otherwise>
-							<input type="file" name="file1" />
-						</c:otherwise>
-					</c:choose>
 					<input type="file" id="sumimage" name="file1" style="display: none;" accept=".jpg, .jpeg, .png">
 					<input type="file" id="imageFile1" name="file2" style="display: none;" accept=".jpg, .jpeg, .png">
 					<input type="file" id="imageFile2" name="file3" style="display: none;" accept=".jpg, .jpeg, .png">
@@ -143,13 +132,11 @@
 								<!-- 프리뷰 이미지1 -->
 								<div id="img_zone">
 									<div id="img_preview0">
-										<input type="image" class="image" id="imgup_sum" onclick="send_0();" src="" width="150px" height="150px"/> 
+										<input type="image" class="image" id="imgup_sum" value="${board.board_img1 }" onclick="send_0();" src="" width="150px" height="150px"/> 
 										<span id="sum_style">대표 이미지</span>
 										<!-- 삭제버튼 -->
 										<span id="del_sum" class="chk_style" onclick="del_sum();">x</span>
 									</div>
-	
-	
 								<!-- 프리뷰 이미지2 -->
 									<div id="img_preview1">
 										<input type="image" class="image" id="imgup_1" onclick="send_1();" src="" width="150px" height="150px" />

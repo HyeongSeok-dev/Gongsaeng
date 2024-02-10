@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.co.gongsaeng.mapper.BoardMapper">
+<mapper namespace="kr.co.gongsaeng.mapper.CommunityMapper">
 	<insert id="insertBoard">
 	<selectKey keyProperty="board_idx" resultType="int" order="BEFORE">
 		SELECT IFNULL(MAX(board_idx), 0)

@@ -135,7 +135,7 @@
 						    <div class="cm_thumbnail">
 						        <c:choose>
 						            <c:when test="${not empty board.board_img1}">
-						                <img src="${pageContext.request.contextPath }/resources/upload/${board.board_img1}" alt="이미지">
+						                <img src="${pageContext.request.contextPath }/resources/upload/${board.board_img1}" style="width:150px; height: 150px;" alt="이미지">
 						            </c:when>
 						            <c:otherwise>
 						                <!-- board_img1이 없는 경우, 아무것도 출력하지 않음 -->

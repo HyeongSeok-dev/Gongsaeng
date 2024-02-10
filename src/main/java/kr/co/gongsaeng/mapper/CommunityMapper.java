@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Param;
 import kr.co.gongsaeng.vo.BoardVO;
 
 @Mapper
-public interface BoardMapper {
+public interface CommunityMapper {
 	
 	// 글쓰기
 	int insertBoard(BoardVO board);
