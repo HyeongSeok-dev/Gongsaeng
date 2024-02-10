@@ -67,7 +67,7 @@ public class ClassVO {
 	
 	
 	// [관리자 페이지]
-	// 회원(반장) 상세페이지
+	// 회원/사업체 상세페이지
 	private String totalClass; // 총 등록
 	private String oneDayClass; // 원데이 등록
 	private String regularClass; // 정기 등록
@@ -76,9 +76,12 @@ public class ClassVO {
 	private String com_name; // 사업체이름
 	private String classReportCount; // 신고받은 수
 	
+	
 	// [메인]
 	private String com_idx;		// 사업장 번호
     private int resTotalCount; 	// 예약수
     private int bookmarkCount; 	// 북마크수
     private int isBookmark_idx;	// 세션 아이디의 북마크 번호
+    
+    
 }

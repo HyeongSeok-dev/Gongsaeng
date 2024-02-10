@@ -50,5 +50,18 @@ public class PaymentVO {
 	private String payFee;
 	private String payRef;
 
+	// 사업체 상세 페이지
+	// 환급금
+	private String refSum; // 가능
+	private String monthlyRef; // 금월
+	private String totalRef; // 누적
+	
+	// 예약건
+	private String monthlyRes; //총 금월
+	private String totalRes; //총 누적
+	private String monthlyOneRes; //원데이 금월
+	private String totalOneRes; //원데이 누적
+	private String monthlyRegularRes; //정기 금월
+	private String totalRegularRes; //정기 누적
 
 }
