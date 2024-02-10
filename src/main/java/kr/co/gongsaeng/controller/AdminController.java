@@ -246,7 +246,7 @@ public class AdminController {
 //		return "admin/dashboard/company";
 //	}
 	
-	//========================================회원 관리
+	//========================================[ 회원 관리 ]
 	// 회원 목록
 	@GetMapping("admin/member")
 	public String memberListForm(HttpSession session, Model model) {
@@ -601,7 +601,27 @@ public class AdminController {
 		return "admin/member/review";
 	}
 	
-	//=================================================사업체 관리
+	// 회원상세 사업체 등록 클래스 목록
+		@GetMapping("admin/member/class")
+		public String memberComClassForm(HttpSession session, Model model,@RequestParam String member_id ) {
+//			if(session.getAttribute("sId") == null) {
+//			model.addAttribute("msg", "로그인이 필요합니다");
+//			model.addAttribute("targetURL", "/gongsaeng/login");
+//			return "forward";
+//		} else if(!session.getAttribute("sId").equals("admin")) {
+//			model.addAttribute("msg", "잘못된 접근 입니다.");
+//			return "fail_back";
+//		}
+		
+			
+			List<ClassVO> classList = service.getClassList(member_id);
+			
+			
+			log.info("classList?>>>" + classList);
+			model.addAttribute("classList", classList);
+			return "admin/company/class";
+		}
+	//=================================================[ 사업체 관리 ]
 	//사업체 목록
 	@GetMapping("admin/company")
 	public String companyForm(HttpSession session, Model model) {
@@ -652,16 +672,37 @@ public class AdminController {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}
+		// 사업체 정보
 		CompanyVO com = service.getCompany(member_id);
 		
+//		 사업체 환급금 조회
+		PaymentVO refund = service.getRegRefund(com.getCom_idx()); 
 		
+		// 등록 클래스수 조회
+		ClassVO regClass = service.getRegClassCount(com.getMember_id());
+		
+		// 클래스 예약 내역 조회
+		PaymentVO regPay = service.getRegPay(com.getCom_idx());
+
+		// 피신고건수
+		ReportVO reportCount = service.getReportCount(member_id);		
+		
+//		// 등록 클래스별 신고수/리뷰수
+//		int reviewStar = 0; //평균 별점
+//		int reviewMontlyLike = 0; //금월 추천수 
+//		int reviewLike = 0; //누적 추천수
+
 		model.addAttribute("com",com);
+		model.addAttribute("refund",refund);
+		model.addAttribute("regClass",regClass);
+		model.addAttribute("regPay",regPay);
+		model.addAttribute("reportCount",reportCount);
 		return "admin/company/company_detail";
 	}
 	
 	// 사업체 등록 클래스 목록
 	@GetMapping("admin/company/class")
-	public String companyClassForm(HttpSession session, Model model) {
+	public String companyClassForm(HttpSession session, Model model ) {
 //		if(session.getAttribute("sId") == null) {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
@@ -670,9 +711,9 @@ public class AdminController {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}
-	
+		String member_id = "";
+		List<ClassVO> classList = service.getClassList(member_id);
 		
-		List<ClassVO> classList = service.getClassList();
 		
 		log.info("classList?>>>" + classList);
 		model.addAttribute("classList", classList);
@@ -854,6 +895,7 @@ public class AdminController {
 		model.addAttribute("couponList",couponList);
 		return "admin/marketing/coupon";
 	}
+	//==========================================[ 공지사항 ]
 	@GetMapping("admin/cs/chat")
 	public String csChat() {
 		return "admin/cs/chat";
@@ -874,6 +916,7 @@ public class AdminController {
 //		model.addAttribute("boardList",boardList);
 		return "admin/cs/faq";
 	}
+	
 	@GetMapping("admin/cs/notice")
 	public String csNotice(HttpSession session, Model model) {
 //		if(session.getAttribute("sId") == null) {
@@ -904,40 +947,10 @@ public class AdminController {
 		return "admin/cs/faq_detail";
 	}
 	
-	//---------------------------
-	@GetMapping("admin/dashboard2")
-	public String dashboard2() {
-		return "admin/dashboard2";
-	}
-	@GetMapping("admin/typography")
-	public String typography() {
-		return "admin/typography";
-	}
-	@GetMapping("admin/upgrade")
-	public String upgrade() {
-		return "admin/upgrade";
-	}
+	//---------------------------[ sample ]
 	@GetMapping("admin/icons")
 	public String icons() {
 		return "admin/backup/icons";
 	}
-	@GetMapping("admin/notifications")
-	public String notifications() {
-		return "admin/notifications";
-	}
-	@GetMapping("admin/tables")
-	public String tables() {
-		return "admin/tables";
-	}
-	@GetMapping("admin/user2")
-	public String user2() {
-		return "admin/user2";
-	}
-//	@GetMapping("admin/map")
-//	public String map() {
-//		return "admin/map";
-//	}
-	
-	
 			
 }

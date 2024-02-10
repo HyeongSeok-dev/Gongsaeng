@@ -24,9 +24,12 @@ public interface AdminMapper {
 	// member.jsp
 	// 회원목록조회
 	List<MemberVO> selectMemberList();
-	// 필터링 목록조회
-	List<MemberVO> selectMemberFilterList(MemberVO member);
-	
+	// 회원목록 전체체크 모두 해제되어있음
+	List<MemberVO> selectFilterMemberNotAll(AdminFilterVO map);
+	// 회원목록 전체체크 상태 해제되어있음
+	List<MemberVO> selectFilterMemberCategoryAll(AdminFilterVO map);
+	// 회원목록 전체체크 분류 해제되어있음
+	List<MemberVO> selectFilterMemberStatusAll(AdminFilterVO map);
 	
 	// member_detail.jsp
 	// 회원정보조회
@@ -62,7 +65,7 @@ public interface AdminMapper {
 	
 	// class.jsp
 	// 클래스 목록
-	List<ClassVO> selectClassList();
+	List<ClassVO> selectClassList(String member_id);
 	
 	// account_member.jsp
 	// 등록계좌 목록
@@ -139,12 +142,15 @@ public interface AdminMapper {
 	//그래프 올해 월별 회원 가입수
 	AdminVO selectThisYearMem();
 	
-	// 회원목록 전체체크 모두 해제되어있음
-	List<MemberVO> selectFilterMemberNotAll(AdminFilterVO map);
-	// 회원목록 전체체크 상태 해제되어있음
-	List<MemberVO> selectFilterMemberCategoryAll(AdminFilterVO map);
-	// 회원목록 전체체크 분류 해제되어있음
-	List<MemberVO> selectFilterMemberStatusAll(AdminFilterVO map);
+	// company_detail.jsp
+	// 환급금
+	PaymentVO selectRegRefund(int com_idx);
+	// 등록 클래스수 
+	ClassVO selectRegClassCount(String member_id);
+	// 클래스 예약 내역
+	PaymentVO selectRegPay(int com_idx);
+	// 피신고건수
+	ReportVO selectReportCount(String member_id);
 	
 	
 	

@@ -131,7 +131,7 @@
 		             		</td>
 		             	</tr>
 		             	<tr>
-		             		<th>제목</th>
+		             		<th>내용</th>
 		             		<td>
 		             			<textarea class="register_textarea">
 		             			

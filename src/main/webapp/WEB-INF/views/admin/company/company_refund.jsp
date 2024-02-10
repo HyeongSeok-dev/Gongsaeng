@@ -175,9 +175,9 @@
 			                </c:choose>
 			                </td>
 			                <td>${refund.com_name }</td>
-			                <td class="int">${refund.regPay}</td>
-			                <td class="int">${refund.payFee}</td>
-			                <td class="int">${refund.payRef}</td>
+			                <td class="regPay">${refund.payment} 원</td>
+			                <td class="payFee"> 원</td>
+			                <td class="payRef">원</td>
 			                <td>
 								<c:choose>
 									<c:when test="${refund.pay_cal_status eq 2 }"> <%-- 정산신청 --%>

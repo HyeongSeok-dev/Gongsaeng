@@ -46,9 +46,9 @@ public class PaymentVO {
 	private String class_category;
 	
 	// 환급목록 신청금액 수수료 최종환급금액
-	private String regPay;
-	private String payFee;
-	private String payRef;
+//	private String regPay;
+//	private String payFee;
+//	private String payRef;
 
 	// 사업체 상세 페이지
 	// 환급금

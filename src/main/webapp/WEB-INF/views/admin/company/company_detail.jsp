@@ -201,25 +201,49 @@
 	             		 	<a class="more_info" href="${pageContext.request.contextPath }/admin/company/refund?member_id=${com.member_id}">더보기</a>
 	             		</th>
 						<th class="detail_table">환급가능금액</th>
-						<th class="detail_table">이번달 환급금</th>
+						<th class="detail_table">금월 환급금</th>
 						<th class="detail_table">누적 환급금</th>
 					</tr>             	
 	             	<tr>
 	             		<td>
-	             			0 원
+	             			<c:choose>
+								<c:when test="${empty refund.refSum }">
+									0
+								</c:when>
+								<c:otherwise>
+			             			${refund.refSum } 
+								</c:otherwise>
+	             			</c:choose>
+	             			 원
 	             		</td>
 	             		<td>
-	             			0 원
+	             			<c:choose>
+								<c:when test="${empty refund.monthlyRef }">
+									0
+								</c:when>
+								<c:otherwise>
+			             			${refund.monthlyRef } 
+								</c:otherwise>
+	             			</c:choose>
+	             			 원
 	             		</td>
 	             		<td>
-	             			0 원
+	             			<c:choose>
+								<c:when test="${empty refund.totalRef }">
+									0
+								</c:when>
+								<c:otherwise>
+			             			${refund.totalRef } 
+								</c:otherwise>
+	             			</c:choose>
+	             			 원
 	             		</td>
 					</tr>
 					    
 					<tr>
 	             		<th rowspan="2">
 		             		등록클래스 수<br>
-		             		<a class="more_info" href="${pageContext.request.contextPath }/admin/company/class?member_id?${com.member_id}">더보기</a>
+		             		<a class="more_info" href="${pageContext.request.contextPath }/admin/member/class?member_id=${com.member_id}">더보기</a>
 	             		</th>
 						<th class="detail_table">총</th>
 						<th class="detail_table">원데이</th>
@@ -227,20 +251,20 @@
 					</tr>             	
 	             	<tr>
 	             		<td>
-	             			0 건
+	             			${regClass.totalClass } 건
 	             		</td>
 	             		<td>
-	             			0 건
+	             			${regClass.oneDayClass } 건
 	             		</td>
 	             		<td>
-	             			0건
+	             			${regClass.regularClass } 건
 	             		</td>
 					</tr>    
 					    
 					<tr>
 	             		<th rowspan="2">
-	             			클래스 예약 내역<br>
-	             			<a class="more_info" href="${pageContext.request.contextPath }/admin/company/pay/detail?member_id=${com.member_id}">더보기</a>
+	             			클래스 예약건 수<br>
+	             			<a class="more_info" href="${pageContext.request.contextPath }/admin/company/res/detail?member_id=${com.member_id}">더보기</a>
 	             		</th>
 						<th class="detail_table">총</th>
 						<th class="detail_table">원데이</th>
@@ -248,44 +272,45 @@
 					</tr>             	
 	             	<tr>
 	             		<td>
-	             			이달 0 건 / 누적 0 건
+	             			금월 ${regPay.monthlyRes } 건 / 누적 ${regPay.totalRes } 건
 	             		</td>
 	             		<td>
-	             			이달 0 건 / 누적 0 건
+	             			금월 ${regPay.monthlyOneRes } 건 / 누적 ${regPay.totalOneRes } 건
 	             		</td>
 	             		<td>
-	             			이달 0 건 / 누적 0 건
+	             			금월 ${regPay.monthlyRegularRes } 건 / 누적 ${regPay.totalRegularRes } 건
 	             		</td>
 					</tr>    
 					    
-					<tr>
-	             		<th rowspan="2">
-	             			리뷰 수<br>
-	             			<a class="more_info" href="${pageContext.request.contextPath }/admin/company/review?member_id=${com.member_id}">더보기</a>
-	             		</th>
-						<th class="detail_table">평균 별점</th>
-						<th class="detail_table">이달 추천 수</th>
-						<th class="detail_table">누적 추천 수</th>
-					</tr>             	
-	             	<tr>
-	             		<td>
-	             			0 점
-	             		</td>
-	             		<td>
-	             			0 건
-	             		</td>
-	             		<td>
-	             			0 건
-	             		</td>
-					</tr>    
+					    <!-- 클래스 상세로?? -->
+<!-- 					<tr> -->
+<!-- 	             		<th rowspan="2"> -->
+<!-- 	             			리뷰 수<br> -->
+<%-- 	             			<a class="more_info" href="${pageContext.request.contextPath }/admin/company/review?member_id=${com.member_id}">더보기</a> --%>
+<!-- 	             		</th> -->
+<!-- 						<th class="detail_table">평균 별점</th> -->
+<!-- 						<th class="detail_table">금월 추천 수</th> -->
+<!-- 						<th class="detail_table">누적 추천 수</th> -->
+<!-- 					</tr>             	 -->
+<!-- 	             	<tr> -->
+<!-- 	             		<td> -->
+<!-- 	             			0 점 -->
+<!-- 	             		</td> -->
+<!-- 	             		<td> -->
+<!-- 	             			0 건 -->
+<!-- 	             		</td> -->
+<!-- 	             		<td> -->
+<!-- 	             			0 건 -->
+<!-- 	             		</td> -->
+<!-- 					</tr>     -->
 					
 					<tr>
 	             		<th rowspan="2">
 	             			피신고건 수<br>
 	             			<a class="more_info" href="${pageContext.request.contextPath }/admin/company/report?member_id${com.member_id}">더보기</a>
 	             		</th>
-						<th class="detail_table">전달</th>
-						<th class="detail_table">이달</th>
+						<th class="detail_table">전월</th>
+						<th class="detail_table">금월</th>
 						<th class="detail_table">누적</th>
 					</tr>             	
 	             	<tr>
@@ -306,8 +331,8 @@
         </div>
         <div class="row">
         	<div class="col-md-12 btn_bottom">
-	        	<button type="button" class="btn">목록</button>&nbsp;&nbsp;
-	        	<button type="button" class="btn">변경저장</button>
+	        	<button type="button" class="btn btn_default">목록</button>&nbsp;&nbsp;
+	        	<button type="button" class="btn btn_default">변경저장</button>
         	</div>
         </div>
       </div>
@@ -348,8 +373,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                    <button type="button" class="btn btn-primary">적용</button>
+                    <button type="button" class="btn btn_default" data-dismiss="modal">닫기</button>
+                    <button type="button" class="btn btn_default">적용</button>
                 </div>
             </div>
         </div>

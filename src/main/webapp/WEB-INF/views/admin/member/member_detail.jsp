@@ -264,7 +264,7 @@
 						</tr>             	
 		             	<tr>
 		             		<td> <%-- 총 --%>
-		             			이달
+		             			금월
 		             			<c:choose>
 									<c:when test="${payCount.classMonthRes eq null}">
 				             			0
@@ -285,7 +285,7 @@
 		             			 건
 		             		</td>
 		             		<td> <%-- 원데이 --%>
-		             			이달
+		             			금월
 		             			<c:choose>
 									<c:when test="${payCount.oneDayMonthRes eq null}">
 				             			0
@@ -306,7 +306,7 @@
 		             			 건
 		             		</td>
 		             		<td> <%-- 정기 --%>
-		             			이달
+		             			금월
 		             			<c:choose>
 									<c:when test="${payCount.regularMonthRes eq null}">
 				             			0
@@ -334,12 +334,12 @@
 		             			<!-- 리뷰리스트랑 같이씀 member_id들고가기 -->
 		             			<a class="more_info" href="${pageContext.request.contextPath }/admin/member/review?member_id=${member.member_id}">더보기</a>
 		             		</th>
-							<th class="detail_table">이달</th>
+							<th class="detail_table">금월</th>
 							<th class="detail_table">누적</th>
 							<th class="detail_table">피신고건 수</th>
 						</tr>             	
 		             	<tr>
-		             		<td> <%-- 이달 --%>
+		             		<td> <%-- 금월 --%>
 		             			<c:choose>
 									<c:when test="${reviewCount.reviewMonth eq null}">
 				             			0
@@ -403,7 +403,7 @@
 			             		<th>
 			             			등록클래스
 			             			<!-- 특정 사업체의 등록 클래스 목록 -->
-			             			<a class="more_info" href="${pageContext.request.contextPath }/admin/company/class?member_id=${member.member_id}">더보기</a>
+			             			<a class="more_info" href="${pageContext.request.contextPath }/admin/member/class?member_id=${member.member_id}">더보기</a>
 			             		</th>
 			             		<td>
 			             			총

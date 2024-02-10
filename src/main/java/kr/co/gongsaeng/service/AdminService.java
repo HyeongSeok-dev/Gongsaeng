@@ -32,10 +32,6 @@ public class AdminService {
 		return mapper.selectMemberList();
 	}
 	
-	public List<MemberVO> getMemberFilterList(MemberVO member , CompanyVO company) {
-		return mapper.selectMemberFilterList(member);
-	}
-
 	// member_detail.jsp
 	// 회원 상세 조회
 	public MemberVO getMember(String member_id) {
@@ -94,8 +90,8 @@ public class AdminService {
 		return mapper.selectCompanyList();
 	}
 
-	public List<ClassVO> getClassList() {
-		return mapper.selectClassList();
+	public List<ClassVO> getClassList(String member_id) {
+		return mapper.selectClassList(member_id);
 	}
 
 	public List<AccountVO> getAccountList() {
@@ -232,6 +228,7 @@ public class AdminService {
 		return mapper.selectThisYearMem();
 	}
 
+	// member.jsp 필터링
 	public List<MemberVO> getFilterMemberList(String checkStatus, AdminFilterVO map) {
 
 		if(checkStatus.equals("notAll")) {
@@ -242,6 +239,23 @@ public class AdminService {
 			return mapper.selectFilterMemberStatusAll(map);
 		}
 		
+	}
+
+	// company_detail.jsp
+	public PaymentVO getRegRefund(int com_idx) {
+		return mapper.selectRegRefund(com_idx);
+	}
+
+	public ClassVO getRegClassCount(String member_id) {
+		return mapper.selectRegClassCount(member_id);
+	}
+
+	public PaymentVO getRegPay(int com_idx) {
+		return mapper.selectRegPay(com_idx);
+	}
+
+	public ReportVO getReportCount(String member_id) {
+		return mapper.selectReportCount(member_id);
 	}
 
 

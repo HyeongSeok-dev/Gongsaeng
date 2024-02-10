@@ -186,7 +186,7 @@
 			            </tr>
 			            <!-- 회원 데이터 로우 -->
 			            <c:forEach var="com" items="${comList }">
-				            <tr class="tr_hover" onclick="location.href='${pageContext.request.contextPath }/admin/company/detail?com_idx=${com.com_idx }'">
+				            <tr class="tr_hover" onclick="location.href='${pageContext.request.contextPath }/admin/company/detail?member_id=${com.member_id }'">
 				                <td>${com.com_date }</td>
 				                <td>
 				                	<c:choose>

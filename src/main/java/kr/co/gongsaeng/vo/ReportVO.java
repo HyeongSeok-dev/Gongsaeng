@@ -23,4 +23,9 @@ public class ReportVO {
 	private String banjangMember_id;
 	private String reviewerMember_id;
 	private String com_name;
+	
+	// 피신고건수(company_detail)
+	private int reportBeforCount;//전월 
+	private int reportMonthlyCount;//금월 
+	private int reportCount;//누적 
 }

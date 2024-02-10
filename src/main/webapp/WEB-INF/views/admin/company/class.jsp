@@ -100,7 +100,16 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h5 class="title">클래스 목록</h5>
+                <h5 class="title">
+                	<c:choose>
+                		<c:when test="${empty param.member_id}">
+			                클래스 목록
+                		</c:when>
+                		<c:otherwise>
+			                ${param.member_id}님 클래스 목록
+                		</c:otherwise>
+                	</c:choose>
+                </h5>
               </div>
               <div class="card-body">
               	<div class="row checkbox_row">
@@ -178,7 +187,7 @@
 			            </tr>
 			            <!-- 회원 데이터 로우 -->
 			            <c:forEach var="c" items="${classList }">
-				            <tr class="tr_hover" onclick="location.href='${pageContext.request.contextPath }/admin/company/class/detail'">
+				            <tr class="tr_hover" onclick="location.href='${pageContext.request.contextPath }/admin/company/class/detail?class_idx=${c.class_idx }'">
 				                <td>${c.class_date }</td>
 				                <td>
 				                	<c:choose>

@@ -182,7 +182,7 @@
 		            	</b>건
 		            </a>
 		             <hr>
-		            <a onclick="location.href='${pageContext.request.contextPath }/admin/company/class'">
+		            <a onclick="location.href='${pageContext.request.contextPath }/admin/report/class'">
 		            	클래스 신고 : <b id="newClassReport">
 		            	<c:choose>
 		            		<c:when test="${empty admin.newClassReport}">
@@ -195,7 +195,7 @@
 		            	</b>건
 		            </a>
 		             <hr>
-		            <a onclick="location.href='${pageContext.request.contextPath }/admin/report/class'">
+		            <a onclick="location.href='${pageContext.request.contextPath }/admin/report/review'">
 		            	리뷰 신고 : <b id="newReviewReport">
 		            	<c:choose>
 		            		<c:when test="${empty admin.newReviewReport}">
