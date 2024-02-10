@@ -63,14 +63,14 @@
               </div>
             </form>
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons ui-1_calendar-60"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">달력</span>
-                  </p>
-                </a>
-              </li>
+<!--               <li class="nav-item"> -->
+<!--                 <a class="nav-link" href="#pablo"> -->
+<!--                   <i class="now-ui-icons ui-1_calendar-60"></i> -->
+<!--                   <p> -->
+<!--                     <span class="d-lg-none d-md-block">달력</span> -->
+<!--                   </p> -->
+<!--                 </a> -->
+<!--               </li> -->
               <li class="nav-item">
                 <a class="nav-link" href="#pablo">
                   <i class="now-ui-icons ui-2_chat-round"></i>
@@ -103,9 +103,9 @@
                 <h5 class="title">클래스 목록</h5>
               </div>
               <div class="card-body">
-              	<div class="row">
+              	<div class="row checkbox_row">
                		<div class="col-md-7 checkbox_div">
-               			<div>
+<!--                			<div> -->
 		               		<div class="row col_checkbox">
 				              	<input type="checkbox" value="0" name="class_main_category" id="mainCategoryAllCheck"> &nbsp;대분류 전체&nbsp;
 				              	<input type="checkbox" value="1" name="class_main_category" class="class_main_category"> &nbsp;바닥 시공&nbsp;
@@ -123,7 +123,7 @@
 				              	<input type="checkbox" value="4" name="class_sub_category" class="class_sub_category"> &nbsp;<span>가구 리폼</span>&nbsp;
 				              	<input type="checkbox" value="5" name="class_sub_category" class="class_sub_category"> &nbsp;<span>붙박이장 시공</span>&nbsp;
 			              	</div>
-               			</div>
+<!--                			</div> -->
 	              	</div>
 	              	<div class="col-md-5">
 	              		<form action="" class="member_date">
@@ -250,6 +250,7 @@
 												<c:when test="${c.class_sub_category eq 5}">
 													단열 필름 시공
 												</c:when>
+												<c:otherwise>기타 시공</c:otherwise>
 											</c:choose>		
 				                		</c:when>
 				                		<c:when test="${c.class_main_category eq 3}">
@@ -269,6 +270,7 @@
 												<c:when test="${c.class_sub_category eq 5}">
 													붙박이장 시공 
 												</c:when>
+												<c:otherwise>기타 시공</c:otherwise>
 											</c:choose>					                		
 				                		</c:when>
 				                		<c:when test="${c.class_main_category eq 4}">
@@ -288,6 +290,7 @@
 												<c:when test="${c.class_sub_category eq 5}">
 													외벽 리모델링 
 												</c:when>
+												<c:otherwise>기타 시공</c:otherwise>
 											</c:choose>		
 				                		</c:when>
 				                		<c:when test="${c.class_main_category eq 5}">
@@ -307,6 +310,7 @@
 												<c:when test="${c.class_sub_category eq 5}">
 													인테리어 소품
 												</c:when>
+												<c:otherwise>기타</c:otherwise>
 											</c:choose>		
 				                		</c:when>
 				                		<c:when test="${c.class_main_category eq 6}">
@@ -320,6 +324,7 @@
 												<c:when test="${c.class_sub_category eq 3}">
 													미장 시공
 												</c:when>
+												<c:otherwise>기타 시공</c:otherwise>
 											</c:choose>		
 				                		</c:when>
 				                	</c:choose>

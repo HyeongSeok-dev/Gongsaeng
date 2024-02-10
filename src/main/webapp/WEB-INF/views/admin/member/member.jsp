@@ -63,14 +63,14 @@
               </div>
             </form>
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons ui-1_calendar-60"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">달력</span>
-                  </p>
-                </a>
-              </li>
+<!--               <li class="nav-item"> -->
+<!--                 <a class="nav-link" href="#pablo"> -->
+<!--                   <i class="now-ui-icons ui-1_calendar-60"></i> -->
+<!--                   <p> -->
+<!--                     <span class="d-lg-none d-md-block">달력</span> -->
+<!--                   </p> -->
+<!--                 </a> -->
+<!--               </li> -->
               <li class="nav-item">
                 <a class="nav-link" href="#pablo">
                   <i class="now-ui-icons ui-2_chat-round"></i>
@@ -107,25 +107,25 @@
 	               <div class="row">
 		               <div class="col-md-6 col_checkbox_2">
 				            <div class="row row_checkbox">
-					              	<input type="checkbox" value="0" name="member_status" id="statusAllCheck"
-					              		<c:if test="${param.member_status eq '0'}">checked</c:if>> &nbsp;전체선택&nbsp;
-					              	<input type="checkbox" value="1" name="member_status" class="member_status" id="statusNormal"
+					              	<input type="checkbox" value="0" name="member_status0" id="statusAllCheck"
+					              		<c:if test="${param.member_status eq '0'}">checked</c:if>> &nbsp;전체상태&nbsp;
+					              	<input type="checkbox" value="1" name="member_status1" class="member_status" id="statusNormal"
 					              		<c:if test="${param.member_status eq '1'}">checked</c:if>> &nbsp;정상&nbsp;
-					              	<input type="checkbox" value="2" name="member_status" class="member_status" id="statusDormantl"
+					              	<input type="checkbox" value="2" name="member_status2" class="member_status" id="statusDormantl"
 					              		<c:if test="${param.member_status eq '2'}">checked</c:if>> &nbsp;휴면&nbsp;
-					              	<input type="checkbox" value="3" name="member_status" class="member_status" id="statusWithdraw"
+					              	<input type="checkbox" value="3" name="member_status3" class="member_status" id="statusWithdraw"
 					              		<c:if test="${param.member_status eq '3'}">checked</c:if>> &nbsp;탈퇴&nbsp;
 			              	</div>
 				            <div class="row row_checkbox">
-					              	<input type="checkbox" value="0" name="member_category" id="categoryAllCheck"
-					              		<c:if test="${param.member_status eq '0'}">checked</c:if>> &nbsp;전체선택&nbsp;
-					              	<input type="checkbox" value="1" name="member_category" class="member_category" id="categoryNormalCheck"
-					              		<c:if test="${param.member_status eq '1'}">checked</c:if>> &nbsp;일반&nbsp;
-					              	<input type="checkbox" value="2" name="member_category" class="member_category" id="categoryBanjangCheck"
-					              		<c:if test="${param.member_status eq '2'}">checked</c:if>> &nbsp;반장&nbsp;
-					              	<input type="checkbox" value="1" name="member_category" class="member_category" id="categoryApprovalCheck"
+					              	<input type="checkbox" value="0" name="member_category0" id="categoryAllCheck"
+					              		<c:if test="${param.member_category eq '0'}">checked</c:if>> &nbsp;전체분류&nbsp;
+					              	<input type="checkbox" value="1" name="member_category1" class="member_category" id="categoryNormalCheck"
+					              		<c:if test="${param.member_category eq '1'}">checked</c:if>> &nbsp;일반&nbsp;
+					              	<input type="checkbox" value="2" name="member_category2" class="member_category" id="categoryBanjangCheck"
+					              		<c:if test="${param.member_category eq '2'}">checked</c:if>> &nbsp;반장&nbsp;
+					              	<input type="checkbox" value="2" name="com_status2" class="member_category" id="categoryApprovalCheck"
 					              		<c:if test="${param.com_status eq '2'}">checked</c:if>> &nbsp;반장승인대기&nbsp;
-					              	<input type="checkbox" value="1" name="member_category" class="member_category" id="banjangRejectionCheck"
+					              	<input type="checkbox" value="5" name="com_status5" class="member_category" id="banjangRejectionCheck"
 					              		<c:if test="${param.com_status eq '5'}">checked</c:if>> &nbsp;반장승인거절&nbsp;
 			              	</div>
 		              	</div>
@@ -151,8 +151,8 @@
 			              	</div>
 		              	</div>
 	              	</div>
-	              	
-                	<table class="table table-bordered">
+	              	<div id="tableDivArea">
+	              	<table class="table table-bordered">
                 		<colgroup>
                 			<col width="20%" />
                 			<col width="10%" />
@@ -163,15 +163,7 @@
                 		</colgroup>
 			            <tr>
 			                <th>가입/탈퇴일자</th>
-			                <th>회원분류
-<!-- 			                    <select name="member_category" class="member_category"> -->
-<%-- 					              	<option value="0" <c:if test="${param.member_category eq 0}">selected</c:if>>회원분류</option> --%>
-<%-- 					              	<option value="1" id="banjang" <c:if test="${param.member_category eq 1}">selected</c:if>>반장회원</option> --%>
-<%-- 					              	<option value="2" id="general" <c:if test="${param.member_category eq 2}">selected</c:if>>일반회원</option> --%>
-<%-- 					              	<option value="com_2" id="banjangApproval" <c:if test="${param.com_status eq 2}">selected</c:if>>반장승인대기</option> --%>
-<%-- 					              	<option value="com_5" id="banjangRejection" <c:if test="${param.com_status eq 5}">selected</c:if>>반장승인거절</option> --%>
-<!-- 			              		</select> -->
-			                </th>
+			                <th>회원분류</th>
 			                <th>아이디</th>
 			                <th>닉네임</th>
 			                <th>회원상태</th>
@@ -236,6 +228,7 @@
 				         </tr>
 			            </c:forEach>
 			   	 </table>
+              	</div>
 			   </form>
               </div>
             </div>

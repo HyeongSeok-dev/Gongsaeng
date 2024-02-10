@@ -84,19 +84,19 @@
 	            </div>
 	        </li>
 	        <!-- 마케팅센터 드롭다운 메뉴 -->
-<!-- 	        <li class="nav-item"> -->
-<!-- 	            <a href="#marketing" class="nav-link" data-toggle="collapse" aria-expanded="false"> -->
-<!-- 	                <i class="now-ui-icons business_bulb-63"></i> -->
-<!-- 	                <p>마케팅센터<b class="caret"></b></p> -->
-<!-- 	            </a> -->
-<!-- 	            <div id="marketing" class="collapse" aria-labelledby="marketing" data-parent="#sidebar-wrapper"> -->
-<!-- 	                <ul class="nav"> -->
-<%-- 	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/marketing/event">이벤트관리</a></li> --%>
-<%-- 	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/marketing/coupon">쿠폰관리</a></li> --%>
-<!-- 	                </ul> -->
-<!-- 	            </div> -->
-<!-- 	        </li> -->
-	        <!-- 마케팅센터 드롭다운 메뉴 -->
+	        <li class="nav-item">
+	            <a href="#marketing" class="nav-link" data-toggle="collapse" aria-expanded="false">
+	                <i class="now-ui-icons ui-1_bell-53"></i>
+	                <p>마케팅센터<b class="caret"></b></p>
+	            </a>
+	            <div id="marketing" class="collapse" aria-labelledby="marketing" data-parent="#sidebar-wrapper">
+	                <ul class="nav">
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/marketing/coupon">쿠폰관리</a></li>
+	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/marketing/event">알림관리</a></li>
+	                </ul>
+	            </div>
+	        </li>
+	        <!-- 커뮤니티 드롭다운 메뉴 -->
 <!-- 	        <li class="nav-item"> -->
 <!-- 	            <a href="#marketing" class="nav-link" data-toggle="collapse" aria-expanded="false"> -->
 <!-- 	                <i class="now-ui-icons ui-1_send"></i> -->
@@ -109,18 +109,6 @@
 <!-- 	                </ul> -->
 <!-- 	            </div> -->
 <!-- 	        </li> -->
-	        <li class="nav-item">
-	            <a href="#marketing" class="nav-link" data-toggle="collapse" aria-expanded="false">
-	                <i class="now-ui-icons ui-1_bell-53"></i>
-	                <p>알림관리<b class="caret"></b></p>
-	            </a>
-	            <div id="marketing" class="collapse" aria-labelledby="marketing" data-parent="#sidebar-wrapper">
-	                <ul class="nav">
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/marketing/event">알림 보내기</a></li>
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/marketing/coupon">자동 알림 관리</a></li>
-	                </ul>
-	            </div>
-	        </li>
 	         <!-- 신고 드롭다운 메뉴 -->
 	        <li class="nav-item">
 	            <a href="#report" class="nav-link" data-toggle="collapse" aria-expanded="false">

@@ -51,6 +51,10 @@
 	margin: 0;
 }
 
+.tr_hover:hover{
+	border: 1.5px solid #888;
+	background-color: #fff;
+}
 
 .filter{
 	display: flex;
@@ -93,9 +97,15 @@
 
 .checkbox_div {
 	display: flex;
-	justify-content: center;
-	align-items: flex-end;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: flex-start;
+	margin-left: 20px;
 	margin-bottom: 5px;
+}
+.checkbox_row {
+	display:flex;
+	flex-wrap: nowrap;
 }
 /* member_detail */
 
@@ -196,3 +206,9 @@ input[type="search"] {
 .register_textarea {
 	min-height: 200px;
 }
+
+/* company */
+.address{
+	width: 300px;
+}
+

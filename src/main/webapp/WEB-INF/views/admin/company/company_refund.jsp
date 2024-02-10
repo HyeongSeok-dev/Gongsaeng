@@ -63,14 +63,14 @@
               </div>
             </form>
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons ui-1_calendar-60"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">달력</span>
-                  </p>
-                </a>
-              </li>
+<!--               <li class="nav-item"> -->
+<!--                 <a class="nav-link" href="#pablo"> -->
+<!--                   <i class="now-ui-icons ui-1_calendar-60"></i> -->
+<!--                   <p> -->
+<!--                     <span class="d-lg-none d-md-block">달력</span> -->
+<!--                   </p> -->
+<!--                 </a> -->
+<!--               </li> -->
               <li class="nav-item">
                 <a class="nav-link" href="#pablo">
                   <i class="now-ui-icons ui-2_chat-round"></i>
@@ -164,11 +164,20 @@
 			       	<c:if test="${refund.pay_cal_status > 1 }">
 			            <tr>
 			                <td>${refund.refund_request_date}</td>
-			                <td>${refund.refund_date}</td>
+			                <td>
+			                <c:choose>
+			                	<c:when test="${empty refund.refund_date}">
+					                미정산
+			                	</c:when>
+								<c:otherwise>
+					                ${refund.refund_date}
+								</c:otherwise>
+			                </c:choose>
+			                </td>
 			                <td>${refund.com_name }</td>
-			                <td class="int">${refund.payment}</td>
-			                <td class="int">${refund.payment * 0.1}</td>
-			                <td class="int">${refund.payment * 0.9}</td>
+			                <td class="int">${refund.regPay}</td>
+			                <td class="int">${refund.payFee}</td>
+			                <td class="int">${refund.payRef}</td>
 			                <td>
 								<c:choose>
 									<c:when test="${refund.pay_cal_status eq 2 }"> <%-- 정산신청 --%>

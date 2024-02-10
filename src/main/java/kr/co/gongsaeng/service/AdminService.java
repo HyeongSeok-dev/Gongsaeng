@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.gongsaeng.mapper.AdminMapper;
 import kr.co.gongsaeng.vo.AccountVO;
+import kr.co.gongsaeng.vo.AdminFilterVO;
 import kr.co.gongsaeng.vo.AdminVO;
 import kr.co.gongsaeng.vo.BoardVO;
 import kr.co.gongsaeng.vo.CashVO;
@@ -31,7 +32,7 @@ public class AdminService {
 		return mapper.selectMemberList();
 	}
 	
-	public List<MemberVO> getMemberFilterList(MemberVO member) {
+	public List<MemberVO> getMemberFilterList(MemberVO member , CompanyVO company) {
 		return mapper.selectMemberFilterList(member);
 	}
 
@@ -229,6 +230,18 @@ public class AdminService {
 
 	public AdminVO getThisYearMem() {
 		return mapper.selectThisYearMem();
+	}
+
+	public List<MemberVO> getFilterMemberList(String checkStatus, AdminFilterVO map) {
+
+		if(checkStatus.equals("notAll")) {
+			return mapper.selectFilterMemberNotAll(map);
+		} else if(checkStatus.equals("categoryAll")) {
+			return mapper.selectFilterMemberCategoryAll(map);
+		} else  {//	if(checkStatus.equals("statusAll"))
+			return mapper.selectFilterMemberStatusAll(map);
+		}
+		
 	}
 
 

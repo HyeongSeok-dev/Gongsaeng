@@ -64,14 +64,14 @@
               </div>
             </form>
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons ui-1_calendar-60"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">달력</span>
-                  </p>
-                </a>
-              </li>
+<!--               <li class="nav-item"> -->
+<!--                 <a class="nav-link" href="#pablo"> -->
+<!--                   <i class="now-ui-icons ui-1_calendar-60"></i> -->
+<!--                   <p> -->
+<!--                     <span class="d-lg-none d-md-block">달력</span> -->
+<!--                   </p> -->
+<!--                 </a> -->
+<!--               </li> -->
               <li class="nav-item">
                 <a class="nav-link" href="#pablo">
                   <i class="now-ui-icons ui-2_chat-round"></i>
@@ -200,45 +200,32 @@
 		             		<th>생년월일</th>
 		             		<td>${member.member_birthday}</td>
 		             		<th>전화번호</th>
-		             		<td>${member.member_phone}</td>
+		             		<td>
+		             		<c:choose>
+								<c:when test="${empty member.member_phone}">
+				             		미등록
+								</c:when>
+								<c:otherwise>
+									${member.member_phone}
+								</c:otherwise>
+		             		</c:choose>
+		             		</td>
 		             	</tr>
 		             	<tr>
 		             		<th>계좌번호</th>
 		             		<td>
 	             				<c:choose>
 	             					<c:when test="${account.account_num_masked ne null }">
-	<%-- 		             			<span>${account.member_ }</span> --%>
-			             				<span>
-			             					${account.account_num_masked }
-			             				</span>
-			             				<span>
-			             					인증/비인증()
-			             				</span>
+			             				${account.account_num_masked }
 	             					</c:when>
 	             					<c:otherwise>
-	             						등록계좌 없음
+	             						미등록
 	             					</c:otherwise>
 	             				</c:choose>
 		             		</td>
 		             		<th>알림수신상태</th>
-		             		<td>알림수신상태 물어보고 하기
-<%-- 		             			<c:choose> --%>
-<%-- 										<c:when test="${member.member_ member_alert_status eq 1}"> --%>
-<!-- 							               일반   -->
-<%-- 					                	</c:when> --%>
-<%-- 										<c:when test="${member.member_ member_alert_status eq 2}"> --%>
-							                
-<%-- 					                	</c:when> --%>
-<%-- 										<c:when test="${member.member_ member_alert_status eq 3}"> --%>
-							                
-<%-- 					                	</c:when> --%>
-<%-- 										<c:when test="${member.member_ member_alert_status eq 4}"> --%>
-							                
-<%-- 					                	</c:when> --%>
-<%-- 										<c:when test="${member.member_ member_alert_status eq 5}"> --%>
-							                
-<%-- 					                	</c:when> --%>
-<%-- 					            </c:choose> --%>
+		             		<td>
+		             			${member.alert_1}/${member.alert_2}/${member.alert_3}/${member.alert_4}
 		             		</td>
 		             	</tr>
 		             	<tr>
@@ -400,7 +387,7 @@
 			             		<th>
 			             			사업체
 			             			<!-- 사업체 상세보기로 -->
-			             			<a class="more_info" href="${pageContext.request.contextPath }/admin/company/detail?com_idx=${company.com_idx}">더보기</a>
+			             			<a class="more_info" href="${pageContext.request.contextPath }/admin/company/detail?member_id=${member.member_id}">더보기</a>
 			             		</th>
 			             		<td>${company.com_name}</td>
 			             	</tr>
@@ -416,7 +403,7 @@
 			             		<th>
 			             			등록클래스
 			             			<!-- 특정 사업체의 등록 클래스 목록 -->
-			             			<a class="more_info" href="${pageContext.request.contextPath }/admin/company/class?com_idx=${company.com_idx}">더보기</a>
+			             			<a class="more_info" href="${pageContext.request.contextPath }/admin/company/class?member_id=${member.member_id}">더보기</a>
 			             		</th>
 			             		<td>
 			             			총

@@ -32,4 +32,9 @@ public class MemberVO {
 	private int reportCount;
 	// 필터링을 위한 체크박스
 	private String[] member_status_str;
+	// 알림수신상태
+	private String alert_1;
+	private String alert_2;
+	private String alert_3;
+	private String alert_4;
 }

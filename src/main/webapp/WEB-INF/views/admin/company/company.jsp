@@ -63,14 +63,14 @@
               </div>
             </form>
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons ui-1_calendar-60"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">달력</span>
-                  </p>
-                </a>
-              </li>
+<!--               <li class="nav-item"> -->
+<!--                 <a class="nav-link" href="#pablo"> -->
+<!--                   <i class="now-ui-icons ui-1_calendar-60"></i> -->
+<!--                   <p> -->
+<!--                     <span class="d-lg-none d-md-block">달력</span> -->
+<!--                   </p> -->
+<!--                 </a> -->
+<!--               </li> -->
               <li class="nav-item">
                 <a class="nav-link" href="#pablo">
                   <i class="now-ui-icons ui-2_chat-round"></i>
@@ -103,9 +103,8 @@
                 <h5 class="title">사업체 목록</h5>
               </div>
               <div class="card-body">
-	               <div class="row">
+	               <div class="row checkbox_row">
 	               		<div class="col-md-7 checkbox_div">
-	               			<div>
 			               		<div class="row col_checkbox">
 					              	<input type="checkbox" value="전체선택" name="com_status" id="statusAllCheck"> &nbsp;전체선택&nbsp;
 					              	<input type="checkbox" value="1" name="com_status" class="com_status"> &nbsp;정상&nbsp;
@@ -123,7 +122,6 @@
 					              	<input type="checkbox" value="5" name="com_category" class="com_category"> &nbsp;종합 인테리어&nbsp;
 					              	<input type="checkbox" value="6" name="com_category" class="com_category"> &nbsp;기타 시공&nbsp;
 				              	</div>
-	               			</div>
 		              	</div>
 		              	<div class="col-md-5">
 		              		<form action="" class="member_date">
@@ -188,26 +186,26 @@
 			            </tr>
 			            <!-- 회원 데이터 로우 -->
 			            <c:forEach var="com" items="${comList }">
-				            <tr class="tr_hover" onclick="location.href='${pageContext.request.contextPath }/admin/company/detail'">
+				            <tr class="tr_hover" onclick="location.href='${pageContext.request.contextPath }/admin/company/detail?com_idx=${com.com_idx }'">
 				                <td>${com.com_date }</td>
 				                <td>
 				                	<c:choose>
-				                		<c:when test="${com.com_category eq 1 }">
+				                		<c:when test="${com.com_category eq '1' }">
 				                			바닥시공
 				                		</c:when>
-				                		<c:when test="${com.com_category eq 2 }">
+				                		<c:when test="${com.com_category eq '2' }">
 				                			벽/천장 시공
 				                		</c:when>
-				                		<c:when test="${com.com_category eq 3 }">
+				                		<c:when test="${com.com_category eq '3' }">
 				                			부분인테리어
 				                		</c:when>
-				                		<c:when test="${com.com_category eq 4 }">
+				                		<c:when test="${com.com_category eq '4' }">
 				                			야외시공
 				                		</c:when>
-				                		<c:when test="${com.com_category eq 5 }">
+				                		<c:when test="${com.com_category eq '5' }">
 				                			종합인테리어 
 				                		</c:when>
-				                		<c:when test="${com.com_category eq 6 }">
+				                		<c:when test="${com.com_category eq '6' }">
 				                			기타 홈인테리어 
 				                		</c:when>
 				                	</c:choose>

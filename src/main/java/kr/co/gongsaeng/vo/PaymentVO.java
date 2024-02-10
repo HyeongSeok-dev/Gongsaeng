@@ -45,6 +45,10 @@ public class PaymentVO {
 	private String class_title;
 	private String class_category;
 	
+	// 환급목록 신청금액 수수료 최종환급금액
+	private String regPay;
+	private String payFee;
+	private String payRef;
 
 
 }

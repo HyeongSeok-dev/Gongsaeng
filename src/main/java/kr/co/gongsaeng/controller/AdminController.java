@@ -34,6 +34,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.gongsaeng.service.AdminService;
 import kr.co.gongsaeng.vo.AccountVO;
+import kr.co.gongsaeng.vo.AdminFilterVO;
 import kr.co.gongsaeng.vo.AdminVO;
 import kr.co.gongsaeng.vo.BoardVO;
 import kr.co.gongsaeng.vo.CashVO;
@@ -204,46 +205,46 @@ public class AdminController {
 		return "admin/main";
 	}
 	
-	
-	@GetMapping("admin/dashboard/member")
-	public String dashboardMember(HttpSession session, Model model) {
-//		if(session.getAttribute("sId") == null) {
-//			model.addAttribute("msg", "로그인이 필요합니다");
-//			model.addAttribute("targetURL", "/gongsaeng/member/login");
-//			return "forward";
-//		} else if(!session.getAttribute("sId").equals("admin")) {
-//			model.addAttribute("msg", "잘못된 접근 입니다.");
-//			return "fail_back";
-//		}
-		
-		return "admin/dashboard/member";
-	}
-	@GetMapping("admin/dashboard/sales")
-	public String dashboardSales(HttpSession session, Model model) {
-//		if(session.getAttribute("sId") == null) {
-//			model.addAttribute("msg", "로그인이 필요합니다");
-//			model.addAttribute("targetURL", "/gongsaeng/member/login");
-//			return "forward";
-//		} else if(!session.getAttribute("sId").equals("admin")) {
-//			model.addAttribute("msg", "잘못된 접근 입니다.");
-//			return "fail_back";
-//		}
-		
-		return "admin/dashboard/sales";
-	}
-	@GetMapping("admin/dashboard/company")
-	public String dashboardCompany(HttpSession session, Model model) {
-//		if(session.getAttribute("sId") == null) {
-//			model.addAttribute("msg", "로그인이 필요합니다");
-//			model.addAttribute("targetURL", "/gongsaeng/member/login");
-//			return "forward";
-//		} else if(!session.getAttribute("sId").equals("admin")) {
-//			model.addAttribute("msg", "잘못된 접근 입니다.");
-//			return "fail_back";
-//		}
-		
-		return "admin/dashboard/company";
-	}
+	//=============================================대쉬보드 일단 삭제
+//	@GetMapping("admin/dashboard/member")
+//	public String dashboardMember(HttpSession session, Model model) {
+////		if(session.getAttribute("sId") == null) {
+////			model.addAttribute("msg", "로그인이 필요합니다");
+////			model.addAttribute("targetURL", "/gongsaeng/member/login");
+////			return "forward";
+////		} else if(!session.getAttribute("sId").equals("admin")) {
+////			model.addAttribute("msg", "잘못된 접근 입니다.");
+////			return "fail_back";
+////		}
+//		
+//		return "admin/dashboard/member";
+//	}
+//	@GetMapping("admin/dashboard/sales")
+//	public String dashboardSales(HttpSession session, Model model) {
+////		if(session.getAttribute("sId") == null) {
+////			model.addAttribute("msg", "로그인이 필요합니다");
+////			model.addAttribute("targetURL", "/gongsaeng/member/login");
+////			return "forward";
+////		} else if(!session.getAttribute("sId").equals("admin")) {
+////			model.addAttribute("msg", "잘못된 접근 입니다.");
+////			return "fail_back";
+////		}
+//		
+//		return "admin/dashboard/sales";
+//	}
+//	@GetMapping("admin/dashboard/company")
+//	public String dashboardCompany(HttpSession session, Model model) {
+////		if(session.getAttribute("sId") == null) {
+////			model.addAttribute("msg", "로그인이 필요합니다");
+////			model.addAttribute("targetURL", "/gongsaeng/member/login");
+////			return "forward";
+////		} else if(!session.getAttribute("sId").equals("admin")) {
+////			model.addAttribute("msg", "잘못된 접근 입니다.");
+////			return "fail_back";
+////		}
+//		
+//		return "admin/dashboard/company";
+//	}
 	
 	//========================================회원 관리
 	// 회원 목록
@@ -273,7 +274,7 @@ public class AdminController {
 	
 	@ResponseBody
 	@GetMapping("admin/memberTableFilter")
-	public String memberTableChange(HttpSession session, MemberVO member) {
+	public String memberTableChange(HttpSession session, Model model , AdminFilterVO map) {
 		
 //		if(session.getAttribute("sId") == null) {
 //		model.addAttribute("msg", "로그인이 필요합니다");
@@ -283,32 +284,89 @@ public class AdminController {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}
-		log.info("member : >>" + member);
-		log.info("member_status_str >> " + member.getMember_status_str());
-//		// [회원목록 조회]
-//		List<MemberVO> memberFilterList = service.getMemberFilterList(member);
+		log.info("map : >>" + map);
+//		// [필터 회원목록 조회]
+//		if(map.get("member_status0") == null && map.get("member_category0") == null) {
+//			System.out.println("모두 전체선택 해제");
+//			String checkStatus = "notAll";
+//			List<MemberVO> memberList = service.getFilterMemberList(checkStatus, map);
+//			JSONObject jsonObject = new JSONObject(memberList);
+//			return jsonObject.toString();
+//		} else if(map.get("member_status0") == null && map.get("member_category0").equals("0")) {
+//			System.out.println("회원상태 전체선택 해제, 회원분류 전체선택");
+//			String checkStatus = "categoryAll";
+//			List<MemberVO> memberList = service.getFilterMemberList(checkStatus, map);
+//			JSONObject jsonObject = new JSONObject(memberList);
+//			return jsonObject.toString();
+//		} else if(map.get("member_category0") == null && map.get("member_status0").equals("0")) {
+//			System.out.println("회원분류 전체선택 해제, 회원상태 전체선택");
+//			String checkStatus = "statusAll";
+//			List<MemberVO> memberList = service.getFilterMemberList(checkStatus, map);
+//			JSONObject jsonObject = new JSONObject(memberList);
+//			return jsonObject.toString();
+//		} else {
+//			return"";
+//		}
+		
+		if(map.getMember_status0() == null && map.getMember_category0().equals("0")) {
+			System.out.println("회원상태 전체선택 해제, 회원분류 전체선택");
+			String checkStatus = "categoryAll";
+			List<MemberVO> memberList = service.getFilterMemberList(checkStatus, map);
+			JSONObject jsonObject = new JSONObject(memberList);
+			return jsonObject.toString();
+		} else if(map.getMember_category0() == null && map.getMember_status0().equals("0")) {
+			System.out.println("회원분류 전체선택 해제, 회원상태 전체선택");
+			String checkStatus = "statusAll";
+			List<MemberVO> memberList = service.getFilterMemberList(checkStatus, map);
+			JSONObject jsonObject = new JSONObject(memberList);
+			return jsonObject.toString();
+		} else {
+			System.out.println("모두 전체선택 해제");
+			String checkStatus = "notAll";
+			List<MemberVO> memberList = service.getFilterMemberList(checkStatus, map);
+			JSONObject jsonObject = new JSONObject(memberList);
+			return jsonObject.toString();
+		}
+		
+//		List<MemberVO> memberFilterList = service.getMemberFilterList(member, company);
 //		log.info("목록조회 memberList : " + memberFilterList);
-	
-		// [리뷰 신고수 조회]
-//		List<ReportVO> reportCountList = service.getReportCountList();
-//		log.info("신고수조회 reportCountList : " + reportCountList);
+//	
 		
-		List<MemberVO> memberList = service.getMemberList();
-		log.info("목록조회(신고수 join) memberList : " + memberList);
+//		List<MemberVO> memberList = service.getMemberList();
+//		log.info("목록조회(신고수 join) memberList : " + memberList);
 		
-		JSONObject jsonObject = new JSONObject(member);
-		return jsonObject.toString();
+//		JSONObject jsonObject = new JSONObject(member);
+//		return jsonObject.toString();
+		
+		
 	}
 	
-//	@GetMapping("memberSearch")
-//	public String memberSearch() {
-//		
-//	}
+	@ResponseBody
+	@GetMapping("memberSearch")
+	public String memberSearch(HttpSession session, @RequestParam Map<String, Object> map) {
+		
+//		// [필터 회원목록 조회]
+		if(map.get("member_status0") == null && map.get("member_category0") == null) {
+			System.out.println("모두 전체선택 해제");
+			
+		} else if(map.get("member_status0") == null && map.get("member_category0").equals("0")) {
+//			System.out.println("회원상태 전체선택 해제");
+			
+			  System.out.println("회원상태 전체선택 해제, 회원분류 전체선택");
+		   
+		} else if(map.get("member_category0") == null && map.get("member_status0").equals("0")) {
+//			System.out.println("카테고리 전체선택 해제");
+			
+				System.out.println("회원분류 전체선택 해제, 회원상태 전체선택");
+		}
+//		JSONObject jsonObject = new JSONObject(member);
+//		return jsonObject.toString();
+		return "";
+	}
 	
 	
 	@GetMapping("admin/member/detail")
 	public String memberDetailForm(HttpSession session, Model model, @RequestParam String member_id) {
-	
 //		if(session.getAttribute("sId") == null) {
 //			model.addAttribute("msg", "로그인이 필요합니다");
 //			model.addAttribute("targetURL", "/gongsaeng/login");
@@ -327,6 +385,31 @@ public class AdminController {
 		member.setMember_email2(emailStr[1]);
 		System.out.println("email 1 >>> " + emailStr[0]);
 		System.out.println("email 2 >>> " + emailStr[1]);
+		
+		// 2. 알림수신상태 정보
+		if(member.getMember_alert_status().charAt(0) == '1') {
+			member.setAlert_1("일반 동의");
+		} else {
+			member.setAlert_1("일반 미동의");
+		}
+		
+		if(member.getMember_alert_status().charAt(1) == '1') {
+			member.setAlert_2("공지사항 동의");
+		} else {
+			member.setAlert_2("공지사항 미동의");
+		}
+		
+		if(member.getMember_alert_status().charAt(2) == '1') {
+			member.setAlert_3("광고 동의");
+		} else {
+			member.setAlert_3("광고 미동의");
+		}
+		
+		if(member.getMember_alert_status().charAt(3) == '1') {
+			member.setAlert_4("이메일 동의");
+		} else {
+			member.setAlert_4("이메일 미동의");
+		}
 		
 		// [ 계좌 조회 ]
 		AccountVO account = service.getAccount(member_id);
@@ -560,13 +643,34 @@ public class AdminController {
 	
 	// 사업체 상세 페이지
 	@GetMapping("admin/company/detail")
-	public String companyDetail(HttpSession session, Model model) {
+	public String companyDetail(HttpSession session, Model model, @RequestParam String member_id) {
+//		if(session.getAttribute("sId") == null) {
+//		model.addAttribute("msg", "로그인이 필요합니다");
+//		model.addAttribute("targetURL", "/gongsaeng/login");
+//		return "forward";
+//	} else if(!session.getAttribute("sId").equals("admin")) {
+//		model.addAttribute("msg", "잘못된 접근 입니다.");
+//		return "fail_back";
+//	}
+		CompanyVO com = service.getCompany(member_id);
+		
+		
+		model.addAttribute("com",com);
 		return "admin/company/company_detail";
 	}
 	
 	// 사업체 등록 클래스 목록
 	@GetMapping("admin/company/class")
 	public String companyClassForm(HttpSession session, Model model) {
+//		if(session.getAttribute("sId") == null) {
+//		model.addAttribute("msg", "로그인이 필요합니다");
+//		model.addAttribute("targetURL", "/gongsaeng/login");
+//		return "forward";
+//	} else if(!session.getAttribute("sId").equals("admin")) {
+//		model.addAttribute("msg", "잘못된 접근 입니다.");
+//		return "fail_back";
+//	}
+	
 		
 		List<ClassVO> classList = service.getClassList();
 		

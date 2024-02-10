@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import kr.co.gongsaeng.vo.AccountVO;
+import kr.co.gongsaeng.vo.AdminFilterVO;
 import kr.co.gongsaeng.vo.AdminVO;
 import kr.co.gongsaeng.vo.BoardVO;
 import kr.co.gongsaeng.vo.CashVO;
@@ -137,6 +138,13 @@ public interface AdminMapper {
 	AdminVO selectThisYearCom();
 	//그래프 올해 월별 회원 가입수
 	AdminVO selectThisYearMem();
+	
+	// 회원목록 전체체크 모두 해제되어있음
+	List<MemberVO> selectFilterMemberNotAll(AdminFilterVO map);
+	// 회원목록 전체체크 상태 해제되어있음
+	List<MemberVO> selectFilterMemberCategoryAll(AdminFilterVO map);
+	// 회원목록 전체체크 분류 해제되어있음
+	List<MemberVO> selectFilterMemberStatusAll(AdminFilterVO map);
 	
 	
 	

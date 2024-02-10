@@ -419,7 +419,7 @@ function openCenteredWindow(url, name, width, height) {
                     </ul>
                 </li>
 
-                <li class="wow fadeInDown" data-wow-delay="0.3s"><a class="" href="${pageContext.request.contextPath}/event">이벤트</a></li>
+<%--                 <li class="wow fadeInDown" data-wow-delay="0.3s"><a class="" href="${pageContext.request.contextPath}/event">이벤트</a></li> --%>
 
                 <li class="dropdown ymm-sw " data-wow-delay="0.3s">
                     <a href="index" class="dropdown-toggle active" data-toggle="dropdown" data-hover="dropdown" data-delay="200">고객센터<b class="caret"></b></a>

@@ -63,14 +63,14 @@
               </div>
             </form>
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons ui-1_calendar-60"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">달력</span>
-                  </p>
-                </a>
-              </li>
+<!--               <li class="nav-item"> -->
+<!--                 <a class="nav-link" href="#pablo"> -->
+<!--                   <i class="now-ui-icons ui-1_calendar-60"></i> -->
+<!--                   <p> -->
+<!--                     <span class="d-lg-none d-md-block">달력</span> -->
+<!--                   </p> -->
+<!--                 </a> -->
+<!--               </li> -->
               <li class="nav-item">
                 <a class="nav-link" href="#pablo">
                   <i class="now-ui-icons ui-2_chat-round"></i>
@@ -100,23 +100,36 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h5 class="title">XXX 상세 정보</h5>
-                <div>사업체 번호 : </div>
+                <h5 class="title">${com.com_name } 상세 정보</h5>
+<%--                 <div>사업체 번호 : ${ }</div> --%>
               </div>
               <div class="card-body">
               	<div class="text_center">
-	           		<img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-circle img-thumbnail" alt="avatar">
+					<c:choose>
+						<c:when test="${empty com.com_img}">
+							<div id="img">
+								<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" 
+								class="img-circle img-thumbnail">
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div id="img">
+								<img id="img" alt="profile" src="${pageContext.request.contextPath }/resources/upload/${com.com_img}"
+									class="img-circle img-thumbnail">
+							</div>
+						</c:otherwise>
+					</c:choose>
 					<input type="file" class="form-control profileImg" accept="image/*">
 					<div class="profileImg" >
    	       		 		<br>
 	           		 	<c:choose>
-							<c:when test="${empty company.com_img}">
+							<c:when test="${empty com.com_img}">
 		    	       		 	<button type="button" id="uploadFileBtn" class="btn btn_default">파일선택</button>
 			           		 	<span id="fileLabel">파일명</span>
 							</c:when>
 							<c:otherwise>
 		    	       		 	<button type="button" id="uploadFileBtn" class="btn btn_default">파일선택</button>
-			           		 	<span id="fileLabel">${company.com_img}</span>
+			           		 	<span id="fileLabel">${com.com_img}</span>
 							</c:otherwise>
 						</c:choose>
 					</div>
@@ -133,67 +146,59 @@
 <!-- 	             		<th>사업체번호</th> -->
 <!-- 	             		<td>사업체번호</td> -->
 	             		<th>반장아이디</th>
-	             		<td colspan="3">반장아이디</td>
+	             		<td colspan="3">${com.member_id }</td>
 	             	</tr>
 	             	<tr>
 	             		<th>등록/폐업일자</th>
 	             		<td colspan="3">
-	             			등록/폐업일자(상태)
+	             			${com.com_date }
 	             			&nbsp;
-	             			<select>
-								<option>정상</option>
-								<option>승인대기</option>
-								<option>영업중지</option>
-								<option>보류</option>
-								<option>승인거부</option>
+	             			<select name="com_status" id="com_status">
+								<option value="1" <c:if test="${com.com_status eq 1}">selected</c:if>>정상</option>
+								<option value="2" <c:if test="${com.com_status eq 2}">selected</c:if>>승인대기</option>
+<%-- 								<option value="3" <c:if test="${com.com_status eq 3}">selected</c:if>>영업중지</option> --%>
+								<option value="4" <c:if test="${com.com_status eq 4}">selected</c:if>>보류</option>
+								<option value="5" <c:if test="${com.com_status eq 5}">selected</c:if>>승인거부</option>
 							</select>
 	             		</td>
 	             	</tr>
 	             	<tr>
 	             		<th>카테고리</th>
 	             		<td colspan="3">
-							<select>
-								<option>바닥 시공</option>
-								<option>변/천장 시공</option>
-								<option>부분 인테리어</option>
-								<option>야외 시공</option>
-								<option>종합 인테리어</option>
-								<option>기타 홈 인테리어</option>
-							</select>
+	             			<c:if test="${com.com_category eq 1}">바닥 시공</c:if>&nbsp;&nbsp;
+							<c:if test="${com.com_category eq 2}">변/천장 시공</c:if>&nbsp;&nbsp;
+							<c:if test="${com.com_category eq 3}">부분 인테리어</c:if>&nbsp;&nbsp;
+							<c:if test="${com.com_category eq 4}">야외 시공</c:if>&nbsp;&nbsp;
+							<c:if test="${com.com_category eq 5}">종합 인테리어</c:if>&nbsp;&nbsp;
+							<c:if test="${com.com_category eq 6}">기타 홈 인테리어</c:if>&nbsp;&nbsp;
 						</td>
 					</tr>
 	             	<tr>
 						<th>전화번호</th>
 	             		<td colspan="3">
-							<input type="text"><!--  - <input type="text"> - <input type="text">  -->
+							<input type="text" value="${com.com_tel }" name="com_tel"><!--  - <input type="text"> - <input type="text">  -->
 						</td>
 	             	</tr>
 	             	<tr>
 	             		<th>주소</th>
 	             		<td colspan="3">
-	             			<input type="text" class="margin_5px">&nbsp;<button type="button" class="btn">우편번호찾기</button><br>
-	             			<input type="text" class="margin_5px">&nbsp;
-	             			<input type="text" class="margin_5px">
+	             			<input type="text" class="margin_5px" value="${com.com_post_code }">&nbsp;<button type="button" class="btn btn_default">우편번호찾기</button><br>
+	             			<input type="text" class="margin_5px address" value="${com.com_address1 }">&nbsp;
+	             			<input type="text" class="margin_5px address" value="${com.com_address2 }">
 	             		</td>
 	             	</tr>
 	             	<tr>
 	             		<th>계좌번호</th>
 	             		<td colspan="3">
-	             			<span>은행</span>
-	             			<span>계좌번호</span>
-	             			<span>
-								<select>
-									<option>비인증</option>
-									<option>인증</option>
-								</select>
-							</span>
+	             			<span>${com.com_bank }</span>
+	             			<span>${com.com_account}</span>
 	             		</td>
 					</tr>
 						             	
 					<tr>
 	             		<th rowspan="2">
 	             			환급금<br>
-	             		 	<a class="more_info" href="${pageContext.request.contextPath }/admin/member/detail/class">더보기</a>
+	             		 	<a class="more_info" href="${pageContext.request.contextPath }/admin/company/refund?member_id=${com.member_id}">더보기</a>
 	             		</th>
 						<th class="detail_table">환급가능금액</th>
 						<th class="detail_table">이번달 환급금</th>
@@ -214,7 +219,7 @@
 					<tr>
 	             		<th rowspan="2">
 		             		등록클래스 수<br>
-		             		<a class="more_info" href="${pageContext.request.contextPath }/admin/member/detail/class">더보기</a>
+		             		<a class="more_info" href="${pageContext.request.contextPath }/admin/company/class?member_id?${com.member_id}">더보기</a>
 	             		</th>
 						<th class="detail_table">총</th>
 						<th class="detail_table">원데이</th>
@@ -235,7 +240,7 @@
 					<tr>
 	             		<th rowspan="2">
 	             			클래스 예약 내역<br>
-	             			<a class="more_info" href="${pageContext.request.contextPath }/admin/member/detail/class">더보기</a>
+	             			<a class="more_info" href="${pageContext.request.contextPath }/admin/company/pay/detail?member_id=${com.member_id}">더보기</a>
 	             		</th>
 						<th class="detail_table">총</th>
 						<th class="detail_table">원데이</th>
@@ -256,7 +261,7 @@
 					<tr>
 	             		<th rowspan="2">
 	             			리뷰 수<br>
-	             			<a class="more_info" href="${pageContext.request.contextPath }/admin/member/detail/class">더보기</a>
+	             			<a class="more_info" href="${pageContext.request.contextPath }/admin/company/review?member_id=${com.member_id}">더보기</a>
 	             		</th>
 						<th class="detail_table">평균 별점</th>
 						<th class="detail_table">이달 추천 수</th>
@@ -277,7 +282,7 @@
 					<tr>
 	             		<th rowspan="2">
 	             			피신고건 수<br>
-	             			<a class="more_info" href="${pageContext.request.contextPath }/admin/member/detail/class">더보기</a>
+	             			<a class="more_info" href="${pageContext.request.contextPath }/admin/company/report?member_id${com.member_id}">더보기</a>
 	             		</th>
 						<th class="detail_table">전달</th>
 						<th class="detail_table">이달</th>
@@ -294,61 +299,6 @@
 	             			0 건
 	             		</td>
 					</tr>    
-	             	
-<!-- 	             	<tr> -->
-<!-- 	             		<th>환급금</th> -->
-<!-- 	             		<td colspan="3"> -->
-<!-- 	             			<div class="td_align"> -->
-<!-- 								<span></span> -->
-<!-- 		             			<span>총 0건 / 원데이 0건 / 정기 0건</span> -->
-<%-- 		             		 	<button type="button" class="btn" onclick="location.href='${pageContext.request.contextPath }/admin/member/detail/class'">더보기</button> --%>
-<!-- 	             			</div>  -->
-<!-- 	             		</td> -->
-<!-- 					</tr>	             	 -->
-<!-- 	             	<tr> -->
-<!-- 	             		<th>등록클래스수</th> -->
-<!-- 	             		<td colspan="3"> -->
-<!-- 	             			<div class="td_align"> -->
-<!-- 								<span></span> -->
-<!-- 		             			<span>총 0건 / 원데이 0건 / 정기 0건</span> -->
-<%-- 		             		 	<button type="button" class="btn" onclick="location.href='${pageContext.request.contextPath }/admin/member/detail/class'">더보기</button> --%>
-<!-- 	             			</div>  -->
-<!-- 						</td> -->
-<!-- 	             	</tr> -->
-<!-- 	             	<tr> -->
-<!-- 	             		<th>클래스 예약 내역</th> -->
-<!-- 	             		<td colspan="3"> -->
-<!-- 	             			<div class="td_align"> -->
-<!-- 								<span></span> -->
-<!-- 		             			<span>누적 0건 / 이번달 0건</span> -->
-<!-- 								<button type="button" class="btn">더보기</button> -->
-<!-- 	             			</div> -->
-<!-- 						</td> -->
-<!-- 	             	</tr> -->
-<!-- 	             	<tr> -->
-<!-- 	             		<th>리뷰수</th> -->
-<!-- 	             		<td colspan="3"> -->
-<!-- 	             			<div class="td_align"> -->
-<!-- 		             			<span></span> -->
-<!-- 		             			<span> -->
-<!-- 		             				<span>총 0건 / </span> -->
-<!-- 		             				<span>추천수 0건 / </span> -->
-<!-- 		             				<span>평균별점 0점</span> -->
-<!-- 		             			</span> -->
-<!-- 		             			<button type="button" class="btn">더보기</button> -->
-<!-- 	             			</div> -->
-<!-- 	             		</td> -->
-<!-- 	             	</tr> -->
-<!-- 	             	<tr> -->
-<!-- 	             		<th>피신고건수</th> -->
-<!-- 	             		<td colspan="3"> -->
-<!-- 	             			<div class="td_align"> -->
-<!-- 		             			<span></span> -->
-<!-- 		             			<span>0건</span> -->
-<!-- 		             			<button type="button" class="btn">더보기</button> -->
-<!-- 	             			</div> -->
-<!-- 	             		</td> -->
-<!-- 	             	</tr> -->
 	             </table>	 	
               </div>
             </div>

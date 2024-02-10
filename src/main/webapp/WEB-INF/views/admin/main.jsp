@@ -325,9 +325,9 @@
 			        <div class="card-body">
 			            <table class="table">
 			                <tr class="table_main">
-			                    <th>이번달 예약 건수 </th>
+			                    <th>이달 예약 건수 </th>
 			                    <th>누적 예약 건수</th>
-			                    <th>이번달 결제 총 금액</th>
+			                    <th>이달 결제 총 금액</th>
 			                    <th>누적 결제 총 금액</th>
 			                </tr>
 			                <tr class="table_main">
@@ -393,9 +393,9 @@
 			        <div class="card-body">
 			            <table class="table">
 			                <tr class="table_main">
-			                    <th>이번달 환급금</th>
+			                    <th>이달 환급금</th>
 			                    <th>누적  환급금</th>
-			                    <th>이번달 환급 수익</th>
+			                    <th>이달 환급 수익</th>
 			                    <th>누적 환급 수익</th>
 			                </tr>
 			                <tr class="table_main">
