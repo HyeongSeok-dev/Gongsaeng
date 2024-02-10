@@ -28,7 +28,8 @@
 	href="${pageContext.request.contextPath }/resources/company_assets/css/bootstrap.min.css"
 	rel="stylesheet" />
 <link
-	href="${pageContext.request.contextPath }/resources/company_assets/css/now-ui-dashboard.css?v=1.5.0"
+	href="${pageContext.request.contextPath }/resourc
+	es/company_assets/css/now-ui-dashboard.css?v=1.5.0"
 	rel="stylesheet" />
 <!-- CSS Just for demo purpose, don't include it in your project -->
 <link

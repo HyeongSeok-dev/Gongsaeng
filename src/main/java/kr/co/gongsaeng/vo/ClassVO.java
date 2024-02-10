@@ -77,7 +77,7 @@ public class ClassVO {
 	private String classReportCount; // 신고받은 수
 	
 	// [메인]
-	private int com_idx;		// 사업장 번호
+	private String com_idx;		// 사업장 번호
     private int resTotalCount; 	// 예약수
     private int bookmarkCount; 	// 북마크수
     private int isBookmark_idx;	// 세션 아이디의 북마크 번호
