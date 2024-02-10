@@ -1,6 +1,7 @@
 package kr.co.gongsaeng.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,6 +40,16 @@ public class CommunityService {
 		
 		return board;
 	}
+
+	// 함께해요 게시물 삭제 요청
+	public int removeTogether(BoardVO board) {
+		return mapper.deleteTogether(board);
+	}
+	
+	// 함께해요 댓글 목록 조회 요청
+//	public List<Map<String, Object>> getTogetherReplyBoardList(int board_idx) {
+//		return mapper.selectTogetherReplyBoardList(board_idx);
+//	}
 
 
 }

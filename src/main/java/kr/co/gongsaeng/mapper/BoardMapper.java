@@ -1,6 +1,7 @@
 package kr.co.gongsaeng.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -24,5 +25,11 @@ public interface BoardMapper {
 	
 	// 조회수
 	void updateTogetherReadcount(BoardVO board);
+	
+	// 함께해요 글 삭제
+	int deleteTogether(BoardVO board);
+	
+	// 댓글
+//	List<Map<String, Object>> selectTogetherReplyBoardList(int board_idx);
 
 }

@@ -201,9 +201,149 @@ public class CommunityController {
 		
 		// Model 객체에 BoardVO 객체 저장
 		model.addAttribute("board", board);
+		// --------------------------------------------------------------------------
+		// [ 댓글 기능 추가 ]
+		// 현재 게시물에 포함되어 있는 댓글 목록 조회(댓글은 페이징 처리 생략)
+		// BoardService - getTogetherReplyBoardList() 메서드 호출하여 댓글 목록 조회 요청
+		// => 파라미터 : 글번호   리턴타입 : List<Map<String, Object>>(tinyReplyBoardList)
+//		List<Map<String, Object>> togetherReplyBoardList = service.getTogetherReplyBoardList(board_idx);
+////				System.out.println(tinyReplyBoardList);
+//		
+//		// Model 객체에 댓글 목록 객체(List) 추가
+//		model.addAttribute("togetherReplyBoardList", togetherReplyBoardList);
+		// --------------------------------------------------------------------------
+				
 		
 		return "community/cm_togetherDetail";
 	}
+	//----------------------------------------------------------------------
+	// [ 글 삭제 ]
+	@GetMapping("community/deleteForm")
+	public String deleteForm(
+			BoardVO board, @RequestParam(defaultValue = "1") String pageNum,
+			HttpSession session, Model model) {
+		// 게시물 삭제 권한 확인
+		// 세션 아이디 없을 경우 처리
+		String sId = (String)session.getAttribute("sId");
+		if(sId == null) {
+			model.addAttribute("msg", "로그인이 필요합니다");
+			// targetURL 속성명으로 로그인 폼 페이지 서블릿 주소 저장
+			model.addAttribute("targetURL", "/gongsaeng/member/login");
+			return "forward";
+		}
+		// BoardService - getTogether() 메서드 재사용하여 게시물 1개 정보 조회
+		// => 조회수가 증가되지 않도록 두번째 파라미터값 false 전달
+		BoardVO dbTogether = service.getTogether(board.getBoard_idx(), false);
+		
+		// 조회된 게시물의 작성자(member_id)와 세션 아이디가 다를 경우 "잘못된 접근입니다" 처리
+		// => 단, 관리자는 자신의 게시물이 아니더라도 삭제가 가능해야하므로
+		//    세션아이디가 관리자가 아닐 경우라는 조건도 추가
+		if(dbTogether == null || !sId.equals(dbTogether.getMember_id()) && !sId.equals("admin")) {
+			model.addAttribute("msg", "잘못된 접근입니다");
+			return "fail_back";
+		}
+		
+		// BoardService - removeTogether() 메서드 호출하여 글 삭제 작업 요청
+		// => 파라미터 : BoardVO 객체(글번호 저장 필수)   리턴타입 : int(deleteCount)
+		int deleteCount = service.removeTogether(board);
+		
+		if(deleteCount > 0) { // DB 에서 게시물(레코드) 삭제 성공 시
+			try {
+				// -------------------------------------------------------------
+				// [ 서버에서 파일 삭제 ]
+				// 실제 업로드 경로 알아내기
+				String uploadDir = "/resources/upload"; // 가상의 경로(이클립스 프로젝트 상에 생성한 경로)
+				String saveDir = session.getServletContext().getRealPath(uploadDir);
+				
+				// -----------------------------------------------------------
+				// 파일 삭제에 사용된 중복 코드 제거를 위해 배열 + 반복문 활용
+				// 배열 arrFileNames 에 파일명 3개 저장
+				String[] arrFileNames = {
+						dbTogether.getBoard_img1(), 
+						dbTogether.getBoard_img2(), 
+						dbTogether.getBoard_img3()
+				};
+				
+				// for 문을 활용하여 배열 반복
+				for(String fileName : arrFileNames) {
+					if(!fileName.equals("")) {
+						Path path = Paths.get(saveDir + "/" + fileName);
+						Files.deleteIfExists(path);
+					}
+				}
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			// -------------------------------------------------------------
+			// 글 목록 페이지 리다이렉트(페이지번호 파라미터 전달)
+			return "redirect:/community/together?pageNum=" + pageNum;
+		} else {
+			// "글 삭제 실패!" 메세지 처리
+			model.addAttribute("msg", "글 삭제 실패!");
+			return "fail_back";
+		}
+		
+	}
+
+	//----------------------------------------------------------------------
+	// [ 글 수정 ]
+	@GetMapping("community/modifyForm")
+	public String modifyForm(BoardVO board, HttpSession session, Model model) {
+		// 글 삭제와 권한 판별 동일
+		// 세션 아이디 없을 경우 처리
+		String sId = (String)session.getAttribute("sId");
+		if(sId == null) {
+			model.addAttribute("msg", "로그인이 필요합니다");
+			model.addAttribute("targetURL", "/gongsaeng/member/login");
+			return "forward";
+		}
+		
+		// BoardService - getTogether() 메서드 재사용하여 게시물 1개 정보 조회
+		// => 조회수가 증가되지 않도록 두번째 파라미터값 false 전달
+		// => 별도의 새로운 BoardVO 타입 변수 선언 없이 기존 BoardVO 타입 변수(board) 재사용
+		board = service.getTogether(board.getBoard_idx(), false);
+		
+		// 조회된 게시물의 작성자(member_id)와 세션 아이디가 다를 경우 "잘못된 접근입니다" 처리
+		// => 단, 관리자는 자신의 게시물이 아니더라도 수정 가능해야하므로
+		//    세션아이디가 관리자가 아닐 경우라는 조건도 추가
+		if(board == null || !sId.equals(board.getMember_id()) && !sId.equals("admin")) {
+			model.addAttribute("msg", "잘못된 접근입니다");
+			return "fail_back";
+		}
+		
+		model.addAttribute("board", board);
+		
+		
+		return "community/cm_modify_form";
+	}
+	
+	//--------------------------------------------------------------------
+	// [ 댓글 기능 ]
+//	@PostMapping("BoardTinyReplyWrite")
+//	public String writeTinyReply(@RequestParam Map<String, String> map, HttpSession session, Model model) {
+////		System.out.println(map);
+//		
+//		if(session.getAttribute("sId") == null) {
+//			model.addAttribute("msg", "잘못된 접근입니다!");
+//			return "fail_back";
+//		}
+//		
+//		// BoardService - registTogetherReplyBoard() 메서드 호출하여 댓글 등록 작업 요청
+//		// => 파라미터 : Map 객체   리턴타입 : int(insertCount)
+//		int insertCount = service.registTogetherReplyBoard(map);
+//		
+//		// 댓글 등록 요청 결과 판별
+//		// => 성공 시 함께해요 글 상세정보(togetherDetail) 서블릿 리다이렉트(파라미터 : 글번호, 페이지번호)
+//		// => 실패 시 "댓글 작성 실패!" 메세지 처리(fail_back)
+//		if(insertCount > 0) {
+//			return "redirect:/togetherDetail?board_idx=" + map.get("board_idx") + "&pageNum=" + map.get("pageNum");
+//		} else {
+//			model.addAttribute("msg", "댓글 작성 실패!");
+//			return "fail_back";
+//		}
+//		
+//	}
 
 	@GetMapping("community/question")
 	public String question() {

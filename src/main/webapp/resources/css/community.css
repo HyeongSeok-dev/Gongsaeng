@@ -92,6 +92,7 @@
 }
 .post .post-description p {
   font-size: 14px;
+  min-height: 150px;
 }
 .post .post-description .stats {
   margin-top: 20px;
@@ -154,7 +155,7 @@
 }
 
 .cm_img {
-    display: block;
+    display: inline-block;
     padding: 4px;
     margin-bottom: 20px;
     line-height: 1.42857143;
@@ -170,19 +171,25 @@
 
  .cm_img {
      display: flex;  /* Flexbox를 사용 */
-     justify-content: space-between;  /* 사진 사이에 공간을 동일하게 분배 */
+     justify-content: flex-start;
  }
  .img1 {  /* 첫 번째 이미지에 적용할 스타일 */
-        width: 200px;
+     width: 200px;
+     height: 200px;
+     border-radius: 10px;
  }
  .img2 {  /* 두 번째 이미지에 적용할 스타일 */
      width: 200px;
+     height: 200px;
+     border-radius: 10px;     
  }
  .img3 {  /* 세 번째 이미지에 적용할 스타일 */
      width: 200px;
+     height: 200px;
+     border-radius: 10px;     
  }
  .cm_img a {
-     margin: 0 10px;  
+     margin: 0 5px;  
  }
 
 /* 글쓰기 */

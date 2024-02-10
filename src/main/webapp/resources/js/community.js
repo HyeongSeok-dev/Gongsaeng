@@ -1,5 +1,17 @@
    
 $(document).ready(function() {   
+    var selectElem = document.getElementById("board_main_category");
+    var selectedOption;
+
+    selectElem.addEventListener("mousedown", function(e) {
+        selectedOption = this.options[this.selectedIndex];
+        selectedOption.style.display = "none";
+    });
+
+    selectElem.addEventListener("blur", function(e) {
+        selectedOption.style.display = "block";
+    });
+    	
     $(".heart-icon").on("click", function() {
         var $this = $(this);
         var likeCountElement = $this.closest('.col-sm-4').find('.likeCount');
@@ -18,7 +30,8 @@ $(document).ready(function() {
         localStorage.setItem('likeCount', likeCountElement.text());
     });
     
-});
+    
+});// document.ready(function) 끝
 
 $(function(){
     $('.tip').tooltip();

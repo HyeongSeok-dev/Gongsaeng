@@ -63,4 +63,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE board_idx = #{board_idx}
 	</update>
 	
+	<!-- 글 삭제 - DELETE -->
+	<delete id="deleteTogether">
+		DELETE FROM board	
+		WHERE board_idx = #{board_idx}
+	</delete>
+	
 </mapper>

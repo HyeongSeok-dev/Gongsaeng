@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -60,6 +61,16 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/community.js"></script>
+<script type="text/javascript">
+	// 삭제 버튼 클릭 시 확인창을 통해 "삭제하시겠습니까?" 출력 후
+	// 확인 버튼 클릭 시 "BoardDelete.bo" 서블릿 요청(파라미터 : 글번호, 페이지번호)
+	function confirmDelete() {
+		if(confirm("게시글을 삭제하시겠습니까?")) {
+			confirm("게시글이 삭제되었습니다.")
+			location.href = "deleteForm?board_idx=${board.board_idx}&pageNum=${param.pageNum}";
+		}
+	}
+</script>
 
 </head>
 <body>
@@ -98,9 +109,15 @@
 			                </div>
 			                <div class="pull-left meta">
 			                    <div class="title h5">
-			                        <b>냥냥펀치</b>
+			                        <b>${board.member_id }</b>
 			                    </div>
-			                    <h6 class="text-muted time" style="font-size: 13px">${board.board_date }</h6>
+			                    <h6 class="text-muted time" style="font-size: 13px">${fn:substring(board.board_date,0,16)}</h6>
+			                </div>
+			                <div class="pull-right meta">
+				                <c:if test="${not empty sessionScope.sId and (board.member_id eq sessionScope.sId or sessionScope.sId eq 'admin')}">
+						                <input type="button" value="수정" onclick="location.href='modifyForm?board_idx=${board.board_idx}&pageNum=${param.pageNum}'">
+										<input type="button" value="삭제" onclick="confirmDelete()">
+				                </c:if>
 			                </div>
 			            </div>
 			            <div class="post-description"> 
@@ -111,7 +128,7 @@
 <!-- 								</a> -->
 								<c:choose>
 						            <c:when test="${not empty board.board_img1}">
-							            <a href="${pageContext.request.contextPath}/resources/upload/${board.board_img1}" target="_blank">
+							            <a href="${pageContext.request.contextPath}/resources/upload/${board.board_img1}" target="_blank" >
 							                <img class="img1" src="${pageContext.request.contextPath }/resources/upload/${board.board_img1}" alt="이미지">
 							            </a>
 						            </c:when>
@@ -121,7 +138,7 @@
 						        </c:choose>
 								<c:choose>
 						            <c:when test="${not empty board.board_img2}">
-							            <a href="${pageContext.request.contextPath}/resources/upload/${board.board_img2}" target="_blank">
+							            <a href="${pageContext.request.contextPath}/resources/upload/${board.board_img2}" target="_blank" class="pull-left">
 							                <img class="img2" src="${pageContext.request.contextPath }/resources/upload/${board.board_img2}" alt="이미지">
 							            </a>
 						            </c:when>
@@ -131,7 +148,7 @@
 						        </c:choose>
 								<c:choose>
 						            <c:when test="${not empty board.board_img3}">
-							            <a href="${pageContext.request.contextPath}/resources/upload/${board.board_img3}" target="_blank">
+							            <a href="${pageContext.request.contextPath}/resources/upload/${board.board_img3}" target="_blank" class="pull-left">
 							                <img class="img3" src="${pageContext.request.contextPath }/resources/upload/${board.board_img3}" alt="이미지">
 							            </a>
 						            </c:when>
@@ -147,7 +164,7 @@
 			            </div>
 			            <div class="post-footer">
 			                <div class="input-group"> 
-			                    <input class="form-control" placeholder="Add a comment" type="text">
+			                    <input class="form-control" placeholder="댓글을 작성해주세요." type="text">
 			                    <span class="input-group-addon">
 			                        <a href="#"><i class="fa fa-edit"></i></a>  
 			                    </span>
@@ -159,7 +176,7 @@
 		                        </a>
 		                        <div class="comment-body">
 		                           	<div class="comment-heading">
-									    <h4 class="user">메롱</h4>
+									    <h4 class="user">${board.member_id }</h4>
 									    <h5 class="time">5분 전 </h5>
 									    <i class="fa fa-reply"></i>
 									</div>
@@ -172,7 +189,7 @@
 		                                </a>
 		                                <div class="comment-body">
 		                                    <div class="comment-heading">
-		                                        <h4 class="user">냥냥펀치</h4>
+		                                        <h4 class="user">${board.member_id }</h4>
 		                                        <h5 class="time">4분 전 </h5>
 		                                        <i class="fa fa-reply"></i>
 		                                    </div>
@@ -185,7 +202,7 @@
 		                                </a>
 		                                <div class="comment-body">
 		                                    <div class="comment-heading">
-		                                        <h4 class="user">메롱</h4>
+		                                        <h4 class="user">${board.member_id }</h4>
 		                                        <h5 class="time">3분 전 </h5>
 		                                        <i class="fa fa-reply"></i>
 		                                    </div>
