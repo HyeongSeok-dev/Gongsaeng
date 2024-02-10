@@ -11,8 +11,10 @@ import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 
@@ -38,12 +40,14 @@ import com.google.protobuf.TextFormat.ParseException;
 
 import kr.co.gongsaeng.service.ClassService;
 import kr.co.gongsaeng.service.CompanyService;
+import kr.co.gongsaeng.vo.BoardVO;
 import kr.co.gongsaeng.vo.ClassVO;
 import kr.co.gongsaeng.vo.CompanyClassVO;
 import kr.co.gongsaeng.vo.CompanyReviewDetailVO;
 import kr.co.gongsaeng.vo.CompanyVO;
 import kr.co.gongsaeng.vo.MemberVO;
 import kr.co.gongsaeng.vo.PaymentVO;
+import kr.co.gongsaeng.vo.ReportVO;
 
 @Controller
 public class CompanyController {
@@ -54,8 +58,93 @@ public class CompanyController {
 	@Autowired
 	private ClassService classService;
 
+	// [ 사업체 메인 페이지 ] 
+	@GetMapping("company/main")
+	public String company_main(Model model, HttpSession session, PaymentVO payment, ReportVO report) {
 	
-	// 클래스 등록
+		
+		// 사업체 com_idx 산출
+		String sId = (String)session.getAttribute("sId");
+		System.out.println("Current sId from session: >>>>>>>>>>>>> " + sId);
+			
+		
+		Integer comIdx = companyService.findComIdxBysId(sId);
+		System.out.println("Current comIdx from session: >>>>>>>>>>>>> " + comIdx);
+		
+		// (1-1) 월간 매출 - 클래스 판매 금액
+		Integer monthlySales = companyService.calculateMonthlyBycomIdx(comIdx);
+		
+		if (monthlySales == null) {
+		    monthlySales = 0; // 기본값 할당
+		}
+		model.addAttribute("monthlySales", monthlySales); 
+	    
+	    // (1-2) 월간 매출 - 클래스 할인 쿠폰 사용 금액
+		int monthlyCoupons = companyService.calculateMonthlyCouponsBycomIdx(comIdx);
+		model.addAttribute("monthlyCoupons", monthlyCoupons); 
+		
+		// (2-1) 클래스 누적 정산금액(클래스 총 정산금액)
+		int totalSales = companyService.calculateTotalSales(comIdx);
+		model.addAttribute("totalSales",totalSales);
+	    
+		// (2-2) 클래스 누적 정산금액(클래스 총 정산금액)
+		int totalRefund = companyService.calculateTotalRefund(comIdx);
+		model.addAttribute("totalRefund",totalRefund);
+		
+		// (3-1) 월간 클래스 등록 현황
+		int monthlyNumberOfClassSales = companyService.calculateMonthlyNumberOfClass(comIdx);
+		model.addAttribute("monthlyNumberOfClassSales",monthlyNumberOfClassSales);
+		
+		// (4-1) 월간 클래스 취소 현황(취소 건수)
+		int montlyCancelClass = companyService.calculateMonthlyCancelClass(comIdx);
+		model.addAttribute("montlyCancelClass",montlyCancelClass);
+		
+		// (4-2) 월간 클래스 취소 현황(취소 금액)
+		int montlyCancelClassAmount = companyService.calculateMonthlyCancelAmount(comIdx);
+		model.addAttribute("montlyCancelClassAmount",montlyCancelClassAmount);
+		
+		String memberId = (String) session.getAttribute("sId");
+		
+		// (5) 운영중인 클래스 현황
+		int numberOfClass = companyService.calculateNumberOfClass(memberId);
+		model.addAttribute("numberOfClass",numberOfClass);
+		
+		// (6) 클래스 신고 현황
+		List<ReportVO> reportCount = companyService.getReportCount(memberId);
+		model.addAttribute("reportCount",reportCount);
+		
+		// (7) 공지사항 출력
+		List<BoardVO> companyBoard = companyService.getCompanyBoard(1,2);
+		model.addAttribute("companyBoard",companyBoard);
+
+		// (8) 현재 날짜 출력
+		
+	    // Get current date
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.ENGLISH);
+        String currentDate = dateFormat.format(date);
+
+        // Get day of the week
+        SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.KOREAN);
+        String dayOfWeek = dayFormat.format(date);
+
+        // Add to the model
+        model.addAttribute("currentDate", currentDate);
+        model.addAttribute("dayOfWeek", dayOfWeek);
+
+		
+		return "company/company_main";
+	}
+	
+	
+	// ==============================================================================================
+	
+	
+	
+	
+	
+	
+	// [ 클래스 등록 ] 
 	@GetMapping("classRegisterForm")
 	public String classRegisterForm(HttpSession session, Model model) {
 		// 세션 아이디 없을 경우 "로그인이 필요합니다" 처리를 위해 "forward.jsp" 페이지 포워딩
@@ -67,54 +156,6 @@ public class CompanyController {
 //		}
 		
 		return "company/company_register1";
-	}
-	
-	// 1페이지
-	@GetMapping("company/class/register1")
-	public String company_register1() {
-		return "company/company_register1";
-	}
-
-	// 2페이지
-	@GetMapping("company/class/register2")
-	public String company_register2() {
-		return "company/company_register2-2";
-	}
-
-	// 3페이지
-	@GetMapping("company/class/register3")
-	public String company_register3() {
-		return "company/company_register3";
-	}
-
-	// 4페이지
-	@GetMapping("company/class/register4")
-	public String company_register4() {
-		return "company/company_register4";
-	}
-	
-	// 5페이지
-	@GetMapping("company/class/register5")
-	public String company_register5() {
-		return "company/company_register5";
-	}
-
-	// 6페이지
-	@GetMapping("company/class/register6")
-	public String company_register6() {
-		return "company/company_register6";
-	}
-	
-	// 7페이지
-	@GetMapping("company/class/register7")
-	public String company_register7() {
-		return "company/company_register7";
-	}
-	
-	// 8페이지
-	@GetMapping("company/class/register8")
-	public String company_register8() {
-		return "company/company_register8";
 	}
 	
 	@PostMapping("company/class/classRegisterPro")
@@ -763,7 +804,12 @@ public class CompanyController {
 	    List<CompanyVO> companyAccountInfo = companyService.getCompanyAccountInfo(comIdx);
 	    model.addAttribute("companyAccountInfo", companyAccountInfo);
 			 
-		 return "company/company_income";
+	    // 정산신청 완료 금액 산출(pay_cal_status = 4)
+	    int totalPayment = companyService.calculatePayment(comIdx);
+	    model.addAttribute("totalPayment",totalPayment);
+
+	    return "company/company_income";
+		 
 	 }
 	 
 	 // 정산 내역
@@ -844,13 +890,6 @@ public class CompanyController {
 		
 		return "company/company_review";
 	}
-	 
-	 
-	 
-	@GetMapping("company/main")
-	public String company_main() {
-		return "company/company_main";
-	}
 	
 	@GetMapping("company/sales2")
 	public String company_sales2() {
@@ -918,7 +957,53 @@ public class CompanyController {
 		return "company/dbregister";
 	}
 
+	// 1페이지
+	@GetMapping("company/class/register1")
+	public String company_register1() {
+		return "company/company_register1";
+	}
 
+	// 2페이지
+	@GetMapping("company/class/register2")
+	public String company_register2() {
+		return "company/company_register2-2";
+	}
+
+	// 3페이지
+	@GetMapping("company/class/register3")
+	public String company_register3() {
+		return "company/company_register3";
+	}
+
+	// 4페이지
+	@GetMapping("company/class/register4")
+	public String company_register4() {
+		return "company/company_register4";
+	}
+	
+	// 5페이지
+	@GetMapping("company/class/register5")
+	public String company_register5() {
+		return "company/company_register5";
+	}
+
+	// 6페이지
+	@GetMapping("company/class/register6")
+	public String company_register6() {
+		return "company/company_register6";
+	}
+	
+	// 7페이지
+	@GetMapping("company/class/register7")
+	public String company_register7() {
+		return "company/company_register7";
+	}
+	
+	// 8페이지
+	@GetMapping("company/class/register8")
+	public String company_register8() {
+		return "company/company_register8";
+	}
 	
 	
 }

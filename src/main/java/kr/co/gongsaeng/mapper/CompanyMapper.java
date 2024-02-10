@@ -6,11 +6,13 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import kr.co.gongsaeng.vo.BoardVO;
 import kr.co.gongsaeng.vo.CompanyClassVO;
 import kr.co.gongsaeng.vo.CompanyReviewDetailVO;
 import kr.co.gongsaeng.vo.CompanyVO;
 import kr.co.gongsaeng.vo.MemberVO;
 import kr.co.gongsaeng.vo.PaymentVO;
+import kr.co.gongsaeng.vo.ReportVO;
 
 @Mapper
 public interface CompanyMapper {
@@ -50,6 +52,40 @@ public interface CompanyMapper {
 
 	// 리뷰 목록 출력
 	List<CompanyReviewDetailVO> selectCompanyReviewDetail(Integer comIdx);
+
+	// 정산 신청 완료 금액
+	int selectSumPayment(Integer comIdx);
+
+	// 메인 - (1-1) 월별 매출(클래스 판매 금액)
+	Integer selectSumMonthlySales(Integer comIdx);
+
+	// 메인 - (1-2) 월별 매출(할인쿠폰 금액)
+	int selectSumMonthlyCoupons(Integer comIdx);
+
+	// 메인 - (2-1) 클래스 누적 정산 금액(클래스 총 정산 금액)
+	int selectSumTotalSales(Integer comIdx);
+
+	// 메인 - (2-2) 클래스 누적 정산 금액(클래스 총 정산 금액)
+	int selectSumTotalRefund(Integer comIdx);
+
+	// 메인 - (3-1) 월간 클래스 등록 현황
+	int selectSumMonthlyNumberOfClass(Integer comIdx);
+
+	// 메인 - (4-1) 월간 클래스 취소 현황(취소 건수)
+	int selectCountMonthlyCancelClass(Integer comIdx);
+
+	// 메인 - (4-2) 월간 클래스 취소 현황(취소 금액)
+	int selectSumMonthlyCancelClass(Integer comIdx);
+
+	// 메인 - (5) 운영중인 클래스 현황
+	int selectCountClass(String memberId);
+
+	// 메인 - (6) 클래스 신고 현황
+	List<ReportVO> countReport(String memberId);
+
+	// 메인 - (7) 작가 공지사항
+	List<BoardVO> getCompanyBoard(int i, int j);
+
 
 
 

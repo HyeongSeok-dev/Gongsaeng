@@ -177,9 +177,8 @@ body {
 						<div class="card-header"></div>
 						<br>
 <%-- 							<h5 class="card-title">&nbsp;&nbsp;&nbsp;${income}</h5> --%>
-							<h5 class="card-title">&nbsp;&nbsp;&nbsp;
-</h5>
-							
+							<h5 class="card-title">&nbsp;&nbsp;&nbsp;<fmt:formatNumber value="${totalPayment}" groupingUsed="true" pattern="#,##0" />원</h5> 	
+<%-- 							<h5 class="card-title">${totalPayment}원</h5> 	 --%>
 						<div class="card-body">
           					 <div class="income_btn d-flex justify-content-end">
 								<button type="button" class="btn btn-danger md-2">환급 신청</button>

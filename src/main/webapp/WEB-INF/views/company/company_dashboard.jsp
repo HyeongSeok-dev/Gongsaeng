@@ -112,7 +112,7 @@
               <div class="card-header">
                 <h5 class="card-category">전일 매출 설명하기</h5>
 <!--                 <h4 class="card-title">Shipped Products</h4> -->
-                <h4 class="card-title">전일 매출</h4>
+                <h4 class="card-title">주간 매출</h4>
                 <div class="dropdown">
                   <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
                     <i class="now-ui-icons loader_gear"></i>

@@ -342,7 +342,7 @@ a {
 															 ${classInfo.class_start_date} ~ ${classInfo.class_end_date}&nbsp;&nbsp;|&nbsp;&nbsp;<i class="mdi mdi-wallet"></i> ${classInfo.class_price}원
 														</li>
 													</ul>
-														<br><br><input type="button" value="클래스 삭제" class="delete-btn" data-pay-num="${classInfo.class_idx}">
+													<input type="button" value="클래스 삭제" class="delete-btn" data-pay-num="${classInfo.class_idx}">
 												</div>
 											</div>
 										</div>

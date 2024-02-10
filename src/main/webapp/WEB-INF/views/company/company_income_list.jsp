@@ -258,7 +258,7 @@ tbody {
 											              <th scope="col">할인 금액(쿠폰/포인트)</th>
 											              <th scope="col">수수료 (10%)</th>
 											              <th scope="col">정산 금액</th>
-											              <th scope="col">환급 완료일</th>
+											              <th scope="col">정산 완료일</th>
 <!-- 											              <th scope="col">정산 신청</th> -->
 											            </tr>
 											          </thead>

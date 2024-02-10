@@ -9,12 +9,14 @@ import org.springframework.stereotype.Service;
 
 import kr.co.gongsaeng.mapper.ClassMapper;
 import kr.co.gongsaeng.mapper.CompanyMapper;
+import kr.co.gongsaeng.vo.BoardVO;
 import kr.co.gongsaeng.vo.ClassVO;
 import kr.co.gongsaeng.vo.CompanyClassVO;
 import kr.co.gongsaeng.vo.CompanyReviewDetailVO;
 import kr.co.gongsaeng.vo.CompanyVO;
 import kr.co.gongsaeng.vo.MemberVO;
 import kr.co.gongsaeng.vo.PaymentVO;
+import kr.co.gongsaeng.vo.ReportVO;
 @Service
 public class CompanyService {
 	
@@ -92,6 +94,74 @@ public class CompanyService {
 		
 		return mapper.selectCompanyReviewDetail(comIdx);
 	}
+
+	// [ 정산신청 완료 금액 ] 
+	public int calculatePayment(Integer comIdx) {
+	
+		return mapper.selectSumPayment(comIdx);
+	}
+
+	// [ 메인 - (1-1) 월간매출 - 클래스 판매 금액 ]
+	public Integer calculateMonthlyBycomIdx(Integer comIdx) {
+
+		
+		return mapper.selectSumMonthlySales(comIdx);
+	}
+
+	// [ 메인 - (1-2) 월간매출 - 할인쿠폰 금액 ]
+	public int calculateMonthlyCouponsBycomIdx(Integer comIdx) {
+		
+		return mapper.selectSumMonthlyCoupons(comIdx);
+	}
+
+	// [ 메인 - (2-1) 클래스 누적 정산 금액(클래스 총 정산 금액)]
+	public int calculateTotalSales(Integer comIdx) {
+
+		return mapper.selectSumTotalSales(comIdx);
+	}
+
+	// [ 메인 - (2-2) 클래스 누적 정산 금액(클래스 총 환불 금액)]
+	public int calculateTotalRefund(Integer comIdx) {
+
+		return mapper.selectSumTotalRefund(comIdx);
+	}
+
+	// [ 메인 - (3-1) 월간 클래스 등록 현황 ]
+	public int calculateMonthlyNumberOfClass(Integer comIdx) {
+
+		return mapper.selectSumMonthlyNumberOfClass(comIdx);
+	}
+
+	// [ 메인 - (4-1) 월간 클래스 취소 현황(취소 건수) ] 
+	public int calculateMonthlyCancelClass(Integer comIdx) {
+
+		return mapper.selectCountMonthlyCancelClass(comIdx);
+	}
+
+	// [ 메인 - (4-2) 월간 클래스 취소 현황(취소 금액) ]
+	public int calculateMonthlyCancelAmount(Integer comIdx) {
+
+		return mapper.selectSumMonthlyCancelClass(comIdx);
+	}
+
+	// [ 메인 - (5-1) 운영중인 클래스 현황 ] 
+	public int calculateNumberOfClass(String memberId) {
+
+		return mapper.selectCountClass(memberId);
+	}
+
+	// [ 메인 - (6) 클래스 신고 현황 ]
+	public List<ReportVO> getReportCount(String memberId) {
+
+		return mapper.countReport(memberId);
+	}
+
+	// [ 메인 - (7) 작가 공지사항 ]
+	public List<BoardVO> getCompanyBoard(int i, int j) {
+
+		return mapper.getCompanyBoard(i,j);
+	}
+
 
 
 

@@ -109,4 +109,110 @@
 		WHERE com_idx = #{comIdx}
 	</select>
 	
+	<!-- 정산완료 내역 합계 -->
+	<select id="selectSumPayment" resultType="Integer">
+		SELECT SUM(payment)
+		FROM payment
+    	WHERE pay_cal_status = 4 AND com_idx = #{comIdx}
+	</select>
+	
+	<!-- 메인 - (1-1) 월별매출(클래스 판매 금액) -->
+	<select id="selectSumMonthlySales" resultType="Integer">
+		SELECT SUM(payment) AS totalMonthlyPayment
+		FROM payment
+		WHERE com_idx = #{comIdx} 
+			AND MONTH(pay_date) = MONTH(CURRENT_DATE())
+	</select>
+
+	<!-- 메인 - (1-2) 월별매출(할인쿠폰 금액) -->
+	<select id="selectSumMonthlyCoupons" resultType="Integer">
+		SELECT SUM(discount_payment) AS totalMonthlyCoupons
+		FROM payment
+		WHERE com_idx = #{comIdx} 
+			AND MONTH(pay_date) = MONTH(CURRENT_DATE())
+	</select>
+	
+	<!-- 메인 - (2-1) 클래스 누적 정산 금액(클래스 총 정산 금액) -->
+	<select id="selectSumTotalSales" resultType="Integer">	
+		SELECT SUM(payment) AS totalPayment
+		FROM payment
+		WHERE com_idx = #{comIdx} 
+	</select>
+	
+	<!-- 메인 - (2-2) 클래스 누적 정산 금액(클래스 총 환불 금액) -->
+	<select id="selectSumTotalRefund" resultType="Integer">	
+		SELECT SUM(payment) AS totalRefund
+		FROM payment
+		WHERE com_idx = #{comIdx} AND pay_status = 2
+	</select>
+	
+	<!-- 메인 - (3-1) 월간 클래스 등록 현황 -->
+	<select id="selectSumMonthlyNumberOfClass" resultType="Integer">
+		SELECT COUNT(pay_num) AS montlyNumberOfClass
+		FROM payment
+		WHERE com_idx = #{comIdx} 
+			AND MONTH(pay_date) = MONTH(CURRENT_DATE())
+	</select>
+	
+	<!-- 메인 (4-1) 월간 클래스 취소 현황(취소 건수) -->
+	<select id="selectCountMonthlyCancelClass" resultType="Integer">
+		SELECT COUNT(payment) AS monthlyNumberOfCancel
+		FROM payment
+		WHERE com_idx = #{comIdx}
+			AND MONTH(pay_date) = MONTH(CURRENT_DATE())
+			AND pay_status = 2
+	</select>
+	
+	<!-- 메인 - (4-2) 월간 클래스 취소 현황(취소 금액) -->
+	<select id="selectSumMonthlyCancelClass" resultType="Integer">
+		SELECT SUM(payment) AS mothlySumOfCancel
+		FROM payment
+		WHERE com_idx = #{comIdx}
+			AND MONTH(pay_date) = MONTH(CURRENT_DATE())
+			AND pay_status = 2
+	</select>
+	
+	<!-- 메인 - (5-1) 운영중인 클래스 현황 -->
+	<select id="selectCountClass" resultType="Integer">
+		SELECT COUNT(class_idx) AS NumberOfClass
+		FROM class
+		WHERE member_id = #{member_id}
+			AND class_end_date >= CURDATE()
+	</select>
+	
+	<!-- 메인 - (6) 클래스 신고 현황 -->
+<!-- 	<select id="countReport" resultType="Integer"> -->
+<!-- 		SELECT -->
+<!-- 		    vrc.com_idx, -->
+<!-- 		    vrc.com_name, -->
+<!-- 		    vrc.report_count -->
+<!-- 		FROM -->
+<!-- 		    ViewReportCountByCompany vrc -->
+<!-- 		JOIN -->
+<!-- 		    company co ON vrc.com_idx = co.com_idx -->
+<!-- 		WHERE -->
+<!-- 		    co.member_id = #{member_id} -->
+<!-- 	</select> -->
+	<select id="countReport" resultType="Integer">
+		SELECT
+		    vrc.report_count
+		FROM
+		    ViewReportCountByCompany vrc
+		JOIN
+		    company co ON vrc.com_idx = co.com_idx
+		WHERE
+		    co.member_id = #{member_id}
+	</select>
+	
+	<!-- 메인 - (7) 작가 공지사항 -->
+	<select id="getCompanyBoard" resultType="board">
+		SELECT *
+		FROM board
+		WHERE 
+			board_main_category = 1 AND
+			board_sub_category = 2
+	</select>
+	
+	
+	
 </mapper>
