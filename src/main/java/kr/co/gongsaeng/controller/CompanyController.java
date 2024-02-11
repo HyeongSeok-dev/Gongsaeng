@@ -1,5 +1,6 @@
 package kr.co.gongsaeng.controller;
 
+import java.time.format.DateTimeFormatter;
 import java.beans.PropertyEditor;
 import java.beans.PropertyEditorSupport;
 import java.io.File;
@@ -8,15 +9,19 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Time;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
+import java.time.LocalDateTime;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -46,8 +51,10 @@ import kr.co.gongsaeng.vo.CompanyClassVO;
 import kr.co.gongsaeng.vo.CompanyReviewDetailVO;
 import kr.co.gongsaeng.vo.CompanyVO;
 import kr.co.gongsaeng.vo.MemberVO;
+import kr.co.gongsaeng.vo.PageInfo;
 import kr.co.gongsaeng.vo.PaymentVO;
 import kr.co.gongsaeng.vo.ReportVO;
+import kr.co.gongsaeng.vo.ViewReportDetailByCompanyVO;
 
 @Controller
 public class CompanyController {
@@ -77,14 +84,17 @@ public class CompanyController {
 		if (monthlySales == null) {
 		    monthlySales = 0; // 기본값 할당
 		}
+		
 		model.addAttribute("monthlySales", monthlySales); 
 	    
 	    // (1-2) 월간 매출 - 클래스 할인 쿠폰 사용 금액
 		int monthlyCoupons = companyService.calculateMonthlyCouponsBycomIdx(comIdx);
+		
 		model.addAttribute("monthlyCoupons", monthlyCoupons); 
 		
 		// (2-1) 클래스 누적 정산금액(클래스 총 정산금액)
-		int totalSales = companyService.calculateTotalSales(comIdx);
+		Integer totalSales = companyService.calculateTotalSales(comIdx);
+		
 		model.addAttribute("totalSales",totalSales);
 	    
 		// (2-2) 클래스 누적 정산금액(클래스 총 정산금액)
@@ -111,10 +121,12 @@ public class CompanyController {
 		
 		// (6) 클래스 신고 현황
 		List<ReportVO> reportCount = companyService.getReportCount(memberId);
+	    reportCount = reportCount == null ? Collections.emptyList() : reportCount; // `null` 체크
 		model.addAttribute("reportCount",reportCount);
 		
 		// (7) 공지사항 출력
 		List<BoardVO> companyBoard = companyService.getCompanyBoard(1,2);
+	    companyBoard = companyBoard == null ? Collections.emptyList() : companyBoard; // `null` 체크
 		model.addAttribute("companyBoard",companyBoard);
 
 		// (8) 현재 날짜 출력
@@ -138,15 +150,9 @@ public class CompanyController {
 	
 	
 	// ==============================================================================================
-	
-	
-	
-	
-	
-	
 	// [ 클래스 등록 ] 
-	@GetMapping("classRegisterForm")
-	public String classRegisterForm(HttpSession session, Model model) {
+	@GetMapping("company/classRegisterForm")
+	public String classRegisterForm(HttpSession session, Model model, CompanyVO company) {
 		// 세션 아이디 없을 경우 "로그인이 필요합니다" 처리를 위해 "forward.jsp" 페이지 포워딩
 //		if(session.getAttribute("sId") == null) {
 //			model.addAttribute("msg", "로그인이 필요합니다");
@@ -155,16 +161,64 @@ public class CompanyController {
 //			return "forward";
 //		}
 		
-		return "company/company_register1";
+	    String sId = (String)session.getAttribute("sId");
+//		CompanyVO company = classService.getClassAddress(sId);
+	    System.out.println("클래스 등록 sId >>>>>>>>" + sId);
+	    CompanyVO companyAddress = classService.getClassAddress(sId);
+		model.addAttribute("companyAddress",companyAddress);
+		System.out.println("클래스 등록 companyAddress >>>>>>>>" + companyAddress);
+		
+		
+		return "company/company_register7";
 	}
 	
-	@PostMapping("company/class/classRegisterPro")
-	public String classRegisterPro(HttpSession session, Model model, HttpServletRequest request, ClassVO gclass) {
-//		if(session.getAttribute("sId") == null) {
+	@PostMapping("company/classRegisterPro")
+	public String classRegisterPro(HttpSession session, Model model, HttpServletRequest request, ClassVO gclass, @RequestParam("class_offering") int[] classOfferings) {//		if(session.getAttribute("sId") == null) {
 //			model.addAttribute("msg", "로그인이 필요합니다");
 //			model.addAttribute("targetURL", "MemberLoginForm");
 //			return "forward";
 //		}
+	    String memberId = (String) session.getAttribute("sId");
+	    gclass.setMember_id(memberId);
+
+	    // ------------------------------------------------------
+	    // 기타 제공 사항
+	    if (classOfferings != null) {
+	    	
+		    char[] stringArray = new char[7];
+	        for (int i = 0; i < stringArray.length; i++) {
+	            stringArray[i] = '0';
+	        }
+	        for (int elem : classOfferings) {
+	        	if (elem > 0 && elem <= stringArray.length) {
+	                stringArray[elem] = '1'; // 배열 인덱스 조정
+	            }
+	        }
+	        String result = new String(stringArray);
+	        
+	        System.out.println(result);
+	        gclass.setClass_offering(result);
+	    	
+	    }
+	    
+	    // 주소 선택
+	    // ------------------------------------------------------
+		String addressOption = request.getParameter("addressOption");
+		String postCode, address1, address2;
+
+		if ("existing".equals(addressOption)) {
+			postCode = request.getParameter("class_post_code").replace(",", ""); // 콤마 제거
+			address1 = request.getParameter("class_address1").replace(",", ""); // 콤마 제거
+			address2 = request.getParameter("class_address2").replace(",", ""); // 콤마 제거
+		} else if ("new".equals(addressOption)) {
+			postCode = request.getParameter("class_post_code").replace(",", ""); // 콤마 제거
+			address1 = request.getParameter("class_address1").replace(",", ""); // 콤마 제거
+			address2 = request.getParameter("class_address2").replace(",", ""); // 콤마 제거
+		}
+		
+		// ------------------------------------------------------
+		
+		
 		
 		// 대표 사진 업로드(최대 3장)
 		
@@ -610,9 +664,7 @@ public class CompanyController {
 				}
 				
 			}
-		
-
-	// ================================================================
+		// ===========================================================
 	// [ 반장회원 전환 신청 ] -> 일반 회원의 기존 정보 가져오기
 	@GetMapping("company/banjang/register")
 	public String company_banjang_register(HttpSession session, Model model) {
@@ -694,7 +746,8 @@ public class CompanyController {
 				e.printStackTrace();
 			}	
 			// 글목록(BoardList) 서블릿 리다이렉트
-						return "redirect:/BoardList";
+						model.addAttribute("msg","반장 회원 신청이 완료되었습니다!");
+						return "redirect:/mypage/main";
 					} else {
 						// "글쓰기 실패!" 메세지 처리(fail_back)
 						model.addAttribute("msg", "글쓰기 실패!");
@@ -706,19 +759,37 @@ public class CompanyController {
 	// =============================================================
 	// 클래스 내역
 	@GetMapping("company/class") 
+//	public String classList(@RequestParam(defaultValue = "1") int pageNum, HttpSession session, Model model, ClassVO gclass, HttpServletRequest request) {
 	public String classList(HttpSession session, Model model, ClassVO gclass, HttpServletRequest request) {
 	    String sId = (String)session.getAttribute("sId");
-	    System.out.println("Current sId from session: >>>>>>>>>>>>> " + sId);
-	    
-       gclass.setMember_id(sId);
-	   model.addAttribute("gclass",gclass);
-	    
-	   List<Map<String, Object>> classList = classService.getClassList(sId);
-	   model.addAttribute("classList", classList); // 클래스 목록을 모델에 추가
-	    
+
+//	    int listLimit = 7; // 한 페이지당 보여질 목록의 수
+//	    int startRow = (pageNum - 1) * listLimit; // 시작 행 번호
+
+//	    List<ClassVO> classList = classService.getTogetherList(sId, startRow, listLimit);
+	    List<ClassVO> classList = classService.getTogetherList(sId);
+	    model.addAttribute("classList", classList);
+
+//	    int listCount = classService.getClassListCount(sId); // 전체 클래스 수
+//	    int maxPage = (int)((double)listCount / listLimit + 0.95); // 전체 페이지 수
+//	    int startPage = (((int)((double)pageNum / 10 + 0.9)) - 1) * 10 + 1; // 시작 페이지 번호
+//	    int endPage = startPage + 10 - 1; // 마지막 페이지 번호
+//
+//	    if(endPage > maxPage) endPage = maxPage;
+//
+//	    PageInfo pageInfo = new PageInfo();
+//	    pageInfo.setEndPage(endPage);
+//	    pageInfo.setListCount(listCount);
+//	    pageInfo.setMaxPage(maxPage);
+//	    pageInfo.setPageNum(pageNum);
+//	    pageInfo.setStartPage(startPage);
+//	    model.addAttribute("pageInfo", pageInfo);
+
 	    return "company/company_class";
-		
 	}
+	
+
+	
 	// =============================================================		
 	// [ 클래스 삭제 ]
 	
@@ -759,6 +830,9 @@ public class CompanyController {
 		Integer comIdx = companyService.findComIdxBysId(sId);
 		System.out.println("Current comIdx from session: >>>>>>>>>>>>> " + comIdx);
 		
+	    // 날짜 포맷을 위한 DateTimeFormatter 인스턴스 생성
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		
 		 // comIdx를 이용하여 매출 목록 조회
 		 // class_idx를 이용하여 클래스명 출력
 		List<Map<String, Object>> saleList = companyService.getSaleListByComIdx(comIdx);
@@ -766,6 +840,12 @@ public class CompanyController {
 	        int classIdx = (Integer) sale.get("class_idx");
 	        String class_title = companyService.findClassNameByClassIdx(classIdx);
 	        sale.put("class_title", class_title); // saleList에 class_title 추가
+	        
+	     // pay_date 포매팅
+	        LocalDateTime payDate = (LocalDateTime) sale.get("pay_date");
+	        String formattedDate = payDate.format(formatter);
+	        sale.put("formatted_pay_date", formattedDate); // 포매팅된 날짜를 새로운 키에 저장
+	        
 	    }
 	    model.addAttribute("saleList", saleList);
 	    
@@ -870,6 +950,25 @@ public class CompanyController {
 		 System.out.println("Current comIdx from session: >>>>>>>>>>>>> " + comIdx);
 		
 		 List<CompanyClassVO> companyClassMember = companyService.getPaymentClassMembers(comIdx);
+		 
+	        Calendar now = Calendar.getInstance();
+	        
+	        for (CompanyClassVO companyClass : companyClassMember) {
+	            Calendar startDate = Calendar.getInstance();
+	            startDate.setTime(new java.util.Date(companyClass.getClass_start_date().getTime()));
+	            
+	            Calendar endDate = Calendar.getInstance();
+	            endDate.setTime(new java.util.Date(companyClass.getClass_end_date().getTime()));
+	            
+	            if (startDate.after(now)) {
+	                companyClass.setClassStatus("진행예정");
+	            } else if (!startDate.after(now) && !endDate.before(now)) {
+	                companyClass.setClassStatus("진행중");
+	            } else if (endDate.before(now)) {
+	                companyClass.setClassStatus("종료");
+	            }
+	        }
+		 
 		 model.addAttribute("companyClassMember", companyClassMember);
     
 			return "company/company_member";
@@ -891,16 +990,28 @@ public class CompanyController {
 		return "company/company_review";
 	}
 	
+	// 신고 관리
+	@GetMapping("company/report")
+	public String company_chat(HttpSession session, Model model) {
+		String sId = (String)session.getAttribute("sId");
+		System.out.println("Current sId from session: >>>>>>>>>>>>> " + sId);
+		
+//		Integer comIdx = companyService.findComIdxBysId(sId);
+//		System.out.println("Current comIdx from session: >>>>>>>>>>>>> " + comIdx);
+		
+		List<ViewReportDetailByCompanyVO> reportDetail = companyService.getReportDetail(sId);
+		model.addAttribute("reportDetail",reportDetail);
+		
+		return "company/company_report_list";
+	}
+	
+	
 	@GetMapping("company/sales2")
 	public String company_sales2() {
 		return "company/company_sales2";
 	}
 	
 	
-	@GetMapping("company/chat")
-	public String company_chat() {
-		return "company/company_chat";
-	}
 	
 	@GetMapping("company/community")
 	public String company_community() {

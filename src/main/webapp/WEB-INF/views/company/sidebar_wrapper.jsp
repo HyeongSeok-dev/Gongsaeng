@@ -30,7 +30,8 @@
             </a>
             <div id="classManagementDropdown" class="collapse" aria-labelledby="classManagementDropdown" data-parent="#sidebar-wrapper">
                 <ul class="nav">
-                    <li><a href="${pageContext.request.contextPath}/company/class/register7">클래스 등록</a></li>
+<%--                     <li><a href="${pageContext.request.contextPath}/company/class/register7">클래스 등록</a></li> --%>
+                    <li><a href="${pageContext.request.contextPath}/company/classRegisterForm">클래스 등록</a></li>
 <%--                     <li><a href="${pageContext.request.contextPath}/company/class">클래스 내역</a></li> --%>
                     <li><a href="${pageContext.request.contextPath}/company/class">클래스 내역</a></li>
                     <li><a href="${pageContext.request.contextPath}/company/reservation">클래스 일정 관리</a></li>
@@ -62,7 +63,8 @@
                 <ul class="nav">
                     <li><a href="${pageContext.request.contextPath}/company/member">회원 목록</a></li>
                     <li><a href="${pageContext.request.contextPath}/company/review">리뷰 목록</a></li>
-                    <li><a href="${pageContext.request.contextPath}/company/chat">채팅 관리</a></li>
+<%--                     <li><a href="${pageContext.request.contextPath}/company/chat">채팅 관리</a></li> --%>
+                    <li><a href="${pageContext.request.contextPath}/company/report">신고 관리</a></li>
                 </ul>
             </div>
         </li>

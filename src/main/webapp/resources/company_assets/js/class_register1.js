@@ -1,7 +1,7 @@
 // 전역 변수로 일정 데이터를 저장할 배열 선언
 var schedules = [];
 
-$(document).ready(function() {``
+$(document).ready(function() {
 
 
     $("#goTo1Tab").click(function() {
@@ -41,6 +41,9 @@ $(document).ready(function() {``
     });
 
 
+	// 주소 선택 라디오 버튼 이벤트 핸들러 등록
+    setupAddressSelection();
+
 });
 
 
@@ -65,20 +68,47 @@ $(document).ready(function() {``
 		    new daum.Postcode({
 		        oncomplete: function(data) {
 		            // 우편번호(zonecode) 가져와서 우편번호 항목(postCode)에 출력
-		            document.getElementById('postCode').value = data.zonecode; 
+		            document.getElementById('newPostCode').value = data.zonecode; 
 		            
 		            // 기본주소(address) 가져와서 기본주소 항목(address1)에 출력
 		            let address = data.address;
 		            if(data.buildingName != "") {
 		                address += " (" + data.buildingName + ")";
 		            }
-		            document.getElementById('address1').value = address;
+		            document.getElementById('newAddress1').value = address;
 		
 		            // 상세주소 항목(address2)에 포커스 요청
-		            document.getElementById('address2').focus();
+		            document.getElementById('newAddress2').focus();
 		        }
 		    }).open();
 		};
+		
+		// 주소 선택 처리 함수
+function setupAddressSelection() {
+    $('#existingAddress').change(function() {
+        if(this.checked) {
+            $('#additionalAddress').hide();
+            // 새 주소 입력 필드의 name 속성 제거
+            $('#newPostCode, #newAddress1, #newAddress2').removeAttr('name');
+            // 기존 주소 입력 필드의 name 속성 추가
+            $('#postCode').attr('name', 'class_post_code');
+            $('#address1').attr('name', 'class_address1');
+            $('#address2').attr('name', 'class_address2');
+        }
+    });
+
+    $('#newAddress').change(function() {
+        if(this.checked) {
+            $('#additionalAddress').show();
+            // 새 주소 입력 필드의 name 속성 추가
+            $('#newPostCode').attr('name', 'class_post_code');
+            $('#newAddress1').attr('name', 'class_address1');
+            $('#newAddress2').attr('name', 'class_address2');
+            // 기존 주소 입력 필드의 name 속성 제거
+            $('#postCode, #address1, #address2').removeAttr('name');
+        }
+    });
+}
 
     // 셀렉트 박스
     document.addEventListener("DOMContentLoaded", function() {
@@ -140,6 +170,34 @@ $(document).ready(function() {``
         subInteriorSelect.innerHTML = '<option value="">소분류를 선택하세요</option>';
     }
   });
+  
+//   // '기존 공방 주소 출력하기' 선택 시
+//    document.getElementById('existingAddress').addEventListener('change', function() {
+//        if (this.checked) {
+//            // '기존 공방 주소' 필드의 required 속성 제거
+//            document.getElementById('postCode').required = true;
+//            document.getElementById('address1').required = true;
+//            document.getElementById('address2').required = true;
+//            
+//            // 추가 주소 필드 숨기기
+//            document.getElementById('additionalAddress').style.display = 'none';
+//        }
+//    });
+//
+//    // '다른 주소 사용하기' 선택 시
+//    document.getElementById('newAddress').addEventListener('change', function() {
+//        if (this.checked) {
+//            // '새 주소' 필드에 required 속성 추가
+//            document.getElementById('newPostCode').required = true;
+//            document.getElementById('newAddress1').required = true;
+//            document.getElementById('newAddress2').required = true;
+//
+//            // 추가 주소 필드 표시
+//            document.getElementById('additionalAddress').style.display = 'block';
+//        }
+//    });
+  
+  
 });
   //<!-- 이미지 추가버튼 스크립트 -->--------------------
 	var preview_array  = [false, false, false];
@@ -570,9 +628,6 @@ function addScheduleRow(date, dayIndex, startTime, endTime, maxParticipants) {
 
 
 
-// ========================================================================================
-
-// ----------------------------------------------
 // ========================================================================================
 
 

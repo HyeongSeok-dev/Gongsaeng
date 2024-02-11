@@ -17,6 +17,7 @@ import kr.co.gongsaeng.vo.CompanyVO;
 import kr.co.gongsaeng.vo.MemberVO;
 import kr.co.gongsaeng.vo.PaymentVO;
 import kr.co.gongsaeng.vo.ReportVO;
+import kr.co.gongsaeng.vo.ViewReportDetailByCompanyVO;
 @Service
 public class CompanyService {
 	
@@ -161,6 +162,13 @@ public class CompanyService {
 
 		return mapper.getCompanyBoard(i,j);
 	}
+
+	// [ 신고 세부사항 리스트 ]
+	public List<ViewReportDetailByCompanyVO> getReportDetail(String sId) {
+
+		return mapper.selectReportDetail(sId);
+	}
+
 
 
 

@@ -220,128 +220,132 @@ tbody {
 			</div>
 		</div>
 		<div class="content">
-			  <div class="row">
-				 <div class="col-xl-12">
-				  <div class="card col-xl-12">
-				    <div class="card-header"></div>
-				    <div class="container-fluid">
-				      <div class="row">
-				        <div class="col-xl-12">
-				          <div class="card">
-				            <form>
-				              <div class="form-row align-items-center">
-				                <div class="col-xl-2">
-				                  <label for="purchaseDateStart">클래스 구매일 검색</label>
-				                  <input type="date" class="form-control" id="purchaseDateStart" name="purchaseDateStart">
-				                </div>
-				                <div class="col-xs-1 text-center">
-				                  <span class="form-control-plaintext">~</span>
-				                </div>
-				                <div class="col-xl-2">
-				                  <label for="purchaseDateEnd"></label>
-				                  <input type="date" class="form-control" id="purchaseDateEnd" name="purchaseDateEnd">
-				                </div>
-				                <!-- 추가 컨텐츠를 위한 공간 -->
-				                <div class="form-group col-xl-7">
-									<input type="button" value="전체" class="btn btn-dark mt-5 ">
-									<input type="button" value="오늘" class="btn btn-dark mt-5">
-									<input type="button" value="1주일" class="btn btn-dark mt-5">
-									<input type="button" value="1개월" class="btn btn-dark mt-5">
-									<input type="button" value="3개월" class="btn btn-dark mt-5">
-									<input type="button" value="6개월" class="btn btn-dark mt-5">
-									<input type="button" value="&nbsp;&nbsp;1 년&nbsp;&nbsp;" class="btn btn-dark mt-5">
-				                </div>
-				                 <!-- 새로운 버튼을 위한 새로운 form-row 추가 -->
-									<div class="form-row col-xl-12 mt-1">
-									  <div class="col-xl-6">
-					                      <input type="button" value="초기화" class="btn btn-info m-1">
-					                      <input type="button" value="검색" class="btn btn-info m-1">
-				                      <!-- 여기에 추가 버튼을 계속해서 추가할 수 있습니다. -->
-				                    </div>
-				              </div>
-				            </form>
-				          </div>
-				        </div>
-				      </div>
-				    </div>
-				  </div>
+			<div class="row">
+				<div class="col-xl-12">
+					<div class="card col-xl-12">
+						<div class="card-header"></div>
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-xl-12">
+									<div class="card">
+										<form>
+<!-- 															              <div class="form-row align-items-center"> -->
+<!-- 											<div class="col-xl-5"> -->
+												<!-- 날짜 검색 필드 -->
+												<div class="form-row">
+													<div class="col-xl-2">
+														<label for="purchaseDateStart">클래스 구매일 시작</label> <input
+															type="date" class="form-control" id="purchaseDateStart">
+													</div>
+													<div class="col-xs-1 text-center">
+														<span class="form-control-plaintext">~</span>
+													</div>
+													<div class="col-xl-2">
+														<label for="purchaseDateEnd">클래스 구매일 끝</label> <input
+															type="date" class="form-control" id="purchaseDateEnd">
+													</div>
+													<div class="col-xl-2">
+														<button type="button" class="btn btn-info mt-4"
+															onclick="filterByDate()">검색</button>
+													</div>
+													<!-- 새로운 버튼을 위한 새로운 form-row 추가 -->
+													<div class="form-row col-xl-12 mt-1">
+														<div class="col-xl-6"></div>
+														<div>
+															<input type="checkbox" id="statusNormal" checked> 정상 &nbsp;
+															<input type="checkbox" id="statusCancelled" checked> 취소
+														</div>
+													</div>
+												</div>
+<!-- 											</div> -->
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-		      </div>
-<!-- 		      			  <div class="row"> -->
-				 <div class="col-xl-12">
-				  <div class="card col-xl-12">
-				    <div class="card-header"></div>
-				    <div class="container-fluid">
-				      <div class="row">
-				        <div class="col-xl-12">
-				          <div class="card">
-				            <form>
-								 <table class="table table-bordered">
-											          <thead class="thead-dark">
-											            <tr>
-											              <th scope="col">#</th>
-											              <th scope="col">결제상태</th>
-											              <th scope="col">결제번호</th>
-											              <th scope="col">클래스명</th>
-											              <th scope="col">결제 수단</th>
-											              <th scope="col">결제 금액</th>  
-											              <th scope="col">클래스 구매일</th>
-											              <th scope="col">구매자(ID)</th>
-											              <th scope="col">수정/삭제</th>
-											            </tr>
-											          </thead>
-											          <tbody>
-											            <c:forEach items="${saleList}" var="sale">
-											            <tr>
-											              <th scope="row">1</th> <!-- # -->
-											              <td>
-											              <c:choose>
-											              	<c:when test="${sale.pay_status == 1}">
+			</div>
+			<!-- 		      			  <div class="row"> -->
+			<div class="col-xl-12">
+				<div class="card col-xl-12">
+					<div class="card-header"></div>
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-xl-12">
+								<div class="card">
+									<form>
+										<table class="table table-bordered">
+											<thead class="thead-dark">
+												<tr>
+													<th scope="col">#</th>
+													<th scope="col">결제상태</th>
+													<th scope="col">결제번호</th>
+													<th scope="col">클래스명</th>
+													<th scope="col">결제 수단</th>
+													<th scope="col">결제 금액</th>
+													<th scope="col">클래스 구매일</th>
+													<th scope="col">구매자(ID)</th>
+													<th scope="col">수정/삭제</th>
+												</tr>
+											</thead>
+											<tbody>
+												<c:forEach items="${saleList}" var="sale">
+													<tr class="sales-row" data-status="${sale.pay_status}"
+														data-purchase-date="${sale.formatted_pay_date}">
+														<th scope="row">1</th>
+														<!-- # -->
+														<td><c:choose>
+																<c:when test="${sale.pay_status == 1}">
 											              		정상
 											              	</c:when>
-											              	<c:when test="${sale.pay_status == 2}">
+																<c:when test="${sale.pay_status == 2}">
 											              		취소
 											              	</c:when>
-											              </c:choose>
-											              </td> <!-- 결제 상태 -->
-											              <td>${sale.pay_num}</td> <!-- 결제 번호  -->
-											              <td>${sale.class_title }</td> <!-- 클래스명 -->
-											              <td>
-											              <c:choose>
-											              	<c:when test="${sale.pay_category == 1}">
+															</c:choose></td>
+														<!-- 결제 상태 -->
+														<td>${sale.pay_num}</td>
+														<!-- 결제 번호  -->
+														<td>${sale.class_title }</td>
+														<!-- 클래스명 -->
+														<td><c:choose>
+																<c:when test="${sale.pay_category == 1}">
 											              		일반 결제
 											              	</c:when>
-											              	<c:when test="${sale.pay_category == 1}">
+																<c:when test="${sale.pay_category == 1}">
 											              		포인트 결제
 											              	</c:when>
-											              </c:choose>
-											              </td> <!-- 결제 수단 -->
-											              <td>${sale.payment}</td> <!-- 결제 금액 -->
-<%-- 											             <td>${sale.pay_date }</td> <!-- 클래스 구매일 --> --%>
-					                                      <td>
-					                                      ${sale.pay_date }
-											              </td>
-											              <td>${sale.member_id}</td> <!-- 구매자 -->
-											              <td>
-												              <input type="button" value="상세">
-												              &nbsp;&nbsp;
-<!-- 												              <input type="button" value="삭제"> -->
-											              	  <input type="button" value="삭제" class="delete-btn" data-pay-num="${sale.pay_num}">
-											              	</td>
-											            </tr>
-											    		</c:forEach>
-											          </tbody>
-											        </table>
-									            </form>
-									          </div>
-									        </div>
-									      </div>
-									    </div>
-									  </div>
-									</div>
-<!-- 		      </div> -->
-		    </div>
-		  </div>
+															</c:choose></td>
+														<!-- 결제 수단 -->
+														<td><fmt:formatNumber value="${sale.payment}"
+																type="number" pattern="#,##0" /></td>
+
+														<%-- 											              <td>${sale.payment}</td> <!-- 결제 금액 --> --%>
+														<%-- 											             <td>${sale.pay_date }</td> <!-- 클래스 구매일 --> --%>
+														<td>
+															<%-- 					                                      <fmt:formatDate value="${sale.pay_date}" pattern="yyyy-MM-dd" /> --%>
+															${sale.formatted_pay_date} <!-- 클래스 구매일 -->
+														</td>
+														<td>${sale.member_id}</td>
+														<!-- 구매자 -->
+														<td><input type="button" value="상세">
+															&nbsp;&nbsp; <!-- 												              <input type="button" value="삭제"> -->
+															<input type="button" value="삭제" class="delete-btn"
+															data-pay-num="${sale.pay_num}"></td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 		      </div> -->
+		</div>
+	</div>
 		</div>
 	</div>
 	<footer class="footer">
@@ -387,6 +391,23 @@ tbody {
             });
         });
     });
+					
+	//---------------------------------
+	function filterByDate() {
+    var startDate = document.getElementById('purchaseDateStart').value;
+    var endDate = document.getElementById('purchaseDateEnd').value;
+    var salesRows = document.querySelectorAll('.sales-row');
+
+    salesRows.forEach(function(row) {
+        var saleDate = row.getAttribute('data-purchase-date'); // data-purchase-date 속성에 날짜 정보가 저장되어 있다고 가정
+
+        if (saleDate >= startDate && saleDate <= endDate) {
+            row.style.display = ''; // 날짜 범위 내에 있는 경우 표시
+        } else {
+            row.style.display = 'none'; // 날짜 범위 밖에 있는 경우 숨김
+        }
+    });
+}
 							
 							
 							
@@ -423,6 +444,37 @@ tbody {
 	<!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
 	<script
 		src="${pageContext.request.contextPath }/resources/company_assets/demo/demo.js"></script>
+		
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+    const statusNormal = document.getElementById('statusNormal');
+    const statusCancelled = document.getElementById('statusCancelled');
+    const salesRows = document.querySelectorAll('.sales-row');
+
+    function filterSales() {
+        salesRows.forEach(row => {
+            const status = row.dataset.status; // 'data-status' 속성값 가져오기
+            row.style.display = 'none'; // 기본적으로 모든 행을 숨김
+
+            // 체크박스 상태에 따라 행 표시 여부 결정
+            if (status === '1' && statusNormal.checked) {
+                row.style.display = '';
+            } else if (status === '2' && statusCancelled.checked) {
+                row.style.display = '';
+            }
+        });
+    }
+
+    // 체크박스 상태 변경 시 필터링 함수 호출
+    statusNormal.addEventListener('change', filterSales);
+    statusCancelled.addEventListener('change', filterSales);
+
+    // 페이지 로드 시 필터링 실행하여 초기 상태 설정
+    filterSales();
+});
+</script>
+
+		
 </body>
 
 </html>

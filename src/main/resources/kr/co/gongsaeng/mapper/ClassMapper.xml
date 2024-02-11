@@ -8,43 +8,43 @@
 		INSERT
 		INTO class
 		VALUES (
-			#{class_idx}
-			,'lottegiants22'		
-			,#{class_title}		
-			,#{class_category}		
-			,#{class_times}		
-			,#{class_price}		
-			,now()		
-			,#{class_start_time}		
-			,#{class_end_time}		
-			,#{class_start_date}		
-			,#{class_end_date}		
-			,#{class_day}		
-			,#{class_member_count}		
-			,#{class_pic1}	 	
-			,#{class_pic2}	 	
-			,#{class_pic3}	 	
-			,#{class_post_code}		
-			,#{class_address1}		
-			,#{class_address2}		
-			,#{class_introduction}		
-			,#{class_curriculum1}		
-			,#{class_curriculum2}		
-			,#{class_curriculum3}		
-			,#{class_curriculum_detail1}		
-			,#{class_curriculum_detail2}		
-			,#{class_curriculum_detail3}		
-			,#{class_main_category}		
-			,#{class_sub_category}		
-			,#{class_offering}		
-			,#{class_caution}		
-			,#{class_tag}		
-			,#{class_question1}		
-			,#{class_answer1}		
-			,#{class_question2}		
-			,#{class_answer2}		
-			,#{class_question3}		
-			,#{class_answer3}		
+			#{class_idx},
+			#{member_id},		
+			#{class_title},		
+			#{class_category},		
+			#{class_times},		
+			#{class_price},		
+			now(),		
+			#{class_start_time},		
+			#{class_end_time},		
+			#{class_start_date},		
+			#{class_end_date},		
+			#{class_day},		
+			#{class_member_count},		
+			#{class_pic1},	 	
+			#{class_pic2},	 	
+			#{class_pic3},	 	
+			#{class_post_code},		
+			#{class_address1},		
+			#{class_address2},		
+			#{class_introduction},		
+			#{class_curriculum1},		
+			#{class_curriculum2},		
+			#{class_curriculum3},		
+			#{class_curriculum_detail1},		
+			#{class_curriculum_detail2},		
+			#{class_curriculum_detail3},		
+			#{class_main_category},		
+			#{class_sub_category},		
+			#{class_offering},		
+			#{class_caution},		
+			#{class_tag},		
+			#{class_question1},		
+			#{class_answer1},		
+			#{class_question2},		
+			#{class_answer2},		
+			#{class_question3},		
+			#{class_answer3}		
 		) 
 	</insert>
 	
@@ -151,7 +151,29 @@
 		WHERE class_idx = #{class_idx}
 	</delete>
 	
+	<!-- 클래스 등록 시 주소 조회 -->
+	<select id="getAddressBySid" resultType="company">
+		SELECT com_post_code,com_address1,com_address2
+		FROM company
+		WHERE member_id = #{sId}
+	</select>
 	
+	<!-- 클래스 내역 페이징 처리 -->
+	<select id="selectClassListCount" resultType="int">
+		SELECT COUNT(*)
+		FROM class
+		WHERE member_id = #{sId}
+	</select>
 	
+	<!-- 목록조회 -->
+	<select id="selectClassPaging" resultType="gclass">
+	    SELECT *
+	    FROM class
+	    WHERE member_id = #{sId}
+	    ORDER BY class_start_date
+	</select>
+
+
+
 	
 </mapper>

@@ -212,7 +212,7 @@ a {
               <div class="card-header">
                 <h5 class="card-category"></h5>
 <!--                 <h4 class="card-title">Shipped Products</h4> -->
-                <h5 class="card-category">한달간의 매출입니다</h5>
+                <h5 class="card-category">당월 매출입니다</h5>
                 <h4 class="card-title">월간 매출</h4>
     			 <hr class="main_hr">
               </div>
@@ -229,7 +229,7 @@ a {
           <div class="col-lg-3 col-md-4">
             <div class="card card-chart">
               <div class="card-header">
-                <h5 class="card-category">한달간의 클래스 등록 현황입니다</h5>
+                <h5 class="card-category">당월 클래스 등록 현황입니다</h5>
                 <h4 class="card-title">월간 클래스 등록 현황</h4>
                 <hr class="main_hr">
               </div>
@@ -241,7 +241,7 @@ a {
           <div class="col-lg-3 col-md-4">
             <div class="card card-chart">
               <div class="card-header">
-                <h5 class="card-category">한달간의 클래스 취소 현황입니다</h5>
+                <h5 class="card-category">당월 클래스 취소 현황입니다</h5>
                 <h4 class="card-title">월간 클래스 취소 현황</h4>
                 <hr class="main_hr">
               </div>
@@ -276,7 +276,7 @@ a {
               </div>
               <div class="card_class_number">
                 <div class="card-body yesterday_sales">
-		            <a href="${pageContext.request.contextPath}/company/class"><span class="class_number">${reportCount[0]}</span><span class="class_per_case">건</span></a>
+		            <a href="${pageContext.request.contextPath}/company/report"><span class="class_number">${reportCount[0]}</span><span class="class_per_case">건</span></a>
 		        </div>
 		      </div>  
             </div>

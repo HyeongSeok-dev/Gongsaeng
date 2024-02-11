@@ -13,6 +13,7 @@ import kr.co.gongsaeng.vo.CompanyVO;
 import kr.co.gongsaeng.vo.MemberVO;
 import kr.co.gongsaeng.vo.PaymentVO;
 import kr.co.gongsaeng.vo.ReportVO;
+import kr.co.gongsaeng.vo.ViewReportDetailByCompanyVO;
 
 @Mapper
 public interface CompanyMapper {
@@ -85,6 +86,12 @@ public interface CompanyMapper {
 
 	// 메인 - (7) 작가 공지사항
 	List<BoardVO> getCompanyBoard(int i, int j);
+
+	// 클래스 내역 페이징 처리
+	int selectClassListCount(String sId);
+
+	// 신고 세부사항
+	List<ViewReportDetailByCompanyVO> selectReportDetail(String sId);
 
 
 

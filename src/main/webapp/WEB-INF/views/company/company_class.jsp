@@ -106,6 +106,81 @@ a {
 /*   width: 200px!important; */
 /*   height: 200px!important; */
 }
+
+
+
+#pageList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+#pageList input[type="button"] {
+    background-color: #fff;
+    color: #B4B4B4;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin: 0 10px;
+    transition: background-color 0.3s;
+}
+
+#pageList input[type="button"]:disabled {
+    background-color: #fff;
+    color: #B4B4B4;
+    cursor: not-allowed;
+}
+
+#pageList b,
+#pageList a {
+    color: #333;
+    font-size: 1.2em;
+    margin: 0 10px;
+    
+}
+
+#pageList a {
+    text-decoration: none;
+    color: #B4B4B4;
+}
+
+#pageList a:hover {
+    color: light-gray;
+}
+
+/* 클래스 진행 여부 */
+.status-label {
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.status-ongoing {
+    background-color: #28a745!important; /* 진행 중 */
+    margin-bottom: 10px;
+}
+
+.status-upcoming {
+    background-color: #ffc107!important; /* 진행 예정 */
+    margin-bottom: 10px;
+}
+
+.status-finished {
+    background-color: #dc3545!important; /* 종료 */
+    margin-bottom: 10px;
+}
+
+.delete-btn {
+	margin-top: 10px;
+}
+
+.list-inline-item {
+    width: 100%; /* 너비를 전체로 설정 */
+    display: block; /* 블록 레벨 요소로 만들어 줄바꿈이 일어나게 함 */
+}
+
 </style>
 <!-- Global CSS -->
 <link
@@ -184,6 +259,11 @@ a {
         </div>
       </nav>
       <!-- End Navbar -->
+      	<%-- 페이지네이션 - pageNum 파라미터 가져와서 저장(없을 경우 기본값 1로 설정) --%>
+<%-- 	<c:set var="pageNum" value="1" /> --%>
+<%-- 	<c:if test="${not empty param.pageNum }"> --%>
+<%-- 		<c:set var="pageNum" value="${param.pageNum }" /> --%>
+<%-- 	</c:if> --%>
       <div class="panel-header">
         <div class="header text-center">
           <h2 class="title">클래스 내역</h2>
@@ -200,36 +280,25 @@ a {
 							<form action="#" class>
 <!-- 								<div class="g-2 row"> -->
 									<div class="justify-content-center row">
-									<div class="col-lg-3 mt-3">
-										<div class="filler-job-form">
-											<i class="uil uil-briefcase-alt"></i>
-											<input id="exampleFormControlInput1" placeholder="클래스 이름,분류... " type="search" class="form-control filler-job-input-box form-control" />
-										</div>
+									<div class="col-lg-5 mt-3">
+											<!-- 체크박스 필터링 -->
+										<label class="checkbox_1">클래스 진행 여부</label><br>
+										<input type="checkbox" name="status" value="클래스 진행 예정" id="upcoming"> <label for="upcoming">클래스 진행 예정</label>
+										<input type="checkbox" name="status" value="클래스 진행중" id="ongoing"> <label for="ongoing">클래스 진행중</label>
+										<input type="checkbox" name="status" value="클래스 종료" id="finished"> <label for="finished">클래스 종료</label>
 									</div>
-									<div class="col-lg-3 mt-3">
+									<div class="col-lg-5 mt-3">
 										<div class="filler-job-form">
 											<i class="uil uil-location-point"></i> 
-											<select class="form-select selectForm__inner" data-trigger="true" name="choices-single-location" id="choices-single-location" aria-label="Default select example">
-												<option value="AF">정규 모집 & 원데이</option>
-												<option value="AX">정규 모집</option>
-												<option value="AL">원데이 클래스</option>
-											</select>
+											<label class="checkbox_1">클래스 유형</label><br>
+										    <input type="checkbox" name="class_category" value="정규모집" id="regular"> <label for="regular">정규모집</label>
+    										<input type="checkbox" name="class_category" value="원데이 클래스" id="oneday"> <label for="oneday">원데이 클래스</label>
 										</div>
 									</div>
-									<div class="col-lg-3  mt-3">
-										<div class="filler-job-form">
-											<i class="uil uil-clipboard-notes"></i> 
-											<select class="form-select selectForm__inner" data-trigger="true" name="choices-single-categories" id="choices-single-categories" aria-label="Default select example">
-												<option value="3">진행중 & 종료</option>
-												<option value="1">진행중</option>
-												<option value="2">클래스 종료</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-lg-3">
+									<div class="col-lg-2">
 										<div class="class_btn">
-											<a class="btn btn-primary ml-2 mt-3" href="#"><i class="uil uil-filter"></i>초기화</a> 
-											<a class="btn btn-success mt-3" href="#"><i class="uil uil-cog"></i>검색</a>
+<!-- 											<a class="btn btn-primary ml-2 mt-3" href="#"><i class="uil uil-filter"></i>초기화</a>  -->
+<!-- 											<a class="btn btn-success mt-3" href="#"><i class="uil uil-cog"></i>검색</a> -->
 											<!-- <a class="btn btn-success ms-2" href="#"><i class="uil uil-cog"></i>클래스 등록</a> -->
 										</div>
 									</div>
@@ -243,7 +312,7 @@ a {
 						<div class="align-items-center row">
 							<div class="col-lg-8">
 								<div class="mb-3 mb-lg-0">
-									<h6 class="fs-16 mb-0">Showing 1 – 8 of 11 results</h6>
+<!-- 									<h6 class="fs-16 mb-0">Showing 1 – 8 of 11 results</h6> -->
 								</div>
 							</div>
 							<div class="col-lg-4">
@@ -251,22 +320,22 @@ a {
 									<div class="row">
 										<div class="col-lg-6">
 											<div class="selection-widget">
-												<select class="form-select" data-trigger="true" name="choices-single-filter-orderby"
-													id="choices-single-filter-orderby" aria-label="Default select example">
-														<option value="df">최신순</option>
-														<option value="ne"></option>
-														<option value="od">Oldest</option>
-														<option value="rd">Random</option>
-												</select>
+<!-- 												<select class="form-select" data-trigger="true" name="choices-single-filter-orderby" -->
+<!-- 													id="choices-single-filter-orderby" aria-label="Default select example"> -->
+<!-- 														<option value="df">최신순</option> -->
+<!-- 														<option value="ne"></option> -->
+<!-- 														<option value="od">Oldest</option> -->
+<!-- 														<option value="rd">Random</option> -->
+<!-- 												</select> -->
 											</div>
 										</div>
 										<div class="col-lg-6">
 											<div class="selection-widget mt-2 mt-lg-0">
-												<select class="form-select" data-trigger="true" name="choices-candidate-page" id="choices-candidate-page" aria-label="Default select example">
-													<option value="df">All</option>
-													<option value="ne">8개씩 보기</option>
-													<option value="ne">12개씩 보기</option>
-												</select>
+<!-- 												<select class="form-select" data-trigger="true" name="choices-candidate-page" id="choices-candidate-page" aria-label="Default select example"> -->
+<!-- 													<option value="df">All</option> -->
+<!-- 													<option value="ne">8개씩 보기</option> -->
+<!-- 													<option value="ne">12개씩 보기</option> -->
+<!-- 												</select> -->
 											</div>
 										</div>
 									</div>
@@ -277,8 +346,10 @@ a {
 									<!-- ==================================================================================== -->
 						<c:forEach items="${classList}" var="classInfo">
 							<div class="candidate-list">
-								<div class="candidate-list-box card mt-4">
-									<div class="p-4 card-body">
+						        <div class="class-item candidate-list-box card mt-4" 
+						             data-status="${classInfo.status}" 
+						             data-category="${classInfo.class_category}">
+						            <div class="p-4 card-body">
 										<div class="align-items-center row">
 <!-- 											<div class="col-lg-2"> -->
 											<div class="col-auto">
@@ -289,7 +360,10 @@ a {
 												</div>
 											</div>
 											<div class="col-lg-5">
-												<div class="candidate-list-content mt-3 mt-lg-0">
+												<div class="candidate-list-content mt-3 mt-lg-0 col-lg-12" >
+													<span class="status-label ${classInfo.status == '클래스 진행중' ? 'status-ongoing' : classInfo.status == '클래스 진행 예정' ? 'status-upcoming' : 'status-finished'}">
+											        	${classInfo.status}
+											        </span><br>
 													<h5 class="fs-19 mb-0">
 														<p class="text-muted mb-2">
 						                                <c:choose>
@@ -305,8 +379,11 @@ a {
 						                                </c:choose>
 														</p>
 <%-- 														<a class="primary-link" href="classInfo"> ${classInfo.class_title} </a> --%>
-														<a class="primary-link" href="classModifyForm?class_idx=${classInfo.class_idx}">${classInfo.class_title}</a>
+														<a class="primary-link" href="classModifyForm?class_idx=${classInfo.class_idx}">${classInfo.class_title}
+											            </a>
 													</h5>
+											            <!-- 클래스 상태에 따른 CSS 클래스 적용 -->
+											            
 													<p class="text-muted mb-2">
 														<c:choose>
 															<c:when test="${classInfo.class_main_category == 1}">
@@ -350,6 +427,30 @@ a {
 								</div>
 							</div>
 						</c:forEach>
+<section id="pageList">
+    <!-- 이전 페이지 -->
+<%--     <c:if test="${pageInfo.startPage > 1}"> --%>
+<%--         <a href="${pageContext.request.contextPath}/company/class?pageNum=${pageInfo.startPage - 1}">이전</a> --%>
+<%--     </c:if> --%>
+    
+    <!-- 페이지 번호 -->
+<%--     <c:forEach begin="${pageInfo.startPage}" end="${pageInfo.endPage}" var="i"> --%>
+<%--         <c:choose> --%>
+<%--             <c:when test="${i == pageNum}"> --%>
+<%--                 <b>${i}</b> --%>
+<%--             </c:when> --%>
+<%--             <c:otherwise> --%>
+<%--                 <a href="${pageContext.request.contextPath}/company/class?pageNum=${i}">${i}</a> --%>
+<%--             </c:otherwise> --%>
+<%--         </c:choose> --%>
+<%--     </c:forEach> --%>
+    
+    <!-- 다음 페이지 -->
+<%--     <c:if test="${pageInfo.endPage < pageInfo.maxPage}"> --%>
+<%--         <a href="${pageContext.request.contextPath}/company/class?pageNum=${pageInfo.endPage + 1}">다음</a> --%>
+<%--     </c:if> --%>
+<!-- </section> -->
+
 										<!-- ==================================================================================== -->								
 										<div class="col-lg-4">
 											<div class="mt-2 mt-lg-0 d-flex flex-wrap align-items-start gap-1">
@@ -463,11 +564,49 @@ a {
 	                });
 	            }
 	        });
-	    });
+	    });    
 	});
   
-  
+  $(document).ready(function() {
+	    // 체크박스 상태 변경 시 클래스 목록을 필터링하는 함수
+	    function filterClasses() {
+	        // 선택된 클래스 상태 필터링
+	        var selectedStatuses = $('input[type="checkbox"][name="status"]:checked').map(function() {
+	            return $(this).val();
+	        }).get();
+
+	        // 선택된 클래스 유형 필터링
+	        var selectedCategories = $('input[type="checkbox"][name="class_category"]:checked').map(function() {
+	            // 정규모집 체크박스는 '1', 원데이 클래스 체크박스는 '2' 값을 반환
+	            return $(this).attr('id') === 'regular' ? '1' : '2';
+	        }).get();
+
+	        // 모든 클래스 항목에 대해 반복하며 필터링 조건과 비교
+	        $('.class-item').each(function() {
+	            var itemStatus = $(this).data('status');
+	            var itemCategory = $(this).data('category').toString();
+	            var isStatusMatch = selectedStatuses.length === 0 || selectedStatuses.includes(itemStatus);
+	            var isCategoryMatch = selectedCategories.length === 0 || selectedCategories.includes(itemCategory);
+
+	            if (isStatusMatch && isCategoryMatch) {
+	                $(this).show();
+	            } else {
+	                $(this).hide();
+	            }
+	        });
+	    }
+
+	    // 'status' 및 'class_category' 체크박스의 상태가 변경될 때마다 filterClasses 함수 호출
+	    $('input[type="checkbox"][name="status"], input[type="checkbox"][name="class_category"]').change(filterClasses);
+
+	    // 페이지 로드 시 필터링 초기화
+	    filterClasses();
+	});
+
+
+
   </script>
+
 </body>
 
 </html>

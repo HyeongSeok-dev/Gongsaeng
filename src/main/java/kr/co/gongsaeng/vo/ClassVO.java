@@ -51,7 +51,8 @@ public class ClassVO {
 	// ------------------------------------------------------------------------------------	
 	private int class_main_category;
 	private int class_sub_category;
-	private int class_offering;
+//	private int class_offering;
+	private String class_offering;
 	private String class_caution;
 	private String class_tag;
 	private String class_question1;
@@ -62,8 +63,9 @@ public class ClassVO {
 	private String class_answer3;
 	
 	private String class_introduction;
-
 	private String dayString;
+	private String status; // 클래스 진행 상태
+	
 	
 	
 	// [관리자 페이지]

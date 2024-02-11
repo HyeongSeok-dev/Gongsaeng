@@ -297,11 +297,22 @@
 												<div class="form-group">
 													<label>&nbsp;&nbsp;&nbsp;기존 공방 주소</label>
 													<div class="col-sm-8">
-														<input type="radio" name="class_address" id="existingAddress" checked> 기존 공방 주소 출력하기 <br>
-													</div>
+															<input type="radio" name="addressOption" id="existingAddress" value="existing" checked> 기존 공방 주소 출력하기 <br>
+															<div class="form-group">
+																<div class="row address-row">
+																	<div class="col-6">
+																<input class="form-control smaller-input" type="text" name="class_post_code" id="postCode" value="${companyAddress.com_post_code}">
+																	</div>
+																		</div>
+																	<br> 
+																<input class="form-control smaller-input" type="text" name="class_address1" id="address1" value="${companyAddress.com_address1}" placeholder="기본주소" > 
+																	<br> 
+																<input class="form-control smaller-input" type="text" name="class_address2" id="address2" value="${companyAddress.com_address2}" placeholder="상세주소">
+															</div>
+														</div>
 													
 													<div class="col-sm-8">
-														<input type="radio" name="class_address" id="newAddress"> 다른 주소 사용하기
+													<input type="radio" name="addressOption" id="newAddress" value="new"> 다른 주소 사용하기
 													</div>
 												</div>
 												<!-- 주소 입력 필드, 처음에는 숨겨져 있음 -->
@@ -311,16 +322,16 @@
 															<div class="form-group">
 																<div class="row address-row">
 																	<div class="col-6">
-																		<input class="form-control smaller-input" type="text" name="class_post_code" id="postCode" required>
+    																<input class="form-control smaller-input" type="text" name="class_post_code" id="newPostCode">
 																	</div>
 																	<div class="col-6">
 																		<input type="button" class="form-control smaller-input btn-primary" id="btnSearchAddress" value="주소검색">
 																	</div>
 																</div>
 																	<br> 
-																<input class="form-control smaller-input" type="text" name="class_address1" id="address1" placeholder="기본주소" required> 
-																	<br> 
-																<input class="form-control smaller-input" type="text" name="class_address2" id="address2" placeholder="상세주소" required>
+															    <input class="form-control smaller-input" type="text" name="class_address1" id="newAddress1" placeholder="기본주소"> 
+																<br> 
+															    <input class="form-control smaller-input" type="text" name="class_address2" id="newAddress2" placeholder="상세주소">
 															</div>
 														</div>
 													</div>
@@ -569,15 +580,15 @@
 									<div class="row">
 									    <div class="col-md-10">
 									        <div class="form-group">
-									            <input type="checkbox" value="1" id="workshop">&nbsp;
+									            <input type="checkbox" name="class_offering" value="1" id="workshop">&nbsp;
 									            <label for="workshop" class="register3_text_label">공방 보유</label>
-									            <input type="checkbox" value="2" id="park">&nbsp;
+									            <input type="checkbox" name="class_offering" value="1" id="park">&nbsp;
 									            <label for="park" class="register3_text_label">주차 공간</label>
-									            <input type="checkbox" value="3" id="wifi">&nbsp;
+									            <input type="checkbox" name="class_offering" value="1" id="wifi">&nbsp;
 									            <label for="wifi" class="register3_text_label">와이파이</label>
-									            <input type="checkbox" value="4" id="coffee">&nbsp;
+									            <input type="checkbox" name="class_offering" value="1" id="coffee">&nbsp;
 									            <label for="coffee" class="register3_text_label">커피 별도구매</label>
-									            <input type="checkbox" value="5" id="bus">&nbsp;
+									            <input type="checkbox" name="class_offering" value="1" id="bus">&nbsp;
 									            <label for="bus" class="register3_text_label">대중교통 용이</label>
 									        </div>
 									    </div>
@@ -585,9 +596,9 @@
 									<div class="row">
 									    <div class="col-md-12">
 									        <div class="form-group">
-    								            <input type="checkbox" value="6" id="taxi">&nbsp;
+    								            <input type="checkbox"  name="class_offering" value="1" id="taxi">&nbsp;
     								            <label for="taxi" class="register3_text_label">택시/자가용 추천</label>
-									        	<input type="checkbox" value="7" id="snack">&nbsp;
+									        	<input type="checkbox"  name="class_offering" value="1" id="snack">&nbsp;
 									        	<label for="snack" class="register3_text_label">음료/간식 제공</label>
 									        </div>
 									    </div>
@@ -709,7 +720,7 @@
 <%-- 						onclick="location.href='${pageContext.request.contextPath}/company/class/register3'">이전</button> --%>
 					<div class="d-flex justify-content-end">
 			<button type="button" class="btn btn-default btn-col-md-4 mr-2 custom-font-size" id="goToContactFromExtra">이전</button>
-					<input type="submit" class="btn btn-col-md-4 mr-2 custom-font-size examination" onclick="submitReview()" value="검수 신청">
+					<input type="submit" class="btn btn-col-md-4 mr-2 custom-font-size examination" onclick="submitReview()" value="클래스 등록">
 					</div>
 <!-- 				</div> -->
 			</div>

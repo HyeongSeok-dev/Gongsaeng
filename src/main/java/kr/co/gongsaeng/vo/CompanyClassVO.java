@@ -15,4 +15,5 @@ public class CompanyClassVO {
 	private Date class_end_date;
 	private String pay_date;
 	private int com_idx;
+	private String classStatus;
 }

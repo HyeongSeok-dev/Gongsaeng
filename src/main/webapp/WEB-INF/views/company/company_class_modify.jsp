@@ -303,22 +303,22 @@
 												<div class="form-group">
 													<label>&nbsp;&nbsp;&nbsp;기존 공방 주소</label><br>
 													<div class="col-sm-8">
-														<input type="radio" name="class_address" id="existingAddress" checked> 기존 공방 주소 출력하기 <br>
+														<input type="radio" name="addressOption" id="existingAddress" value="existing" checked> 기존 공방 주소 출력하기 <br>
 															<div class="form-group">
 																<div class="row address-row">
 																	<div class="col-6">
-																		<input class="form-control smaller-input" type="text" name="class_post_code" id="postCode" value="${classDetail.class_post_code}"  required>
+																		<input class="form-control smaller-input" type="text" name="class_post_code" id="postCode" value="${classDetail.class_post_code}">
 																	</div>
 																</div>
 																	<br> 
-																<input class="form-control smaller-input" type="text" name="class_address1" id="address1"  value="${classDetail.class_address1}" placeholder="기본주소" required> 
+																<input class="form-control smaller-input" type="text" name="class_address1" id="address1"  value="${classDetail.class_address1}" placeholder="기본주소"> 
 																	<br> 
-																<input class="form-control smaller-input" type="text" name="class_address2" id="address2" value="${classDetail.class_address2}" placeholder="상세주소" required>
+																<input class="form-control smaller-input" type="text" name="class_address2" id="address2" value="${classDetail.class_address2}" placeholder="상세주소">
 															</div>
 													</div>
 													
 													<div class="col-sm-8">
-														<input type="radio" name="class_address" id="newAddress"> 다른 주소 사용하기
+														<input type="radio" name="addressOption" id="newAddress" value="new"> 다른 주소 사용하기
 													</div>
 												</div>
 												<!-- 주소 입력 필드, 처음에는 숨겨져 있음 -->
@@ -328,16 +328,16 @@
 															<div class="form-group">
 																<div class="row address-row">
 																	<div class="col-6">
-																		<input class="form-control smaller-input" type="text" name="class_post_code" id="postCode" required>
+																		<input class="form-control smaller-input" type="text" name="class_post_code" id="newPostCode">
 																	</div>
 																	<div class="col-6">
 																		<input type="button" class="form-control smaller-input btn-primary" id="btnSearchAddress" value="주소검색">
 																	</div>
 																</div>
 																	<br> 
-																<input class="form-control smaller-input" type="text" name="class_address1" id="address1" placeholder="기본주소" required> 
+																<input class="form-control smaller-input" type="text" name="class_address1" id="newAddress1" placeholder="기본주소"> 
 																	<br> 
-																<input class="form-control smaller-input" type="text" name="class_address2" id="address2" placeholder="상세주소" required>
+																<input class="form-control smaller-input" type="text" name="class_address2" id="newAddress2" placeholder="상세주소">
 															</div>
 														</div>
 													</div>

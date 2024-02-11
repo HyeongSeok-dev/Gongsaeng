@@ -66,7 +66,7 @@
 	
 	<!-- 정산내역 계산 -->
 	<select id="selectIncome" parameterType="map">
-		SELECT SUM(payment) * 0.9 AS totalIncome
+		SELECT COALESCE(SUM(payment),0) * 0.9 AS totalIncome
 		FROM payment
 		WHERE com_idx = #{comIdx}
 		AND pay_cal_status = 1
@@ -111,7 +111,7 @@
 	
 	<!-- 정산완료 내역 합계 -->
 	<select id="selectSumPayment" resultType="Integer">
-		SELECT SUM(payment)
+		SELECT COALESCE(SUM(payment),0)
 		FROM payment
     	WHERE pay_cal_status = 4 AND com_idx = #{comIdx}
 	</select>
@@ -125,30 +125,37 @@
 	</select>
 
 	<!-- 메인 - (1-2) 월별매출(할인쿠폰 금액) -->
-	<select id="selectSumMonthlyCoupons" resultType="Integer">
-		SELECT SUM(discount_payment) AS totalMonthlyCoupons
-		FROM payment
-		WHERE com_idx = #{comIdx} 
-			AND MONTH(pay_date) = MONTH(CURRENT_DATE())
-	</select>
+<!-- 	<select id="selectSumMonthlyCoupons" resultType="Integer"> -->
+<!-- 		SELECT SUM(discount_payment) AS totalMonthlyCoupons -->
+<!-- 		FROM payment -->
+<!-- 		WHERE com_idx = #{comIdx}  -->
+<!-- 			AND MONTH(pay_date) = MONTH(CURRENT_DATE()) -->
+<!-- 	</select> -->
+		<select id="selectSumMonthlyCoupons" resultType="Integer">
+		    SELECT COALESCE(SUM(discount_payment), 0) AS totalMonthlyCoupons
+		    FROM payment
+		    WHERE com_idx = #{comIdx} 
+		        AND MONTH(pay_date) = MONTH(CURRENT_DATE())
+		        AND YEAR(pay_date) = YEAR(CURRENT_DATE())
+		</select>
 	
 	<!-- 메인 - (2-1) 클래스 누적 정산 금액(클래스 총 정산 금액) -->
-	<select id="selectSumTotalSales" resultType="Integer">	
-		SELECT SUM(payment) AS totalPayment
-		FROM payment
-		WHERE com_idx = #{comIdx} 
+	<select id="selectSumTotalSales" resultType="Integer">
+	    SELECT COALESCE(SUM(payment), 0) AS totalPayment
+	    FROM payment
+	    WHERE com_idx = #{comIdx}
 	</select>
 	
 	<!-- 메인 - (2-2) 클래스 누적 정산 금액(클래스 총 환불 금액) -->
 	<select id="selectSumTotalRefund" resultType="Integer">	
-		SELECT SUM(payment) AS totalRefund
+		SELECT COALESCE(SUM(payment),0) AS totalRefund
 		FROM payment
 		WHERE com_idx = #{comIdx} AND pay_status = 2
 	</select>
 	
 	<!-- 메인 - (3-1) 월간 클래스 등록 현황 -->
 	<select id="selectSumMonthlyNumberOfClass" resultType="Integer">
-		SELECT COUNT(pay_num) AS montlyNumberOfClass
+		SELECT COALESCE(COUNT(pay_num),0) AS montlyNumberOfClass
 		FROM payment
 		WHERE com_idx = #{comIdx} 
 			AND MONTH(pay_date) = MONTH(CURRENT_DATE())
@@ -156,7 +163,7 @@
 	
 	<!-- 메인 (4-1) 월간 클래스 취소 현황(취소 건수) -->
 	<select id="selectCountMonthlyCancelClass" resultType="Integer">
-		SELECT COUNT(payment) AS monthlyNumberOfCancel
+		SELECT COALESCE(COUNT(payment),0) AS monthlyNumberOfCancel
 		FROM payment
 		WHERE com_idx = #{comIdx}
 			AND MONTH(pay_date) = MONTH(CURRENT_DATE())
@@ -165,7 +172,7 @@
 	
 	<!-- 메인 - (4-2) 월간 클래스 취소 현황(취소 금액) -->
 	<select id="selectSumMonthlyCancelClass" resultType="Integer">
-		SELECT SUM(payment) AS mothlySumOfCancel
+		SELECT COALESCE(SUM(payment),0) AS mothlySumOfCancel
 		FROM payment
 		WHERE com_idx = #{comIdx}
 			AND MONTH(pay_date) = MONTH(CURRENT_DATE())
@@ -174,25 +181,13 @@
 	
 	<!-- 메인 - (5-1) 운영중인 클래스 현황 -->
 	<select id="selectCountClass" resultType="Integer">
-		SELECT COUNT(class_idx) AS NumberOfClass
+		SELECT COALESCE(COUNT(class_idx),0) AS NumberOfClass
 		FROM class
 		WHERE member_id = #{member_id}
 			AND class_end_date >= CURDATE()
 	</select>
 	
 	<!-- 메인 - (6) 클래스 신고 현황 -->
-<!-- 	<select id="countReport" resultType="Integer"> -->
-<!-- 		SELECT -->
-<!-- 		    vrc.com_idx, -->
-<!-- 		    vrc.com_name, -->
-<!-- 		    vrc.report_count -->
-<!-- 		FROM -->
-<!-- 		    ViewReportCountByCompany vrc -->
-<!-- 		JOIN -->
-<!-- 		    company co ON vrc.com_idx = co.com_idx -->
-<!-- 		WHERE -->
-<!-- 		    co.member_id = #{member_id} -->
-<!-- 	</select> -->
 	<select id="countReport" resultType="Integer">
 		SELECT
 		    vrc.report_count
@@ -201,7 +196,7 @@
 		JOIN
 		    company co ON vrc.com_idx = co.com_idx
 		WHERE
-		    co.member_id = #{member_id}
+		    co.member_id = #{member_id} AND report_category = 2
 	</select>
 	
 	<!-- 메인 - (7) 작가 공지사항 -->
@@ -213,6 +208,12 @@
 			board_sub_category = 2
 	</select>
 	
-	
+	<!-- 신고 세부사항 -->
+	<select id="selectReportDetail" resultType="reportDetail">
+		SELECT *
+		FROM ViewReportDetailByCompany vrdc
+		WHERE
+		    member_id = #{sId} AND report_category = 2
+	</select>
 	
 </mapper>

@@ -216,13 +216,11 @@ tbody {
 												</div>
 												<!-- 추가 컨텐츠를 위한 공간 -->
 												<div class="form-group col-xl-7">
-													<input type="button" value="전체" class="btn btn-dark mt-5 ">
-													<input type="button" value="오늘" class="btn btn-dark mt-5">
-													<input type="button" value="1주일" class="btn btn-dark mt-5">
-													<input type="button" value="1개월" class="btn btn-dark mt-5">
-													<input type="button" value="3개월" class="btn btn-dark mt-5">
-													<input type="button" value="6개월" class="btn btn-dark mt-5">
-													<input type="button" value="&nbsp;&nbsp;1 년&nbsp;&nbsp;" class="btn btn-dark mt-5">
+														<div class="form-row member_btn">
+														 <input type="button" value="초기화" class="btn btn-info m-1 btn-reset">
+	    												 <input type="button" value="검색" class="btn btn-info m-1 btn-search">
+														<!-- 여기에 추가 버튼을 계속해서 추가할 수 있습니다. -->
+													</div>
 												</div>
 												<!-- 새로운 버튼을 위한 새로운 form-row 추가 -->
 												<div class="form-row col-xl-12 mt-1">
@@ -238,11 +236,7 @@ tbody {
 													<div class="col-xl-2">
 													</div>
 													<div class="col-xl-5">
-													<div class="form-row member_btn">
-														<input type="button" value="초기화" class="btn btn-info m-1">
-														<input type="button" value="검색" class="btn btn-info m-1">
-														<!-- 여기에 추가 버튼을 계속해서 추가할 수 있습니다. -->
-													</div>
+
 													</div>
 													<div class="col-xl-3"></div>
 												</div>
@@ -285,10 +279,10 @@ tbody {
 													<c:forEach items="${companyClassMember}" var="classMember">
 												<tr>
 													<th scope="row">1</th>
-													<td>진행중</td>
+													<td>${classMember.classStatus}</td>
 													<td>${classMember.member_id}</td>
 													<td>${classMember.member_name} </td>
-													<td>${classMember.pay_date} </td>
+        											<td class="pay-date">${classMember.pay_date}</td>
 													<td>${classMember.class_title} </td>
 													<td>${classMember.memeber_gender}</td>
 <!-- 													<td>#인테리어</td> -->
@@ -365,6 +359,28 @@ tbody {
       document.getElementById('dropdownMenuButton').textContent = text;
     });
   });
+  
+  $(document).ready(function() {
+	    // 초기화 버튼 이벤트 핸들러
+	    $('.btn-reset').click(function() {
+	        location.reload(); // 페이지 새로고침
+	    });
+
+	    // 검색 버튼 이벤트 핸들러
+	    $('.btn-search').click(function() {
+	        var startDate = $('#purchaseDateStart').val();
+	        var endDate = $('#purchaseDateEnd').val();
+
+	        $('tbody tr').each(function() {
+	            // 각 행에서 날짜 데이터를 가져옴
+	            var payDate = $(this).find('.pay-date').text();
+
+	            // 날짜가 검색 범위 내에 있는지 확인
+	            var isVisible = (payDate >= startDate && payDate <= endDate) || (!startDate && !endDate);
+	            $(this).toggle(isVisible); // 조건에 따라 행 표시/숨김
+	        });
+	    });
+	});
   
   </script>
 </body>

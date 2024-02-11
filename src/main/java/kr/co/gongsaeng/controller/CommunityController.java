@@ -178,7 +178,7 @@ public class CommunityController {
 		}
 		
 		// 계산된 페이징 처리 관련 값을 PageInfo 객체에 저장
-		PageInfo pageInfo = new PageInfo(listCount, pageListLimit, maxPage, startPage, endPage);
+		PageInfo pageInfo = new PageInfo(listCount, pageListLimit, maxPage, startPage, endPage, pageNum);
 		
 		// 게시물 목록과 페이징 정보 저장
 		model.addAttribute("boardList", boardList);
