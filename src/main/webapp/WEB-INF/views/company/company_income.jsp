@@ -50,6 +50,12 @@ body {
 .content {
 	background-color: #fff!important;
 }
+
+.btn {
+    font-size: 15px !important;
+    font-weight: bold;
+}
+
     
     </style>
 </head>
@@ -165,7 +171,7 @@ body {
                 </c:forEach>
                 <!-- 정산 신청 버튼 -->
                 <div>
-                    <button type="button" class="btn btn-danger">정산 신청</button>
+                    <button type="button" class="btn btn-danger" onclick="location.href='${pageContext.request.contextPath}/company/income/list'">정산 신청</button>
                 </div>
             </div>
         </div>
@@ -181,7 +187,7 @@ body {
 <%-- 							<h5 class="card-title">${totalPayment}원</h5> 	 --%>
 						<div class="card-body">
           					 <div class="income_btn d-flex justify-content-end">
-								<button type="button" class="btn btn-danger md-2">환급 신청</button>
+<!-- 								<button type="button" class="btn btn-danger md-2">환급 신청</button> -->
 							</div>
 						</div>
 					</div>

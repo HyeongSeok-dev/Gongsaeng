@@ -219,12 +219,11 @@ tbody {
 									<div class="form-row col-xl-12 mt-1">
 									  <div class="col-xl-6">
 									<!-- 신고 상태 필터링 체크박스 -->
-									<div class="form-group">
-									    <label><input type="checkbox" name="reportStatus" value="접수" class="report-status-filter"> 접수</label>
-									    <label><input type="checkbox" name="reportStatus" value="승인" class="report-status-filter"> 승인</label>
-									    <label><input type="checkbox" name="reportStatus" value="반려" class="report-status-filter"> 반려</label>
+									<div>
+									    <input type="checkbox" id="statusReceived" checked> 접수
+									    <input type="checkbox" id="statusApproved" checked> 승인
+									    <input type="checkbox" id="statusRejected" checked> 반려
 									</div>
-
 				                    </div>
 				              </div>
 				          </div>
@@ -262,7 +261,7 @@ tbody {
 											          </thead>
 											          <tbody>
 											            <c:forEach items="${reportDetail}" var="report">
-											            <tr>
+											            <tr data-status="${report.report_status}">
 											              <td>
 											              	${report.report_idx }
 											              </td> <!-- 신고 번호 -->
@@ -361,38 +360,68 @@ tbody {
 </body>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const salesData = JSON.parse('${recentSalesJson}');
+    // 체크박스 상태에 따라 필터링하는 함수
+    function filterReports() {
+        const statusReceived = document.getElementById('statusReceived').checked;
+        const statusApproved = document.getElementById('statusApproved').checked;
+        const statusRejected = document.getElementById('statusRejected').checked;
 
-    const labels = salesData.map(data => {
-        const month = String(data.payMonth).padStart(2, '0'); // '0'을 추가하여 2자리로 만듭니다.
-        return `${data.payYear}-${month}`;
-    });
-    const sales = salesData.map(data => data.totalSales);
+        document.querySelectorAll('tbody tr').forEach(function(row) {
+            const status = row.getAttribute('data-status');
+            let isVisible = false;
 
-    const ctx = document.getElementById('monthlySalesChart').getContext('2d');
-    const monthlySalesChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: '월별 매출',
-                data: sales,
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
+            if ((status === '1' && statusReceived) ||
+                (status === '2' && statusApproved) ||
+                (status === '3' && statusRejected)) {
+                isVisible = true;
             }
-        }
+
+            row.style.display = isVisible ? '' : 'none';
+        });
+    }
+
+    // 신고일에 따라 필터링하는 함수
+    function filterByReportDate() {
+        const startDate = document.getElementById('reportDateStart').value;
+        const endDate = document.getElementById('reportDateEnd').value;
+
+        document.querySelectorAll('tbody tr').forEach(function(row) {
+            const reportDateCell = row.querySelector('td[data-type="report_date"]');
+            if (!reportDateCell) return; // 신고일 셀이 없으면 다음 행으로 넘어갑니다.
+            
+            const reportDate = reportDateCell.textContent.trim();
+            const reportDateFormatted = reportDate.split('/').join('-'); // 형식을 YYYY-MM-DD로 변환
+
+            let isVisible = true;
+            if (startDate && reportDateFormatted < startDate) {
+                isVisible = false;
+            }
+            if (endDate && reportDateFormatted > endDate) {
+                isVisible = false;
+            }
+
+            row.style.display = isVisible ? '' : 'none';
+        });
+    }
+
+    // 체크박스와 버튼에 이벤트 리스너 등록
+    document.getElementById('statusReceived').addEventListener('change', filterReports);
+    document.getElementById('statusApproved').addEventListener('change', filterReports);
+    document.getElementById('statusRejected').addEventListener('change', filterReports);
+    document.querySelector('.btn-search').addEventListener('click', filterByReportDate);
+    document.querySelector('.btn-reset').addEventListener('click', function() {
+        document.getElementById('reportDateStart').value = '';
+        document.getElementById('reportDateEnd').value = '';
+        document.querySelectorAll('tbody tr').forEach(function(row) {
+            row.style.display = '';
+        });
+        filterReports(); 
     });
+
+    // 페이지 로드 시 모든 필터링 적용
+    filterReports();
+    filterByReportDate();
 });
-
-
 </script>
 
 </html>

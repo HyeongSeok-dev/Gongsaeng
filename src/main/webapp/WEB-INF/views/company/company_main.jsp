@@ -193,7 +193,7 @@ a {
             <div class="card card-chart">
               <div class="card-header">
                 <h5 class="card-category">총 클래스 누적 정산 금액입니다.</h5>
-                <h4 class="card-title">클래스 누적 정산 금액</h4>
+                 <a href="${pageContext.request.contextPath}/company/income/list"><h4 class="card-title">클래스 누적 정산 금액</h4></a>
                 <hr class="main_hr">
               </div>
 <!--               <div class="card-body"> -->
@@ -213,7 +213,7 @@ a {
                 <h5 class="card-category"></h5>
 <!--                 <h4 class="card-title">Shipped Products</h4> -->
                 <h5 class="card-category">당월 매출입니다</h5>
-                <h4 class="card-title">월간 매출</h4>
+                 <a href="${pageContext.request.contextPath}/company/sales"><h4 class="card-title">월간 매출</h4></a>
     			 <hr class="main_hr">
               </div>
               <div class="card-body">
@@ -230,7 +230,7 @@ a {
             <div class="card card-chart">
               <div class="card-header">
                 <h5 class="card-category">당월 클래스 등록 현황입니다</h5>
-                <h4 class="card-title">월간 클래스 등록 현황</h4>
+                 <a href="${pageContext.request.contextPath}/company/sales"><h4 class="card-title">월간 클래스 등록 현황</h4></a>
                 <hr class="main_hr">
               </div>
     			 <div class="card-body yesterday_sales">
@@ -242,7 +242,8 @@ a {
             <div class="card card-chart">
               <div class="card-header">
                 <h5 class="card-category">당월 클래스 취소 현황입니다</h5>
-                <h4 class="card-title">월간 클래스 취소 현황</h4>
+                <a href="${pageContext.request.contextPath}/company/sales"><h4 class="card-title">월간 클래스 취소 현황</h4></a>
+                
                 <hr class="main_hr">
               </div>
     			 <div class="card-body yesterday_sales">

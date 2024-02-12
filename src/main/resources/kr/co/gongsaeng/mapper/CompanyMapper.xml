@@ -206,6 +206,8 @@
 		WHERE 
 			board_main_category = 1 AND
 			board_sub_category = 2
+		ORDER BY board_date DESC
+		LIMIT 5	
 	</select>
 	
 	<!-- 신고 세부사항 -->
