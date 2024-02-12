@@ -15,14 +15,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 관리자페이지 공지사항 목록 개수 조회 - SELECT -->
-	<select id="selectTogetherListCount" resultType="int">
+	<select id="selectAdntListCount" resultType="int">
 		SELECT COUNT(*)
 		FROM board
 		WHERE board_main_category = 1
 	</select>
 	
 	<!-- 글쓰기 -->
-	<insert id="insertBoard">
+	<insert id="insertAdnt">
 	<selectKey keyProperty="board_idx" resultType="int" order="BEFORE">
 		SELECT IFNULL(MAX(board_idx), 0)
 		FROM board

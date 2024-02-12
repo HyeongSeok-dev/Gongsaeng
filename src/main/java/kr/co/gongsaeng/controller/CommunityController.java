@@ -52,7 +52,8 @@ public class CommunityController {
 	}
 	
 	@PostMapping("community/writePro")
-	public String writePro(BoardVO board, HttpSession session, Model model, HttpServletRequest request) {
+	public String writePro(BoardVO board, @RequestParam(defaultValue = "1") String pageNum,
+			HttpSession session, Model model, HttpServletRequest request) {
 		System.out.println(board);
 		if(session.getAttribute("sId") == null) {
 			model.addAttribute("msg", "로그인이 필요합니다");
@@ -137,7 +138,8 @@ public class CommunityController {
 			}
 			
 			model.addAttribute("msg", "글이 등록되었습니다.");
-			return "back2";
+			model.addAttribute("targetURL", "together?pageNum=" + pageNum);
+			return "forward";
 		    
 		} else {
 			// "글쓰기 실패!" 메세지 처리(fail_back)
@@ -460,7 +462,7 @@ public class CommunityController {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				
+
 				// 글 상세정보 조회 페이지 리다이렉트(파라미터 : 글번호, 페이지번호)
 				return "redirect:/community/togetherDetail?board_idx=" + board.getBoard_idx() + "&pageNum=" + pageNum;
 			} else {

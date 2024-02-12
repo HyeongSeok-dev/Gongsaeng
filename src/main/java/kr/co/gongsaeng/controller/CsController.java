@@ -74,7 +74,8 @@ public class CsController {
 	}
 	
 	@PostMapping("admin/cs/notice/registPro")
-	public String csNoticeRegistPro(BoardVO board, HttpSession session, Model model, HttpServletRequest request) {
+	public String csNoticeRegistPro(BoardVO board, @RequestParam(defaultValue = "1") String pageNum,
+			HttpSession session, Model model, HttpServletRequest request) {
 	// BoardService - registAdnt() 메서드 호출하여 게시물 등록 작업 요청
 	// => 파라미터 : BoardVO 객체   리턴타입 : int(insertCount)
 	int insertCount = service.registAdnt(board);
@@ -85,7 +86,9 @@ public class CsController {
 		return "fail_back";
 	}
 	
-	return "admin/cs/notice";
+	model.addAttribute("msg", "글이 등록되었습니다.");
+	model.addAttribute("targetURL", "cs/notice?pageNum=" + pageNum);
+	return "forward";
 }
 	
 	@GetMapping("admin/cs/notice/detail")

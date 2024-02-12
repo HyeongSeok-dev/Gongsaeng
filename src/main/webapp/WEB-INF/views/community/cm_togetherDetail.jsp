@@ -289,7 +289,7 @@
 			                    	   <c:forEach var="i" begin="1" end="${togetherReplyBoard.reply_re_lev}">
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										</c:forEach>
-			                            <img class="avatar" src="${pageContext.request.contextPath }/resources/upload/${board.member_img}" alt="avatar">
+			                            <img class="avatar" src="${pageContext.request.contextPath }/resources/upload/${togetherReplyBoard.member_img}" alt="avatar">
 			                        </a>
 			                        <div class="comment-body">
 			                           	<div class="comment-heading">

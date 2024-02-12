@@ -125,7 +125,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 참조글번호 - 오름차순, 순서번호 - 오름차순 => 새 댓글이 아래쪽으로 위치하도록 -->
 	<select id="selectTogetherReplyBoardList" resultType="map">
 		SELECT *
-		FROM tiny_reply_community
+		FROM tiny_reply_community t
+		JOIN member m ON m.member_id = t.member_id
 		WHERE 
 			board_idx = #{board_idx}
 		ORDER BY
@@ -138,7 +139,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT 
 			reply_idx
 			, member_id
-		FROM tiny_reply_community
+		FROM tiny_reply_community t
 		WHERE
 			reply_idx = #{reply_idx}
 	</select>

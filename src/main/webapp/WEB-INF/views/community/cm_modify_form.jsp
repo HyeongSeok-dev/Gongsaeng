@@ -42,7 +42,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/global.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/community.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/community_modify.css">
 
 <script src="${pageContext.request.contextPath }/resources/assets/js/modernizr-2.6.2.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/jquery-1.10.2.min.js"></script>
@@ -60,7 +60,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/community.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/community_modify.js"></script>
+
 </head>
 <body>
     <jsp:include page="../inc/top.jsp"></jsp:include>
@@ -77,34 +78,19 @@
                 <div class="row">
                     <div class="col-md-3">
                         <select class="form-control" name="board_main_category" required>
-                        	<option disabled selected value="" style="color: #EAEAEA;">
-							<c:choose>
-	                        	<c:when test="${board.board_main_category eq 5}">궁금해요</c:when>
-				            	<c:when test="${board.board_main_category eq 6}">함께해요</c:when>
-                        	</c:choose>
-                        	</option>
-                        	<option value="5">궁금해요</option>
-                            <option value="6">함께해요</option>
+<!--                         	<option disabled selected value="" style="color: #EAEAEA;"> -->
+                        	<option value="5" <c:if test="${board.board_main_category eq 5}"> selected</c:if>>궁금해요</option>
+                        	<option value="6" <c:if test="${board.board_main_category eq 6}"> selected</c:if>>함께해요</option>
                         </select>
                     </div>
                     <div class="col-md-3">
                         <select class="form-control" name="board_sub_category" required>
-                            <option disabled selected value="" style="color: #EAEAEA;">
-                            <c:choose>
-	                            <c:when test="${board.board_sub_category eq 1}">시공</c:when>
-				            	<c:when test="${board.board_sub_category eq 2}">설치 및 수리</c:when>
-				            	<c:when test="${board.board_sub_category eq 3}">리모델링</c:when>
-				            	<c:when test="${board.board_sub_category eq 4}">리폼</c:when>
-				            	<c:when test="${board.board_sub_category eq 5}">인테리어</c:when>
-				            	<c:when test="${board.board_sub_category eq 6}">기타</c:when>
-                            </c:choose>
-                            </option>
-                            <option value="1">시공</option>
-                            <option value="2">설치 및 수리</option>
-                            <option value="3">리모델링</option>
-                            <option value="4">리폼</option>
-                            <option value="5">인테리어</option>
-                            <option value="6">기타</option>
+                            <option value="1" <c:if test="${board.board_sub_category eq 1}"> selected</c:if>>시공</option>
+                            <option value="2" <c:if test="${board.board_sub_category eq 2}"> selected</c:if>>설치 및 수리</option>
+                            <option value="3" <c:if test="${board.board_sub_category eq 3}"> selected</c:if>>리모델링</option>
+                            <option value="4" <c:if test="${board.board_sub_category eq 4}"> selected</c:if>>리폼</option>
+                            <option value="5" <c:if test="${board.board_sub_category eq 5}"> selected</c:if>>인테리어</option>
+                            <option value="6" <c:if test="${board.board_sub_category eq 6}"> selected</c:if>>기타</option>
                         </select>
                     </div>
                 </div>
@@ -136,33 +122,43 @@
 								<!-- 이미지 등록 영역 -->
 								<!-- 프리뷰 이미지1 -->
 								<div id="img_zone">
-									<c:if test="${not empty board.board_img1 }">
-										<div id="img_preview0">
-											<input type="image" class="image" id="imgup_sum" src="${ pageContext.request.contextPath }/resources/upload/${board.board_img1 }" onclick="send_0();" width="150px" height="150px"/> 
-											<span id="sum_style">대표 이미지</span>
-											<!-- 삭제버튼 -->
-											<span id="del_sum" class="chk_style" onclick="del_sum();">x</span>
-										</div>
-									</c:if>
-									<c:if test="${empty board.board_img1 }">
-										<div id="img_preview0">
-											<input type="image" class="image" id="imgup_sum" src="" onclick="send_0();" width="150px" height="150px"/>
-											<span id="del_sum" class="chk_style" onclick="del_sum();">x</span>
-										</div>
-									</c:if>
-								<!-- 프리뷰 이미지2 -->
-									<div id="img_preview1">
-										<input type="image" class="image" id="imgup_1" src="${board.board_img2 }"  onclick="send_1();" width="150px" height="150px" />
-										<!-- 삭제버튼 -->
-										<span id="del_img1" class="chk_style" onclick="del_img1();">x</span>
-									</div>
-	
-	
-								<!-- 프리뷰 이미지3 -->
-									<div id="img_preview2">
-										<input type="image" class="image" id="imgup_2" src="${board.board_img3 }"  onclick="send_2();"  width="150px" height="150px" /> 
-										<span id="del_img2" class="chk_style" onclick="del_img2();">x</span>
-									</div>
+								    <!-- 이미지 카운트를 위한 변수 선언 -->
+								    <c:set var="imgCount" value="0" /> 
+								    <c:if test="${not empty board.board_img1 }">
+								        <c:set var="imgCount" value="${imgCount + 1}" /> <!-- 이미지가 존재하면 카운트 증가 -->
+								        <div id="img_preview0">
+								            <input type="image" class="image" id="imgup_sum" src="${pageContext.request.contextPath }/resources/upload/${board.board_img1 }" onclick="send_0();" width="150px" height="150px"/> 
+								            <span id="sum_style">대표 이미지</span>
+								            <!-- 삭제버튼 -->
+								            <span id="del_sum" class="chk_style" onclick="del_sum();">x</span>
+								        </div>
+								    </c:if>
+								    <c:if test="${empty board.board_img1 }">
+								        <div id="img_preview0"></div>
+								    </c:if>
+								
+								    <c:if test="${not empty board.board_img2 }">
+								        <c:set var="imgCount" value="${imgCount + 1}" /> <!-- 이미지가 존재하면 카운트 증가 -->
+								        <div id="img_preview1">
+								            <input type="image" class="image" id="imgup_1" src="${pageContext.request.contextPath }/resources/upload/${board.board_img2 }"  onclick="send_1();" width="150px" height="150px" />
+								            <!-- 삭제버튼 -->
+								            <span id="del_img1" class="chk_style" onclick="del_img1();">x</span>
+								        </div>
+								    </c:if>
+								    <c:if test="${empty board.board_img2 }">
+								        <div id="img_preview1"></div>
+								    </c:if>
+								
+								    <c:if test="${not empty board.board_img3 }">
+								        <c:set var="imgCount" value="${imgCount + 1}" /> <!-- 이미지가 존재하면 카운트 증가 -->
+								        <div id="img_preview2">
+								            <input type="image" class="image" id="imgup_2" src="${pageContext.request.contextPath }/resources/upload/${board.board_img3 }"  onclick="send_2();"  width="150px" height="150px" /> 
+								            <span id="del_img2" class="chk_style" onclick="del_img2();">x</span>
+								        </div>
+								    </c:if>
+								    <c:if test="${empty board.board_img3 }">
+								        <div id="img_preview2"></div>
+								    </c:if>
 								</div>
 							</td>
 						</tr>
@@ -170,12 +166,13 @@
 					</table>
 					<!-- ========================================================================== -->
 					<span style="font-weight: bold">대표 사진 등록</span> 
-					<span class="pro_info" id="img_number" style="font-weight: bold">(0/3)</span>
+					<span class="pro_info" id="img_number" style="font-weight: bold">(${imgCount}/3)</span>
+					
 					<div class="pic_instruction">
-						- 사진은 대표 이미지 포함 최대 3장까지 첨부할 수 있습니다.<br>
-						&nbsp;&nbsp;(1:1 비율 권장 / 최소 800px 이상 / 한 장당 최대 10MB)<br>
-						- 등록된 사진은 공생 SNS, 광고 등 외부 채널에 클래스 홍보 목적으로 사용될 수 있습니다.<br>
-		        	<br>
+					    - 사진은 대표 이미지 포함 최대 3장까지 첨부할 수 있습니다.<br>
+					    &nbsp;&nbsp;(1:1 비율 권장 / 최소 800px 이상 / 한 장당 최대 10MB)<br>
+					    - 등록된 사진은 공생 SNS, 광고 등 외부 채널에 클래스 홍보 목적으로 사용될 수 있습니다.<br>
+					<br>
 					</div>
 				</div>
 			</div>

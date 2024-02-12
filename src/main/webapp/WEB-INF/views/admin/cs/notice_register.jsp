@@ -101,7 +101,8 @@
       <div class="panel-header panel-header-sm">
       </div>
       <div class="content">
-      	<form method="post" action="">
+      	<form method="post" action="registPro">
+      	<input type="hidden" name="cs_board_category_main" value="1">
 	        <div class="row">
 	          <div class="col-md-12">
 	            <div class="card">
@@ -115,17 +116,13 @@
 		             		<col width="75%"/>
 		             	</colgroup>
 		             	<tr>
-		             		<th>대상회원/분류</th>
+		             		<th>대상회원</th>
+<!-- 		             		<th>대상회원/분류</th> -->
 		             		<td>
-		             			 <select name="">
-					              	<option value="0">전체회원</option>
-					              	<option value="1">반장회원</option>
-					              	<option value="2">일반회원</option>
-			              		</select>
-		             			 <select name="class_state">
-					              	<option value="0">분류</option>
-					              	<option value="1">공지</option>
-					              	<option value="2">이벤트</option>
+		             			 <select name="board_sub_category">
+					              	<option disabled selected value="">분류</option>
+					              	<option value="1">일반 회원</option>
+					              	<option value="2">사업체</option>
 			              		</select>
 		             		</td>
 		             	</tr>
