@@ -1268,22 +1268,6 @@ public class AdminController {
 	public String csChat() {
 		return "admin/cs/chat";
 	}
-	@GetMapping("admin/cs/faq")
-	public String csFaq(HttpSession session, Model model) {
-//		if(session.getAttribute("sId") == null) {
-//		model.addAttribute("msg", "로그인이 필요합니다");
-//		model.addAttribute("targetURL", "/gongsaeng/login");
-//		return "forward";
-//	} else if(!session.getAttribute("sId").equals("admin")) {
-//		model.addAttribute("msg", "잘못된 접근 입니다.");
-//		return "fail_back";
-//	}
-//		List<BoardVO> boardList = service.getNotice();
-		
-		
-//		model.addAttribute("boardList",boardList);
-		return "admin/cs/faq";
-	}
 	
 	//---------------------------[ sample ]
 	@GetMapping("admin/icons")
