@@ -15,6 +15,7 @@
    공생|관리자페이지 사업체
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>  
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -26,6 +27,14 @@
   <link href="${pageContext.request.contextPath }/resources/admin_assets/css/admin.css" rel="stylesheet" />
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
   <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">
+  <script src="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.js"></script>
+  <script src="${pageContext.request.contextPath }/resources/admin_assets/js/company_detail.js"></script>
+	
+<!-- 다음 주소검색 API 사용을 위한 라이브러리 추가 -->
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/js/bootstrap.bundle.min.js"></script>
+
 </head>
 
 <body class="">
@@ -95,6 +104,7 @@
       <!-- End Navbar -->
       <div class="panel-header panel-header-sm">
       </div>
+   	<form action="/gongsaeng/admin/company/modifyPro" name="comModifyPro" method="post" enctype="multipart/form-data">
       <div class="content">
         <div class="row">
           <div class="col-md-12">
@@ -119,7 +129,7 @@
 							</div>
 						</c:otherwise>
 					</c:choose>
-					<input type="file" class="form-control profileImg" accept="image/*">
+					<input type="file" id="file1" class="form-control profileImg" name="file1" accept="image/*">
 					<div class="profileImg" >
    	       		 		<br>
 	           		 	<c:choose>
@@ -153,13 +163,20 @@
 	             		<td colspan="3">
 	             			${com.com_date }
 	             			&nbsp;
-	             			<select name="com_status" id="com_status">
-								<option value="1" <c:if test="${com.com_status eq 1}">selected</c:if>>정상</option>
-								<option value="2" <c:if test="${com.com_status eq 2}">selected</c:if>>승인대기</option>
-<%-- 								<option value="3" <c:if test="${com.com_status eq 3}">selected</c:if>>영업중지</option> --%>
-								<option value="4" <c:if test="${com.com_status eq 4}">selected</c:if>>보류</option>
-								<option value="5" <c:if test="${com.com_status eq 5}">selected</c:if>>승인거부</option>
-							</select>
+	             			<c:choose>
+								<c:when test="${com.com_status eq 3}">
+									[ 폐업 ]<input type="hidden" value="${com.com_status}" id="com_statusHidden" name="com_status">
+								</c:when>
+								<c:otherwise>
+			             			<select name="com_status" id="com_statusSelect">
+										<option value="1" <c:if test="${com.com_status eq 1}">selected</c:if>>정상(승인)</option>
+										<option value="2" <c:if test="${com.com_status eq 2}">selected</c:if> disabled>승인대기</option>
+										<option value="3" <c:if test="${com.com_status eq 3}">selected</c:if> disabled>영업중지</option>
+										<option value="4" <c:if test="${com.com_status eq 4}">selected</c:if>>보류</option>
+										<option value="5" <c:if test="${com.com_status eq 5}">selected</c:if>>승인거부</option>
+									</select>
+								</c:otherwise>
+	             			</c:choose>
 	             		</td>
 	             	</tr>
 	             	<tr>
@@ -176,15 +193,15 @@
 	             	<tr>
 						<th>전화번호</th>
 	             		<td colspan="3">
-							<input type="text" value="${com.com_tel }" name="com_tel"><!--  - <input type="text"> - <input type="text">  -->
+							${com.com_tel }
 						</td>
 	             	</tr>
 	             	<tr>
 	             		<th>주소</th>
 	             		<td colspan="3">
-	             			<input type="text" class="margin_5px" value="${com.com_post_code }">&nbsp;<button type="button" class="btn btn_default">우편번호찾기</button><br>
-	             			<input type="text" class="margin_5px address" value="${com.com_address1 }">&nbsp;
-	             			<input type="text" class="margin_5px address" value="${com.com_address2 }">
+	             			<input type="text" class="margin_5px" name="com_post_code" id="postCode" value="${com.com_post_code}">&nbsp;<button type="button" class="btn btn_default" id="btnSearchAddress" >주소검색</button><br>
+	             			<input type="text" class="margin_5px address" name="com_address1" id="com_address1" value="${com.com_address1}">&nbsp;
+	             			<input type="text" class="margin_5px address" name="com_address2" id="com_address2" value="${com.com_address2 }">
 	             		</td>
 	             	</tr>
 	             	<tr>
@@ -198,7 +215,7 @@
 					<tr>
 	             		<th rowspan="2">
 	             			환급금<br>
-	             		 	<a class="more_info" href="${pageContext.request.contextPath }/admin/company/refund?member_id=${com.member_id}">더보기</a>
+	             		 	<a class="more_info" href="${pageContext.request.contextPath }/admin/company/refund/member?com_idx=${com.com_idx}&member_id=${com.member_id}">더보기</a>
 	             		</th>
 						<th class="detail_table">환급가능금액</th>
 						<th class="detail_table">금월 환급금</th>
@@ -264,7 +281,7 @@
 					<tr>
 	             		<th rowspan="2">
 	             			클래스 예약건 수<br>
-	             			<a class="more_info" href="${pageContext.request.contextPath }/admin/company/res/detail?member_id=${com.member_id}">더보기</a>
+	             			<a class="more_info" href="${pageContext.request.contextPath }/admin/company/reservation?member_id=${com.member_id}">더보기</a>
 	             		</th>
 						<th class="detail_table">총</th>
 						<th class="detail_table">원데이</th>
@@ -307,7 +324,7 @@
 					<tr>
 	             		<th rowspan="2">
 	             			피신고건 수<br>
-	             			<a class="more_info" href="${pageContext.request.contextPath }/admin/company/report?member_id${com.member_id}">더보기</a>
+	             			<a class="more_info" href="${pageContext.request.contextPath }/admin/report/class?member_id${com.member_id}">더보기</a>
 	             		</th>
 						<th class="detail_table">전월</th>
 						<th class="detail_table">금월</th>
@@ -315,13 +332,13 @@
 					</tr>             	
 	             	<tr>
 	             		<td>
-	             			0 건
+	             			${reportCount.reportBeforCount } 건
 	             		</td>
 	             		<td>
-	             			0 건
+	             			${reportCount.reportMonthlyCount } 건
 	             		</td>
 	             		<td>
-	             			0 건
+	             			${reportCount.reportCount } 건
 	             		</td>
 					</tr>    
 	             </table>	 	
@@ -329,56 +346,21 @@
             </div>
           </div>
         </div>
+        <input type="hidden" name="member_id" value="${com.member_id }">
         <div class="row">
         	<div class="col-md-12 btn_bottom">
-	        	<button type="button" class="btn btn_default">목록</button>&nbsp;&nbsp;
-	        	<button type="button" class="btn btn_default">변경저장</button>
+	        	<button type="button" class="btn btn_default" onclick="location.replace('${pageContext.request.contextPath }/admin/company')">목록</button>&nbsp;&nbsp;
+	        	<button type="submit" class="btn btn_default" id="modifyCom">변경저장</button>
         	</div>
         </div>
       </div>
+	  </form>
       <footer class="footer">
        <jsp:include page="../inc/admin_bottom.jsp"/>
      </footer>
     </div>
   </div>
   
-   <!-- 모달 창 -->
-    <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="filterModalLabel">회원 유형 선택</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="allCheck">
-                        <label class="form-check-label" for="allCheck">
-                            전체 선택
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="leaderCheck">
-                        <label class="form-check-label" for="leaderCheck">
-                            반장 회원
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="generalCheck">
-                        <label class="form-check-label" for="generalCheck">
-                            일반 회원
-                        </label>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn_default" data-dismiss="modal">닫기</button>
-                    <button type="button" class="btn btn_default">적용</button>
-                </div>
-            </div>
-        </div>
-    </div>
   <!--   Core JS Files   -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/popper.min.js"></script>
@@ -392,19 +374,7 @@
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
-  <script src="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.js"></script>
-	<script>
-        $(document).ready(function() {
-            // 필터 기능 구현
-            $('#leaderFilter, #withdrawalFilter').change(function() {
-                var leaderFilter = $('#leaderFilter').val();
-                var withdrawalFilter = $('#withdrawalFilter').val();
-                
-                // 로직에 따라 회원 데이터 필터링 및 표시
-            });
-        });
-    </script>
-
+ 
 </body>
 
 </html>

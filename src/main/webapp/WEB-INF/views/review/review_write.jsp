@@ -29,7 +29,7 @@
 <link href="${pageContext.request.contextPath }/resources/assets/css/animate.css" rel="stylesheet" media="screen">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/bootstrap-select.min.css"> 
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/icheck.min_all.css">
+<%-- <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/icheck.min_all.css"> --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/price-range.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/owl.carousel.css">  
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/owl.theme.css">
@@ -62,10 +62,10 @@ function addResIdx(pay_num) {
 <jsp:include page="../inc/top.jsp"/>
 	<article id="reviewWriteForm" class="writeForm">
 	<div class="container">
-		<form action="reviewWritePro" name="reviewWriteForm" method="POST" enctype="multipart/form-data" >
+		<form action="reviewWritePro" name="reviewWriteForm" method="POST" enctype="multipart/form-data" class="formSize">
 		<div class="restaurant_info">
-			<h1 class="comName"><a href="${pageContext.request.contextPath}/review/detail?com_id=${com_id}">${comName}</a></h1>
-			<h1 class="classTitle"><a href="${pageContext.request.contextPath}/review/detail?class_idx=${class_idx}">${classTitle}</a></h1>
+<%-- 			<h1 class="comName"><a href="${pageContext.request.contextPath}/review/detail?com_id=${com_id}">${comName}</a></h1> --%>
+			<h1 class="classTitle"><a href="${pageContext.request.contextPath}/review/detail?class_idx=${classIdx}">${classTitle}</a></h1>
 			
 		<span id="visitCountNumber">${visitCount}</span><span id="visitCount">번째 방문</span>
 		<span>
@@ -75,8 +75,8 @@ function addResIdx(pay_num) {
 			<c:if test="${reviewItem.review_idx ne '0'}">disabled</c:if>
 			<c:if test="${reviewItem.pay_num eq param.pay_num}">selected</c:if>
 			>
-					${reviewItem.res_date}
-					${reviewItem.res_time}
+					${reviewItem.res_visit_date}
+					${reviewItem.res_visit_time}
 				<c:if test="${reviewItem.review_idx ne '0'}">(작성완료)</c:if>
 		</c:forEach>
 		</select>
@@ -215,7 +215,7 @@ function addResIdx(pay_num) {
 			<a class="caution_link" href="#" onclick="openPopup()">리뷰 작성 유의사항</a>
 			<section id="commandCell">
 				<button class="register_button" onclick="location.href='${pageContext.request.contextPath}/review/complete?class_idx=${class_idx}">등록하기</button>
-				console.log
+				
 <%-- 		    <a href="${pageContext.request.contextPath}/review/write?com_id=${param.com_id}"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a> --%>
 			</section>
 		</div>

@@ -13,6 +13,10 @@
     margin: 10px 1px;
 }
 
+.btn_light{
+	border: 1px solid #888;
+}
+
 .member_date {
 	display: flex;
 	flex-direction: column;
@@ -52,9 +56,13 @@
 	margin: 0;
 }
 
-.tr_hover:hover{
+.tr_hover:hover {
 	border: 1.5px solid #888;
-	background-color: #fff;
+/* 	background-color: #fff; */
+}
+
+.tr_hover{
+	cursor: pointer;
 }
 
 .filter{
@@ -219,3 +227,17 @@ input[type="search"] {
 	width: 300px;
 }
 
+/* class */
+.img_table>td {
+	 vertical-align: middle;
+}
+
+.justwheny-content-end {
+	justify-content: flex-end!important;
+}
+
+.reg_img {
+	width: auto;
+	border-radius: 0; 
+	
+}

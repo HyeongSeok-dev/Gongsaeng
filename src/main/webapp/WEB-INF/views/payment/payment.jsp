@@ -384,7 +384,7 @@
 		</div>
 	</div>
 	<%-- 페이사용하기 버튼을 누르면 계좌 등록여부 판별을 위해 핀테크번호 넘기기  --%>
- 	<input type="hidden" value="${allList.user_seq_no}" id="user_seq_no">
+<%--  	<input type="hidden" value="${allList.user_seq_no}" id="user_seq_no"> --%>
 			<%--info페이지에 필요한 할인전 예약금액 --%>
 	<%-- 		<input type="hidden" value="${map.paymentInfo.totalPrice}" name="beforeDiscountTotalPrice"/> --%>
 <%-- 			<input type="hidden" value="${map.res.res_idx}" name="res_idx" id="res_idx"/> --%>

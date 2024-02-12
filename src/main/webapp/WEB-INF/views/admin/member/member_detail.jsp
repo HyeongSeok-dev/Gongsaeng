@@ -96,8 +96,8 @@
       <!-- End Navbar -->
       <div class="panel-header panel-header-sm">
       </div>
-      <form action="modifyPro" method="post">
 	      <div class="content">
+	      <form action="/gongsaeng/admin/member/modifyPro" method="post" enctype="multipart/form-data">
 	        <div class="row">
 	          <div class="col-md-12">
 	            <div class="card">
@@ -124,7 +124,7 @@
 								</div>
 							</c:otherwise>
 						</c:choose>
-						<input type="file" id="file" class="form-control profileImg" accept="image/*">
+						<input type="file" id="m_file" name="m_file" class="form-control profileImg" accept="image/*">
 						<div class="profileImg" >
 							<br>
 		           		 	<c:choose>
@@ -449,8 +449,8 @@
 		        	<button type="submit" class="btn btn_default" id="modifyMember">변경저장</button>
 	        	</div>
 	        </div>
+	      </form>
 	      </div>
-      </form>
       <footer class="footer">
        <jsp:include page="../inc/admin_bottom.jsp"/>
      </footer>

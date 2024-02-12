@@ -27,17 +27,17 @@ $(function() {
 	// 파일선택버튼
 	$("#uploadFileBtn").click(function() {
 		console.log("파일선택");
-        $("#file").click();
+        $("#m_file").click();
     });
 
 	// 파일이 변경되었을때
-    $("#file").on("change", function() {
+    $("#m_file").on("change", function() {
         var fileName = $(this).val().split("\\").pop();
         $("#fileLabel").text(fileName ? fileName : fileLabel);
     });
 	
 	//사진 미리보기
-    $("#file").change(function() {
+    $("#m_file").change(function() {
         var reader = new FileReader();
         reader.onload = function(e) {
            var img = $("<img>").attr("src", e.target.result).addClass("img-circle img-thumbnail");
@@ -206,6 +206,12 @@ $(function() {
 				return true;
 			}
 			return false;
+		} else if($("#fileLabel").text() != "파일명" || $("#fileLabel").text() != fileLabel) {
+			if(confirm("회원의 정보를 수정하시겠습니까?")){
+				return true;
+			} else {
+				return false;
+			}
 		} else {
 			alert("수정할 내용이 없습니다");
 			return false;

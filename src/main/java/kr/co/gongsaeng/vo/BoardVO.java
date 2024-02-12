@@ -30,5 +30,5 @@ public class BoardVO {
 	private int board_readcount;
 	
 	private String member_img;
-
+	private String member_nick;
 }

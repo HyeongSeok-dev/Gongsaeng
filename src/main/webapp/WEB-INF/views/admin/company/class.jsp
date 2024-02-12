@@ -186,173 +186,182 @@
 			                <th>신고수</th>
 			            </tr>
 			            <!-- 회원 데이터 로우 -->
-			            <c:forEach var="c" items="${classList }">
-				            <tr class="tr_hover" onclick="location.href='${pageContext.request.contextPath }/admin/company/class/detail?class_idx=${c.class_idx }'">
-				                <td>${c.class_date }</td>
-				                <td>
-				                	<c:choose>
-				                		<c:when test="${c.class_category eq 1}">
-											정규			                		
-				                		</c:when>
-				                		<c:when test="${c.class_category eq 2}">
-				                			원데이
-				                		</c:when>
-				                	</c:choose>
-				                </td>
-				                <td>
-									<c:choose>
-				                		<c:when test="${c.class_main_category eq 1}">
-											바닥시공			                		
-				                		</c:when>
-				                		<c:when test="${c.class_main_category eq 2}">
-				                			벽/천장시공
-				                		</c:when>
-				                		<c:when test="${c.class_main_category eq 3}">
-											부분 인테리어			                		
-				                		</c:when>
-				                		<c:when test="${c.class_main_category eq 4}">
-				                			야외 시공
-				                		</c:when>
-				                		<c:when test="${c.class_main_category eq 5}">
-											종합 인테리어			                		
-				                		</c:when>
-				                		<c:when test="${c.class_main_category eq 6}">
-				                			기타시공
-				                		</c:when>
-				                	</c:choose>
-								</td>
-				                <td>
-									<c:choose>
-				                		<c:when test="${c.class_main_category eq 1}">
+			            <c:choose>
+			            	<c:when test="${empty classList}">
+			            		<tr>
+			            			<td colspan="7">불러올 정보가 없습니다.</td>
+			            		</tr>
+			            	</c:when>
+			            	<c:otherwise>
+					            <c:forEach var="c" items="${classList }">
+						            <tr class="tr_hover" onclick="location.href='${pageContext.request.contextPath }/admin/company/class/detail?class_idx=${c.class_idx }'">
+						                <td>${c.class_date }</td>
+						                <td>
+						                	<c:choose>
+						                		<c:when test="${c.class_category eq 1}">
+													정규			                		
+						                		</c:when>
+						                		<c:when test="${c.class_category eq 2}">
+						                			원데이
+						                		</c:when>
+						                	</c:choose>
+						                </td>
+						                <td>
 											<c:choose>
-												<c:when test="${c.class_sub_category eq 1}">
-													바닥재 시공
-												</c:when>
-												<c:when test="${c.class_sub_category eq 2}">
-													장판 시공
-												</c:when>
-												<c:when test="${c.class_sub_category eq 3}">
-													타일 시공
-												</c:when>
-												<c:when test="${c.class_sub_category eq 4}">
-													마루 시공
-												</c:when>
-												<c:when test="${c.class_sub_category eq 5}">
-													기타 시공
-												</c:when>
-											</c:choose>			                		
-				                		</c:when>
-				                		<c:when test="${c.class_main_category eq 2}">
-				                			<c:choose>
-												<c:when test="${c.class_sub_category eq 1}">
-													도배 시공
-												</c:when>
-												<c:when test="${c.class_sub_category eq 2}">
-													칸막이 시공
-												</c:when>
-												<c:when test="${c.class_sub_category eq 3}">
-													페인트 시공
-												</c:when>
-												<c:when test="${c.class_sub_category eq 4}">
-													방음 시공
-												</c:when>
-												<c:when test="${c.class_sub_category eq 5}">
-													단열 필름 시공
-												</c:when>
-												<c:otherwise>기타 시공</c:otherwise>
-											</c:choose>		
-				                		</c:when>
-				                		<c:when test="${c.class_main_category eq 3}">
+						                		<c:when test="${c.class_main_category eq 1}">
+													바닥시공			                		
+						                		</c:when>
+						                		<c:when test="${c.class_main_category eq 2}">
+						                			벽/천장시공
+						                		</c:when>
+						                		<c:when test="${c.class_main_category eq 3}">
+													부분 인테리어			                		
+						                		</c:when>
+						                		<c:when test="${c.class_main_category eq 4}">
+						                			야외 시공
+						                		</c:when>
+						                		<c:when test="${c.class_main_category eq 5}">
+													종합 인테리어			                		
+						                		</c:when>
+						                		<c:when test="${c.class_main_category eq 6}">
+						                			기타시공
+						                		</c:when>
+						                	</c:choose>
+										</td>
+						                <td>
 											<c:choose>
-												<c:when test="${c.class_sub_category eq 1}">
-													샷시 설치 및 수리
+						                		<c:when test="${c.class_main_category eq 1}">
+													<c:choose>
+														<c:when test="${c.class_sub_category eq 1}">
+															바닥재 시공
+														</c:when>
+														<c:when test="${c.class_sub_category eq 2}">
+															장판 시공
+														</c:when>
+														<c:when test="${c.class_sub_category eq 3}">
+															타일 시공
+														</c:when>
+														<c:when test="${c.class_sub_category eq 4}">
+															마루 시공
+														</c:when>
+														<c:when test="${c.class_sub_category eq 5}">
+															기타 시공
+														</c:when>
+													</c:choose>			                		
+						                		</c:when>
+						                		<c:when test="${c.class_main_category eq 2}">
+						                			<c:choose>
+														<c:when test="${c.class_sub_category eq 1}">
+															도배 시공
+														</c:when>
+														<c:when test="${c.class_sub_category eq 2}">
+															칸막이 시공
+														</c:when>
+														<c:when test="${c.class_sub_category eq 3}">
+															페인트 시공
+														</c:when>
+														<c:when test="${c.class_sub_category eq 4}">
+															방음 시공
+														</c:when>
+														<c:when test="${c.class_sub_category eq 5}">
+															단열 필름 시공
+														</c:when>
+														<c:otherwise>기타 시공</c:otherwise>
+													</c:choose>		
+						                		</c:when>
+						                		<c:when test="${c.class_main_category eq 3}">
+													<c:choose>
+														<c:when test="${c.class_sub_category eq 1}">
+															샷시 설치 및 수리
+														</c:when>
+														<c:when test="${c.class_sub_category eq 2}">
+															화장실 리모델링
+														</c:when>
+														<c:when test="${c.class_sub_category eq 3}">
+															주방 리모델링
+														</c:when>
+														<c:when test="${c.class_sub_category eq 4}">
+															가구 리폼
+														</c:when>
+														<c:when test="${c.class_sub_category eq 5}">
+															붙박이장 시공 
+														</c:when>
+														<c:otherwise>기타 시공</c:otherwise>
+													</c:choose>					                		
+						                		</c:when>
+						                		<c:when test="${c.class_main_category eq 4}">
+						                			<c:choose>
+														<c:when test="${c.class_sub_category eq 1}">
+															조경 공사
+														</c:when>
+														<c:when test="${c.class_sub_category eq 2}">
+															옥상공사
+														</c:when>
+														<c:when test="${c.class_sub_category eq 3}">
+															지붕 공사
+														</c:when>
+														<c:when test="${c.class_sub_category eq 4}">
+															태양광 발전
+														</c:when>
+														<c:when test="${c.class_sub_category eq 5}">
+															외벽 리모델링 
+														</c:when>
+														<c:otherwise>기타 시공</c:otherwise>
+													</c:choose>		
+						                		</c:when>
+						                		<c:when test="${c.class_main_category eq 5}">
+						                			<c:choose>
+														<c:when test="${clcass.class_sub_category eq 1}">
+															집 인테리어
+														</c:when>
+														<c:when test="${c.class_sub_category eq 2}">
+															상업공간 인테리어
+														</c:when>
+														<c:when test="${c.class_sub_category eq 3}">
+															주택 리모델링
+														</c:when>
+														<c:when test="${c.class_sub_category eq 4}">
+															집 수리 
+														</c:when>
+														<c:when test="${c.class_sub_category eq 5}">
+															인테리어 소품
+														</c:when>
+														<c:otherwise>기타</c:otherwise>
+													</c:choose>		
+						                		</c:when>
+						                		<c:when test="${c.class_main_category eq 6}">
+						                			<c:choose>
+														<c:when test="${c.class_sub_category eq 1}">
+															줄눈 시공
+														</c:when>
+														<c:when test="${c.class_sub_category eq 2}">
+															단열 시공
+														</c:when>
+														<c:when test="${c.class_sub_category eq 3}">
+															미장 시공
+														</c:when>
+														<c:otherwise>기타 시공</c:otherwise>
+													</c:choose>		
+						                		</c:when>
+						                	</c:choose>
+										</td>
+						                <td>${c.com_name}</td>
+						                <td>${c.class_title}</td>
+						                <td>
+						                	<c:choose>
+												<c:when test="${c.classReportCount eq null}">
+													0
 												</c:when>
-												<c:when test="${c.class_sub_category eq 2}">
-													화장실 리모델링
-												</c:when>
-												<c:when test="${c.class_sub_category eq 3}">
-													주방 리모델링
-												</c:when>
-												<c:when test="${c.class_sub_category eq 4}">
-													가구 리폼
-												</c:when>
-												<c:when test="${c.class_sub_category eq 5}">
-													붙박이장 시공 
-												</c:when>
-												<c:otherwise>기타 시공</c:otherwise>
-											</c:choose>					                		
-				                		</c:when>
-				                		<c:when test="${c.class_main_category eq 4}">
-				                			<c:choose>
-												<c:when test="${c.class_sub_category eq 1}">
-													조경 공사
-												</c:when>
-												<c:when test="${c.class_sub_category eq 2}">
-													옥상공사
-												</c:when>
-												<c:when test="${c.class_sub_category eq 3}">
-													지붕 공사
-												</c:when>
-												<c:when test="${c.class_sub_category eq 4}">
-													태양광 발전
-												</c:when>
-												<c:when test="${c.class_sub_category eq 5}">
-													외벽 리모델링 
-												</c:when>
-												<c:otherwise>기타 시공</c:otherwise>
-											</c:choose>		
-				                		</c:when>
-				                		<c:when test="${c.class_main_category eq 5}">
-				                			<c:choose>
-												<c:when test="${clcass.class_sub_category eq 1}">
-													집 인테리어
-												</c:when>
-												<c:when test="${c.class_sub_category eq 2}">
-													상업공간 인테리어
-												</c:when>
-												<c:when test="${c.class_sub_category eq 3}">
-													주택 리모델링
-												</c:when>
-												<c:when test="${c.class_sub_category eq 4}">
-													집 수리 
-												</c:when>
-												<c:when test="${c.class_sub_category eq 5}">
-													인테리어 소품
-												</c:when>
-												<c:otherwise>기타</c:otherwise>
-											</c:choose>		
-				                		</c:when>
-				                		<c:when test="${c.class_main_category eq 6}">
-				                			<c:choose>
-												<c:when test="${c.class_sub_category eq 1}">
-													줄눈 시공
-												</c:when>
-												<c:when test="${c.class_sub_category eq 2}">
-													단열 시공
-												</c:when>
-												<c:when test="${c.class_sub_category eq 3}">
-													미장 시공
-												</c:when>
-												<c:otherwise>기타 시공</c:otherwise>
-											</c:choose>		
-				                		</c:when>
-				                	</c:choose>
-								</td>
-				                <td>${c.com_name}</td>
-				                <td>${c.class_title}</td>
-				                <td>
-				                	<c:choose>
-										<c:when test="${c.classReportCount eq null}">
-											0
-										</c:when>
-										<c:otherwise>
-											${c.classReportCount }
-										</c:otherwise>
-				                	</c:choose>
-				                	건
-				                </td>
-				            </tr>
-			            </c:forEach>
+												<c:otherwise>
+													${c.classReportCount }
+												</c:otherwise>
+						                	</c:choose>
+						                	건
+						                </td>
+						            </tr>
+					            </c:forEach>
+			            	</c:otherwise>
+			            </c:choose>
 			    	</table>
               	</div>
               </div>

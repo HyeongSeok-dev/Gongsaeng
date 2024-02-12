@@ -605,7 +605,9 @@ label small{
     color: #ADADAD;
     background-color: #FFF;
     background-image: none;
-    border: 1px solid #EAE9E9;
+    /* 상세검색란 select border 색 */
+/*     border: 1px solid #EAE9E9; */
+    border: 1px solid #DADADA;
     box-shadow: 0px 1px 1px rgba(179, 179, 179, 0.1) inset;
     transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
     font-weight: 300;
@@ -1363,7 +1365,9 @@ page-header
 }
 .layout-switcher a{
     font-size: 25px;
-    color:#777;
+    /* ### */
+/*     color:#777; */
+    color:#C2C2C2;
 }
 .layout-switcher a:hover{     
     color:#494C53;
@@ -1981,8 +1985,8 @@ proerty-th
     /* ### */
 /*     border-radius: 10px; */
 	/* 클래스 카드 사이즈 제한 ↓ */
-    min-height: 420px;
-    max-height: 420px;
+    min-height: 400px;
+    max-height: 400px;
 	/* 클래스 카드 사이즈 제한 ↑ */
     padding: 10px;
     border-color: #000;
@@ -2014,11 +2018,12 @@ proerty-th
 	/* ### */
 /*     padding: 8px; */
     padding: 8px 0px;
-
 }
 .properties-page .proerty-th .proerty-price{
     font-weight: 600;
-    color: #494C53;
+    /* ### */
+/*     color: #494C53; */
+    color: #000;
 	/* ### */
     font-size: 15px;
 }
@@ -2029,7 +2034,13 @@ proerty-th
     letter-spacing: 2px;
     position: relative;
     /* ### */
-    margin: 5px 0px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    /* ### */
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
+	overflow: hidden;
 }
 /* ### */
 /* .proerty-th .proerty-item  .item-entry h5::after { */
@@ -2044,12 +2055,38 @@ proerty-th
 /* } */
 
 /* ### */
+.proerty-th-list .col_company_name a {
+    font-size: 14px;
+}
+.proerty-th-list .col_company_address a {
+    font-size: 14px;
+}
+.proerty-th-list .col_class_category span {
+    font-size: 15px;
+    font-weight: normal;
+    margin-left: 10px;
+    color: #000;
+}
+.proerty-th-list .jss14 {
+    color: #C2C2C2;
+    right: 12px;
+    width: 20px;
+    /* float: right; */
+    text-align: right;
+    margin-top: 3px;
+}
+.proerty-th-list .bookmark_count {
+    top: -6px;
+    position: relative;
+}
+
+/* ### */
 /* 클래스 카드 설명 길이 제한 */
 .pull-left_plus {
 	float: left!important;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
-	-webkit-line-clamp: 3;
+	-webkit-line-clamp: 2;
 	overflow: hidden;
 }
 
@@ -2069,7 +2106,50 @@ proerty-th
     color: #FFF;
 
 }
-
+/* ### */
+/* 북마크 카운트 */
+.bookmark_count {
+	top: -3px;
+	position: relative;
+}
+.col_class_category {
+	padding: 0px;
+	padding-top: 3px;
+}
+.col_class_category a {
+/* 	border: 1px solid #505349; */
+/*     padding: 2px 10px; */
+/* 	border-radius: 5px; */
+/* 	color: #505349; */
+/* 	background-color: #E5E5E1;	 */
+}
+.col_class_category span {
+    font-size: 13px;
+    font-weight: normal;
+    margin-left: 10px;
+    color: #000;
+}
+.col_company_name {
+	padding: 0px;
+	/* ### */
+    padding-bottom: 10px;
+}
+.col_company_name h6 {
+	float: right;
+}
+.col_company_name a {
+	font-size: 13px;
+	font-weight: normal;
+}
+.col_company_address {
+	padding: 0px;
+}
+.col_company_address {
+    font-size: 13px;
+    font-weight: bold;
+    color: #494C53;
+	background: linear-gradient(to top, rgb(221, 221, 221) 40%, transparent 20%);
+}
 /*=====================================
 proerty-th-list
 ======================================*/
@@ -2107,7 +2187,7 @@ proerty-th-list
 .proerty-th-list .col-md-3 .item-entry{
     width:60%;
     float: left;
-    padding-right: 15px;
+/*     padding-right: 15px; */
 }
 .proerty-th-list .col-md-3{
     width: 100%;
@@ -2927,6 +3007,7 @@ padding-bottom: 15px;
     /* 임시 */
 /*     z-index: 9; */
     z-index: 1;
+/*     border: 1px solid #E6E6E6; */
     border: 1px solid #E6E6E6;
     box-shadow: 0px 0px 1px rgba(0, 0, 0, 0);
     display: inline-block;
@@ -3601,8 +3682,8 @@ padding-bottom: 15px;
 
 .proerty-th-list .jss95 {
 /*     top: 10px; */
-	top: 205px;
-    left: 400px;
+	top: 200px;
+    left: 393px;
     height: 32px;
     position: absolute;
     background: rgba(255, 255, 255, 0.6);
@@ -3611,8 +3692,8 @@ padding-bottom: 15px;
 }
 .proerty-th-list .jss146 {
     color: rgba(233, 30, 99, 0.8);
-	top: 205px;
-    left: 400px;
+	top: 200px;
+    left: 393px;
     width: 32px;
     height: 32px;
     position: absolute;
@@ -3657,15 +3738,15 @@ padding-bottom: 15px;
 /* ### */
 /* 클래스 카드 */
 .col_className {
-	min-height:100px;
-	max-height:100px;
+	min-height:80px;
+	max-height:80px;
 	padding: 0px;
 }
 .col_classPrice {
 	min-height: 20px;
 	max-height: 20px;
 	padding: 0px;
-	margin-top: 15px;
+/* 	margin-top: 15px; */
 }
 .item img {
 	display: block;
@@ -3714,13 +3795,13 @@ padding-bottom: 15px;
     color: #000;
     text-align: center;
     line-height: 30px;
-    margin: 150px 0px 280px 0px;
+    margin: 50px 0px 280px 0px;
 }
 
 /* 카드 레이아웃 - 그리드형식 */
 .proerty-th-list .col_className {
-    min-height: 150px;
-    max-height: 150px;
+    min-height: 120px;
+    max-height: 120px;
     padding: 0px;
 }
 .proerty-th-list .col_classPrice {
@@ -3736,7 +3817,7 @@ padding-bottom: 15px;
 }
 .proerty-th-list .item-entry h6 {
 	text-align: left;
-	font-size: 15px;
+	font-size: 16px;
     margin: 5px 0px;
 }
 .proerty-th-list .item-entry h5 {
@@ -3981,6 +4062,7 @@ fieldset {
 	display: inline-flex;
 	vertical-align: top;
 	margin-right: auto;
+	margin-top: 36px;
 }
 
 .not_hover:hover {
@@ -4036,17 +4118,17 @@ fieldset {
 	float: right;
 	text-align: right;
 	padding-bottom: 5px;
-	margin: -20px 20px 0 20px;
+	margin: 10px 16px 0px 20px;
 }
 .form_button button {
 /* 	float: right; */
 	padding: 8px;
 	margin-left: 10px;  
-	width: 100px;
+	width: 160px;
 }
 .form_button button:hover {
-	background-color: #494C53;
-	color: #fff;
+    background-color: #F0F0F0;
+    color: #000;
 }
 .form_button button[type="submit"] {
     background-color: #494C53;
@@ -4055,6 +4137,10 @@ fieldset {
 .form_button button[type="submit"]:hover {
     background-color: #F0F0F0;
     color: #494C53;
+}
+.form_button button[type="reset"]:hover {
+    background-color: #494C53;
+    color: #fff;
 }
 
 .form-inline input[type="text"], select {
@@ -4162,4 +4248,58 @@ input.currency {
     transform: translateY(-50%);
     font-size: 1em;
     padding: 0 2px;
+}
+
+.class_typeAll_date_button {
+	display: inline-flex;
+	vertical-align: top;
+	margin-right: auto;
+/* 	width: 30% */
+	margin-top: 17px;
+}
+/* .class_typeAll_time_button { */
+/* 	width: 12.3%; */
+/* } */
+/* #class_time_check { */
+/* 	width: 28%; */
+/* } */
+/* #class_amount_check { */
+/* 	width: 26.36%; */
+/* } */
+
+/* 클래스리스트 검색 버튼 */
+.searchButton {
+	background-color: #494C53;
+	color: #fff;
+}
+.searchButton:hover {
+	background-color: #FCFCFC;
+	color: #000;
+}
+
+
+/* 라벨 */
+.label_date1, .label_time1 {
+	position: absolute;
+	top: -25px;
+	color: #777777;
+	font-weight: normal;
+}
+.label_date2, .label_time2 {
+	position: absolute;
+	top: -25px;
+	left: 52%;
+	color: #777777;
+	font-weight: normal;
+}
+
+/* 하단바 */
+@media (min-width: 992px) {
+	.container_bottom {
+	    width: 100% !important;
+	    justify-content: center !important;
+	    display: flex !important;
+	    position: relative !important;
+	    margin-left: -140px !important;
+	}
 }

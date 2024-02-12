@@ -112,22 +112,18 @@
                     <div class="col-md-12 "> 
                         <div class="col-xs-6 page-subheader sorting pl0">
 	                        <ul class="sort-by-list">
-	                            <li class="active">
-<!-- 	                                <a href="javascript:void(0);" class="order_by_date" data-orderby="property_date" data-order="ASC"> -->
-	                                <a href="javascript:void(0);" class="order_recently" data-orderby="order_recently" data-order="ASC">
-	                                    최신순
-	                                </a>
+	                            <li class="active" data-value="sort_recent">
+	                                <a href="javascript:void(0);" class="order_recently">최신순</a>
 	                            </li>
-	                            <li class="">
-	                                <a href="javascript:void(0);" class="order_popularity" data-orderby="order_popularity" data-order="DESC">
-	                                    인기순
-	                                </a>
+	                            <li class="" data-value="sort_popular">
+	                                <a href="javascript:void(0);" class="order_popularity">인기순</a>
 	                            </li>
 	                        </ul>
                         </div>
                         
                         <div class="col-xs-6 page-subheader sorting pl0">
-							<button class="plus_class_List" onclick="location.href='${pageContext.request.contextPath}/class/list'">
+<%-- 							<button class="plus_class_List" onclick="location.href='${pageContext.request.contextPath}/class/list'"> --%>
+							<button class="plus_class_List" onclick="plus_class_List()">
 								더보기
 							</button>
                         </div>
@@ -180,7 +176,7 @@
 											<%-- 북마크된 클래스가 아닌 경우 --%>	
 											<c:otherwise>
 												<%-- 북마크 전 아이콘 --%>
-		                                    	<button id="bookmark_button1" value="" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u bookmarkBtn" tabindex="0" type="button">
+		                                    	<button id="bookmark_button1" value="${recentClass.class_idx}" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u bookmarkBtnON" tabindex="0" type="button">
 													<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss97 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteBorderRoundedIcon">
 														<path d="M19.66 3.99c-2.64-1.8-5.9-.96-7.66 1.1-1.76-2.06-5.02-2.91-7.66-1.1-1.4.96-2.28 2.58-2.34 4.29-.14 3.88 3.3 6.99 8.55 11.76l.1.09c.76.69 1.93.69 2.69-.01l.11-.1c5.25-4.76 8.68-7.87 8.55-11.75-.06-1.7-.94-3.32-2.34-4.28zM12.1 18.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"></path>
 													</svg>
@@ -188,7 +184,7 @@
 												</button>
 
 												<%-- 북마크 후 아이콘 --%>
-												<button id="bookmark_button2" value="" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss146 css-1j7qk7u bookmarkBtn" tabindex="0" type="button" style="display: none;">
+												<button id="bookmark_button2" value="" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss146 css-1j7qk7u bookmarkBtnOFF" tabindex="0" type="button" style="display: none;">
 												<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss147 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
 													<path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
 												</svg>
@@ -201,38 +197,98 @@
                                     <div class="item-entry overflow">
 										<div class="container-fluid">
 											<div class="row">
-												<div class="col-sm-6" style="padding: 0px;">
-													<h6><a href="${pageContext.request.contextPath}/com_idx=${recentClass.com_idx}">${recentClass.com_name}</a></h6>
+												<div class="col-sm-9 col_class_category">
+													<h6>
+														<a href="javascript:void(0);">
+															<c:choose>
+																<c:when test="${recentClass.class_main_category eq 1}">바닥 시공 &gt;
+																	<c:if test="${recentClass.class_sub_category eq 1}">바닥재 시공</c:if>
+																	<c:if test="${recentClass.class_sub_category eq 2}">장판 시공</c:if>
+																	<c:if test="${recentClass.class_sub_category eq 3}">타일 시공</c:if>
+																	<c:if test="${recentClass.class_sub_category eq 4}">마루 시공</c:if>
+																	<c:if test="${recentClass.class_sub_category eq 5}">카페트 시공</c:if>
+																</c:when>
+																<c:when test="${recentClass.class_main_category eq 2}">벽/천장 시공 &gt;
+																	<c:if test="${recentClass.class_sub_category eq 1}">도배 시공</c:if>
+																	<c:if test="${recentClass.class_sub_category eq 2}">칸막이 시공</c:if>
+																	<c:if test="${recentClass.class_sub_category eq 3}">페인트 시공</c:if>
+																	<c:if test="${recentClass.class_sub_category eq 4}">방음 시공</c:if>
+																	<c:if test="${recentClass.class_sub_category eq 5}">단열 필름 시공</c:if>
+																</c:when>
+																<c:when test="${recentClass.class_main_category eq 3}">부분 인테리어 &gt;
+																	<c:if test="${recentClass.class_sub_category eq 1}">샷시 설치 및 수리</c:if>
+																	<c:if test="${recentClass.class_sub_category eq 2}">화장실 리모델링</c:if>
+																	<c:if test="${recentClass.class_sub_category eq 3}">주방 리모델링</c:if>
+																	<c:if test="${recentClass.class_sub_category eq 4}">가구 리폼</c:if>
+																	<c:if test="${recentClass.class_sub_category eq 5}">붙박이장 시공</c:if>
+																</c:when>
+																<c:when test="${recentClass.class_main_category eq 4}">야외 시공 &gt;
+																	<c:if test="${recentClass.class_sub_category eq 1}">조경 공사</c:if>
+																	<c:if test="${recentClass.class_sub_category eq 2}">옥상 공사</c:if>
+																	<c:if test="${recentClass.class_sub_category eq 3}">지붕 공사</c:if>
+																	<c:if test="${recentClass.class_sub_category eq 4}">태양광 발전</c:if>
+																	<c:if test="${recentClass.class_sub_category eq 5}">외벽 리모델링</c:if>
+																</c:when>
+																<c:when test="${recentClass.class_main_category eq 5}">종합 인테리어 &gt;
+																	<c:if test="${recentClass.class_sub_category eq 1}">집 인테리어</c:if>
+																	<c:if test="${recentClass.class_sub_category eq 2}">상업공간 인테리어</c:if>
+																	<c:if test="${recentClass.class_sub_category eq 3}">주택 리모델링</c:if>
+																	<c:if test="${recentClass.class_sub_category eq 4}">집 수리</c:if>
+																	<c:if test="${recentClass.class_sub_category eq 5}">인테리어 소품</c:if>
+																</c:when>
+																<c:when test="${recentClass.class_main_category eq 6}">기타 시공 &gt;
+																	<c:if test="${recentClass.class_sub_category eq 1}">줄눈 시공</c:if>
+																	<c:if test="${recentClass.class_sub_category eq 2}">단열 시공</c:if>
+																	<c:if test="${recentClass.class_sub_category eq 3}">미장 시공</c:if>
+																</c:when>
+																<c:otherwise>
+																	알수없음
+																</c:otherwise>
+															</c:choose>
+														</a>
+													</h6>
 												</div>
-												<div class="col-sm-6" style="padding: 0px; text-align: right;">
+
+												<div class="col-sm-3" style="padding: 0px; text-align: right;">
 													<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss14 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
 														<path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
 													</svg>
-													${recentClass.bookmarkCount}
+													<span class="bookmark_count">${recentClass.bookmarkCount}</span>
 												</div>
 											</div>
-											
+										
 											<div class="row">
 												<div class="col-sm-12 col_className">
-			                                        <h5><a href="${pageContext.request.contextPath}/product/detail?class_idx=${recentClass.class_idx}">${recentClass.class_title}</a></h5>
-			                                        <div class="dot-hr"></div>
-			                                       	<div class="item_p">
-				                                        <span class="pull-left_plus">
-			                                        		${recentClass.class_introduction}<br>
-				                                        </span>
-			                                       	</div>
+													<h5><a href="${pageContext.request.contextPath}/product/detail?class_idx=${recentClass.class_idx}">${recentClass.class_title}</a></h5>
+													<div class="dot-hr"></div>
+													<div class="item_p">
+														<span class="pull-left_plus">
+															${recentClass.class_introduction}<br>
+														</span>
+													</div>
 												</div>
 											</div>
-											
+
+											<div class="row">
+												<div class="col-sm-12 col_company_name">
+													<h6>
+														<a href="${pageContext.request.contextPath}/com_idx=${recentClass.com_idx}">
+															${recentClass.com_name} / 
+															<span class="col_company_address">${recentClass.classAddress}</span>
+														</a>
+													</h6>
+												</div>
+											</div>
+
 											<div class="row">
 												<div class="col-sm-12 col_classPrice">
 													<div class="item_p">
-				                                        <span class="proerty-price pull-right">
-				                                        	<fmt:formatNumber value="${recentClass.class_price}" pattern="#,###"/>원
-				                                        </span>
-			                                        </div>
+														<span class="proerty-price pull-right">
+															<fmt:formatNumber value="${recentClass.class_price}" pattern="#,###"/>원
+														</span>
+													</div>
 												</div>
-											</div>
+                                            </div>
 											
 										</div>
                                     </div>
@@ -245,20 +301,20 @@
 
                             <%-- 클래스 카드 (인기순) area --%>
                             <div class="order_popularity_area" style="display: none;">
-                            <c:forEach var="popularityClass" items="${popularityClassList}" end="5">
+                            <c:forEach var="popularClass" items="${popularClassList}" end="5">
                             <div class="col-sm-6 col-md-3 p0">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="${pageContext.request.contextPath}/product/detail?class_idx=${popularityClass.class_idx}">
-                                        	<img src="${pageContext.request.contextPath}/resources/upload/${popularityClass.class_pic1}" onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/img/noimg.png';">
+                                        <a href="${pageContext.request.contextPath}/product/detail?class_idx=${popularClass.class_idx}">
+                                        	<img src="${pageContext.request.contextPath}/resources/upload/${popularClass.class_pic1}" onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/img/noimg.png';">
 										</a>
 
 										<%-- 클래스 기간형식 --%>
 										<span class="jss162">
-											<c:if test="${popularityClass.class_category eq 1}">
+											<c:if test="${popularClass.class_category eq 1}">
 												정규모집
 											</c:if>
-											<c:if test="${popularityClass.class_category eq 2}">
+											<c:if test="${popularClass.class_category eq 2}">
 												원데이 클래스
 											</c:if>
 										</span>
@@ -266,9 +322,9 @@
 										<%-- 북마크 --%>
 										<c:choose>
 											<%-- 북마크 된 클래스인 경우 --%>	
-											<c:when test="${popularityClass.isBookmark_idx > 0}">
+											<c:when test="${popularClass.isBookmark_idx > 0}">
 												<%-- 북마크 전 아이콘 --%>
-		                                    	<button id="bookmark_button1" value="${popularityClass.isBookmark_idx}" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u bookmarkBtnNO" tabindex="0" type="button" style="display: none;">
+		                                    	<button id="bookmark_button1" value="${popularClass.isBookmark_idx}" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u bookmarkBtnNO" tabindex="0" type="button" style="display: none;">
 													<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss97 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteBorderRoundedIcon">
 														<path d="M19.66 3.99c-2.64-1.8-5.9-.96-7.66 1.1-1.76-2.06-5.02-2.91-7.66-1.1-1.4.96-2.28 2.58-2.34 4.29-.14 3.88 3.3 6.99 8.55 11.76l.1.09c.76.69 1.93.69 2.69-.01l.11-.1c5.25-4.76 8.68-7.87 8.55-11.75-.06-1.7-.94-3.32-2.34-4.28zM12.1 18.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"></path>
 													</svg>
@@ -276,7 +332,7 @@
 												</button>
 												
 												<%-- 북마크 후 아이콘 --%>
-												<button id="bookmark_button2" value="${popularityClass.isBookmark_idx}" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss146 css-1j7qk7u bookmarkBtnOK" tabindex="0" type="button">
+												<button id="bookmark_button2" value="${popularClass.isBookmark_idx}" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss146 css-1j7qk7u bookmarkBtnOK" tabindex="0" type="button">
 												<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss147 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
 													<path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
 												</svg>
@@ -287,7 +343,7 @@
 											<%-- 북마크된 클래스가 아닌 경우 --%>	
 											<c:otherwise>
 												<%-- 북마크 전 아이콘 --%>
-		                                    	<button id="bookmark_button1" value="" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u bookmarkBtn" tabindex="0" type="button">
+		                                    	<button id="bookmark_button1" value="${popularClass.class_idx}" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u bookmarkBtnON" tabindex="0" type="button">
 													<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss97 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteBorderRoundedIcon">
 														<path d="M19.66 3.99c-2.64-1.8-5.9-.96-7.66 1.1-1.76-2.06-5.02-2.91-7.66-1.1-1.4.96-2.28 2.58-2.34 4.29-.14 3.88 3.3 6.99 8.55 11.76l.1.09c.76.69 1.93.69 2.69-.01l.11-.1c5.25-4.76 8.68-7.87 8.55-11.75-.06-1.7-.94-3.32-2.34-4.28zM12.1 18.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"></path>
 													</svg>
@@ -295,7 +351,7 @@
 												</button>
 
 												<%-- 북마크 후 아이콘 --%>
-												<button id="bookmark_button2" value="" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss146 css-1j7qk7u bookmarkBtn" tabindex="0" type="button" style="display: none;">
+												<button id="bookmark_button2" value="" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss146 css-1j7qk7u bookmarkBtnOFF" tabindex="0" type="button" style="display: none;">
 												<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss147 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
 													<path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
 												</svg>
@@ -308,26 +364,86 @@
                                     <div class="item-entry overflow">
 										<div class="container-fluid">
 											<div class="row">
-												<div class="col-sm-6" style="padding: 0px;">
-													<h6><a href="${pageContext.request.contextPath}/company/profile/com_idx=${popularityClass.com_idx}">${popularityClass.com_name}</a></h6>
-												</div>
-												<div class="col-sm-6" style="padding: 0px; text-align: right;">
+											<div class="col-sm-9 col_class_category">
+												<h6>
+													<a href="javascript:void(0);">
+														<c:choose>
+															<c:when test="${popularClass.class_main_category eq 1}">바닥 시공 &gt;
+																<c:if test="${popularClass.class_sub_category eq 1}">바닥재 시공</c:if>
+																<c:if test="${popularClass.class_sub_category eq 2}">장판 시공</c:if>
+																<c:if test="${popularClass.class_sub_category eq 3}">타일 시공</c:if>
+																<c:if test="${popularClass.class_sub_category eq 4}">마루 시공</c:if>
+																<c:if test="${popularClass.class_sub_category eq 5}">카페트 시공</c:if>
+															</c:when>
+															<c:when test="${popularClass.class_main_category eq 2}">벽/천장 시공 &gt;
+																<c:if test="${popularClass.class_sub_category eq 1}">도배 시공</c:if>
+																<c:if test="${popularClass.class_sub_category eq 2}">칸막이 시공</c:if>
+																<c:if test="${popularClass.class_sub_category eq 3}">페인트 시공</c:if>
+																<c:if test="${popularClass.class_sub_category eq 4}">방음 시공</c:if>
+																<c:if test="${popularClass.class_sub_category eq 5}">단열 필름 시공</c:if>
+															</c:when>
+															<c:when test="${popularClass.class_main_category eq 3}">부분 인테리어 &gt;
+																<c:if test="${popularClass.class_sub_category eq 1}">샷시 설치 및 수리</c:if>
+																<c:if test="${popularClass.class_sub_category eq 2}">화장실 리모델링</c:if>
+																<c:if test="${popularClass.class_sub_category eq 3}">주방 리모델링</c:if>
+																<c:if test="${popularClass.class_sub_category eq 4}">가구 리폼</c:if>
+																<c:if test="${popularClass.class_sub_category eq 5}">붙박이장 시공</c:if>
+															</c:when>
+															<c:when test="${popularClass.class_main_category eq 4}">야외 시공 &gt;
+																<c:if test="${popularClass.class_sub_category eq 1}">조경 공사</c:if>
+																<c:if test="${popularClass.class_sub_category eq 2}">옥상 공사</c:if>
+																<c:if test="${popularClass.class_sub_category eq 3}">지붕 공사</c:if>
+																<c:if test="${popularClass.class_sub_category eq 4}">태양광 발전</c:if>
+																<c:if test="${popularClass.class_sub_category eq 5}">외벽 리모델링</c:if>
+															</c:when>
+															<c:when test="${popularClass.class_main_category eq 5}">종합 인테리어 &gt;
+																<c:if test="${popularClass.class_sub_category eq 1}">집 인테리어</c:if>
+																<c:if test="${popularClass.class_sub_category eq 2}">상업공간 인테리어</c:if>
+																<c:if test="${popularClass.class_sub_category eq 3}">주택 리모델링</c:if>
+																<c:if test="${popularClass.class_sub_category eq 4}">집 수리</c:if>
+																<c:if test="${popularClass.class_sub_category eq 5}">인테리어 소품</c:if>
+															</c:when>
+															<c:when test="${popularClass.class_main_category eq 6}">기타 시공 &gt;
+																<c:if test="${popularClass.class_sub_category eq 1}">줄눈 시공</c:if>
+																<c:if test="${popularClass.class_sub_category eq 2}">단열 시공</c:if>
+																<c:if test="${popularClass.class_sub_category eq 3}">미장 시공</c:if>
+															</c:when>
+															<c:otherwise>
+																알수없음
+															</c:otherwise>
+														</c:choose>
+													</a>
+												</h6>
+											</div>
+						
+											<div class="col-sm-3" style="padding: 0px; text-align: right;">
 													<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss14 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
 														<path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
 													</svg>
-													${popularityClass.bookmarkCount}
+													<span class="bookmark_count">${popularClass.bookmarkCount}</span>
 												</div>
 											</div>
 											
 											<div class="row">
 												<div class="col-sm-12 col_className">
-			                                        <h5><a href="${pageContext.request.contextPath}/product/detail?class_idx=${popularityClass.class_idx}">${popularityClass.class_title}</a></h5>
-			                                        <div class="dot-hr"></div>
-			                                       	<div class="item_p">
-				                                        <span class="pull-left_plus">
-			                                        		${popularityClass.class_introduction}<br>
-				                                        </span>
-			                                       	</div>
+													<h5><a href="${pageContext.request.contextPath}/product/detail?class_idx=${popularClass.class_idx}">${popularClass.class_title}</a></h5>
+													<div class="dot-hr"></div>
+													<div class="item_p">
+														<span class="pull-left_plus">
+															${popularClass.class_introduction}<br>
+														</span>
+													</div>
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="col-sm-12 col_company_name">
+													<h6>
+														<a href="${pageContext.request.contextPath}/com_idx=${popularClass.com_idx}">
+															${popularClass.com_name} / 
+															<span class="col_company_address">${popularClass.classAddress}</span>
+														</a>
+													</h6>
 												</div>
 											</div>
 											
@@ -335,12 +451,12 @@
 												<div class="col-sm-12 col_classPrice">
 													<div class="item_p">
 				                                        <span class="proerty-price pull-right">
-				                                        	<fmt:formatNumber value="${popularityClass.class_price}" pattern="#,###"/>원
+				                                        	<fmt:formatNumber value="${popularClass.class_price}" pattern="#,###"/>원
 				                                        </span>
 			                                        </div>
 												</div>
 											</div>
-											
+
 										</div>
                                     </div>
                                     
@@ -373,70 +489,162 @@
 	                        <div class="slider-area">
 	                            <div class="slider">
 	                                <div class="owl-carousel owl-theme deadlineClass-slider">
-	                                    <div class="item">
 
+										<c:forEach var="deadlineSoonClass" items="${deadlineSoonClassList}" end="9">
+	                                    <div class="item">
 	                                        <div class="col-sm-6 col-md-3 p0">
 	                                            <div class="box-two proerty-item">
 	                                            
 	                                                <div class="item-thumb">
-	                                                    <a href="${pageContext.request.contextPath}/product/detail">
-	                                                        <img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
-	                                                    </a>
+				                                        <a href="${pageContext.request.contextPath}/product/detail?class_idx=${deadlineSoonClass.class_idx}">
+				                                        	<img src="${pageContext.request.contextPath}/resources/upload/${deadlineSoonClass.class_pic1}" onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/img/noimg.png';">
+														</a>
 	                                                    
 	                                                    <%-- 클래스 기간형식 --%>
-														<span class="jss162">원데이 클래스</span>
+														<span class="jss162">
+															<c:if test="${deadlineSoonClass.class_category eq 1}">
+																정규모집
+															</c:if>
+															<c:if test="${deadlineSoonClass.class_category eq 2}">
+																원데이 클래스
+															</c:if>
+														</span>
 
-	                                                    <%-- 찜표시 --%>
-	                                                    <%-- 찜하기 전 --%>
-	                                                    <button id="button1" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u" tabindex="0" type="button">
-	                                                        <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss97 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteBorderRoundedIcon">
-	                                                            <path d="M19.66 3.99c-2.64-1.8-5.9-.96-7.66 1.1-1.76-2.06-5.02-2.91-7.66-1.1-1.4.96-2.28 2.58-2.34 4.29-.14 3.88 3.3 6.99 8.55 11.76l.1.09c.76.69 1.93.69 2.69-.01l.11-.1c5.25-4.76 8.68-7.87 8.55-11.75-.06-1.7-.94-3.32-2.34-4.28zM12.1 18.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"></path>
-	                                                        </svg>
-	                                                        <span class="MuiTouchRipple-root css-w0pj6f"></span>
-	                                                    </button>
-
-	                                                    <%-- 찜한 후 --%>
-	                                                    <button id="button2" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss146 css-1j7qk7u" tabindex="0" type="button">
-	                                                        <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss147 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
-	                                                            <path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
-	                                                        </svg>
-	                                                        <span class="MuiTouchRipple-root css-w0pj6f"></span>
-	                                                    </button>
-	                                                </div>
+														<%-- 북마크 --%>
+														<c:choose>
+															<%-- 북마크 된 클래스인 경우 --%>	
+															<c:when test="${deadlineSoonClass.isBookmark_idx > 0}">
+																<%-- 북마크 전 아이콘 --%>
+						                                    	<button id="bookmark_button1" value="${deadlineSoonClass.isBookmark_idx}" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u bookmarkBtnNO" tabindex="0" type="button" style="display: none;">
+																	<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss97 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteBorderRoundedIcon">
+																		<path d="M19.66 3.99c-2.64-1.8-5.9-.96-7.66 1.1-1.76-2.06-5.02-2.91-7.66-1.1-1.4.96-2.28 2.58-2.34 4.29-.14 3.88 3.3 6.99 8.55 11.76l.1.09c.76.69 1.93.69 2.69-.01l.11-.1c5.25-4.76 8.68-7.87 8.55-11.75-.06-1.7-.94-3.32-2.34-4.28zM12.1 18.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"></path>
+																	</svg>
+																	<span class="MuiTouchRipple-root css-w0pj6f"></span>
+																</button>
+																
+																<%-- 북마크 후 아이콘 --%>
+																<button id="bookmark_button2" value="${deadlineSoonClass.isBookmark_idx}" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss146 css-1j7qk7u bookmarkBtnOK" tabindex="0" type="button">
+																<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss147 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
+																	<path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
+																</svg>
+																<span class="MuiTouchRipple-root css-w0pj6f"></span>
+																</button>
+															</c:when>
+				
+															<%-- 북마크된 클래스가 아닌 경우 --%>	
+															<c:otherwise>
+																<%-- 북마크 전 아이콘 --%>
+						                                    	<button id="bookmark_button1" value="${deadlineSoonClass.class_idx}" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u bookmarkBtnON" tabindex="0" type="button">
+																	<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss97 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteBorderRoundedIcon">
+																		<path d="M19.66 3.99c-2.64-1.8-5.9-.96-7.66 1.1-1.76-2.06-5.02-2.91-7.66-1.1-1.4.96-2.28 2.58-2.34 4.29-.14 3.88 3.3 6.99 8.55 11.76l.1.09c.76.69 1.93.69 2.69-.01l.11-.1c5.25-4.76 8.68-7.87 8.55-11.75-.06-1.7-.94-3.32-2.34-4.28zM12.1 18.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"></path>
+																	</svg>
+																	<span class="MuiTouchRipple-root css-w0pj6f"></span>
+																</button>
+				
+																<%-- 북마크 후 아이콘 --%>
+																<button id="bookmark_button2" value="" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss146 css-1j7qk7u bookmarkBtnOFF" tabindex="0" type="button" style="display: none;">
+																<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss147 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
+																	<path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
+																</svg>
+																<span class="MuiTouchRipple-root css-w0pj6f"></span>
+																</button>
+															</c:otherwise>
+														</c:choose>
+				                                    </div>
 
 	                                                <div class="item-entry overflow">
 	                                                    <div class="container-fluid">
 	                                                        <div class="row">
-	                                                            <div class="col-sm-6" style="padding: 0px;">
-	                                                                <h6><a href="${pageContext.request.contextPath}/company/profile/com_idx=${recentClass.com_idx}">인테리어 사업체명</a></h6>
-	                                                            </div>
-	                                                            <div class="col-sm-6" style="padding: 0px; text-align: right;">
-	                                                                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss14 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
-	                                                                    <path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
-	                                                                </svg>
-	                                                                32
-	                                                            </div>
-	                                                        </div>
-
+																<div class="col-sm-9 col_class_category">
+																	<h6>
+																		<a href="javascript:void(0);">
+																			<c:choose>
+																				<c:when test="${deadlineSoonClass.class_main_category eq 1}">바닥 시공 &gt;
+																					<c:if test="${deadlineSoonClass.class_sub_category eq 1}">바닥재 시공</c:if>
+																					<c:if test="${deadlineSoonClass.class_sub_category eq 2}">장판 시공</c:if>
+																					<c:if test="${deadlineSoonClass.class_sub_category eq 3}">타일 시공</c:if>
+																					<c:if test="${deadlineSoonClass.class_sub_category eq 4}">마루 시공</c:if>
+																					<c:if test="${deadlineSoonClass.class_sub_category eq 5}">카페트 시공</c:if>
+																				</c:when>
+																				<c:when test="${deadlineSoonClass.class_main_category eq 2}">벽/천장 시공 &gt;
+																					<c:if test="${deadlineSoonClass.class_sub_category eq 1}">도배 시공</c:if>
+																					<c:if test="${deadlineSoonClass.class_sub_category eq 2}">칸막이 시공</c:if>
+																					<c:if test="${deadlineSoonClass.class_sub_category eq 3}">페인트 시공</c:if>
+																					<c:if test="${deadlineSoonClass.class_sub_category eq 4}">방음 시공</c:if>
+																					<c:if test="${deadlineSoonClass.class_sub_category eq 5}">단열 필름 시공</c:if>
+																				</c:when>
+																				<c:when test="${deadlineSoonClass.class_main_category eq 3}">부분 인테리어 &gt;
+																					<c:if test="${deadlineSoonClass.class_sub_category eq 1}">샷시 설치 및 수리</c:if>
+																					<c:if test="${deadlineSoonClass.class_sub_category eq 2}">화장실 리모델링</c:if>
+																					<c:if test="${deadlineSoonClass.class_sub_category eq 3}">주방 리모델링</c:if>
+																					<c:if test="${deadlineSoonClass.class_sub_category eq 4}">가구 리폼</c:if>
+																					<c:if test="${deadlineSoonClass.class_sub_category eq 5}">붙박이장 시공</c:if>
+																				</c:when>
+																				<c:when test="${deadlineSoonClass.class_main_category eq 4}">야외 시공 &gt;
+																					<c:if test="${deadlineSoonClass.class_sub_category eq 1}">조경 공사</c:if>
+																					<c:if test="${deadlineSoonClass.class_sub_category eq 2}">옥상 공사</c:if>
+																					<c:if test="${deadlineSoonClass.class_sub_category eq 3}">지붕 공사</c:if>
+																					<c:if test="${deadlineSoonClass.class_sub_category eq 4}">태양광 발전</c:if>
+																					<c:if test="${deadlineSoonClass.class_sub_category eq 5}">외벽 리모델링</c:if>
+																				</c:when>
+																				<c:when test="${deadlineSoonClass.class_main_category eq 5}">종합 인테리어 &gt;
+																					<c:if test="${deadlineSoonClass.class_sub_category eq 1}">집 인테리어</c:if>
+																					<c:if test="${deadlineSoonClass.class_sub_category eq 2}">상업공간 인테리어</c:if>
+																					<c:if test="${deadlineSoonClass.class_sub_category eq 3}">주택 리모델링</c:if>
+																					<c:if test="${deadlineSoonClass.class_sub_category eq 4}">집 수리</c:if>
+																					<c:if test="${deadlineSoonClass.class_sub_category eq 5}">인테리어 소품</c:if>
+																				</c:when>
+																				<c:when test="${deadlineSoonClass.class_main_category eq 6}">기타 시공 &gt;
+																					<c:if test="${deadlineSoonClass.class_sub_category eq 1}">줄눈 시공</c:if>
+																					<c:if test="${deadlineSoonClass.class_sub_category eq 2}">단열 시공</c:if>
+																					<c:if test="${deadlineSoonClass.class_sub_category eq 3}">미장 시공</c:if>
+																				</c:when>
+																				<c:otherwise>
+																					알수없음
+																				</c:otherwise>
+																			</c:choose>
+																		</a>
+																	</h6>
+																	
+																</div>
+											
+																<div class="col-sm-3" style="padding: 0px; text-align: right;">
+																	<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss14 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
+																		<path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
+																	</svg>
+																	<span class="bookmark_count">${deadlineSoonClass.bookmarkCount}</span>
+																</div>
+															</div>
+															
 	                                                        <div class="row">
 	                                                            <div class="col-sm-12 col_className">
-	                                                                <h5><a href="${pageContext.request.contextPath}/product/detail">도배 기초1</a></h5>
+																	<h5><a href="${pageContext.request.contextPath}/product/detail?class_idx=${deadlineSoonClass.class_idx}">${deadlineSoonClass.class_title}</a></h5>
 	                                                                <div class="dot-hr"></div>
 	                                                                <div class="item_p">
 	                                                                    <span class="pull-left_plus">
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+	                                                                    	${deadlineSoonClass.class_introduction}<br>
 	                                                                    </span>
 	                                                                </div>
 	                                                            </div>
 	                                                        </div>
 
+															<div class="row">
+																<div class="col-sm-12 col_company_name">
+																	<h6>
+																		<a href="${pageContext.request.contextPath}/com_idx=${deadlineSoonClass.com_idx}">
+																			${deadlineSoonClass.com_name} / 
+																			<span class="col_company_address">${deadlineSoonClass.classAddress}</span>
+																		</a>
+																	</h6>
+																</div>
+															</div>
+															
 	                                                        <div class="row">
 	                                                            <div class="col-sm-12 col_classPrice">
 	                                                                <div class="item_p">
-	                                                                    <span class="proerty-price pull-right">300,000원</span>
+	                                                                	<span class="proerty-price pull-right">
+	                                                                    	<fmt:formatNumber value="${deadlineSoonClass.class_price}" pattern="#,###"/>원
+	                                                               		</span>
 	                                                                </div>
 	                                                            </div>
 	                                                        </div>
@@ -446,236 +654,9 @@
 
 	                                            </div>
 	                                        </div>
-
 	                                    </div>
-
-	                                    <div class="item">
-
-	                                        <div class="col-sm-6 col-md-3 p0">
-	                                            <div class="box-two proerty-item">
-	                                            
-	                                                <div class="item-thumb">
-	                                                    <a href="${pageContext.request.contextPath}/product/detail">
-	                                                        <img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
-	                                                    </a>
-	                                                    
-	                                                    <%-- 클래스 기간형식 --%>
-														<span class="jss162">원데이 클래스</span>
-
-	                                                    <%-- 찜표시 --%>
-	                                                    <%-- 찜하기 전 --%>
-	                                                    <button id="button1" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u" tabindex="0" type="button">
-	                                                        <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss97 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteBorderRoundedIcon">
-	                                                            <path d="M19.66 3.99c-2.64-1.8-5.9-.96-7.66 1.1-1.76-2.06-5.02-2.91-7.66-1.1-1.4.96-2.28 2.58-2.34 4.29-.14 3.88 3.3 6.99 8.55 11.76l.1.09c.76.69 1.93.69 2.69-.01l.11-.1c5.25-4.76 8.68-7.87 8.55-11.75-.06-1.7-.94-3.32-2.34-4.28zM12.1 18.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"></path>
-	                                                        </svg>
-	                                                        <span class="MuiTouchRipple-root css-w0pj6f"></span>
-	                                                    </button>
-
-	                                                    <%-- 찜한 후 --%>
-	                                                    <button id="button2" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss146 css-1j7qk7u" tabindex="0" type="button">
-	                                                        <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss147 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
-	                                                            <path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
-	                                                        </svg>
-	                                                        <span class="MuiTouchRipple-root css-w0pj6f"></span>
-	                                                    </button>
-	                                                </div>
-
-	                                                <div class="item-entry overflow">
-	                                                    <div class="container-fluid">
-	                                                        <div class="row">
-	                                                            <div class="col-sm-6" style="padding: 0px;">
-	                                                                <h6><a href="${pageContext.request.contextPath}/company/profile">인테리어 사업체명</a></h6>
-	                                                            </div>
-	                                                            <div class="col-sm-6" style="padding: 0px; text-align: right;">
-	                                                                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss14 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
-	                                                                    <path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
-	                                                                </svg>
-	                                                                32
-	                                                            </div>
-	                                                        </div>
-
-	                                                        <div class="row">
-	                                                            <div class="col-sm-12 col_className">
-	                                                                <h5><a href="${pageContext.request.contextPath}/product/detail">도배 기초2</a></h5>
-	                                                                <div class="dot-hr"></div>
-	                                                                <div class="item_p">
-	                                                                    <span class="pull-left_plus">
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                    </span>
-	                                                                </div>
-	                                                            </div>
-	                                                        </div>
-
-	                                                        <div class="row">
-	                                                            <div class="col-sm-12 col_classPrice">
-	                                                                <div class="item_p">
-	                                                                    <span class="proerty-price pull-right">300,000원</span>
-	                                                                </div>
-	                                                            </div>
-	                                                        </div>
-
-	                                                    </div>
-	                                                </div>
-
-	                                            </div>
-	                                        </div>
-
-	                                    </div>
-
-	                                    <div class="item">
-
-	                                        <div class="col-sm-6 col-md-3 p0">
-	                                            <div class="box-two proerty-item">
-	                                            
-	                                                <div class="item-thumb">
-	                                                    <a href="${pageContext.request.contextPath}/product/detail">
-	                                                        <img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
-	                                                    </a>
-	                                                    
-	                                                    <%-- 클래스 기간형식 --%>
-														<span class="jss162">원데이 클래스</span>
-
-	                                                    <%-- 찜표시 --%>
-	                                                    <%-- 찜하기 전 --%>
-	                                                    <button id="button1" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u" tabindex="0" type="button">
-	                                                        <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss97 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteBorderRoundedIcon">
-	                                                            <path d="M19.66 3.99c-2.64-1.8-5.9-.96-7.66 1.1-1.76-2.06-5.02-2.91-7.66-1.1-1.4.96-2.28 2.58-2.34 4.29-.14 3.88 3.3 6.99 8.55 11.76l.1.09c.76.69 1.93.69 2.69-.01l.11-.1c5.25-4.76 8.68-7.87 8.55-11.75-.06-1.7-.94-3.32-2.34-4.28zM12.1 18.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"></path>
-	                                                        </svg>
-	                                                        <span class="MuiTouchRipple-root css-w0pj6f"></span>
-	                                                    </button>
-
-	                                                    <%-- 찜한 후 --%>
-	                                                    <button id="button2" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss146 css-1j7qk7u" tabindex="0" type="button">
-	                                                        <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss147 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
-	                                                            <path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
-	                                                        </svg>
-	                                                        <span class="MuiTouchRipple-root css-w0pj6f"></span>
-	                                                    </button>
-	                                                </div>
-
-	                                                <div class="item-entry overflow">
-	                                                    <div class="container-fluid">
-	                                                        <div class="row">
-	                                                            <div class="col-sm-6" style="padding: 0px;">
-	                                                                <h6><a href="${pageContext.request.contextPath}/company/profile">인테리어 사업체명</a></h6>
-	                                                            </div>
-	                                                            <div class="col-sm-6" style="padding: 0px; text-align: right;">
-	                                                                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss14 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
-	                                                                    <path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
-	                                                                </svg>
-	                                                                32
-	                                                            </div>
-	                                                        </div>
-
-	                                                        <div class="row">
-	                                                            <div class="col-sm-12 col_className">
-	                                                                <h5><a href="${pageContext.request.contextPath}/product/detail">도배 기초3</a></h5>
-	                                                                <div class="dot-hr"></div>
-	                                                                <div class="item_p">
-	                                                                    <span class="pull-left_plus">
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                    </span>
-	                                                                </div>
-	                                                            </div>
-	                                                        </div>
-
-	                                                        <div class="row">
-	                                                            <div class="col-sm-12 col_classPrice">
-	                                                                <div class="item_p">
-	                                                                    <span class="proerty-price pull-right">300,000원</span>
-	                                                                </div>
-	                                                            </div>
-	                                                        </div>
-
-	                                                    </div>
-	                                                </div>
-
-	                                            </div>
-	                                        </div>
-
-	                                    </div>
+										</c:forEach>
 	                                    
-	                                    <div class="item">
-
-	                                        <div class="col-sm-6 col-md-3 p0">
-	                                            <div class="box-two proerty-item">
-	                                            
-	                                                <div class="item-thumb">
-	                                                    <a href="${pageContext.request.contextPath}/product/detail">
-	                                                        <img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
-	                                                    </a>
-	                                                    
-	                                                    <%-- 클래스 기간형식 --%>
-														<span class="jss162">원데이 클래스</span>
-
-	                                                    <%-- 찜표시 --%>
-	                                                    <%-- 찜하기 전 --%>
-	                                                    <button id="button1" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss95 css-1j7qk7u" tabindex="0" type="button">
-	                                                        <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss97 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteBorderRoundedIcon">
-	                                                            <path d="M19.66 3.99c-2.64-1.8-5.9-.96-7.66 1.1-1.76-2.06-5.02-2.91-7.66-1.1-1.4.96-2.28 2.58-2.34 4.29-.14 3.88 3.3 6.99 8.55 11.76l.1.09c.76.69 1.93.69 2.69-.01l.11-.1c5.25-4.76 8.68-7.87 8.55-11.75-.06-1.7-.94-3.32-2.34-4.28zM12.1 18.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"></path>
-	                                                        </svg>
-	                                                        <span class="MuiTouchRipple-root css-w0pj6f"></span>
-	                                                    </button>
-
-	                                                    <%-- 찜한 후 --%>
-	                                                    <button id="button2" onclick="toggleButtons()" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall jss146 css-1j7qk7u" tabindex="0" type="button">
-	                                                        <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss147 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
-	                                                            <path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
-	                                                        </svg>
-	                                                        <span class="MuiTouchRipple-root css-w0pj6f"></span>
-	                                                    </button>
-	                                                </div>
-
-	                                                <div class="item-entry overflow">
-	                                                    <div class="container-fluid">
-	                                                        <div class="row">
-	                                                            <div class="col-sm-6" style="padding: 0px;">
-	                                                                <h6><a href="${pageContext.request.contextPath}/company/profile">인테리어 사업체명</a></h6>
-	                                                            </div>
-	                                                            <div class="col-sm-6" style="padding: 0px; text-align: right;">
-	                                                                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall jss14 css-1k33q06" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="FavoriteRoundedIcon">
-	                                                                    <path d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"></path>
-	                                                                </svg>
-	                                                                32
-	                                                            </div>
-	                                                        </div>
-
-	                                                        <div class="row">
-	                                                            <div class="col-sm-12 col_className">
-	                                                                <h5><a href="${pageContext.request.contextPath}/product/detail">도배 기초4</a></h5>
-	                                                                <div class="dot-hr"></div>
-	                                                                <div class="item_p">
-	                                                                    <span class="pull-left_plus">
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                    </span>
-	                                                                </div>
-	                                                            </div>
-	                                                        </div>
-
-	                                                        <div class="row">
-	                                                            <div class="col-sm-12 col_classPrice">
-	                                                                <div class="item_p">
-	                                                                    <span class="proerty-price pull-right">300,000원</span>
-	                                                                </div>
-	                                                            </div>
-	                                                        </div>
-
-	                                                    </div>
-	                                                </div>
-
-	                                            </div>
-	                                        </div>
-
-	                                    </div>
 	                                </div>
 	                            </div>
 	                        </div>
@@ -702,7 +683,7 @@
 	</div>
 	<%-- 캐러셀_이벤트 area --%>
 
-    <!-- 최근 리뷰 area -->
+    <!-- 최신 리뷰 area -->
     <div class="content-area recent-property recentReview-property" style="background-color: background-color: #FCFCFC; padding-bottom: 100px;">
         <div class="container">   
             <div class="row">
@@ -718,35 +699,33 @@
 	                        <div class="slider-area">
 	                            <div class="slider">
 	                                <div class="owl-carousel owl-theme recentReview-slider">
+	                                
+	                                	<c:forEach var="recentReview" items="${recentReviewList}" end="12">
 	                                    <div class="item">
-
 	                                        <div class="col-sm-6 col-md-3 p0_review">
 	                                            <div class="box-two proerty-item">
 	                                            
 	                                                <div class="item-thumb">
-	                                                    <a href="${pageContext.request.contextPath}/product/detail">
-	                                                        <img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
-	                                                    </a>
+				                                        <a href="${pageContext.request.contextPath}/review/detail?class_idx=${recentReview.class_idx}">
+				                                        	<img src="${pageContext.request.contextPath}/resources/upload/${recentReview.review_img_1}" onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resources/img/noimg.png';">
+														</a>
 	                                                </div>
 
 	                                                <div class="item-entry overflow">
 	                                                    <div class="container-fluid">
 	                                                        <div class="row">
-	                                                            <div class="col-sm-6" style="padding: 0px;">
-	                                                                <h6><a href="${pageContext.request.contextPath}/product/detail" style="font-weight: bold;">해당 클래스명1</a></h6>
+	                                                            <div class="col-sm-12" style="padding: 0px;">
+	                                                                <h6><a href="${pageContext.request.contextPath}/product/detail?class_idx=${recentReview.class_idx}" style="font-weight: bold;">${recentReview.class_title}</a></h6>
 	                                                            </div>
 	                                                        </div>
 
 	                                                        <div class="row">
 	                                                            <div class="col-sm-12 col_reviewContent">
-	                                                                <a href="${pageContext.request.contextPath}/product/detail">작성자 닉네임1</a>
+	                                                                <a href="javascript:void(0)">${recentReview.member_id}</a>
 	                                                                <div class="dot-hr"></div>
 	                                                                <div class="item_p">
 	                                                                    <span class="pull-left_plus">
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
+	                                                                    	${recentReview.review_content}
 	                                                                    </span>
 	                                                                </div>
 	                                                            </div>
@@ -757,176 +736,8 @@
 
 	                                            </div>
 	                                        </div>
-
 	                                    </div>
-										
-										<div class="item">
-
-	                                        <div class="col-sm-6 col-md-3 p0_review">
-	                                            <div class="box-two proerty-item">
-	                                            
-	                                                <div class="item-thumb">
-	                                                    <a href="${pageContext.request.contextPath}/product/detail">
-	                                                        <img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
-	                                                    </a>
-	                                                </div>
-
-	                                                <div class="item-entry overflow">
-	                                                    <div class="container-fluid">
-	                                                        <div class="row">
-	                                                            <div class="col-sm-6" style="padding: 0px;">
-	                                                                <h6><a href="${pageContext.request.contextPath}/product/detail" style="font-weight: bold;">해당 클래스명2</a></h6>
-	                                                            </div>
-	                                                        </div>
-
-	                                                        <div class="row">
-	                                                            <div class="col-sm-12 col_reviewContent">
-	                                                                <a href="${pageContext.request.contextPath}/product/detail">작성자 닉네임2</a>
-	                                                                <div class="dot-hr"></div>
-	                                                                <div class="item_p">
-	                                                                    <span class="pull-left_plus">
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                    </span>
-	                                                                </div>
-	                                                            </div>
-	                                                        </div>
-
-	                                                    </div>
-	                                                </div>
-
-	                                            </div>
-	                                        </div>
-
-	                                    </div>
-										
-										<div class="item">
-
-	                                        <div class="col-sm-6 col-md-3 p0_review">
-	                                            <div class="box-two proerty-item">
-	                                            
-	                                                <div class="item-thumb">
-	                                                    <a href="${pageContext.request.contextPath}/product/detail">
-	                                                        <img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
-	                                                    </a>
-	                                                </div>
-
-	                                                <div class="item-entry overflow">
-	                                                    <div class="container-fluid">
-	                                                        <div class="row">
-	                                                            <div class="col-sm-6" style="padding: 0px;">
-	                                                                <h6><a href="${pageContext.request.contextPath}/product/detail" style="font-weight: bold;">해당 클래스명3</a></h6>
-	                                                            </div>
-	                                                        </div>
-
-	                                                        <div class="row">
-	                                                            <div class="col-sm-12 col_reviewContent">
-	                                                                <a href="${pageContext.request.contextPath}/product/detail">작성자 닉네임3</a>
-	                                                                <div class="dot-hr"></div>
-	                                                                <div class="item_p">
-	                                                                    <span class="pull-left_plus">
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                    </span>
-	                                                                </div>
-	                                                            </div>
-	                                                        </div>
-
-	                                                    </div>
-	                                                </div>
-
-	                                            </div>
-	                                        </div>
-
-	                                    </div>
-										
-										<div class="item">
-
-	                                        <div class="col-sm-6 col-md-3 p0_review">
-	                                            <div class="box-two proerty-item">
-	                                            
-	                                                <div class="item-thumb">
-	                                                    <a href="${pageContext.request.contextPath}/product/detail">
-	                                                        <img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
-	                                                    </a>
-	                                                </div>
-
-	                                                <div class="item-entry overflow">
-	                                                    <div class="container-fluid">
-	                                                        <div class="row">
-	                                                            <div class="col-sm-6" style="padding: 0px;">
-	                                                                <h6><a href="${pageContext.request.contextPath}/product/detail" style="font-weight: bold;">해당 클래스명4</a></h6>
-	                                                            </div>
-	                                                        </div>
-
-	                                                        <div class="row">
-	                                                            <div class="col-sm-12 col_reviewContent">
-	                                                                <a href="${pageContext.request.contextPath}/product/detail">작성자 닉네임4</a>
-	                                                                <div class="dot-hr"></div>
-	                                                                <div class="item_p">
-	                                                                    <span class="pull-left_plus">
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                    </span>
-	                                                                </div>
-	                                                            </div>
-	                                                        </div>
-
-	                                                    </div>
-	                                                </div>
-
-	                                            </div>
-	                                        </div>
-
-	                                    </div>
-	                                    
-										<div class="item">
-
-	                                        <div class="col-sm-6 col-md-3 p0_review">
-	                                            <div class="box-two proerty-item">
-	                                            
-	                                                <div class="item-thumb">
-	                                                    <a href="${pageContext.request.contextPath}/product/detail">
-	                                                        <img src="${pageContext.request.contextPath}/resources/assets/img/demo/property-3.jpg">
-	                                                    </a>
-	                                                </div>
-
-	                                                <div class="item-entry overflow">
-	                                                    <div class="container-fluid">
-	                                                        <div class="row">
-	                                                            <div class="col-sm-6" style="padding: 0px;">
-	                                                                <h6><a href="${pageContext.request.contextPath}/product/detail" style="font-weight: bold;">해당 클래스명5</a></h6>
-	                                                            </div>
-	                                                        </div>
-
-	                                                        <div class="row">
-	                                                            <div class="col-sm-12 col_reviewContent">
-	                                                                <a href="${pageContext.request.contextPath}/product/detail">작성자 닉네임5</a>
-	                                                                <div class="dot-hr"></div>
-	                                                                <div class="item_p">
-	                                                                    <span class="pull-left_plus">
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                        3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨3줄까지만 이상은 ...처리됨
-	                                                                    </span>
-	                                                                </div>
-	                                                            </div>
-	                                                        </div>
-
-	                                                    </div>
-	                                                </div>
-
-	                                            </div>
-	                                        </div>
-
-	                                    </div>
+	                                	</c:forEach>
 										
 	                                </div>
 	                            </div>

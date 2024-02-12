@@ -7,13 +7,13 @@
 	
 	function sortReviews(sortType) {
 		console.log("Sorting reviews by: >>>>>>>>>>>>>>>>>>>>> " + sortType); // 로그 출력으로 함수 호출 확인
-	    var comId = getParameterByName('com_id'); // com_id 값을 가져옴
+	    var classIdx = getParameterByName('class_idx'); // com_id 값을 가져옴
 
 	    $.ajax({
     url: '/gongsaeng/review/detail/sortedReviews', // 컨텍스트 경로를 포함한 전체 경로
 			type: 'GET',
 	        data: {
-	            comId: comId, // comId 변수의 값이 정의되어 있어야 합니다.
+	            classIdx: classIdx, // comId 변수의 값이 정의되어 있어야 합니다.
 	            sortType: sortType // 'newest', 'highest', 'lowest', 'likes' 등
 	        },
 	        dataType: 'json', // 서버로부터 JSON 형태의 응답을 기대
@@ -73,7 +73,7 @@
                         '</a>' +
                     '</div>' +
                     '<div class="reviewer_info">' +
-                        '<div class="reviewer_name">' + review.user_id + '</div>' +
+                        '<div class="reviewer_name">' + review.member_id + '</div>' +
                         '<div class="score1">' +
                             '<img src="' + contextPath + '/resources/img/review_star.png" width="15" height="15">' +
                             (review.review_score / 2).toFixed(1) +
@@ -94,7 +94,7 @@
                             reportButtonHtml +
                         '</div>' +
                         '<span class="comment-icon" onclick="showCommentForm()"></span><br><br>' +
-    				    '<div class="review_date">' + formattedDate + ' 작성</div>' + 
+    				    '<div class="review_regdate">' + formattedDate + ' 작성</div>' + 
 //                    '<div class="review_date">' + formattedDate + ' 작성</div>' + 
 						 '<div class="separator"></div>' + 
                     '</div>' +

@@ -1,8 +1,8 @@
-$(window).load(function () { // makes sure the whole site is loaded
+$(document).ready(function() { // makes sure the whole site is loaded
     $('#status').fadeOut(); // will first fade out the loading animation
     $('#preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website.
     $('body').delay(350).css({'overflow': 'visible'});
-})
+});
 
 // 슬라이더
 $(document).ready(function () {
@@ -88,6 +88,26 @@ $(document).ready(function () {
     });
 });
 
+// 상단바 전체메뉴 - 상위메뉴
+$(document).on('click', '.mainMenu', function() {
+    // classMainCategory 값을 가져옴
+    let classMainCategory = $(this).data('value');
+
+    // classMainCategory 값만 들고 class/list로 리다이렉트
+    location.href = "/gongsaeng/class/list?classMainCategory=" + classMainCategory;
+});
+// 상단바 전체메뉴 - 하위메뉴
+$(document).on('click', '.dropdown-submenu a li', function() {
+    // classMainCategory 값을 가져옴
+    let classMainCategory = $(this).closest('.submenu-container').find('.mainMenu').data('value');
+
+    // classSubCategory 값을 가져옴
+    let classSubCategory = $(this).data('value');
+    
+    // classMainCategory와 classSubCategory 값을 들고 class/list로 리다이렉트
+    location.href = "/gongsaeng/class/list?classMainCategory=" + classMainCategory + "&classSubCategory=" + classSubCategory;
+});
+
 // 알림 카테고리 클릭 시 해당 알림 보여주는 이벤트
 function notify_button(value) {
 	var notifyButtons = document.querySelectorAll('.notify_button_' + value);
@@ -101,31 +121,74 @@ function notify_button(value) {
 	});
 }
 
-// 최신순, 인기순 버튼
+// 최신순 버튼 클릭 시
 $(".order_recently").click(function() {
+	
 	$(".order_recently_area").show();
 	$(".order_popularity_area").hide();
+	
+	$('.order_recently').parent().addClass("active");
+	$('.order_popularity').parent().removeClass("active");
+	
+	// 어떤 경우에든 항상 class/list로 보내도록
+//	$('.plus_class_List').click(function() {
+//		location.href = '/gongsaeng/class/list';
+//		location.href = '/gongsaeng/class/list?sort=sort_recent';
+//	});	
 });
+// 인기순 버튼 클릭 시
 $(".order_popularity").click(function() {
 	$(".order_popularity_area").show();
 	$(".order_recently_area").hide();
+
+	$('.order_popularity').parent().addClass("active");
+	$('.order_recently').parent().removeClass("active");
 });
 
+// "더보기" 버튼 클릭 시
+function plus_class_List() {
+    // sort 값을 가져옴
+    let sort = $('.sort-by-list .active').data('value');
+    
+    // sort값을 들고 class/list로 리다이렉트
+    location.href = "/gongsaeng/class/list?sort=" + sort;
+}
 
 
-
+// 북마크 추가 이벤트
+$(".bookmarkBtnON").click(function() {
+	let class_idx = $(this).val();
+	
+	if(confirm("북마크를 추가하시겠습니까?")){
+		$.ajax({
+			url: "insertBookmark",
+			data: {
+				class_idx: class_idx
+			},
+			dataType: "text",
+			success: function(result) {
+				console.log(result);
+                if (result == 'forward') {
+                    // 로그인되지 않은 상태라면 로그인 페이지로 리다이렉트
+                    location.href = '/gongsaeng/member/login';
+                } else if (result == 'true') {
+                    location.reload();
+                } else {
+                    alert("북마크 추가에 실패했습니다. 다시 시도해주세요");
+                }
+			}
+		});
+	};
+});
 // 북마크 삭제 이벤트
 $(".bookmarkBtnOK").click(function() {
-//	let bookmark_button = this.id;
 	let bookmark_idx = $(this).val();
-//	console.log("bookmark_button : " + bookmark_button);
-//	console.log("bookmark_idx : " + bookmark_idx);
 	
 	if(confirm("북마크를 제거하시겠습니까?")){
 		$.ajax({
 			url: "mypage/deleteBookmark",
 			data: {
-				bookmark_idx: bookmark_idx,
+				bookmark_idx: bookmark_idx
 			},
 			dataType: "json",
 			success: function(result) {
@@ -143,62 +206,127 @@ $(".bookmarkBtnOK").click(function() {
 /// 여기서부턴 class_list.jsp
 // 상세검색
 $(document).ready(function () {
-	// 상세검색 카테고리(원데이/정규모집) 클릭 시 해당 카테고리 보여주는 이벤트
-	// 기본 : 정규모집
+	// 상세검색 카테고리(전체/정규모집/원데이) 클릭 시
+	// 해당 카테고리 보여주는 이벤트 --- 폐기
+	// 기본 : 전체
 	$('.search_detail_classType').on('click', function(event) {
-	    let classType = event.target.value;
+//	    let classType = event.target.value;
 		// 모든 카테고리에 selected 클래스 삭제
 	    $('.search_detail_classType').removeClass('selected');
 	    // 선택된 카테고리에 selected 클래스 추가
 	    $(this).addClass('selected');
 		
-	    if(classType == '1') {  // 정규모집
-	        $('.class_date_button').show();
-	        $('.class_oneday_button').hide();
-	    } else if(classType == '2') { // 원데이
-	        $('.class_oneday_button').show();
-	        $('.class_date_button').hide();
-	    }
+//	    if(classType == '0') {	// 전체
+//	        $('.class_typeAll_button').show();
+//	        $('.class_date_button').hide();
+//	        $('.class_oneday_button').hide();
+//	        
+//	        $('#class_time_check').removeClass();
+//	        $('#class_time_check').addClass('col-md-3 class_time');
+//	        
+//	        $("#class_time_check").css('width', '28%');
+//	        $("#class_amount_check").css('width', '26.36%');
+//		} else if(classType == '1') {  // 정규모집
+//	        $('.class_date_button').show();
+//	        $('.class_oneday_button').hide();
+//	        $('.class_typeAll_button').hide();
+//
+//	        $('#class_time_check').removeClass();
+//	        $('#class_time_check').addClass('col-md-4 class_time');
+//	        
+//	        $("#class_time_check").css('width', '33.33%');
+//	        $("#class_amount_check").css('width', '33.33%');
+//	    } else if(classType == '2') { // 원데이
+//	        $('.class_oneday_button').show();
+//	        $('.class_date_button').hide();
+//	        $('.class_typeAll_button').hide();
+//
+//	        $('#class_time_check').removeClass();
+//	        $('#class_time_check').addClass('col-md-4 class_time');
+//	        
+//	        $("#class_time_check").css('width', '33.33%');
+//	        $("#class_amount_check").css('width', '33.33%');
+//	    }
 	});
 
 	// 시작일 드롭박스 focus 이벤트
-	$('.class_start_date').on('focus', function() {
-		// input type="text" -> input type="date"
-		this.type = 'date';
-		
-		// input type="hidden"의 id값 삭제 (초기값을 위해 만든 input)
-		// 실제 날짜 선택 드롭박스에 id값 부여
-		$(".hidden_class_start_date").attr("id", "");
-		$(".class_start_date").attr("id", "date1");
-		
-		
-		// 초기화 등의 사유로 id값을 잃어버렸을 경우
-		let idValue = $("date1").attr('id');
-		if(idValue == null) {
-			// input type="hidden"의 id값 부여
-			// 실제 날짜 선택 드롭박스 id 삭제
-			$(".hidden_class_start_date").attr("id", "date1");			
-			$(".class_start_date").attr("id", "");
-		}
-	});
+//	$('.class_start_date').on('focus', function() {
+//		// input type="text" -> input type="date"
+//		this.type = 'date';
+//		
+//		// input type="hidden"의 id값 삭제 (초기값을 위해 만든 input)
+//		// 실제 날짜 선택 드롭박스에 id값 부여
+//		$(".hidden_class_start_date").attr("id", "");
+//		$(".class_start_date").attr("id", "date1");
+//		
+//		
+//		// 초기화 등의 사유로 id값을 잃어버렸을 경우
+//		let idValue = $("date1").attr('id');
+//		if(idValue == null) {
+//			// input type="hidden"의 id값 부여
+//			// 실제 날짜 선택 드롭박스 id 삭제
+//			$(".hidden_class_start_date").attr("id", "date1");			
+//			$(".class_start_date").attr("id", "");
+//		}
+//	});
 	// 종료일 드롭박스 focus 이벤트
-	$('.class_end_date').on('focus', function() {
-		// input type="text" -> input type="date"
-		this.type = 'date';
-		
-		// input type="hidden"의 id값 삭제 (초기값을 위해 만든 input)
-		// 실제 날짜 선택 드롭박스에 id값 부여
-		$(".hidden_class_end_date").attr("id", "");
-		$(".class_end_date").attr("id", "date2");
-
-		// 초기화 등의 사유로 id값을 잃어버렸을 경우
-		let idValue = $("date2").attr('id');
-		if(idValue == null) {
-			// input type="hidden"의 id값 부여
-			// 실제 날짜 선택 드롭박스 id 삭제
-			$(".hidden_class_end_date").attr("id", "date2");			
-			$(".class_end_date").attr("id", "");
-		}
+//	$('.class_end_date').on('focus', function() {
+//		// input type="text" -> input type="date"
+//		this.type = 'date';
+//		
+//		// input type="hidden"의 id값 삭제 (초기값을 위해 만든 input)
+//		// 실제 날짜 선택 드롭박스에 id값 부여
+//		$(".hidden_class_end_date").attr("id", "");
+//		$(".class_end_date").attr("id", "date2");
+//
+//		// 초기화 등의 사유로 id값을 잃어버렸을 경우
+//		let idValue = $("date2").attr('id');
+//		if(idValue == null) {
+//			// input type="hidden"의 id값 부여
+//			// 실제 날짜 선택 드롭박스 id 삭제
+//			$(".hidden_class_end_date").attr("id", "date2");			
+//			$(".class_end_date").attr("id", "");
+//		}
+//	});
+	 
+	// 시작시간 드롭박스 focus 이벤트
+	$('.class_start_time').on('focus', function() {
+	    // input type="text" -> input type="time"
+	    this.type = 'time';
+	
+	    // input type="hidden"의 id값 삭제 (초기값을 위해 만든 input)
+	    // 실제 시간 선택 드롭박스에 id값 부여
+	    $(".hidden_class_start_time").attr("id", "");
+	    $(".class_start_time").attr("id", "time1");
+	
+	    // 초기화 등의 사유로 id값을 잃어버렸을 경우
+	    let idValue = $("#time1").attr('id');
+	    if(idValue == null) {
+	        // input type="hidden"의 id값 부여
+	        // 실제 시간 선택 드롭박스 id 삭제
+	        $(".hidden_class_start_time").attr("id", "time1");            
+	        $(".class_start_time").attr("id", "");
+	    }
+	});
+	
+	// 종료시간 드롭박스 focus 이벤트
+	$('.class_end_time').on('focus', function() {
+	    // input type="text" -> input type="time"
+	    this.type = 'time';
+	
+	    // input type="hidden"의 id값 삭제 (초기값을 위해 만든 input)
+	    // 실제 시간 선택 드롭박스에 id값 부여
+	    $(".hidden_class_end_time").attr("id", "");
+	    $(".class_end_time").attr("id", "time2");
+	
+	    // 초기화 등의 사유로 id값을 잃어버렸을 경우
+	    let idValue = $("#time2").attr('id');
+	    if(idValue == null) {
+	        // input type="hidden"의 id값 부여
+	        // 실제 시간 선택 드롭박스 id 삭제
+	        $(".hidden_class_end_time").attr("id", "time2");            
+	        $(".class_end_time").attr("id", "");
+	    }
 	});
 	
 //    $('#time-range').slider();
@@ -208,14 +336,14 @@ $(document).ready(function () {
 //    $('#min-bed').slider();
 
 	// timepicker : 클래스 시간 드롭다운 형식 커스텀
-	$('input.timepicker').timepicker({
-        timeFormat: 'HH:mm',
-        interval: 1,
-        startTime: '00:00',
-        dynamic: false,
-        dropdown: true,
-        scrollbar: false
-    });
+//	$('input.timepicker').timepicker({
+//        timeFormat: 'HH:mm',
+//        interval: 1,
+//        startTime: '00:00',
+//        dynamic: false,
+//        dropdown: true,
+//        scrollbar: false
+//    });
         
 //    var RGBChange = function () {
 //        $('#RGB').css('background', '#FDC600')
@@ -245,6 +373,14 @@ $(document).ready(function () {
 		} else if (value > 1000000) {
 			$(this).val("1,000,000");
 		}
+	});
+
+	$('button[type="reset"]').click(function () {
+    	$('.selectpicker').selectpicker('deselectAll');
+	});
+
+	$('button[type="reset"]').click(function () {
+	    $('input[type="checkbox"]').prop('checked', false);
 	});
 
     // Advanced search toggle
@@ -305,25 +441,19 @@ $(document).ready(function () {
 // class_list.jsp (체크박스 이벤트, 카드 레이아웃 선택)
 $(document).ready(function () {
     $('.layout-grid').on('click', function () {
-      
         $('.layout-grid').addClass('active');
         $('.layout-list').removeClass('active');
 
         $('#list-type').removeClass('proerty-th-list');
         $('#list-type').addClass('proerty-th');
-
-        alert("grid 선택!!!!!!!!!!");
     });
 
     $('.layout-list').on('click', function () {
-		
         $('.layout-grid').removeClass('active');
         $('.layout-list').addClass('active');
 
         $('#list-type').addClass('proerty-th-list');
         $('#list-type').removeClass('proerty-th');
-
-        alert("list 선택!!!!!!!!!!");
     });
     
 

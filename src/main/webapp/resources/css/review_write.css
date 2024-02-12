@@ -42,9 +42,13 @@
   justify-content: center; /* 가로축에서 중앙 정렬 */
 }
 
-.comName
+
 .classTitle{
-	font-size: 10px !important;	
+	font-size: 25px !important;	
+}
+
+.formSize{
+	margin: 100px !important;
 }
 
 .rating {
@@ -148,6 +152,8 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+  margin-bottom: -45px;
+  
 }
 
 .restaurant_info {

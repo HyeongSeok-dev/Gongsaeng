@@ -35,4 +35,12 @@
 		WHERE member_id = #{sId}
 		AND class_idx = #{class_idx}
 	</select>
+	
+	<select id="findCart" resultType="cart">
+        SELECT *
+        FROM cart
+        WHERE class_idx = #{class_idx} AND
+              member_id = #{member_id} AND
+              date = #{date}
+    </select>
 </mapper>

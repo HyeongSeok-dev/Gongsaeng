@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.gongsaeng.mapper.ProductMapper;
 import kr.co.gongsaeng.vo.BookmarkVO;
+import kr.co.gongsaeng.vo.CartVO;
 import kr.co.gongsaeng.vo.ClassVO;
 import kr.co.gongsaeng.vo.CompanyVO;
 import kr.co.gongsaeng.vo.ReviewVO;
@@ -32,6 +33,14 @@ public class ProductService {
 	public BookmarkVO getBookmark(String sId, int class_idx) {
 		return mapper.selectBookmark(sId, class_idx);
 	}
+
+	public CartVO findCart(int class_idx, String member_id, String date) {
+        return mapper.findCart(class_idx, member_id, date);
+        
+    }
+
+
+	
 
 
 

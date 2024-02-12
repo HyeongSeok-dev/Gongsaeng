@@ -260,3 +260,30 @@ function mapPopup(address, name) {
 
 	window.open(url, windowName, windowSize);
 }
+
+/*tests*/
+//// reviewList가 있다고 가정
+//var reviewList = [/* 리뷰 데이터 */];
+//
+//// 처음 5개의 리뷰만 선택
+//var firstFiveReviews = reviewList.slice(0, 5);
+//
+//// 각 리뷰에 대해 HTML 생성
+//firstFiveReviews.forEach(function(review) {
+//    // 여기에서 review를 사용해 HTML을 생성
+//});
+
+//function printDays(class_day) {
+//    var days = ['월', '화', '수', '목', '금', '토', '일'];
+//    var classDays = '';
+//
+//    for (var i = 0; i < class_day.length; i++) {
+//        if (class_day[i] === '1') {
+//            classDays += days[i];
+//        }
+//    }
+//
+//    // 결과를 <h2> 태그에 출력합니다.
+//    document.getElementById('classDays').textContent = classDays;
+//}
+

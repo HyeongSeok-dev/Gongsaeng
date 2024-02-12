@@ -255,9 +255,9 @@ public class MemberController {
 		log.info(agreeAd);
 
 		if (agreeAd.equals("on")) {
-			member.setMember_alert_status("11111");
+			member.setMember_alert_status("1111");
 		} else {
-			member.setMember_alert_status("11101");
+			member.setMember_alert_status("1101");
 		}
 		log.info(member.getMember_alert_status());
 		int insertCount = service.registMember(member);
@@ -370,7 +370,6 @@ public class MemberController {
 		return "redirect:/";
 	}
 
-	@SuppressWarnings("unchecked")
 	@GetMapping("kakaoCallback")
 	public String kakaoCallback(@RequestParam Map<String, String> map, HttpSession session, Model model) {
 		System.out.println(map);
@@ -413,7 +412,7 @@ public class MemberController {
 			member.setMember_gender(2);
 		}
 		member.setMember_img(properties.get("profile_image"));
-		member.setMember_alert_status("11111");
+		member.setMember_alert_status("1111");
 
 		System.out.println(member.getMember_birthday());
 		MemberVO dbMember = service.getMemberForValid(member);

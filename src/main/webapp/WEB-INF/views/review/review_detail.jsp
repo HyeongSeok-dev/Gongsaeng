@@ -53,7 +53,7 @@ var sId = '<c:out value="${sessionScope.sId}"/>';
 // ===============================
 // 댓글 아이콘 클릭 시 댓글창을 여는 함수
 function showCommentForm(element) {
-    var reviewIdx = element.getAttribute('data-review-num');
+    var reviewIdx = element.getAttribute('data-review-idx');
     var classIdx = getParameterByName('class_idx');
     var url = contextPath + "/review/comment?class_idx=" + classIdx + "&review_idx=" + reviewIdx;
     var windowName = "commentPopup";
@@ -156,15 +156,17 @@ function showCommentForm(element) {
     
     var sortedLabels = sortedIndices.map(index => labels[index]);
     var sortedData = sortedIndices.map(index => data[index]);
+    
 
     // 순위별로 색상 지정
     var backgroundColors = sortedData.map((value, index) => {
-//         if (index === 0) return '#add8e6'; // 1위 
-        if (index === 0) return '#03A9F4'; // 1위 
-//         if (index < 5) return '#C8E4F7'; // 2 ~ 5위
-        if (index < 5) return '#80D8FF'; // 2 ~ 5위
-//         return '#e6f4f1'; // 나머지
-        return '#E1F5FE'; // 나머지
+
+        if (index === 0) return '#424242'; // 1위 
+        if (index < 3) return '#757575'; // 2 ~ 5위
+        if (index < 6) return '#9E9E9E'; // 2 ~ 5위
+        return '#E0E0E0'; // 나머지
+
+
     });
 
     var ctx = document.getElementById('reviewChart').getContext('2d');
@@ -326,10 +328,10 @@ function showCommentForm(element) {
 		// =================================================================	
 		function sortReviews(sortType, photoOnly,menuNames) { // photoOnly 매개변수 추가
 		    console.log("메뉴 네임 넘어오는지 확인: >>>>>>>>>>>>>>" +  sortType +  photoOnly + menuNames); // 로그 출력
-		    var comId = getParameterByName('com_id'); // com_id 값을 가져옴
+		    var classIdx = getParameterByName('class_idx'); // com_id 값을 가져옴
 	
 		    var requestData = {
-		            comId: comId,
+		            classIdx: classIdx,
 		            sortType: sortType,
 		            photoOnly: photoOnly,
 		            menuName: menuNames
@@ -387,7 +389,7 @@ function showCommentForm(element) {
 // 	            '<a href="modify?review_num=' + review.review_num + '">' +
 // 	                '<button class="review_modify">수정</button>' +
 // 	            '</a>';
-	        	'<a href="modify?review_idx=' + review.review_idx + '&class_idx=' + review.coass_idx + '">' +
+	        	'<a href="modify?review_idx=' + review.review_idx + '&class_idx=' + review.class_idx + '">' +
 	            '<button class="review_modify">수정</button>' +
 	        	'</a>';
 	    } else {
@@ -419,7 +421,8 @@ function showCommentForm(element) {
 	                    '<div class="reviewer_photo">' +
 	                        '<a href="#" target="_blank" class="profile_link">' +
 	                            '<div class="profile_image">' +
-	                                '<img src="' + contextPath + '/resources/img/profile.png" alt="프로필" width="38" height="38">' +
+	                                '<img src="' + contextPath + '/resources/upload/profile_test.jpg" alt="프로필" width="38" height="38">' +
+// 	                            '<img src="' + contextPath + reviews.member_img + '" width="15" height="15">' +
 	                            '</div>' +
 	                        '</a>' +
 	                    '</div>' +
@@ -448,7 +451,7 @@ function showCommentForm(element) {
 	                            reportButtonHtml +
 	                        '</div>' +
 	                        '<span class="comment-icon" onclick="showCommentForm()"></span><br><br>'+
-	    				    '<div class="review_date">' + formattedDate + ' 작성</div>' + 
+	    				    '<div class="review_regdate">' + formattedDate + ' 작성</div>' + 
 	                 		'<div class="separator"></div>' + 
 	                    '</div>' +
 	                '</div>' +
@@ -497,23 +500,23 @@ function showCommentForm(element) {
     });
 
 	// 카테고리별 리뷰 로드 함수
-	function loadReviewsByCategory(category,comId) {
+// 	function loadReviewsByCategory(category,comId) {
 
-	    $.ajax({
-  			url: '/zzimkong/review/redetail/filterByCategory', 
-	        type: 'GET',
-	        data: { category: category, 
-	        	comId: comId},
-	        dataType: 'json',
-	        success: function(reviews) {
-	            displayReviews(reviews);
-// 	            console.log("업체아이디!!!!! >>>>>>" + comId)
-	        },
-	        error: function(xhr, status, error) {
-	            console.error("Error occurred: " + error);
-	        }
-	    });
-	}
+// 	    $.ajax({
+//   			url: '/gongsaeng/review/detail/filterByCategory', 
+// 	        type: 'GET',
+// 	        data: { category: category, 
+// 	        	comId: comId},
+// 	        dataType: 'json',
+// 	        success: function(reviews) {
+// 	            displayReviews(reviews);
+// // 	            console.log("업체아이디!!!!! >>>>>>" + comId)
+// 	        },
+// 	        error: function(xhr, status, error) {
+// 	            console.error("Error occurred: " + error);
+// 	        }
+// 	    });
+// 	}
 	
 	// 리뷰 표시 함수
 	function displayReviews(reviews) {
@@ -551,6 +554,7 @@ function showCommentForm(element) {
     }	else {
         // sId가 review.user_id나 'admin'이 아닐 때만 신고 버튼 생성
         reportButtonHtml = 
+//         	'<a onclick="javascript: window.open('report?class_idx=${res.class_idx}', 'report', 'width=500,height=550,top=50%, left=50%');"><button class="btn btn-danger btn-block">신고하기</button></a>'
             '<a href="' + contextPath + '/review/report?review_idx=' + review.review_idx + '&class_idx=' + review.class_idx + '" class="review_report_btn" role="button">리뷰 신고하기</a>';
     }
 
@@ -577,13 +581,13 @@ function showCommentForm(element) {
                     '<div class="reviewer_photo">' +
                         '<a href="#" target="_blank" class="profile_link">' +
                             '<div class="profile_image">' +
-                                '<img src="' + contextPath + '/resources/img/profile.png" alt="프로필" width="38" height="38">' +
+                                '<img src="' + contextPath + '/resources/upload/profile_test.jpg" alt="프로필" width="38" height="38">' +
                             '</div>' +
                         '</a>' +
                     '</div>' +
                     '<div class="reviewer_info">' +
 //                         '<div class="reviewer_name">' + review.user_id + '</div>' +
-	                        '<div class="reviewer_name">' + review.user_nick + '</div>' +
+	                        '<div class="reviewer_name">' + review.member_nick + '</div>' +
                         '<div class="score1">' +
                             '<img src="' + contextPath + '/resources/img/review_star.png" width="15" height="15">' +
                             (review.review_score / 2).toFixed(1) +
@@ -596,7 +600,7 @@ function showCommentForm(element) {
                     '<div class="review-action1">' +
 // 					'<i class="far fa-comment" data-review-num="' + review.review_num + '" style="cursor: pointer;" onclick="showCommentForm(this);"></i>' + commentCount + 
 '<div class="comment-section">' +
-    '<i class="far fa-comment" data-review-num="' + review.review_num + '" style="cursor: pointer;" onclick="showCommentForm(this);"></i>' + '<span class="comment_count_number">' + commentCount + '</span>' +'</div>'+
+    '<i class="far fa-comment" data-review-idx="' + review.review_idx + '" style="cursor: pointer;" onclick="showCommentForm(this);"></i>' + '<span class="comment_count_number">' + commentCount + '</span>' +'</div>'+
 //   						  '<i class="far fa-heart" id="heartIcon" style="cursor: pointer;"></i>' + // 리뷰 좋아요 보류
                     '</div>' +
                     '<div class="review-action2">' +
@@ -606,7 +610,7 @@ function showCommentForm(element) {
                             reportButtonHtml +
                         '</div>' +
                         '<span class="comment-icon" onclick="showCommentForm()"></span><br><br>'
-    				    '<div class="review_date">' + formattedDate + ' 작성</div>' + 
+    				    '<div class="review_regdate">' + formattedDate + ' 작성</div>' + 
                		  '<div class="separator"></div>' + 
                     '</div>' +
                 '</div>' +
@@ -698,7 +702,7 @@ function showCommentForm(element) {
 <body>
 <div class="restaurant_name_with_likes">
     <div class="restaurant_name">
-   		<h2><a href="${pageContext.request.contextPath}/product/detail?com_id=${comId}">${comName}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart" aria-hidden="true"></i>
+   		<h2><a href="${pageContext.request.contextPath}/product/detail?class_idx=${classIdx}">${classTitle}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart" aria-hidden="true"></i>
 <%--    		<h2><a href="${pageContext.request.contextPath}/product/detail?com_id=${comId}">${comName}</h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart" aria-hidden="true"></i></a> --%>
 <%--        <h2><a href="${pageContext.request.contextPath}/product/detail">${comName}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart" aria-hidden="true"></i></h2> --%>
          <span class="like_count_top">${likeCount}</span><span class="like_text">&nbsp;&nbsp;이런 곳 좋아요</span>
@@ -784,11 +788,11 @@ function showCommentForm(element) {
 	<div class="separator"></div>
 	<div class="review_main_subject">
 		<h2 class="review_subject">
-			리뷰&nbsp;&nbsp;<span class="review_subject_count">${reviewCount}</span>
+			리뷰&nbsp;&nbsp;<span class="review_subject_count"><b>${reviewCount}</b>개</span>
 		</h2>
 		<label class="checkbox-container">
-		    <input type="checkbox" id="photoReviewCheckbox">
-		    <span class="checkmark"></span>사진 리뷰만 보기 
+<!-- 		    <input type="checkbox" id="photoReviewCheckbox"> -->
+<!-- 		    <span class="checkmark"></span>사진 리뷰만 보기  -->
 		</label>
 	</div>
 <!-- 	</div> -->
@@ -798,44 +802,44 @@ function showCommentForm(element) {
 <!-- 	</div> -->
 	<br>
 
-	<div class="category_buttons">
-	    <span class="menu_select_subject">&nbsp;&nbsp;&nbsp;&nbsp;특징&nbsp;</span>
+<!-- 	<div class="category_buttons"> -->
+<!-- 	    <span class="menu_select_subject">&nbsp;&nbsp;&nbsp;&nbsp;특징&nbsp;</span> -->
 	
-	    <label class="category_label" data-category="taste">
-	        <input type="checkbox" class="category_button" data-category="taste">
-	        <span class="button_text">맛 ${categoryCount.review_category_count_taste}</span>
-	    </label>
+<!-- 	    <label class="category_label" data-category="taste"> -->
+<!-- 	        <input type="checkbox" class="category_button" data-category="taste"> -->
+<%-- 	        <span class="button_text">맛 ${categoryCount.review_category_count_taste}</span> --%>
+<!-- 	    </label> -->
 	
-	    <label class="category_label" data-category="satisfaction">
-	        <input type="checkbox" class="category_button" data-category="satisfaction">
-	        <span class="button_text">만족도 ${categoryCount.review_category_count_satisfaction}</span>
-	    </label>
+<!-- 	    <label class="category_label" data-category="satisfaction"> -->
+<!-- 	        <input type="checkbox" class="category_button" data-category="satisfaction"> -->
+<%-- 	        <span class="button_text">만족도 ${categoryCount.review_category_count_satisfaction}</span> --%>
+<!-- 	    </label> -->
 	
-	    <label class="category_label" data-category="service">
-	        <input type="checkbox" class="category_button" data-category="service">
-	        <span class="button_text">서비스 ${categoryCount.review_category_count_service}</span>
-	    </label>
+<!-- 	    <label class="category_label" data-category="service"> -->
+<!-- 	        <input type="checkbox" class="category_button" data-category="service"> -->
+<%-- 	        <span class="button_text">서비스 ${categoryCount.review_category_count_service}</span> --%>
+<!-- 	    </label> -->
 	
-	    <label class="category_label" data-category="waiting">
-	        <input type="checkbox" class="category_button" data-category="waiting">
-	        <span class="button_text">대기 시간 ${categoryCount.review_category_count_waiting}</span>
-	    </label>
+<!-- 	    <label class="category_label" data-category="waiting"> -->
+<!-- 	        <input type="checkbox" class="category_button" data-category="waiting"> -->
+<%-- 	        <span class="button_text">대기 시간 ${categoryCount.review_category_count_waiting}</span> --%>
+<!-- 	    </label> -->
 	
-	    <label class="category_label" data-category="quantity">
-	        <input type="checkbox" class="category_button" data-category="quantity">
-	        <span class="button_text">음식량 ${categoryCount.review_category_count_quantity}</span>
-	    </label>
+<!-- 	    <label class="category_label" data-category="quantity"> -->
+<!-- 	        <input type="checkbox" class="category_button" data-category="quantity"> -->
+<%-- 	        <span class="button_text">음식량 ${categoryCount.review_category_count_quantity}</span> --%>
+<!-- 	    </label> -->
 	</div>
 	<br>
 	<br>
 	<!-- ========================================================================================= -->
-		<div class="reviewer_order">
-				<a href="#" class="sort-link" id="review_newest" data-sort-type="newest">최신순 </a>|
-				<a href="#" class="sort-link" id="review_highest" data-sort-type="highest">별점 높은 순 </a>|
-				<a href="#" class="sort-link" id="review_lowest" data-sort-type="lowest">별점 낮은 순 </a>
-				<!-- 				<a href="#" class="sort-link" id="review_likes_order" data-sort-type="likes"> | 좋아요 순</a> -->
+<!-- 		<div class="reviewer_order"> -->
+<!-- 				<a href="#" class="sort-link" id="review_newest" data-sort-type="newest">최신순 </a>| -->
+<!-- 				<a href="#" class="sort-link" id="review_highest" data-sort-type="highest">별점 높은 순 </a>| -->
+<!-- 				<a href="#" class="sort-link" id="review_lowest" data-sort-type="lowest">별점 낮은 순 </a> -->
+<!-- 								<a href="#" class="sort-link" id="review_likes_order" data-sort-type="likes"> | 좋아요 순</a> -->
 				
-		</div>
+<!-- 		</div> -->
 	<div class="separator"></div>
 	<!-- ========================================================================================= --> 
 	<div class="reviews_container" id="reviewsContainer">

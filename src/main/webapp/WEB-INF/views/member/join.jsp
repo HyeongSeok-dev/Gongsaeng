@@ -54,7 +54,6 @@
 <script src="${pageContext.request.contextPath }/resources/assets/js/wow.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
-<script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/member_join.js"></script>
 
 </head>
@@ -154,7 +153,7 @@
 							oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 					</div>
 					<div class="col-sm-3 text-center">
-						<button type="button" class="btn btn-info" id="auth_phone_number_btn" disabled="disabled">인증하기</button>
+						<button type="button" class="btn btn-info" id="auth_phone_number_btn" >인증하기</button>
 					</div>
 					<div class="col-sm-3">
 						<span id="checkPhoneResult"></span>

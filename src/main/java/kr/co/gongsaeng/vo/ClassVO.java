@@ -80,10 +80,9 @@ public class ClassVO {
 	
 	
 	// [메인]
-	private String com_idx;		// 사업장 번호
-    private int resTotalCount; 	// 예약수
-    private int bookmarkCount; 	// 북마크수
-    private int isBookmark_idx;	// 세션 아이디의 북마크 번호
-    
-    
+	private String com_idx;		 // 사업장 번호
+    private int resTotalCount; 	 // 예약수
+    private int bookmarkCount; 	 // 북마크수
+    private int isBookmark_idx;	 // 세션 아이디의 북마크 번호
+    private String classAddress; // 간단한 주소
 }

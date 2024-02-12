@@ -46,14 +46,14 @@
 		SELECT * 
 		FROM chat
 		WHERE chat_receiver = #{member_nick}
-<!-- 		열람여부 확인 and절 필요 -->
+		AND chat_read = 1
 	</select>
 	
 	<select id="selectUnreadAlertInfo" resultType="map">
 		SELECT * 
 		FROM alert
 		WHERE member_id = #{member_id}
-<!-- 		열람여부 확인 and절 필요 -->
+		AND alert_read = 1
 	</select>
 	
 	<select id="selectBookmarkInfo" resultType="map">
@@ -182,4 +182,19 @@
 		DELETE FROM alert
 		WHERE alert_idx = #{alert_idx}
 	</delete>
+	
+	<update id="updateAlertReadStatus">
+		UPDATE alert
+		SET alert_read = 0
+		WHERE member_id = #{member_id}
+	</update>
+	
+	<select id="selectReviewList" resultType="map">
+		SELECT r.*, count(c.comment_num) AS review_comment_count, m.member_img
+		FROM review r
+		LEFT JOIN comment c ON r.review_idx = c.review_idx
+		LEFT JOIN member m ON r.member_id = m.member_id
+		WHERE r.member_id = #{member_id}
+		GROUP BY r.review_idx
+	</select>
 </mapper>

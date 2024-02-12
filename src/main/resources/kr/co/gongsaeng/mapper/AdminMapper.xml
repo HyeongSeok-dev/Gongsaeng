@@ -453,12 +453,12 @@
 			,(SELECT COUNT(review_idx)
 			  FROM review
 			  WHERE (review_regdate >= (last_day(now() - INTERVAL 1 month) + INTERVAL 1 DAY)
-					AND review_regdate <= last_day(now())) AND member_id = #{member_id}) AS 'reviewMonth'
+					AND review_regdate <= last_day(now())) AND member_id = #{member_id} AND review_status = 1) AS 'reviewMonth'
 			,(SELECT COUNT(report_idx)
 			  FROM report, review  
-			  WHERE report.review_idx = review.review_idx AND review.member_id = #{member_id} ) AS 'reviewReport' 
+			  WHERE report.review_idx = review.review_idx AND review.member_id = #{member_id} AND review_status = 1) AS 'reviewReport' 
 			FROM review 
-			WHERE member_id = #{member_id}
+			WHERE member_id = #{member_id} AND review_status = 1
 		]]>	
 	</select>
 	
@@ -512,15 +512,29 @@
 		FROM payment
 		INNER JOIN company ON company.com_idx = payment.com_idx
 		INNER JOIN class ON class.class_idx = payment.class_idx
-		WHERE payment.member_id = #{member_id} AND pay_status = 1
+		WHERE pay_status = 1
+		<choose>
+			<when test="!member_id.equals('') and member_id != null">
+				AND payment.member_id = #{member_id} 
+			</when>
+			<when test="!class_idx.equals('') and class_idx != null">
+				AND payment.class_idx = #{class_idx}
+			</when>
+		</choose>
 	</select>
 	
 	<!-- review.jsp -->
-	<!-- 특정회원의 리뷰 내역 -->
+	<!-- 특정회원/전체/특정클래스의 리뷰 내역 -->
 	<select id="selectMemberReviewList" resultType="review">
 		SELECT review.*, class.class_title
 		FROM review, class
-		WHERE review.member_id = #{member_id} AND class.class_idx = review.class_idx
+		WHERE class.class_idx = review.class_idx
+		<if test="!member_id.equals('') and member_id != null">
+			AND review.member_id = #{member_id} AND review_status = 1
+		</if>
+		<if test="!class_idx.equals('') and class_idx != null">
+			AND review.class_idx = #{class_idx} AND review_status = 1
+		</if>
 	</select>
 
 	<!-- company.jsp -->
@@ -572,6 +586,26 @@
 		]]>	
 	</select>
 	
+	<!-- 사업체 정보 수정 -->
+	<update id="updateCompany">
+		UPDATE company
+		SET com_status = #{com_status}
+			,com_post_code = #{com_post_code}
+			,com_address1 = #{com_address1}
+			,com_address2 = #{com_address2}
+			<if test="!com_img.equals('')">
+				,com_img = #{com_img}
+			</if>
+		WHERE member_id = #{member_id}
+	</update>
+	
+	<!-- 사업체 예약리스트 -->
+	<select id="selectComResList" resultType="payment">
+		SELECT p.*, c.* 
+		FROM payment p, class c
+		WHERE p.class_idx = c.class_idx AND c.member_id = #{member_id}
+	</select>
+	
 	<!-- company_refund.jsp -->
 	<!-- 사업체 환급금 목록 조회 -->
 	<!-- 신청금 -->
@@ -579,6 +613,9 @@
 		SELECT p.refund_request_date,p.refund_date, p.payment ,p.pay_cal_status , c.com_name 
 		FROM payment p ,company c
 		WHERE  p.com_idx = c.com_idx AND pay_status = 1
+		<if test="!com_idx.equals('') and com_idx != null">
+			AND p.com_idx = #{com_idx}
+		</if>
 		ORDER BY refund_request_date DESC
 	</select>
 
@@ -597,6 +634,55 @@
 		</if>
 		ORDER BY class_date DESC
 	</select>
+	<!-- class_detail.jsp -->
+	<!-- 클래스 상세정보 -->
+	<select id="selectComClass" resultType="gclass">
+		SELECT c.*, com.com_name
+		FROM class c, company com 
+		WHERE class_idx = ${class_idx} AND c.member_id = com.member_id
+	</select>
+	<select id="selectClassReviewCount" resultType="review">
+		<![CDATA[
+			SELECT (SELECT COUNT(review_idx) FROM review WHERE class_idx = #{class_idx} AND review_status = 1) AS 'reviewTotal'
+			,(SELECT COUNT(review_idx) FROM review
+			  WHERE (review_regdate >= (last_day(now() - INTERVAL 1 month) + INTERVAL 1 DAY)
+					AND review_regdate <= last_day(now())) AND class_idx = #{class_idx} AND review_status = 1) AS 'reviewMonth'
+			,( SELECT COUNT(review_idx) FROM review WHERE class_idx = #{class_idx} AND review_like = 1 AND review_status = 1) AS 'totalLike'
+			,(SELECT COUNT(review_idx) FROM review
+			  WHERE (review_regdate >= (last_day(now() - INTERVAL 1 month) + INTERVAL 1 DAY)
+					AND review_regdate <= last_day(now())) AND class_idx = #{class_idx} AND review_like = 1 AND review_status = 1) AS 'monthlyLike'
+			
+		]]>	
+	</select>
+	<select id="selectClassResCount" resultType="payment">
+		 <![CDATA[
+			SELECT (SELECT COUNT(pay_num) FROM payment WHERE class_idx = #{class_idx} AND pay_status = 1) AS 'totalRes'
+			,(SELECT COUNT(pay_num) FROM payment
+			  WHERE (pay_date >= (last_day(now() - INTERVAL 1 month) + INTERVAL 1 DAY)
+					AND pay_date <= last_day(now())) AND class_idx = #{class_idx} AND pay_status = 1) AS 'monthlyRes'
+			,( SELECT COUNT(pay_num) FROM payment WHERE class_idx = #{class_idx} AND pay_status = 2 ) AS 'totalResCan'
+			,(SELECT COUNT(pay_num) FROM payment
+			  WHERE (pay_date >= (last_day(now() - INTERVAL 1 month) + INTERVAL 1 DAY)
+					AND pay_date <= last_day(now())) AND class_idx = #{class_idx} AND pay_status = 2) AS 'monthlyResCan'
+		]]>	
+	</select>
+	<!-- ㅍㅣ신고건수 -->
+	<select id="selectClassReportCount" resultType="String">
+		SELECT COUNT(report_idx)
+		FROM report
+		WHERE class_idx = #{class_idx} AND report_category = 2 AND report_status != 3
+	</select>
+	<!-- 클래스 수정 -->
+	<update id="">
+		UPDATE class
+		SET class_pic1 = #{class_pic1}
+			,class_pic2 = #{class_pic2}
+			,class_pic3 = #{class_pic3}
+			,class_curriculum1 = #{class_curriculum1}
+			,class_curriculum2 = #{class_curriculum2}
+			,class_curriculum3 = #{class_curriculum3}
+		WHERE class_idx = #{class_idx}
+	</update>
 	
 	<!-- account_member.jsp -->
 	<!-- 등록계좌 목록 -->
@@ -634,7 +720,13 @@
 	<select id="selectReportClassList" resultType="report">
 		SELECT report.*, class.class_title 'class_title', class.member_id 'banjangMember_id', company.com_name 'com_name'
 		FROM report , class , company
-		WHERE report.class_idx = class.class_idx and class.member_id = company.member_id
+		WHERE report.class_idx = class.class_idx AND class.member_id = company.member_id
+		<if test="!member_id.equals('') and member_id != null">
+			AND class.member_id = #{member_id}
+		</if>
+		<if test="!class_idx.equals('') and class_idx != null">
+			AND class.class_idx = #{class_idx}
+		</if>
 		ORDER BY class_date DESC
 	</select>
 	<!-- report_review.jsp -->
@@ -646,5 +738,30 @@
 		ORDER BY review_date DESC
 	</select>
 	
+	<select id="selectMemberIdList" resultType="String">
+		SELECT member_id
+		FROM member
+		WHERE member_id != 'admin1234'
+		AND member_category = 1
+		AND member_status = 1
+	</select>
 	
+	<insert id="insertCouponToAdmin">
+	        INSERT INTO coupon
+	        VALUES
+	    <foreach collection="member_id" item="id" separator=",">
+	        (
+	            null
+	            ,#{coupon_name} 
+	            ,#{id}
+	            ,4
+	            ,#{coupon_value}
+	            ,#{coupon_Issue_date}
+	            ,#{coupon_valid_date}
+	            ,1
+	            ,#{coupon_min_price}
+	        )
+    	</foreach>
+	
+	</insert>
 </mapper>

@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,61 +45,61 @@
 <!-- Js -->
 <script src="${pageContext.request.contextPath}/resources/js/review_modify.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.js"></script>
-<!-- <!-- <script type="text/javascript"> --> 
+<script type="text/javascript"> 
                  
-<!-- // function deleteFile(review_idx, review_img_1) { -->
+function deleteFile(review_idx, review_img_1) {
 	
-<!-- // 	 // 새로운 파일 입력 요소 HTML 생성 -->
-<!-- //   var newFileInputHtml = ` -->
-<%-- //         <input type="file" id="photoInput${review_img_1}" name="file${review_img_1}" accept="image/*" style="display:none;"> --%>
-<%-- //         <button type="button" id="photoBtn${review_img_1}" class="photo_btn" name="file${review_img_1}"> --%>
-<!-- //             <i class="fas fa-camera"></i> 사진 추가 -->
-<!-- //         </button> -->
-<%-- //         <div class="preview_container" id="previewContainer${review_img_1}" style="display: none;"></div>`; --%>
+	 // 새로운 파일 입력 요소 HTML 생성
+  var newFileInputHtml = `
+        <input type="file" id="photoInput${review_img_1}" name="file${review_img_1}" accept="image/*" style="display:none;">
+        <button type="button" id="photoBtn${review_img_1}" class="photo_btn" name="file${review_img_1}">
+            <i class="fas fa-camera"></i> 사진 추가
+        </button>
+        <div class="preview_container" id="previewContainer${review_img_1}" style="display: none;"></div>`;
 
-<!-- //     if (confirm("삭제하시겠습니까?")) { -->
-<!-- //         $.ajax({ -->
-<!-- //             url: "ReviewDeleteFile", -->
-<!-- //             type: "POST", -->
-<!-- //             data: { -->
-<!-- //                 "review_idx": review_idx, -->
-<!-- //                 "review_img_1": review_img_1 -->
-<!-- //             }, -->
-<!-- //             success: function(response) { -->
-<!-- //                 if(response == "true") { -->
-<!-- //                     // 프리뷰 요소 삭제 -->
-<!-- // 					$(".imagePreview").empty().hide(); -->
-<!-- //                     $(".remove_btn").hide(); -->
+    if (confirm("삭제하시겠습니까?")) {
+        $.ajax({
+            url: "ReviewDeleteFile",
+            type: "POST",
+            data: {
+                "review_idx": review_idx,
+                "review_img_1": review_img_1
+            },
+            success: function(response) {
+                if(response == "true") {
+                    // 프리뷰 요소 삭제
+					$(".imagePreview").empty().hide();
+                    $(".remove_btn").hide();
 
-<!-- //                     // 새로운 파일 입력 요소 HTML 생성 -->
-<!-- //                     $("#fileItemArea").html(newFileInputHtml); -->
+                    // 새로운 파일 입력 요소 HTML 생성
+                    $("#fileItemArea").html(newFileInputHtml);
 
-<!-- //                     // 새 요소에 대한 이벤트 핸들러 설정 -->
-<!-- //                     bindNewFileInputEvents(review_img_1); -->
-<!-- //                 } else { -->
-<!-- //                     alert('이미지 삭제 실패: ' + response.message); -->
-<!-- //                 } -->
-<!-- //             } -->
-<!-- //         }); -->
-<!-- //     } -->
-<!-- // } -->
+                    // 새 요소에 대한 이벤트 핸들러 설정
+                    bindNewFileInputEvents(review_img_1);
+                } else {
+                    alert('이미지 삭제 실패: ' + response.message);
+                }
+            }
+        });
+    }
+}
 
-<!-- // function bindNewFileInputEvents(review_img_1) { -->
-<!-- //     $("#photoBtn" + review_img_1).on('click', function() { -->
-<!-- //         $("#photoInput" + review_img_1).click(); -->
-<!-- //     }); -->
+function bindNewFileInputEvents(review_img_1) {
+    $("#photoBtn" + review_img_1).on('click', function() {
+        $("#photoInput" + review_img_1).click();
+    });
 
-<!-- //     $("#photoInput" + review_img_1).on('change', function(event) { -->
-<!-- //         handleImagePreview(event, review_img_1); -->
-<!-- //     }); -->
-<!-- // } -->
+    $("#photoInput" + review_img_1).on('change', function(event) {
+        handleImagePreview(event, review_img_1);
+    });
+}
 
-<!-- // function removePreview(review_img_1) { -->
-<!-- //     $("#previewContainer" + review_img_1).empty().hide(); -->
-<!-- //     $("#photoInput" + review_img_1).val(''); -->
-<!-- // } -->
+function removePreview(review_img_1) {
+    $("#previewContainer" + review_img_1).empty().hide();
+    $("#photoInput" + review_img_1).val('');
+}
 
-<!-- <!-- </script> --> 
+</script> 
 <title>리뷰 수정 페이지</title>
 <!-- 수정 -->
 </head>
@@ -109,23 +107,24 @@
 <jsp:include page="../inc/top.jsp"/>
 	<article id="reviewModifyForm">
 		<div class="container">
-			<form action="reviewModifyPro" method="POST" enctype="multipart/form-data">
+			<form action="reviewModifyPro" method="POST" enctype="multipart/form-data" class="formSize">
+				<input type="hidden" name="review_idx" value="${review.review_idx}"> <!-- 231228 추가 -->
+			    <input type="hidden" name="com_name" value="${param.com_name}" id="comName">    <!-- 231228 추가 -->
+			    <input type="hidden" name="class_idx" value="${review.class_idx}">    <!-- 231228 추가 -->
+			    <input type="hidden" name="member_id" value="${sId}">  <!-- 231228 추가 -->
 				<div class="restaurant_info">
 	<!-- 			 <a href="detail?com_id=1"><h1>음식점 이름</h1></a> -->
 	<!-- 			 <a href="redetail?com_id=1"><h1>칸다소바 부전점</h1></a> -->
 	<%-- 			 <a href="redetail?com_id=1"><h1>${com_id}</h1></a> --%>
 					<br>
 					<span class="review_modify_page">[ 리뷰 수정 페이지 ]</span>
-					<a href="${pageContext.request.contextPath}/review/redetail?com_id=${com_id}"><h1>${comName}</h1></a>
+					<h1 class="classTitle"><a href="${pageContext.request.contextPath}/review/detail?class_idx=${review.class_idx}">${classTitle}</a></h1>
 				 <!--            ~~~~~~~~~ : 나중에 ${com_id}로 고쳐서 값 받아오기 -->
 	<!-- 			 <input type="submit" value="음식점 이름" onclick="location.href=detail"> -->
 	<!-- 			<p>먹은 메뉴</p> -->
 				</div>
 <!-- 			<form action="ReviewModifyPro" name="reviewModifyForm" method="POST" enctype="multipart/form-data"> -->
-<%-- 			    <input type="hidden" name="review_idx" value="${review.review_idx}"> <!-- 231228 추가 --> --%>
-<%-- 			    <input type="hidden" name="com_name" value="${param.com_name}" id="comName">    <!-- 231228 추가 --> --%>
-<%-- 			    <input type="hidden" name="class_idx" value="${review.class_idx}">    <!-- 231228 추가 --> --%>
-<%-- 			    <input type="hidden" name="member_id" value="${sId}">  <!-- 231228 추가 --> --%>
+			    
 				<div class="separator"></div>
 				<div class="review_rate_1" style="text-align: center;">
 					<fieldset class="review_rate">
@@ -151,7 +150,7 @@
 					</div>
 					<!-- 좋아요 버튼, 'checked' 상태는 서버에서 제공된 review 데이터를 기반으로 결정됩니다. -->
 					<label class="like_button" id="likeButton">
-					    <input type="checkbox" name="review_like" value="true"  style="display: none;"/>
+					    <input type="checkbox" name="review_like" value="true" ${review.review_like ? 'checked' : ''} style="display: none;"/>
 					    <svg id="heart" xmlns="http://www.w3.org/2000/svg" fill="none" 
 					    	viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 					        <path stroke-linecap="round" stroke-linejoin="round" 
@@ -168,61 +167,61 @@
 					<p>이 장소에 어울리는 키워드를 골라주세요.</p>
 					<div class="keyword_section">
 						<div class="keyword_category">
-							<input type="checkbox" id="review_kind_checkbox" onclick="updateCheckboxValue(this);">
+							<input type="checkbox" id="review_kind_checkbox" ${review.review_kind == 1 ? 'checked' : ''}>
 							<label for="review_kind_checkbox" class="checkbox_label">친절해요</label>
-							<input type="hidden" name="review_kind" value="0">
+							<input type="hidden" name="review_kind" value="${review.review_kind}">
 							
-							<input type="checkbox" id="review_detail_checkbox" onclick="updateCheckboxValue(this);">
+							<input type="checkbox" id="review_detail_checkbox" ${review.review_detail == 1 ? 'checked' : ''}>
 					        <label for="review_detail_checkbox" class="checkbox_label">꼼꼼해요</label>
-					        <input type="hidden" name="review_detail" value="0">
+					        <input type="hidden" name="review_detail" value="${review.review_detail}">
 					        
-							<input type="checkbox" id="review_cheap_checkbox" onclick="updateCheckboxValue(this);">
+							<input type="checkbox" id="review_cheap_checkbox" ${review.review_cheap == 1 ? 'checked' : ''}>
 					        <label for="review_cheap_checkbox" class="checkbox_label">가격이 합리적이에요</label>
-					        <input type="hidden" name="review_cheap" value="0">
+					        <input type="hidden" name="review_cheap" value="${review.review_cheap}">
 					        
-							<input type="checkbox" id="review_explanation_checkbox" onclick="updateCheckboxValue(this);">
+							<input type="checkbox" id="review_explanation_checkbox" ${review.review_explanation == 1 ? 'checked' : ''}>
 					        <label for="review_explanation_checkbox" class="checkbox_label">설명을 잘해주세요</label>
-					        <input type="hidden" name="review_explanation" value="0">
+					        <input type="hidden" name="review_explanation" value="${review.review_explanation}">
 						</div>
 						<div class="keyword_category">
-							<input type="checkbox" id="review_interior_checkbox" onclick="updateCheckboxValue(this);">
+							<input type="checkbox" id="review_interior_checkbox" ${review.review_interior == 1 ? 'checked' : ''}>
 					        <label for="review_interior_checkbox" class="checkbox_label">인테리어가 멋져요</label>
-					        <input type="hidden" name="review_interior" value="0">
+					        <input type="hidden" name="review_interior" value="${review.review_interior}">
 					        
-							<input type="checkbox" id="review_trendy_checkbox" onclick="updateCheckboxValue(this);">
+							<input type="checkbox" id="review_trendy_checkbox" ${review.review_trendy == 1 ? 'checked' : ''}>
 					        <label for="review_trendy_checkbox" class="checkbox_label">트렌디해요</label>
-					        <input type="hidden" name="review_trendy" value="0">
+					        <input type="hidden" name="review_trendy" value="${review.review_trendy}">
 					        
-							<input type="checkbox" id="review_large_checkbox" onclick="updateCheckboxValue(this);">
+							<input type="checkbox" id="review_large_checkbox" ${review.review_large == 1 ? 'checked' : ''}>
 					        <label for="review_large_checkbox" class="checkbox_label">매장이 넓어요</label>
-					        <input type="hidden" name="review_large" value="0">
+					        <input type="hidden" name="review_large" value="${review.review_large}">
 					        
-							<input type="checkbox" id="review_meeting_checkbox" onclick="updateCheckboxValue(this);">
+							<input type="checkbox" id="review_meeting_checkbox" ${review.review_meeting == 1 ? 'checked' : ''}>
 					        <label for="review_meeting_checkbox" class="checkbox_label">단체로 갈 수 있어요</label>
-					        <input type="hidden" name="review_meeting" value="0">
+					        <input type="hidden" name="review_meeting" value="${review.review_meeting}">
 						</div>
 						<div class="keyword_category">
-							<input type="checkbox" id="review_comfortable_checkbox" onclick="updateCheckboxValue(this);">
+							<input type="checkbox" id="review_comfortable_checkbox" ${review.review_comfortable == 1 ? 'checked' : ''}>
 					        <label for="review_comfortable_checkbox" class="checkbox_label">분위기가 편해요</label>
-					        <input type="hidden" name="review_comfortable" value="0">
+					        <input type="hidden" name="review_comfortable" value="${review.review_comfortable}">
 					        
-							<input type="checkbox" id="review_parking_checkbox" onclick="updateCheckboxValue(this);">
+							<input type="checkbox" id="review_parking_checkbox" ${review.review_parking == 1 ? 'checked' : ''}>
 					        <label for="review_parking_checkbox" class="checkbox_label">주차하기 편해요</label>
-					        <input type="hidden" name="review_parking" value="0">
+					        <input type="hidden" name="review_parking" value="${review.review_parking}">
 					        
-							<input type="checkbox" id="review_clean_toilet_checkbox" onclick="updateCheckboxValue(this);">
+							<input type="checkbox" id="review_clean_toilet_checkbox" ${review.review_clean_toilet == 1 ? 'checked' : ''}>
 					        <label for="review_clean_toilet_checkbox" class="checkbox_label">화장실이 깨끗해요</label>
-					        <input type="hidden" name="review_clean_toilet" value="0">
+					        <input type="hidden" name="review_clean_toilet" value="${review.review_clean_toilet}">
 					        
-							<input type="checkbox" id="review_etc_fast_checkbox" onclick="updateCheckboxValue(this);">
+							<input type="checkbox" id="review_etc_fast_checkbox" ${review.review_etc_fast == 1 ? 'checked' : ''}>
 					        <label for="review_etc_fast_checkbox" class="checkbox_label">찾아가기 쉬워요</label>
-					        <input type="hidden" name="review_etc_fast" value="0">
+					        <input type="hidden" name="review_etc_fast" value="${review.review_etc_fast}">
 						</div>
 						<div class="keyword_category">
 							<h3>&nbsp;&nbsp;&nbsp;&nbsp;</h3>
-					        <input type="checkbox" id="review_no_keyword_checkbox" onclick="toggleKeywords(this);">
+					        <input type="checkbox" id="review_no_keyword_checkbox" ${review.review_no_keyword == 1 ? 'checked' : ''}>
 					        <label for="review_no_keyword_checkbox" class="checkbox_label">선택할 키워드가 없어요</label>
-					        <input type="hidden" name="review_no_keyword" value="0">
+					        <input type="hidden" name="review_no_keyword" value="${review.review_no_keyword}">
 						</div>
 						<div class="separator"></div>
 					</div>
@@ -241,7 +240,7 @@
 										<img src="${pageContext.request.contextPath }/resources/upload/${review.review_img_1}" alt="Image Preview" class="imagePreview"/>
 										<!-- 수정된 removePreview 함수 호출 -->
 <%-- 			                 		    <div class="remove_btn" onclick="deleteFile(${review.review_num}, '${review.review_img_1}')">X</div> --%>
-			                    		<div class="remove_btn" onclick="deleteFile(${review.review_num}, '${review.review_img_1}')">
+			                    		<div class="remove_btn" onclick="deleteFile(${review.review_idx}, '${review.review_img_1}')">
 	                		      			<img src="${pageContext.request.contextPath}/resources/img/close2.png" style="width: 20px; height: 20px;" alt="Delete">
 			                  			</div>
 			                		</div>
@@ -270,16 +269,16 @@
 					<!-- ===================================================================== -->
 				
 					<!-- 리뷰 텍스트 박스 -->
-	<!-- 			<div class="modify_bottom"> -->
+<!-- 				<div class="modsify_bottom"> -->
 					<textarea class="review_textarea" maxlength="500"
 						name="review_content" placeholder="업주와 다른 사용자들이 상처받지 않도록 좋은 표현을 사용해주세요.(500자수 제한)">${review.review_content }</textarea>
 			<!-- 			<a class="caution_link" href="#" onclick="openPopup()">리뷰 작성 유의사항</a> -->
 					<section id="commandCell">
-						<button class="register_button" onclick="location.href='${pageContext.request.contextPath}/review/complete'">수정하기</button>
-						<div class="review_input_section">
-						</div>
+						<button id="register_button" onclick="location.href='${pageContext.request.contextPath}/review/complete'">수정하기</button>
+<!-- 						<div class="review_input_section"> -->
+<!-- 						</div> -->
 					</section>
-	<!-- 			</div> -->
+<!-- 				</div> -->
 				</div>
 			</form>
 		</div>

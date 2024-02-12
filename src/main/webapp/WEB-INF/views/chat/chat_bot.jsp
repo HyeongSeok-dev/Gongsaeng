@@ -78,7 +78,7 @@
 					<ul id="chat-container">
 						<li class="sent"><img src="${pageContext.request.contextPath }/resources/img/chat_bot.png" alt="" />
 							<p>
-								안녕하세요. 공간을 생각하는 공생입니다!<br> <br> 궁금한게 있으시다면 공생이에게 물어보면 바로 대답해드려요!<br></li>
+								안녕하세요. 공간을 생각하는 공생입니다!<br> <br> 궁금한게 있으시다면 공생이에게 물어보면 바로 대답해 드릴게요!<br></li>
 					</ul>
 				</div>
 				<div class="message-input">

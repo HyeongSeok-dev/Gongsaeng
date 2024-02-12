@@ -46,10 +46,43 @@ public class CommunityService {
 		return mapper.deleteTogether(board);
 	}
 	
+	// 게시물 수정 - 첨부파일 삭제 요청
+	public int removeTogetherFile(BoardVO board) {
+		return mapper.updateTogetherFile(board);
+	}
+	
+	// 게시물 수정 요청
+	public int modifyTogether(BoardVO board) {
+		return mapper.updateTogether(board);
+	}
+	
+	// 댓글 작성 요청
+	public int registTogetherReplyBoard(Map<String, String> map) {
+		return mapper.insertTogetherReplyBoard(map);
+	}
+	
 	// 함께해요 댓글 목록 조회 요청
-//	public List<Map<String, Object>> getTogetherReplyBoardList(int board_idx) {
-//		return mapper.selectTogetherReplyBoardList(board_idx);
-//	}
+	public List<Map<String, Object>> getTogetherReplyBoardList(int board_idx) {
+		return mapper.selectTogetherReplyBoardList(board_idx);
+	}
+
+	// 댓글 작성자 조회 요청
+	public Map<String, String> getTogetherReplyWriter(Map<String, String> map) {
+		return mapper.selectTogetherReplyWriter(map);
+	}
+	
+	// 댓글 삭제 요청
+	public int removeTogetherReplyBoard(Map<String, String> map) {
+		return mapper.deleteTogetherReplyBoard(map);
+	}
+
+	// 대댓글 등록 요청
+	// => 단, 두 가지 이상의 작업을 수행해야할 경우 트랜잭션 처리
+	public int registTogetherReReplyBoard(Map<String, String> map) {
+		// 대댓글 등록
+		return mapper.insertTogetherReReplyBoard(map);
+	}
+	
 
 
 }
