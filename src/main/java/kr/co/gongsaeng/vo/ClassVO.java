@@ -67,6 +67,11 @@ public class ClassVO {
 	private String status; // 클래스 진행 상태
 	
 	
+	private int res_member_count; // 클래스 진행 상태
+	private String res_visit_date; // 클래스 진행 상태
+	private String res_visit_time; // 클래스 진행 상태
+	
+	
 	
 	// [관리자 페이지]
 	// 회원/사업체 상세페이지

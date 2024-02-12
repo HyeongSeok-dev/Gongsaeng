@@ -9,8 +9,8 @@ public class PaymentVO {
 	
 	private String pay_num;
 	private int res_num;
-	private int res_person;
 	private int com_idx;
+	private int res_member_count;
 	private int class_idx;
 	private String member_id;
 	private int payment;

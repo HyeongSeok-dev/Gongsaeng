@@ -72,12 +72,12 @@ $(document).ready(function() {
 
 	//==============================================================================
 	//0페이사용하기 버튼 클릭시
-	$("#chargePay").click(function() {
-		console.log("사용하기버튼 함수작동");
-		console.log("시퀀스 번호 : " + $("#user_seq_no"));
+//	$("#chargePay").click(function() {
+//		console.log("사용하기버튼 함수작동");
+//		console.log("시퀀스 번호 : " + $("#user_seq_no"));
 		    // 계좌등록일이 없으면 계좌 등록하는 함수 호출
 //		    if ($("#account_date") == null) {
-		        agreePage();
+//		        agreePage();
 //		    } else {
 		        // 포인트가 없으면 충전하는 페이지로 이동
 //		        if (useablePay == 0) {
@@ -89,7 +89,7 @@ $(document).ready(function() {
 //		            $(useablePay).focus();
 //		        }
 //		    }
-		});
+//		});
 
 	//==============================================================================
 	//'결제하기'버튼 클릭시
@@ -127,7 +127,7 @@ $(document).ready(function() {
 					  name: "주문명:결제테스트",
 					  amount: 1004,
 					  buyer_email: "test@portone.io",
-					  buyer_name: "구매자이름",
+					  buyer_name: "구매자이름"
 					}, function (rsp) { 
 						console.log("function");
 						console.log("rsp : " + rsp);

@@ -53,6 +53,7 @@
 <%--         <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script> --%>
         <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
         <script src="${pageContext.request.contextPath }/resources/assets/js/main_noicheck.js"></script>
+        <%--포트원 --%>
 	<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 
 	<script src="${pageContext.request.contextPath }/resources/js/payment.js"></script>
@@ -69,17 +70,35 @@
 		}
 	
 	//충전하기
-	function charge(){
-	window.open("payment/charge", "authWindow", "width=600, height=800");	
+	function payCharge(){
+		window.open("payment/charge/main", "_blank2", "width=600, height=800");	
 	}
 	
 	//계좌등록을 안했는데 포인트 사용하고 버튼누르면 계좌를 등록하기위한
 // 	개인정보 동의 페이지(charge_agree)페이지로 이동
-// 	function agreePage() {
-// 	    alert('계좌를 등록해주세요.');
-// 	    window.open('payment/charge/agree', '_blank', 'width=600, height=800 ');
-// 	}
+	function agreePage() {
+	    alert('계좌를 등록해주세요.');
+	    window.open('payment/charge/agree', '_blank', 'width=600, height=800 ');
+	}
 	
+	//버튼 누르면 기본적으로 결제상세페이지에 0페이 금액표시 보유금액보다 더 높은금액 사용하기 막기
+	function defaultPay() {
+		var payValue = parseInt($("#pay").val().replace(/[^0-9]/g, '')); //사용할페이 적는곳
+		var cashValue = parseInt("${allList.cash_value}"); // 보유중인 페이잔액
+
+		console.log("payValue : " + payValue);
+		console.log("cashValue : " + cashValue);
+		
+	  if (payValue < cashValue) {
+	    // 사용할 페이 값이 작을 경우
+	    $("#discountPay_text").text($("#pay").val()); // #discountPoint_text에 #pay 값 표시
+	  } else if(payValue > cashValue){
+	    // 사용할 페이 값이 클경우
+	    alert("보유중인 페이가 부족합니다");
+	    $("#pay").focus(); // #pay로 포커스 이동
+	  }
+}
+
 </script>
 </head>
 <body>
@@ -103,8 +122,9 @@
 				
 				<div class="div_inner">
 					<div class="div_left_box">
-					
 					<!-- 수강클래스====================================================== -->
+					<c:choose>
+					<c:when test="${map.type eq 'cart'}">
 					<c:forEach var="List" items="${List}">
 						<section id="leftSec01" class="section_box">
 						<h2>${List.class_title}</h2>
@@ -159,10 +179,67 @@
 						        </td>
 						    </tr>
 						</table>
-	
 					</section>
 				</c:forEach>
+					</c:when>
 					
+					<c:otherwise>
+						<section id="leftSec01" class="section_box">
+						<h2>${List.class_title}</h2>
+						<table class="info_tag">
+							<%-- 대표사진 --%>
+						    <tr>
+						        <td rowspan="5">
+						            <img src="${pageContext.request.contextPath }/resources/img/payment_test.png" width="140" id="kakao">
+						        </td>
+						    </tr>
+						    <%-- 수강인원 --%>
+						    <tr>
+						        <td width="130">
+						            <span class="info_title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;수강인원</span>
+						        </td>
+						        <td>
+						        	${List.res_member_count}명
+						        </td>
+						    </tr>
+						    <%-- 방문날짜 --%>
+						    <tr>
+						        <td>
+						            <span class="info_title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;방문날짜</span>
+						        </td>
+						        <td>
+						        	${List.res_visit_date}
+						        </td>
+						    </tr>
+						    <%-- 방문시간 --%>
+						    <tr>
+						        <td>
+						            <span class="info_title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;방문시간</span>
+						        </td>
+						        <td>
+						        	${List.res_visit_time} 
+						        </td>
+						    </tr>
+						    <%-- 결제금액 --%>
+						    <tr>
+						        <td>
+						            <span class="info_title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;결제 금액</span>
+						        </td>
+						        <td>
+						        	${List.class_price * List.res_member_count}원
+						        </td>
+						        <td>
+						        	<input type="hidden" id="res_member_count" value="${List.res_member_count }">
+						        	<input type="hidden" id="res_visit_time" value="${List.res_visit_time }">
+						        	<input type="hidden" id="res_visit_date" value="${List.res_visit_date }">
+						        	<input type="hidden" id="class_idx" value="${List.class_idx }">
+						        	<input type="hidden" id="class_title" value="${List.class_title }">
+						        </td>
+						    </tr>
+						</table>
+					</section>
+					</c:otherwise>
+					</c:choose>	
 				<!-- 쿠폰선택========================================================== -->
 				<section id="leftSec02" class="section_box">
 					<h2>쿠폰선택</h2><br>
@@ -204,16 +281,35 @@
 								<span class="pay_available">
 									&nbsp;&nbsp;보유중인페이금액&nbsp;
 									<span id="useablePay">
-									    ${allList[0].cash_value}
+									      ${allList.cash_value}
 									</span>
 									원
 									 &nbsp; <span><a id="useAllPoint">전액사용</a></span>
 								</span>
 							</div>
-							<input type="text" value="" placeholder="사용할 0페이를 입력해 주세요" class="pay_to_use" name="payToUse" id="pay" /><span class="won">원</span>
+							<input type="text" placeholder="사용할 0페이를 입력해 주세요" class="pay_to_use" name="payToUse" id="pay" /><span class="won">원</span>
 							
-							<button id="chargePay" class="use_button charge" type="button" >사용하기</button>
-					
+<!-- 							<button id="chargePay" class="use_button charge" type="button" onclick="agreePage();">사용하기</button> -->
+							<!-- 엑세스토큰이 존재하지 않을때 계좌인증 함수 호출  -->
+							<!-- 보유중인 페이금액이 없을때 -->
+							<!-- 아무 입력하지 않았을때 -->
+							<!-- 버튼 누르면 기본적으로 결제상세페이지에 0페이 금액표시 보유금액보다 더 높은금액 사용하기 막기-->
+							<c:choose>
+							  <c:when test="${empty allList.member_id }">
+							    <button  type="button"  onclick="agreePage()">사용하기1</button>
+							  </c:when>
+							  <c:when test=" ${allList.cash_value eq 0}">
+							    <button  type="button"  onclick="alert('페이잔액을 충전해주세요.');payCharge()">사용하기2</button>
+							  </c:when>
+							  <c:when test="${empty allList.cash_value}">
+							    <button type="button" onclick="alert('사용할 페이를 입력해주세요.'); document.querySelector('#useablePay').focus();">사용하기3</button>
+							  </c:when>
+							  <c:otherwise>
+								<button id="chargePay" class="use_button charge" type="button" onclick="defaultPay()">사용하기0</button>
+							  </c:otherwise>
+							</c:choose>
+							
+							
 						</div>
 				</section>
 				<!-- 결제수단================================================= -->
@@ -323,7 +419,7 @@
 									<span class="detail">쿠폰할인</span>
 									<span class="detail_price">
 										- 
-										<span id="discountPoint_text">0</span>
+										<span id="discountCoupon_text">0</span>
 										원
 									</span>
 								</div> 
@@ -341,7 +437,7 @@
 									<span class="detail">0페이결제</span>
 									<span class="detail_price">
 										- 
-										<span id="discountPoint_text">0</span>
+										<span id="discountPay_text"></span>
 										원
 									</span>
 								</div> 

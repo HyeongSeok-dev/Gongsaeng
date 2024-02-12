@@ -15,9 +15,9 @@ public class PaymentService {
 	private PaymentMapper mapper;
 
 	//상세페이지에서 결제하기버튼 눌렀을때 출력되는 리스트
-	public List<PaymentVO> getClassListSelect(int class_idx) {
-		
-		List<PaymentVO> result = mapper.classList(class_idx);
+	public List<ClassVO> getClassListSelect(int class_idx) {
+		 
+		List<ClassVO> result = mapper.classList(class_idx);
 		
 		return result;
 	}
@@ -31,11 +31,9 @@ public class PaymentService {
 	}
 
 	//account 테이블, cash테이블 조인해서 모든정보 가지고오기
-   public List<CashVO> getAllListSelect(String member_id) {
+   public CashVO getAllListSelect(String member_id) {
 		
-		List<CashVO> result = mapper.allListSelect(member_id);
-		
-		return result;
+		return mapper.allListSelect(member_id);
 	}
 
    //결정정보 인서트

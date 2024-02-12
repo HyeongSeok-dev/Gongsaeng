@@ -20,10 +20,11 @@
 	
 	<!-- account 테이블, cash테이블 조인해서 모든정보 가지고오기 -->
 	<select id="allListSelect" resultType="cash">
-		 SELECT *
-	    FROM cash
-	    LEFT JOIN account ON cash.member_id = account.member_id
-	    WHERE cash.member_id = #{member_id}
+		 SELECT  a.member_id, sum(c.cash_value)  as cash_value
+	    FROM account a
+	    LEFT JOIN cash c  ON c.member_id = a.member_id
+	    WHERE a.member_id = #{member_id}
+	    GROUP BY a.member_id
 	</select>
 	
 	<!-- 결제정보 인서트 -->
