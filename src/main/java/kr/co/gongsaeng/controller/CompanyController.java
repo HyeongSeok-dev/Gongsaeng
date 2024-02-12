@@ -182,6 +182,16 @@ public class CompanyController {
 	    String memberId = (String) session.getAttribute("sId");
 	    gclass.setMember_id(memberId);
 
+	    
+	    String class_post_code = request.getParameter("class_post_code").replace(",", "");
+	    String class_address1 = request.getParameter("class_address1").replace(",", "");
+	    String class_address2 = request.getParameter("class_address2").replace(",", "");
+
+	    gclass.setClass_post_code(class_post_code);
+	    gclass.setClass_address1(class_address1);
+	    gclass.setClass_address2(class_address2);
+
+
 	    // ------------------------------------------------------
 	    // 기타 제공 사항
 	    if (classOfferings != null) {
@@ -208,13 +218,13 @@ public class CompanyController {
 		String postCode, address1, address2;
 
 		if ("existing".equals(addressOption)) {
-			postCode = request.getParameter("class_post_code").replace(",", ""); // 콤마 제거
-			address1 = request.getParameter("class_address1").replace(",", ""); // 콤마 제거
-			address2 = request.getParameter("class_address2").replace(",", ""); // 콤마 제거
+			postCode = request.getParameter("class_post_code").replace(",", ""); 
+			address1 = request.getParameter("class_address1").replace(",", ""); 
+			address2 = request.getParameter("class_address2").replace(",", ""); 
 		} else if ("new".equals(addressOption)) {
-			postCode = request.getParameter("class_post_code").replace(",", ""); // 콤마 제거
-			address1 = request.getParameter("class_address1").replace(",", ""); // 콤마 제거
-			address2 = request.getParameter("class_address2").replace(",", ""); // 콤마 제거
+			postCode = request.getParameter("class_post_code").replace(",", ""); 
+			address1 = request.getParameter("class_address1").replace(",", "");
+			address2 = request.getParameter("class_address2").replace(",", ""); 
 		}
 		
 		// ------------------------------------------------------
@@ -376,6 +386,9 @@ public class CompanyController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			
+		  
+			
 			
 			// 글목록(BoardList) 서블릿 리다이렉트
 			return "redirect:/company/class";

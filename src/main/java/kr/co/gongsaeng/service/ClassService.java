@@ -21,8 +21,9 @@ public class ClassService {
 	// [ 클래스 등록 요청 ]
 	public int registClass(ClassVO gclass) {
 		
-		return mapper.insertClass(gclass);
+	    return mapper.insertClass(gclass);
 	}
+
 
 	// [ 클래스 내역 출력 ]
 	public List<Map<String, Object>> getClassList(String sId) {
