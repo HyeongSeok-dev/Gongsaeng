@@ -67,14 +67,14 @@
 			<div class="col-sm-3">
 				<c:choose>
 					<c:when test="${empty member.member_img}">
-						<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" style="cursor: pointer;"
+						<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" style="cursor: pointer; max-height: 250px;"
 							onclick="location.href='modifyProfile'">
 					</c:when>
 					<c:when test="${fn:contains(member.member_img,'http')}">
-						<img alt="profile" src="${member.member_img}" style="cursor: pointer;" onclick="location.href='modifyProfile'">
+						<img alt="profile" src="${member.member_img}" style="cursor: pointer; max-height: 250px;" onclick="location.href='modifyProfile'">
 					</c:when>
 					<c:otherwise>
-						<img alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}" style="cursor: pointer;"
+						<img alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}" style="cursor: pointer; max-height: 250px;"
 							onclick="location.href='modifyProfile'">
 					</c:otherwise>
 				</c:choose>
@@ -85,11 +85,11 @@
 					<div class="panel-body">
 						<ul class="list-group">
 							<li class="list-group-item cursor" onclick="javascript:location.href='reservation'">예약 내역</li>
-							<li class="list-group-item cursor" data-toggle="collapse" href="#alert">알림/채팅
+							<li class="list-group-item cursor" data-toggle="collapse" href="#alert">알림
 								<div id="alert" class="panel-collapse collapse">
 									<ul class="list-group">
 										<li class="list-group-item cursor " onclick="javascript:location.href='alert'">알림</li>
-										<li class="list-group-item cursor" onclick="javascript:location.href='chat'">채팅</li>
+<!-- 										<li class="list-group-item cursor" onclick="javascript:location.href='chat'">채팅</li> -->
 									</ul>
 								</div>
 							</li>
