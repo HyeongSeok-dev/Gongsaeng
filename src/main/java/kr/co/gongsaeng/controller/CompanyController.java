@@ -232,6 +232,7 @@ public class CompanyController {
 	    	gclass.setClass_day(result);
 	    	
 	    }
+	    // ------------------------------------------------------
 	    
 	    // 주소 선택
 	    // ------------------------------------------------------
@@ -473,6 +474,48 @@ public class CompanyController {
 	                    selectedDays.append(daysOfWeek[i]);
 	                }
 	            }
+	            
+	            
+	    	    // ------------------------------------------------------
+	    	    // 기타 제공 사항
+//	    	    if (classOfferings != null) {
+//	    	    	
+//	    		    char[] stringArray = new char[7];
+//	    	        for (int i = 0; i < stringArray.length; i++) {
+//	    	            stringArray[i] = '0';
+//	    	        }
+//	    	        for (int elem : classOfferings) {
+//	    	        	if (elem > 0 && elem <= stringArray.length) {
+//	    	                stringArray[elem] = '1'; // 배열 인덱스 조정
+//	    	            }
+//	    	        }
+//	    	        String result = new String(stringArray);
+//	    	        
+//	    	        System.out.println(result);
+//	    	        gclass.setClass_offering(result);
+//	    	    	
+//	    	    }
+	    	    
+	    	    // ------------------------------------------------------
+	    	    // 요일
+//	    	    if (classDay != null) {
+//	    	    	
+//	    	    	char[] stringArray = new char[7];
+//	    	    	for (int i = 0; i < stringArray.length; i++) {
+//	    	    		stringArray[i] = '0';
+//	    	    	}
+//	    	    	for (int i = 0; i < stringArray.length; i++) {
+//	    	    		if (classDay[i].equals("on")) {
+//	    	    			stringArray[i] = '1'; // 배열 인덱스 조정
+//	    	    		}
+//	    	    	}
+//	    	    	String result = new String(stringArray);
+//	    	    	
+//	    	    	System.out.println(result);
+//	    	    	gclass.setClass_day(result);
+//	    	    	
+//	    	    }
+	    	    // ------------------------------------------------------
 
 	            // 선택된 요일 문자열을 모델에 추가
 	            model.addAttribute("selectedDays", selectedDays.toString());
@@ -730,6 +773,7 @@ public class CompanyController {
 	    model.addAttribute("member", dbMember);
 
 	    return "company/company_banjang_register";
+//	    return "redirect:/mypage/main";
 	}
 
 	
@@ -795,7 +839,8 @@ public class CompanyController {
 			}	
 			// 글목록(BoardList) 서블릿 리다이렉트
 						model.addAttribute("msg","반장 회원 신청이 완료되었습니다!");
-						return "redirect:/mypage/main";
+						model.addAttribute("targetURL","/gongsaeng/mypage/main");
+				        return "forward";
 					} else {
 						// "글쓰기 실패!" 메세지 처리(fail_back)
 						model.addAttribute("msg", "글쓰기 실패!");

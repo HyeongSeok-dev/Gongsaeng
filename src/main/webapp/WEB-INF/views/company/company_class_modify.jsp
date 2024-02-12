@@ -634,21 +634,27 @@
 								<div class="card_small">
 									<div class="row">
 									    <div class="col-md-10">
-               								 <c:set var="offeringList" value="${fn:split(classDetail.class_offering, ',')}" />
+<%--           								 ${classDetail.class_offering} --%>
+     										<input type="hidden" id="class_offering" value="${classDetail.class_offering}">
 									       <div class="form-group">
-						                    <input type="checkbox" name="class_offering" value="1" id="workshop">&nbsp;
+						                    <input type="checkbox" name="class_offering" value="1" id="workshop" 
+						                    ${fn:substring(classDetail.class_offering, 0, 1) == '1' ? 'checked' : ''}>&nbsp;
 						                    <label for="workshop" class="register3_text_label">공방 보유</label>
 						
-						                    <input type="checkbox" name="class_offering" value="1" id="park">&nbsp;
+						                    <input type="checkbox" name="class_offering" value="1" id="park" 
+						                    ${fn:substring(classDetail.class_offering, 1, 2) == '1' ? 'checked' : ''}>&nbsp;
 						                    <label for="park" class="register3_text_label">주차 공간</label>
 						
-						                    <input type="checkbox" name="class_offering" value="1" id="wifi"}>&nbsp;
+						                    <input type="checkbox" name="class_offering" value="1" id="wifi" 
+						                    ${fn:substring(classDetail.class_offering, 2, 3) == '1' ? 'checked' : ''}>&nbsp;
 						                    <label for="wifi" class="register3_text_label">와이파이</label>
 						
-						                    <input type="checkbox" name="class_offering" value="1" id="coffee">&nbsp;
+						                    <input type="checkbox" name="class_offering" value="1" id="coffee" 
+						                    ${fn:substring(classDetail.class_offering, 3, 4) == '1' ? 'checked' : ''}>&nbsp;
 						                    <label for="coffee" class="register3_text_label">커피 별도구매</label>
 						
-						                    <input type="checkbox" name="class_offering" value="1" id="bus">&nbsp;
+						                    <input type="checkbox" name="class_offering" value="1" id="bus" 
+						                    ${fn:substring(classDetail.class_offering, 4, 5) == '1' ? 'checked' : ''}>&nbsp;
 						                    <label for="bus" class="register3_text_label">대중교통 용이</label>
 						                </div>
 									    </div>
@@ -656,10 +662,12 @@
 									<div class="row">
 									    <div class="col-md-12">
 									          <div class="form-group">
-							                    <input type="checkbox" name="class_offering" value="1" id="taxi" >&nbsp;
+							                    <input type="checkbox" name="class_offering" value="1" id="taxi" 
+							                    ${fn:substring(classDetail.class_offering, 5, 6) == '1' ? 'checked' : ''}>&nbsp;
 							                    <label for="taxi" class="register3_text_label">택시/자가용 추천</label>
-
-							                    <input type="checkbox" name="class_offering" value="1" id="snack" >&nbsp;
+							
+							                    <input type="checkbox" name="class_offering" value="1" id="snack" 
+							                    ${fn:substring(classDetail.class_offering, 6, 7) == '1' ? 'checked' : ''}>&nbsp;
 							                    <label for="snack" class="register3_text_label">음료/간식 제공</label>
               							  </div>
 									    </div>

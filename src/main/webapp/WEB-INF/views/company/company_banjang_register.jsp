@@ -183,7 +183,7 @@ input[type="checkbox"] {
 												
 											
 										<label><b>반장님 아이디</b></label> 
-											<input class="form-control small-input" type= "text" value="${member.member_id}" required>
+											<input class="form-control small-input" type= "text" value="${member.member_id}" disabled="disabled">
 										</div>
 										<br>
 										<label><b>반장님 이름(사업체 명)</b></label> 
@@ -312,5 +312,7 @@ input[type="checkbox"] {
 			</div>
 		</div>
 	</div>
+
+
 </body>
 </html>
