@@ -253,7 +253,7 @@
 	
 	<!-- 검색결과 갯수 -->
 	<select id="selectSearchClassCount" resultType="int">
-		SELECT COUNT(*)
+		SELECT COUNT(*) AS 'searchResultCount'
 		FROM (
 			SELECT
 				cl.*

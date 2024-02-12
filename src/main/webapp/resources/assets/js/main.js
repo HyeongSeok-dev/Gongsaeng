@@ -216,6 +216,9 @@ $(document).ready(function () {
 	    // 선택된 카테고리에 selected 클래스 추가
 	    $(this).addClass('selected');
 		
+		/// 상세검색란에서
+		/// 전체/정규모집/원데이 클릭 시 선택할 수 있는 셀렉트박스가
+		/// 변경되는 기능인데 굳이 그럴 필요가 없어서 X
 //	    if(classType == '0') {	// 전체
 //	        $('.class_typeAll_button').show();
 //	        $('.class_date_button').hide();
@@ -249,6 +252,9 @@ $(document).ready(function () {
 //	    }
 	});
 
+	/// 원래 placeholder 기능을 위해 input type="text" 태그를 클릭 시
+	/// input type="date/time"으로 바뀌는 기능을 썼는데
+	/// 초기값 설정과 초기화 기능, 파라미터 등의 문제로 꼬여서 X
 	// 시작일 드롭박스 focus 이벤트
 //	$('.class_start_date').on('focus', function() {
 //		// input type="text" -> input type="date"
@@ -288,53 +294,55 @@ $(document).ready(function () {
 //			$(".class_end_date").attr("id", "");
 //		}
 //	});
-	 
 	// 시작시간 드롭박스 focus 이벤트
-	$('.class_start_time').on('focus', function() {
-	    // input type="text" -> input type="time"
-	    this.type = 'time';
-	
-	    // input type="hidden"의 id값 삭제 (초기값을 위해 만든 input)
-	    // 실제 시간 선택 드롭박스에 id값 부여
-	    $(".hidden_class_start_time").attr("id", "");
-	    $(".class_start_time").attr("id", "time1");
-	
-	    // 초기화 등의 사유로 id값을 잃어버렸을 경우
-	    let idValue = $("#time1").attr('id');
-	    if(idValue == null) {
-	        // input type="hidden"의 id값 부여
-	        // 실제 시간 선택 드롭박스 id 삭제
-	        $(".hidden_class_start_time").attr("id", "time1");            
-	        $(".class_start_time").attr("id", "");
-	    }
-	});
-	
+//	$('.class_start_time').on('focus', function() {
+//	    // input type="text" -> input type="time"
+//	    this.type = 'time';
+//	
+//	    // input type="hidden"의 id값 삭제 (초기값을 위해 만든 input)
+//	    // 실제 시간 선택 드롭박스에 id값 부여
+//	    $(".hidden_class_start_time").attr("id", "");
+//	    $(".class_start_time").attr("id", "time1");
+//	
+//	    // 초기화 등의 사유로 id값을 잃어버렸을 경우
+//	    let idValue = $("#time1").attr('id');
+//	    if(idValue == null) {
+//	        // input type="hidden"의 id값 부여
+//	        // 실제 시간 선택 드롭박스 id 삭제
+//	        $(".hidden_class_start_time").attr("id", "time1");            
+//	        $(".class_start_time").attr("id", "");
+//	    }
+//	});
 	// 종료시간 드롭박스 focus 이벤트
-	$('.class_end_time').on('focus', function() {
-	    // input type="text" -> input type="time"
-	    this.type = 'time';
+//	$('.class_end_time').on('focus', function() {
+//	    // input type="text" -> input type="time"
+//	    this.type = 'time';
+//	
+//	    // input type="hidden"의 id값 삭제 (초기값을 위해 만든 input)
+//	    // 실제 시간 선택 드롭박스에 id값 부여
+//	    $(".hidden_class_end_time").attr("id", "");
+//	    $(".class_end_time").attr("id", "time2");
+//	
+//	    // 초기화 등의 사유로 id값을 잃어버렸을 경우
+//	    let idValue = $("#time2").attr('id');
+//	    if(idValue == null) {
+//	        // input type="hidden"의 id값 부여
+//	        // 실제 시간 선택 드롭박스 id 삭제
+//	        $(".hidden_class_end_time").attr("id", "time2");            
+//	        $(".class_end_time").attr("id", "");
+//	    }
+//	});
 	
-	    // input type="hidden"의 id값 삭제 (초기값을 위해 만든 input)
-	    // 실제 시간 선택 드롭박스에 id값 부여
-	    $(".hidden_class_end_time").attr("id", "");
-	    $(".class_end_time").attr("id", "time2");
-	
-	    // 초기화 등의 사유로 id값을 잃어버렸을 경우
-	    let idValue = $("#time2").attr('id');
-	    if(idValue == null) {
-	        // input type="hidden"의 id값 부여
-	        // 실제 시간 선택 드롭박스 id 삭제
-	        $(".hidden_class_end_time").attr("id", "time2");            
-	        $(".class_end_time").attr("id", "");
-	    }
-	});
-	
+	/// 기존의 부트스트랩 템플릿에 포함되어 있던 슬라이더 기능
+	/// 편하지 않고, 다루기 어렵고, 파라미터의 문제로 X
 //    $('#time-range').slider();
 //    $('#property-geo').slider();
 //    $('#price-range').slider();
 //    $('#min-baths').slider();
 //    $('#min-bed').slider();
 
+	/// 사용자의 편의를 위해 굳이 넣은건데
+	/// 생각보다 편하지 않고, 제이쿼리 함수가 잘 먹히지 않아서 X
 	// timepicker : 클래스 시간 드롭다운 형식 커스텀
 //	$('input.timepicker').timepicker({
 //        timeFormat: 'HH:mm',
@@ -344,7 +352,9 @@ $(document).ready(function () {
 //        dropdown: true,
 //        scrollbar: false
 //    });
-        
+
+	/// 기존의 템플릿에 있던건데
+	/// 뭔지 하나도 모르겠음
 //    var RGBChange = function () {
 //        $('#RGB').css('background', '#FDC600')
 //    };
@@ -383,6 +393,7 @@ $(document).ready(function () {
 	    $('input[type="checkbox"]').prop('checked', false);
 	});
 
+	/// 뭔지 모르겠지만 냅둠
     // Advanced search toggle
     var $SearchToggle = $('.search-form .search-toggle');
     $SearchToggle.hide();
@@ -430,6 +441,9 @@ $(document).ready(function () {
         return r;
     }
     
+    /// 기존의 템플릿에 포함되어 있던 부트스트랩 기능
+    /// 아이콘 디자인 변경을 원할 시
+    /// webapp/resources/assets/img/icon 폴더 참고해서 변경
     // 체크박스 아이콘
 	$('input').iCheck({
 		checkboxClass: 'icheckbox_square-grey',

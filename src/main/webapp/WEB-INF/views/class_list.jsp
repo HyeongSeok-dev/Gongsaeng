@@ -60,7 +60,7 @@ $(function() {
         $('.order_popularity').parent().addClass("active");
     }
     
-	// 초기화 버튼 클릭 시 드롭박스(selectpicker), 체크박스 초기화
+	// 초기화 버튼 클릭 시 셀렉트박스(selectpicker), 체크박스 초기화
     $('button[type="reset"]').click(function(e){
         e.preventDefault();
         $('.selectpicker').selectpicker('deselectAll');
@@ -96,7 +96,7 @@ $(function() {
             // 종료일은 초기화하고, 선택 범위는 시작일 이후만 가능하게 함
             $('.class_end_date').val('').prop('min', $('.class_start_date').val()).prop('max', '');
         }
-        // "선택" 선택한 경우
+        // "종료" 선택한 경우
         else if ($(this).val() == "classState3") {
             // 시작일은 초기화하고, 선택 범위는 종료일 이전만 가능하게 함
             $('.class_start_date').val('').prop('min', '').prop('max', currentDate);
@@ -117,7 +117,7 @@ $(function() {
         $('.class_start_date').prop('max', $(this).val());
     });
     
- 	// 북마크 추가 이벤트
+ 	// 북마크 추가 이벤트 (※ main.js에 있는 거랑 별개)
  	$(document).on('click', '.bookmarkBtnON', function() {
     	let class_idx = $(this).val();
     	
@@ -181,10 +181,12 @@ $(function() {
 	load_list();
 	
 	// 입력에 따라 변수 업데이트
+	// ※ 앞에서 초기값을 설정한 변수 한정
 	function data_update() {
 		className = $(".top_search").val();
 		
-       // 메인카테고리 하나만 선택 시 서브카테고리 검색X
+		// 메인카테고리 하나만 선택 시 서브카테고리 검색X
+		// (해당 메인카테고리 전부 검색되게끔 하기)
 		if($("#classCategory").val() != null) {
 			classMainCategory = $("#classCategory").val().substring(0, 1);
 			classSubCategory = $("#classCategory").val().substring(1, 2);
@@ -222,7 +224,7 @@ $(function() {
 			// 입력에 따라 변수 업데이트
 	        data_update();
 	        
-			// 기존에 출력되어있는 리스트 삭제
+			// 기존에 출력되어있는 리스트 비우기
 		    $("#list-type").empty();
 			
 			// AJAX 불러오기
@@ -239,7 +241,7 @@ $(function() {
      	// 입력에 따라 변수 업데이트
         data_update();
         
-		// 기존에 출력되어있는 리스트 삭제
+		// 기존에 출력되어있는 리스트 비우기
 	    $("#list-type").empty();
 		
 	 	// AJAX 불러오기
@@ -304,11 +306,27 @@ function load_list() {
 			console.log("pageNum >>> " + pageNum);
 			console.log("maxPage >>> " + maxPage);
 			console.log("sort >>> " + searchData.sort);
+			console.log("listCount >>> " + data.listCount);
 			
 			let contextPath = "<%=request.getContextPath()%>";
 			
-			// 출력될 데이터의 갯수
-			console.log("data.searchClassList 갯수 >>> " + data.searchClassList.length);
+			// 검색시도한 키워드, 검색결과 데이터 갯수
+			let result_keyword = searchData.className;
+			let result_count = '총 <b>' + data.listCount + '</b>개';
+			
+			// 페이지에 검색시도한 키워드 출력
+			// 검색 안했거나 키워드 치지 않은 상태로 검색창 엔터를 쳤을 경우
+			if(result_keyword != null && result_keyword != '') {
+				$(".className_area").empty();
+				$(".className_area").append("'<b>" + result_keyword + "</b>'");
+			} else if(result_keyword == '') {
+				$(".className_area").empty();
+			}
+			// 페이지에 검색결과 데이터 갯수 출력
+			$(".list_count_area").empty();
+			$(".list_count_area").append(result_count);
+			
+			
 		    if (data.searchClassList.length == 0) {
 		 		$(".noResearchResult").show();
 		    } else {
@@ -317,7 +335,6 @@ function load_list() {
 
 		    for(let searchClass of data.searchClassList) {
 			    // 클래스 형식 판별
-			    let classType = '';
 			    if(searchClass.class_category === 1) {
 			        classType = '정규모집';
 			    } else if(searchClass.class_category === 2) {
@@ -408,7 +425,7 @@ function load_list() {
 			    } else {
 			    	classCategory = '알수없음';
 			    }
-
+				
 				let result_content =
 					'	<div class="col-sm-6 col-md-3 p0">'
 					+ '		<div class="box-two proerty-item" id="class_list_item">'
@@ -517,7 +534,10 @@ function load_list() {
 	        <div class="row">
 	            <div class="page-head-content">
 	                <h1 id="page-title-left">
+	                	<span class="className_area"></span>
 		                검색결과
+	                	<span class="list_count_area"></span>
+		                <%-- AJAX 를 활용한 요청으로 전달받은 검색결과 갯수 출력 위치 --%>
 	                </h1>               
 	            </div>
 	        </div>

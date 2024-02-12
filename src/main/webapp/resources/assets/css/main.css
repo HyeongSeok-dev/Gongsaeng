@@ -4303,3 +4303,7 @@ input.currency {
 	    margin-left: -140px !important;
 	}
 }
+
+.list_count_area {
+	font-size: 15px;
+}

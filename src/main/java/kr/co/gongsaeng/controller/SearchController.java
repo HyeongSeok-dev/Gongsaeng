@@ -30,18 +30,6 @@ public class SearchController {
 	
 	@GetMapping("class/list")
 	public String classList() {
-//			@RequestParam(value = "sort", required = false) String sort,
-//			HttpSession session) {
-		
-//	    SearchVO searchVo = new SearchVO();
-//	    
-//	    // 필드들이 null인 경우 기본값 설정
-//	    if(sort == null) {
-//	    	sort = "sort_recent";
-//	    }
-//	    searchVo.setSort(sort);
-//	    session.setAttribute("searchVo", searchVo);
-		
 		return "class_list";
 	}
 	
@@ -52,19 +40,6 @@ public class SearchController {
 	        @ModelAttribute SearchVO searchData,
 	        HttpSession session, Model model) {
 		
-		// 세션에서 SearchVO 객체를 가져오기
-//		SearchVO searchData = (SearchVO) session.getAttribute("searchVo");
-		
-	    // searchData가 null인 경우 기본값 설정
-//	    if(searchData == null) {
-//	        searchData = new SearchVO();
-//	    }
-	    
-	    // searchData.sort가 null인 경우 기본값 설정
-//	    if(searchData.getSort() == null) {
-//	        searchData.setSort("sort_recent");
-//	    }
-	    
 		// 세션 아이디가 없을 경우 : 초기화
 		String member_id = "";
 		
@@ -84,6 +59,7 @@ public class SearchController {
 	    Map<String, Object> map = new HashMap<String, Object>();
 	    map.put("searchClassList", searchClassList);
 	    map.put("maxPage", maxPage);
+	    map.put("listCount", listCount);
 
 	    JSONObject jsonObject = new JSONObject(map);
 

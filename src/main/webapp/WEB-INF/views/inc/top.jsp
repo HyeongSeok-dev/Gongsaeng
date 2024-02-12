@@ -85,7 +85,8 @@ function search_keyword(event) {
 					<%-- 알림 --%>
 					<div class="notify_dropdown">
 						<button class="navbar-btn nav-button wow bounceInRight login" onclick="toggleDropdownMenu(event)" style="position: relative; z-index: 2;">
-							알림<span class="badge1">3</span>
+							알림
+<!-- 							<span class="badge1">3</span> -->
 						</button>
 						
 						<div class="notify_dropdown-content">
@@ -220,7 +221,8 @@ function search_keyword(event) {
 					<%-- 알림 area --%>
 					<div class="notify_dropdown">
 						<button class="navbar-btn nav-button wow bounceInRight login" onclick="toggleDropdownMenu(event)">
-							알림<span class="badge2">3</span>
+							알림
+<!-- 							<span class="badge2"></span> -->
 						</button>
 						
 						<div class="notify_dropdown-content">
@@ -275,7 +277,7 @@ function search_keyword(event) {
         		
         		<%-- 관리자 회원일 경우 --%>
         		<c:when test="${sessionScope.sId eq 'admin1234'}">
-	            	<a href="${pageContext.request.contextPath}/admin/main">
+	            	<a href="${pageContext.request.contextPath}/admin/">
 						<button class="navbar-btn nav-button_not" data-wow-delay="0.45s"><b>관리자</b>님</button>
 					</a>
 					<a href="${pageContext.request.contextPath}/member/logout">
