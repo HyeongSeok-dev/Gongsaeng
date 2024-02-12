@@ -83,6 +83,7 @@ public class ReviewVO {
 	
 	// 닉네임으로 변경
 	private String member_nick;
+	private String member_img;
 	
 	//포인트 적립용
 	private int point_idx;

@@ -120,6 +120,8 @@
 						<div class="form_block_body">
 							<textarea name="report_content" rows="8" class="form-input" maxlength="500"
 								placeholder="타당한 사유가 없는 허위 신고 시 이용에 제한이 가해질 수 있으므로,  &#13;&#10;신중하게 제보해 주세요.&#13;&#10;신고된 내용은 7일 이내의 검수과정을 거친 후 적용됩니다.(500자 제한)"></textarea>
+								<input type="hidden" name="class_idx" value="${param.class_idx}">
+								<input type="hidden" name="member_id" value="${member_member_id}">
 						</div>
 					</div>
 					<br> <br>

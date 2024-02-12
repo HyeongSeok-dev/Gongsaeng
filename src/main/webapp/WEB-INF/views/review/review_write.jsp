@@ -100,7 +100,7 @@ function addResIdx(pay_num) {
              <input type="radio" id="rating1" name="review_score" value="1"><label class="half" for="rating1" title="0.5점"></label>
 		</fieldset>
 		</div>
-		<br>
+		
 		<div class="like_section" style="text-align: center;">
 			<div class="like_section_text">
 				<p>
@@ -124,7 +124,7 @@ function addResIdx(pay_num) {
 		<div class="separator"></div>
 		<div class="review_section">
 			<h2>어떤 점이 좋았나요?</h2>
-			<p>이 장소에 어울리는 키워드를 골라주세요.</p>
+			<p>이 클래스에 어울리는 키워드를 골라주세요.</p>
 			<div class="keyword_section">
 				<div class="keyword_category">
 						<input type="checkbox" id="review_kind_checkbox" onclick="updateCheckboxValue(this);">
@@ -202,7 +202,7 @@ function addResIdx(pay_num) {
 		    	<div class="image_wrapper">
 		      	  <img id="imagePreview" src="#" alt="Image Preview"/>
 		        	<div class="remove_btn" onclick="removePreview()">
-		           		<img src="${pageContext.request.contextPath}/resources/img/close2.png" style="width: 20px; height: 20px;" alt="Delete">
+		           		<img src="${pageContext.request.contextPath}/resources/img/close.png" style="width: 20px; height: 20px;" alt="Delete">
 			        </div>
 			    </div>
 			</div>

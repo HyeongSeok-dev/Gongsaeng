@@ -65,6 +65,9 @@
         <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
         <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
         <script src="${pageContext.request.contextPath }/resources/js/product_detail.js"></script>
+ <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     </head>
     <body>
 
@@ -282,7 +285,7 @@
 										</div>
 										<div>
 											<c:if test="${isReviewWriteable}">
-												<a href="../review/write?com_id=${company.com_id}&res_idx=${res.res_idx}"><button class="appra Profile__Evaluation">
+												<a href="../review/write?class_idx=${cla.class_idx}&res_idx=${res.res_idx}"><button class="appra Profile__Evaluation">
 													<span> 평가하기 </span>
 												</button></a>
 											</c:if>
@@ -384,7 +387,7 @@
                                     </div>
                                     <div class="item-entry overflow abc">
 	                                        <a href="">
-	                                 	       <img src="${pageContext.request.contextPath }/resources/assets/img/client-face1.png" class="img-circle reviewProImg">
+	                                 	       <img src="${pageContext.request.contextPath }/resources/upload/${review.member_img}" class="img-circle reviewProImg">
 <%-- 	                                 	       <img src="${pageContext.request.contextPath }/resources/upload/${review.}" class="img-circle reviewProImg"> --%>
 	                                        </a>
 	                                        <h5><a href="property-1.html">${review.member_nick}</a></h5>
@@ -517,13 +520,14 @@
                                         <div class="clear">
                                             <div class="col-xs-4 col-sm-4 dealer-face">
                                                 <a href="">
-                                                    <img src="${pageContext.request.contextPath }/resources/assets/img/property-1/다운로드.jpg" class="img-circle ProfileImg">
+                                                    <img src="${pageContext.request.contextPath }/resources/assets/img/property-1/목공방.png" class="img-circle ProfileImg">
                                                 </a>
                                             </div>
                                             <div class="col-xs-8 col-sm-8 ">
                                                 <h3 class="dealer-name">
  	                                               <!-- 업체이름 -->
-                                                    <a href="">스윙스 목공방</a><br>
+<%--                                                    <a href="">${company.com_name}</a><br> --%>
+                                                    <a href="">와플 목공방</a><br>
                                                 </h3>
                                                 <div class="dealer-social-media">
                                                     <a class="twitter" target="_blank" href="">
@@ -629,13 +633,13 @@
 												<br>
 												<div class="persons-group">
 										    		<p>예약 인원</p>
-										   			<input type="number" id="res_member_count" name="res_member_count" value="1" min="1" max="20">
+										   			<input type="number" id="res_member_count" name="res_member_count" value="1" min="1" max="${availableSeats}">
 												</div>
 												<br>
 												<div>
 													&nbsp;&nbsp;&nbsp;<button type="submit" id=onCart class="payButton" onclick="">장바구니</button>&nbsp;&nbsp;&nbsp;
 				<!-- 											<button type="button" id="payment" class="payButton" onclick="payment">결제하기</button> -->
-														<button type="button" class="payButton" onclick="location.href='${pageContext.request.contextPath}/payment?type=pay'">결제하기</button>
+														<button type="button" class="payButton" onclick="location.href='${pageContext.request.contextPath}/payment?type=pay&&class_idx=${cla.class_idx}'">결제하기</button>
 				                                </div> 
 											</form>
 										</div>
@@ -651,10 +655,11 @@
 											<form action="" class=" form-inline"> 
 											<label for="reservation-date"><p>예약 날짜</p></label>
 											<input type="date" id="reservation-date" name="reservation-date">
+											<input type="text" id="datepicker">
 											<br><br>
 											<div class="persons-group">
 											    <p>예약 인원</p>
-											    <input type="number" id="res_person" name="res_person" value="${search.res_person}" min="1" max="20">
+											    <input type="number" id="res_person" name="res_person" value="1" min="1" max="${availableSeats}">
 											</div>
 											<br>
 											<div>
@@ -924,6 +929,21 @@
                 });
             });
         </script>
+		<script type="text/javascript">
+	       $(document).ready(function(){
+	    	    var class_day = '1010000';  // '월 수'를 의미하는 비트 플래그
+	    	    var days = ['일', '월', '화', '수', '목', '금', '토'];
+	
+	    	    $('#datepicker').datepicker({
+	    	        beforeShowDay: function(date) {
+	    	            var day = date.getDay();
+	    	            return [(class_day[day] === '1')];
+	    	        },
+	    	        minDate: new Date(${cla.class_start_date}),  // 시작 날짜
+	    	        maxDate: new Date(${cla.class_end_date})     // 종료 날짜
+	    	    });
+	    	});
+       	</script>
         
 <!--         <script> -->
 <!-- // window.onload = function() { -->

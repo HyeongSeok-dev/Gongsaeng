@@ -10,6 +10,7 @@ import kr.co.gongsaeng.vo.BookmarkVO;
 import kr.co.gongsaeng.vo.CartVO;
 import kr.co.gongsaeng.vo.ClassVO;
 import kr.co.gongsaeng.vo.CompanyVO;
+import kr.co.gongsaeng.vo.PaymentVO;
 import kr.co.gongsaeng.vo.ReviewVO;
 
 @Service
@@ -38,6 +39,10 @@ public class ProductService {
         return mapper.findCart(class_idx, member_id, date);
         
     }
+
+	public List<PaymentVO> getResMemberCount(int classIdx) {
+		return mapper.selectResMemberCount(classIdx);
+	}
 
 
 	

@@ -16,14 +16,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.gongsaeng.service.ProductService;
 import kr.co.gongsaeng.vo.BookmarkVO;
+import kr.co.gongsaeng.vo.CartVO;
 import kr.co.gongsaeng.vo.ClassVO;
 import kr.co.gongsaeng.vo.CompanyVO;
-import kr.co.gongsaeng.vo.MemberVO;
+import kr.co.gongsaeng.vo.PaymentVO;
 import kr.co.gongsaeng.vo.ReviewVO;
 
 @Controller
@@ -34,7 +36,7 @@ public class ProductController {
 
 	@GetMapping("product/detail")
 	public String productDetail(HttpSession session, Model model, @RequestParam("class_idx") int classIdx,
-			ClassVO cla, CompanyVO com, HttpServletRequest request, HttpServletResponse response)
+			ClassVO cla, CompanyVO com, PaymentVO pay, HttpServletRequest request, HttpServletResponse response)
 			throws UnsupportedEncodingException {
 
 		// 세션 값 저장해두기
@@ -52,6 +54,23 @@ public class ProductController {
 		// 클래스에 맞는 리뷰 들고오기
 		List<ReviewVO> reviews = service.getReviewInfo(cla);
 		System.out.println("립휴" + reviews);
+		
+		// 클래스에 맞는 예약된 인원 들고오기
+		List<PaymentVO> pays = service.getResMemberCount(classIdx);
+		int totalResMember = 0;
+		
+	    for (PaymentVO payss : pays) {
+	        int resMember = payss.getRes_member_count();
+	        totalResMember += resMember;
+	        System.out.println("pay>>>" + resMember);
+	    }
+	    
+	    int availableSeats = cla.getClass_member_count() - totalResMember;
+	    System.out.println("예약 가능 인원: " + availableSeats);
+
+	    
+		
+//		int availableSeats = cla.getClass_member_count() - resMember;
 
 		SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
 		String startTime = formatter.format(cla.getClass_start_time());
@@ -122,6 +141,7 @@ public class ProductController {
 			}
 		}
 
+		model.addAttribute("availableSeats", availableSeats);
 		model.addAttribute("startTime", startTime);
 		model.addAttribute("endTime", endTime);
 		model.addAttribute("reviews", reviews);
@@ -130,6 +150,7 @@ public class ProductController {
 
 		return "product_detail";
 	}
+	
 	
 	@ResponseBody
 	@GetMapping("issueCoupon")
@@ -141,9 +162,38 @@ public class ProductController {
 
 			return "forward";
 		}
-		
-		
 		return"true";
 	}
+	
+	@ResponseBody
+    @PostMapping("product/cartPro")
+    public String addToCart(@RequestParam("class_idx") int class_idx, @RequestParam("member_id") String member_id, @RequestParam String date, @RequestParam int res_person) {
+
+        //장바구니에서 물건찾기
+        CartVO cart = service.findCart(class_idx, member_id, date);
+//        if(cart == null) { // 장바구니에 일치하는게 없으면 추가
+//
+//            int insertCart = service.addToCart(class_idx, member_id, date, res_person);
+//
+//                if(insertCart > 0) { //성공
+//                    return "true";
+//                }else {
+//                    return "false";
+//                }
+//
+//        }else {
+//
+//            //일치하는게 있으면 수량 +1
+//            int plusCart = cartService.cartPlus(cart.getCart_idx());
+//
+//            if(plusCart > 0) {
+//                return "true";
+//            }else {
+//                return "false";
+//            }
+//
+//        }
+        return ""; 
+    }//addToCart
 
 }

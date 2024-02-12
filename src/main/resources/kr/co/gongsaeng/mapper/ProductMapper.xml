@@ -43,4 +43,10 @@
               member_id = #{member_id} AND
               date = #{date}
     </select>
+    
+    <select id="selectResMemberCount" resultType="payment">
+    	SELECT res_member_count
+    	FROM payment
+    	WHERE class_idx = #{class_idx}
+    </select>
 </mapper>
