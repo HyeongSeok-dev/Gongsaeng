@@ -187,7 +187,7 @@
 														<div class="col-xl-6">
 														  <!-- 일별 결제 수를 위한 꺾은선 그래프 -->
 <!-- 														  <div class="chart-container" style="position: relative; height:40vh; width:80vw"> -->
-														    <canvas id="dailyPaymentsChart"></canvas> 
+														    <canvas id="dailyPaymentsChart"></canvas>  
 <!-- 														  </div> -->
 														</div>
 													</div>
