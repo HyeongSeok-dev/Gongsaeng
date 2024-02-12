@@ -877,10 +877,6 @@ public class AdminController {
 			day += "일";
 		}
 		
-		System.out.println(comClass.getClass_offering());
-		comClass.setClass_offering("0");
-		System.out.println(comClass.getClass_offering() == "0");
-		
 		if(comClass.getClass_offering() == null || comClass.getClass_offering() == "" || comClass.getClass_offering().trim() == "0") {
 			System.out.println("if >>여기");
 			comClass.setClass_offering("");
@@ -1004,11 +1000,11 @@ public class AdminController {
 			e.printStackTrace();
 		}
 		MultipartFile file1 = gclass.getFile1(); //커리큘럼사진
-		MultipartFile file2 = gclass.getFile1();
-		MultipartFile file3 = gclass.getFile1();
-		MultipartFile file4 = gclass.getFile1(); //클래스 대표사진
-		MultipartFile file5 = gclass.getFile1();
-		MultipartFile file6 = gclass.getFile1();
+		MultipartFile file2 = gclass.getFile2();
+		MultipartFile file3 = gclass.getFile3();
+		MultipartFile file4 = gclass.getFile4(); //클래스 대표사진
+		MultipartFile file5 = gclass.getFile5();
+		MultipartFile file6 = gclass.getFile6();
 		
 		gclass.setClass_pic1("");
 		gclass.setClass_pic2("");
