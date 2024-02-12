@@ -598,7 +598,7 @@
                                         </div>
                                         <div>
                                         	<button type="button" class="payButton" onclick="issueCoupon(${company.com_idx})">반장님 팔로우하고 쿠폰받기</button>
-                                        	<br>팔로우시 1회에 한해 2000원 쿠폰이 발급됩니다.
+                                        	<br>팔로우시 반장님당 <strong>1회에 한해</strong> 2000원 할인쿠폰이 발급됩니다.
                                         </div>
 
                                     </div>

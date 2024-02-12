@@ -134,6 +134,15 @@ public class ProductController {
 	@ResponseBody
 	@GetMapping("issueCoupon")
 	public String issueCoupon(HttpSession session, Model model, @RequestParam("com_idx") String comIdx) {
+		String sId = (String) session.getAttribute("sId");
+		if (sId == null) {
+			model.addAttribute("msg", "로그인이 필요합니다");
+			model.addAttribute("targetURL", "/gongsaeng/member/login");
+
+			return "forward";
+		}
+		
+		
 		return"true";
 	}
 
