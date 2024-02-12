@@ -156,9 +156,7 @@
 									<div class="col-md-4 col-sm-12">
 										<div class="product-grid pull-left">
 											<div class="product-image">
-												<a href="../product/detail?class_idx=${bookmark.class_idx}" class="image"> <img class="thumbnail"
-													src="${pageContext.request.contextPath }/resources/img/payment_test.png"></a>
-												<%-- 												<a href="../product/detail?class_idx=${bookmark.class_idx}" class="image"> <img class="thumbnail" src="${pageContext.request.contextPath }/resources/upload/${bookmark.class_pic1}" ></a> --%>
+											<a href="../product/detail?class_idx=${bookmark.class_idx}" class="image"> <img class="thumbnail" src="${pageContext.request.contextPath }/resources/upload/${bookmark.class_pic1}" ></a>
 												<ul class="product-links">
 													<li><span class="material-symbols-outlined bookmarkBtn" style="cursor: pointer; max-height: 250px;"> heart_minus </span> <input type="hidden"
 														value="${bookmark.bookmark_idx}" class="bookmark_idx"></li>

@@ -250,12 +250,12 @@
 							<div class="panel-heading" onclick="javascript:location.href='recent'">최근 본 클래스</div>
 							<div class="panel-body">
 								<c:choose>
-									<c:when test="${empty recentClasses}">최근 본 클래스가 없습니다.</c:when>
+									<c:when test="${empty recentList}">최근 본 클래스가 없습니다.</c:when>
 									<c:otherwise>
 										<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 											<!-- Indicators -->
 											<ol class="carousel-indicators">
-												<c:forEach var="product" items="${recentClasses}" varStatus="i">
+												<c:forEach var="product" items="${recentList}" varStatus="i">
 													<li data-target="#carousel-example-generic" data-slide-to="${i.index}" <c:if test="${i.index eq 0}">class="active"</c:if>></li>
 												</c:forEach>
 											</ol>
@@ -263,7 +263,7 @@
 											<!-- Wrapper for slides -->
 											<div class="carousel-inner" role="listbox">
 
-												<c:forEach var="recentClass" items="${recentClasses}" varStatus="i">
+												<c:forEach var="recentClass" items="${recentList}" varStatus="i">
 													<div class="item <c:if test="${i.index eq 0}">active</c:if>">
 														<a href="../product/detail?class_idx=${recentClass.class_idx}"><img
 															src="${pageContext.request.contextPath }/resources/upload/${recentClass.imageUrl}" alt=""></a>

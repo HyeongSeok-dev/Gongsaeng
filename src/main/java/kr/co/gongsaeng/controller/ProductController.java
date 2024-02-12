@@ -1,8 +1,10 @@
 package kr.co.gongsaeng.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,10 +40,11 @@ public class ProductController {
 
 	@Autowired
 	private ProductService service;
+	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
 	@GetMapping("product/detail")
-	public String productDetail(HttpSession session, Model model, @RequestParam("class_idx") int classIdx,
-			ClassVO cla, CompanyVO com, PaymentVO pay, HttpServletRequest request, HttpServletResponse response)
+	public String productDetail(HttpSession session, Model model, @RequestParam("class_idx") int classIdx, ClassVO cla,
+			CompanyVO com, PaymentVO pay, HttpServletRequest request, HttpServletResponse response)
 			throws UnsupportedEncodingException {
 
 		// 세션 값 저장해두기
@@ -56,43 +62,58 @@ public class ProductController {
 		// 클래스에 맞는 리뷰 들고오기
 		List<ReviewVO> reviews = service.getReviewInfo(cla);
 		System.out.println("립휴" + reviews);
-		
+
 		// 클래스에 맞는 예약된 인원 들고오기
 		List<PaymentVO> pays = service.getResMemberCount(classIdx);
 		int totalResMember = 0;
-		
-	    for (PaymentVO payss : pays) {
-	        int resMember = payss.getRes_member_count();
-	        totalResMember += resMember;
-	        System.out.println("pay>>>" + resMember);
-	    }
-	    
-	    int availableSeats = cla.getClass_member_count() - totalResMember;
-	    System.out.println("예약 가능 인원: " + availableSeats);
 
-	    
-		
+		for (PaymentVO payss : pays) {
+			int resMember = payss.getRes_member_count();
+			totalResMember += resMember;
+			System.out.println("pay>>>" + resMember);
+		}
+
+		int availableSeats = cla.getClass_member_count() - totalResMember;
+		System.out.println("예약 가능 인원: " + availableSeats);
+
 //		int availableSeats = cla.getClass_member_count() - resMember;
 
 		SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
 		String startTime = formatter.format(cla.getClass_start_time());
 		String endTime = formatter.format(cla.getClass_end_time());
-		
-		
+
 //		 상품페이지에 넣을 쿠키 추가 코드
 		JSONObject recentClass = new JSONObject();
 		recentClass.put("class_idx", cla.getClass_idx());
 		recentClass.put("imageUrl", cla.getClass_pic1());
-		recentClass.put("class_title", URLEncoder.encode(cla.getClass_title(), "UTF-8"));
+		recentClass.put("class_title", cla.getClass_title().replace("\"", "\\\""));
 
-		// RecentClasses 쿠키 존재 여부 확인
+		String encodedRecentClass = URLEncoder.encode(recentClass.toString(), "UTF-8");
+
+		// recentClasses 쿠키 존재 여부 확인
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {
+			logger.info("쿠키 전체 존재여부 : " + cookies.toString());
 			for (Cookie cookie : cookies) {
-				if (cookie.getName().equals("RecentClasses")) {
+				if (cookie.getName().equals("recentClasses")) {
+					logger.info("초기 쿠키 이름: {}", cookie.getName());
+					logger.info("초기 쿠키 값: {}", cookie.getValue());
+					
 					// 쿠키 값 파싱
-					JSONArray recentClasses = new JSONArray(cookie.getValue());
+					String decodedValue = URLDecoder.decode(cookie.getValue(), "UTF-8");
+					logger.info("decodedValue" + decodedValue.toString());
 
+					// JSON 문자열 파싱
+					JSONArray recentClasses;
+					try {
+					  recentClasses = new JSONArray(decodedValue);
+					} catch (JSONException e) {
+					  logger.error("클래스 1개만 존재 :", e.getMessage());
+					  recentClasses = new JSONArray(); // 빈 배열 생성
+					  recentClasses.put(new JSONObject(decodedValue));
+					}
+					logger.info("recentClasses" + recentClasses.toString());
+					
 					// 해당 상품 idx 존재 여부 확인
 					boolean exists = false;
 					for (int i = 0; i < recentClasses.length(); i++) {
@@ -103,16 +124,36 @@ public class ProductController {
 						}
 					}
 
+					System.out.println("exists : " + exists);
 					if (!exists) {
 						// 쿠키에 들어간 상품 정보 수
 						int size = recentClasses.length();
-
+						System.out.println(size);
+						
+						System.out.println("전 recentClasses" + recentClasses);
+						System.out.println("recentClass" + recentClass);
 						// 최근 상품 정보를 맨 앞에 추가
-						recentClasses.put(0, recentClass);
+						recentClasses.put(recentClass);
+						
+						JSONArray reversedClasses = new JSONArray();
+
+						// 루프를 사용하여 배열 순서 뒤집기
+						for (int i = recentClasses.length() - 1; i >= 0; i--) {
+						  reversedClasses.put(recentClasses.get(i));
+						}
+						
+						System.out.println("후 reversedClasses" + reversedClasses);
 
 						// 쿠키 값 업데이트
-						cookie.setValue(recentClasses.toString());
+						String encodedrecentClasses = URLEncoder.encode(reversedClasses.toString(), "UTF-8");
+
+						cookie.setValue(encodedrecentClasses);
+						cookie.setPath("/");
+						cookie.setMaxAge(60 * 60 * 24 * 7);
+						
 						response.addCookie(cookie);
+						logger.info("추가 후 쿠키 이름: {}", cookie.getName());
+						logger.info("추가 후 쿠키 값: {}", cookie.getValue());
 
 						// 최근 상품 정보 개수 제한 (예: 최대 10개)
 						if (size > 10) {
@@ -122,15 +163,19 @@ public class ProductController {
 				}
 			}
 		} else {
-			// RecentClasses 쿠키가 없는 경우
+			// recentClasses 쿠키가 없는 경우
 			// 쿠키 생성
-			Cookie cookie = new Cookie("RecentClasses", recentClass.toString());
+			Cookie cookie = new Cookie("recentClasses", encodedRecentClass);
 
 			// 쿠키 유효기간 설정 (예: 7일)
+			cookie.setPath("/");
 			cookie.setMaxAge(60 * 60 * 24 * 7);
 
 			// 응답에 쿠키 추가
 			response.addCookie(cookie);
+
+			logger.info("쿠키 이름: {}", cookie.getName());
+			logger.info("쿠키 값: {}", cookie.getValue());
 		}
 
 		// 북마크
@@ -152,8 +197,7 @@ public class ProductController {
 
 		return "product_detail";
 	}
-	
-	
+
 	@ResponseBody
 	@GetMapping("product/issueCoupon")
 	public String issueCoupon(HttpSession session, Model model, @RequestParam("com_idx") String comIdx) {
@@ -164,35 +208,36 @@ public class ProductController {
 
 			return "forward";
 		}
-		
+
 		Map<String, String> issuedCoupon = service.getIssuedCoupon(sId, comIdx);
 		Map<String, String> followingStatus = service.getFollowingStatus(sId, comIdx);
-		
-		if(issuedCoupon != null) {
-			if(followingStatus != null) {
+
+		if (issuedCoupon != null) {
+			if (followingStatus != null) {
 				return "fail";
-			}else {
+			} else {
 				service.registFollowing(sId, comIdx);
 				return "following";
 			}
 		}
-		
+
 		int insertCount = service.registCoupon(sId, comIdx);
-		
-		if(insertCount > 0) {
+
+		if (insertCount > 0) {
 			return "success";
-		}else {
+		} else {
 			return "error";
 		}
-		
-	}
-	
-	@ResponseBody
-    @PostMapping("product/cartPro")
-    public String addToCart(@RequestParam("class_idx") int class_idx, @RequestParam("member_id") String member_id, @RequestParam String date, @RequestParam int res_person) {
 
-        //장바구니에서 물건찾기
-        CartVO cart = service.findCart(class_idx, member_id, date);
+	}
+
+	@ResponseBody
+	@PostMapping("product/cartPro")
+	public String addToCart(@RequestParam("class_idx") int class_idx, @RequestParam("member_id") String member_id,
+			@RequestParam String date, @RequestParam int res_person) {
+
+		// 장바구니에서 물건찾기
+		CartVO cart = service.findCart(class_idx, member_id, date);
 //        if(cart == null) { // 장바구니에 일치하는게 없으면 추가
 //
 //            int insertCart = service.addToCart(class_idx, member_id, date, res_person);
@@ -215,7 +260,7 @@ public class ProductController {
 //            }
 //
 //        }
-        return ""; 
-    }//addToCart
+		return "";
+	}// addToCart
 
 }

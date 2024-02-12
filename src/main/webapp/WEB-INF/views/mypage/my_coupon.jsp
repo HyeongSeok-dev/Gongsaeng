@@ -152,9 +152,9 @@
 						<c:forEach var="coupon" items="${couponList}">
 							<div class="col-md-6">
 								<div class="panel panel-default">
-									<div class="panel-body">
-										<div class="row">
-											<div class="col-xs-12">
+									<div class="panel-body pull-left">
+										<div class="row ">
+											<div class="col-xs-12 ">
 												<h4>${coupon.coupon_name}</h4>
 												<c:choose>
 													<c:when test="${coupon.coupon_value gt 1}">

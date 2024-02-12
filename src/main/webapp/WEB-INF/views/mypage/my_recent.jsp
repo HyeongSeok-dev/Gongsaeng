@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -67,16 +67,13 @@
 			<div class="col-sm-3">
 				<c:choose>
 					<c:when test="${empty member.member_img}">
-						<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" style="cursor: pointer; max-height: 250px;"
-							onclick="location.href='modifyProfile'">
+						<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" style="cursor: pointer; max-height: 250px;" onclick="location.href='modifyProfile'">
 					</c:when>
 					<c:when test="${fn:contains(member.member_img,'http')}">
-						<img alt="profile" src="${member.member_img}"
-							style="cursor: pointer; max-height: 250px;" onclick="location.href='modifyProfile'">
+						<img alt="profile" src="${member.member_img}" style="cursor: pointer; max-height: 250px;" onclick="location.href='modifyProfile'">
 					</c:when>
 					<c:otherwise>
-						<img alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}" style="cursor: pointer; max-height: 250px;"
-							onclick="location.href='modifyProfile'">
+						<img alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}" style="cursor: pointer; max-height: 250px;" onclick="location.href='modifyProfile'">
 					</c:otherwise>
 				</c:choose>
 				<div class="panel panel-default">
@@ -90,7 +87,7 @@
 								<div id="alert" class="panel-collapse collapse">
 									<ul class="list-group">
 										<li class="list-group-item cursor " onclick="javascript:location.href='alert'">알림</li>
-<!-- 										<li class="list-group-item cursor" onclick="javascript:location.href='chat'">채팅</li> -->
+										<!-- 										<li class="list-group-item cursor" onclick="javascript:location.href='chat'">채팅</li> -->
 									</ul>
 								</div>
 							</li>
@@ -99,7 +96,7 @@
 									<ul class="list-group">
 										<li class="list-group-item cursor" onclick="javascript:location.href='coupon'">쿠폰</li>
 										<li class="list-group-item cursor" onclick="javascript:location.href='cash'">캐쉬</li>
-										
+
 									</ul>
 								</div>
 							</li>
@@ -148,24 +145,21 @@
 					</div>
 					<div class="panel panel-default">
 						<div class="panel-body">
-								<c:if test="${empty recentClasses}">
-									<div class="panel-body">최근본 클래스가 없습니다.</div>
-								</c:if>
-							<c:forEach var="recentClass" items="${recentClasses}">
-								<div class="row">
-									<div class="col-md-4 col-sm-12">
-										<div class="product-grid">
-											<div class="product-image">
-												<a href="../product/detail?class_idx=${recentClass.class_idx}"><img
-													src="${pageContext.request.contextPath }/resources/upload/${recentClass.imageUrl}" alt=""></a>
-												<ul class="product-links">
-													<li><a href="#"><span class="material-symbols-outlined"> favorite </span></a></li>
-												</ul>
-											</div>
-											<div class="product-content">
-												<h3 class="title">${recentClass.class_title}</h3>
-												<div class="class">${recentClass.com_name}</div>
-											</div>
+							<c:if test="${empty recentList}">
+								<div class="panel-body">최근본 클래스가 없습니다.</div>
+							</c:if>
+							<c:forEach var="recentClass" items="${recentList}">
+								<div class="col-md-4 col-sm-12">
+									<div class="product-grid pull-left">
+										<div class="product-image">
+											<a href="../product/detail?class_idx=${recentClass.class_idx}" class="image"><img src="${pageContext.request.contextPath }/resources/upload/${recentClass.imageUrl}" alt="" class="thumbnail"></a>
+											<ul class="product-links">
+												<li><a href="#"><span class="material-symbols-outlined"> favorite </span></a></li>
+											</ul>
+										</div>
+										<div class="product-content">
+											<h3 class="title">${recentClass.class_title}</h3>
+											<div class="class">${recentClass.com_name}</div>
 										</div>
 									</div>
 								</div>
