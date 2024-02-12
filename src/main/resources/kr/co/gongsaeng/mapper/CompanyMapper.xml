@@ -241,5 +241,26 @@
 		WHERE com_idx = #{comIdx} AND pay_status = 1
 		GROUP BY DATE(pay_date)
 		ORDER BY payDate;	</select>
+		
+	<!-- 반장 쿠폰 조회 -->	
+	<select id="selectClassCoupon" resultType="coupon">
+		SELECT *
+		FROM coupon
+		WHERE com_idx = #{comIdx}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 </mapper>

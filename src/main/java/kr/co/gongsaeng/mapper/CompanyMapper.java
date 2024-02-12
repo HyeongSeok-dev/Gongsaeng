@@ -10,6 +10,7 @@ import kr.co.gongsaeng.vo.BoardVO;
 import kr.co.gongsaeng.vo.CompanyClassVO;
 import kr.co.gongsaeng.vo.CompanyReviewDetailVO;
 import kr.co.gongsaeng.vo.CompanyVO;
+import kr.co.gongsaeng.vo.CouponVO;
 import kr.co.gongsaeng.vo.MemberVO;
 import kr.co.gongsaeng.vo.PaymentVO;
 import kr.co.gongsaeng.vo.ReportVO;
@@ -98,6 +99,9 @@ public interface CompanyMapper {
 
 	// [ 차트 - (2) 일별 클래스 등록수 ] 
 	List<PaymentVO> selectClassRegister(Integer comIdx);
+
+	// 반장 쿠폰관리
+	List<CouponVO> selectClassCoupon(Integer comIdx);
 
 
 

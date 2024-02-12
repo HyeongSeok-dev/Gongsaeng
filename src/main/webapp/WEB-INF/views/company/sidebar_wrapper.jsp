@@ -34,7 +34,7 @@
                     <li><a href="${pageContext.request.contextPath}/company/classRegisterForm">클래스 등록</a></li>
 <%--                     <li><a href="${pageContext.request.contextPath}/company/class">클래스 내역</a></li> --%>
                     <li><a href="${pageContext.request.contextPath}/company/class">클래스 내역</a></li>
-                    <li><a href="${pageContext.request.contextPath}/company/reservation">클래스 일정 관리</a></li>
+<%--                     <li><a href="${pageContext.request.contextPath}/company/reservation">클래스 일정 관리</a></li> --%>
                     <li><a href="${pageContext.request.contextPath}/company/coupon">반장쿠폰관리</a></li>
                 </ul>
             </div>
@@ -78,7 +78,7 @@
                 <ul class="nav">
                     <li><a href="${pageContext.request.contextPath}/company/chart">반장 CHART</a></li>
                     <li><a href="${pageContext.request.contextPath}/company/notification">반장 공지사항</a></li>
-                    <li><a href="${pageContext.request.contextPath}/company/inquiry">반장 1:1문의</a></li>
+<%--                     <li><a href="${pageContext.request.contextPath}/company/inquiry">반장 1:1문의</a></li> --%>
                 </ul>
             </div>
         </li>

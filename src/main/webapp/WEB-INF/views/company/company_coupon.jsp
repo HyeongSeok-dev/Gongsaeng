@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -107,6 +108,16 @@ tbody {
 	color: #000;
 }
 
+.card-header {
+	font-size: 20px;
+	color: #000!important;
+}
+
+.card label {
+	color: #000!important;
+}
+
+
 </style>  
 <!-- Global CSS -->
 <link
@@ -192,51 +203,82 @@ tbody {
       </div>
 		<div class="content">
 			<div class="container-fluid">
-				<!-- 여기를 수정했습니다 -->
 				<div class="row">
 					<div class="col-md-12">
 						<div class="card">
-							<div class="card-header"></div>
+					
+							<div class="card-header">
+							<div class="card-header-header">
+								<label>쿠폰 발급 상태</label>
+							</div>
+								<label><input type="checkbox" id="filter-normal" checked> 정상</label>
+								<label><input type="checkbox" id="filter-used" checked> 사용</label>
+								<label><input type="checkbox" id="filter-expired" checked> 만료</label>
+							</div>
 							<div class="card-body">
 								<div class="row">
 									<div class="col-xl-12">
 										<div class="d-flex justify-content-end mb-3">
-											<input type="button" class="mr-2" value="쿠폰 발급"> <input
-												type="button" class="mr-2" value="선택한 쿠폰 마감"> <input
-												type="button" value="선택한 쿠폰 재발급">
+<!-- 											<input type="button" class="mr-2" value="쿠폰 발급">  -->
+<!-- 											<input type="button" class="mr-2" value="선택한 쿠폰 마감">  -->
+<!-- 											<input type="button" value="선택한 쿠폰 재발급"> -->
 										</div>
 										<div class="table-responsive">
-											<!-- table-responsive 클래스를 추가했습니다 -->
 											<table class="table table-bordered">
 												<thead class="thead-dark">
 													<tr>
-														<th scope="col">#</th>
-														<th scope="col">상태</th>
-														<th scope="col">클래스 번호</th>
-														<th scope="col">발급쿠폰 형태</th>
-														<th scope="col">쿠폰 발행일</th>
-														<th scope="col">쿠폰 마감일</th>
-														<th scope="col">발행쿠폰 금액</th>
-														<th scope="col">수령인원</th>
-														<th scope="col">쿠폰 발행금액</th>
-														<th scope="col">수정/삭제</th>
+<!-- 														<th scope="col">#</th> -->
+														<th scope="col">쿠폰 번호</th>
+														<th scope="col">쿠폰 이름</th>
+														<th scope="col">쿠폰 소유 회원</th>
+														<th scope="col">쿠폰 할인 가격</th>
+														<th scope="col">쿠폰 발급일자</th>
+														<th scope="col">쿠폰 유효기간</th>
+														<th scope="col">쿠폰 발급상태</th>
+														<th scope="col">최소 결제 금액</th>
+<!-- 														<th scope="col">삭제</th> -->
 													</tr>
 												</thead>
 												<tbody>
-													<!-- 여기에 각 행을 추가하세요. 예를 들어: -->
+													 <c:forEach items="${classCoupon}" var="coupon">
 													<tr>
-														<th scope="row">1</th>
-														<td>활성</td>
-														<td>클래스 번호</td>
-														<td>회원대상</td>
-														<td>2024-12-31</td>
-														<td>2024-12-31</td>
-														<td>10,000</td>
-														<td>100명</td>
-														<td>1,000,000</td>
-														<td><input type="button" value="수정">&nbsp;&nbsp;<input
-															type="button" value="삭제"></td>
+<!-- 														<th scope="row">1</th> -->
+														<td>${coupon.coupon_idx}</td>
+														<td>${coupon.coupon_name}</td>
+														<td>${coupon.member_id }</td>
+														<td>
+															<c:choose>
+															<c:when test="${coupon.coupon_value > 0}">
+															<fmt:formatNumber value="${coupon.coupon_value}" type="number" pattern="#,##0"/>원 할인
+															</c:when>
+															<c:when test="${coupon.coupon_value < 0}">
+																${coupon.coupon_value * 10}% 할인
+															</c:when>
+															</c:choose>
+														</td>
+														
+														<td>${coupon.coupon_Issue_date}</td>
+														<td>${coupon.coupon_valid_date}</td>
+														<td>
+															<c:choose>
+																<c:when test="${coupon.coupon_status == 1}">
+																	정상
+																</c:when>
+																<c:when test="${coupon.coupon_status == 2}">
+																	사용
+																</c:when>
+																<c:when test="${coupon.coupon_status == 3}">
+																	만료
+																</c:when>
+															</c:choose>
+															
+														</td>
+														<td>
+															<fmt:formatNumber value="${coupon.coupon_min_price}" type="number" pattern="#,##0"/>원
+														</td>
+<!-- 														<td><input type="button" value="쿠폰 삭제"></td> -->
 													</tr>
+													</c:forEach>
 													<!-- 더 많은 행을 추가할 수 있습니다. -->
 												</tbody>
 											</table>
@@ -297,6 +339,36 @@ tbody {
 <!--   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.9.5/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  function filterRows() {
+    const showNormal = document.getElementById('filter-normal').checked;
+    const showUsed = document.getElementById('filter-used').checked;
+    const showExpired = document.getElementById('filter-expired').checked;
+
+    const statusColumnIndex = 6;
+
+    document.querySelectorAll('table tbody tr').forEach(row => {
+      const statusTd = row.cells[statusColumnIndex];
+      const status = statusTd.textContent.trim();
+
+      let shouldBeShown = 
+        (status === '정상' && showNormal) ||
+        (status === '사용' && showUsed) ||
+        (status === '만료' && showExpired);
+
+      row.style.display = shouldBeShown ? '' : 'none';
+    });
+  }
+
+  document.getElementById('filter-normal').addEventListener('change', filterRows);
+  document.getElementById('filter-used').addEventListener('change', filterRows);
+  document.getElementById('filter-expired').addEventListener('change', filterRows);
+
+  filterRows();
+});
+</script>
   
 </body>
 

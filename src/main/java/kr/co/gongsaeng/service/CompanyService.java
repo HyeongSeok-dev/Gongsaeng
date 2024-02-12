@@ -14,6 +14,7 @@ import kr.co.gongsaeng.vo.ClassVO;
 import kr.co.gongsaeng.vo.CompanyClassVO;
 import kr.co.gongsaeng.vo.CompanyReviewDetailVO;
 import kr.co.gongsaeng.vo.CompanyVO;
+import kr.co.gongsaeng.vo.CouponVO;
 import kr.co.gongsaeng.vo.MemberVO;
 import kr.co.gongsaeng.vo.PaymentVO;
 import kr.co.gongsaeng.vo.ReportVO;
@@ -179,6 +180,12 @@ public class CompanyService {
 	public List<PaymentVO> getClassRegister(Integer comIdx) {
 
 		return mapper.selectClassRegister(comIdx);
+	}
+
+	// 반장 쿠폰 관리
+	public List<CouponVO> getClassCoupon(Integer comIdx) {
+
+		return mapper.selectClassCoupon(comIdx);
 	}
 
 

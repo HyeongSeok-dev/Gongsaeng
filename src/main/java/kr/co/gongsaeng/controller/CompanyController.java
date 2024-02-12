@@ -51,6 +51,7 @@ import kr.co.gongsaeng.vo.ClassVO;
 import kr.co.gongsaeng.vo.CompanyClassVO;
 import kr.co.gongsaeng.vo.CompanyReviewDetailVO;
 import kr.co.gongsaeng.vo.CompanyVO;
+import kr.co.gongsaeng.vo.CouponVO;
 import kr.co.gongsaeng.vo.MemberVO;
 import kr.co.gongsaeng.vo.PageInfo;
 import kr.co.gongsaeng.vo.PaymentVO;
@@ -1131,7 +1132,27 @@ public class CompanyController {
 	}
 	
 	
-	
+	// 반장 쿠폰 관리
+	@GetMapping("company/coupon")
+	public String company_coupon(HttpSession session, Model model, CouponVO coupon) {
+
+		// 사업체 com_idx 산출
+		String sId = (String)session.getAttribute("sId");
+		System.out.println("Current sId from session: >>>>>>>>>>>>> " + sId);
+		
+		Integer comIdx = companyService.findComIdxBysId(sId);
+		System.out.println("Current comIdx from session: >>>>>>>>>>>>> " + comIdx);
+		
+		List<CouponVO> classCoupon = companyService.getClassCoupon(comIdx);
+		model.addAttribute("classCoupon",classCoupon);
+		
+		
+		
+		
+		
+		
+		return "company/company_coupon";
+	}
 	
 	
 	@GetMapping("company/sales2")
@@ -1148,11 +1169,6 @@ public class CompanyController {
 	@GetMapping("company/inquiry")
 	public String company_inquiry() {
 		return "company/company_inquiry";
-	}
-	
-	@GetMapping("company/coupon")
-	public String company_coupon() {
-		return "company/company_coupon";
 	}
 	
 	@GetMapping("company/coupon2")
