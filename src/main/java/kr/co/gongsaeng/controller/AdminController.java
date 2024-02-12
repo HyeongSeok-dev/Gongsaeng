@@ -1285,36 +1285,6 @@ public class AdminController {
 		return "admin/cs/faq";
 	}
 	
-	@GetMapping("admin/cs/notice")
-	public String csNotice(HttpSession session, Model model) {
-//		if(session.getAttribute("sId") == null) {
-//		model.addAttribute("msg", "로그인이 필요합니다");
-//		model.addAttribute("targetURL", "/gongsaeng/login");
-//		return "forward";
-//	} else if(!session.getAttribute("sId").equals("admin")) {
-//		model.addAttribute("msg", "잘못된 접근 입니다.");
-//		return "fail_back";
-//	}
-		
-		return "admin/cs/notice";
-	}
-	@GetMapping("admin/cs/notice/register")
-	public String csNoticeRegisterForm() {
-		return "admin/cs/notice_register";
-	}
-	@GetMapping("admin/cs/notice/detail")
-	public String csNoticeDetail() {
-		return "admin/cs/notice_detail";
-	}
-	@GetMapping("admin/cs/faq/register")
-	public String csFaqRegister() {
-		return "admin/cs/faq_register";
-	}
-	@GetMapping("admin/cs/faq/detail")
-	public String csFaqDetail() {
-		return "admin/cs/faq_detail";
-	}
-	
 	//---------------------------[ sample ]
 	@GetMapping("admin/icons")
 	public String icons() {
