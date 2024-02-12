@@ -18,4 +18,5 @@ public class SearchVO {
     private String minAmount;
     private String maxAmount;
     private String classOffering;
+    private String sort;
 }

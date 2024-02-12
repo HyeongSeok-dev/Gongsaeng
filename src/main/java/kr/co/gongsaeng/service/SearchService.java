@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.gongsaeng.mapper.SearchMapper;
 import kr.co.gongsaeng.vo.ClassVO;
+import kr.co.gongsaeng.vo.ReviewVO;
 import kr.co.gongsaeng.vo.SearchVO;
 
 @Service
@@ -25,6 +26,16 @@ public class SearchService {
 		return searchMapper.selectPopularClassList(member_id);
 	}
 
+	// 메인 - 클래스(마감임박순) 뿌리기
+	public List<ClassVO> getDeadlineSoonClassList(String member_id) {
+		return searchMapper.selectDeadlineSoonClassList(member_id);
+	}
+
+	// 메인 - 리뷰(최신순) 뿌리기
+	public List<ReviewVO> getRecentReviewList() {
+		return searchMapper.selectRecentReviewList();
+	}
+
 	// 검색결과
 	public List<ClassVO> getSearchClassList(SearchVO searchData, String member_id, int startRow, int listLimit) {
 		return searchMapper.selectSearchClassList(searchData, member_id, startRow, listLimit);
@@ -34,5 +45,11 @@ public class SearchService {
 	public int getSearchClassCount(SearchVO searchData, String member_id) {
 		return searchMapper.selectSearchClassCount(searchData, member_id);
 	}
+
+	// 북마크 추가 기능
+	public int insertBookmark(Map<String, String> map) {
+		return searchMapper.insertBookmark(map);
+	}
+
 	
 }

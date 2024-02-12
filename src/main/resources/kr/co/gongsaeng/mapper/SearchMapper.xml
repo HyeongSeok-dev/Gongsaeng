@@ -10,6 +10,7 @@
 			cl.*
 			, co.com_idx
 			, co.com_name
+			, SUBSTRING(cl.class_address1, 1, LOCATE('구', cl.class_address1) + 1) AS 'classAddress'
 			, (SELECT COUNT(bo.member_id) 
 				FROM bookmark bo 
 				WHERE bo.class_idx = cl.class_idx
@@ -37,6 +38,7 @@
 			cl.*
 			, co.com_idx
 			, co.com_name
+			, SUBSTRING(cl.class_address1, 1, LOCATE('구', cl.class_address1) + 1) AS 'classAddress'
 			, COALESCE(SUM(pa.res_member_count), 0) AS 'resTotalCount'
 			, (SELECT COUNT(bo.member_id) 
 				FROM bookmark bo 
@@ -62,12 +64,63 @@
 			, bookmarkCount DESC;
 	</select>
 	
+	<!-- 메인 - 클래스(마감임박순) 뿌리기 -->
+	<select id="selectDeadlineSoonClassList">
+		SELECT
+			cl.*
+			, co.com_idx
+			, co.com_name
+			, SUBSTRING(cl.class_address1, 1, LOCATE('구', cl.class_address1) + 1) AS 'classAddress'
+			, COALESCE(SUM(pa.res_member_count), 0) AS 'resTotalCount'
+			, (SELECT COUNT(bo.member_id) 
+				FROM bookmark bo 
+				WHERE bo.class_idx = cl.class_idx
+			) AS 'bookmarkCount'
+			, (SELECT 
+			    bo.bookmark_idx
+				FROM bookmark bo
+				WHERE bo.class_idx = cl.class_idx AND bo.member_id = #{member_id}
+			) AS 'isBookmark_idx'
+		FROM class cl
+			JOIN company co
+				ON co.member_id = cl.member_id
+			LEFT JOIN payment pa
+				ON pa.class_idx = cl.class_idx
+		GROUP BY 
+			cl.class_idx
+			, co.com_idx
+		HAVING
+			resTotalCount &lt; cl.class_member_count		-- 예약인원수 &lt; 최대인원수
+			AND cl.class_date &lt;= cl.class_start_date		-- 클래스 등록일 &lt;= 클래스 시작일
+			AND (
+				cl.class_start_date &gt; CURDATE()			-- 클래스 시작일 &gt; 현재일자이고
+					OR (cl.class_start_date = CURDATE()		-- 또는 클래스 시작일이 오늘이 경우
+					AND cl.class_start_time &gt; CURTIME())	-- 클래스 시작시간 &gt; 현재시간
+				)
+		ORDER BY		
+			cl.class_start_date ASC
+			, cl.class_start_time ASC;
+	</select>
+	
+	<!-- 메인 - 최신 리뷰 뿌리기 -->
+	<select id="selectRecentReviewList">
+		SELECT
+			re.*
+			, cl.class_title
+		FROM review re
+			JOIN class cl
+				ON cl.class_idx = re.class_idx
+		ORDER BY review_idx DESC;
+	</select>
+	
 	<!-- 검색결과 -->
 	<select id="selectSearchClassList">
 		SELECT
 			cl.*
 			, co.com_idx
 			, co.com_name
+			, COALESCE(SUM(pa.res_member_count), 0) AS 'resTotalCount'
+			, SUBSTRING(cl.class_address1, 1, LOCATE('구', cl.class_address1) + 1) AS 'classAddress'
 			, (SELECT COUNT(bo.member_id) 
 				FROM bookmark bo 
 				WHERE bo.class_idx = cl.class_idx
@@ -80,13 +133,21 @@
 		FROM class cl
 			JOIN company co
 				ON cl.member_id = co.member_id
-		WHERE
-			cl.class_end_date >= CURDATE()
+			LEFT JOIN payment pa
+				ON pa.class_idx = cl.class_idx
+		GROUP BY
+			cl.class_idx
+			, co.com_idx
+		HAVING
 		<!-- 클래스 타입 -->
-		<if test="searchData.classType != null and !searchData.classType.equals('')">
-		AND
-			cl.class_category = #{searchData.classType}
-		</if>
+		<choose>
+			<when test="searchData.classType != 0">
+				cl.class_category = #{searchData.classType}
+			</when>
+			<otherwise>
+				1=1
+			</otherwise>
+		</choose>
 		<!-- 클래스명 키워드 -->
 		<if test="searchData.className != null and !searchData.className.equals('')">
 		AND
@@ -102,21 +163,44 @@
 		AND
 			cl.class_sub_category = #{searchData.classSubCategory}
 		</if>
-<!-- 		AND 클래스 상태 -->
-<!-- 		<if test="searchData.classSubCategory != null"> -->
-<!-- 			cl.classState = #{searchData.} -->
-<!-- 		</if> -->
-		<!-- 클래스 요일 -->
-		<if test="searchData.classDay != null and !searchData.classDay.equals('')">
+		<!-- 클래스 상태 -->
 		AND
 		<choose>
-			<when test="searchData.classDay != '0000010' or searchData.classDay != '0000001'">
-				cl.class_day = #{searchData.classDay}
+			<when test="searchData.classState == 'classState1'"> <!-- 모집중 -->
+				cl.class_end_date &gt;= CURDATE()
+					AND resTotalCount &lt; cl.class_member_count
+					AND (
+						cl.class_start_date &gt; CURDATE()
+							OR (cl.class_start_date = CURDATE()
+							AND cl.class_start_time &gt; CURTIME())
+						)
 			</when>
-			<otherwise>
-				cl.class_day NOT IN ('0000010', '0000001')
+			<when test="searchData.classState == 'classState2'"> <!-- 마감 -->
+				resTotalCount &gt;= cl.class_member_count
+					AND (
+						cl.class_end_date &lt; CURDATE()
+							OR (cl.class_end_date = CURDATE()
+							AND cl.class_end_time &gt; CURTIME())
+						)
+			</when>
+			<when test="searchData.classState == 'classState3'"> <!-- 종료 -->
+				cl.class_end_date &lt; CURDATE()
+			</when>
+			<otherwise> <!-- 전체 (searchData.classState == 'classState0') -->
+				1=1
 			</otherwise>
 		</choose>
+		<!-- 클래스 요일 -->
+		<if test="searchData.classDay != null and searchData.classDay != '0000000' and !searchData.classDay.equals('')">
+		AND (
+		  (SUBSTRING(#{searchData.classDay}, 1, 1) = '1' AND SUBSTRING(cl.class_day, 1, 1) = '1') OR
+		  (SUBSTRING(#{searchData.classDay}, 2, 1) = '1' AND SUBSTRING(cl.class_day, 2, 1) = '1') OR
+		  (SUBSTRING(#{searchData.classDay}, 3, 1) = '1' AND SUBSTRING(cl.class_day, 3, 1) = '1') OR
+		  (SUBSTRING(#{searchData.classDay}, 4, 1) = '1' AND SUBSTRING(cl.class_day, 4, 1) = '1') OR
+		  (SUBSTRING(#{searchData.classDay}, 5, 1) = '1' AND SUBSTRING(cl.class_day, 5, 1) = '1') OR
+		  (SUBSTRING(#{searchData.classDay}, 6, 1) = '1' AND SUBSTRING(cl.class_day, 6, 1) = '1') OR
+		  (SUBSTRING(#{searchData.classDay}, 7, 1) = '1' AND SUBSTRING(cl.class_day, 7, 1) = '1')
+		)
 		</if>
 		<!-- 클래스 시작일 -->
 		<if test="searchData.classStartDate != null and !searchData.classStartDate.equals('')">
@@ -139,7 +223,7 @@
 			cl.class_end_time &lt;= #{searchData.classEndTime}
 		</if>
 		<!-- 기타 제공사항 -->
-		<if test="searchData.classOffering != '0000000' and !searchData.classOffering.equals('')">
+		<if test="searchData.classOffering != null and searchData.classOffering != '0000000' and !searchData.classOffering.equals('')">
 		AND
 			SUBSTRING(class_offering, 1, 1) >= SUBSTRING(#{searchData.classOffering}, 1, 1)
 				AND SUBSTRING(class_offering, 2, 1) >= SUBSTRING(#{searchData.classOffering}, 2, 1)
@@ -152,12 +236,16 @@
 		<!-- 클래스 금액 -->
 		AND
 			cl.class_price BETWEEN #{searchData.minAmount} AND #{searchData.maxAmount}
-		GROUP BY
-			cl.class_idx
-			, co.com_idx
-<!-- 			, co.com_name -->
 		ORDER BY
-			cl.class_idx DESC
+			<choose>
+				<when test="searchData.sort != null and searchData.sort == 'sort_popular'">
+					resTotalCount DESC
+					, bookmarkCount DESC
+				</when>
+				<otherwise>
+					cl.class_idx DESC
+				</otherwise>
+			</choose>
 		LIMIT
 			#{startRow}
 			, #{listLimit}
@@ -171,6 +259,8 @@
 				cl.*
 				, co.com_idx
 				, co.com_name
+				, COALESCE(SUM(pa.res_member_count), 0) AS 'resTotalCount'
+				, SUBSTRING(cl.class_address1, 1, LOCATE('구', cl.class_address1) + 1) AS 'classAddress'
 				, (SELECT COUNT(bo.member_id) 
 					FROM bookmark bo 
 					WHERE bo.class_idx = cl.class_idx
@@ -183,13 +273,21 @@
 			FROM class cl
 				JOIN company co
 					ON cl.member_id = co.member_id
-			WHERE
-				cl.class_end_date >= CURDATE()
+				LEFT JOIN payment pa
+					ON pa.class_idx = cl.class_idx
+			GROUP BY
+				cl.class_idx
+				, co.com_idx
+			HAVING
 			<!-- 클래스 타입 -->
-			<if test="searchData.classType != null and !searchData.classType.equals('')">
-			AND
-				cl.class_category = #{searchData.classType}
-			</if>
+			<choose>
+				<when test="searchData.classType != 0">
+					cl.class_category = #{searchData.classType}
+				</when>
+				<otherwise>
+					1=1
+				</otherwise>
+			</choose>
 			<!-- 클래스명 키워드 -->
 			<if test="searchData.className != null and !searchData.className.equals('')">
 			AND
@@ -205,21 +303,44 @@
 			AND
 				cl.class_sub_category = #{searchData.classSubCategory}
 			</if>
-	<!-- 		AND 클래스 상태 -->
-	<!-- 		<if test="searchData.classSubCategory != null"> -->
-	<!-- 			cl.classState = #{searchData.} -->
-	<!-- 		</if> -->
-			<!-- 클래스 요일 -->
-			<if test="searchData.classDay != null and !searchData.classDay.equals('')">
+			<!-- 클래스 상태 -->
 			AND
 			<choose>
-				<when test="searchData.classDay != '0000010' or searchData.classDay != '0000001'">
-					cl.class_day = #{searchData.classDay}
+				<when test="searchData.classState == 'classState1'"> <!-- 모집중 -->
+					cl.class_end_date &gt;= CURDATE()
+						AND resTotalCount &lt; cl.class_member_count
+						AND (
+							cl.class_start_date &gt; CURDATE()
+								OR (cl.class_start_date = CURDATE()
+								AND cl.class_start_time &gt; CURTIME())
+							)
 				</when>
-				<otherwise>
-					cl.class_day NOT IN ('0000010', '0000001')
+				<when test="searchData.classState == 'classState2'"> <!-- 마감 -->
+					resTotalCount &gt;= cl.class_member_count
+						AND (
+							cl.class_end_date &lt; CURDATE()
+								OR (cl.class_end_date = CURDATE()
+								AND cl.class_end_time &gt; CURTIME())
+							)
+				</when>
+				<when test="searchData.classState == 'classState3'"> <!-- 종료 -->
+					cl.class_end_date &lt; CURDATE()
+				</when>
+				<otherwise> <!-- 전체 (searchData.classState == 'classState0') -->
+					1=1
 				</otherwise>
 			</choose>
+			<!-- 클래스 요일 -->
+			<if test="searchData.classDay != null and searchData.classDay != '0000000' and !searchData.classDay.equals('')">
+			AND (
+			  (SUBSTRING(#{searchData.classDay}, 1, 1) = '1' AND SUBSTRING(cl.class_day, 1, 1) = '1') OR
+			  (SUBSTRING(#{searchData.classDay}, 2, 1) = '1' AND SUBSTRING(cl.class_day, 2, 1) = '1') OR
+			  (SUBSTRING(#{searchData.classDay}, 3, 1) = '1' AND SUBSTRING(cl.class_day, 3, 1) = '1') OR
+			  (SUBSTRING(#{searchData.classDay}, 4, 1) = '1' AND SUBSTRING(cl.class_day, 4, 1) = '1') OR
+			  (SUBSTRING(#{searchData.classDay}, 5, 1) = '1' AND SUBSTRING(cl.class_day, 5, 1) = '1') OR
+			  (SUBSTRING(#{searchData.classDay}, 6, 1) = '1' AND SUBSTRING(cl.class_day, 6, 1) = '1') OR
+			  (SUBSTRING(#{searchData.classDay}, 7, 1) = '1' AND SUBSTRING(cl.class_day, 7, 1) = '1')
+			)
 			</if>
 			<!-- 클래스 시작일 -->
 			<if test="searchData.classStartDate != null and !searchData.classStartDate.equals('')">
@@ -242,7 +363,7 @@
 				cl.class_end_time &lt;= #{searchData.classEndTime}
 			</if>
 			<!-- 기타 제공사항 -->
-			<if test="searchData.classOffering != '0000000' and !searchData.classOffering.equals('')">
+			<if test="searchData.classOffering != null and searchData.classOffering != '0000000' and !searchData.classOffering.equals('')">
 			AND
 				SUBSTRING(class_offering, 1, 1) >= SUBSTRING(#{searchData.classOffering}, 1, 1)
 					AND SUBSTRING(class_offering, 2, 1) >= SUBSTRING(#{searchData.classOffering}, 2, 1)
@@ -255,11 +376,26 @@
 			<!-- 클래스 금액 -->
 			AND
 				cl.class_price BETWEEN #{searchData.minAmount} AND #{searchData.maxAmount}
-			GROUP BY
-				cl.class_idx
-				, co.com_idx
-	<!-- 			, co.com_name -->
+			ORDER BY
+				<choose>
+					<when test="searchData.sort != null and searchData.sort == 'sort_popular'">
+						resTotalCount DESC
+						, bookmarkCount DESC
+					</when>
+					<otherwise>
+						cl.class_idx DESC
+					</otherwise>
+				</choose>
 		) AS subquery;
 	</select>
 	
+	<!-- 북마크 추가 기능 -->
+	<insert id="insertBookmark">
+		INSERT INTO bookmark
+		VALUES (
+			null
+			, #{member_id}
+			, #{class_idx}
+		)
+	</insert>
 </mapper>
