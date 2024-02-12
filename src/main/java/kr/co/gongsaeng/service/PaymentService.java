@@ -31,16 +31,17 @@ public class PaymentService {
 	}
 
 	//account 테이블, cash테이블 조인해서 모든정보 가지고오기
-	public List<CashVO> getAllListSelect(String member_id) {
+   public List<CashVO> getAllListSelect(String member_id) {
 		
 		List<CashVO> result = mapper.allListSelect(member_id);
 		
 		return result;
 	}
 
-
-	
-	
+   //결정정보 인서트
+	public int paymentSuccess(PaymentVO payment, String sId) {
+		return mapper.insertPayment(payment, sId);
+	}
 
 
 	

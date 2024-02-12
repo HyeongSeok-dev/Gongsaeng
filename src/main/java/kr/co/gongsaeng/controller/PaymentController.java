@@ -1,9 +1,7 @@
-	package kr.co.gongsaeng.controller;
+package kr.co.gongsaeng.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.time.*;
+import java.util.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -273,8 +271,85 @@ public class PaymentController {
 		return "payment/charge_complete";
 	}
 	
+	//이용기관의 계좌에 접근 가능한 엑세스 토큰 발급 - 센터인증 이용기관 토큰 발급 API
+//	@GetMapping("FintechAdminAccessToken")
 	
+
+//=======================================================================================
+//결제성공시 호출될 메서드(paymentPro)
+//	@RequestBody
+	@PostMapping("paymentPro")
+	public String paymentPro(HttpSession session, @RequestParam Map<String, String> map, Model model) {
 	
+		//ajax로 파라미터 받을때 map객체를 사용해서 받음
+		System.out.println("paymentPro");
+		System.out.println("map : " + map);
+		
+		//1차**************************************
+//	    session.setAttribute("sIdx", dbMember.getUser_idx());    
+//		int sIdx = (int)session.getAttribute("sIdx");
+		//2차 member_idx컬럼 미존재
+		String sId = (String)session.getAttribute("sId");
+		//데이터베이스에 들고갈 객체 생성
+		PaymentVO payment = new PaymentVO();
+		
+		//결제정보를 데이터 베이스에 저장하기 위한 데이터 정리
+		
+		//천단위 쉼표제거 후 형변환뒤 payment객체에 넣어줌
+//		System.out.println("pay_po_price_String 변환전 : " + (String)map.get("preOrderTotalPrice"));
+//		System.out.println("0원결제 : " + (((String)map.get("preOrderTotalPrice")).length() == 0));
+		
+		//주문번호 res_num
+		payment.setPay_num((String)map.get("res_num"));
+		
+		//카카오페이
+		//1차 int -> 2차 String**************************************
+		if(map.get("pay_method") != null) {
+			payment.setPay_method(map.get("pay_method"));
+//			payment.setPay_method(Integer.parseInt(map.get("pay_method")));
+		}else {
+			payment.setPay_method("0");
+//			payment.setPay_method(0);
+		}
+		
+		//**************************************
+		//토탈 결제금액(결제상세 - 쿠폰, 페이적용전금액)컬럼없음
+		
+		//카드결제시
+		if(payment.getPay_method() == "2") {
+			System.out.println("=====카드결제=====");
+			payment.setPay_card_co((String)map.get("pay_card_co"));
+			System.out.println("카드회사 : " + payment.getPay_card_co());
+		}
+		
+		if(map.get("res_num") == "") {
+			//날짜 정보 가지고와서 결제번호 무작위 생성
+			LocalDate date = LocalDate.now();
+			//년,월,일 따로 가지고옴
+			int year = date.getYear();
+			int month = date.getMonthValue();
+			int day = date.getDayOfMonth();
+			System.out.println("year : " + year);
+			System.out.println("month : " + month);
+			System.out.println("day : " + day);
+			//무작위 번호 앞에 년,월,일 붙여서 결제번호 생성
+			String res_num = "P" + year + (month + (day + UUID.randomUUID().toString().substring(0,7)));
+			System.out.println("res_num : " + res_num);
+			payment.setPay_num(res_num);
+		}
+		System.out.println(payment);
+		
+		//결제정보 인서트
+		int insertCount = paymentService.paymentSuccess(payment, sId);
+		if(insertCount > 0) {
+			//사용한 페이 금액 업데이트
+			
+			
+			return "true";
+	    }else {
+	    	return "false";
+	    }	
+	}
 }//paymentController
 
 

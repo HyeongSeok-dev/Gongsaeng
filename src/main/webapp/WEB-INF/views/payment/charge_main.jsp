@@ -50,12 +50,38 @@
         <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
 <%--         <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script> --%>
         <script src="${pageContext.request.contextPath }/resources/assets/js/main_noicheck.js"></script>
+<style type="text/css">
+<style type="text/css">
+        
+.custab{
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 5% 0;
+    box-shadow: 3px 3px 2px #ccc;
+    transition: 0.5s;
+}
+.custab:hover{
+    box-shadow: 3px 3px 0px transparent;
+    transition: 0.5s;
+}
+        
+table th {
+    background-color: #f2f2f2;  /* 원하는 색상으로 변경하세요. */
+}
+.table-striped tbody tr {
+    background-color: #ffffff !important; /* 흰색 배경 */
+}
 
+input[type="submit"]:hover {
+       background-color: #b3b3b3; /* 마우스를 올렸을 때의 색상 */
+}
+input[type="submit"]:active {
+    background-color: #f2f2f2; /* 클릭했을 때의 색상 */
+}
+
+</style>
 </head>
 
-<script type="text/javascript">
-	
-</script>
 
 <body>
 	<div class="container" >

@@ -2,7 +2,7 @@ package kr.co.gongsaeng.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.*;
 
 import kr.co.gongsaeng.vo.*;
 
@@ -17,6 +17,10 @@ public interface PaymentMapper {
 
 	//account 테이블, cash테이블 조인해서 모든정보 가지고오기
 	List<CashVO> allListSelect(String member_id);
+
+	//결제정보 인서트
+	int insertPayment(@Param("payment") PaymentVO payment, 
+			@Param("sId") String sId);
 
 
 

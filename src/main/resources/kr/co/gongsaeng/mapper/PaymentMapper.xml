@@ -26,4 +26,32 @@
 	    WHERE cash.member_id = #{member_id}
 	</select>
 	
+	<!-- 결제정보 인서트 -->
+	<insert id="insertPayment">
+		INSERT
+		INTO payment
+		VALUES (
+			null
+			, #{payment.res_num}
+			, #{com_idx}
+			, #{class_idx}
+			, #{sId}
+			, #{payment}
+			, #{discount_payment}
+			, #{payment.pay_method}
+			, now()
+			, #{payment.pay_card_co}
+			, --per_info_consent
+			, 1 --pay_status
+			, #{payment.pay_category}
+			, 0 --pay_cal_status
+			, null --refund_request_date
+			, null --refund_date
+			, #{payment.res_visit_date}
+			, #{payment.res_visit_time}
+			, --payment.res_request
+			, #{payment.res_member_count}
+		)
+	</insert>
+	
 </mapper>

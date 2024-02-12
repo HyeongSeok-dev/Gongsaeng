@@ -150,6 +150,13 @@
 						        <td>
 						        	${List.class_price * List.res_member_count}원
 						        </td>
+						        <td>
+						        	<input type="hidden" id="res_member_count" value="${List.res_member_count }">
+						        	<input type="hidden" id="res_visit_time" value="${List.res_visit_time }">
+						        	<input type="hidden" id="res_visit_date" value="${List.res_visit_date }">
+						        	<input type="hidden" id="class_idx" value="${List.class_idx }">
+						        	<input type="hidden" id="class_title" value="${List.class_title }">
+						        </td>
 						    </tr>
 						</table>
 	
@@ -372,7 +379,7 @@
 								<span class="total_info">총 결제 금액</span>
 								<span class="total_price" >
 								 
-									<span id="totalPayment_text">0</span>
+									<span id="totalPayment_text">1000</span>
 									원
 								</span>
 							</div>
@@ -388,7 +395,7 @@
 			<%--info페이지에 필요한 할인전 예약금액 --%>
 	<%-- 		<input type="hidden" value="${map.paymentInfo.totalPrice}" name="beforeDiscountTotalPrice"/> --%>
 <%-- 			<input type="hidden" value="${map.res.res_idx}" name="res_idx" id="res_idx"/> --%>
-<%-- 			<input type="hidden" value="${map.pay}" name="pay_num" id="pay_num"/> --%>
+			<input type="hidden" value="${map.pay}" name="pay_num" id="pay_num"/>
 			<!-- 결제자(회원)와 예약자가 다를 수 있기 때문에 결제자 정보 저장 -->
 <%-- 			<input type="hidden" value="${allList.user_email}" name="user_email" id="user_email"/> --%>
 <%-- 			<input type="hidden" value="${map.member.user_name}" name="user_name" id="user_name"/> --%>

@@ -76,19 +76,19 @@ $(document).ready(function() {
 		console.log("사용하기버튼 함수작동");
 		console.log("시퀀스 번호 : " + $("#user_seq_no"));
 		    // 계좌등록일이 없으면 계좌 등록하는 함수 호출
-		    if ($("#account_date") == null) {
+//		    if ($("#account_date") == null) {
 		        agreePage();
-		    } else {
+//		    } else {
 		        // 포인트가 없으면 충전하는 페이지로 이동
-		        if (useablePay == 0) {
-		            alert('포인트를 충전해주세요.');
-	    			window.open('payment/charge/main', '_blank', 'width=600, height=800 ');
-		        } else {
+//		        if (useablePay == 0) {
+//		            alert('포인트를 충전해주세요.');
+//	    			window.open('payment/charge/main', '_blank', 'width=600, height=800 ');
+//		        } else {
 				//포인트가 있으면 포인트 입력 유도
-		            alert("사용할 포인트를 입력해주세요");
-		            $(useablePay).focus();
-		        }
-		    }
+//		            alert("사용할 포인트를 입력해주세요");
+//		            $(useablePay).focus();
+//		        }
+//		    }
 		});
 
 	//==============================================================================
@@ -115,13 +115,19 @@ $(document).ready(function() {
 					console.log("kakao");
 					IMP.request_pay({
 					  pg: "kakaopay",
-					  merchant_uid: $("#class_idx").val(), //상품번호(클래스아이디)
-					  name: "공생 클래스 수강 - " + $("#class_title").val() +" "+ $("#res_visit_date").val() +
-					  	"" + $("#res_visit_time") + "부터시작" + $("#res_member_count").val() + "명",
+//					  merchant_uid: $("#class_idx").val(), //상품번호(클래스아이디)
+//					  name: "공생 클래스 수강 - " + $("#class_title").val() +" "+ $("#res_visit_date").val() +
+//					  	"" + $("#res_visit_time") + "부터시작" + $("#res_member_count").val() + "명",
 //					  amount: parseInt($("#payment").text().trim().replace(/,/g, '')), //할인된금액(최종결제금액)
-					  amount: $("#payment"), //할인된금액(최종결제금액)
-					  buyer_email: $("#member_email").val(), //생략가능(pg사에 따라 다름)
-					  buyer_name: $("#member_name").val() //생략가능(pg사에 따라 다름)
+//					  amount : $("#totalPayment_text").text(), //할인된금액(최종결제금액)
+//					  buyer_email: $("#member_email").val(), //생략가능(pg사에 따라 다름)
+//					  buyer_name: $("#member_name").val() //생략가능(pg사에 따라 다름)
+					  //=====================================================
+					  merchant_uid: "order_no_0001", // 상점에서 생성한 고유 주문번호
+					  name: "주문명:결제테스트",
+					  amount: 1004,
+					  buyer_email: "test@portone.io",
+					  buyer_name: "구매자이름",
 					}, function (rsp) { 
 						console.log("function");
 						console.log("rsp : " + rsp);
@@ -130,24 +136,25 @@ $(document).ready(function() {
 					      // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
 					      // jQuery로 HTTP 요청
 						console.log("imp_uid : " + rsp.imp_uid);
-					      $("#pay_num").val(rsp.imp_uid); //폼에 결제번호 넣기
-					      jQuery.ajax({
-					        url: "paymentPro", 
-					        method: "post",
-					        dataType: "json",
-					        data: $("form").serialize(), 
-					      }).done(function (data) {
-					        // 가맹점 서버 결제 API 성공시 로직
-					        console.log("성공 : " + data);
-					        if(data) {
-					        	window.location.href="payment/info?res_num=" + rsp.merchant_uid
-											+ "&discountPoint=" + discountPoint 
-											+ "&earnedPoints=" + earnedPoints
-											+ "&finalTotalPayment=" + totalPayment;
-							} else {
-								console.log("결제내역 데이터베이스 입력 실패")
-							}
-					      });
+						
+//					      $("#pay_num").val(rsp.imp_uid); //폼에 결제번호 넣기
+//					      jQuery.ajax({
+//					        url: "paymentPro", 
+//					        method: "post",
+//					        dataType: "json",
+//					        data: $("form").serialize()
+//					      }).done(function (data) {
+//					         //가맹점 서버 결제 API 성공시 로직
+//					        console.log("성공 : " + data);
+//					        if(data) {
+//					        	window.location.href="payment/info?res_num=" + rsp.merchant_uid
+//											+ "&discountPoint=" + discountPoint 
+//											+ "&earnedPoints=" + earnedPoints
+//											+ "&finalTotalPayment=" + totalPayment;
+//							} else {
+//								console.log("결제내역 데이터베이스 입력 실패")
+//							}
+//					      });  //ajax
 					  }
 					});
 	//		} else if($('input[type=radio][value="2"]').is(':checked')) { // 네이버페이
@@ -161,14 +168,14 @@ $(document).ready(function() {
 				    merchant_uid: $("#class_idx").val(), //상점에서 생성한 고유 주문번호
 				     name: "공생 클래스 수강 - " + $("#class_title").val() +" "+ $("#res_visit_date").val() +
 					  	"" + $("#res_visit_time") + "부터시작" + $("#res_member_count").val() + "명",
-//				    amount : $("#payment"),
+				    amount : $("#totalPayment_text").text(),
 //				    buyer_email: $("#member_email").val(), //생략가능(pg사에 따라 다름)
 //				    buyer_name: $("#member_name").val(), //생략가능(pg사에 따라 다름)
 //				    buyer_tel : $("#member_phone").val(),   //필수 파라미터 입니다.
 					//========================================================
 //					merchant_uid: "order_no_0001", //상점에서 생성한 고유 주문번호
 //				    name : '주문명:결제테스트',
-				    amount : 1004,
+//				    amount : 1004,
 ////				    buyer_email : 'test@portone.io',
 ////				    buyer_name : '구매자이름',
 ////				    buyer_tel : '010-1234-5678',   //필수 파라미터 입니다.
@@ -207,7 +214,7 @@ $(document).ready(function() {
 					    merchant_uid: $("#class_idx").val(), //상점에서 생성한 고유 주문번호
 				        name: "공생 클래스 수강 - " + $("#class_title").val() +" "+ $("#res_visit_date").val() +
 					  	 "" + $("#res_visit_time") + "부터시작" + $("#res_member_count").val() + "명",
-				        amount : $("#payment"),
+				          amount : $("#totalPayment_text").text(),
 				        buyer_email: $("#member_email").val(), //생략가능(pg사에 따라 다름)
 				        buyer_name: $("#member_name").val(), //생략가능(pg사에 따라 다름)
 						//===================================================
