@@ -295,9 +295,9 @@
 											</div>
 											<div class="col-md-6 pl-1">
 												<div class="form-group">
-													<label>&nbsp;&nbsp;&nbsp;기존 공방 주소</label>
+													<label>&nbsp;&nbsp;&nbsp;클래스 교육장소</label>
 													<div class="col-sm-8">
-															<input type="radio" name="addressOption" id="existingAddress" value="existing" checked> 기존 공방 주소 출력하기 <br>
+															<input type="radio" name="addressOption" id="existingAddress" value="existing" checked> 기존 공방 주소 <br>
 															<div class="form-group">
 																<div class="row address-row">
 																	<div class="col-6">
