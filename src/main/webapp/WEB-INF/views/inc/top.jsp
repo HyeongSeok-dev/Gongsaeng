@@ -33,6 +33,16 @@ function openCenteredWindow(url, name, width, height) {
 
     window.open(url, name, 'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top);
 }
+
+// 상단바 검색창 이벤트
+function search_keyword(event) {
+    let keyword = $("#search_input").val();
+
+    if(keyword.trim() === "") {
+        alert("키워드를 입력하세요.");
+        event.preventDefault(); // 폼 제출X
+    }
+}
 </script>
 
 <nav class="navbar navbar-default ">
@@ -281,12 +291,10 @@ function openCenteredWindow(url, name, width, height) {
             	
             	<li class="wow fadeInDown" data-wow-delay="0.2s" id="not_li">
             		<%-- 검색창 --%>
-<!-- 		            <form action="class/list" method="POST" class="css-4f6urn e1vfdeb40"> -->
-		            <form action="${pageContext.request.contextPath}/class/list" method="GET" class="css-4f6urn e1vfdeb40">
+		            <form action="${pageContext.request.contextPath}/class/list" method="GET" class="css-4f6urn e1vfdeb40" onsubmit="search_keyword(event)">
 						<div class="css-cdrjiy eeek7io3">
 							<div class="e1vj7tvj0 css-yypaje eeek7io1">
-<%-- 								<input data-testid="search-input" name="searchKeyword" placeholder="키워드를 입력하세요" type="text" maxlength="50" autocomplete="off" autocorrect="off" autocapitalize="off" class="css-xv0cfn eeek7io2 top_search" value="${param.searchKeyword}"> --%>
-								<input data-testid="search-input" name="className" placeholder="키워드를 입력하세요" type="text" maxlength="50" autocomplete="off" autocorrect="off" autocapitalize="off" class="css-xv0cfn eeek7io2 top_search" value="${searchData.className}">
+								<input id="search_input" name="className" placeholder="키워드를 입력하세요" type="text" maxlength="50" autocomplete="off" autocorrect="off" autocapitalize="off" class="css-xv0cfn eeek7io2 top_search" value="${searchData.className}">
 								<div class="suffix-wrapper css-kknodv">
 									<span role="img" rotate="0" class="css-aah4od e1yku2jn1"><svg aria-hidden="true" fill="currentColor" focusable="false" height="24" preserveaspectratio="xMidYMid meet" viewbox="0 0 24 24" width="24" class="css-7kp13n e1yku2jn0"><path clip-rule="evenodd" d="M14.9401 16.2929C13.5799 17.3622 11.8644 18 10 18C5.58172 18 2 14.4183 2 10C2 5.58172 5.58172 2 10 2C14.4183 2 18 5.58172 18 10C18 11.833 17.3835 13.522 16.3466 14.871L20.7071 19.2315C21.0976 19.622 21.0976 20.2552 20.7071 20.6457C20.3166 21.0362 19.6834 21.0362 19.2929 20.6457L14.9401 16.2929ZM16 10C16 13.3137 13.3137 16 10 16C6.68629 16 4 13.3137 4 10C4 6.68629 6.68629 4 10 4C13.3137 4 16 6.68629 16 10Z" fill-rule="evenodd" xmlns="http://www.w3.org/2000/svg"></path></svg></span>
 								</div>
@@ -309,14 +317,14 @@ function openCenteredWindow(url, name, width, height) {
 			            <div class="submenu-container">
 					        <li>
 				                <ul style="margin-top: 13px;">
-				                    <a href="index-2" class="dropdown-menu-toggle">바닥 시공</a>
-				                    <div class="dropdown-submenu" data-value="subMenu1">
+				                    <a href="javascript:void(0);" class="dropdown-menu-toggle mainMenu" data-value="1">바닥 시공</a>
+				                    <div class="dropdown-submenu subMenu">
 					                    <div style="border-left: 1px solid #ddd; margin-left: 15px; padding-left: 20px;">
-					                        <a href="index-2"><li>바닥재 시공</li></a>
-					                        <a href="index-2"><li>장판 시공</li></a>
-					                        <a href="index-2"><li>타일 시공</li></a>
-					                        <a href="index-2"><li>마루 시공</li></a>
-					                        <a href="index-2"><li>카페트 시공</li></a>
+					                        <a href="javascript:void(0);"><li data-value="1">바닥재 시공</li></a>
+					                        <a href="javascript:void(0);"><li data-value="2">장판 시공</li></a>
+					                        <a href="javascript:void(0);"><li data-value="3">타일 시공</li></a>
+					                        <a href="javascript:void(0);"><li data-value="4">마루 시공</li></a>
+					                        <a href="javascript:void(0);"><li data-value="5">카페트 시공</li></a>
 					                    </div>
 				                    </div>
 				                </ul>
@@ -326,14 +334,14 @@ function openCenteredWindow(url, name, width, height) {
 			            <div class="submenu-container">
 					        <li>
 				                <ul>
-				                    <a href="index-2" class="dropdown-menu-toggle">벽/천장 시공</a>
-				                    <div class="dropdown-submenu" data-value="subMenu2">
+				                    <a href="javascript:void(0);" class="dropdown-menu-toggle mainMenu" data-value="2">벽/천장 시공</a>
+				                    <div class="dropdown-submenu subMenu">
 					                    <div style="border-left: 1px solid #ddd; margin-left: 15px; padding-left: 20px;">
-					                        <a href="index-2"><li>도배 시공</li></a>
-					                        <a href="index-2"><li>칸막이 시공</li></a>
-					                        <a href="index-2"><li>페인트 시공</li></a>
-					                        <a href="index-2"><li>방음 시공</li></a>
-					                        <a href="index-2"><li>단열 필름 시공</li></a>
+					                        <a href="javascript:void(0);"><li data-value="1">도배 시공</li></a>
+					                        <a href="javascript:void(0);"><li data-value="2">칸막이 시공</li></a>
+					                        <a href="javascript:void(0);"><li data-value="3">페인트 시공</li></a>
+					                        <a href="javascript:void(0);"><li data-value="4">방음 시공</li></a>
+					                        <a href="javascript:void(0);"><li data-value="5">단열 필름 시공</li></a>
 					                    </div>
 				                    </div>
 				                </ul>
@@ -343,14 +351,14 @@ function openCenteredWindow(url, name, width, height) {
 			            <div class="submenu-container">
 					        <li>
 				                <ul>
-				                    <a href="index-2" class="dropdown-menu-toggle">부분 인테리어</a>
-				                    <div class="dropdown-submenu" data-value="subMenu3">
+				                    <a href="javascript:void(0);" class="dropdown-menu-toggle mainMenu" data-value="3">부분 인테리어</a>
+				                    <div class="dropdown-submenu subMenu">
 					                    <div style="border-left: 1px solid #ddd; margin-left: 15px; padding-left: 20px;">
-					                        <a href="index-2"><li>샷시 설치 및 수리</li></a>
-					                        <a href="index-2"><li>화장실 리모델링</li></a>
-					                        <a href="index-2"><li>주방 리모델링</li></a>
-					                        <a href="index-2"><li>가구 리폼</li></a>
-					                        <a href="index-2"><li>붙박이장 시공</li></a>
+					                        <a href="javascript:void(0);"><li data-value="1">샷시 설치 및 수리</li></a>
+					                        <a href="javascript:void(0);"><li data-value="2">화장실 리모델링</li></a>
+					                        <a href="javascript:void(0);"><li data-value="3">주방 리모델링</li></a>
+					                        <a href="javascript:void(0);"><li data-value="4">가구 리폼</li></a>
+					                        <a href="javascript:void(0);"><li data-value="5">붙박이장 시공</li></a>
 					                    </div>
 				                    </div>
 				                </ul>
@@ -360,14 +368,14 @@ function openCenteredWindow(url, name, width, height) {
 			            <div class="submenu-container">
 					        <li>
 				                <ul>
-				                    <a href="index-2" class="dropdown-menu-toggle">야외 시공</a>
-				                    <div class="dropdown-submenu" data-value="subMenu4">
+				                    <a href="javascript:void(0);" class="dropdown-menu-toggle mainMenu" data-value="4">야외 시공</a>
+				                    <div class="dropdown-submenu subMenu">
 					                    <div style="border-left: 1px solid #ddd; margin-left: 15px; padding-left: 20px;">
-					                        <a href="index-2"><li>조경 공사</li></a>
-					                       	<a href="index-2"><li>옥상 공사</li></a>
-					                        <a href="index-2"><li>지붕 공사</li></a>
-					                        <a href="index-2"><li>태양광 발전</li></a>
-					                        <a href="index-2"><li>외벽 리모델링</li></a>
+					                        <a href="javascript:void(0);"><li data-value="1">조경 공사</li></a>
+					                       	<a href="javascript:void(0);"><li data-value="2">옥상 공사</li></a>
+					                        <a href="javascript:void(0);"><li data-value="3">지붕 공사</li></a>
+					                        <a href="javascript:void(0);"><li data-value="4">태양광 발전</li></a>
+					                        <a href="javascript:void(0);"><li data-value="5">외벽 리모델링</li></a>
 					                    </div>
 				                    </div>
 				                </ul>
@@ -378,14 +386,14 @@ function openCenteredWindow(url, name, width, height) {
 			            <div class="submenu-container">
 					        <li>
 				                <ul>
-				                    <a href="index-2" class="dropdown-menu-toggle">종합 인테리어</a>
-				                    <div class="dropdown-submenu" data-value="subMenu5">
+				                    <a href="javascript:void(0);" class="dropdown-menu-toggle mainMenu" data-value="5">종합 인테리어</a>
+				                    <div class="dropdown-submenu subMenu">
 					                    <div style="border-left: 1px solid #ddd; margin-left: 15px; padding-left: 20px;">
-					                        <a href="index-2"><li>집 인테리어</li></a>
-					                        <a href="index-2"><li>상업공간 인테리어</li></a>
-					                        <a href="index-2"><li>주택 리모델링</li></a>
-					                        <a href="index-2"><li>집 수리</li></a>
-					                        <a href="index-2"><li>인테리어 소품</li></a>
+					                        <a href="javascript:void(0);"><li data-value="1">집 인테리어</li></a>
+					                        <a href="javascript:void(0);"><li data-value="2">상업공간 인테리어</li></a>
+					                        <a href="javascript:void(0);"><li data-value="3">주택 리모델링</li></a>
+					                        <a href="javascript:void(0);"><li data-value="4">집 수리</li></a>
+					                        <a href="javascript:void(0);"><li data-value="5">인테리어 소품</li></a>
 					                    </div>
 				                    </div>
 				                </ul>
@@ -395,12 +403,12 @@ function openCenteredWindow(url, name, width, height) {
 			            <div class="submenu-container">
 					        <li>
 				                <ul>
-				                    <a href="index-2" class="dropdown-menu-toggle">기타 시공</a>
-				                    <div class="dropdown-submenu" data-value="subMenu6">
+				                    <a href="javascript:void(0);" class="dropdown-menu-toggle mainMenu" data-value="6">기타 시공</a>
+				                    <div class="dropdown-submenu subMenu">
 					                    <div style="border-left: 1px solid #ddd; margin-left: 15px; padding-left: 20px;">
-					                        <a href="index-2"><li>줄눈 시공</li></a>
-					                        <a href="index-3"><li>단열 시공</li></a>
-					                        <a href="index-4"><li>미장 시공</li></a>
+					                        <a href="javascript:void(0);"><li data-value="1">줄눈 시공</li></a>
+					                        <a href="javascript:void(0);"><li data-value="2">단열 시공</li></a>
+					                        <a href="javascript:void(0);"><li data-value="3">미장 시공</li></a>
 					                    </div>
 				                    </div>
 				                </ul>
@@ -427,7 +435,7 @@ function openCenteredWindow(url, name, width, height) {
                         <li><a href="${pageContext.request.contextPath}/cs/notice">공지사항</a></li>
                         <li><a href="${pageContext.request.contextPath}/cs/faq">자주 묻는 질문</a></li>
                         <li><a href="javascript:void(0);" onclick="openCenteredWindow('${pageContext.request.contextPath}/cs/qna', 'newwindow', 570, 680); return false;">1:1 문의</a></li>
-                        <li><a href="javascript:void(0);" onclick="openCenteredWindow('${pageContext.request.contextPath}/chat/chatBot', 'newwindow', 600, 800); return false;">챗봇</a></li>
+              			<li><a href="javascript:void(0);" onclick="openCenteredWindow('${pageContext.request.contextPath}/chat/chatBot', 'newwindow', 600, 800); return false;">챗봇</a></li>
                     </ul>
                 </li>
                 
