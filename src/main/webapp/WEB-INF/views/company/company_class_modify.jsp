@@ -397,7 +397,8 @@
 <%-- 							        <c:forEach items="${classDetail.schedules}" var="schedule"> --%>
 							            <tr>
 <%-- 							                <td><div id="displayDays">${classDetail.class_day}</div></td> --%>
-							                <td>${classDetail.class_day }</td>
+<%-- 							                <td>${classDetail.class_day }</td> --%>
+							                <td>${selectedDays}</td>
 							                <td>${classDetail.class_start_date} ~ ${classDetail.class_end_date} </td>
 							                <td>${classDetail.class_start_time} ~ ${classDetail.class_end_time}</td>
 							                <td>${classDetail.class_member_count}</td>
@@ -635,19 +636,19 @@
 									    <div class="col-md-10">
                								 <c:set var="offeringList" value="${fn:split(classDetail.class_offering, ',')}" />
 									       <div class="form-group">
-						                    <input type="checkbox" name="class_offering" value="1" id="workshop" ${fn:contains(offeringList, '1') ? 'checked' : ''}>&nbsp;
+						                    <input type="checkbox" name="class_offering" value="1" id="workshop">&nbsp;
 						                    <label for="workshop" class="register3_text_label">공방 보유</label>
 						
-						                    <input type="checkbox" name="class_offering" value="1" id="park" ${fn:contains(offeringList, '1') ? 'checked' : ''}>&nbsp;
+						                    <input type="checkbox" name="class_offering" value="1" id="park">&nbsp;
 						                    <label for="park" class="register3_text_label">주차 공간</label>
 						
-						                    <input type="checkbox" name="class_offering" value="1" id="wifi" ${fn:contains(offeringList, '1') ? 'checked' : ''}>&nbsp;
+						                    <input type="checkbox" name="class_offering" value="1" id="wifi"}>&nbsp;
 						                    <label for="wifi" class="register3_text_label">와이파이</label>
 						
-						                    <input type="checkbox" name="class_offering" value="1" id="coffee" ${fn:contains(offeringList, '1') ? 'checked' : ''}>&nbsp;
+						                    <input type="checkbox" name="class_offering" value="1" id="coffee">&nbsp;
 						                    <label for="coffee" class="register3_text_label">커피 별도구매</label>
 						
-						                    <input type="checkbox" name="class_offering" value="1" id="bus" ${fn:contains(offeringList, '1') ? 'checked' : ''}>&nbsp;
+						                    <input type="checkbox" name="class_offering" value="1" id="bus">&nbsp;
 						                    <label for="bus" class="register3_text_label">대중교통 용이</label>
 						                </div>
 									    </div>
@@ -655,10 +656,10 @@
 									<div class="row">
 									    <div class="col-md-12">
 									          <div class="form-group">
-							                    <input type="checkbox" name="class_offering" value="1" id="taxi" ${fn:contains(offeringList, '1') ? 'checked' : ''}>&nbsp;
+							                    <input type="checkbox" name="class_offering" value="1" id="taxi" >&nbsp;
 							                    <label for="taxi" class="register3_text_label">택시/자가용 추천</label>
 
-							                    <input type="checkbox" name="class_offering" value="1" id="snack" ${fn:contains(offeringList, '1') ? 'checked' : ''}>&nbsp;
+							                    <input type="checkbox" name="class_offering" value="1" id="snack" >&nbsp;
 							                    <label for="snack" class="register3_text_label">음료/간식 제공</label>
               							  </div>
 									    </div>

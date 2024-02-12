@@ -688,9 +688,9 @@ function addScheduleRow(date, dayIndex, startTime, endTime, maxParticipants) {
 	    // 모든 체크박스가 선택되었는지 확인
 	    if (isTermsAgreed && isPrivacyPolicyAgreed && isRefundPolicyAgreed) {
 	        // 모든 조건이 충족 -> 실제 검수 신청 로직 처리
-	        alert('검수 신청이 완료되었습니다.');
+	        alert('클래스 등록이 완료되었습니다.');
 	        // 검수 신청 관련 로직 추가
 	    } else {
-	        alert('모든 약관에 동의해야 검수 신청이 가능합니다.');
+	        alert('모든 약관에 동의해야 클래스 등록이 가능합니다.');
 	    }
 	} 

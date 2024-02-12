@@ -174,7 +174,8 @@ public class CompanyController {
 	}
 	
 	@PostMapping("company/classRegisterPro")
-	public String classRegisterPro(HttpSession session, Model model, HttpServletRequest request, ClassVO gclass, @RequestParam("class_offering") int[] classOfferings) {//		if(session.getAttribute("sId") == null) {
+	public String classRegisterPro(HttpSession session, Model model, HttpServletRequest request, ClassVO gclass, @RequestParam("class_offering") int[] classOfferings,
+	@RequestParam("class_day") String[] classDay) {//		if(session.getAttribute("sId") == null) {
 //			model.addAttribute("msg", "로그인이 필요합니다");
 //			model.addAttribute("targetURL", "MemberLoginForm");
 //			return "forward";
@@ -209,6 +210,26 @@ public class CompanyController {
 	        
 	        System.out.println(result);
 	        gclass.setClass_offering(result);
+	    	
+	    }
+	    
+	    // ------------------------------------------------------
+	    // 요일
+	    if (classDay != null) {
+	    	
+	    	char[] stringArray = new char[7];
+	    	for (int i = 0; i < stringArray.length; i++) {
+	    		stringArray[i] = '0';
+	    	}
+	    	for (int i = 0; i < stringArray.length; i++) {
+	    		if (classDay[i].equals("on")) {
+	    			stringArray[i] = '1'; // 배열 인덱스 조정
+	    		}
+	    	}
+	    	String result = new String(stringArray);
+	    	
+	    	System.out.println(result);
+	    	gclass.setClass_day(result);
 	    	
 	    }
 	    
@@ -434,25 +455,38 @@ public class CompanyController {
 		// "ClassModifyForm" 서블릿 요청에 대한 글 수정 폼 포워딩 처리
 		@GetMapping("company/classModifyForm")
 		public String boardModifyForm(@RequestParam("class_idx") int classIdx, HttpSession session, Model model) {
+		
+	        // 클래스 상세정보 조회
+	        Map<String, Object> classDetail = classService.getClassDetail(classIdx);
+	        if (classDetail != null) {
+	            String classDays = (String) classDetail.get("class_day"); // 가정: classDays 정보가 Map에 포함되어 있음
+	            // 요일을 나타내는 배열
+	            String[] daysOfWeek = {"월", "화", "수", "목", "금", "토", "일"};
+	            StringBuilder selectedDays = new StringBuilder();
 
-		
-			// 클래스 상세정보 조회 
-			Map<String, Object> classDetail = classService.getClassDetail(classIdx);
-			if(classDetail != null) {
-				model.addAttribute("classDetail",classDetail);
-				System.out.println("클래스 상세정보 >>>>>>>>>" + classDetail);
-				
-				// 회원정보 수정페이지로 이동
-				return "company/company_class_modify";
-				
-			} else {
-		
-				return "redirect:/company/class";
-			}
-		
-		}
+	            for (int i = 0; i < classDays.length(); i++) {
+	                if (classDays.charAt(i) == '1') {
+	                    // 선택된 요일을 StringBuilder에 추가
+	                    if (selectedDays.length() > 0) {
+	                        selectedDays.append(", ");
+	                    }
+	                    selectedDays.append(daysOfWeek[i]);
+	                }
+	            }
+
+	            // 선택된 요일 문자열을 모델에 추가
+	            model.addAttribute("selectedDays", selectedDays.toString());
+	            model.addAttribute("classDetail", classDetail);
+
+	            System.out.println("클래스 상세정보 >>>>>>>>>" + classDetail);
+	            // 회원정보 수정 페이지로 이동
+	            return "company/company_class_modify";
+	        } else {
+	            return "redirect:/company/class";
+	        }
+	    }
+	
 		// ----------------------------------------------------------------
-		// 파일 삭제 AJAX 요청에 대한 응답 데이터 생성 및 전송을 위해 @ResponseBody 지정
 		// 파일 삭제 AJAX 요청에 대한 응답 데이터 생성 및 전송을 위해 @ResponseBody 지정
 			@ResponseBody
 			@PostMapping("ClassDeleteFile")
