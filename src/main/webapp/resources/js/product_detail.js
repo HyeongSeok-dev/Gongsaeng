@@ -1,47 +1,47 @@
 $(document).ready(function() {
-	
-	
+
+
 	var contextRoot = window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
 
 	//결제하기버튼 누르면 결제페이지로 이동
-    $("#payment").click(function() {
+	$("#payment").click(function() {
 		console.log("결제하기 버튼 작동");
-	    //결제하기 화면으로 넘길때 "pay" 도 같이 넘기기
-	     var url = "payment?type=pay";
-	
-	    window.location.href = url;
-	
-	    console.log(url);
-    });
+		//결제하기 화면으로 넘길때 "pay" 도 같이 넘기기
+		var url = "payment?type=pay";
+
+		window.location.href = url;
+
+		console.log(url);
+	});
 
 	fetchRestaurants('near');
 	//즐겨찾기 누르기
-	
-	 $(".favorite_button").click(function() {
-        var comId = $("#com_id").val(); // 회사 아이디 가져오기
 
-        // Ajax 요청 보내기
-        $.ajax({
-            type: "POST",
-            url: "favor",
-            data: { com_id: comId },
-            success: function(response) {
-                if (response != 'notLogin') {
-                    if (response === 'true') {
-                        $(".favor_container").html("<div class='favor_on'><span id='favorite_button'> 북마크 </span></div>");
-                    } else if (response === 'false') {
-                        $(".favor_container").html("<div class='favor_off'><span id='favorite_button'> 북마크 </span></div>");
-                    }
-                } else {
-                    alert('로그인 후 북마크가 가능합니다!');
-                    window.location.href = "../login";
-                }
-            },
-            error: function() {
-                alert("오류가 발생했습니다.");
-            }
-        });
-    });
+	$(".favorite_button").click(function() {
+		var comId = $("#com_id").val(); // 회사 아이디 가져오기
+
+		// Ajax 요청 보내기
+		$.ajax({
+			type: "POST",
+			url: "favor",
+			data: { com_id: comId },
+			success: function(response) {
+				if (response != 'notLogin') {
+					if (response === 'true') {
+						$(".favor_container").html("<div class='favor_on'><span id='favorite_button'> 북마크 </span></div>");
+					} else if (response === 'false') {
+						$(".favor_container").html("<div class='favor_off'><span id='favorite_button'> 북마크 </span></div>");
+					}
+				} else {
+					alert('로그인 후 북마크가 가능합니다!');
+					window.location.href = "../login";
+				}
+			},
+			error: function() {
+				alert("오류가 발생했습니다.");
+			}
+		});
+	});
 
 
 
@@ -68,7 +68,7 @@ $(document).ready(function() {
 			fetchRestaurants(sortValue);
 		});
 	});
-	
+
 
 
 	$('#reservation-confirm-button').click(function() {
@@ -106,13 +106,13 @@ $(document).ready(function() {
 				window.location.href = contextRoot + response.redirectURL; // Redirect to the reservation page
 			},
 			error: function(xhr) { // xhr은 XMLHttpRequest 객체입니다.
-			    var response = xhr.responseJSON; // JSON 응답을 객체로 변환
-			    if(response && response.error) {
-			        alert(response.message);
-			        if(response.redirectURL != null){
-			        window.location.href = response.redirectURL; // Redirect
+				var response = xhr.responseJSON; // JSON 응답을 객체로 변환
+				if (response && response.error) {
+					alert(response.message);
+					if (response.redirectURL != null) {
+						window.location.href = response.redirectURL; // Redirect
 					}
-			    }
+				}
 			}
 		});
 	});
@@ -252,15 +252,34 @@ $(document).ready(function() {
 });
 
 function mapPopup(address, name) {
-    var encodedAddress = encodeURIComponent(address);
-    var encodedName = encodeURIComponent(name);
-    var url = "map?address=" + encodedAddress + "&name=" + encodedName;
+	var encodedAddress = encodeURIComponent(address);
+	var encodedName = encodeURIComponent(name);
+	var url = "map?address=" + encodedAddress + "&name=" + encodedName;
 	var windowName = "MapPopup";
 	var windowSize = "width=1000,height=800,left=200,top=200";
 
 	window.open(url, windowName, windowSize);
 }
 
+function issueCoupon(com_idx) {
+
+	$.ajax({
+		url: "issueCoupon",
+		data: {
+			com_idx: com_idx,
+		},
+		dataType: "json",
+		success: function(result) {
+			if (result == true) {
+				alert("쿠폰이 발급 되었습니다.")
+			} else if(result == false) {
+				alert("이미 발급되었습니다.");
+			}else{
+				alert("쿠폰발급에 실패했습니다.");
+			}
+		}
+	});
+}
 /*tests*/
 //// reviewList가 있다고 가정
 //var reviewList = [/* 리뷰 데이터 */];

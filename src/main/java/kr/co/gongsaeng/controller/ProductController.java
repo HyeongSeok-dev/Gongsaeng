@@ -17,11 +17,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.gongsaeng.service.ProductService;
 import kr.co.gongsaeng.vo.BookmarkVO;
 import kr.co.gongsaeng.vo.ClassVO;
 import kr.co.gongsaeng.vo.CompanyVO;
+import kr.co.gongsaeng.vo.MemberVO;
 import kr.co.gongsaeng.vo.ReviewVO;
 
 @Controller
@@ -127,6 +129,12 @@ public class ProductController {
 		model.addAttribute("company", com);
 
 		return "product_detail";
+	}
+	
+	@ResponseBody
+	@GetMapping("issueCoupon")
+	public String issueCoupon(HttpSession session, Model model, @RequestParam("com_idx") String comIdx) {
+		return"true";
 	}
 
 }

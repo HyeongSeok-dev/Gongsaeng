@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -69,8 +69,7 @@
 							onclick="location.href='modifyProfile'">
 					</c:when>
 					<c:when test="${fn:contains(member.member_img,'http')}">
-						<img alt="profile" src="${member.member_img}"
-							style="cursor: pointer; max-height: 250px;" onclick="location.href='modifyProfile'">
+						<img alt="profile" src="${member.member_img}" style="cursor: pointer; max-height: 250px;" onclick="location.href='modifyProfile'">
 					</c:when>
 					<c:otherwise>
 						<img alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}" style="cursor: pointer; max-height: 250px;"
@@ -88,7 +87,7 @@
 								<div id="alert" class="panel-collapse collapse">
 									<ul class="list-group">
 										<li class="list-group-item cursor " onclick="javascript:location.href='alert'">알림</li>
-<!-- 										<li class="list-group-item cursor" onclick="javascript:location.href='chat'">채팅</li> -->
+										<!-- 										<li class="list-group-item cursor" onclick="javascript:location.href='chat'">채팅</li> -->
 									</ul>
 								</div>
 							</li>
@@ -97,7 +96,7 @@
 									<ul class="list-group">
 										<li class="list-group-item cursor" onclick="javascript:location.href='coupon'">쿠폰</li>
 										<li class="list-group-item cursor" onclick="javascript:location.href='cash'">캐쉬</li>
-										
+
 									</ul>
 								</div>
 							</li>
@@ -153,12 +152,17 @@
 					</div>
 					<div class="panel-body">
 						<div class="row text-center">
-						
-							<div class="col-xs-2"><c:if test="${empty myMainInfo.coupon_count}">0</c:if>${myMainInfo.coupon_count}개</div>
-							<div class="col-xs-2"><c:if test="${empty myMainInfo.total_cash}">0</c:if>${myMainInfo.total_cash}원</div>
-							<div class="col-xs-2"><c:if test="${empty myMainInfo.total_point}">0</c:if>${myMainInfo.total_point}포인트</div>
-							<div class="col-xs-3"><c:if test="${empty myMainInfo.res_count}">0</c:if>${myMainInfo.res_count}건</div>
-							<div class="col-xs-3"><c:if test="${empty myMainInfo.cancel_count}">0</c:if>${myMainInfo.cancel_count}건</div>
+
+							<div class="col-xs-2">
+								<c:if test="${empty myMainInfo.coupon_count}">0</c:if>${myMainInfo.coupon_count}개</div>
+							<div class="col-xs-2">
+								<c:if test="${empty myMainInfo.total_cash}">0</c:if>${myMainInfo.total_cash}원</div>
+							<div class="col-xs-2">
+								<c:if test="${empty myMainInfo.total_point}">0</c:if>${myMainInfo.total_point}포인트</div>
+							<div class="col-xs-3">
+								<c:if test="${empty myMainInfo.res_count}">0</c:if>${myMainInfo.res_count}건</div>
+							<div class="col-xs-3">
+								<c:if test="${empty myMainInfo.cancel_count}">0</c:if>${myMainInfo.cancel_count}건</div>
 						</div>
 					</div>
 				</div>
@@ -223,16 +227,15 @@
 											<div class="carousel-inner" role="listbox">
 												<c:forEach var="bookmark" items="${bookmarkList}" varStatus="i">
 													<div class="item <c:if test="${i.index eq 0}">active</c:if>">
-														<%-- 												<a href="../product/detail?class_idx=${bookmark.class_idx}"><img src="${pageContext.request.contextPath }/resources/upload/${bookmark.class_pic1}" alt=""></a> --%>
 														<a href="../product/detail?class_idx=${bookmark.class_idx}"><img
-															src="${pageContext.request.contextPath }/resources/img/payment_test.png" alt="Image 1"></a>
+															src="${pageContext.request.contextPath }/resources/upload/${bookmark.class_pic1}" alt=""></a>
 													</div>
 												</c:forEach>
 											</div>
 
 											<!-- Controls -->
-											<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev"> <span
-												class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span>
+											<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"
+												aria-hidden="true"></span> <span class="sr-only">Previous</span>
 											</a> <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next"> <span
 												class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span>
 											</a>
@@ -269,8 +272,8 @@
 											</div>
 
 											<!-- Controls -->
-											<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev"> <span
-												class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span>
+											<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"
+												aria-hidden="true"></span> <span class="sr-only">Previous</span>
 											</a> <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next"> <span
 												class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span>
 											</a>
