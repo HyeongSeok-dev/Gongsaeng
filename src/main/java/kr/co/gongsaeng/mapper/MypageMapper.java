@@ -55,5 +55,9 @@ public interface MypageMapper {
 
 	int deleteAlert(Map<String, String> map);
 
+	void updateAlertReadStatus(MemberVO member);
+
+	List<Map<String, String>> selectReviewList(MemberVO member);
+
 
 }

@@ -132,5 +132,15 @@ public class MypageService {
 		return mapper.deleteAlert(map);
 	}
 
+	public void changeAlertReadStatus(MemberVO member) {
+		// TODO Auto-generated method stub
+		mapper.updateAlertReadStatus(member);
+	}
+
+	public List<Map<String, String>> getReviewList(MemberVO member) {
+		// TODO Auto-generated method stub
+		return mapper.selectReviewList(member);
+	}
+
 	
 }

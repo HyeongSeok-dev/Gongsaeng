@@ -300,6 +300,16 @@ public class AdminService {
 	public int modifyClass(ClassVO gclass) {
 		return mapper.updateModifyClass(gclass);
 	}
+	public List<String> getMemberIdList() {
+		// TODO Auto-generated method stub
+		return mapper.selectMemberIdList();
+	}
+
+	public int registCouponToAdmin(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return mapper.insertCouponToAdmin(map);
+	}
+
 
 
 

@@ -738,5 +738,30 @@
 		ORDER BY review_date DESC
 	</select>
 	
+	<select id="selectMemberIdList" resultType="String">
+		SELECT member_id
+		FROM member
+		WHERE member_id != 'admin1234'
+		AND member_category = 1
+		AND member_status = 1
+	</select>
 	
+	<insert id="insertCouponToAdmin">
+	        INSERT INTO coupon
+	        VALUES
+	    <foreach collection="member_id" item="id" separator=",">
+	        (
+	            null
+	            ,#{coupon_name} 
+	            ,#{id}
+	            ,4
+	            ,#{coupon_value}
+	            ,#{coupon_Issue_date}
+	            ,#{coupon_valid_date}
+	            ,1
+	            ,#{coupon_min_price}
+	        )
+    	</foreach>
+	
+	</insert>
 </mapper>

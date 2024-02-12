@@ -2,6 +2,8 @@ package kr.co.gongsaeng.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,6 +20,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -39,7 +43,7 @@ public class MypageController {
 	MypageService service;
 
 	@GetMapping("mypage/main")
-	public String main(HttpSession session, Model model, MemberVO member, HttpServletRequest request) {
+	public String main(HttpSession session, Model model, MemberVO member, HttpServletRequest request) throws UnsupportedEncodingException {
 		String sId = (String) session.getAttribute("sId");
 		if (sId == null) {
 			model.addAttribute("msg", "로그인이 필요합니다");
@@ -57,47 +61,19 @@ public class MypageController {
 		List<Map<String, Object>> bookmarkList = service.getBookmarkInfo(member);
 		List<Map<String, Object>> followingList = service.getFollowingInfo(member);
 
-		// 상품페이지에 넣을 쿠키 추가 코드
-//		 String recent = class_idx + "|" + imageUrl+ "|" + class_title + "|" + com_name;
-//		    Cookie[] cookies = request.getCookies();
-//		    if (cookies != null) {
-//		        for (Cookie cookie : cookies) {
-//		            if (cookie.getName().equals("RecentClass")) {
-//		                recent = cookie.getValue() + "," + recent;
-//		                break;
-//		            }
-//		        }
-//		    }
-//
-//		    // 쿠키 생성
-//		    Cookie cookie = new Cookie("RecentClass", recent);
-//
-//		    // 쿠키 유효기간 설정 (예: 7일)
-//		    cookie.setMaxAge(60 * 60 * 24 * 7);
-//
-//		    // 응답에 쿠키 추가
-//		    response.addCookie(cookie);
-
-		List<Map<String, String>> recentClasses = new ArrayList<>();
+		
 	    Cookie[] cookies = request.getCookies();
+	    JSONArray recentClasses = new JSONArray();
 	    if (cookies != null) {
-	        for (Cookie cookie : cookies) {
-	            if (cookie.getName().equals("RecentClass")) {
-	                String[] productInfos = cookie.getValue().split(",");
-	                for (String productInfo : productInfos) {
-	                    String[] details = productInfo.split("\\|");
-	                    Map<String, String> recentClass = new HashMap<>();
-	                    recentClass.put("class_idx", details[0]);
-	                    recentClass.put("imageUrl", details[1]);
-	                    recentClass.put("class_title", details[2]);
-	                    recentClass.put("com_name", details[3]);
-	                    recentClasses.add(recentClass);
-	                }
-	                break;
-	            }
-	        }
-	    }
-	    
+	    	  for (Cookie cookie : cookies) {
+	    	    if (cookie.getName().equals("RecentClasses")) {
+	    	      // 쿠키 값 파싱
+	    	      recentClasses.put(cookie.getValue());
+	    	      // 최근본 상품 정보 출력
+	    	    }
+	    	  }
+	    	}
+	    System.out.println(recentClasses);
 		model.addAttribute("myMainInfo", myMainInfo);
 		model.addAttribute("unReadChats", unReadChats);
 		model.addAttribute("unReadAlert", unReadAlert);
@@ -218,6 +194,8 @@ public class MypageController {
 		member = service.getMemberInfo(member);
 		
 		List<Map<String, Object>> alertList = service.getAlertList(member);
+		
+		service.changeAlertReadStatus(member);
 		
 		model.addAttribute("member", member);
 		model.addAttribute("alertList", alertList);
@@ -408,7 +386,11 @@ public class MypageController {
 		}
 		member.setMember_id(sId);
 		member = service.getMemberInfo(member);
+		
+		List<Map<String, String>> reviewList = service.getReviewList(member);
+		
 		model.addAttribute("member", member);
+		model.addAttribute("reviewList", reviewList);
 		return "mypage/my_review_list";
 	}
 

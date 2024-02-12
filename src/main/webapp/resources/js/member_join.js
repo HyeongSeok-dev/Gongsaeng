@@ -13,15 +13,13 @@ $(document).ready(function() {
 	});
 
 	//생일 선택시 오늘이후 날짜 선택 막아놓음
-	window.onload = function() {
-		var today = new Date();
-		var dd = String(today.getDate()).padStart(2, '0');
-		var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-		var yyyy = today.getFullYear();
+	var today = new Date();
+	var dd = String(today.getDate()).padStart(2, '0');
+	var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+	var yyyy = today.getFullYear();
 
-		today = yyyy + '-' + mm + '-' + dd;
-		document.getElementById("com_birth").max = today;
-	}
+	today = yyyy + '-' + mm + '-' + dd;
+	document.getElementById("com_birth").max = today;
 
 
 	let phone = false; //전화번호 양식 검사
@@ -257,7 +255,7 @@ $(document).ready(function() {
 				url: "phoneAuthRequest?member_phone=" + member_phone,
 				cache: false,
 				success: function(data) {
-					if (data == "true")  {
+					if (data == "true") {
 						alert("인증번호 발송이 완료되었습니다.\n휴대폰에서 인증번호를 확인해 주세요.");
 					} else {
 						alert("인증번호 발송이 실패하였습니다.\n전화번호를 다시 확인해 주세요 ");
@@ -274,11 +272,11 @@ $(document).ready(function() {
 			url: "phoneAuthIsCorrect?phone_auth_code=" + phone_auth_code,
 			cache: false,
 			success: function(data) {
-				if (data == "true") { 
+				if (data == "true") {
 					$("#phoneAuthResult").html("인증 성공");
 					$("#phoneAuthResult").css("color", "blue");
 					phoneAuthSuccess = true;
-				} else { 
+				} else {
 					$("#phoneAuthResult").html("인증번호를 잘못 입력하셨습니다.");
 					$("#phoneAuthResult").css("color", "red");
 					phoneAuthSuccess = false;

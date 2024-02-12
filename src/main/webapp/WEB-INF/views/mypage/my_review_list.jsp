@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -38,7 +39,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/responsive.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/global.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/mypage.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/my_review.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 <script src="${pageContext.request.contextPath }/resources/assets/js/modernizr-2.6.2.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
@@ -65,15 +67,13 @@
 			<div class="col-sm-3">
 				<c:choose>
 					<c:when test="${empty member.member_img}">
-						<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" style="cursor: pointer;"
-							onclick="location.href='modifyProfile'">
+						<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" style="cursor: pointer;" onclick="location.href='modifyProfile'">
 					</c:when>
 					<c:when test="${fn:contains(member.member_img,'http')}">
 						<img alt="profile" src="${member.member_img}" style="cursor: pointer;" onclick="location.href='modifyProfile'">
 					</c:when>
 					<c:otherwise>
-						<img alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}" style="cursor: pointer;"
-							onclick="location.href='modifyProfile'">
+						<img alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}" style="cursor: pointer;" onclick="location.href='modifyProfile'">
 					</c:otherwise>
 				</c:choose>
 				<div class="panel panel-default">
@@ -96,7 +96,7 @@
 									<ul class="list-group">
 										<li class="list-group-item cursor" onclick="javascript:location.href='coupon'">쿠폰</li>
 										<li class="list-group-item cursor" onclick="javascript:location.href='cash'">캐쉬</li>
-										
+
 									</ul>
 								</div>
 							</li>
@@ -139,9 +139,58 @@
 			</div>
 			<!-- 우측 본문영역 -->
 			<div class="col-sm-9">
-			
-			</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h2 class="panel-title">내가 쓴 리뷰</h2>
+					</div>
+				</div>
+				<div class="reviews-container">
+					<c:forEach var="review" items="${reviewList}">
+						<ul class="review-list">
+							<li class="review-item">
+								<div class="reviewer">
+									<div class="reviewer-photo">
+										<a href="#" target="_blank" class="profile-link">
+											<div class="profile-image">
+												<img src="${pageContext.request.contextPath }/resources/upload/${review.member_img}" alt="프로필" width="38" height="38">
+											</div>
+										</a>
+									</div>
+									<div class="reviewer-info">
+										<div class="reviewer-name">${sessionScope.sNick}</div>
+										<div class="score">
+											<img src="/gongsaeng/resources/img/review_star.png" width="15" height="15"> <span>${review.review_score / 2}</span>
+										</div>
+									</div>
 
+								</div>
+								<p class="review-content">${review.review_content}</p> <c:if test="${not empty review.review_img_1}">
+									<p>${review.review_img_1}</p>
+								</c:if> <c:if test="${not empty review.review_img_2}">
+									<p>${review.review_img_2}</p>
+								</c:if> <c:if test="${not empty review.review_img_3}">
+									<p>${review.review_img_3}</p>
+								</c:if>
+
+								<div class="review-actions">
+									<div class="review-action1">
+										<div class="comment-section">
+											<i class="far fa-comment" data-review-idx="2"></i> <span class="comment_count_number">${review.review_comment_count}</span>
+										</div>
+									</div>
+									<div class="review-action2">
+
+										<div class="review_date">
+											<fmt:parseDate var="parsedDate" value="${review.review_regdate}" pattern="yyyy-MM-dd'T'HH:mm:ss" />
+											<fmt:formatDate value="${parsedDate}" pattern="yyyy-MM-dd HH:mm:ss" />
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</c:forEach>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>

@@ -24,10 +24,10 @@ public class SendMailService {
 		System.out.println("생성된 난수 : " + auth_code);
 		
 		String subject = "[공생] 아이디 확인 메일입니다.";
-		String content = "<a href='http://localhost:8080/gongsaeng/MemberIdEmailAuth?mail_auth_email=" + member.getMember_email() + "&mail_auth_code=" + auth_code + "'>"
-				+ "이메일 인증을 수행하려면 이 링크를 클릭해 주세요!</a>";
-//		String content = "<a href='http://c5d2308t2.itwillbs.com/gongsaeng/MemberIdEmailAuth?mail_auth_email=" + member.getMember_email() + "&mail_auth_code=" + auth_code + "'>"
-//						+ "이메일 인증을 수행하려면 이 링크를 클릭해 주세요!</a>";
+//		String content = "<a href='http://localhost:8080/gongsaeng/MemberIdEmailAuth?mail_auth_email=" + member.getMember_email() + "&mail_auth_code=" + auth_code + "'>"
+//				+ "이메일 인증을 수행하려면 이 링크를 클릭해 주세요!</a>";
+		String content = "<a href='http://c5d2308t2.itwillbs.com/gongsaeng/MemberIdEmailAuth?mail_auth_email=" + member.getMember_email() + "&mail_auth_code=" + auth_code + "'>"
+						+ "이메일 인증을 수행하려면 이 링크를 클릭해 주세요!</a>";
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -46,10 +46,10 @@ public class SendMailService {
 		System.out.println("생성된 난수 : " + auth_code);
 		
 		String subject = "[공생] 비밀번호 확인 메일입니다.";
-		String content = "<a href='http://localhost:8080/gongsaeng/MemberPasswdEmailAuth?member_id=" + member.getMember_id() + "&mail_auth_code=" + auth_code + "'>"
-				+ "이메일 인증을 수행하려면 이 링크를 클릭해 주세요!</a>";
-//		String content = "<a href='http://c5d2308t2.itwillbs.com/gongsaeng/MemberPasswdEmailAuth?member_id=" + member.getMember_id() + "&mail_auth_code=" + auth_code + "'>"
+//		String content = "<a href='http://localhost:8080/gongsaeng/MemberPasswdEmailAuth?member_id=" + member.getMember_id() + "&mail_auth_code=" + auth_code + "'>"
 //				+ "이메일 인증을 수행하려면 이 링크를 클릭해 주세요!</a>";
+		String content = "<a href='http://c5d2308t2.itwillbs.com/gongsaeng/MemberPasswdEmailAuth?member_id=" + member.getMember_id() + "&mail_auth_code=" + auth_code + "'>"
+				+ "이메일 인증을 수행하려면 이 링크를 클릭해 주세요!</a>";
 		new Thread(new Runnable() {
 			@Override
 			public void run() {

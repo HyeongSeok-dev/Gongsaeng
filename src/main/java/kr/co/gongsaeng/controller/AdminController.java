@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.HashMap;
@@ -1263,6 +1264,46 @@ public class AdminController {
 		model.addAttribute("couponList",couponList);
 		return "admin/marketing/coupon";
 	}
+	
+	@PostMapping("admin/marketing/couponPro")
+	public String couponFormPro(HttpSession session, Model model, @RequestParam Map<String, Object> map) {
+//		if(session.getAttribute("sId") == null) {
+//		model.addAttribute("msg", "로그인이 필요합니다");
+//		model.addAttribute("targetURL", "/gongsaeng/login");
+//		return "forward";
+//	} else if(!session.getAttribute("sId").equals("admin")) {
+//		model.addAttribute("msg", "잘못된 접근 입니다.");
+//		return "fail_back";
+//	}
+		List<String> memberIdList = new ArrayList<String>();;
+		System.out.println(map);
+		
+		if(map.get("member_id").equals("")) {
+			memberIdList = service.getMemberIdList();
+			map.put("member_id", memberIdList);
+		}else {
+			memberIdList.add(map.get("member_id").toString());
+			map.put("member_id", memberIdList);
+		}
+		
+		if(map.get("value_category").equals("%")) {
+			map.replace("coupon_value", Double.parseDouble((String) map.get("coupon_value"))/100);
+		}
+		System.out.println(map);
+		
+		int insertCount = service.registCouponToAdmin(map);
+		
+		if(insertCount > 0) {
+			model.addAttribute("msg", "쿠폰이 발급되었습니다.");
+			model.addAttribute("targetURL", "coupon");
+			return "forward";
+		} else {
+			model.addAttribute("msg", "오류발생 쿠폰발행을 다시 진행하세요");
+			return "fail_back";
+		}
+		
+	}
+	
 	//==========================================[ 공지사항 ]
 	@GetMapping("admin/cs/chat")
 	public String csChat() {

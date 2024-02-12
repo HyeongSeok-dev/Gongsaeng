@@ -157,7 +157,7 @@
 						<tr><td colspan="3" class="text-center">받은 알림이 없습니다.</td></tr>
 					</c:if>
 						<c:forEach var="alert" items="${alertList}">
-							<tr>
+							<tr <c:if test="${alert.alert_read eq 1}">style="font-weight: 800;"</c:if>>
 								<td><c:choose>
 										<c:when test="${alert.alert_category eq 1}">알림</c:when>
 										<c:when test="${alert.alert_category eq 2}">공지사항</c:when>

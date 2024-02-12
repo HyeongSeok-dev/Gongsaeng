@@ -170,6 +170,11 @@ public interface AdminMapper {
 	int updateModifyClass(ClassVO gclass);
 	
 	
+	List<String> selectMemberIdList();
+	
+	int insertCouponToAdmin(Map<String, Object> map);
+	
+	
 	
 
 

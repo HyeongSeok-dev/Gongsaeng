@@ -38,9 +38,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/responsive.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/global.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/my_bookmark.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/mypage.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/mypage.css">
 
 
 <script src="${pageContext.request.contextPath }/resources/assets/js/modernizr-2.6.2.min.js"></script>
@@ -56,7 +55,6 @@
 <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/mypage.js"></script>
 </head>
 <body>
 	<jsp:include page="../inc/top.jsp"></jsp:include>
