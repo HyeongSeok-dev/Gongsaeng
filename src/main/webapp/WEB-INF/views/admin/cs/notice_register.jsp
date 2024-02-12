@@ -30,11 +30,6 @@
 
 <body class="">
   <div class="wrapper ">
-  	<%-- 페이지네이션 - pageNum 파라미터 가져와서 저장(없을 경우 기본값 1로 설정) --%>
-	<c:set var="pageNum" value="1" />
-	<c:if test="${not empty param.pageNum }">
-		<c:set var="pageNum" value="${param.pageNum }" />
-	</c:if>
     <jsp:include page="../inc/admin_sidebar.jsp"/>
     <div class="main-panel" id="main-panel">
       <!-- Navbar -->
@@ -102,7 +97,6 @@
       </div>
       <div class="content">
       	<form method="post" action="registPro">
-      	<input type="hidden" name="cs_board_category_main" value="1">
 	        <div class="row">
 	          <div class="col-md-12">
 	            <div class="card">
@@ -119,23 +113,24 @@
 		             		<th>대상회원</th>
 <!-- 		             		<th>대상회원/분류</th> -->
 		             		<td>
+			      			<input type="hidden" name="board_main_category" value="1"> <%-- 공지사항 --%>
 		             			 <select name="board_sub_category">
 					              	<option disabled selected value="">분류</option>
 					              	<option value="1">일반 회원</option>
-					              	<option value="2">사업체</option>
+					              	<option value="2">반장(사업체) 회원</option>
 			              		</select>
 		             		</td>
 		             	</tr>
 		             	<tr>
 		             		<th>제목</th>
 		             		<td>
-		             			<input type="text" class="register_text">
+		             			<input type="text" name="board_subject" class="register_text">
 		             		</td>
 		             	</tr>
 		             	<tr>
 		             		<th>내용</th>
 		             		<td>
-		             			<textarea class="register_textarea">
+		             			<textarea class="register_textarea" name="board_content">
 		             			
 		             			</textarea>
 		             		</td>
@@ -161,37 +156,6 @@
 	        	</div>
 	        </div>
 	     </form>
-	     <section id="pageList">
-			<%-- [이전] 버튼 클릭 시 BoardList.bo 서블릿 요청(파라미터 : 현재 페이지번호 - 1) --%>
-			<%-- 단, 현재 페이지 번호(pageNum) 가 1보다 클 경우에만 동작(아니면 비활성화 처리) --%>
-			<input type="button" style="width:100px" value="이전" 
-					onclick="location.href = 'cs/notice?pageNum=${pageNum - 1}'"
-					<c:if test="${pageNum <= 1 }">disabled</c:if>
-			>	
-		
-			<%-- 현재 페이지 번호가 저장된 pageInfo 객체를 통해 페이지 번호 출력 --%>
-			<%-- 시작페이지(startPage) 부터 끝페이지(endPage) 까지 표시 --%>
-			<c:forEach var="i" begin="${pageInfo.startPage }" end="${pageInfo.endPage }">
-				<%-- 각 페이지마다 하이퍼링크 설정(페이지번호를 pageNum 파라미터로 전달) --%>
-				<%-- 단, 현재 페이지는 하이퍼링크 제거하고 굵게 표시 --%>
-				<c:choose>
-					<%-- 현재 페이지번호와 표시될 페이지번호가 같을 경우 판별 --%>
-					<c:when test="${pageNum eq i}">
-						<b>${i}</b> <%-- 현재 페이지 번호 --%>
-					</c:when>
-					<c:otherwise>
-						<a href="cs/notice?pageNum=${i}">${i}</a> <%-- 다른 페이지 번호 --%>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
-			
-			<%-- [다음] 버튼 클릭 시 BoardList.bo 서블릿 요청(파라미터 : 현재 페이지번호 + 1) --%>
-			<%-- 단, 현재 페이지 번호(pageNum) 가 최대 페이지번호 보다 작을 경우에만 동작(아니면 비활성화 처리) --%>
-			<input type="button" style="width:100px" value="다음" 
-				onclick="location.href = 'cs/notice?pageNum=${pageNum + 1}'"
-				<c:if test="${pageNum >= pageInfo.maxPage }">disabled</c:if>
-			>	
-		</section>
       </div>
       <footer class="footer">
        <jsp:include page="../inc/admin_bottom.jsp"/>

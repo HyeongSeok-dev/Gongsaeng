@@ -161,7 +161,7 @@ public class CommunityController {
 		int listLimit = 7;
 		int startRow = (pageNum - 1) * listLimit;
 		
-		// BoardService - getBoardList() 메서드 호출하여 게시물 목록 조회 요청
+		// BoardService - getTogetherList() 메서드 호출하여 게시물 목록 조회 요청
 		// => 파라미터 : 검색타입, 검색어, 시작행번호, 게시물 목록갯수
 		// => 리턴타입 : List<BoardVO>(boardList)
 		List<BoardVO> boardList = service.getTogetherList(sId, startRow, listLimit);
