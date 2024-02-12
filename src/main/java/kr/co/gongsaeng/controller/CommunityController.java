@@ -178,7 +178,7 @@ public class CommunityController {
 		}
 		
 		// 계산된 페이징 처리 관련 값을 PageInfo 객체에 저장
-		PageInfo pageInfo = new PageInfo(listCount, pageListLimit, maxPage, startPage, endPage, pageNum);
+		PageInfo pageInfo = new PageInfo(listCount, pageListLimit, maxPage, startPage, endPage);
 		
 		// 게시물 목록과 페이징 정보 저장
 		model.addAttribute("boardList", boardList);
@@ -189,9 +189,9 @@ public class CommunityController {
 		
 	
 	@GetMapping("community/togetherDetail")
-	public String togetherDetail(@RequestParam int board_idx, Model model) {
+	public String togetherDetail(BoardVO board, @RequestParam int board_idx, Model model) {
 		// BoardService - getTogether() 메서드 호출하여 글 상세정보 조회 작업 요청
-		BoardVO board = service.getTogether(board_idx, true);
+		board = service.getTogether(board_idx, true);
 		
 		// 만약, 조회 게시물 정보가 없을 경우 "존재하지 않는 게시물입니다" 출력 처리
 		if(board == null) {
@@ -206,11 +206,11 @@ public class CommunityController {
 		// 현재 게시물에 포함되어 있는 댓글 목록 조회(댓글은 페이징 처리 생략)
 		// BoardService - getTogetherReplyBoardList() 메서드 호출하여 댓글 목록 조회 요청
 		// => 파라미터 : 글번호   리턴타입 : List<Map<String, Object>>(tinyReplyBoardList)
-//		List<Map<String, Object>> togetherReplyBoardList = service.getTogetherReplyBoardList(board_idx);
-////				System.out.println(tinyReplyBoardList);
-//		
-//		// Model 객체에 댓글 목록 객체(List) 추가
-//		model.addAttribute("togetherReplyBoardList", togetherReplyBoardList);
+		List<Map<String, Object>> togetherReplyBoardList = service.getTogetherReplyBoardList(board_idx);
+//		System.out.println(tinyReplyBoardList);
+		
+		// Model 객체에 댓글 목록 객체(List) 추가
+		model.addAttribute("togetherReplyBoardList", togetherReplyBoardList);
 		// --------------------------------------------------------------------------
 				
 		
@@ -313,37 +313,250 @@ public class CommunityController {
 		}
 		
 		model.addAttribute("board", board);
-		
+	    String image1Url = board.getBoard_img1();
+	    String image2Url = board.getBoard_img2();
+	    String image3Url = board.getBoard_img3();
+	    String jsonData = "{\"image1Url\": \"" + image1Url + "\", \"image2Url\": \"" + image2Url + "\", \"image3Url\": \"" + image3Url + "\"}";
+	    model.addAttribute("jsonData", jsonData);
+		System.out.println(jsonData);
 		
 		return "community/cm_modify_form";
 	}
 	
+	// 파일 삭제 AJAX 요청에 대한 응답 데이터 생성 및 전송을 위해 @ResponseBody 지정
+		@ResponseBody
+		@PostMapping("TogetherDeleteFile")
+		public String deleteFile(BoardVO board, HttpSession session) {
+			
+			// BoardService - removeTogetherFile() 메서드 호출하여 지정된 파일명 삭제 요청
+			// => 파라미터 : BoardVO 객체   리턴타입 : int(removeCount)
+			int removeCount = service.removeTogetherFile(board);
+//			System.out.println(removeCount);
+			
+			try {
+				if(removeCount > 0) { // 레코드의 파일명 삭제(수정) 성공 시
+					// 서버에 업로드 된 실제 파일 삭제
+					String uploadDir = "/resources/upload"; // 가상의 경로(이클립스 프로젝트 상에 생성한 경로)
+					String saveDir = session.getServletContext().getRealPath(uploadDir);
+					
+					// 파일명이 널스트링이 아닐 경우에만 삭제 작업 수행
+					if(!board.getBoard_img1().equals("")) {
+						Path path = Paths.get(saveDir + "/" + board.getBoard_img1());
+						Files.deleteIfExists(path);
+						
+						// 예외가 발생하지 않을 경우 정상적으로 파일 삭제가 완료되었으므로 "true" 리턴
+						return "true";
+					}
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			// DB 파일명 삭제 실패 또는 서버 업로드 파일 삭제 실패 등의 문제 발생 시 "false" 리턴
+			return "false";
+		}
+		
+		// "community/modifyPro" 서블릿 요청에 대한 글 수정 요청 비즈니스 로직 처리
+		@PostMapping("community/modifyPro")
+		public String modifyPro(
+				BoardVO board, 
+				@RequestParam(defaultValue = "1") String pageNum, // 페이지번호 기본값 설정
+				HttpSession session, Model model) {
+			// 세션 아이디에 따른 차단 처리
+			String sId = (String)session.getAttribute("sId");
+			if(sId == null && board.getMember_id() == null) {
+				model.addAttribute("msg", "로그인이 필요합니다");
+				// targetURL 속성명으로 로그인 폼 페이지 서블릿 주소 저장
+				model.addAttribute("targetURL", "/gongsaeng/member/login");
+				return "forward";
+			} else if(!sId.equals(board.getMember_id()) && !sId.equals("admin")) {
+				model.addAttribute("msg", "잘못된 접근입니다");
+				return "fail_back";
+			}
+			
+			// -------------------------------------------------------------------
+			// [ 수정 과정에서 파일 업로드 처리 ]
+			String uploadDir = "/resources/upload"; // 가상의 경로(이클립스 프로젝트 상에 생성한 경로)
+			String saveDir = session.getServletContext().getRealPath(uploadDir); // 또는 
+			
+			String subDir = "";
+			LocalDate now = LocalDate.now();
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+			subDir = now.format(dtf);
+			
+			saveDir += File.separator + subDir;
+
+			try {
+				Path path = Paths.get(saveDir); // 파라미터로 업로드 경로 전달
+				Files.createDirectories(path); // 파라미터로 Path 객체 전달
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			// -------------------
+			System.out.println(board);
+			
+			// BoardVO 객체에 전달(저장)된 실제 파일 정보가 관리되는 MultipartFile 타입 객체 꺼내기
+			// => 단, 수정하지 않은 파일(새로 업로드 항목으로 추가된 파일이 아닌 기존 파일)은
+			//    input 태그를 적용받지 않으므로 파일이 전달되지 않음 => 따라서, null 값이 전달됨
+			MultipartFile mFile1 = board.getFile1();
+			MultipartFile mFile2 = board.getFile2();
+			MultipartFile mFile3 = board.getFile3();
+			
+			// board_imgX 멤버변수값을 모두 널스트링으로 설정
+			board.setBoard_img1("");
+			board.setBoard_img2("");
+			board.setBoard_img3("");
+			
+			// 파일이 존재할 경우 BoardVO 객체에 서브디렉토리명(subDir)과 함께 파일명 저장
+			// ex) 2023/12/19/ef3e51e8_1.jpg
+			String fileName1 = "";
+			String fileName2 = "";
+			String fileName3 = "";
+			
+			if(mFile1 != null && !mFile1.getOriginalFilename().equals("")) {
+				System.out.println("원본파일명1 : " + mFile1.getOriginalFilename());
+				fileName1 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile1.getOriginalFilename();
+				board.setBoard_img1(subDir + "/" + fileName1);
+			}
+			
+			if(mFile2 != null && !mFile2.getOriginalFilename().equals("")) {
+				System.out.println("원본파일명2 : " + mFile2.getOriginalFilename());
+				fileName2 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile2.getOriginalFilename();
+				board.setBoard_img2(subDir + "/" + fileName2);
+			}
+			
+			if(mFile3 != null && !mFile3.getOriginalFilename().equals("")) {
+				System.out.println("원본파일명3 : " + mFile3.getOriginalFilename());
+				fileName3 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile3.getOriginalFilename();
+				board.setBoard_img3(subDir + "/" + fileName3);
+			}
+			
+			System.out.println("실제 업로드 파일명1 : " + board.getBoard_img1());
+			System.out.println("실제 업로드 파일명2 : " + board.getBoard_img2());
+			System.out.println("실제 업로드 파일명3 : " + board.getBoard_img3());
+			// 현재 업로드 될 파일들은 서버 임시 디렉토리에 보관중이며 최종 이동 처리 수행 필요
+			// ----------------------------------------------------------------------------------
+			// BoardService - modifyBoard() 메서드 호출하여 글 수정 작업 요청
+			// => 파라미터 : BoardVO 객체   리턴타입 : int(updateCount)
+			int updateCount = service.modifyTogether(board);
+			
+			// DB 작업 요청 처리 결과 판별
+			if(updateCount > 0) {
+				try {
+					// 파일명이 존재하는 파일만 이동 처리 작업 수행
+					if(!board.getBoard_img1().equals("")) {
+						mFile1.transferTo(new File(saveDir, fileName1));
+					}
+					
+					if(!board.getBoard_img2().equals("")) {
+						mFile2.transferTo(new File(saveDir, fileName2));
+					}
+					
+					if(!board.getBoard_img3().equals("")) {
+						mFile3.transferTo(new File(saveDir, fileName3));
+					}
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+				// 글 상세정보 조회 페이지 리다이렉트(파라미터 : 글번호, 페이지번호)
+				return "redirect:/community/togetherDetail?board_idx=" + board.getBoard_idx() + "&pageNum=" + pageNum;
+			} else {
+				// "글 수정 실패!" 처리
+				model.addAttribute("msg", "글 수정 실패!");
+				return "fail_back";
+			}
+			
+		}
+	
 	//--------------------------------------------------------------------
 	// [ 댓글 기능 ]
-//	@PostMapping("BoardTinyReplyWrite")
-//	public String writeTinyReply(@RequestParam Map<String, String> map, HttpSession session, Model model) {
-////		System.out.println(map);
-//		
-//		if(session.getAttribute("sId") == null) {
-//			model.addAttribute("msg", "잘못된 접근입니다!");
-//			return "fail_back";
-//		}
-//		
-//		// BoardService - registTogetherReplyBoard() 메서드 호출하여 댓글 등록 작업 요청
-//		// => 파라미터 : Map 객체   리턴타입 : int(insertCount)
-//		int insertCount = service.registTogetherReplyBoard(map);
-//		
-//		// 댓글 등록 요청 결과 판별
-//		// => 성공 시 함께해요 글 상세정보(togetherDetail) 서블릿 리다이렉트(파라미터 : 글번호, 페이지번호)
-//		// => 실패 시 "댓글 작성 실패!" 메세지 처리(fail_back)
-//		if(insertCount > 0) {
-//			return "redirect:/togetherDetail?board_idx=" + map.get("board_idx") + "&pageNum=" + map.get("pageNum");
-//		} else {
-//			model.addAttribute("msg", "댓글 작성 실패!");
-//			return "fail_back";
-//		}
-//		
-//	}
+	@PostMapping("community/TogetherReplyWrite")
+	public String writeTinyReply(@RequestParam Map<String, String> map, HttpSession session, Model model) {
+//		System.out.println(map);
+		
+		if(session.getAttribute("sId") == null) {
+			model.addAttribute("msg", "잘못된 접근입니다!");
+			return "fail_back";
+		}
+		
+		// BoardService - registTogetherReplyBoard() 메서드 호출하여 댓글 등록 작업 요청
+		// => 파라미터 : Map 객체   리턴타입 : int(insertCount)
+		int insertCount = service.registTogetherReplyBoard(map);
+		
+		// 댓글 등록 요청 결과 판별
+		// => 성공 시 함께해요 글 상세정보(togetherDetail) 서블릿 리다이렉트(파라미터 : 글번호, 페이지번호)
+		// => 실패 시 "댓글 작성 실패!" 메세지 처리(fail_back)
+		if(insertCount > 0) {
+			return "redirect:/community/togetherDetail?board_idx=" + map.get("board_idx") + "&pageNum=" + map.get("pageNum");
+		} else {
+			model.addAttribute("msg", "댓글 작성 실패!");
+			return "fail_back";
+		}
+		
+	}
+	
+	// "TogetherReplyDelete" 서블릿 요청에 대한 댓글 삭제 작업 처리
+	@ResponseBody
+	@GetMapping("community/TogetherReplyDelete")
+	public String deleteTinyReply(@RequestParam Map<String, String> map, HttpSession session) {
+		// 세션 아이디가 없을 경우 "invalidSession" 문자열 리턴
+		String sId = (String)session.getAttribute("sId");
+		if(sId == null) {
+			return "invalidSession";
+		}
+		
+		// BoardService - getTogetherReplyWriter() 메서드 호출하여 댓글 작성자 조회
+		// => 파라미터 : Map 객체   리턴타입 : Map(map)
+		map = service.getTogetherReplyWriter(map);
+		System.out.println(map);
+		
+		// 댓글 작성자가 세션 아이디와 동일하거나 세션 아이디가 관리자일 경우에만
+		// BoardService - removeTogetherReplyBoard() 메서드 호출하여 댓글 삭제 작업 요청
+		// (아니면 "invalidSession" 리턴)
+		// => 파라미터 : Map 객체   리턴타입 : int(deleteCount)
+		if(sId.equals(map.get("member_id")) || sId.equals("admin")) {
+			int deleteCount = service.removeTogetherReplyBoard(map);
+			
+			// 삭제 요청 결과 판별
+			// => 성공 시 "true", 실패 시 "false" 리턴
+			if(deleteCount > 0) {
+				return "true";
+			} else {
+				return "false";
+			}
+		} else {
+			return "invalidSession";
+		}
+		
+	}
+	
+	// "TogetherReReplyWrite" 서블릿 요청에 대한 대댓글 작성 비즈니스 로직 처리
+	// => AJAX 요청에 대한 응답 처리를 위해 @ResponseBody 적용
+	@ResponseBody
+	@PostMapping("community/TogetherReReplyWrite")
+	public String writeTinyReReply(@RequestParam Map<String, String> map, HttpSession session) {
+		if(session.getAttribute("sId") == null) {
+			return "invalidSession";
+		}
+		
+		// BoardService - registTogetherReReplyBoard() 메서드 호출하여 대댓글 등록 요청
+		// => 파라미터 : Map 객체   리턴타입 : int(insertCount)
+		int insertCount = service.registTogetherReReplyBoard(map);
+		
+		// 등록 요청 처리 결과 판별
+		// => 성공 시 "true", 실패 시 "false" 리턴
+		if(insertCount > 0) {
+			return "true";
+		} else {
+			return "false"; 
+		}
+		
+	}
+	
+
 
 	@GetMapping("community/question")
 	public String question() {

@@ -67,6 +67,11 @@
     <br>
      <div class="container">
         <form action="modifyPro" method="post" enctype="multipart/form-data">
+    	<%-- 직접 입력받지 않은 글번호, 페이지번호를 폼 파라미터로 함께 전달하기 위해 --%>
+		<%-- input type="hidden" 속성을 활용하여 폼 데이터로 추가 가능 --%>
+		<%-- name 속성에 파라미터 이름, value 속성에 파라미터 값 지정 --%>
+        <input type="hidden" name="board_idx" value="${board.board_idx}">
+		<input type="hidden" name="pageNum" value="${param.pageNum}">
         <div class="col-lg-10 col-lg-offset-1">
             <div class="form-group">
                 <div class="row">
@@ -131,15 +136,23 @@
 								<!-- 이미지 등록 영역 -->
 								<!-- 프리뷰 이미지1 -->
 								<div id="img_zone">
-									<div id="img_preview0">
-										<input type="image" class="image" id="imgup_sum" value="${board.board_img1 }" onclick="send_0();" src="" width="150px" height="150px"/> 
-										<span id="sum_style">대표 이미지</span>
-										<!-- 삭제버튼 -->
-										<span id="del_sum" class="chk_style" onclick="del_sum();">x</span>
-									</div>
+									<c:if test="${not empty board.board_img1 }">
+										<div id="img_preview0">
+											<input type="image" class="image" id="imgup_sum" src="${ pageContext.request.contextPath }/resources/upload/${board.board_img1 }" onclick="send_0();" width="150px" height="150px"/> 
+											<span id="sum_style">대표 이미지</span>
+											<!-- 삭제버튼 -->
+											<span id="del_sum" class="chk_style" onclick="del_sum();">x</span>
+										</div>
+									</c:if>
+									<c:if test="${empty board.board_img1 }">
+										<div id="img_preview0">
+											<input type="image" class="image" id="imgup_sum" src="" onclick="send_0();" width="150px" height="150px"/>
+											<span id="del_sum" class="chk_style" onclick="del_sum();">x</span>
+										</div>
+									</c:if>
 								<!-- 프리뷰 이미지2 -->
 									<div id="img_preview1">
-										<input type="image" class="image" id="imgup_1" onclick="send_1();" src="" width="150px" height="150px" />
+										<input type="image" class="image" id="imgup_1" src="${board.board_img2 }"  onclick="send_1();" width="150px" height="150px" />
 										<!-- 삭제버튼 -->
 										<span id="del_img1" class="chk_style" onclick="del_img1();">x</span>
 									</div>
@@ -147,7 +160,7 @@
 	
 								<!-- 프리뷰 이미지3 -->
 									<div id="img_preview2">
-										<input type="image" class="image" id="imgup_2" onclick="send_2();" src="" width="150px" height="150px" /> 
+										<input type="image" class="image" id="imgup_2" src="${board.board_img3 }"  onclick="send_2();"  width="150px" height="150px" /> 
 										<span id="del_img2" class="chk_style" onclick="del_img2();">x</span>
 									</div>
 								</div>
@@ -169,7 +182,7 @@
         	</div>
         		<div class="col-md-12 pr-7">
 					<div class="form-group" style="text-align: center;">
-			            <button type="submit" class="btn btn-primary">등록</button>
+			            <button type="submit" class="btn btn-primary">수정</button>
 			            <button type="button" class="btn btn-default" onclick="history.back()">취소</button>
 		            </div>
 	            </div>

@@ -119,7 +119,11 @@
 .post .post-footer .comments-list .comment {
   display: block;
   width: 100%;
-  margin: 20px 0;
+  margin-bottom: 10px;
+}
+
+.avatar {
+	margin: 10px 0 0 0;
 }
 .post .post-footer .comments-list .comment .avatar {
   width: 35px;
@@ -325,7 +329,7 @@
 /* 테이블 간의 간격 */
 td {
 	width: 1020px;
-	padding: 0.8em 1.4em 0.5em 0.8em;
+	padding: 0 1.4em 1em 0.8em;
 }
 
 .td1 {

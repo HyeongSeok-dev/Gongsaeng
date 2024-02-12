@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -61,6 +62,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/community.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
 <script type="text/javascript">
 	// 삭제 버튼 클릭 시 확인창을 통해 "삭제하시겠습니까?" 출력 후
 	// 확인 버튼 클릭 시 "BoardDelete.bo" 서블릿 요청(파라미터 : 글번호, 페이지번호)
@@ -70,6 +72,99 @@
 			location.href = "deleteForm?board_idx=${board.board_idx}&pageNum=${param.pageNum}";
 		}
 	}
+	
+	// 대댓글 작성 아이콘 클릭 시
+	function reReplyWriteForm(reply_idx, reply_re_ref, reply_re_lev, reply_re_seq) {
+
+		// 기존에 존재하는 대댓글 입력폼이 있을 경우 해당 폼 요소 제거(tr 태그 제거)
+		// => "reReplyTr" id 선택자 활용
+		$("#reReplyTr").remove();
+
+		// 지정한 댓글 아래쪽에 대댓글 입력폼 표시
+		// => 댓글 지정하기 위해 댓글 tr 태그의 id 값 활용() - $("#replyTr_" + reply_num)
+		// => 지정한 댓글 아래쪽에 댓글 입력폼 표시를 위해 after() 메서드 활용
+		$("#replyTr_" + reply_idx).after(
+			'<tr id="reReplyTr">'
+			+ '	<td colspan="3">'
+			+ '		<form action="TogetherReReplyWrite" method="post" id="reReplyForm">'
+			+ '			<input type="hidden" name="board_idx" value="${board.board_idx}">'
+			+ '			<input type="hidden" name="member_id" value="${sessionScope.sId}">'
+			+ '			<input type="hidden" name="reply_idx" value="' + reply_idx + '">'
+			+ '			<input type="hidden" name="reply_re_ref" value="' + reply_re_ref + '">'
+			+ '			<input type="hidden" name="reply_re_lev" value="' + reply_re_lev + '">'
+			+ '			<input type="hidden" name="reply_re_seq" value="' + reply_re_seq + '">'
+			+ '			<div class="input-group"><input class="form-control" id="reReplyTextarea" name="reply_content" placeholder="댓글을 작성해주세요." type="text">'
+			+ '			<span class="input-group-addon"><input type="button" id="replySubmit" onclick="reReplyWrite()" value="등록"></span></div>'
+			+ '		</form>'
+			+ '	</td>'
+			+ '</tr>'
+		);
+	}
+	
+	// 대댓글 작성 요청(AJAX)
+	function reReplyWrite() {
+		// 대댓글 입력항목(textarea) 체크
+		if($("#reReplyTextarea").val() == "") {
+			alert("내용 입력 필수!");
+			$("#reReplyTextarea").focus();
+			return;
+		}
+		
+		// "TogetherReReplyWrite" 서블릿 주소 요청 - AJAX
+		// => 요청메서드 : POST, 응답 데이터 타입 : "text"
+		// => 폼 태그 내의 모든 데이터 파라미터로 전달
+		$.ajax({
+			type: "POST",
+			url: "TogetherReReplyWrite",
+			data: $("#reReplyForm").serialize(), // 해당 폼의 모든 입력 요소(hidden 포함) 파라미터화
+			dataType: "text",
+			success: function(result) {
+				// 대댓글 등록 요청 결과 처리
+				// => 성공 시 화면 갱신, 실패 시 오류 메세지 출력
+				if(result == "true") {
+					location.reload(); // 페이지 갱신
+				} else {
+					alert("댓글 등록 실패!");
+				}
+			},
+			error: function() {
+				alert("요청 실패!");
+			}
+		});
+		
+	}
+	
+	// 댓글 삭제 아이콘 클릭 시
+	function confirmReplyDelete(reply_idx) {
+		if(confirm("댓글을 삭제하시겠습니까?")) { // 확인 클릭 시
+			// AJAX 활용하여 BoardTinyReplyDelete 서블릿 요청(파라미터 : 댓글번호)
+			$.ajax({
+				type: "GET",
+				url: "TogetherReplyDelete",
+				data: {
+					"reply_idx" : reply_idx
+				},
+				dataType: "text",
+				success: function(result) {
+					// 댓글 삭제 요청 결과 판별("true"/"false")
+					if(result == "true") {
+						// 댓글 삭제 성공 시 해당 댓글의 tr 태그 자체 삭제
+						// => replyTr_ 문자열과 댓글번호를 조합하여 id 선택자 지정
+						$("#replyTr_" + reply_idx).remove();
+					} else if(result == "false") {
+						alert("댓글 삭제 실패!");
+					} else if(result == "invalidSession") { // 세션아이디 없을 경우
+						alert("권한이 없습니다!");
+						return;
+					}
+				},
+				error: function() {
+					alert("요청 실패!");
+				}
+			});
+		}
+	}	
+	
 </script>
 
 </head>
@@ -109,7 +204,7 @@
 			                </div>
 			                <div class="pull-left meta">
 			                    <div class="title h5">
-			                        <b>${board.member_id }</b>
+			                        <b>${board.member_nick }</b>
 			                    </div>
 			                    <h6 class="text-muted time" style="font-size: 13px">${fn:substring(board.board_date,0,16)}</h6>
 			                </div>
@@ -163,54 +258,68 @@
 							    <span id="commentCount">3</span>
 			            </div>
 			            <div class="post-footer">
-			                <div class="input-group"> 
-			                    <input class="form-control" placeholder="댓글을 작성해주세요." type="text">
-			                    <span class="input-group-addon">
-			                        <a href="#"><i class="fa fa-edit"></i></a>  
-			                    </span>
-		                </div>
+			            <form action="TogetherReplyWrite" method="post">
+			            	<input type="hidden" name="board_idx" value="${board.board_idx}">
+							<input type="hidden" name="pageNum" value="${param.pageNum}">
+							<input type="hidden" name="member_id" value="${sessionScope.sId}">
+               				<div class="input-group">
+	               				<c:choose>
+									<c:when test="${empty sessionScope.sId}"> <%-- 세션 아이디 없음 --%>
+										<input class="form-control" name="reply_content" placeholder="로그인 후 작성 가능합니다." type="text" disabled>
+										<span class="input-group-addon">
+					                        <button type="submit" id="replySubmit" disabled>
+											    <i class="fa fa-edit"></i>
+											</button>
+					                    </span>
+									</c:when>
+									<c:otherwise>
+										<input class="form-control" name="reply_content" placeholder="댓글을 작성해주세요." type="text" required>
+										<span class="input-group-addon">
+					                        <button type="submit" id="replySubmit">등록</button>
+					                    </span>
+									</c:otherwise>
+								</c:choose>
+				            </div>
+		                </form>
 		                <ul class="comments-list">
-		                    <li class="comment">
-		                        <a class="pull-left" href="#">
-		                            <img class="avatar" src="https://bootdey.com/img/Content/user_1.jpg" alt="avatar">
-		                        </a>
-		                        <div class="comment-body">
-		                           	<div class="comment-heading">
-									    <h4 class="user">${board.member_id }</h4>
-									    <h5 class="time">5분 전 </h5>
-									    <i class="fa fa-reply"></i>
-									</div>
-		                            <p>시간대가 어떻게 되나요?</p>
-		                        </div>
-		                        <ul class="comments-list">
-		                            <li class="comment">
-		                                <a class="pull-left" href="#">
-		                                    <img class="avatar" src="${pageContext.request.contextPath }/resources/upload/${board.member_img}" alt="avatar">
-		                                </a>
-		                                <div class="comment-body">
-		                                    <div class="comment-heading">
-		                                        <h4 class="user">${board.member_id }</h4>
-		                                        <h5 class="time">4분 전 </h5>
-		                                        <i class="fa fa-reply"></i>
-		                                    </div>
-		                                    <p>오전 10시 입니다.</p>
-		                                </div>
-		                            </li> 
-		                            <li class="comment">
-		                                <a class="pull-left" href="#">
-		                                    <img class="avatar" src="https://bootdey.com/img/Content/user_1.jpg" alt="avatar">
-		                                </a>
-		                                <div class="comment-body">
-		                                    <div class="comment-heading">
-		                                        <h4 class="user">${board.member_id }</h4>
-		                                        <h5 class="time">3분 전 </h5>
-		                                        <i class="fa fa-reply"></i>
-		                                    </div>
-		                                    <p>링크 부탁드려요</p>
-		                                </div>
-		                            </li> 
-		                        </ul>
-		                    </li>
+		                <c:forEach var="togetherReplyBoard" items="${togetherReplyBoardList}">
+			                <div id="replyTr_${togetherReplyBoard.reply_idx}">
+			                    <li class="comment">
+			                        <a class="pull-left">
+			                    	   <c:forEach var="i" begin="1" end="${togetherReplyBoard.reply_re_lev}">
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										</c:forEach>
+			                            <img class="avatar" src="${pageContext.request.contextPath }/resources/upload/${board.member_img}" alt="avatar">
+			                        </a>
+			                        <div class="comment-body">
+			                           	<div class="comment-heading">
+                    					<c:forEach var="i" begin="1" end="${togetherReplyBoard.reply_re_lev}">
+											&nbsp;&nbsp;
+										</c:forEach>
+										    <h4 class="user">${togetherReplyBoard.member_nick}</h4>
+										    <h5 class="time">
+										    	<fmt:parseDate var="parsedReplyDate" value="${togetherReplyBoard.reply_date}" pattern="yyyy-MM-dd'T'HH:mm" type="both" />
+												<fmt:formatDate value="${parsedReplyDate}" pattern="MM-dd HH:mm" />									   
+										    </h5>
+										    <c:if test="${not empty sessionScope.sId}">
+										    	<a href="javascript:reReplyWriteForm(${togetherReplyBoard.reply_idx}, ${togetherReplyBoard.reply_re_ref}, ${togetherReplyBoard.reply_re_lev}, ${togetherReplyBoard.reply_re_seq})">
+													<i class="fa fa-reply"></i>
+												</a>
+												<c:if test="${sessionScope.sId eq togetherReplyBoard.member_id or sessionScope.sId eq 'admin'}">
+										    	<a href="javascript:void(0)" onclick="confirmReplyDelete(${togetherReplyBoard.reply_idx})">
+													<i class="fa fa-trash-o"></i>
+												</a>
+												</c:if>
+											</c:if>
+										</div>
+				                    	<c:forEach var="i" begin="1" end="${togetherReplyBoard.reply_re_lev}">
+											&nbsp;&nbsp;
+										</c:forEach>
+			                            ${togetherReplyBoard.reply_content}
+			                        </div>
+			                    </li>
+			                </div>
+		                </c:forEach> 
 		                </ul>
 		            </div>
 		        </div>
@@ -224,4 +333,11 @@
 <div class="bottom">
 	<jsp:include page="../inc/bottom.jsp"/>
 </div>
+
+
+
 </html>
+
+
+
+
