@@ -25,6 +25,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- global CSS -->
   <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet" />	
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	
 
 <style type="text/css">
@@ -98,7 +100,7 @@
 								class="navbar-toggler-bar bar3"></span>
 						</button>
 					</div>
-					<a class="navbar-brand" href="#pablo">채팅 관리</a>
+					<a class="navbar-brand" href="#pablo">반장 CHART</a>
 				</div>
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#navigation" aria-controls="navigation-index"
@@ -154,7 +156,13 @@
 		<!-- End Navbar -->
 		<div class="panel-header">
 			<div class="header text-center">
-				<h2 class="title">채팅 관리</h2>
+				<h2 class="title">반장 CHART</h2>
+				<p class="category">
+					Handcrafted by our friend <a target="_blank"
+						href="https://github.com/mouse0270">Robert McIntosh</a>. Please
+					checkout the <a href="http://bootstrap-notify.remabledesigns.com/"
+						target="_blank">full documentation.</a>
+				</p>
 			</div>
 		</div>
 		<div class="content">
@@ -170,7 +178,18 @@
 											<div class="card-body">
 												<div id="board-list">
 													<div class="container">
-													
+														<div class="col-xl-6">
+														  <!-- 월별 매출을 위한 막대 그래프 -->
+<!-- 														  <div class="chart-container" style="position: relative; height:40vh; width:80vw"> -->
+														    <canvas id="monthlySalesChart"></canvas>
+<!-- 														  </div> -->
+													</div>
+														<div class="col-xl-6">
+														  <!-- 일별 결제 수를 위한 꺾은선 그래프 -->
+<!-- 														  <div class="chart-container" style="position: relative; height:40vh; width:80vw"> -->
+														    <canvas id="dailyPaymentsChart"></canvas>
+<!-- 														  </div> -->
+														</div>
 													</div>
 												</div>
 											</div>
@@ -229,6 +248,63 @@
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="${pageContext.request.contextPath }/resources/company_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="${pageContext.request.contextPath }/resources/company_assets/demo/demo.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // 월별 매출 데이터 처리
+  const monthlySalesData = JSON.parse('${recentSalesJson}');
+  const monthlySalesCtx = document.getElementById('monthlySalesChart').getContext('2d');
+  const monthlySalesChart = new Chart(monthlySalesCtx, {
+    type: 'bar',
+    data: {
+      labels: monthlySalesData.map(data => `${data.payYear}-${data.payMonth}`),
+      datasets: [{
+        label: '월별 매출',
+        data: monthlySalesData.map(data => data.totalSales),
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  // 일별 결제 수 데이터 처리
+  const dailyPaymentsData = JSON.parse('${dailyPaymentsJson}');
+  const dailyPaymentsCtx = document.getElementById('dailyPaymentsChart').getContext('2d');
+  const dailyPaymentsChart = new Chart(dailyPaymentsCtx, {
+    type: 'line',
+    data: {
+      labels: dailyPaymentsData.map(data => `${data.payDate}`), // "payDate"는 YYYY-MM-DD 형식의 날짜 문자열이라고 가정
+      datasets: [{
+        label: '일별 결제 수',
+        data: dailyPaymentsData.map(data => data.paymentCount),
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        borderColor: 'rgba(255, 99, 132, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+});
+</script>
+
+
+
+
+  
+
 </body>
 
 </html>

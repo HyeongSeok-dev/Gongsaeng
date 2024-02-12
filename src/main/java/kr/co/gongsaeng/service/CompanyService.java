@@ -169,6 +169,18 @@ public class CompanyService {
 		return mapper.selectReportDetail(sId);
 	}
 
+	// [ 차트 - (1) 12개월 매출 ] 
+	public List<PaymentVO> getRecentSales(Integer comIdx) {
+
+		return mapper.selectRecentSales(comIdx);
+	}
+
+	// [ 차트 - (2) 일별 클래스 등록수 ] 
+	public List<PaymentVO> getClassRegister(Integer comIdx) {
+
+		return mapper.selectClassRegister(comIdx);
+	}
+
 
 
 

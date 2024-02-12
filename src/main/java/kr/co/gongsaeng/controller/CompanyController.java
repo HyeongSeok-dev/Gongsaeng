@@ -41,6 +41,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.Gson;
 import com.google.protobuf.TextFormat.ParseException;
 
 import kr.co.gongsaeng.service.ClassService;
@@ -1005,18 +1006,47 @@ public class CompanyController {
 		return "company/company_report_list";
 	}
 	
+	// 반장 차트
+	@GetMapping("company/chart")
+	public String company_chart(Model model, HttpSession session, PaymentVO payment) {
+
+		// 사업체 com_idx 산출
+		String sId = (String)session.getAttribute("sId");
+		System.out.println("Current sId from session: >>>>>>>>>>>>> " + sId);
+		
+		Integer comIdx = companyService.findComIdxBysId(sId);
+		System.out.println("Current comIdx from session: >>>>>>>>>>>>> " + comIdx);
+		
+		// (1) 12개월 매출
+		List<PaymentVO> recentSales = companyService.getRecentSales(comIdx);
+		
+		// Gson 객체 생성
+        Gson gson = new Gson();
+        // List<PaymentVO>를 JSON 문자열로 변환
+        String recentSalesJson = gson.toJson(recentSales);
+		model.addAttribute("recentSalesJson",recentSalesJson);
+
+		
+		// (2) 일별 클래스 등록수
+		List<PaymentVO> classResgister = companyService.getClassRegister(comIdx);
+		String classRegisterJson = gson.toJson(classResgister);
+		model.addAttribute("classRegisterJson",classRegisterJson);
+		
+		
+		
+		
+		return "company/company_chart";
+	}
+	
+	
+	
+	
 	
 	@GetMapping("company/sales2")
 	public String company_sales2() {
 		return "company/company_sales2";
 	}
 	
-	
-	
-	@GetMapping("company/community")
-	public String company_community() {
-		return "company/company_community";
-	}
 	
 	@GetMapping("company/notification")
 	public String company_notification() {

@@ -230,5 +230,42 @@
   <script src="${pageContext.request.contextPath }/resources/company_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="${pageContext.request.contextPath }/resources/company_assets/demo/demo.js"></script>
 </body>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 검색 버튼 클릭 이벤트
+    document.querySelector('.btn-search').addEventListener('click', function() {
+        var startDate = document.getElementById('reportDateStart').value;
+        var endDate = document.getElementById('reportDateEnd').value;
+
+        document.querySelectorAll('tbody tr').forEach(function(row) {
+            // 'data-type="report_date"'가 정확히 설정되어 있는지 확인하세요.
+            // 예제 코드에서는 'td[data-type="report_date"]' 셀렉터를 사용합니다.
+            // 실제 HTML 구조에 따라 셀렉터를 조정해야 할 수 있습니다.
+            var reportDateCell = row.querySelector('td[data-type="report_date"]');
+            if (!reportDateCell) return; // reportDateCell이 없으면 다음 행으로 넘어갑니다.
+            
+            var reportDate = reportDateCell.textContent.trim();
+            var isVisible = true; // 기본적으로 행을 보이게 합니다.
+
+            // 시작일과 종료일이 모두 설정된 경우에만 필터링을 적용합니다.
+            if (startDate && endDate) {
+                // 날짜 형식이 YYYY/MM/DD인지 확인하고, 필요하다면 형식을 조정하세요.
+                isVisible = reportDate >= startDate && reportDate <= endDate;
+            }
+            row.style.display = isVisible ? '' : 'none'; // 조건에 따라 행의 표시 여부를 결정합니다.
+        });
+    });
+
+    // 초기화 버튼 클릭 이벤트
+    document.querySelector('.btn-reset').addEventListener('click', function() {
+        document.getElementById('reportDateStart').value = '';
+        document.getElementById('reportDateEnd').value = '';
+        document.querySelectorAll('tbody tr').forEach(function(row) {
+            row.style.display = ''; // 모든 행을 다시 보이게 합니다.
+        });
+    });
+});
+</script>
+
 
 </html>

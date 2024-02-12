@@ -196,36 +196,37 @@ tbody {
 				        <div class="col-xl-12">
 				          <div class="card">
 				            <form>
-				              <div class="form-row align-items-center">
-				                <div class="col-xl-2">
-				                  <label for="purchaseDateStart">신고일 검색</label>
-				                  <input type="date" class="form-control" id="purchaseDateStart" name="purchaseDateStart">
-				                </div>
-				                <div class="col-xs-1 text-center">
-				                  <span class="form-control-plaintext">~</span>
-				                </div>
-				                <div class="col-xl-2">
-				                  <label for="purchaseDateEnd"></label>
-				                  <input type="date" class="form-control" id="purchaseDateEnd" name="purchaseDateEnd">
-				                </div>
-				                <!-- 추가 컨텐츠를 위한 공간 -->
-				                <div class="form-group col-xl-7">
-									<input type="button" value="전체" class="btn btn-dark mt-5 ">
-									<input type="button" value="오늘" class="btn btn-dark mt-5">
-									<input type="button" value="1주일" class="btn btn-dark mt-5">
-									<input type="button" value="1개월" class="btn btn-dark mt-5">
-									<input type="button" value="3개월" class="btn btn-dark mt-5">
-									<input type="button" value="6개월" class="btn btn-dark mt-5">
-									<input type="button" value="&nbsp;&nbsp;1 년&nbsp;&nbsp;" class="btn btn-dark mt-5">
-				                </div>
+				            <div class="form-row align-items-center">
+    <div class="col-xl-2">
+        <label for="reportDateStart">신고일 시작</label>
+        <input type="date" class="form-control" id="reportDateStart" name="reportDateStart">
+    </div>
+    <div class="col-xs-1 text-center">
+        <span class="form-control-plaintext">~</span>
+    </div>
+    <div class="col-xl-2">
+        <label for="reportDateEnd">신고일 끝</label>
+        <input type="date" class="form-control" id="reportDateEnd" name="reportDateEnd">
+    </div>
+    <div class="form-group col-xl-7">
+		<input type="button" value="검색" onclick="filterByReportDate()" class="btn btn-info m-1 btn-search">
+        <input type="button" value="초기화" class="btn btn-info m-1 btn-reset">
+    </div>
+</div>
+
 				                 <!-- 새로운 버튼을 위한 새로운 form-row 추가 -->
+				            </form>
 									<div class="form-row col-xl-12 mt-1">
 									  <div class="col-xl-6">
-					                      <input type="button" value="초기화" class="btn btn-info m-1">
-					                      <input type="button" value="검색" class="btn btn-info m-1">
+									<!-- 신고 상태 필터링 체크박스 -->
+									<div class="form-group">
+									    <label><input type="checkbox" name="reportStatus" value="접수" class="report-status-filter"> 접수</label>
+									    <label><input type="checkbox" name="reportStatus" value="승인" class="report-status-filter"> 승인</label>
+									    <label><input type="checkbox" name="reportStatus" value="반려" class="report-status-filter"> 반려</label>
+									</div>
+
 				                    </div>
 				              </div>
-				            </form>
 				          </div>
 				        </div>
 				      </div>
@@ -262,7 +263,9 @@ tbody {
 											          <tbody>
 											            <c:forEach items="${reportDetail}" var="report">
 											            <tr>
-											              <td>${report.report_idx }</td> <!-- 신고 번호 -->
+											              <td>
+											              	${report.report_idx }
+											              </td> <!-- 신고 번호 -->
 											              <td>
 											              	<c:choose>
 											              		<c:when test="${report.report_status == 1}">
@@ -276,10 +279,8 @@ tbody {
 																</c:when>											              												              		
 											              	</c:choose>
 											              </td> 
-														  <td>
-    														<fmt:formatDate value="${report.report_date}" pattern="yyyy/MM/dd" />
-														  </td> <!-- 신고일 -->
-<%-- 														  <td>${report.member_id }</td> <!-- 신고 회원 --> --%>
+														 
+    														<td data-type="report_date" ><fmt:formatDate value="${report.report_date}" pattern="yyyy/MM/dd" /> </td> <!-- 신고일 -->
 														  <td>${report.class_title }</td> <!-- 신고 회원 -->
 														  <td><!-- 신고사유 -->
 														  <c:choose>
@@ -357,72 +358,41 @@ tbody {
   <script src="${pageContext.request.contextPath }/resources/company_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="${pageContext.request.contextPath }/resources/company_assets/demo/demo.js"></script>
 <!--   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-  
-     <script>
-//      $(document).ready(function() {
-//     	    $('.submit-calculation-request').click(function(e) {
-//     	        e.preventDefault();
-//     	        var payNum = $(this).data('pay-num');
-//     	        $.ajax({
-//     	            url: '${pageContext.request.contextPath}/company/income/updatePayCalStatus',
-//     	            type: 'POST',
-//     	            data: {
-//     	                'pay_num': payNum,
-//     	                'pay_cal_status': 2
-//     	            },
-//     	            success: function(response) {
-//     	                if (response.success) {
-//     	                    alert(response.message);
-//     	                    location.reload();
-//     	                } else {
-//     	                    alert(response.message);
-//     	                }
-//     	            },
-//     	            error: function(xhr) {
-//     	                var response = JSON.parse(xhr.responseText);
-//     	                alert("정산 신청에 실패했습니다: " + response.message);
-//     	            }
-//     	        });
-//     	    });
-//     	});
-	$(document).ready(function() {
-	    $('#selectAll').click(function(e) {
-	        $('input[name="payNums"]').prop('checked', this.checked);
-	    });
-	
-	    $('#submitSelected').click(function(e) {
-	        e.preventDefault();
-	        var selectedPayNums = $('input[name="payNums"]:checked').map(function() {
-	            return $(this).val();
-	        }).get();
-	
-	        if (selectedPayNums.length > 0) {
-	            $.ajax({
-	                url: '${pageContext.request.contextPath}/company/income/updatePayCalStatusBatch', // 수정된 경로
-	                type: 'POST',
-	                traditional: true,
-	                data: {
-	                    'payNums': selectedPayNums,
-	                    'pay_cal_status': 2
-	                },
-	                success: function(response) {
-	                    if(response.success) {
-	                        alert(response.message);
-	                        location.reload();
-	                    } else {
-	                        alert(response.message);
-	                    }
-	                },
-	                error: function(xhr, status, error) {
-	                    alert("정산 신청에 실패했습니다.");
-	                }
-	            });
-	        } else {
-	            alert("정산 신청할 항목을 선택하세요.");
-	        }
-	    });
-	});
-    </script>
 </body>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const salesData = JSON.parse('${recentSalesJson}');
+
+    const labels = salesData.map(data => {
+        const month = String(data.payMonth).padStart(2, '0'); // '0'을 추가하여 2자리로 만듭니다.
+        return `${data.payYear}-${month}`;
+    });
+    const sales = salesData.map(data => data.totalSales);
+
+    const ctx = document.getElementById('monthlySalesChart').getContext('2d');
+    const monthlySalesChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: '월별 매출',
+                data: sales,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+});
+
+
+</script>
 
 </html>

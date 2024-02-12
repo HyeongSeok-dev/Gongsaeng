@@ -214,32 +214,18 @@ tbody {
 														class="form-control" id="purchaseDateEnd"
 														name="purchaseDateEnd">
 												</div>
-												<!-- 추가 컨텐츠를 위한 공간 -->
 												<div class="form-group col-xl-7">
 														<div class="form-row member_btn">
 														 <input type="button" value="초기화" class="btn btn-info m-1 btn-reset">
 	    												 <input type="button" value="검색" class="btn btn-info m-1 btn-search">
-														<!-- 여기에 추가 버튼을 계속해서 추가할 수 있습니다. -->
 													</div>
 												</div>
-												<!-- 새로운 버튼을 위한 새로운 form-row 추가 -->
-												<div class="form-row col-xl-12 mt-1">
-													<div class="col-xl-2">
-													<div class="form-group">
-													<label>클래스 진행 여부</label>
-														<select class="form-control small-input" id="sel1" name="memberClass">
-															<option>진행중</option>
-															<option>종료</option>
-														</select>									
-													</div>
-													</div>
-													<div class="col-xl-2">
-													</div>
-													<div class="col-xl-5">
-
-													</div>
-													<div class="col-xl-3"></div>
-												</div>
+												<!-- 클래스 진행 여부 체크박스 -->
+											<div class="filter-checkboxes">
+											  <label><input type="checkbox" id="statusPlanned" checked> 진행예정</label>
+											  <label><input type="checkbox" id="statusOngoing" checked> 진행중</label>
+											  <label><input type="checkbox" id="statusFinished" checked> 종료</label>
+											</div>
 										</form>
 									</div>
 								</div>
@@ -380,7 +366,35 @@ tbody {
 	            $(this).toggle(isVisible); // 조건에 따라 행 표시/숨김
 	        });
 	    });
-	});
+	// -----------------------------------------------------------------------------------
+	   // 체크박스 상태 변경 시 테이블 필터링
+    $('#statusPlanned, #statusOngoing, #statusFinished').change(function() {
+        filterTable();
+    });
+
+    // 테이블 필터링 함수
+    function filterTable() {
+        var statusPlanned = $('#statusPlanned').is(':checked');
+        var statusOngoing = $('#statusOngoing').is(':checked');
+        var statusFinished = $('#statusFinished').is(':checked');
+
+        $('tbody tr').each(function() {
+            var status = $(this).find('td:nth-child(2)').text().trim();
+            $(this).hide(); // 기본적으로 모든 행을 숨깁니다.
+
+            if ((status === '진행예정' && statusPlanned) ||
+                (status === '진행중' && statusOngoing) ||
+                (status === '종료' && statusFinished)) {
+                $(this).show(); // 조건에 맞는 행만 보여줍니다.
+            }
+        });
+    }
+
+    filterTable(); // 페이지 로드 시 테이블 필터링 실행
+  
+  
+  
+  });
   
   </script>
 </body>

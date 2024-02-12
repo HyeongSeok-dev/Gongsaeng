@@ -93,6 +93,12 @@ public interface CompanyMapper {
 	// 신고 세부사항
 	List<ViewReportDetailByCompanyVO> selectReportDetail(String sId);
 
+	// 차트 - (1) 12개월 매출
+	List<PaymentVO> selectRecentSales(Integer comIdx);
+
+	// [ 차트 - (2) 일별 클래스 등록수 ] 
+	List<PaymentVO> selectClassRegister(Integer comIdx);
+
 
 
 

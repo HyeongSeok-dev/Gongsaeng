@@ -212,38 +212,40 @@ tbody {
 														name="purchaseDateEnd">
 												</div>
 												<!-- 추가 컨텐츠를 위한 공간 -->
-												<div class="form-group col-xl-7">
-													<input type="button" value="전체" class="btn btn-dark mt-5 ">
-													<input type="button" value="오늘" class="btn btn-dark mt-5">
-													<input type="button" value="1주일" class="btn btn-dark mt-5">
-													<input type="button" value="1개월" class="btn btn-dark mt-5">
-													<input type="button" value="3개월" class="btn btn-dark mt-5">
-													<input type="button" value="6개월" class="btn btn-dark mt-5">
-													<input type="button" value="&nbsp;&nbsp;1 년&nbsp;&nbsp;" class="btn btn-dark mt-5">
-												</div>
+<!-- 												<div class="form-group col-xl-7"> -->
+<!-- 													<input type="button" value="전체" class="btn btn-dark mt-5 "> -->
+<!-- 													<input type="button" value="오늘" class="btn btn-dark mt-5"> -->
+<!-- 													<input type="button" value="1주일" class="btn btn-dark mt-5"> -->
+<!-- 													<input type="button" value="1개월" class="btn btn-dark mt-5"> -->
+<!-- 													<input type="button" value="3개월" class="btn btn-dark mt-5"> -->
+<!-- 													<input type="button" value="6개월" class="btn btn-dark mt-5"> -->
+<!-- 													<input type="button" value="&nbsp;&nbsp;1 년&nbsp;&nbsp;" class="btn btn-dark mt-5"> -->
+<!-- 												</div> -->
+													<div class="form-row member_btn">
+														<input type="button" value="초기화" class="btn btn-info m-1 btn-reset">
+														<input type="button" value="검색" class="btn btn-info m-1 btn-search">
+														<!-- 여기에 추가 버튼을 계속해서 추가할 수 있습니다. -->
+													</div>
 												<!-- 새로운 버튼을 위한 새로운 form-row 추가 -->
 												<div class="form-row col-xl-12 mt-1">
-													<div class="col-xl-2">
-													<div class="form-group">
-													<label>평점</label>
-														<select class="form-control small-input" id="sel1" name="memberClass">
-															<option>0~1</option>
-															<option>1~2</option>
-															<option>2~3</option>
-															<option>3~4</option>
-															<option>4~5</option>
-															<option>5</option>
-														</select>									
-													</div>
+													<div class="col-xl-7">
+													<!-- 평점 필터링 체크박스 -->
+														<div class="form-group">
+														    <label><input type="checkbox" value="1-2" class="rating-filter"> 1~2점</label>
+														    <label><input type="checkbox" value="2-3" class="rating-filter"> 2~3점</label>
+														    <label><input type="checkbox" value="3-4" class="rating-filter"> 3~4점</label>
+														    <label><input type="checkbox" value="4-5" class="rating-filter"> 4~5점</label>
+														    <label><input type="checkbox" value="5" class="rating-filter"> 5점</label>
+														</div>
 													</div>
 													<div class="col-xl-2">
 													</div>
 													<div class="col-xl-5">
-													<div class="form-row member_btn">
-														<input type="button" value="초기화" class="btn btn-info m-1">
-														<input type="button" value="검색" class="btn btn-info m-1">
-														<!-- 여기에 추가 버튼을 계속해서 추가할 수 있습니다. -->
-													</div>
+<!-- 													<div class="form-row member_btn"> -->
+<!-- 														<input type="button" value="초기화" class="btn btn-info m-1 btn-reset"> -->
+<!-- 														<input type="button" value="검색" class="btn btn-info m-1 btn-search"> -->
+<!-- 														여기에 추가 버튼을 계속해서 추가할 수 있습니다. -->
+<!-- 													</div> -->
 													</div>
 													<div class="col-xl-3"></div>
 												</div>
@@ -350,6 +352,63 @@ tbody {
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="${pageContext.request.contextPath }/resources/company_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="${pageContext.request.contextPath }/resources/company_assets/demo/demo.js"></script>
+  <script>
+
+</script>
+  <script>
+$(document).ready(function() {
+    // 검색 버튼 클릭 이벤트
+    $('.btn-search').click(function() {
+        var startDate = $('#purchaseDateStart').val();
+        var endDate = $('#purchaseDateEnd').val();
+
+        $('tbody tr').each(function() {
+            // 각 행의 리뷰 등록일 가져오기
+            var reviewDate = $(this).find('td:nth-last-child(1)').text(); // 마지막 열에 리뷰 등록일이 있다고 가정
+            // 등록일이 검색 범위 안에 있는지 확인
+            if (startDate && endDate) {
+                var isVisible = reviewDate >= startDate && reviewDate <= endDate;
+                $(this).toggle(isVisible);
+            } else {
+                // 날짜 필드 중 하나라도 비어있으면 모든 행을 보여줌
+                $(this).show();
+            }
+        });
+    });
+
+    // 초기화 버튼 클릭 이벤트
+    $('.btn-reset').click(function() {
+        $('#purchaseDateStart').val('');
+        $('#purchaseDateEnd').val('');
+        $('tbody tr').show();
+    });
+    
+    // 평점 필터링 체크박스 변경 이벤트
+    $('.rating-filter').change(function() {
+        filterTableByRating();
+    });
+
+    function filterTableByRating() {
+        var checkedValues = $('.rating-filter:checked').map(function() {
+            return $(this).val();
+        }).get();
+
+        $('tbody tr').each(function() {
+            var rowRating = parseFloat($(this).find('td:nth-child(4)').text().trim()); // 별점이 4번째 열에 있다고 가정
+            var isVisible = checkedValues.some(function(value) {
+                var range = value.split('-');
+                var min = parseFloat(range[0]);
+                var max = range[1] ? parseFloat(range[1]) : min;
+                return rowRating >= min && rowRating <= max;
+            });
+            $(this).toggle(isVisible || checkedValues.length === 0); // 아무것도 선택되지 않았으면 모든 행 표시
+        });
+    }
+    
+    
+});
+</script>
+  
 </body>
 
 </html>

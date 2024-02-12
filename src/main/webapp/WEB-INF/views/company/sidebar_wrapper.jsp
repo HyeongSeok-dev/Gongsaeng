@@ -76,7 +76,7 @@
             </a>
             <div id="leaderSpaceDropdown" class="collapse" aria-labelledby="leaderSpaceDropdown" data-parent="#sidebar-wrapper">
                 <ul class="nav">
-                    <li><a href="${pageContext.request.contextPath}/company/community">반장 커뮤니티</a></li>
+                    <li><a href="${pageContext.request.contextPath}/company/chart">반장 CHART</a></li>
                     <li><a href="${pageContext.request.contextPath}/company/notification">반장 공지사항</a></li>
                     <li><a href="${pageContext.request.contextPath}/company/inquiry">반장 1:1문의</a></li>
                 </ul>

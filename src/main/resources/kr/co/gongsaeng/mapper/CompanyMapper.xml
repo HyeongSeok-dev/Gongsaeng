@@ -216,4 +216,30 @@
 		    member_id = #{sId} AND report_category = 2
 	</select>
 	
+	<!-- 차트(1. 월별매출) -->
+	<select id="selectRecentSales" resultType="payment">
+	SELECT 
+	    MONTH(pay_date) AS payMonth,
+	    YEAR(pay_date) AS payYear,
+	    SUM(payment) AS totalSales
+	FROM 
+	    payment
+	WHERE 
+	    com_idx = #{comIdx}
+	    AND pay_date BETWEEN DATE_SUB(CURDATE(), INTERVAL 12 MONTH) AND CURDATE()
+	    AND pay_status = 1 
+	GROUP BY 
+	    YEAR(pay_date), MONTH(pay_date)
+	ORDER BY 
+	    YEAR(pay_date), MONTH(pay_date);	
+	</select>
+	
+	<!-- 차트(2. 일별 클래스 등록 수) -->
+	<select id="selectClassRegister" resultType="payment">
+		SELECT DATE(pay_date) AS payDate, COUNT(*) AS paymentCount
+		FROM payment
+		WHERE com_idx = #{comIdx} AND pay_status = 1
+		GROUP BY DATE(pay_date)
+		ORDER BY payDate;	</select>
+	
 </mapper>

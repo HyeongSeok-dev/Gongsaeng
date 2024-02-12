@@ -63,5 +63,12 @@ public class PaymentVO {
 	private String totalOneRes; //원데이 누적
 	private String monthlyRegularRes; //정기 금월
 	private String totalRegularRes; //정기 누적
+	
+	// [ 반장페이지(사업체) ]
+    private int payMonth;
+    private int payYear;
+    private int totalSales;
+	
 
 }
+
