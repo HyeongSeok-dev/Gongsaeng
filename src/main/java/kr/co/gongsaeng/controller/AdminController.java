@@ -877,7 +877,7 @@ public class AdminController {
 			day += "일";
 		}
 		
-		if(comClass.getClass_offering() == null || comClass.getClass_offering() == "" || comClass.getClass_offering().trim() == "0") {
+		if(comClass.getClass_offering() == null || comClass.getClass_offering() == "" || comClass.getClass_offering().trim().equals("0")) {
 			System.out.println("if >>여기");
 			comClass.setClass_offering("");
 		} else {

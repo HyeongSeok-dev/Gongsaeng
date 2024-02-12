@@ -188,18 +188,18 @@
 	</select>
 	<!-- 그래프 올해 환급수익 -->
 	<select id="selectThisYearRef" resultType="admin">
-		SELECT (SELECT IFNULL(SUM(payment),0) FROM payment WHERE MONTH(pay_date) = 1 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 3  AND pay_status = 1) AS 'jan'
-			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 2 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 3  AND pay_status = 1) AS 'feb'
-			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 3 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 3  AND pay_status = 1) AS 'mar'
-			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 4 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 3  AND pay_status = 1) AS 'apr'
-			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 5 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 3  AND pay_status = 1) AS 'may'
-			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 6 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 3  AND pay_status = 1) AS 'jun'
-			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 7 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 3  AND pay_status = 1) AS 'jul'
-			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 8 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 3  AND pay_status = 1) AS 'aug'
-			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 9 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 3  AND pay_status = 1) AS 'sep'
-			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 10 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 3  AND pay_status = 1) AS 'oct'
-			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 11 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 3  AND pay_status = 1) AS 'nov'
-			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 12 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 3  AND pay_status = 1) AS 'dec'
+		SELECT (SELECT IFNULL(SUM(payment),0) FROM payment WHERE MONTH(pay_date) = 1 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 4  AND pay_status = 1) AS 'jan'
+			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 2 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 4  AND pay_status = 1) AS 'feb'
+			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 3 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 4  AND pay_status = 1) AS 'mar'
+			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 4 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 4  AND pay_status = 1) AS 'apr'
+			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 5 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 4  AND pay_status = 1) AS 'may'
+			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 6 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 4  AND pay_status = 1) AS 'jun'
+			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 7 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 4  AND pay_status = 1) AS 'jul'
+			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 8 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 4  AND pay_status = 1) AS 'aug'
+			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 9 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 4  AND pay_status = 1) AS 'sep'
+			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 10 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 4  AND pay_status = 1) AS 'oct'
+			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 11 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 4  AND pay_status = 1) AS 'nov'
+			,(SELECT IFNULL(SUM(payment) * 0.1,0) FROM payment WHERE MONTH(pay_date) = 12 AND YEAR(pay_date) = YEAR(now()) AND pay_cal_status = 4  AND pay_status = 1) AS 'dec'
 	</select>
 	<!-- 그래프 올해 사업체 가입수 -->
 	<select id="selectThisYearCom" resultType="admin">
