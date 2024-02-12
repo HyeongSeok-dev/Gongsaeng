@@ -49,4 +49,42 @@
     	FROM payment
     	WHERE class_idx = #{class_idx}
     </select>
+    
+    <select id="selectIssuedCoupon" resultType="map">
+    	SELECT * 
+    	FROM coupon
+    	WHERE member_id = #{sId}
+    	AND com_idx = #{comIdx}
+    </select>
+    
+    <select id="selectFollowingStatus" resultType="map">
+    	SELECT * 
+    	FROM following
+    	WHERE member_id = #{sId}
+    	AND com_idx = #{comIdx}
+    </select>
+    
+    <insert id="insertCoupon">
+    	INSERT INTO coupon
+    	VALUES(
+    		null
+    		,'반장님 팔로우 쿠폰'
+    		,#{sId}
+    		,#{comIdx}
+    		,2000
+    		,now()
+    		,DATE_ADD(NOW(), INTERVAL 30 DAY)
+    		,1
+    		,15000
+    	)
+    </insert>
+    
+    <insert id="insertFollowing">
+    	INSERT INTO following		
+    	VALUES(
+    		null
+    		,#{sId}
+    		,#{comIdx}
+    	)
+    </insert>
 </mapper>

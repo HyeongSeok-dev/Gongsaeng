@@ -1,6 +1,7 @@
 package kr.co.gongsaeng.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -26,5 +27,13 @@ public interface ProductMapper {
 	CartVO findCart(@Param ("class_idx") int class_idx, @Param ("member_id") String member_id, @Param ("date") String date);
 
 	List<PaymentVO> selectResMemberCount(@Param("class_idx") int classIdx);
+
+	Map<String, String> selectIssuedCoupon(@Param("sId") String sId, @Param("comIdx") String comIdx);
+
+	Map<String, String> selectFollowingStatus(@Param("sId") String sId, @Param("comIdx") String comIdx);
+
+	int insertCoupon(@Param("sId") String sId, @Param("comIdx") String comIdx);
+
+	void insertFollowing(@Param("sId") String sId, @Param("comIdx") String comIdx);
 
 }

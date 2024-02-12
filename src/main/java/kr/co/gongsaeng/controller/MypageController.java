@@ -40,7 +40,7 @@ import kr.co.gongsaeng.vo.MyResVO;
 public class MypageController {
 
 	@Autowired
-	MypageService service;
+	private MypageService service;
 
 	@GetMapping("mypage/main")
 	public String main(HttpSession session, Model model, MemberVO member, HttpServletRequest request) throws UnsupportedEncodingException {

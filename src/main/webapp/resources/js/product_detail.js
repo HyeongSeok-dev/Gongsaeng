@@ -243,10 +243,10 @@ $(document).ready(function() {
 			}
 		});
 	}
-
-	kakao.maps.load(function() {
-		calculateDistanceForRestaurants();
-	});
+	//
+	//	kakao.maps.load(function() {
+	//		calculateDistanceForRestaurants();
+	//	});
 
 
 });
@@ -268,14 +268,16 @@ function issueCoupon(com_idx) {
 		data: {
 			com_idx: com_idx,
 		},
-		dataType: "json",
-		success: function(result) {
-			if (result == true) {
-				alert("쿠폰이 발급 되었습니다.")
-			} else if(result == false) {
-				alert("이미 발급되었습니다.");
-			}else{
-				alert("쿠폰발급에 실패했습니다.");
+		success: function(data) {
+			const result = $.trim(data);
+			if (result == 'success') {
+				alert("반장님을 팔로우해 쿠폰이 발급 되었습니다.")
+			} else if (result == 'following') {
+				alert("반장님을 팔로우 했습니다. 쿠폰은 더이상 지급되지 않습니다.");
+			} else if (result == 'fail') {
+				alert("이미 팔로우되어 이미 쿠폰이 발급되었습니다.");
+			} else {
+				alert("오류가 발생했습니다. 잠시후 다시 시도해주세요");
 			}
 		}
 	});

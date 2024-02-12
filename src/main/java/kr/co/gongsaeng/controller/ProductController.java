@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.gongsaeng.service.MypageService;
 import kr.co.gongsaeng.service.ProductService;
 import kr.co.gongsaeng.vo.BookmarkVO;
 import kr.co.gongsaeng.vo.CartVO;
@@ -153,7 +155,7 @@ public class ProductController {
 	
 	
 	@ResponseBody
-	@GetMapping("issueCoupon")
+	@GetMapping("product/issueCoupon")
 	public String issueCoupon(HttpSession session, Model model, @RequestParam("com_idx") String comIdx) {
 		String sId = (String) session.getAttribute("sId");
 		if (sId == null) {
@@ -162,7 +164,27 @@ public class ProductController {
 
 			return "forward";
 		}
-		return"true";
+		
+		Map<String, String> issuedCoupon = service.getIssuedCoupon(sId, comIdx);
+		Map<String, String> followingStatus = service.getFollowingStatus(sId, comIdx);
+		
+		if(issuedCoupon != null) {
+			if(followingStatus != null) {
+				return "fail";
+			}else {
+				service.registFollowing(sId, comIdx);
+				return "following";
+			}
+		}
+		
+		int insertCount = service.registCoupon(sId, comIdx);
+		
+		if(insertCount > 0) {
+			return "success";
+		}else {
+			return "error";
+		}
+		
 	}
 	
 	@ResponseBody
