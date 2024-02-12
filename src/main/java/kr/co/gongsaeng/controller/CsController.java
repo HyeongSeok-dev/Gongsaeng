@@ -2,21 +2,30 @@ package kr.co.gongsaeng.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.co.gongsaeng.service.CsService;
 import kr.co.gongsaeng.vo.BoardVO;
+import kr.co.gongsaeng.vo.PageInfo;
 
 @Controller
 public class CsController {
+	@Autowired
+	private CsService service;
 	
 	@GetMapping("admin/cs/notice")
 	public String csNotice(@RequestParam(defaultValue = "1") int pageNum,
 			HttpSession session, Model model, BoardVO board) {
+		
+		String sId = (String) session.getAttribute("sId");
 //		if(session.getAttribute("sId") == null) {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
@@ -29,17 +38,56 @@ public class CsController {
 		int listLimit = 10;
 		int startRow = (pageNum - 1) * listLimit;
 		
-		// BoardService - getNoticeList() 메서드 호출하여 게시물 목록 조회 요청
+		// BoardService - getAnList() 메서드 호출하여 게시물 목록 조회 요청
 		// => 파라미터 : 검색타입, 검색어, 시작행번호, 게시물 목록갯수
-		// => 리턴타입 : List<BoardVO>(boardList)
-		List<BoardVO> boardList = service.getTogetherList(sId, startRow, listLimit);
+		// => 리턴타입 : List<BoardVO>(AnList)
+		List<BoardVO> adntList = service.getAdntList(sId, startRow, listLimit);
+		
+		// --------------------------------------------------------------------
+		// 검색된 예약 내역의 수를 바탕으로 페이지네이션 생성
+		// BoardService - getNoticeListCount() 메서드 호출하여 전체 게시물 목록 갯수 조회 요청
+		// => 파라미터 : 검색타입, 검색어
+		// => 리턴타입 : int(listCount)
+		int listCount = service.getAdntListCount(sId);
+		int pageListLimit = 5; // 페이지에서 보이는 페이지 번호를 5개로 지정
+		int maxPage = listCount / listLimit + (listCount % listLimit > 0 ? 1 : 0);
+		int startPage = (pageNum - 1) / pageListLimit * pageListLimit + 1;
+		int endPage = startPage + pageListLimit - 1;
+		if(endPage > maxPage) {
+			endPage = maxPage;
+		}
+		
+		// 계산된 페이징 처리 관련 값을 PageInfo 객체에 저장
+		PageInfo pageInfo = new PageInfo(listCount, pageListLimit, maxPage, startPage, endPage);
+		
+		// 게시물 목록과 페이징 정보 저장
+		model.addAttribute("adntList", adntList);
+		model.addAttribute("pageInfo", pageInfo);
 		
 		return "admin/cs/notice";
 	}
+	
+	// [공지사항 글쓰기]
 	@GetMapping("admin/cs/notice/register")
-	public String csNoticeRegisterForm() {
+	public String csNoticeRegisterForm(HttpSession session, Model model) {
 		return "admin/cs/notice_register";
 	}
+	
+	@PostMapping("admin/cs/notice/registPro")
+	public String csNoticeRegistPro(BoardVO board, HttpSession session, Model model, HttpServletRequest request) {
+	// BoardService - registAdnt() 메서드 호출하여 게시물 등록 작업 요청
+	// => 파라미터 : BoardVO 객체   리턴타입 : int(insertCount)
+	int insertCount = service.registAdnt(board);
+	
+	// 게시물 등록 작업 요청 결과 판별
+	if(insertCount == 0) {
+		model.addAttribute("msg", "등록 실패!");
+		return "fail_back";
+	}
+	
+	return "admin/cs/notice";
+}
+	
 	@GetMapping("admin/cs/notice/detail")
 	public String csNoticeDetail() {
 		return "admin/cs/notice_detail";

@@ -165,7 +165,7 @@ public class CommunityController {
 		List<BoardVO> boardList = service.getTogetherList(sId, startRow, listLimit);
 		// --------------------------------------------------------------------
 		// 검색된 예약 내역의 수를 바탕으로 페이지네이션 생성
-		// BoardService - getBoardListCount() 메서드 호출하여 전체 게시물 목록 갯수 조회 요청
+		// BoardService - getTogetherListCount() 메서드 호출하여 전체 게시물 목록 갯수 조회 요청
 		// => 파라미터 : 검색타입, 검색어
 		// => 리턴타입 : int(listCount)
 		int listCount = service.getTogetherListCount(sId);
