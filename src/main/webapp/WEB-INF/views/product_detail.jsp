@@ -29,16 +29,18 @@
         <link href="${pageContext.request.contextPath }/resources/assets/fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath }/resources/assets/css/animate.css" rel="stylesheet" media="screen">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/bootstrap-select.min.css"> 
-        <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/icheck.min_all.css">
+<%--         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/bootstrap/css/bootstrap.min.css"> --%>
+        <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/bootstrap/css/bootstrap.min2.css">
+<%--         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/icheck.min_all.css"> --%>
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/price-range.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/owl.carousel.css">  
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/owl.theme.css">
     	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/owl.transitions.css"> 
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/lightslider.min.css"> 
+        <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/slider.css"> 
         
           
-      <%--   <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/style.css"> --%> 
+        <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/style.css"> 
        	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/main.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/assets/css/responsive.css"> 
       
@@ -49,7 +51,7 @@
       
       
         <!-- js  -->
-<%--         <script src="${pageContext.request.contextPath }/resources/assets/js/modernizr-2.6.2.min.js"></script> --%>
+        <script src="${pageContext.request.contextPath }/resources/assets/js/modernizr-2.6.2.min.js"></script>
         <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script> 
         <script src="${pageContext.request.contextPath }/resources/assets/js/jquery-1.10.2.min.js"></script> 
         <script src="${pageContext.request.contextPath }/resources/bootstrap/js/bootstrap.min.js"></script>
@@ -61,7 +63,7 @@
         <script src="${pageContext.request.contextPath }/resources/assets/js/wow.js"></script>
         <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
         <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
-<%--         <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script> --%>
+        <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
         <script src="${pageContext.request.contextPath }/resources/js/product_detail.js"></script>
     </head>
     <body>
@@ -211,17 +213,17 @@
 
                 <div class="clearfix padding-top-40" >
 
-                    <div class="col-md-8 single-property-content prp-style-1">
+                    <div class="col-md-8 single-property-content prp-style-1 ">
                         <div class="row">
-                            <div class="light-slide-item" style="border: solid red;">            
+                            <div class="light-slide-item" >            
                                 <div class="clearfix">
                                     <div class="favorite-and-print">
                                         <a class="add-to-fav" href="#login-modal" data-toggle="modal">
                                             <i class="fa fa-star-o"></i>
                                         </a>
                                     </div> 
-
-                                    <ul id="image-gallery" class="gallery list-unstyled " style="border: solid red;">
+<!-- cS-hidden -->
+                                    <ul id="image-gallery" class="gallery list-unstyled ">
                                         <li data-thumb="${pageContext.request.contextPath }/resources/assets/img/property-1/table1-1.png"> 
                                             <img src="${pageContext.request.contextPath }/resources/assets/img/property-1/table1-1.png" />
                                         </li>
@@ -233,8 +235,9 @@
                                         </li>
 <%--                                         <li data-thumb="${pageContext.request.contextPath }/resources/assets/img/property-1/다운로드.jpg">  --%>
 <%--                                             <img src="${pageContext.request.contextPath }/resources/assets/img/property-1/다운로드.jpg" /> --%>
-<!--                                         </li>                                          -->
+<!--                                         </li> -->
                                     </ul>
+
                                 </div>
                             </div>               
                             
@@ -363,71 +366,112 @@
 
 
 <!--                             </div> -->
-              
 
 
-                        <div class="similar-post-section padding-top-40 gdIWGV" > 
+
+
+
+
+              <div class="similar-post-section padding-top-40 gdIWGV" > 
                             <div id="prop-smlr-slide_0"> 
+                                <c:forEach var="review" items="${reviews}" varStatus="status">
+  								<c:if test="${status.index < 5}">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
                                         <a href="property-1.html" ><img src="${pageContext.request.contextPath }/resources/assets/img/property-1/review1.png"></a>
+<%--                                         <a href="property-1.html" ><img src="${pageContext.request.contextPath }/resources/upload/${review.review_img_1}"></a> --%>
+                                        
                                     </div>
                                     <div class="item-entry overflow abc">
 	                                        <a href="">
 	                                 	       <img src="${pageContext.request.contextPath }/resources/assets/img/client-face1.png" class="img-circle reviewProImg">
+<%-- 	                                 	       <img src="${pageContext.request.contextPath }/resources/upload/${review.}" class="img-circle reviewProImg"> --%>
 	                                        </a>
-	                                        <h5><a href="property-1.html">작성자 닉네임</a></h5>
+	                                        <h5><a href="property-1.html">${review.member_nick}</a></h5>
                                         <div class="dot-hr"></div>
-                                        <span class="pull-left">여기는 리뷰를 나타내는 곳입니다~!</span>
+                                        <span class="pull-left">${review.review_content}</span>
                                     </div>
                                 </div> 
-                                <div class="box-two proerty-item">
-                                    <div class="item-thumb">
-                                        <a href="property-1.html" ><img src="${pageContext.request.contextPath }/resources/assets/img/property-1/review1.png"></a>
-                                    </div>
-                                    <div class="item-entry overflow abc">
-	                                        <a href="">
-	                                 	       <img src="${pageContext.request.contextPath }/resources/assets/img/client-face1.png" class="img-circle reviewProImg">
-	                                        </a>
-	                                        <h5><a href="property-1.html">작성자 닉네임</a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left">여기는 리뷰를 나타내는 곳입니다~!</span>
-                                    </div>
-                                </div> 
-                                <div class="box-two proerty-item">
-                                    <div class="item-thumb">
-                                        <a href="property-1.html" >
-                                        	<img src="${pageContext.request.contextPath }/resources/assets/img/property-1/review2.png"></a>
-                                    </div>
-                                    <div class="item-entry overflow abc">
-	                                        <a href="">
-	                                 	       <img src="${pageContext.request.contextPath }/resources/assets/img/client-face1.png" class="img-circle reviewProImg">
-	                                        </a>
-	                                        <h5><a href="property-1.html">작성자 닉네임</a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left">여기는 리뷰를 나타내는 곳입니다~!</span>
-                                    </div>
-                                </div> 
-                                <div class="box-two proerty-item">
-                                    <div class="item-thumb">
-                                        <a href="property-1.html" ><img src="${pageContext.request.contextPath }/resources/assets/img/property-1/review2.png"></a>
-                                    </div>
-                                    <div class="item-entry overflow abc">
-	                                        <a href="">
-	                                 	       <img src="${pageContext.request.contextPath }/resources/assets/img/client-face1.png" class="img-circle reviewProImg">
-	                                        </a>
-	                                        <h5><a href="property-1.html">작성자 닉네임</a></h5>
-                                        <div class="dot-hr"></div>
-                                        <span class="pull-left">여기는 리뷰를 나타내는 곳입니다~!</span>
-                                    </div>
-                                </div> 
+                                        </c:if>
+									</c:forEach>
                             </div>
                             <div class="ReviewSection__LinkWrapper-h5kv09-1 dzAqdb">
-								<a class="ReviewSection__StyledLink-h5kv09-2 PIawM" href="../review/detail">3개 후기 더보기
+								<a class="ReviewSection__StyledLink-h5kv09-2 PIawM" href="${pageContext.request.contextPath }/review/detail?class_idx=${cla.class_idx}">3개 후기 더보기
 									<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' viewBox='0 0 12 12'%3E %3Cpath fill='%230075EF' fill-rule='evenodd' d='M3.97 1.72c.293-.293.767-.293 1.06 0L9.31 6l-4.28 4.28c-.293.293-.767.293-1.06 0-.293-.293-.293-.767 0-1.06L7.19 6 3.97 2.78c-.293-.293-.293-.767 0-1.06z' clip-rule='evenodd'/%3E %3C/svg%3E" alt="arrow-blue">
 								</a>
 							</div>
                         </div>
+
+
+
+
+
+
+              
+
+
+<!--                         <div class="similar-post-section padding-top-40 gdIWGV" >  -->
+<!--                             <div id="prop-smlr-slide_0">  -->
+<!--                                 <div class="box-two proerty-item"> -->
+<!--                                     <div class="item-thumb"> -->
+<%--                                         <a href="property-1.html" ><img src="${pageContext.request.contextPath }/resources/assets/img/property-1/review1.png"></a> --%>
+<!--                                     </div> -->
+<!--                                     <div class="item-entry overflow abc"> -->
+<!-- 	                                        <a href=""> -->
+<%-- 	                                 	       <img src="${pageContext.request.contextPath }/resources/assets/img/client-face1.png" class="img-circle reviewProImg"> --%>
+<!-- 	                                        </a> -->
+<!-- 	                                        <h5><a href="property-1.html">작성자 닉네임</a></h5> -->
+<!--                                         <div class="dot-hr"></div> -->
+<!--                                         <span class="pull-left">여기는 리뷰를 나타내는 곳입니다~!</span> -->
+<!--                                     </div> -->
+<!--                                 </div>  -->
+<!--                                 <div class="box-two proerty-item"> -->
+<!--                                     <div class="item-thumb"> -->
+<%--                                         <a href="property-1.html" ><img src="${pageContext.request.contextPath }/resources/assets/img/property-1/review1.png"></a> --%>
+<!--                                     </div> -->
+<!--                                     <div class="item-entry overflow abc"> -->
+<!-- 	                                        <a href=""> -->
+<%-- 	                                 	       <img src="${pageContext.request.contextPath }/resources/assets/img/client-face1.png" class="img-circle reviewProImg"> --%>
+<!-- 	                                        </a> -->
+<!-- 	                                        <h5><a href="property-1.html">작성자 닉네임</a></h5> -->
+<!--                                         <div class="dot-hr"></div> -->
+<!--                                         <span class="pull-left">여기는 리뷰를 나타내는 곳입니다~!</span> -->
+<!--                                     </div> -->
+<!--                                 </div>  -->
+<!--                                 <div class="box-two proerty-item"> -->
+<!--                                     <div class="item-thumb"> -->
+<!--                                         <a href="property-1.html" > -->
+<%--                                         	<img src="${pageContext.request.contextPath }/resources/assets/img/property-1/review2.png"></a> --%>
+<!--                                     </div> -->
+<!--                                     <div class="item-entry overflow abc"> -->
+<!-- 	                                        <a href=""> -->
+<%-- 	                                 	       <img src="${pageContext.request.contextPath }/resources/assets/img/client-face1.png" class="img-circle reviewProImg"> --%>
+<!-- 	                                        </a> -->
+<!-- 	                                        <h5><a href="property-1.html">작성자 닉네임</a></h5> -->
+<!--                                         <div class="dot-hr"></div> -->
+<!--                                         <span class="pull-left">여기는 리뷰를 나타내는 곳입니다~!</span> -->
+<!--                                     </div> -->
+<!--                                 </div>  -->
+<!--                                 <div class="box-two proerty-item"> -->
+<!--                                     <div class="item-thumb"> -->
+<%--                                         <a href="property-1.html" ><img src="${pageContext.request.contextPath }/resources/assets/img/property-1/review2.png"></a> --%>
+<!--                                     </div> -->
+<!--                                     <div class="item-entry overflow abc"> -->
+<!-- 	                                        <a href=""> -->
+<%-- 	                                 	       <img src="${pageContext.request.contextPath }/resources/assets/img/client-face1.png" class="img-circle reviewProImg"> --%>
+<!-- 	                                        </a> -->
+<!-- 	                                        <h5><a href="property-1.html">작성자 닉네임</a></h5> -->
+<!--                                         <div class="dot-hr"></div> -->
+<!--                                         <span class="pull-left">여기는 리뷰를 나타내는 곳입니다~!</span> -->
+<!--                                     </div> -->
+<!--                                 </div>  -->
+<!--                             </div> -->
+<!--                             <div class="ReviewSection__LinkWrapper-h5kv09-1 dzAqdb"> -->
+<!-- 								<a class="ReviewSection__StyledLink-h5kv09-2 PIawM" href="../review/detail">3개 후기 더보기 -->
+<!-- 									<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' viewBox='0 0 12 12'%3E %3Cpath fill='%230075EF' fill-rule='evenodd' d='M3.97 1.72c.293-.293.767-.293 1.06 0L9.31 6l-4.28 4.28c-.293.293-.767.293-1.06 0-.293-.293-.293-.767 0-1.06L7.19 6 3.97 2.78c-.293-.293-.293-.767 0-1.06z' clip-rule='evenodd'/%3E %3C/svg%3E" alt="arrow-blue"> -->
+<!-- 								</a> -->
+<!-- 							</div> -->
+<!--                         </div> -->
 
 
 
@@ -457,7 +501,7 @@
                                         <img src="${pageContext.request.contextPath }/resources/assets/img/detail3.webp" class="img-responsive wp-post-image" alt="Exterior">            
                                         <img src="${pageContext.request.contextPath }/resources/assets/img/detail1.webp" class="img-responsive wp-post-image" alt="Exterior">            
                                         <img src="${pageContext.request.contextPath }/resources/assets/img/detail2.webp" class="img-responsive wp-post-image" alt="Exterior">            
-                                        <img src="${pageContext.request.contextPath }/resources/assets/img/detail5.png" class="img-responsive wp-post-image" alt="Exterior">            
+<%--                                         <img src="${pageContext.request.contextPath }/resources/assets/img/detail5.png" class="img-responsive wp-post-image" alt="Exterior">             --%>
                                     </a>
                                 </div>
                             </div>
@@ -547,29 +591,66 @@
 
                                         <div class="clear">
                                             <ul class="dealer-contacts">                                       
-                                                <li><i class="pe-7s-map-marker strong"> </i> 서울 성동구 왕십리로10길 5-6 1층 와플목공방</li>
-                                                <li><i class="pe-7s-mail strong"> </i>  email@yourcompany.com</li>
-                                                <li><i class="pe-7s-call strong"> </i> 02-1133-1314</li>
+                                                <li><i class="pe-7s-map-marker strong"> </i>${company.com_address1} ${company.com_address2}</li>
+                                                <li><i class="pe-7s-mail strong"> </i>${company.com_email}</li>
+                                                <li><i class="pe-7s-call strong"> </i> ${company.com_tel}</li>
                                             </ul>
+                                        </div>
+                                        <div>
+                                        	<button type="button" class="payButton" onclick="">팔로우</button>
                                         </div>
 
                                     </div>
                                 </div>
                             </div>
 
-                              
-
-                           
-
-							<div class="panel panel-default sidebar-menu wow fadeInRight animated" >
-								<div class="panel-heading">
-									<h3 class="panel-title">클래스 예약하기</h3>
-								</div>
-								<div class="panel-body search-widget">
-									<form action="" class=" form-inline"> 
-										<label for="reservation-date"><p>예약 날짜</p></label>
-										<input type="date" id="reservation-date" name="reservation-date">
-										<br><br>
+                            <c:choose>
+							    <c:when test="${cla.class_category == 1}">
+							        <!-- class_category가 1일 때(정규모집) -->
+							        <div class="panel panel-default sidebar-menu wow fadeInRight animated" >
+           								<div class="panel-heading">
+											<h3 class="panel-title">정규모집 클래스 예약하기</h3>
+										</div>
+										<div class="panel-body search-widget">
+											<form action="cartPro" class=" form-inline" method="post">
+											    <input type="hidden" name="member_id" value="${param.com_idx}">		
+											    <input type="hidden" name="class_idx" value="${param.com_idx}">		
+											    <input type="hidden" name="member_id" value="${sessionScope.member_id}">		
+											    <input type="hidden" name="res_visit_date" value="${cla.class_start_date} ~ ${cla.class_end_date}">		
+											    <input type="hidden" name="memberes_visit_timer_id" value="${startTime} ~ ${endTime}">		
+												
+												<div>
+													<span class="classInfo">기간 : ${cla.class_start_date} ~ ${cla.class_end_date}</span><br>
+													<span class="classInfo" id="classDays"><b>${cla.class_day}</b></span><br>
+													<span class="classInfo">시간 : ${startTime} ~ ${endTime}</span>
+<%-- 													<h3 id="classDays">${cla.class_day}</h3> --%>
+												</div>
+												<br>
+												<div class="persons-group">
+										    		<p>예약 인원</p>
+										   			<input type="number" id="res_member_count" name="res_member_count" value="1" min="1" max="20">
+												</div>
+												<br>
+												<div>
+													&nbsp;&nbsp;&nbsp;<button type="submit" id=onCart class="payButton" onclick="">장바구니</button>&nbsp;&nbsp;&nbsp;
+				<!-- 											<button type="button" id="payment" class="payButton" onclick="payment">결제하기</button> -->
+														<button type="button" class="payButton" onclick="location.href='${pageContext.request.contextPath}/payment?type=pay'">결제하기</button>
+				                                </div> 
+											</form>
+										</div>
+							        </div>
+							    </c:when>
+							    <c:when test="${cla.class_category == 2}">
+							        <!-- class_category가 2일 때(원데이 클래스) -->
+							        <div class="panel panel-default sidebar-menu wow fadeInRight animated" >
+           								<div class="panel-heading">
+											<h3 class="panel-title">원데이 클래스 예약하기</h3>
+										</div>
+										<div class="panel-body search-widget">
+											<form action="" class=" form-inline"> 
+											<label for="reservation-date"><p>예약 날짜</p></label>
+											<input type="date" id="reservation-date" name="reservation-date">
+											<br><br>
 											<div class="persons-group">
 											    <p>예약 인원</p>
 											    <input type="number" id="res_person" name="res_person" value="${search.res_person}" min="1" max="20">
@@ -577,39 +658,64 @@
 											<br>
 											<div>
 												&nbsp;&nbsp;&nbsp;<button type="button" id=onCart class="payButton" onclick="">장바구니</button>&nbsp;&nbsp;&nbsp;
-												<button type="button" class="payButton" onclick="">결제하기</button>
-			                                </div>   
-	<!--                                         <fieldset> -->
-	<!--                                             <div class="row"> -->
-	<!--                                                 <div class="col-xs-6"> -->
-	
-	<!--                                                     <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Select Your City"> -->
-	
-	<!--                                                         <option>New york, CA</option> -->
-	<!--                                                         <option>Paris</option> -->
-	<!--                                                         <option>Casablanca</option> -->
-	<!--                                                         <option>Tokyo</option> -->
-	<!--                                                         <option>Marraekch</option> -->
-	<!--                                                         <option>kyoto , shibua</option> -->
-	<!--                                                     </select> -->
-	<!--                                                 </div> -->
-	<!--                                                 <div class="col-xs-6"> -->
-	
-	<!--                                                     <select id="basic" class="selectpicker show-tick form-control"> -->
-	<!--                                                         <option> -Status- </option> -->
-	<!--                                                         <option>Rent </option> -->
-	<!--                                                         <option>Boy</option> -->
-	<!--                                                         <option>used</option>   -->
-	
-	<!--                                                     </select> -->
-	<!--                                                 </div> -->
-	<!--                                             </div> -->
-	<!--                                         </fieldset> -->
-	
-	                                                                 
-									</form>
-								</div>
-							</div>
+	<!-- 												<button type="button" id="payment" class="payButton" onclick="payment">결제하기</button>  -->
+													<button type="button" class="payButton" onclick="location.href='${pageContext.request.contextPath}/payment?type=pay'">결제하기</button>
+			                                </div> 
+										</div>
+							        </div>
+							    </c:when>
+							</c:choose>
+
+                           
+
+<!-- 							<div class="panel panel-default sidebar-menu wow fadeInRight animated" > -->
+<!-- 								<div class="panel-heading"> -->
+<!-- 									<h3 class="panel-title">클래스 예약하기</h3> -->
+<!-- 								</div> -->
+<!-- 								<div class="panel-body search-widget"> -->
+<!-- 									<form action="" class=" form-inline">  -->
+<!-- 										<label for="reservation-date"><p>예약 날짜</p></label> -->
+<!-- 										<input type="date" id="reservation-date" name="reservation-date"> -->
+<!-- 										<br><br> -->
+<!-- 										<div class="persons-group"> -->
+<!-- 										    <p>예약 인원</p> -->
+<%-- 										    <input type="number" id="res_person" name="res_person" value="${search.res_person}" min="1" max="20"> --%>
+<!-- 										</div> -->
+<!-- 										<br> -->
+<!-- 										<div> -->
+<!-- 											&nbsp;&nbsp;&nbsp;<button type="button" id=onCart class="payButton" onclick="">장바구니</button>&nbsp;&nbsp;&nbsp; -->
+<!-- <!-- 												<button type="button" id="payment" class="payButton" onclick="payment">결제하기</button>  --> -->
+<%-- 												<button type="button" class="payButton" onclick="location.href='${pageContext.request.contextPath}/payment?type=pay'">결제하기</button> --%>
+<!-- 		                                </div>    -->
+<!--                                         <fieldset> -->
+<!--                                             <div class="row"> -->
+<!--                                                 <div class="col-xs-6"> -->
+
+<!--                                                     <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Select Your City"> -->
+
+<!--                                                         <option>New york, CA</option> -->
+<!--                                                         <option>Paris</option> -->
+<!--                                                         <option>Casablanca</option> -->
+<!--                                                         <option>Tokyo</option> -->
+<!--                                                         <option>Marraekch</option> -->
+<!--                                                         <option>kyoto , shibua</option> -->
+<!--                                                     </select> -->
+<!--                                                 </div> -->
+<!--                                                 <div class="col-xs-6"> -->
+
+<!--                                                     <select id="basic" class="selectpicker show-tick form-control"> -->
+<!--                                                         <option> -Status- </option> -->
+<!--                                                         <option>Rent </option> -->
+<!--                                                         <option>Boy</option> -->
+<!--                                                         <option>used</option>   -->
+
+<!--                                                     </select> -->
+<!--                                                 </div> -->
+<!--                                             </div> -->
+<!--                                         </fieldset> -->
+<!-- 									</form> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
 						</aside>
 					</div>
 				</div>
@@ -779,7 +885,27 @@
         <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath }/resources/assets/js/lightslider.min.js"></script>
         <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
-
+		<script>
+		function printDays(class_day) {
+		    var days = ['월', '화', '수', '목', '금', '토', '일'];
+		    var classDays = '';
+		
+		    for (var i = 0; i < class_day.length; i++) {
+		        if (class_day[i] === '1') {
+		            classDays += days[i];
+		        }
+		    }
+		
+		    // 결과를 <h2> 태그에 출력합니다.
+		    document.getElementById('classDays').textContent = "요일  :  " + classDays;
+		}
+		
+		// JSP에서 전달받은 class_day 값을 JavaScript에서 사용할 수 있게 변환합니다.
+		var class_day = '${cla.class_day}';
+		
+		// 함수를 호출하여 결과를 출력합니다.
+		printDays(class_day);
+		</script>
         <script>
             $(document).ready(function () {
 
@@ -798,22 +924,22 @@
             });
         </script>
         
-        <script>
-window.onload = function() {
-    var listItems = document.querySelectorAll('#image-gallery li');
+<!--         <script> -->
+<!-- // window.onload = function() { -->
+<!-- //     var listItems = document.querySelectorAll('#image-gallery li'); -->
     
-    listItems.forEach(function(listItem) {
-        var dataThumb = listItem.getAttribute('data-thumb');
-        var img = new Image();
-        img.src = dataThumb;
-        img.width = 200;  // 원하는 너비를 설정하세요
-        img.height = 200; // 원하는 높이를 설정하세요
-        img.onload = function() {
-            listItem.appendChild(img);
-        }
-    });
-}
-</script>
+<!-- //     listItems.forEach(function(listItem) { -->
+<!-- //         var dataThumb = listItem.getAttribute('data-thumb'); -->
+<!-- //         var img = new Image(); -->
+<!-- //         img.src = dataThumb; -->
+<!-- //         img.width = 200;  // 원하는 너비를 설정하세요 -->
+<!-- //         img.height = 200; // 원하는 높이를 설정하세요 -->
+<!-- //         img.onload = function() { -->
+<!-- //             listItem.appendChild(img); -->
+<!-- //         } -->
+<!-- //     }); -->
+<!-- // } -->
+<!-- </script> -->
 
     </body>
 </html>

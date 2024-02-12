@@ -100,7 +100,7 @@ public interface ReviewMapper {
 	
 	
 	//예약횟수 조회
-	int selectCountResCom(@Param("memberId") String memberId, @Param("comIdx") int comIdx);
+	int selectCountResCom(@Param("memberId") String memberId, @Param("classIdx") int classIdx);
 
 	// 각 리뷰에 대한 댓글 갯수 카운트
 	int selectCountComment(int review_idx);

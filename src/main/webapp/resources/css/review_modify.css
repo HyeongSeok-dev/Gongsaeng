@@ -37,6 +37,14 @@
   justify-content: center; /* 가로축에서 중앙 정렬 */
 }
 
+.classTitle{
+	font-size: 25px !important;	
+}
+
+.formSize{
+	margin: 100px !important;
+}
+
 .rating {
    position: relative;
    width: 180px;
@@ -312,7 +320,8 @@
 }
 
 .review_input_section {
-  text-align: center; /* 이 요소 내의 모든 내용을 중앙 정렬 */
+  text-align: right; /* 이 요소 내의 모든 내용을 중앙 정렬 */
+  
 }
 
 
@@ -542,22 +551,39 @@ a:hover {
 }
 
 
-.register_button {
-/*  	position: absolute;  */
-/*     right: 700px;  */
-/*     bottom: 400px;  */
-    background-color: #494c53;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    text-align: center;
-    display: inline-block;
-    margin-left: 1350px;
+/* .register_button { */
+/* /*  	position: absolute;  */ */
+/* /*     right: 700px;  */ */
+/* /*     bottom: 400px;  */ */
+/*     background-color: #494c53; */
+/*     color: white; */
+/*     padding: 10px 20px; */
+/*     border: none; */
+/*     border-radius: 10px; */
+/*     font-size: 16px; */
+/*     cursor: pointer; */
+/*     margin-top: 20px; */
+/*     margin-bottom: 20px; */
+/*     text-align: center; */
+/*     display: inline-block; */
+/*     margin-left: 1350px; */
+/* } */
+
+ /* 등록 버튼 */
+#register_button {
+    position: absolute !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background-color: #494c53 !important;
+    color: white !important;
+    padding: 10px 20px !important;
+    border: none !important;
+    border-radius: 10px !important;
+/*     margin-right: -20px; */
+    margin-bottom: -36px !important;
+   	font-size: 16px !important;
+/*    	margin-top: -13px; */
+	cursor: pointer !important;
 }
 
 

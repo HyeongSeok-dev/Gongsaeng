@@ -760,7 +760,7 @@ svg {
 
 /* 리뷰 메뉴 제목 */
 .review_subject_count {
-	color: #3FAFFC;
+	color: #585858;
 }
 
 
@@ -1444,7 +1444,7 @@ h1 {
 	margin-top:5px;
 }
 /*  =============================================================  */
-.review_date {
+.review_regdate {
 	margin-left:960px;
 	color:#888;
 	font-size:1.12em;
@@ -1484,7 +1484,7 @@ h1 {
 #review_highest:hover,
 #review_lowest:hover,
 #review_likes_order:hover {
-    color: #3FAFFC;
+    color: #FE2E2E;
 }
 
 .active {
@@ -1556,7 +1556,7 @@ h1 {
 /* 이 가게 좋아요 출력 */
 
 .fa-heart {
-    color: #3FAFFC; /* 파란색 하트 아이콘 */
+    color: #FE2E2E; /* 파란색 하트 아이콘 */
     margin-right: 5px; /* 하트 아이콘과 숫자 사이의 간격 */
 }
 

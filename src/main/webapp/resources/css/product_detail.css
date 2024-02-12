@@ -84,15 +84,15 @@ body {
 }
 
 /* #image-gallery img { */
-/*   width: 200px;  원하는 너비를 설정하세요 */
-/*   height: 200px; 원하는 높이를 설정하세요 */
-/*   object-fit: cover; 이미지의 비율을 유지하면서, 지정된 너비와 높이에 맞게 이미지를 잘라내거나 확대/축소합니다. */
+/*   width: 200px;  */
+/*   height: 200px; */
+/*   object-fit: cover; */
 /* } */
 
 .ProfileImg{
-	width: 100px; 
-	height: 90px;
-	object-fit: cover;
+/* 	width: 100px;  */
+/* 	height: 90px; */
+/* 	object-fit: cover; */
 }
 
 .fixed {
@@ -1412,6 +1412,14 @@ span.similar_recom_title {
     max-width: 135px; /* or any other max size */
 }
 
+.classInfo{
+	font-size: 20px !important;
+}
+
+
+
+
 /*test*/
+
 
  

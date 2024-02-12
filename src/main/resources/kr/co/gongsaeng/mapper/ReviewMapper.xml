@@ -99,7 +99,7 @@
 	<update id="updateReview" parameterType="kr.co.gongsaeng.vo.ReviewVO">
 	    UPDATE review
 	    SET
-	        <if test="member_id != null"> member_id = #{v}</if>
+	        <if test="member_id != null"> member_id = #{member_id}</if>
 	        <if test="review_content != null">, review_content = #{review_content}</if>
 	        <if test="review_score != null">, review_score = #{review_score}</if>
 	        <if test="review_kind != null">, review_kind = #{review_kind}</if>
@@ -145,7 +145,7 @@
 	        SUM(review_etc_fast) as review_etc_fast,
 	        SUM(review_no_keyword) as review_no_keyword
 	    FROM review
-	    WHERE class_idx = #{class_idx}
+	    WHERE class_idx = #{classIdx}
 	    GROUP BY class_idx
 	</select>
 	
@@ -154,7 +154,7 @@
     	SELECT * 
     	FROM review 
     	WHERE class_idx = #{class_idx} 
-    	ORDER BY review_date DESC
+    	ORDER BY review_regdate DESC
 	</select>
 	
 <!-- 	<select id="selectReviewsByHighestScore" parameterType="int" resultType="review"> -->
@@ -308,28 +308,19 @@
 	
 	<!-- 리뷰 신고 -->
 	<insert id="insertReviewReport">
-		INSERT
-		INTO report(
-		 review_idx,
-		 class_idx,
-		 member_id,
-		 report_reason,
-		 report_content,
-		 member_email,
-		 report_status,
-		 member_phone,
-		 report_category
-		 )
-	      	VALUES (
-		#{review_idx},
-		#{class_idx},
-		#{member_id},
-		#{report_reason},
-		#{report_content},
-		#{member_email},
-		1, 
-		#{member_phone},
-		1
+		INSERT INTO report
+		VALUES(
+			null
+			,null
+			,#{class_idx}
+			,#{member_id}
+			,#{report_reason}
+			,#{report_content}
+			,#{member_email}
+			,1
+			,#{member_phone}
+			,1
+			,now()
 		)
 	</insert>
 	
@@ -445,7 +436,9 @@
 	<!-- 예약번호 1개당 1개의 리뷰만 작성 가능 -->
 	<select id="selectReservationList" resultType="map">
 		SELECT 
-		    p.pay_num, 
+		    p.pay_num,
+		    p.res_visit_date,
+		    p.res_visit_time,
 		    COALESCE(a.review_count, 0) AS review_idx
 		FROM 
 		    payment p
@@ -475,7 +468,7 @@
 			,#{member_id}
 			,200
 			,2
-			,0
+			,"0"
 			,1
 			,now()
 		)
@@ -491,7 +484,7 @@
 		SELECT COUNT(*) 
 		FROM payment
 		WHERE member_id = #{memberId} AND
-		com_idx = #{comIdx}
+		class_idx = #{classIdx}
 	</select>
 	
 	<!-- class_idx값 구하기 -->

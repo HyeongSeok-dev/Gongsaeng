@@ -2,6 +2,7 @@ package kr.co.gongsaeng.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -28,9 +29,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.google.gson.Gson;
 
 import kr.co.gongsaeng.service.ReviewService;
-import kr.co.gongsaeng.vo.ClassVO;
 import kr.co.gongsaeng.vo.MemberVO;
-import kr.co.gongsaeng.vo.ReviewCategoryCountVO;
 import kr.co.gongsaeng.vo.ReviewCountVO;
 import kr.co.gongsaeng.vo.ReviewVO;
 
@@ -43,7 +42,7 @@ public class ReviewController {
 	// ===================================================================
 	// [ 리뷰 상세 페이지 ]
 	@GetMapping("review/detail")
-	public String detail(@RequestParam(defaultValue = "1") int classIdx, 
+	public String detail(@RequestParam("class_idx") int classIdx, 
 			@RequestParam(defaultValue = "1") int comIdx,
 			//			@RequestParam("review_num") int reviewNum, 	
 			//			@RequestParam("user_id") String userId, 
@@ -76,13 +75,14 @@ public class ReviewController {
 		int reviewCount = service.getReviewCount(classIdx);
 		model.addAttribute("reviewCount",reviewCount);
 		
+		
 		// 리뷰 별점 평균
 		Double reviewAverage = service.getReviewAverage(classIdx);
 		model.addAttribute("reviewAverage",reviewAverage);
 		
 		// 리뷰 리스트 불러오기
-		List<ReviewVO> reviews = service.getAllReviews(classIdx);
-//		System.out.println("리뷰리스트 불러오기>>>>>>>>>>>>>>>>>" + reviews);
+		List<ReviewVO> reviews = service.getAllReviews(classIdx);	
+		System.out.println("리뷰리스트 불러오기>>>>>>>>>>>>>>>>>" + reviews);
 		
 		// 이런 점이 좋았어요 차트 수정
 		List<ReviewCountVO> reviewCounts = service.getReviewCountsByComId(classIdx);
@@ -135,9 +135,11 @@ public class ReviewController {
     @GetMapping("review/detail/sortedReviews")
     @ResponseBody
     public List<ReviewVO> getSortedReviews(
-    										@RequestParam(defaultValue = "1") int classIdx,
+								    		@RequestParam("classIdx") int classIdx,
+//    										@RequestParam(defaultValue = "1") int classIdx,
                                            @RequestParam("sortType") String sortType,
-                                           @RequestParam(value = "photoOnly", defaultValue = "false") boolean photoOnly
+                                           @RequestParam(value = "photoOnly", defaultValue = "false") boolean photoOnly,
+                                           @RequestParam(value = "menuName", required = false) String menuName
                                            ) {
     	
         List<ReviewVO> reviews = service.getSortedReviews(classIdx, sortType, photoOnly);
@@ -165,11 +167,11 @@ public class ReviewController {
   	// [ 리뷰 작성 ] 
 	@GetMapping("review/write")
 	public String reviewWrite(HttpSession session, Model model,ReviewVO review,
-			@RequestParam(defaultValue = "1") int comIdx,
+			@RequestParam("class_idx") int classIdx,
 			 @RequestParam(defaultValue = "") String payNum,
-			@RequestParam(defaultValue = "1") int classIdx
+			@RequestParam(defaultValue = "1") int comIdx
 			) {
-		System.out.println(payNum);
+		System.out.println(classIdx);
 		
 		
 //		//class_idx가져오기
@@ -209,7 +211,7 @@ public class ReviewController {
 		model.addAttribute("res_list",res_list);
 		System.out.println("res_list >>>>>>>>>>>>>>>>>>>>>>>" + res_list);
 		
-//	    model.addAttribute("comIdx", comIdx);
+	    model.addAttribute("classIdx", classIdx);
 //	    model.addAttribute("comName", comName);
 	    model.addAttribute("classTitle", classTitle);
 	    model.addAttribute("visitCount", visitCount);
@@ -319,12 +321,12 @@ public class ReviewController {
 	// [ 리뷰 수정 ] 
 	@GetMapping("review/modify")
 	public String modify(ReviewVO review,
-						@RequestParam(defaultValue = "33") int reviewIdx,
-						@RequestParam(defaultValue = "1") int comIdx,
-						@RequestParam(defaultValue = "1") int classIdx,
+						@RequestParam("review_idx") int reviewIdx,
+//						@RequestParam(defaultValue = "1") int comIdx,
+						@RequestParam("class_idx") int classIdx,
 						Model model,
 						HttpSession session) {
-		
+		System.out.println("classIdx" + classIdx);
 		// 글 삭제와 권한 판별 동일(세션 아이디 없을 경우 처리)
 		String sId = (String) session.getAttribute("sId");
 //		if (sId == null)  {
@@ -341,17 +343,18 @@ public class ReviewController {
 		
 		// 리뷰 정보 가져오기
 		review = service.getReview(reviewIdx);
-		if(review == null || !sId.equals(review.getMember_id()) && !sId.equals("admin")){
-			model.addAttribute("msg","잘못된 접근입니다!");
-			return "fail_back";
-		}
+		System.out.println(review);
+//		if(review == null || !sId.equals(review.getMember_id()) && !sId.equals("admin")){
+//			model.addAttribute("msg","잘못된 접근입니다!");
+//			return "fail_back";
+//		}
 		
 		// 클래스 이름 가져오기
 		String classTitle = service.getClassTitle(classIdx);
 		// 업체 이름 가져오기
-	    String comName = service.getCompanyName(comIdx);
+//	    String comName = service.getCompanyName(comIdx);
 	    model.addAttribute("classTitle", classTitle);
-	    model.addAttribute("comName", comName);
+//	    model.addAttribute("classIdx", classIdx);
 	    model.addAttribute("review", review);
 		
 		return "review/review_modify";
@@ -393,11 +396,11 @@ public class ReviewController {
 	
 	
 	// "ReviewModifyPro" 서블릿 요청에 대한 글 수정 요청 비즈니스 로직 처리
-	@PostMapping("/gongsaeng/review/ReviewModifyPro")
+	@PostMapping("review/reviewModifyPro")
 	public String modifyPro(
 		ReviewVO review,
 		@RequestParam("review_idx") int reviewIdx,// 선생님은 페이지번호 였지만 난 reviewNum으로
-		@RequestParam("com_idx") int comIdx,
+//		@RequestParam("com_idx") int comIdx,
 		@RequestParam("class_idx") int classIdx,
 		HttpSession session, Model model ) {
 		// 세션 아이디에 따른 차단 처리
@@ -482,7 +485,7 @@ public class ReviewController {
 	@PostMapping("/gongsaeng/review/delete")//ooo
 	public String reviewDelete(
 			ReviewVO review,
-			@RequestParam(defaultValue = "1") int reviewIdx,
+			@RequestParam("review_idx") int reviewIdx,
 //				@RequestParam("com_id") int comId,
 			HttpSession session,
 			Model model,
@@ -550,8 +553,8 @@ public class ReviewController {
 	// [ 리뷰 신고 ]
 	@GetMapping("review/report")
 	public String report(HttpSession session, Model model,
-			@RequestParam(defaultValue = "1") int classIdx,
-			@RequestParam(defaultValue = "2") int reviewIdx) {
+			@RequestParam("class_idx") int classIdx,
+			@RequestParam("review_idx") int reviewIdx) {
 		
 		// review_idx과 class_idx를 모델에 추가
 	    model.addAttribute("reviewIdx", reviewIdx);
@@ -582,7 +585,8 @@ public class ReviewController {
 	// "ReviewWritePro" 서블릿 요청에 대한 글쓰기 비즈니스 로직 처리
 	@PostMapping("review/reviewReportPro")
 	public String reviewReportPro(ReviewVO review, HttpSession session, Model model, 
-			@RequestParam("member_id") String memberId) {
+			@RequestParam("member_id") String memberId,
+			@RequestParam("class_idx") int classIdx) {
 		String sId = (String) session.getAttribute("sId");
 		// 세션에서 user_id 가져오기
 //				if (sId == null) {
@@ -594,7 +598,8 @@ public class ReviewController {
 	    // ReviewVO 객체에 세션에서 가져온 user_id 값을 설정
 	    review.setMember_id(sId);
 	    // 나머지 필요한 정보 (com_id, report_num)를 세션에서 가져오기
-	    Integer classIdx = (Integer) session.getAttribute("class_idx");
+//	    Integer classIdx = (Integer) session.getAttribute("class_idx");
+	    System.out.println("확인" + classIdx);
 
 		
 	// ----------------------------------------------------------------------

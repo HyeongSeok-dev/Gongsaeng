@@ -2,7 +2,7 @@ package kr.co.gongsaeng.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.Arrays;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -31,7 +31,7 @@ public class ProductController {
 	private ProductService service;
 
 	@GetMapping("product/detail")
-	public String productDetail(HttpSession session, Model model, @RequestParam(defaultValue = "1") int classIdx,
+	public String productDetail(HttpSession session, Model model, @RequestParam("class_idx") int classIdx,
 			ClassVO cla, CompanyVO com, HttpServletRequest request, HttpServletResponse response)
 			throws UnsupportedEncodingException {
 
@@ -51,6 +51,11 @@ public class ProductController {
 		List<ReviewVO> reviews = service.getReviewInfo(cla);
 		System.out.println("립휴" + reviews);
 
+		SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+		String startTime = formatter.format(cla.getClass_start_time());
+		String endTime = formatter.format(cla.getClass_end_time());
+		
+		
 //		 상품페이지에 넣을 쿠키 추가 코드
 		JSONObject recentClass = new JSONObject();
 		recentClass.put("class_idx", cla.getClass_idx());
@@ -115,6 +120,8 @@ public class ProductController {
 			}
 		}
 
+		model.addAttribute("startTime", startTime);
+		model.addAttribute("endTime", endTime);
 		model.addAttribute("reviews", reviews);
 		model.addAttribute("cla", cla);
 		model.addAttribute("company", com);

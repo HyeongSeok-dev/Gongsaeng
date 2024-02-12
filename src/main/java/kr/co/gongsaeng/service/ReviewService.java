@@ -167,8 +167,8 @@ public class ReviewService {
 	}
 	
 	//예약완료 횟수 카운트
-	public int getReservationCount(String memberId, int comIdx) {
-		return mapper.selectCountResCom(memberId, comIdx);
+	public int getReservationCount(String memberId, int classIdx) {
+		return mapper.selectCountResCom(memberId, classIdx);
 	}
 
 	// 각 리뷰에 대한 댓글 갯수 카운트	
