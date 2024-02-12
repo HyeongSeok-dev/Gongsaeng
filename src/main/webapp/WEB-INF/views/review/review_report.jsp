@@ -87,7 +87,8 @@
 							</div>
 							<div class="form-group">
 								<label for="report_content"><strong>신고 내용을 작성하세요</strong></label>
-								<textarea class="form-control" id="report_content" name="report_content" required rows="3"></textarea>
+								<textarea class="form-control" id="report_content" name="report_content" required rows="3"
+								placeholder="타당한 사유가 없는 허위 신고 시 이용에 제한이 가해질 수 있으므로,  &#13;&#10;신중하게 제보해 주세요.&#13;&#10;신고된 내용은 7일 이내의 검수과정을 거친 후 적용됩니다.(500자 제한)"></textarea>
 								<input type="hidden" name="class_idx" value="${param.class_idx}">
 								<input type="hidden" name="member_id" value="${member_member_id}">
 							</div>
@@ -99,7 +100,36 @@
 								<label for="email"><strong>답변받을 전화번호(선택)</strong></label>
 								<input type="tel" id="phone" name="member_phone" class="form-control" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 							</div>
-							<button type="submit" class="btn btn-default">신고하기</button>
+												<hr class="line">
+					<br>
+					<p class="law_info">
+						수집하는 개인정보는 신고 내용 처리를 위해 꼭 필요한 정보로 동의 후 이용 가능하며, 수집된 정보는 관련 법령에 따라
+						3년간 보관 후 삭제됩니다. <br>※ 수집 개인정보 : 이메일,휴대폰 번호
+					</p>
+					<br>
+					<div class="agree_checkbox_block">
+					  <label class="label_checkbox">
+					    <input type="checkbox" class="form_checkbox" id="agreeCheckbox"> 
+					    <span class="label strong">[필수] 개인정보 수집 및 이용 동의</span>
+					  </label>
+					  <a href="#" class="info-content">보기</a>
+					  <!-- Popup window -->
+<!-- 					  <div id="infoPopup" class="popup"> -->
+<!-- 					    <div class="popup-content"> -->
+<!-- 					      <div class="law_content">개인정보 처리 방침</div><br> -->
+<!-- 					      <p>주식회사 찜콩(이하 "회사"라 한다)는 정보통신망 이용촉진 및 정보보호 등에 관한 법률, 개인정보보호법 등 관련 법령에 따라 이용자의 개인정보를 보호하고, 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록 하기 위하여 다음과 같이 개인정보처리방침을 수립합니다.</p><br> -->
+<!-- 					      <p>개인정보처리방침은 이용자가 언제나 쉽게 열람할 수 있도록 서비스 초기화면을 통해 공개하고 있으며 관련법령, 지침, 고시 또는 캐치테이블 서비스 정책의 변경에 따라 달라질 수 있습니다. 1. 개인정보의 수집·이용 회사는 다음과 같이 이용자의 개인정보를 수집합니다. 처리하고 있는 개인정보는 다음의 수집·이용 목적 이외의 용도로는 활용되지 않으며, 수집·이용 목적이 변경되는 경우에는 개인정보보호법에 따라 별도의 동의를 받는 등 필요한 조치를 이행합니다.</p> -->
+<!-- 					      Close button -->
+<!-- 					      <button id="closePopup" class="close-btn">닫기</button> -->
+<!-- 					    </div> -->
+<!-- 					  </div> -->
+<!-- 					</div> -->
+					<div class="sticky_bottom_btns">
+			<a href="${pageContext.request.contextPath}/review/detail?class_idx=${classIdx}" class="btn btn-lg btn-outline" id="cancelButton">취소</a>
+			<button class="btn btn-lg btn-red" id="reportButton" type="submit">신고하기</button>
+		</div>
+							
+<!-- 							<button type="submit" class="btn btn-default">신고하기</button> -->
 						</form>
 					</div>
 				</div>
