@@ -100,7 +100,16 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h5 class="title">사업체 환급 목록</h5>
+                <h5 class="title">
+                <c:choose>
+					<c:when test="${empty param.member_id }">
+    	             사업체 환급 목록
+					</c:when>
+					<c:otherwise>
+ 	                 ${param.member_id }님의 사업체 환급 목록
+					</c:otherwise>
+                </c:choose>
+                </h5>
               </div>
               <div class="card-body">
 	              <div class="row">
@@ -147,7 +156,6 @@
 	             		<col width="10%" />
 	             		<col width="13%" />
 	             		<col width="15%" />
-	             		<col width="10%" />
 		            </colgroup>
 		            <tr>
 		                <th>신청일자</th>
@@ -160,40 +168,47 @@
 		            </tr>
 		            <!-- 회원 데이터 로우 -->
 		           
-		            <c:forEach var="refund" items="${refundList }">
-			       	<c:if test="${refund.pay_cal_status > 1 }">
-			            <tr>
-			                <td>${refund.refund_request_date}</td>
-			                <td>
-			                <c:choose>
-			                	<c:when test="${empty refund.refund_date}">
-					                미정산
-			                	</c:when>
-								<c:otherwise>
-					                ${refund.refund_date}
-								</c:otherwise>
-			                </c:choose>
-			                </td>
-			                <td>${refund.com_name }</td>
-			                <td class="regPay">${refund.payment} 원</td>
-			                <td class="payFee"> 원</td>
-			                <td class="payRef">원</td>
-			                <td>
-								<c:choose>
-									<c:when test="${refund.pay_cal_status eq 2 }"> <%-- 정산신청 --%>
-					                	<button type="button" class="btn btn_default" value="환급승인" >승인</button>
-					                	<button type="button" class="btn btn_default" value="환급거절" >거절</button>
-									</c:when>
-									<c:when test="${refund.pay_cal_status eq 3 }"> <%-- 정산승인 처리중 --%>
-						                승인(정산중)
-									</c:when>
-									<c:when test="${refund.pay_cal_status eq 4 }"> <%-- 정산완료 --%>
-						                환급완료
-									</c:when>
-								</c:choose>
-			                </td>
-			       	</c:if>
-		            </c:forEach>
+	           	 <c:choose>
+	           	 	<c:when test="${empty refundList }">
+			       		<td colspan="7"> 불러올 정보가 없습니다. </td>
+			       	</c:when>
+			       	<c:otherwise>
+			            <c:forEach var="refund" items="${refundList }">
+					       	<c:if test="${refund.pay_cal_status > 1 }">
+					            <tr>
+					                <td>${refund.refund_request_date}</td>
+					                <td>
+					                <c:choose>
+					                	<c:when test="${empty refund.refund_date}">
+							                미정산
+					                	</c:when>
+										<c:otherwise>
+							                ${refund.refund_date}
+										</c:otherwise>
+					                </c:choose>
+					                </td>
+					                <td>${refund.com_name }</td>
+					                <td> <span class="regPay">${refund.payment}</span> 원</td>
+					                <td> <span class="payFee">${refund.payment * 0.1}</span>원</td>
+					                <td> <span class="payRef">${refund.payment * 0.9}</span>원</td>
+					                <td>
+										<c:choose>
+											<c:when test="${refund.pay_cal_status eq 2 }"> <%-- 정산신청 --%>
+							                	<button type="button" class="btn btn_default" value="환급승인" >승인</button>
+							                	<button type="button" class="btn btn_light" value="환급거절" >거절</button>
+											</c:when>
+											<c:when test="${refund.pay_cal_status eq 3 }"> <%-- 정산승인 처리중 --%>
+								                <button type="button" class="btn btn_default" value="환급" >환급하기</button>
+											</c:when>
+											<c:when test="${refund.pay_cal_status eq 4 }"> <%-- 정산완료 --%>
+								                환급완료
+											</c:when>
+										</c:choose>
+					                </td>
+					       	</c:if>
+			            </c:forEach>
+			       	</c:otherwise>
+		          </c:choose>
 			    </table>
               </div>
             </div>

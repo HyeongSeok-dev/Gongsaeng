@@ -82,8 +82,8 @@ public class AdminService {
 		return mapper.updateStatusRejection(member_id);
 	}
 	
-	public List<PaymentVO> getClassPayList(String member_id) {
-		return mapper.selectClassPayList(member_id);
+	public List<PaymentVO> getClassPayList(String member_id,String class_idx) {
+		return mapper.selectClassPayList(member_id, class_idx);
 	}
 
 	public List<CompanyVO> getCompanyList() {
@@ -110,20 +110,20 @@ public class AdminService {
 		return mapper.selectCouponList();
 	}
 
-	public List<ReportVO> getReportClassList() {
-		return mapper.selectReportClassList();
+	public List<ReportVO> getReportClassList(String member_id, String class_idx) {
+		return mapper.selectReportClassList(member_id,class_idx);
 	}
 
 	public List<ReportVO> getReportReviewList() {
 		return mapper.selectReportReviewList();
 	}
 
-	public List<ReviewVO> getMemberReviewList(String member_id) {
-		return mapper.selectMemberReviewList(member_id);
+	public List<ReviewVO> getMemberReviewList(String member_id, String class_idx) {
+		return mapper.selectMemberReviewList(member_id, class_idx);
 	}
 
-	public List<PaymentVO> getRefundList() {
-		return mapper.selectRefundList();
+	public List<PaymentVO> getRefundList(String com_idx) {
+		return mapper.selectRefundList(com_idx);
 	}
 
 	//main.jsp
@@ -258,6 +258,48 @@ public class AdminService {
 		return mapper.selectReportCount(member_id);
 	}
 
+	public int modifyCompanyInfo(CompanyVO company) {
+		int updateCount = 0;
+
+		if(company.getCom_status() == 1) {
+			updateCount = mapper.updateMemberCategory(company.getMember_id());
+		} 
+
+		if(updateCount > 0) {
+			return mapper.updateCompany(company);
+	
+		} else {
+			
+			return 0;
+		}
+	}
+
+	// 사업체 예약리스트
+	public List<PaymentVO> getComResList(String member_id) {
+		return mapper.selectComResList(member_id);
+	}
+
+	// 사업체 예약 리트스
+	public ClassVO getComClass(String class_idx) {
+		return mapper.selectComClass(class_idx);
+	}
+	// 클래스 리뷰수
+	public ReviewVO getClassReviewCount(String class_idx) {
+		return mapper.selectClassReviewCount(class_idx);
+	}
+
+	// 예약/예약취소 수
+	public PaymentVO getClassResCount(String class_idx) {
+		return mapper.selectClassResCount(class_idx);
+	}
+
+	public String getClassReportCount(String class_idx) {
+		return mapper.selectClassReportCount(class_idx);
+	}
+
+	public int modifyClass(ClassVO gclass) {
+		return mapper.updateModifyClass(gclass);
+	}
 
 
 

@@ -31,7 +31,6 @@ $(function() {
 						+	"<td colspan='6'> 불러올 정보가 없습니다. </td>"
 						+ "</tr>"
 						+ "</table>"
-			
 			$("table").remove();
 			$("#tableDivArea").append(table);
 			console.log("체크박스에 체크없음");

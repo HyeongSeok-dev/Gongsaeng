@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import kr.co.gongsaeng.vo.AccountVO;
 import kr.co.gongsaeng.vo.AdminFilterVO;
@@ -17,6 +18,7 @@ import kr.co.gongsaeng.vo.MemberVO;
 import kr.co.gongsaeng.vo.PaymentVO;
 import kr.co.gongsaeng.vo.ReportVO;
 import kr.co.gongsaeng.vo.ReviewVO;
+import retrofit2.http.PartMap;
 
 @Mapper
 public interface AdminMapper {
@@ -47,17 +49,17 @@ public interface AdminMapper {
 	// 회원정보수정
 	int updateModifyMember(MemberVO member);
 	// 반장승인
-	int updateMemberCategory(String member_id);
 	int updateStatusApproval(String member_id);
 	// 반장거부
 	int updateStatusRejection(String member_id);
+
 	
 	
 	// reservation_class.jsp
 	// 특정회원의 클래스 결제(예약)내역
-	List<PaymentVO> selectClassPayList(String member_id);
+	List<PaymentVO> selectClassPayList(@Param("member_id")String member_id, @Param("class_idx")String class_idx);
 	//review.jsp
-	List<ReviewVO> selectMemberReviewList(String member_id);
+	List<ReviewVO> selectMemberReviewList(@Param("member_id")String member_id, @Param("class_idx")String class_idx);
 
 	// company.jsp
 	// 사업체 목록 
@@ -82,7 +84,7 @@ public interface AdminMapper {
 	List<CouponVO> selectCouponList();
 	
 	//report_class.jsp
-	List<ReportVO> selectReportClassList();
+	List<ReportVO> selectReportClassList(@Param("member_id")String member_id, @Param("class_idx")String class_idx);
 	
 	//report_review.jsp
 	List<ReportVO> selectReportReviewList();
@@ -91,7 +93,7 @@ public interface AdminMapper {
 	List<BoardVO> selectNoticeList();
 	
 	// company_refund.jsp
-	List<PaymentVO> selectRefundList();
+	List<PaymentVO> selectRefundList(String com_idx);
 	
 	// main.jsp
 	// 오늘 총 매출
@@ -151,6 +153,21 @@ public interface AdminMapper {
 	PaymentVO selectRegPay(int com_idx);
 	// 피신고건수
 	ReportVO selectReportCount(String member_id);
+	
+	// 사업체 정보 수정
+	int updateCompany(CompanyVO company);
+	// 반장승인
+	int updateMemberCategory(String member_id);
+	
+	// 사업체 예약 리스트
+	List<PaymentVO> selectComResList(String class_idx);
+	
+	// 클래스 상세
+	ClassVO selectComClass(String class_idx);
+	ReviewVO selectClassReviewCount(String class_idx);
+	PaymentVO selectClassResCount(String class_idx);
+	String selectClassReportCount(String class_idx);
+	int updateModifyClass(ClassVO gclass);
 	
 	
 	

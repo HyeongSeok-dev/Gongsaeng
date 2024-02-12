@@ -92,6 +92,8 @@ public class ReviewVO {
 	private String reviewMonth; // 회원 남긴 리뷰 이달
 	private String reviewTotal; // 회원 남긴 리뷰 누적
 	private String reviewReport; // 남긴 리뷰 피신고건수
+	private String monthlyLike; // 금월 클래스 추천수
+	private String totalLike;// 누적 클래스 추천수
 	// 특정회원리뷰리스트
 	private String class_title;
 }

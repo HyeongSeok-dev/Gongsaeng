@@ -150,46 +150,55 @@
 		                <th>처리<br>상태</th>
 		            </tr>
 		            <!-- 회원 데이터 로우 -->
-		            <c:forEach var="report" items="${reportList }">
-		            	<c:if test="${report.report_category eq 2 }">
-				            <tr class="tr_hover" onclick="location.href='${pageContext.request.contextPath }/admin/report/detail'">
-				                <td>${report.report_date }</td>
-				                <td>${report.class_title }</td>
-				                <td>${report.member_id }</td>
-				                <td>${report.banjangMember_id }</td>
-				                <td>${report.com_name}</td>
-				                <td>
-								<c:choose>
-									<c:when test="${report.report_reason eq 1 }">
-										불친절함
-									</c:when>
-									<c:when test="${report.report_reason eq 2 }">
-										환불
-									</c:when>
-									<c:when test="${report.report_reason eq 3 }">
-										커리큘럼
-									</c:when>
-									<c:when test="${report.report_reason eq 4 }">
-										기타
-									</c:when>
-								</c:choose>			                
-				                </td>
-				                <td>
-								<c:choose>
-									<c:when test="${report.report_status eq 1 }">
-										접수
-									</c:when>
-									<c:when test="${report.report_status eq 2 }">
-										승인
-									</c:when>
-									<c:when test="${report.report_status eq 3 }">
-										반려
-									</c:when>
-								</c:choose>			                
-				                </td>
-				            </tr>
-			            </c:if>
-		            </c:forEach>
+		            <c:choose>
+		            	<c:when test="${empty reportList }">
+		            		<tr>
+		            			<td colspan="7">불러올 정보가 없습니다.</td>
+		            		</tr>
+		            	</c:when>
+		            	<c:otherwise>
+			            	<c:forEach var="report" items="${reportList }">
+				            	<c:if test="${report.report_category eq 2 }">
+						            <tr class="tr_hover" onclick="location.href='${pageContext.request.contextPath }/admin/report/detail'">
+						                <td>${report.report_date }</td>
+						                <td>${report.class_title }</td>
+						                <td>${report.member_id }</td>
+						                <td>${report.banjangMember_id }</td>
+						                <td>${report.com_name}</td>
+						                <td>
+										<c:choose>
+											<c:when test="${report.report_reason eq 1 }">
+												불친절함
+											</c:when>
+											<c:when test="${report.report_reason eq 2 }">
+												환불
+											</c:when>
+											<c:when test="${report.report_reason eq 3 }">
+												커리큘럼
+											</c:when>
+											<c:when test="${report.report_reason eq 4 }">
+												기타
+											</c:when>
+										</c:choose>			                
+						                </td>
+						                <td>
+										<c:choose>
+											<c:when test="${report.report_status eq 1 }">
+												접수
+											</c:when>
+											<c:when test="${report.report_status eq 2 }">
+												승인
+											</c:when>
+											<c:when test="${report.report_status eq 3 }">
+												반려
+											</c:when>
+										</c:choose>			                
+						                </td>
+						            </tr>
+		            			</c:if>		
+				            </c:forEach>
+		            	</c:otherwise>
+		            </c:choose>
 			    </table>
               </div>
             </div>

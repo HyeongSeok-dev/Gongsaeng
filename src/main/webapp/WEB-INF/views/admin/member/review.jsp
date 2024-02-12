@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/admin_assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-   공생|관리자페이지 회원
+   공생|관리자페이지 리뷰
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -43,7 +43,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand title" href="#pablo">회원관리</a>
+            <a class="navbar-brand title" href="#pablo">리뷰관리</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -100,7 +100,11 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h5 class="title">${member_id}님 리뷰 목록</h5>
+                <h5 class="title">
+               		<c:if test="${param.member_id ne null and param.member_id ne ''}">
+	    	            ${member_id}님 
+            	    </c:if>
+                리뷰 목록</h5>
               </div>
               <div class="card-body">
            		<form action="" class="member_date">
@@ -152,25 +156,34 @@
 			                </th>
 			            </tr>
 			            <!-- 회원 데이터 로우 -->
-			            <c:forEach var="review" items="${memberReviewList}">
-				            <tr>
-				                <td>${review.review_regdate}</td>
-				                <td>${review.class_title }</td>
-				                <td>${review.review_subject }</td>
-				                <td>${review.review_content}</td>
-				                <td>${review.review_score } 점</td>
-				                <td>
-				                	<c:choose>
-				                		<c:when test="${review.review_status eq 1}">
-				                			정상
-				                		</c:when>
-				                		<c:when test="${review.review_status eq 2}">
-				                			블라인드
-				                		</c:when>
-				                	</c:choose>
-				                </td>
-				            </tr>
-			            </c:forEach>
+			            <c:choose>
+			            	<c:when test="${empty memberReviewList }">
+					       		<tr>
+						       		<td colspan="6"> 불러올 정보가 없습니다. </td>
+					       		</tr>
+					       	</c:when>
+				            <c:otherwise>
+					            <c:forEach var="review" items="${memberReviewList}">
+						            <tr>
+						                <td>${review.review_regdate}</td>
+						                <td>${review.class_title }</td>
+						                <td>${review.review_subject }</td>
+						                <td>${review.review_content}</td>
+						                <td>${review.review_score } 점</td>
+						                <td>
+						                	<c:choose>
+						                		<c:when test="${review.review_status eq 1}">
+						                			정상
+						                		</c:when>
+						                		<c:when test="${review.review_status eq 2}">
+						                			블라인드
+						                		</c:when>
+						                	</c:choose>
+						                </td>
+						            </tr>
+					            </c:forEach>
+				            </c:otherwise>
+			            </c:choose>
 			    	</table>
 			    </form>
               </div>

@@ -59,6 +59,8 @@ public class PaymentVO {
 	// 예약건
 	private String monthlyRes; //총 금월
 	private String totalRes; //총 누적
+	private String monthlyResCan; //총 금월 취소
+	private String totalResCan; //총 누적 취소
 	private String monthlyOneRes; //원데이 금월
 	private String totalOneRes; //원데이 누적
 	private String monthlyRegularRes; //정기 금월

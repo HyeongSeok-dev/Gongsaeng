@@ -35,6 +35,24 @@ $(function() {
 	
 	//======================================================
 	// company_refud.jsp
+	// 천단위 쉼표 함수
+	function numberWithCommas(x) {
+   	 return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+	// 소숫점 1의 자리 반올림
+    function roundToFirstDecimalPlace(num) {
+    	return Math.round(num * 10) / 10;
+	}
+
+	// foreach 반복문의 클래스에 적용
+	 $(".regPay, .payFee, .payRef").each(function() {
+        var num = $(this).text();
+        var roundedNum = roundToFirstDecimalPlace(parseFloat(num));
+        var commaNum = numberWithCommas(roundedNum);
+        $(this).text(commaNum);
+    });
+    
+	
 	// 테이블 상단의 체크박스
 	// 기본값은 전체선택
 	$(".pay_cal_staus").prop('checked', true);
