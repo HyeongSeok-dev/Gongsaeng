@@ -15,7 +15,7 @@
 			, #{member_passwd}
 			, #{member_nick}
 			<choose>
-				<when test="member_email == null and member_email.equals('')">
+				<when test="member_email == null or member_email.equals('')">
 					, CONCAT(#{member_email1}, '@',#{member_email2})
 				</when>
 				<otherwise>

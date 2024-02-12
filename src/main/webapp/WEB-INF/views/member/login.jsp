@@ -63,7 +63,7 @@ function kakaoLogin() {
 
 	var popupY = (window.screen.height / 2) - (800 / 2);
 	// 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
-	let requestUri = "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=e39809998753f714832d442f3f54f8b9&redirect_uri=http://localhost:8080/gongsaeng/kakaoCallback&state=${sessionScope.state}"
+	let requestUri = "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=e39809998753f714832d442f3f54f8b9&redirect_uri=http://c5d2308t2.itwillbs.com/gongsaeng/kakaoCallback&state=${sessionScope.state}"
 
 	window.open(requestUri, "kakao", "width=600, height=800, left=" + popupX + ", top=" + popupY);
 }
@@ -75,7 +75,7 @@ function naverLogin() {
 
 	var popupY = (window.screen.height / 2) - (800 / 2);
 	// 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
-	let requestUri = "https://nid.naver.com/oauth2.0/authorize?client_id=6SFki8OS5kfh1x16Zctr&response_type=code&redirect_uri=http%3a%2f%2flocalhost%3a8080%2fgongsaeng%2fnaverCallback&state=${sessionScope.state}"
+	let requestUri = "https://nid.naver.com/oauth2.0/authorize?client_id=6SFki8OS5kfh1x16Zctr&response_type=code&redirect_uri=http%3a%2f%2fc5d2308t2.itwillbs.com%2fgongsaeng%2fnaverCallback&state=${sessionScope.state}"
 	window.open(requestUri, "naver", "width=600, height=800, left=" + popupX + ", top=" + popupY);
 }
 </script>
