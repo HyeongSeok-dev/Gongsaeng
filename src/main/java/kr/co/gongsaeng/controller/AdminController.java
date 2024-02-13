@@ -1332,7 +1332,7 @@ public class AdminController {
 	
 	@GetMapping("admin/report/class/modifyReport")
 	public String reportClassModifyPro(HttpSession session, Model model, @RequestParam(defaultValue = "1") int report_idx
-										,@RequestParam(defaultValue = "1") int report_status) {
+										,@RequestParam(defaultValue = "1") int report_status, @RequestParam(defaultValue = "1") int class_idx) {
 //		if(session.getAttribute("sId") == null) {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
@@ -1344,7 +1344,7 @@ public class AdminController {
 		int updateCount = service.reportStatusModify(report_idx, report_status);
 		
 		if(updateCount > 0) {
-			return "javascript:location.reload()";
+			return "redirect:/admin/report/class/detail?report_idx=" + report_idx +"&class_idx=" + class_idx;
 		} else {
 			model.addAttribute("msg" , "수정 실패!!");
 			return "fail_back";
@@ -1353,7 +1353,7 @@ public class AdminController {
 	
 	@GetMapping("admin/report/reivew/modifyReport")
 	public String reportReivewModifyPro(HttpSession session, Model model, @RequestParam(defaultValue = "1") int report_idx
-			,@RequestParam(defaultValue = "1") int report_status) {
+			,@RequestParam(defaultValue = "1") int report_status, @RequestParam(defaultValue = "1") int class_idx) {
 //		if(session.getAttribute("sId") == null) {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
@@ -1365,7 +1365,7 @@ public class AdminController {
 		int updateCount = service.reportStatusModify(report_idx,report_status);
 		
 		if(updateCount > 0) {
-			return "javascript:'location.reload()'";
+			return "redirect:/admin/report/review/detail?report_idx=" + report_idx +"&class_idx=" + class_idx;
 		} else {
 			model.addAttribute("msg" , "수정 실패!!");
 			return "fail_back";

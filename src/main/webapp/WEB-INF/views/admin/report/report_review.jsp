@@ -9,7 +9,7 @@
   <!--  -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath }/resources/admin_assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/admin_assets/img/favicon.png">
+<%--   <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/admin_assets/img/favicon.png"> --%>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
    공생|관리자페이지 신고
@@ -52,33 +52,33 @@
           </button>
           <%-- search,홈페이지이동,채팅 --%>
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <form>
-              <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <i class="now-ui-icons ui-1_zoom-bold"></i>
-                  </div>
-                </div>
-              </div>
-            </form>
+<!--             <form> -->
+<!--               <div class="input-group no-border"> -->
+<!--                 <input type="text" value="" class="form-control" placeholder="Search..."> -->
+<!--                 <div class="input-group-append"> -->
+<!--                   <div class="input-group-text"> -->
+<!--                     <i class="now-ui-icons ui-1_zoom-bold"></i> -->
+<!--                   </div> -->
+<!--                 </div> -->
+<!--               </div> -->
+<!--             </form> -->
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons ui-1_calendar-60"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">달력</span>
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons ui-2_chat-round"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">채팅</span>
-                  </p>
-                </a>
-              </li>
+<!--               <li class="nav-item"> -->
+<!--                 <a class="nav-link" href="#pablo"> -->
+<!--                   <i class="now-ui-icons ui-1_calendar-60"></i> -->
+<!--                   <p> -->
+<!--                     <span class="d-lg-none d-md-block">달력</span> -->
+<!--                   </p> -->
+<!--                 </a> -->
+<!--               </li> -->
+<!--               <li class="nav-item"> -->
+<!--                 <a class="nav-link" href="#pablo"> -->
+<!--                   <i class="now-ui-icons ui-2_chat-round"></i> -->
+<!--                   <p> -->
+<!--                     <span class="d-lg-none d-md-block">채팅</span> -->
+<!--                   </p> -->
+<!--                 </a> -->
+<!--               </li> -->
               <%-- 공생 메인 홈페이지로 이동 --%>
               <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath }/">
@@ -149,7 +149,7 @@
 		            </tr>
 		            <!-- 회원 데이터 로우 -->
 		            <c:choose>
-		           	 	<c:when test="${empty couponList }">
+		           	 	<c:when test="${empty reportList }">
 			           	 	<tr>
 					       		<td colspan="7"> 불러올 정보가 없습니다. </td>
 			           	 	</tr>

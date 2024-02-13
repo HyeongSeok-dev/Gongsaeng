@@ -9,7 +9,7 @@
   <!--  -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath }/resources/admin_assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/admin_assets/img/favicon.png">
+
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
    공생|관리자페이지 신고
@@ -52,16 +52,16 @@
           </button>
           <%-- search,홈페이지이동,채팅 --%>
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <form>
-              <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <i class="now-ui-icons ui-1_zoom-bold"></i>
-                  </div>
-                </div>
-              </div>
-            </form>
+<!--             <form> -->
+<!--               <div class="input-group no-border"> -->
+<!--                 <input type="text" value="" class="form-control" placeholder="Search..."> -->
+<!--                 <div class="input-group-append"> -->
+<!--                   <div class="input-group-text"> -->
+<!--                     <i class="now-ui-icons ui-1_zoom-bold"></i> -->
+<!--                   </div> -->
+<!--                 </div> -->
+<!--               </div> -->
+<!--             </form> -->
             <ul class="navbar-nav">
 <!--               <li class="nav-item"> -->
 <!--                 <a class="nav-link" href="#pablo"> -->
@@ -158,7 +158,7 @@
 		            	</c:when>
 		            	<c:otherwise>
 			            	<c:forEach var="report" items="${reportList }">
-				            	<c:if test="${report.report_category eq 2 }">
+	            				<c:if test="${report.report_category eq 2 }">
 						            <tr class="tr_hover" onclick="location.href='${pageContext.request.contextPath }/admin/report/class/detail?report_idx=${report.report_idx }&class_idx=${report.class_idx }'">
 						                <td>${report.report_date }</td>
 						                <td>${report.class_title }</td>
@@ -195,7 +195,7 @@
 										</c:choose>			                
 						                </td>
 						            </tr>
-		            			</c:if>		
+	            				</c:if>	
 				            </c:forEach>
 		            	</c:otherwise>
 		            </c:choose>

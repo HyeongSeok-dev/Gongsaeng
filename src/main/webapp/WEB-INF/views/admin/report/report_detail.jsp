@@ -9,7 +9,7 @@
   <!--  -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath }/resources/admin_assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/admin_assets/img/favicon.png">
+
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
    공생|관리자페이지 신고
@@ -115,6 +115,8 @@
 						<option value="2" <c:if test="${report.report_status eq 2 }">selected</c:if>>승인</option>
 						<option value="3" <c:if test="${report.report_status eq 3 }">selected</c:if>>반려</option>
 					</select>
+					<input type="hidden" name="class_idx" value="${report.class_idx }">
+					<input type="hidden" name="report_idx" value="${report.report_idx }">
 				</form>
               </div>
               <div class="card-body">
@@ -187,10 +189,10 @@
         	<div class="col-md-12 btn_bottom">
         		<c:choose>
 					<c:when test="${report.report_category eq 2 }">
-			        	<button type="button" class="btn btn_default" onclick="location.replace('${pageContext.request.contextPath }/admin/report/class?report_idx=${report.report_idx }')">목록</button>&nbsp;&nbsp;
+			        	<button type="button" class="btn btn_default" onclick="location.replace('${pageContext.request.contextPath }/admin/report/class')">목록</button>&nbsp;&nbsp;
 					</c:when>	             		
 					<c:when test="${report.report_category eq 1 }">
-			        	<button type="button" class="btn btn_default" onclick="location.replace('${pageContext.request.contextPath }/admin/report/review?report_idx=${report.report_idx }')">목록</button>&nbsp;&nbsp;
+			        	<button type="button" class="btn btn_default" onclick="location.replace('${pageContext.request.contextPath }/admin/report/review')">목록</button>&nbsp;&nbsp;
 					</c:when>	             		
            		</c:choose>
 	        	<button type="button" class="btn btn_default" id="modifyStatus">변경저장</button>
