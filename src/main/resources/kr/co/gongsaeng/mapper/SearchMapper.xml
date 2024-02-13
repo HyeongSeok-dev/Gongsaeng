@@ -55,7 +55,12 @@
 			LEFT JOIN payment pa
 				ON pa.class_idx = cl.class_idx
 		WHERE
-			cl.class_end_date >= CURDATE()
+			<!-- 종료되지 않은 클래스 기준 -->
+			<!-- 종료일 >= 오늘날짜 -->
+			<!-- 종료일  = 오늘날짜일 경우 : 종료시간 > 지금시간 -->
+			cl.class_end_date &gt; CURDATE()
+				OR (cl.class_end_date = CURDATE()
+					AND cl.class_end_time &gt; CURTIME())
 		GROUP BY 
 			cl.class_idx
 			, co.com_idx
@@ -90,14 +95,17 @@
 			cl.class_idx
 			, co.com_idx
 		HAVING
-			resTotalCount &lt; cl.class_member_count		-- 예약인원수 &lt; 최대인원수
-			AND cl.class_date &lt;= cl.class_start_date		-- 클래스 등록일 &lt;= 클래스 시작일
+			<!-- 예약인원수 < 최대인원수 -->
+			resTotalCount &lt; cl.class_member_count
+			<!-- 시작일 >= 오늘날짜 -->
+			<!-- 시작일  = 오늘날짜인 경우 : 시작시간 > 지금시간 -->
 			AND (
-				cl.class_start_date &gt; CURDATE()			-- 클래스 시작일 &gt; 현재일자이고
-					OR (cl.class_start_date = CURDATE()		-- 또는 클래스 시작일이 오늘이 경우
-					AND cl.class_start_time &gt; CURTIME())	-- 클래스 시작시간 &gt; 현재시간
+				cl.class_start_date &gt; CURDATE()
+					OR (cl.class_start_date = CURDATE()
+						AND cl.class_start_time &gt; CURTIME())
 				)
-		ORDER BY		
+		ORDER BY
+			<!-- 1순위 : 시작일 / 2순위 : 시작시간 -->
 			cl.class_start_date ASC
 			, cl.class_start_time ASC;
 	</select>
@@ -166,27 +174,56 @@
 		<!-- 클래스 상태 -->
 		AND
 		<choose>
-			<when test="searchData.classState == 'classState1'"> <!-- 모집중 -->
-				cl.class_end_date &gt;= CURDATE()
-					AND resTotalCount &lt; cl.class_member_count
-					AND (
-						cl.class_start_date &gt; CURDATE()
-							OR (cl.class_start_date = CURDATE()
+			<!-- 클래스 상태 : 모집중 -->
+			<when test="searchData.classState == 'classState1'">
+				<!-- 예약인원수 < 최대인원수 -->
+				resTotalCount &lt; cl.class_member_count
+				<!-- 시작일 >= 오늘날짜 -->
+				<!-- 시작일  = 오늘날짜인 경우 : 시작시간 > 지금시간 -->
+				AND (
+					cl.class_start_date &gt; CURDATE()
+						OR (cl.class_start_date = CURDATE()
 							AND cl.class_start_time &gt; CURTIME())
-						)
+					)
 			</when>
-			<when test="searchData.classState == 'classState2'"> <!-- 마감 -->
+			<!-- 클래스 상태 : 마감(이되 진행중이 아닌 것) -->
+			<when test="searchData.classState == 'classState2'">
+				<!-- 예약인원수 >= 최대인원수 -->
 				resTotalCount &gt;= cl.class_member_count
-					AND (
-						cl.class_end_date &lt; CURDATE()
-							OR (cl.class_end_date = CURDATE()
-							AND cl.class_end_time &gt; CURTIME())
-						)
+				<!-- 시작일 >= 오늘날짜 -->
+				<!-- 시작일  = 오늘날짜인 경우 : 시작시간 > 지금시간 -->
+				AND (
+					cl.class_start_date &gt; CURDATE()
+						OR (cl.class_start_date = CURDATE()
+							AND cl.class_start_time &gt; CURTIME())
+					)
 			</when>
-			<when test="searchData.classState == 'classState3'"> <!-- 종료 -->
+			<!-- 클래스 상태 : 진행중 -->
+			<when test="searchData.classState == 'classState3'">
+				<!-- 예약인원수 > 0 -->
+				<!-- 최소인원수나 진행중 기준 이런거 플젝 마감일에야 생각나서 제외 -->
+<!-- 				resTotalCount &gt; 0 -->
+				<!-- 시작일 <= 오늘날짜 -->
+				<!-- 시작일  = 오늘날짜인 경우 : 시작시간 <= 지금시간 -->
+				(cl.class_start_date &lt; CURDATE()
+					OR (cl.class_start_date = CURTIME()
+						AND cl.class_start_time &lt;= CURTIME()))
+				<!-- 종료일 >= 오늘날짜 -->
+				<!-- 종료일  = 오늘날짜일 경우 : 종료시간 > 지금시간 -->
+				AND (cl.class_end_date &gt; CURDATE()
+						OR (cl.class_end_date = CURDATE()
+							AND cl.class_end_time &gt; CURTIME()))
+			</when>
+			<!-- 클래스 상태 : 종료 -->
+			<when test="searchData.classState == 'classState4'">
+				<!-- 종료일 <= 오늘날짜 -->
+				<!-- 종료일  = 오늘날짜일 경우 : 종료시간 <= 지금시간 -->
 				cl.class_end_date &lt; CURDATE()
+					OR (cl.class_end_date = CURDATE()
+						AND cl.class_end_time &lt;= CURTIME())
 			</when>
-			<otherwise> <!-- 전체 (searchData.classState == 'classState0') -->
+			<!-- 클래스 상태 : 전체(searchData.classState == 'classState0') -->			
+			<otherwise>
 				1=1
 			</otherwise>
 		</choose>
@@ -306,27 +343,56 @@
 			<!-- 클래스 상태 -->
 			AND
 			<choose>
-				<when test="searchData.classState == 'classState1'"> <!-- 모집중 -->
-					cl.class_end_date &gt;= CURDATE()
-						AND resTotalCount &lt; cl.class_member_count
-						AND (
-							cl.class_start_date &gt; CURDATE()
-								OR (cl.class_start_date = CURDATE()
+				<!-- 클래스 상태 : 모집중 -->
+				<when test="searchData.classState == 'classState1'">
+					<!-- 예약인원수 < 최대인원수 -->
+					resTotalCount &lt; cl.class_member_count
+					<!-- 시작일 >= 오늘날짜 -->
+					<!-- 시작일  = 오늘날짜인 경우 : 시작시간 > 지금시간 -->
+					AND (
+						cl.class_start_date &gt; CURDATE()
+							OR (cl.class_start_date = CURDATE()
 								AND cl.class_start_time &gt; CURTIME())
-							)
+						)
 				</when>
-				<when test="searchData.classState == 'classState2'"> <!-- 마감 -->
+				<!-- 클래스 상태 : 마감(이되 진행중이 아닌 것) -->
+				<when test="searchData.classState == 'classState2'">
+					<!-- 예약인원수 >= 최대인원수 -->
 					resTotalCount &gt;= cl.class_member_count
-						AND (
-							cl.class_end_date &lt; CURDATE()
-								OR (cl.class_end_date = CURDATE()
-								AND cl.class_end_time &gt; CURTIME())
-							)
+					<!-- 시작일 >= 오늘날짜 -->
+					<!-- 시작일  = 오늘날짜인 경우 : 시작시간 > 지금시간 -->
+					AND (
+						cl.class_start_date &gt; CURDATE()
+							OR (cl.class_start_date = CURDATE()
+								AND cl.class_start_time &gt; CURTIME())
+						)
 				</when>
-				<when test="searchData.classState == 'classState3'"> <!-- 종료 -->
+				<!-- 클래스 상태 : 진행중 -->
+				<when test="searchData.classState == 'classState3'">
+					<!-- 예약인원수 > 0 -->
+					<!-- 최소인원수나 진행중 기준 이런거 플젝 마감일에야 생각나서 제외 -->
+<!-- 					resTotalCount &gt; 0 -->
+					<!-- 시작일 <= 오늘날짜 -->
+					<!-- 시작일  = 오늘날짜인 경우 : 시작시간 <= 지금시간 -->
+					(cl.class_start_date &lt; CURDATE()
+						OR (cl.class_start_date = CURTIME()
+							AND cl.class_start_time &lt;= CURTIME()))
+					<!-- 종료일 >= 오늘날짜 -->
+					<!-- 종료일  = 오늘날짜일 경우 : 종료시간 > 지금시간 -->
+					AND (cl.class_end_date &gt; CURDATE()
+							OR (cl.class_end_date = CURDATE()
+								AND cl.class_end_time &gt; CURTIME()))
+				</when>
+				<!-- 클래스 상태 : 종료 -->
+				<when test="searchData.classState == 'classState4'">
+					<!-- 종료일 <= 오늘날짜 -->
+					<!-- 종료일  = 오늘날짜일 경우 : 종료시간 <= 지금시간 -->
 					cl.class_end_date &lt; CURDATE()
+						OR (cl.class_end_date = CURDATE()
+							AND cl.class_end_time &lt;= CURTIME())
 				</when>
-				<otherwise> <!-- 전체 (searchData.classState == 'classState0') -->
+				<!-- 클래스 상태 : 전체(searchData.classState == 'classState0') -->			
+				<otherwise>
 					1=1
 				</otherwise>
 			</choose>
