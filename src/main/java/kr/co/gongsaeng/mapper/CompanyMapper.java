@@ -110,6 +110,9 @@ public interface CompanyMapper {
 	// 반장 쿠폰관리
 	List<CouponVO> selectClassCoupon(Integer comIdx);
 
+	// 공지사항 리스트
+	List<BoardVO> selectNotificationList(int i, int j);
+
 
 
 

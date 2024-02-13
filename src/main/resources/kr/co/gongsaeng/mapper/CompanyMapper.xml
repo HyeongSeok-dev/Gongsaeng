@@ -311,7 +311,15 @@
 	</select>
 	
 	
-	
+	<!-- 메인 - (7) 작가 공지사항 -->
+	<select id="selectNotificationList" resultType="board">
+		SELECT *
+		FROM board
+		WHERE 
+			board_main_category = 1 AND
+			board_sub_category = 2
+		ORDER BY board_date DESC
+	</select>
 	
 	
 	

@@ -201,6 +201,11 @@ public class CompanyService {
 		return mapper.selectClassCoupon(comIdx);
 	}
 
+	public List<BoardVO> getCompanyBoardList(int i, int j) {
+
+		return mapper.selectNotificationList(i,j);
+	}
+
 
 
 

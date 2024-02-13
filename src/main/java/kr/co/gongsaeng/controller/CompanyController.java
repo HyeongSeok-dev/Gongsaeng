@@ -1163,17 +1163,24 @@ public class CompanyController {
 		return "company/company_coupon";
 	}
 	
+	// 반장 공지사항
+	@GetMapping("company/notification")
+	public String company_notification(Model model, BoardVO board) {
+	
+		List<BoardVO> companyBoardList = companyService.getCompanyBoardList(1,2);
+		companyBoardList = companyBoardList == null ? Collections.emptyList() : companyBoardList; // `null` 체크
+		model.addAttribute("companyBoardList",companyBoardList);	
+		
+		return "company/company_notification";
+	}
+
+	
 	
 	@GetMapping("company/sales2")
 	public String company_sales2() {
 		return "company/company_sales2";
 	}
 	
-	
-	@GetMapping("company/notification")
-	public String company_notification() {
-		return "company/company_notification";
-	}
 	
 	@GetMapping("company/inquiry")
 	public String company_inquiry() {

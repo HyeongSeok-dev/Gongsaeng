@@ -310,7 +310,7 @@ const dailySalesChart = new Chart(dailySalesCtx, {
     options: {
     	 title: {
              display: true,
-             text: '일별 클래스 매출(최근 10일간)',
+             text: '일별 클래스 매출 (최근 10일간)',
              fontSize: 25
          },
         scales: {
@@ -330,7 +330,7 @@ const dailySalesChart = new Chart(dailySalesCtx, {
         data: {
             labels: classRegisterData.map(data => data.payment_date),
             datasets: [{
-                label: '일별 클래스 등록 수(최근 10일간)',
+                label: '일별 클래스 등록 수 (최근 10일간)',
                 data: classRegisterData.map(data => parseInt(data.total_payments, 10)),
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 borderColor: 'rgba(255, 99, 132, 1)',
@@ -342,7 +342,7 @@ const dailySalesChart = new Chart(dailySalesCtx, {
         options: {
         	 title: {
                  display: true,
-                 text: '일별 클래스 등록 수(최근 10일간)',
+                 text: '일별 클래스 등록 수 (최근 10일간)',
                  fontSize: 25
              },
             scales: {
@@ -438,7 +438,7 @@ try {
      options: {
     	 title: {
              display: true,
-             text: '일별 클래스 취소 건수(최근 10일간)',
+             text: '일별 클래스 취소 건수 (최근 10일간)',
              fontSize: 25
          },
          scales: {
