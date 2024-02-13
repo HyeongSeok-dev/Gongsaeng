@@ -205,7 +205,7 @@ public class ProductController {
 	
 	
 	@ResponseBody
-	@GetMapping("issueCoupon")
+	@GetMapping("product/issueCoupon")
 	public String issueCoupon(HttpSession session, Model model, @RequestParam("com_idx") String comIdx) {
 		String sId = (String) session.getAttribute("sId");
 		if (sId == null) {
@@ -214,8 +214,29 @@ public class ProductController {
 
 			return "forward";
 		}
-		return"true";
+
+		Map<String, String> issuedCoupon = service.getIssuedCoupon(sId, comIdx);
+		Map<String, String> followingStatus = service.getFollowingStatus(sId, comIdx);
+
+		if (issuedCoupon != null) {
+			if (followingStatus != null) {
+				return "fail";
+			} else {
+				service.registFollowing(sId, comIdx);
+				return "following";
+			}
+		}
+
+		int insertCount = service.registCoupon(sId, comIdx);
+
+		if (insertCount > 0) {
+			return "success";
+		} else {
+			return "error";
+		}
+
 	}
+	
 	
 	@ResponseBody
     @PostMapping("product/cartPro")
