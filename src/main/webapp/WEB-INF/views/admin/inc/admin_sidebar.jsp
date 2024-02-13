@@ -138,8 +138,8 @@
 	            <div id="cs" class="collapse" aria-labelledby="cs" data-parent="#sidebar-wrapper">
 	                <ul class="nav">
 	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/cs/notice">공지사항</a></li>
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/cs/faq">자주묻는 질문</a></li>
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/cs/chat">채팅문의</a></li>
+<%-- 	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/cs/faq">자주묻는 질문</a></li> --%>
+<%-- 	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/cs/chat">채팅문의</a></li> --%>
 	                </ul>
 	            </div>
 	        </li>

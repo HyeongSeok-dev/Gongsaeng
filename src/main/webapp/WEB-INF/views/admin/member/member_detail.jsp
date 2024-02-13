@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!DOCTYPE html>
 <html>
@@ -106,24 +107,22 @@
 	                <c:if test="${member.member_category eq 2}">
 	                	(반장)
 	                </c:if>
-	                 상세 정보</h5>
+	                 상세 정보
+	                 </h5>
 	              </div>
 	              <div class="card-body">
 	           		 <div class="text_center">
-	           		 	<c:choose>
-							<c:when test="${empty member.member_img}">
-								<div id="img">
-									<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" 
-									class="img-circle img-thumbnail">
-								</div>
-							</c:when>
-							<c:otherwise>
-								<div id="img">
-									<img id="img" alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}"
-										class="img-circle img-thumbnail">
-								</div>
-							</c:otherwise>
-						</c:choose>
+						<c:choose>
+		                    <c:when test="${empty member.member_img}">
+		                        <img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" class="profile_img">
+		                    </c:when>
+		                    <c:when test="${fn:contains(member.member_img,'http')}">
+		                        <img alt="profile" src="${member.member_img}" class="profile_img">
+		                    </c:when>
+		                    <c:otherwise>
+		                        <img alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}" class="profile_img">
+		                    </c:otherwise>
+		                </c:choose>
 						<input type="file" id="m_file" name="m_file" class="form-control profileImg" accept="image/*">
 						<div class="profileImg" >
 							<br>

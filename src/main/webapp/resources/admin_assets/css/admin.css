@@ -72,6 +72,10 @@
 	align-items: flex-end
 }
 
+.profile_img {
+	width: 300px;	
+}
+
 .search_bar_admin {
 	margin-top: 5px;
 	display: flex;

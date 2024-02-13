@@ -27,14 +27,14 @@ public class CsController {
 			HttpSession session, Model model, BoardVO board) {
 		
 		String sId = (String) session.getAttribute("sId");
-		if(session.getAttribute("sId") == null) {
-		model.addAttribute("msg", "로그인이 필요합니다");
-		model.addAttribute("targetURL", "/gongsaeng/member/login");
-		return "forward";
-	} else if(!session.getAttribute("sId").equals("admin1234")) {
-		model.addAttribute("msg", "잘못된 접근 입니다.");
-		return "fail_back";
-	}
+//		if(session.getAttribute("sId") == null) {
+//		model.addAttribute("msg", "로그인이 필요합니다");
+//		model.addAttribute("targetURL", "/gongsaeng/member/login");
+//		return "forward";
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
+//		model.addAttribute("msg", "잘못된 접근 입니다.");
+//		return "fail_back";
+//	}
 		// 페이징 처리를 위해 조회 목록 갯수 조절 시 사용될 변수 선언
 		int listLimit = 10;
 		int startRow = (pageNum - 1) * listLimit;
@@ -71,15 +71,15 @@ public class CsController {
 	// [ 공지사항 글쓰기 ]
 	@GetMapping("admin/cs/notice/register")
 	public String csNoticeRegisterForm(HttpSession session, Model model) {
-		
-		if(session.getAttribute("sId") == null) {
-			model.addAttribute("msg", "로그인이 필요합니다");
-			model.addAttribute("targetURL", "/gongsaeng/member/login");
-			return "forward";
-		} else if(!session.getAttribute("sId").equals("admin1234")) {
-			model.addAttribute("msg", "잘못된 접근 입니다.");
-			return "fail_back";
-		}
+//		
+//		if(session.getAttribute("sId") == null) {
+//			model.addAttribute("msg", "로그인이 필요합니다");
+//			model.addAttribute("targetURL", "/gongsaeng/member/login");
+//			return "forward";
+//		} else if(!session.getAttribute("sId").equals("admin1234")) {
+//			model.addAttribute("msg", "잘못된 접근 입니다.");
+//			return "fail_back";
+//		}
 		
 		return "admin/cs/notice_register";
 	}

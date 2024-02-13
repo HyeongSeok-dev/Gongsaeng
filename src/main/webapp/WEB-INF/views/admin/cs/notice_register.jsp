@@ -123,15 +123,13 @@
 		             	<tr>
 		             		<th>제목</th>
 		             		<td>
-		             			<input type="text" name="board_subject" class="register_text">
+		             			<input type="text" name="board_subject" class="register_text" style="text-align: start">
 		             		</td>
 		             	</tr>
 		             	<tr>
 		             		<th>내용</th>
 		             		<td>
-		             			<textarea class="register_textarea" name="board_content">
-		             			
-		             			</textarea>
+		             			<textarea class="register_textarea" name="board_content" style="text-align: start"></textarea>
 		             		</td>
 		             	</tr>
 <!-- 		             	<tr> -->
