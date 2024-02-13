@@ -57,6 +57,12 @@ public interface ProductMapper {
 	int insertCart(@Param("res_visit_date") String resVisitDate,
 					@Param("class_idx") String classIdx, 
 					@Param("member_id") String memberId);
+
+	int insertCartF(@Param("class_idx") int class_idx, 
+					@Param("member_id") String member_id, 
+					@Param("res_visit_date") String res_visit_date, 
+					@Param("res_visit_time") String res_visit_time, 
+					@Param("res_member_count") int res_member_count);
 	
 	
 }

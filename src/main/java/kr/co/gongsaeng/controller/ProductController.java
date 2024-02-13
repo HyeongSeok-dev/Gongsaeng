@@ -240,34 +240,18 @@ public class ProductController {
 	
 	
     @PostMapping("product/cartPro")
-    public String cartPro(@RequestParam("class_idx") int class_idx, @RequestParam("member_id") String member_id, @RequestParam String res_visit_date, @RequestParam int res_member_count) {
+    public String cartPro(@RequestParam("class_idx") int class_idx,
+    		@RequestParam("member_id") String member_id,
+    		@RequestParam("res_visit_date") String res_visit_date,
+    		@RequestParam("res_visit_time") String res_visit_time,
+    		@RequestParam("res_member_count") int res_member_count) {
 
         //장바구니에서 물건찾기
         CartVO cart = service.findCart(class_idx, member_id, res_visit_date);
         System.out.println("cart>>>" + cart);
-//        if(cart == null) { // 장바구니에 일치하는게 없으면 추가
-//
-//            int insertCart = service.addToCart(class_idx, member_id, res_visit_date, res_member_count);
-//
-//                if(insertCart > 0) { //성공
-//                    return "true";
-//                }else {
-//                    return "false";
-//                }
-//
-//        }
-//        else {
-//
-//            //일치하는게 있으면 수량 +1
-//            int plusCart = cartService.cartPlus(cart.getCart_idx());
-//
-//            if(plusCart > 0) {
-//                return "true";
-//            }else {
-//                return "false";
-//            }
-//
-//        }
+
+            int insertCart = service.addToCart(class_idx, member_id, res_visit_date, res_member_count, res_visit_time);
+
         return "redirect:/cart"; 
     }//addToCart
 	

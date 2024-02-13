@@ -87,17 +87,7 @@
     		,#{comIdx}
     	)
     </insert>
-<!--     <insert id="insertCart"> -->
-<!--         INSERT -->
-<!--         INTO cart -->
-<!--         VALUES( -->
-<!--             null  -->
-<!--             , #{member_id} -->
-<!--             , #{class_idx} -->
-<!--             , #{res_visit_date} -->
-<!--             , #{res_member_count} -->
-<!--         ); -->
-<!--     </insert> -->
+
 
 	<select id="selectCart" resultType="cart">
         SELECT *
@@ -105,16 +95,16 @@
         WHERE res_visit_date = #{resVisitDate} AND class_idx = #{classIdx} AND member_id = #{memberId}
     </select>
     
-    <insert id="insertCart">
-        INSERT INTO cart
-        VALUES (
-        null
-        , #{memberId}
-        , #{classIdx}
-        ,#{resVisitDate}
-        , #{resVisitTime}
-        , #{resMemberCount})
-    </insert>
+<!--     <insert id="insertCart"> -->
+<!--         INSERT INTO cart -->
+<!--         VALUES ( -->
+<!--         null -->
+<!--         , #{memberId} -->
+<!--         , #{classIdx} -->
+<!--         ,#{resVisitDate} -->
+<!--         , #{resVisitTime} -->
+<!--         , #{resMemberCount}) -->
+<!--     </insert> -->
     
     <update id="updateResMemberCount">
         UPDATE cart
@@ -124,7 +114,17 @@
     
     
     
-    
+    <insert id="insertCartF">
+    	INSERT INTO cart
+    	VALUES(
+			null
+			,#{member_id}    	
+			,#{class_idx}    	
+			,#{res_visit_date}    	
+			,#{res_visit_time}    	
+			,#{res_member_count}    	
+    	)
+    </insert>
     
     
     

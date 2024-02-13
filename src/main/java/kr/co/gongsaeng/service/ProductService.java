@@ -104,6 +104,10 @@ public class ProductService {
 		mapper.insertFollowing(sId, comIdx);
 	}
 
+	public int addToCart(int class_idx, String member_id, String res_visit_date, int res_member_count, String res_visit_time) {
+		return mapper.insertCartF(class_idx, member_id, res_visit_date, res_visit_time, res_member_count);
+	}
+
 
 	
 
