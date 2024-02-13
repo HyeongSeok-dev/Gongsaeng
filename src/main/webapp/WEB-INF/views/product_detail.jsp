@@ -383,7 +383,6 @@
                                     <div class="item-entry overflow abc">
 	                                        <a href="">
 	                                 	       <img src="${pageContext.request.contextPath }/resources/upload/${review.member_img}" class="img-circle reviewProImg">
-<%-- 	                                 	       <img src="${pageContext.request.contextPath }/resources/upload/${review.}" class="img-circle reviewProImg"> --%>
 	                                        </a>
 	                                        <h5><a href="property-1.html">${review.member_nick}</a></h5>
                                         <div class="dot-hr"></div>
@@ -495,7 +494,10 @@
                                 <h4 class="s-property-title">클래스 소개</h4> 
                                 <div class="video-thumb">
                                     <a class="video-popup" href="yout" title="Virtual Tour">
-<%--                                         <img src="${pageContext.request.contextPath }/resources/upload/${cla.class_class_curriculum1}" class="img-responsive wp-post-image" alt="Exterior">             --%>
+                                        <img src="${pageContext.request.contextPath }/resources/upload/${cla.class_curriculum1}" class="img-responsive wp-post-image" alt="Exterior">            
+                                        <img src="${pageContext.request.contextPath }/resources/upload/${cla.class_curriculum2}" class="img-responsive wp-post-image" alt="Exterior">            
+                                        <img src="${pageContext.request.contextPath }/resources/upload/${cla.class_curriculum3}" class="img-responsive wp-post-image" alt="Exterior">            
+<%--                                         <img src="${pageContext.request.contextPath }/resources/assets/img/" class="img-responsive wp-post-image" alt="Exterior">             --%>
 <%--                                         <img src="${pageContext.request.contextPath }/resources/upload/${cla.class_class_curriculum2}" class="img-responsive wp-post-image" alt="Exterior">             --%>
 <%--                                         <img src="${pageContext.request.contextPath }/resources/upload/${cla.class_class_curriculum3}" class="img-responsive wp-post-image" alt="Exterior">             --%>
                                     </a>
