@@ -59,6 +59,27 @@
 
 
 <script type="text/javascript"> 
+
+//최종결제금액 계산
+function totalPayment2(){
+	
+	//결제금액
+	var payment = parseInt($("#reservationPrice") .text().replace(/,/g, '')); 
+	//쿠폰할인
+	var coupon =  parseInt($("#discountCoupon_text") .text().trim().replace(/,/g, '')); 
+	//0페이사용
+	var pay = parseInt($("#discountPay_text") .text().trim().replace(/,/g, '')); 
+	//최종결제금액
+	var totalPayment  = 0;
+	
+	totalPayment = payment - coupon - pay;
+	
+	console.log("최종결제금액 : " + totalPayment);
+	
+	
+	$("#totalPayment_text").text(totalPayment)
+	
+}
 	function paymentAgreeView() {
 			/* 팝업창 중앙 정렬 */
 			var popupW = 950;
@@ -106,9 +127,10 @@
 		console.log("cashValue : " + cashValue);
 		
 		
-	  if (payValue < cashValue) {
+	  if (payValue < cashValue || payValue == cashValue) {
 	    // 사용할 페이 값이 작을 경우
 	    $("#discountPay_text").text($("#pay").val()); // #discountPoint_text에 #pay 값 표시
+	    totalPayment2(); //최종값 계산
 	  } else if(payValue > cashValue){
 	    // 사용할 페이 값이 클경우
 	    var confirmResult = confirm("보유 중인 페이가 부족합니다. 페이를 충전하시겠습니까?");
