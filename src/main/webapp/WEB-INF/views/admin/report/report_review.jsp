@@ -148,42 +148,51 @@
 		                <th>처리<br>상태</th>
 		            </tr>
 		            <!-- 회원 데이터 로우 -->
-	       		    <c:forEach var="report" items="${reportList }">
-		            	<c:if test="${report.report_category eq 1 }">
-				            <tr class="tr_hover" onclick="location.href='${pageContext.request.contextPath }/admin/report/review/detail?report_idx=${report.report_idx }&review_idx=${report.review_idx }'">
-				                <td>${report.report_date }</td>
-				                <td>${report.review_idx }</td>
-				                <td>${report.member_id }</td>
-				                <td>${report.reviewerMember_id }</td>
-				                <td>
-								<c:choose>
-									<c:when test="${report.report_reason eq 5 }">
-										신뢰하기 어려운 홍보
-									</c:when>
-									<c:when test="${report.report_reason eq 6 }">
-										음란성, 부적절
-									</c:when>
-									<c:when test="${report.report_reason eq 7 }">
-										명예훼손 및 저작권침해
-									</c:when>
-								</c:choose>			                
-				                </td>
-				                <td>
-								<c:choose>
-									<c:when test="${report.report_status eq 1 }">
-										접수
-									</c:when>
-									<c:when test="${report.report_status eq 2 }">
-										승인
-									</c:when>
-									<c:when test="${report.report_status eq 3 }">
-										반려
-									</c:when>
-								</c:choose>			                
-				                </td>
-				            </tr>
-			            </c:if>
-		            </c:forEach>
+		            <c:choose>
+		           	 	<c:when test="${empty couponList }">
+			           	 	<tr>
+					       		<td colspan="7"> 불러올 정보가 없습니다. </td>
+			           	 	</tr>
+				       	</c:when>
+				       	<c:otherwise>
+			       		    <c:forEach var="report" items="${reportList }">
+				            	<c:if test="${report.report_category eq 1 }">
+						            <tr class="tr_hover" onclick="location.href='${pageContext.request.contextPath }/admin/report/review/detail?report_idx=${report.report_idx }&review_idx=${report.review_idx }'">
+						                <td>${report.report_date }</td>
+						                <td>${report.review_idx }</td>
+						                <td>${report.member_id }</td>
+						                <td>${report.reviewerMember_id }</td>
+						                <td>
+										<c:choose>
+											<c:when test="${report.report_reason eq 5 }">
+												신뢰하기 어려운 홍보
+											</c:when>
+											<c:when test="${report.report_reason eq 6 }">
+												음란성, 부적절
+											</c:when>
+											<c:when test="${report.report_reason eq 7 }">
+												명예훼손 및 저작권침해
+											</c:when>
+										</c:choose>			                
+						                </td>
+						                <td>
+										<c:choose>
+											<c:when test="${report.report_status eq 1 }">
+												접수
+											</c:when>
+											<c:when test="${report.report_status eq 2 }">
+												승인
+											</c:when>
+											<c:when test="${report.report_status eq 3 }">
+												반려
+											</c:when>
+										</c:choose>			                
+						                </td>
+						            </tr>
+					            </c:if>
+				            </c:forEach>
+				       	</c:otherwise>
+			   	 </c:choose>	
 			    </table>
               </div>
             </div>

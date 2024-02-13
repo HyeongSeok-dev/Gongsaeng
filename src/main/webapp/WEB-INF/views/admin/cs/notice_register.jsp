@@ -63,22 +63,22 @@
               </div>
             </form>
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons ui-1_calendar-60"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">달력</span>
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons ui-2_chat-round"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">채팅</span>
-                  </p>
-                </a>
-              </li>
+<!--               <li class="nav-item"> -->
+<!--                 <a class="nav-link" href="#pablo"> -->
+<!--                   <i class="now-ui-icons ui-1_calendar-60"></i> -->
+<!--                   <p> -->
+<!--                     <span class="d-lg-none d-md-block">달력</span> -->
+<!--                   </p> -->
+<!--                 </a> -->
+<!--               </li> -->
+<!--               <li class="nav-item"> -->
+<!--                 <a class="nav-link" href="#pablo"> -->
+<!--                   <i class="now-ui-icons ui-2_chat-round"></i> -->
+<!--                   <p> -->
+<!--                     <span class="d-lg-none d-md-block">채팅</span> -->
+<!--                   </p> -->
+<!--                 </a> -->
+<!--               </li> -->
               <%-- 공생 메인 홈페이지로 이동 --%>
               <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath }/">

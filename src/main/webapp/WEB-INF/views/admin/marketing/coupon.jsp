@@ -57,16 +57,16 @@
 							</div>
 						</form>
 						<ul class="navbar-nav">
-							<li class="nav-item"><a class="nav-link" href="#pablo"> <i class="now-ui-icons ui-1_calendar-60"></i>
-									<p>
-										<span class="d-lg-none d-md-block">달력</span>
-									</p>
-							</a></li>
-							<li class="nav-item"><a class="nav-link" href="#pablo"> <i class="now-ui-icons ui-2_chat-round"></i>
-									<p>
-										<span class="d-lg-none d-md-block">채팅</span>
-									</p>
-							</a></li>
+<!-- 							<li class="nav-item"><a class="nav-link" href="#pablo"> <i class="now-ui-icons ui-1_calendar-60"></i> -->
+<!-- 									<p> -->
+<!-- 										<span class="d-lg-none d-md-block">달력</span> -->
+<!-- 									</p> -->
+<!-- 							</a></li> -->
+<!-- 							<li class="nav-item"><a class="nav-link" href="#pablo"> <i class="now-ui-icons ui-2_chat-round"></i> -->
+<!-- 									<p> -->
+<!-- 										<span class="d-lg-none d-md-block">채팅</span> -->
+<!-- 									</p> -->
+<!-- 							</a></li> -->
 							<%-- 공생 메인 홈페이지로 이동 --%>
 							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }"> <i class="now-ui-icons shopping_shop"></i>
 									<p>
@@ -198,38 +198,44 @@
 										<th>쿠폰 상태</th>
 									</tr>
 									<!-- 회원 데이터 로우 -->
-									<c:forEach var="coupon" items="${couponList }">
-										<tr>
-											<td>${coupon.coupon_Issue_date }</td>
-											<td><c:choose>
-													<c:when test="${coupon.com_idx eq 4}">
-											관리자
-										</c:when>
-													<c:otherwise>
-											반장
-										</c:otherwise>
-												</c:choose></td>
-											<td>${coupon.coupon_name }</td>
-											<td>${coupon.member_id }</td>
-											<td>${coupon.coupon_valid_date }</td>
-											<td><c:choose>
-													<c:when test="${coupon.coupon_value gt 1}">
-														<p>${fn:substringBefore(coupon.coupon_value,'.')}원</p>
-													</c:when>
-													<c:otherwise>${fn:substringBefore(coupon.coupon_value * 100,'.')}%</c:otherwise>
-												</c:choose></td>
-											<td>
-												<c:choose>
-													<c:when test="${coupon.coupon_status eq 1}">정상</c:when>
-													<c:when test="${coupon.coupon_status eq 2}">사용</c:when>
-													<c:when test="${coupon.coupon_status eq 3}">만료</c:when>
-												</c:choose>
-											
-											
-											</td>
-										</tr>
-
-									</c:forEach>
+									 <c:choose>
+						           	 	<c:when test="${empty couponList }">
+							           	 	<tr>
+									       		<td colspan="7"> 불러올 정보가 없습니다. </td>
+							           	 	</tr>
+								       	</c:when>
+								       	<c:otherwise>
+											<c:forEach var="coupon" items="${couponList }">
+												<tr>
+													<td>${coupon.coupon_Issue_date }</td>
+													<td><c:choose>
+															<c:when test="${coupon.com_idx eq 4}">
+													관리자
+												</c:when>
+															<c:otherwise>
+													반장
+												</c:otherwise>
+														</c:choose></td>
+													<td>${coupon.coupon_name }</td>
+													<td>${coupon.member_id }</td>
+													<td>${coupon.coupon_valid_date }</td>
+													<td><c:choose>
+															<c:when test="${coupon.coupon_value gt 1}">
+																<p>${fn:substringBefore(coupon.coupon_value,'.')}원</p>
+															</c:when>
+															<c:otherwise>${fn:substringBefore(coupon.coupon_value * 100,'.')}%</c:otherwise>
+														</c:choose></td>
+													<td>
+														<c:choose>
+															<c:when test="${coupon.coupon_status eq 1}">정상</c:when>
+															<c:when test="${coupon.coupon_status eq 2}">사용</c:when>
+															<c:when test="${coupon.coupon_status eq 3}">만료</c:when>
+														</c:choose>
+													</td>
+												</tr>
+											</c:forEach>
+								       	</c:otherwise>
+		    					    </c:choose>				
 								</table>
 							</div>
 						</div>
