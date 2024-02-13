@@ -69,9 +69,9 @@
 					</div>
 					<div class="panel-body">
 						<ul class="list-group">
+							<li class="list-group-item cursor"><a href="together">함께해요</a></li>
 							<li class="list-group-item cursor"><a href="question">궁금해요</a></li>
-							<li class="list-group-item cursor"><a href="together">함께해요</a>
-							<li class="list-group-item cursor"><a href="myHome">집들이</a>
+							<li class="list-group-item cursor"><a href="myHome">집들이</a></li>
 						</ul>
 					</div>
 				</div>

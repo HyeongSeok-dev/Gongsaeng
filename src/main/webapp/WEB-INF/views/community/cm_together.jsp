@@ -77,9 +77,9 @@
                     </div>
                     <div class="panel-body">
                         <ul class="list-group">
+                            <li class="list-group-item"><a href="together">함께해요</a></li>
                             <li class="list-group-item"><a href="question">궁금해요</a></li>
-                            <li class="list-group-item"><a href="together">함께해요</a>
-                            <li class="list-group-item"><a href="myHome">집들이</a>
+                            <li class="list-group-item"><a href="myHome">집들이</a></li>
                         </ul>
                     </div>
                 </div>
@@ -128,7 +128,7 @@
 				                <!-- 글제목 두껍게 -->
 				                <h4 class="h4_community" style="font-weight: bold;">${board.board_subject}</h4>
 				                <!-- 글 내용과 댓글은 일반 두께로 -->
-				                <p class="text-truncate" style="font-weight: normal;">${fn:substring(board.board_content, 0, 100)}...</p>
+				                <p class="text-truncate" style="font-weight: normal;">${fn:substring(board.board_content, 0, 100)}</p>
 				                <p style="font-weight: normal;"><span class="fa fa-comment"></span> ${board.reply_count}</p>
 				            </a>
 				        </div>

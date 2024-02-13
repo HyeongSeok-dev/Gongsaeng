@@ -53,6 +53,32 @@ public interface CommunityMapper {
 	// 대댓글 등록
 	int insertTogetherReReplyBoard(Map<String, String> map);
 
+	List<BoardVO> selecQuestionList(@Param("sId") String sId, @Param("startRow") int startRow, @Param("listLimit") int listLimit);
+
+	int selectQuestionListCount(String sId);
+
+	BoardVO selectQuestionBoard(int board_idx);
+
+	void updateQuestionReadcount(BoardVO board);
+
+	int selectQCommentCount(int board_idx);
+
+	int deleteQuestion(BoardVO board);
+
+	int updateQuestionFile(BoardVO board);
+
+	int updateQuestion(BoardVO board);
+
+	int insertQuestionReplyBoard(Map<String, String> map);
+
+	List<Map<String, Object>> selectQuestionReplyBoardList(int board_idx);
+
+	Map<String, String> selectQuestionReplyWriter(Map<String, String> map);
+
+	int deleteQuestionReplyBoard(Map<String, String> map);
+
+	int insertQuestionReReplyBoard(Map<String, String> map);
+
 
 	
 

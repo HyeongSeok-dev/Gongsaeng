@@ -435,7 +435,7 @@ function search_keyword(event) {
                     <a href="index" class="dropdown-toggle active" data-toggle="dropdown" data-hover="dropdown" data-delay="200">고객센터<b class="caret"></b></a>
                     <ul class="dropdown-menu navbar-nav">
                         <li><a href="${pageContext.request.contextPath}/cs/notice">공지사항</a></li>
-                        <li><a href="${pageContext.request.contextPath}/cs/faq">자주 묻는 질문</a></li>
+<%--                         <li><a href="${pageContext.request.contextPath}/cs/faq">자주 묻는 질문</a></li> --%>
                         <li><a href="javascript:void(0);" onclick="openCenteredWindow('${pageContext.request.contextPath}/cs/qna', 'newwindow', 570, 680); return false;">1:1 문의</a></li>
               			<li><a href="javascript:void(0);" onclick="openCenteredWindow('${pageContext.request.contextPath}/chat/chatBot', 'newwindow', 617, 821); return false;">챗봇</a></li>
                     </ul>

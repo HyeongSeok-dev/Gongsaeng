@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 
@@ -150,7 +151,10 @@
 					            </c:choose>
 					        </td>
 			                <td onclick="location.href='${pageContext.request.contextPath }/admin/cs/notice/detail?board_idx=${adnt.board_idx }'">${adnt.board_subject}</td>
-			                <td onclick="location.href='${pageContext.request.contextPath }/admin/cs/notice/detail?board_idx=${adnt.board_idx }'">${adnt.board_content}</td>
+			                <td onclick="location.href='${pageContext.request.contextPath }/admin/cs/notice/detail?board_idx=${adnt.board_idx }'">
+			                	${fn:substring(adnt.board_content, 0, 100)}
+							</td>
+			                
 <!-- 			                <td><input type="button" value="삭제" onclick="confirmDelete()"></td> -->
 			            </tr>
 		            </c:forEach>
@@ -184,7 +188,8 @@
 					<input type="button" style="width:100px" value="다음" 
 						onclick="location.href = './?pageNum=${pageNum + 1}'"
 						<c:if test="${pageNum >= pageInfo.maxPage }">disabled</c:if>
-					>				</section>
+					>				
+				</section>
 	
               </div>
             </div>

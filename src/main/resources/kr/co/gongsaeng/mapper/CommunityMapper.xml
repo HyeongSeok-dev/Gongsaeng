@@ -188,4 +188,161 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		);
 	</insert>	
 	
+	<!-- 궁금해요 -->
+	<select id="selecQuestionList" resultType="map">
+		SELECT b.board_idx, b.member_id, board_subject,board_content,board_date,board_main_category,board_sub_category,board_img1,board_img2,board_img3,count(reply_idx) as reply_count
+		FROM board b
+		LEFT JOIN tiny_reply_community t ON b.board_idx = t.board_idx
+		WHERE board_main_category = 5
+		GROUP BY b.board_idx
+		ORDER BY board_idx DESC
+		LIMIT
+			#{startRow}
+			, #{listLimit}
+	</select>
+	
+	<select id="selectQuestionListCount" resultType="int">
+		SELECT COUNT(*)
+		FROM board
+		WHERE board_main_category = 5
+	</select>
+	
+	<select id="selectQuestionBoard" resultType="board">
+		SELECT *
+		FROM board b
+		JOIN member m ON m.member_id = b.member_id
+		WHERE board_idx = #{board_idx}
+	</select>
+	
+	<update id="updateQuestionReadcount">
+		<!-- selectKey 태그의 위치와 상관없이 order 속성값에 따라 실행 순서가 결정됨 -->
+		<selectKey keyProperty="board_readcount" resultType="int" order="AFTER">
+			SELECT board_readcount
+			FROM board
+			WHERE board_idx = #{board_idx}
+		</selectKey>
+		UPDATE board
+		SET board_readcount = board_readcount + 1
+		WHERE board_idx = #{board_idx}
+	</update>
+	
+	<select id="selectQCommentCount" resultType="int">
+	    SELECT COUNT(*)
+	    FROM tiny_reply_community
+	    WHERE board_idx = #{board_idx}
+	</select>
+
+	<delete id="deleteQuestion">
+		DELETE FROM board	
+		WHERE board_idx = #{board_idx}
+	</delete>
+	
+	<update id="updateQuestionFile">
+		UPDATE board
+		SET
+			board_img1 = CASE WHEN board_img1 = #{board_img1} THEN '' ELSE board_img1 END,
+			board_img2 = CASE WHEN board_img2 = #{board_img1} THEN '' ELSE board_img2 END,
+			board_img3 = CASE WHEN board_img3 = #{board_img1} THEN '' ELSE board_img3 END
+		WHERE 
+			board_idx = #{board_idx}
+	</update>
+	
+	<update id="updateQuestion">
+		UPDATE board
+		SET
+			board_subject = #{board_subject}
+			, board_content = #{board_content}
+			<if test="board_img1 != null and !board_img1.equals('')">
+				, board_img1 = #{board_img1}
+			</if>
+			<if test="board_img2 != null and !board_img2.equals('')">
+				, board_img2 = #{board_img2}
+			</if>
+			<if test="board_img3 != null and !board_img3.equals('')">			
+				, board_img3 = #{board_img3}
+			</if>
+		WHERE
+			board_idx = #{board_idx}
+	</update>
+
+	<insert id="insertQuestionReplyBoard">
+		<!-- 새 댓글 번호 계산 -->
+		<selectKey keyProperty="reply_idx" resultType="int" order="BEFORE">
+			SELECT IFNULL(MAX(reply_idx), 0)
+			FROM tiny_reply_community
+		</selectKey>
+		INSERT
+		INTO tiny_reply_community
+		VALUES (
+			#{reply_idx} + 1    -- reply_num(selectKey 로 조회된 값 활용)
+			, #{board_idx}      -- board_num(전달받은 값 사용)
+			, #{member_id}     -- reply_name(전달받은 값 사용)
+			, #{reply_content}  -- reply_content(전달받은 값 사용)
+			, #{reply_idx} + 1  -- 참조글번호(reply_re_ref)(새 댓글 번호와 동일하게 지정)
+			, 0                 -- 들여쓰기레벨(새 댓글이므로 기본값 0)
+			, 0                 -- 순서번호(새 댓글이므로 기본값 0)
+			, now()             -- reply_date
+		);
+	</insert>
+
+	<!-- 댓글 목록 조회 - SELECT -->
+	<!-- 작성된 댓글 순으로 정렬 -->
+	<!-- 참조글번호 - 오름차순, 순서번호 - 오름차순 => 새 댓글이 아래쪽으로 위치하도록 -->
+	<select id="selectQuestionReplyBoardList" resultType="map">
+		SELECT *
+		FROM tiny_reply_community t
+		JOIN member m ON m.member_id = t.member_id
+		WHERE 
+			board_idx = #{board_idx}
+		ORDER BY
+			reply_re_ref ASC
+			, reply_re_seq ASC
+	</select>	
+	<!-- 댓글 작성자 조회 - SELECT -->
+	<!-- 단, 조회 결과를 동일한 Map 객체에 저장하기 위해 댓글번호도 함께 조회(생략 시 작성자만 저장됨) -->
+	<select id="selectQuestionReplyWriter" resultType="map">
+		SELECT 
+			reply_idx
+			, member_id
+		FROM tiny_reply_community t
+		WHERE
+			reply_idx = #{reply_idx}
+	</select>
+
+	<!-- 댓글 삭제 - DELETE -->
+	<delete id="deleteQuestionReplyBoard">
+		DELETE
+		FROM tiny_reply_community
+		WHERE
+			reply_idx = #{reply_idx}
+	</delete>
+	<!-- 대댓글 등록 - INSERT -->	
+	<insert id="insertQuestionReReplyBoard">
+		<selectKey keyProperty="result" resultType="map" order="BEFORE">
+			SELECT 
+				IFNULL(MAX(reply_idx), 0) AS reply_idx
+				, (
+					SELECT 
+						IFNULL(MAX(reply_re_seq), 0) 
+					FROM tiny_reply_community
+					WHERE 
+						board_idx = #{board_idx}
+						AND reply_re_ref = ${reply_re_ref}
+				) AS reply_re_seq
+			FROM tiny_reply_community
+		</selectKey>			
+		INSERT
+		INTO tiny_reply_community
+		VALUES (
+			#{result.reply_idx} + 1        -- reply_idx(selectKey 로 조회된 값 + 1)
+			, #{board_idx}                 -- board_idx(전달받은 값 사용)
+			, #{member_id}                -- member_id(전달받은 값 사용)
+			, #{reply_content}             -- reply_content(전달받은 값 사용)
+			, #{reply_re_ref}              -- 참조글번호(reply_re_ref)(전달받은 값 사용)
+			, #{reply_re_lev} + 1          -- 들여쓰기레벨(reply_re_lev)(전달받은 값 + 1)
+			, #{result.reply_re_seq} + 1   -- 순서번호(reply_re_seq)(selectKey 로 조회된 값 + 1)
+			, now()                        -- reply_date
+		);
+	</insert>	
+	
 </mapper>

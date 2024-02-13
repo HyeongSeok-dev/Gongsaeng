@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -60,6 +61,109 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/community.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
+<script type="text/javascript">
+	// 삭제 버튼 클릭 시 확인창을 통해 "삭제하시겠습니까?" 출력 후
+	// 확인 버튼 클릭 시 "BoardDelete.bo" 서블릿 요청(파라미터 : 글번호, 페이지번호)
+	function confirmDelete() {
+		if(confirm("게시글을 삭제하시겠습니까?")) {
+			confirm("게시글이 삭제되었습니다.")
+			location.href = "deleteForm?board_idx=${board.board_idx}&pageNum=${param.pageNum}";
+		}
+	}
+	// 대댓글 작성 아이콘 클릭 시
+	function reReplyWriteForm(reply_idx, reply_re_ref, reply_re_lev, reply_re_seq) {
+
+		// 기존에 존재하는 대댓글 입력폼이 있을 경우 해당 폼 요소 제거(tr 태그 제거)
+		// => "reReplyTr" id 선택자 활용
+		$("#reReplyTr").remove();
+
+		// 지정한 댓글 아래쪽에 대댓글 입력폼 표시
+		// => 댓글 지정하기 위해 댓글 tr 태그의 id 값 활용() - $("#replyTr_" + reply_num)
+		// => 지정한 댓글 아래쪽에 댓글 입력폼 표시를 위해 after() 메서드 활용
+		$("#replyTr_" + reply_idx).after(
+			'<tr id="reReplyTr">'
+			+ '	<td colspan="3">'
+			+ '		<form action="QuestionReReplyWrite" method="post" id="reReplyForm">'
+			+ '			<input type="hidden" name="board_idx" value="${board.board_idx}">'
+			+ '			<input type="hidden" name="member_id" value="${sessionScope.sId}">'
+			+ '			<input type="hidden" name="reply_idx" value="' + reply_idx + '">'
+			+ '			<input type="hidden" name="reply_re_ref" value="' + reply_re_ref + '">'
+			+ '			<input type="hidden" name="reply_re_lev" value="' + reply_re_lev + '">'
+			+ '			<input type="hidden" name="reply_re_seq" value="' + reply_re_seq + '">'
+			+ '			<div class="input-group"><input class="form-control" id="reReplyTextarea" name="reply_content" placeholder="댓글을 작성해주세요." type="text">'
+			+ '			<span class="input-group-addon"><input type="button" id="replySubmit" onclick="reReplyWrite()" value="등록"></span></div>'
+			+ '		</form>'
+			+ '	</td>'
+			+ '</tr>'
+		);
+	}
+	
+	// 대댓글 작성 요청(AJAX)
+	function reReplyWrite() {
+		// 대댓글 입력항목(textarea) 체크
+		if($("#reReplyTextarea").val() == "") {
+			alert("내용 입력 필수!");
+			$("#reReplyTextarea").focus();
+			return;
+		}
+		
+		// "QuestionReReplyWrite" 서블릿 주소 요청 - AJAX
+		// => 요청메서드 : POST, 응답 데이터 타입 : "text"
+		// => 폼 태그 내의 모든 데이터 파라미터로 전달
+		$.ajax({
+			type: "POST",
+			url: "QuestionReReplyWrite",
+			data: $("#reReplyForm").serialize(), // 해당 폼의 모든 입력 요소(hidden 포함) 파라미터화
+			dataType: "text",
+			success: function(result) {
+				// 대댓글 등록 요청 결과 처리
+				// => 성공 시 화면 갱신, 실패 시 오류 메세지 출력
+				if(result == "true") {
+					location.reload(); // 페이지 갱신
+				} else {
+					alert("댓글 등록 실패!");
+				}
+			},
+			error: function() {
+				alert("요청 실패!");
+			}
+		});
+		
+	}
+	
+	// 댓글 삭제 아이콘 클릭 시
+	function confirmReplyDelete(reply_idx) {
+		if(confirm("댓글을 삭제하시겠습니까?")) { // 확인 클릭 시
+			// AJAX 활용하여 BoardTinyReplyDelete 서블릿 요청(파라미터 : 댓글번호)
+			$.ajax({
+				type: "GET",
+				url: "QuestionReplyDelete",
+				data: {
+					"reply_idx" : reply_idx
+				},
+				dataType: "text",
+				success: function(result) {
+					// 댓글 삭제 요청 결과 판별("true"/"false")
+					if(result == "true") {
+						// 댓글 삭제 성공 시 해당 댓글의 tr 태그 자체 삭제
+						// => replyTr_ 문자열과 댓글번호를 조합하여 id 선택자 지정
+						$("#replyTr_" + reply_idx).remove();
+					} else if(result == "false") {
+						alert("댓글 삭제 실패!");
+					} else if(result == "invalidSession") { // 세션아이디 없을 경우
+						alert("권한이 없습니다!");
+						return;
+					}
+				},
+				error: function() {
+					alert("요청 실패!");
+				}
+			});
+		}
+	}	
+	
+</script>
 
 </head>
 <body>
@@ -76,92 +180,161 @@
 			                    </div>
 			                    <div class="title h2" >
 			                    <div class="category h6" style="font-weight: normal;">
-			                    	<p> 서비스 종류 </p>
+			                    	<p>서비스/ 
+				                    <c:choose>
+						            	<c:when test="${board.board_sub_category eq 1}">시공</c:when>
+						            	<c:when test="${board.board_sub_category eq 2}">설치 및 수리</c:when>
+						            	<c:when test="${board.board_sub_category eq 3}">리모델링</c:when>
+						            	<c:when test="${board.board_sub_category eq 4}">리폼</c:when>
+						            	<c:when test="${board.board_sub_category eq 5}">인테리어</c:when>
+						            	<c:when test="${board.board_sub_category eq 6}">기타</c:when>
+						           	</c:choose>
+			                    	</p>
 			                    </div>
-			                       	<b>견적이 어느정도 될까요?</b>
+			                       	<b>${board.board_subject}</b>
 			                    </div>
 			                </div>
 			            </div>
 			            <br><br><br>
 			            <div class="post-heading" style="margin-top: 10px;"> 
 			                <div class="pull-left image">
-			                    <img src="${pageContext.request.contextPath }/resources/img/ddoong2.jpg" class="img-circle avatar" alt="user profile image">
+			                    <c:choose>
+									<c:when test="${empty board.member_img}">
+										<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" class="img-circle avatar" alt="user profile image">
+									</c:when>
+									<c:when test="${fn:contains(board.member_img,'http')}">
+										<img alt="profile" src="${board.member_img}" class="img-circle avatar" alt="user profile image">
+									</c:when>
+									<c:otherwise>
+					                    <img src="${pageContext.request.contextPath }/resources/upload/${board.member_img}" class="img-circle avatar" alt="user profile image">
+									</c:otherwise>
+								</c:choose>
 			                </div>
 			                <div class="pull-left meta">
 			                    <div class="title h5">
-			                        <b>냥냥펀치</b>
+			                        <b>${board.member_nick }</b>
 			                    </div>
-			                    <h6 class="text-muted time" style="font-size: 13px">10분 전</h6>
+			                    <h6 class="text-muted time" style="font-size: 13px">${fn:substring(board.board_date,0,16)}</h6>
+			                </div>
+			                <div class="pull-right meta">
+				                <c:if test="${not empty sessionScope.sId and (board.member_id eq sessionScope.sId or sessionScope.sId eq 'admin')}">
+						                <input type="button" value="수정" onclick="location.href='modifyForm?board_idx=${board.board_idx}&pageNum=${param.pageNum}'">
+										<input type="button" value="삭제" onclick="confirmDelete()">
+				                </c:if>
 			                </div>
 			            </div>
 			            <div class="post-description"> 
-			                <p style="margin-top: 20px; margin-bottom: 20px">해가 뜨고 다시 지는 것에 연연하였던 나의 작은방 텅 빈 마음 노랠 불러봤자
-								누군가에겐 소음일 테니 꼭 다문 입 그 새로 삐져나온 보잘것없는 나의 한숨에
-								나 들으라고 내쉰 숨이 더냐 아버지 내게 물으시고 제 발 저려 난 답할 수 없었네
-								우리는 우리는 어째서 어른이 된 걸까 하루하루가 참 무거운 짐이야
-								더는 못 갈 거야 꿈과 책과 힘과 벽 사이를 눈치 보기에 바쁜 나날들
-								소년이여 야망을 가져라 무책임한 격언 따위에 저 바다를 호령하는 거야
-								어처구니없던 나의 어린 꿈 가질 수 없음을 알게 되던 날 두드러기처럼 돋은 심술이
-								끝내 그 이름 더럽히고 말았네</p>
+			                <p style="margin-top: 20px; margin-bottom: 20px">${board.board_content }</p>
 			                <div class="cm_img">
-			                	<a href="${pageContext.request.contextPath}/resources/img/house.png" target="_blank">
-								    <img src="${pageContext.request.contextPath}/resources/img/house.png" alt="이미지">
-								</a>
+			                	<c:choose>
+						            <c:when test="${not empty board.board_img1}">
+							            <a href="${pageContext.request.contextPath}/resources/upload/${board.board_img1}" target="_blank" >
+							                <img class="img1" src="${pageContext.request.contextPath }/resources/upload/${board.board_img1}" alt="이미지">
+							            </a>
+						            </c:when>
+						            <c:otherwise>
+						                <!-- board_img1이 없는 경우, 아무것도 출력하지 않음 -->
+						            </c:otherwise>
+						        </c:choose>
+								<c:choose>
+						            <c:when test="${not empty board.board_img2}">
+							            <a href="${pageContext.request.contextPath}/resources/upload/${board.board_img2}" target="_blank" class="pull-left">
+							                <img class="img2" src="${pageContext.request.contextPath }/resources/upload/${board.board_img2}" alt="이미지">
+							            </a>
+						            </c:when>
+						            <c:otherwise>
+						                <!-- board_img2이 없는 경우, 아무것도 출력하지 않음 -->
+						            </c:otherwise>
+						        </c:choose>
+								<c:choose>
+						            <c:when test="${not empty board.board_img3}">
+							            <a href="${pageContext.request.contextPath}/resources/upload/${board.board_img3}" target="_blank" class="pull-left">
+							                <img class="img3" src="${pageContext.request.contextPath }/resources/upload/${board.board_img3}" alt="이미지">
+							            </a>
+						            </c:when>
+						            <c:otherwise>
+						                <!-- board_img3이 없는 경우, 아무것도 출력하지 않음 -->
+						            </c:otherwise>
+						        </c:choose>
 			                </div>
 							    <span class="fa fa-eye"></span> 
-								<span id="viewCount" style="margin-right: 10px;">29</span>
+								<span id="viewCount" style="margin-right: 10px;">${board.board_readcount }</span>
 								<span class="fa fa-comment"></span> 
-							    <span id="commentCount">3</span>
+							    <span id="commentCount">${commentCount}</span>
 			            </div>
 			            <div class="post-footer">
-			                <div class="input-group"> 
-			                    <input class="form-control" placeholder="Add a comment" type="text">
-			                    <span class="input-group-addon">
-			                        <a href="#"><i class="fa fa-edit"></i></a>  
-			                    </span>
-		                </div>
+			                <form action="QuestionReplyWrite" method="post">
+			            	<input type="hidden" name="board_idx" value="${board.board_idx}">
+							<input type="hidden" name="pageNum" value="${param.pageNum}">
+							<input type="hidden" name="member_id" value="${sessionScope.sId}">
+               				<div class="input-group">
+	               				<c:choose>
+									<c:when test="${empty sessionScope.sId}"> <%-- 세션 아이디 없음 --%>
+										<input class="form-control" name="reply_content" placeholder="로그인 후 작성 가능합니다." type="text" disabled>
+										<span class="input-group-addon">
+					                        <button type="submit" id="replySubmit" disabled>
+											    <i class="fa fa-edit"></i>
+											</button>
+					                    </span>
+									</c:when>
+									<c:otherwise>
+										<input class="form-control" name="reply_content" placeholder="댓글을 작성해주세요." type="text" required>
+										<span class="input-group-addon">
+					                        <button type="submit" id="replySubmit">등록</button>
+					                    </span>
+									</c:otherwise>
+								</c:choose>
+				            </div>
+		                </form>
 		                <ul class="comments-list">
-		                    <li class="comment">
-		                        <a class="pull-left" href="#">
-		                            <img class="avatar" src="https://bootdey.com/img/Content/user_1.jpg" alt="avatar">
-		                        </a>
-		                        <div class="comment-body">
-		                           	<div class="comment-heading">
-									    <h4 class="user">견적의 신</h4>
-									    <h5 class="time">5분 전 </h5>
-									    <i class="fa fa-reply"></i>
-									</div>
-		                            <p>@#$%%^원 입니다.</p>
-		                        </div>
-		                        <ul class="comments-list">
-		                            <li class="comment">
-		                                <a class="pull-left" href="#">
-		                                    <img class="avatar" src="${pageContext.request.contextPath }/resources/img/ddoong2.jpg" alt="avatar">
-		                                </a>
-		                                <div class="comment-body">
-		                                    <div class="comment-heading">
-		                                        <h4 class="user">냥냥펀치</h4>
-		                                        <h5 class="time">3분 전 </h5>
-		                                        <i class="fa fa-reply"></i>
-		                                    </div>
-		                                    <p>답변 감사합니다!</p>
-		                                </div>
-		                            </li> 
-		                            <li class="comment">
-		                                <a class="pull-left" href="#">
-		                                    <img class="avatar" src="https://bootdey.com/img/Content/user_2.jpg" alt="avatar">
-		                                </a>
-		                                <div class="comment-body">
-		                                    <div class="comment-heading">
-		                                        <h4 class="user">잔나비</h4>
-		                                        <h5 class="time">3분 전 </h5>
-		                                        <i class="fa fa-reply"></i>
-		                                    </div>
-		                                    <p>저도 정보 얻고 갑니다ㅎㅎ</p>
-		                                </div>
-		                            </li> 
-		                        </ul>
-		                    </li>
+		                    <c:forEach var="questionReplyBoard" items="${questionReplyBoardList}">
+			                <div id="replyTr_${questionReplyBoard.reply_idx}">
+			                    <li class="comment">
+			                        <a class="pull-left">
+			                    	   <c:forEach var="i" begin="1" end="${questionReplyBoard.reply_re_lev}">
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										</c:forEach>
+										<c:choose>
+											<c:when test="${empty questionReplyBoard.member_img}">
+												<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" class="avatar" alt="user profile image">
+											</c:when>
+											<c:when test="${fn:contains(board.member_img,'http')}">
+												<img alt="profile" src="${questionReplyBoard.member_img}" class="avatar" alt="user profile image">
+											</c:when>
+											<c:otherwise>
+							                    <img class="avatar" src="${pageContext.request.contextPath }/resources/upload/${questionReplyBoard.member_img}" class="img-circle avatar" alt="user profile image">
+											</c:otherwise>
+										</c:choose>
+			                        </a>
+			                        <div class="comment-body">
+			                           	<div class="comment-heading">
+                    					<c:forEach var="i" begin="1" end="${questionReplyBoard.reply_re_lev}">
+											&nbsp;&nbsp;
+										</c:forEach>
+										    <h4 class="user">${questionReplyBoard.member_nick}</h4>
+										    <h5 class="time">
+										    	<fmt:parseDate var="parsedReplyDate" value="${questionReplyBoard.reply_date}" pattern="yyyy-MM-dd'T'HH:mm" type="both" />
+												<fmt:formatDate value="${parsedReplyDate}" pattern="MM-dd HH:mm" />									   
+										    </h5>
+										    <c:if test="${not empty sessionScope.sId}">
+										    	<a href="javascript:reReplyWriteForm(${questionReplyBoard.reply_idx}, ${questionReplyBoard.reply_re_ref}, ${questionReplyBoard.reply_re_lev}, ${questionReplyBoard.reply_re_seq})">
+													<i class="fa fa-reply"></i>
+												</a>
+												<c:if test="${sessionScope.sId eq questionReplyBoard.member_id or sessionScope.sId eq 'admin'}">
+										    	<a href="javascript:void(0)" onclick="confirmReplyDelete(${questionReplyBoard.reply_idx})">
+													<i class="fa fa-trash-o"></i>
+												</a>
+												</c:if>
+											</c:if>
+										</div>
+				                    	<c:forEach var="i" begin="1" end="${questionReplyBoard.reply_re_lev}">
+											&nbsp;&nbsp;
+										</c:forEach>
+			                            ${questionReplyBoard.reply_content}
+			                        </div>
+			                    </li>
+			                </div>
+		                </c:forEach> 
 		                </ul>
 		            </div>
 		        </div>
