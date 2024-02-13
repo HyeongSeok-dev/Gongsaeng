@@ -139,7 +139,7 @@ public class CommunityController {
 			}
 			
 			model.addAttribute("msg", "글이 등록되었습니다.");
-			model.addAttribute("targetURL", "together?pageNum=" + pageNum);
+			model.addAttribute("targetURL", "question?pageNum=" + pageNum);
 			return "forward";
 		    
 		} else {
