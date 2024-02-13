@@ -148,7 +148,9 @@ public class ProductController {
 						String encodedrecentClasses = URLEncoder.encode(reversedClasses.toString(), "UTF-8");
 
 						cookie.setValue(encodedrecentClasses);
+						cookie.setDomain(".c5d2308t2.itwillbs.com");
 						cookie.setPath("/");
+						cookie.setSecure(false);
 						cookie.setMaxAge(60 * 60 * 24 * 7);
 						
 						response.addCookie(cookie);
@@ -168,7 +170,9 @@ public class ProductController {
 			Cookie cookie = new Cookie("recentClasses", encodedRecentClass);
 
 			// 쿠키 유효기간 설정 (예: 7일)
+			cookie.setDomain(".c5d2308t2.itwillbs.com");
 			cookie.setPath("/");
+			cookie.setSecure(false);
 			cookie.setMaxAge(60 * 60 * 24 * 7);
 
 			// 응답에 쿠키 추가

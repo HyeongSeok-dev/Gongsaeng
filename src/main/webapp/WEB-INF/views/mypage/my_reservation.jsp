@@ -185,8 +185,8 @@
 								</div>
 								<div class="col-xs-2">
 								
-									<button class="btn btn-default btn-block" onclick="javascript:location.href='chat'">채팅 문의</button>
-									<a href="reservationCancel?pay_num=${res.pay_num}"><button class="btn btn-danger btn-block" <c:if test="${res.pay_status eq 2}">disabled</c:if>  >예약 취소</button></a>
+<!-- 									<button class="btn btn-default btn-block" onclick="javascript:location.href='chat'">채팅 문의</button> -->
+<%-- 									<a href="reservationCancel?pay_num=${res.pay_num}"><button class="btn btn-danger btn-block" <c:if test="${res.pay_status eq 2}">disabled</c:if>  >예약 취소</button></a> --%>
 								</div>
 							</div>
 						</div>
