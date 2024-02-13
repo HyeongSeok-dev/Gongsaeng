@@ -12,6 +12,7 @@ import kr.co.gongsaeng.mapper.CompanyMapper;
 import kr.co.gongsaeng.vo.BoardVO;
 import kr.co.gongsaeng.vo.ClassVO;
 import kr.co.gongsaeng.vo.CompanyClassVO;
+import kr.co.gongsaeng.vo.CompanyGenderRatioVO;
 import kr.co.gongsaeng.vo.CompanyReviewDetailVO;
 import kr.co.gongsaeng.vo.CompanyVO;
 import kr.co.gongsaeng.vo.CouponVO;
@@ -176,10 +177,22 @@ public class CompanyService {
 		return mapper.selectRecentSales(comIdx);
 	}
 
-	// [ 차트 - (2) 일별 클래스 등록수 ] 
+	// [ 차트 - (2) 일별 클래스 등록 수(최근 10일) ] 
 	public List<PaymentVO> getClassRegister(Integer comIdx) {
+		
+		return mapper.selectDailyClass(comIdx);
+	}
+	
+	// [ 차트 - (3) 클래스 등록 회원 성비 ] 
+	public List<CompanyGenderRatioVO> getGenderRatioByComIdx(Integer comIdx) {
 
-		return mapper.selectClassRegister(comIdx);
+		return mapper.selectGenderRatio(comIdx);
+	}
+
+	// [ 차트 - (4) 일별 취소 건수(최근 10일간) ] 
+	public List<PaymentVO> getRecentCancelByComIdx(Integer comIdx) {
+
+		return mapper.selectCountCancel(comIdx);
 	}
 
 	// 반장 쿠폰 관리
@@ -187,6 +200,8 @@ public class CompanyService {
 
 		return mapper.selectClassCoupon(comIdx);
 	}
+
+
 
 
 

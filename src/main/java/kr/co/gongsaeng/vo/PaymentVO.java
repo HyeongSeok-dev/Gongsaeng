@@ -70,7 +70,12 @@ public class PaymentVO {
     private int payMonth;
     private int payYear;
     private int totalSales;
-	
-
+	private String payment_date;
+	private String total_payments;
+	private String cancelDate;
+	private String cancelCount;
+	private String paydate;
+	private String payDate;
+    
 }
 
