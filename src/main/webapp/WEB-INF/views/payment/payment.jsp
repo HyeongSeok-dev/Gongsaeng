@@ -82,11 +82,26 @@
 	
 	//버튼 누르면 기본적으로 결제상세페이지에 0페이 금액표시 보유금액보다 더 높은금액 사용하기 막기
 	function defaultPay() {
-		var payValue = parseInt($("#pay").val().replace(/[^0-9]/g, '')); //사용할페이 적는곳
+		
+		var payValue;
+		
+		console.log(typeof $("#pay").val() );
+		console.log($("#pay").val() == "" || $("#pay").val() == null);
+		
+		if($("#pay").val() == "" || $("#pay").val() == null){
+			$("#pay").val(0);
+		console.log("payValue : " + $("#pay").val());
+			
+			payValue = parseInt($("#pay").val()); //사용할페이 적는곳
+		}else{
+			payValue = parseInt($("#pay").val().replace(/[^0-9]/g, '')); //사용할페이 적는곳
+		}
+		
 		var cashValue = parseInt("${allList.cash_value}"); // 보유중인 페이잔액
 
 		console.log("payValue : " + payValue);
 		console.log("cashValue : " + cashValue);
+		
 		
 	  if (payValue < cashValue) {
 	    // 사용할 페이 값이 작을 경우
@@ -94,6 +109,9 @@
 	  } else if(payValue > cashValue){
 	    // 사용할 페이 값이 클경우
 	    alert("보유중인 페이가 부족합니다");
+	    $("#pay").focus(); // #pay로 포커스 이동
+	  } else if(payValue == "0"){
+	    alert("사용할 페이를 입력해주세요");
 	    $("#pay").focus(); // #pay로 포커스 이동
 	  }
 }
@@ -233,8 +251,22 @@
 							<div class="pay">
 								<div class="pay_result">
 									<!-- 									<span class="font_stlye">포인트</span>  -->
-									<span class="pay_available"> &nbsp;&nbsp;보유중인페이금액&nbsp; <span id="useablePay"> ${allList.cash_value} </span> 원 &nbsp; <span><a
-											id="useAllPoint">전액사용</a></span>
+									<span class="pay_available"> 
+										&nbsp;&nbsp;보유중인페이금액&nbsp; 
+										<span id="useablePay"> 
+											<c:choose>
+												<c:when test= "${empty allList.cash_value}">
+												0
+												</c:when>
+												<c:otherwise>
+												${allList.cash_value}
+												</c:otherwise>
+											</c:choose>
+										 </span> 
+									 	원 &nbsp;
+										 <span>
+										 	<a id="useAllPoint">전액사용</a>
+										 </span>
 									</span>
 								</div>
 								<input type="text" placeholder="사용할 0페이를 입력해 주세요" class="pay_to_use" name="payToUse" id="pay" /><span class="won">원</span>
@@ -361,7 +393,7 @@
 										<!-- 								</div>  -->
 										<!-- 0페이사용 -->
 										<div>
-											<span class="detail">0페이결제</span> <span class="detail_price"> - <span id="discountPay_text"></span> 원
+											<span class="detail">0페이결제</span> <span class="detail_price"> - <span id="discountPay_text">0</span> 원
 											</span>
 										</div>
 									</div>
@@ -395,7 +427,7 @@
 									<!-- 								</div>  -->
 									<!-- 							</div> -->
 									<div class="total_detail">
-										<span class="total_info">총 결제 금액</span> <span class="total_price"> <span id="totalPayment_text">1000</span> 원
+										<span class="total_info">총 결제 금액</span> <span class="total_price"> <span id="totalPayment_text"></span> 원
 										</span>
 									</div>
 								</div>

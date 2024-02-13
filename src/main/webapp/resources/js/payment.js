@@ -33,19 +33,27 @@ $(document).ready(function() {
 	//최종 금액 계산 
 	function totalPayment(){
 	
-	//결제금액
-	payment
-	//쿠폰할인
-	var coupon =  parseInt($("#discountCoupon_text") .text().replace(/,/g, '')); 
-	//0페이사용
-	var pay = parseInt($("#discountPay_text") .text().replace(/,/g, '')); 
-	//최종결제금액
-	var totalPayment  = 0;
+		//결제금액
+		payment
+		//쿠폰할인
+		var coupon =  parseInt($("#discountCoupon_text") .text().trim().replace(/,/g, '')); 
+		//0페이사용
+		var pay = parseInt($("#discountPay_text") .text().trim().replace(/,/g, '')); 
+		//최종결제금액
+		var totalPayment  = 0;
+		
+		totalPayment = payment - coupon - pay;
+		
+		console.log("최종결제금액 : " + totalPayment);
+		
+		
+		$("#totalPayment_text").text(totalPayment)
+		
+	}
 	
-	totalPayment = payment - coupon - pay;
 	
 	
-}
+	totalPayment();
 
 	//===================================================================================
 	// 포인트 text 박스에 숫자가 입력될 때 마다 숫자에 천단위 쉼표를 찍어주는 쿼리
