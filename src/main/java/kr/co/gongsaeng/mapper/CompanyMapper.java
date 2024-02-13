@@ -113,6 +113,9 @@ public interface CompanyMapper {
 	// 공지사항 리스트
 	List<BoardVO> selectNotificationList(int i, int j);
 
+	// 반장 프로필 조회
+	List<CompanyVO> selectCompanyProfile(Integer comIdx);
+
 
 
 

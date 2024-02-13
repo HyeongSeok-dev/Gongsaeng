@@ -176,6 +176,7 @@
 										<table class="table table-bordered">
 											<thead class="thead-dark">
 												<tr>
+													<th scope="col">#</th>
 													<th scope="col">제목</th>
 													<th scope="col">공지 내용</th>
 													<th scope="col">등록일</th>
@@ -192,8 +193,9 @@
 											</thead>
 											<tbody>
 												<!-- 여기에 각 행을 추가하세요. 예를 들어: -->
-													<c:forEach items="${companyBoardList}" var="notification">
+													<c:forEach items="${companyBoardList}" var="notification"  varStatus="status">
 												<tr>
+													<td scope="row">${status.index + 1}</td>
 													<th>${notification.board_subject }</th>
 													<td>${notification.board_content}</td>	
 													<td><fmt:formatDate value="${notification.board_date}" pattern="yyyy/MM/dd" /></td>

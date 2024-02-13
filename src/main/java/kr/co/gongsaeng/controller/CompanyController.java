@@ -1174,6 +1174,22 @@ public class CompanyController {
 		return "company/company_notification";
 	}
 
+	// 반장 프로필
+	@GetMapping("company/profile")
+	public String company_profile(HttpSession session, Model model, CompanyVO company) {
+		// 사업체 com_idx 산출
+		String sId = (String)session.getAttribute("sId");
+		System.out.println("Current sId from session: >>>>>>>>>>>>> " + sId);
+		
+		Integer comIdx = companyService.findComIdxBysId(sId);
+		System.out.println("Current comIdx from session: >>>>>>>>>>>>> " + comIdx);
+		
+		List<CompanyVO> companyProfile = companyService.getCompanyProfile(comIdx);
+		model.addAttribute("companyProfile",companyProfile);
+		
+		
+		return "company/company_profile";
+	}
 	
 	
 	@GetMapping("company/sales2")
@@ -1192,10 +1208,6 @@ public class CompanyController {
 		return "company/company_coupon2";
 	}
 	
-	@GetMapping("company/profile")
-	public String company_profile() {
-		return "company/company_profile";
-	}
 	
 	@GetMapping("company/profile2")
 	public String company_profile2() {

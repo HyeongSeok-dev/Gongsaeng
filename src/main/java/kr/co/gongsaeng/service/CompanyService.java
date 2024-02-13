@@ -201,9 +201,16 @@ public class CompanyService {
 		return mapper.selectClassCoupon(comIdx);
 	}
 
+	// 공지사항 리스트 출력
 	public List<BoardVO> getCompanyBoardList(int i, int j) {
 
 		return mapper.selectNotificationList(i,j);
+	}
+
+	// 반장 프로필 조회
+	public List<CompanyVO> getCompanyProfile(Integer comIdx) {
+
+		return mapper.selectCompanyProfile(comIdx);
 	}
 
 
