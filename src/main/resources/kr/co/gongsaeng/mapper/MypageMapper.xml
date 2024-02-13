@@ -210,4 +210,20 @@
 		AND r.pay_num IS NULL
 		ORDER BY p.pay_date DESC
 	</select>
+	
+	<select id="selectTargetBookmarkInfo" resultType="map">
+		SELECT * 
+		FROM bookmark
+		WHERE member_id = #{member_id}
+		AND class_idx = #{class_idx}
+	</select>
+	
+	<insert id="insertBookmark">
+		INSERT INTO bookmark
+		VALUES (
+			null
+			, #{member_id}
+			, #{class_idx}
+		)
+	</insert>
 </mapper>

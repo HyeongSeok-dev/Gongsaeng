@@ -61,5 +61,9 @@ public interface MypageMapper {
 
 	List<MyResVO> selectReviewWriteableResList(MemberVO member);
 
+	int insertBookmark(Map<String, String> map);
+
+	Map<String, Object> selectTargetBookmarkInfo(Map<String, String> map);
+
 
 }

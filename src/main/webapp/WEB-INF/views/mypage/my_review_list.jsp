@@ -87,7 +87,7 @@
 								<div id="alert" class="panel-collapse collapse">
 									<ul class="list-group">
 										<li class="list-group-item cursor " onclick="javascript:location.href='alert'">알림</li>
-<!-- 										<li class="list-group-item cursor" onclick="javascript:location.href='chat'">채팅</li> -->
+										<!-- 										<li class="list-group-item cursor" onclick="javascript:location.href='chat'">채팅</li> -->
 									</ul>
 								</div>
 							</li>
@@ -112,7 +112,7 @@
 							<li class="list-group-item cursor" data-toggle="collapse" href="#review">리뷰/신고
 								<div id="review" class="panel-collapse collapse in">
 									<ul class="list-group">
-										<li class="list-group-item cursor " onclick="javascript:location.href='reviewWrite'">리뷰 쓰기</li>
+										<li class="list-group-item cursor " onclick="javascript:location.href='reviewWrite'">리뷰쓰기 / 신고</li>
 										<li class="list-group-item cursor active" onclick="javascript:location.href='reviewList'">내가 쓴 리뷰</li>
 									</ul>
 								</div>
@@ -150,11 +150,9 @@
 							<li class="review-item">
 								<div class="reviewer">
 									<div class="reviewer-photo">
-										<a href="#" target="_blank" class="profile-link">
-											<div class="profile-image">
-												<img src="${pageContext.request.contextPath }/resources/upload/${review.member_img}" alt="프로필" width="38" height="38">
-											</div>
-										</a>
+										<div class="profile-image">
+											<img src="${pageContext.request.contextPath }/resources/upload/${review.member_img}" alt="프로필" width="50" height="50">
+										</div>
 									</div>
 									<div class="reviewer-info">
 										<div class="reviewer-name">${sessionScope.sNick}</div>
@@ -165,11 +163,17 @@
 
 								</div>
 								<p class="review-content">${review.review_content}</p> <c:if test="${not empty review.review_img_1}">
-									<p>${review.review_img_1}</p>
+									<p>
+										<img src="${pageContext.request.contextPath }/resources/upload/${review.review_img_1}" width="300" height="300">
+									</p>
 								</c:if> <c:if test="${not empty review.review_img_2}">
-									<p>${review.review_img_2}</p>
+									<p>
+										<img src="${pageContext.request.contextPath }/resources/upload/${review.review_img_2}" width="300" height="300">
+									</p>
 								</c:if> <c:if test="${not empty review.review_img_3}">
-									<p>${review.review_img_3}</p>
+									<p>
+										<img src="${pageContext.request.contextPath }/resources/upload/${review.review_img_3}" width="300" height="300">
+									</p>
 								</c:if>
 
 								<div class="review-actions">

@@ -55,7 +55,7 @@
 <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
 <%-- <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script> --%>
-<script src="${pageContext.request.contextPath }/resources/js/my_bookmark.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/my_bookmark_add.js"></script>
 
 
 </head>
@@ -115,7 +115,7 @@
 							<li class="list-group-item cursor" data-toggle="collapse" href="#review">리뷰/신고
 								<div id="review" class="panel-collapse collapse">
 									<ul class="list-group">
-										<li class="list-group-item cursor " onclick="javascript:location.href='reviewWrite'">리뷰 쓰기</li>
+										<li class="list-group-item cursor " onclick="javascript:location.href='reviewWrite'">리뷰쓰기 / 신고 </li>
 										<li class="list-group-item cursor " onclick="javascript:location.href='reviewList'">내가 쓴 리뷰</li>
 									</ul>
 								</div>

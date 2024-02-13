@@ -112,7 +112,7 @@
 							<li class="list-group-item cursor" data-toggle="collapse" href="#review">리뷰/신고
 								<div id="review" class="panel-collapse collapse">
 									<ul class="list-group">
-										<li class="list-group-item cursor " onclick="javascript:location.href='reviewWrite'">리뷰 쓰기</li>
+										<li class="list-group-item cursor " onclick="javascript:location.href='reviewWrite'">리뷰쓰기 / 신고 </li>
 										<li class="list-group-item cursor " onclick="javascript:location.href='reviewList'">내가 쓴 리뷰</li>
 									</ul>
 								</div>
@@ -152,13 +152,13 @@
 								<div class="col-sm-2">
 									<img src="${pageContext.request.contextPath }/resources/upload/${following.com_img}" alt="작가 사진" class="img-responsive">
 								</div>
-								<div class="col-sm-5">
+								<div class="col-sm-4">
 									<h5>${following.com_name}</h5>
 									<p>${following.com_introduction}</p>
 									<button class="btn btn-default followingBtn">팔로우 취소</button>
 									<input type="hidden" value="${following.following_idx}" class="following_idx">
 								</div>
-								<div class="col-sm-5">
+								<div class="col-sm-6">
 									<div class="row">
 										<div class="col-xs-4">
 											<img src="${pageContext.request.contextPath }/resources/upload/${following.class_image1}" alt="작품 사진" class="img-responsive">

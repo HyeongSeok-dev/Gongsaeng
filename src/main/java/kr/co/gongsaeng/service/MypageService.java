@@ -147,5 +147,15 @@ public class MypageService {
 		return mapper.selectReviewWriteableResList(member);
 	}
 
+	public int addBookmark(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return mapper.insertBookmark(map);
+	}
+
+	public Map<String, Object> getTargetBookmarkInfo(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return mapper.selectTargetBookmarkInfo(map);
+	}
+
 	
 }

@@ -112,7 +112,7 @@
 							<li class="list-group-item cursor" data-toggle="collapse" href="#review">리뷰/신고
 								<div id="review" class="panel-collapse collapse in">
 									<ul class="list-group">
-										<li class="list-group-item cursor active" onclick="javascript:location.href='reviewWrite'">리뷰 쓰기</li>
+										<li class="list-group-item cursor active" onclick="javascript:location.href='reviewWrite'">리뷰쓰기 / 신고 </li>
 										<li class="list-group-item cursor " onclick="javascript:location.href='reviewList'">내가 쓴 리뷰</li>
 									</ul>
 								</div>
@@ -141,7 +141,7 @@
 			<div class="col-sm-9">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h4 class="panel-title">리뷰 쓰기</h4>
+						<h4 class="panel-title">리뷰쓰기 / 신고 </h4>
 					</div>
 					<br>
 					<c:if test="${empty resList}">

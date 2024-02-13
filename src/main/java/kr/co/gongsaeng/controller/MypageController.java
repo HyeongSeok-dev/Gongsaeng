@@ -66,17 +66,17 @@ public class MypageController {
 		JSONArray recentClasses = null;
 		Cookie[] cookies = request.getCookies();
 		List<Map<String, Object>> recentList = new ArrayList<>();
-		
+
 		System.out.println(cookies.toString());
 		Cookie recentClassesCookie = null;
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
-			    if (cookie.getName().equals("recentClasses")) {
-			        System.out.println(cookie.getName());
-			        System.out.println(cookie.getValue());
-			        recentClassesCookie = cookie;
-			        break;  // if문 안으로 이동
-			    }
+				if (cookie.getName().equals("recentClasses")) {
+					System.out.println(cookie.getName());
+					System.out.println(cookie.getValue());
+					recentClassesCookie = cookie;
+					break; // if문 안으로 이동
+				}
 			}
 		}
 
@@ -84,22 +84,19 @@ public class MypageController {
 			String decodedValue = URLDecoder.decode(recentClassesCookie.getValue(), "UTF-8");
 			recentClasses = new JSONArray(decodedValue);
 
-			
 			for (int i = 0; i < recentClasses.length(); i++) {
-			    JSONObject json = recentClasses.getJSONObject(i);
-			    Map<String, Object> map = new HashMap<>();
-			    Iterator<String> keys = json.keys();
-			    while(keys.hasNext()) {
-			        String key = keys.next();
-			        map.put(key, json.get(key));
-			    }
-			    recentList.add(map);
+				JSONObject json = recentClasses.getJSONObject(i);
+				Map<String, Object> map = new HashMap<>();
+				Iterator<String> keys = json.keys();
+				while (keys.hasNext()) {
+					String key = keys.next();
+					map.put(key, json.get(key));
+				}
+				recentList.add(map);
 			}
-			
+
 		}
-		
-		
-		
+
 		model.addAttribute("myMainInfo", myMainInfo);
 		model.addAttribute("unReadChats", unReadChats);
 		model.addAttribute("unReadAlert", unReadAlert);
@@ -343,7 +340,8 @@ public class MypageController {
 	}
 
 	@GetMapping("mypage/recent")
-	public String recent(HttpSession session, Model model, MemberVO member, HttpServletRequest request) throws UnsupportedEncodingException {
+	public String recent(HttpSession session, Model model, MemberVO member, HttpServletRequest request)
+			throws UnsupportedEncodingException {
 		String sId = (String) session.getAttribute("sId");
 		if (sId == null) {
 			model.addAttribute("msg", "로그인이 필요합니다");
@@ -353,42 +351,42 @@ public class MypageController {
 		}
 		member.setMember_id(sId);
 		member = service.getMemberInfo(member);
-		
+
 		System.out.println("mypage/recent");
-		
+
 		JSONArray recentClasses = null;
 		Cookie[] cookies = request.getCookies();
 		List<Map<String, Object>> recentList = new ArrayList<>();
-		
+
 		System.out.println(cookies.toString());
 		Cookie recentClassesCookie = null;
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
-			    if (cookie.getName().equals("recentClasses")) {
-			        System.out.println(cookie.getName());
-			        System.out.println(cookie.getValue());
-			        recentClassesCookie = cookie;
-			        break;  // if문 안으로 이동
-			    }
+				if (cookie.getName().equals("recentClasses")) {
+					System.out.println(cookie.getName());
+					System.out.println(cookie.getValue());
+					recentClassesCookie = cookie;
+					break; // if문 안으로 이동
+				}
 			}
 		}
 
 		if (recentClassesCookie != null) {
 			String decodedValue = URLDecoder.decode(recentClassesCookie.getValue(), "UTF-8");
 			recentClasses = new JSONArray(decodedValue);
-			
+
 			for (int i = 0; i < recentClasses.length(); i++) {
-			    JSONObject json = recentClasses.getJSONObject(i);
-			    Map<String, Object> map = new HashMap<>();
-			    Iterator<String> keys = json.keys();
-			    while(keys.hasNext()) {
-			        String key = keys.next();
-			        map.put(key, json.get(key));
-			    }
-			    recentList.add(map);
+				JSONObject json = recentClasses.getJSONObject(i);
+				Map<String, Object> map = new HashMap<>();
+				Iterator<String> keys = json.keys();
+				while (keys.hasNext()) {
+					String key = keys.next();
+					map.put(key, json.get(key));
+				}
+				recentList.add(map);
 			}
 		}
-		
+
 		model.addAttribute("member", member);
 		model.addAttribute("recentList", recentList);
 
@@ -638,6 +636,35 @@ public class MypageController {
 		} else {
 			return "false";
 		}
+	}
+
+	@ResponseBody
+	@GetMapping("mypage/addBookmark")
+	public String addBookmark(@RequestParam Map<String, String> map, HttpSession session, Model model) {
+		String sId = (String) session.getAttribute("sId");
+		if (sId == null) {
+			model.addAttribute("msg", "로그인이 필요합니다");
+			model.addAttribute("targetURL", "/gongsaeng/member/login");
+
+			return "forward";
+		}
+		System.out.println(map);
+		map.put("member_id", sId);
+
+		Map<String, Object> bookMark = service.getTargetBookmarkInfo(map);
+
+		if (bookMark == null || bookMark.size() == 0) {
+
+			int insertCount = service.addBookmark(map);
+
+			if (insertCount > 0) {
+				return "true";
+			} else {
+				return "fail";
+			}
+		}
+		
+		return "false";
 	}
 
 	@ResponseBody
