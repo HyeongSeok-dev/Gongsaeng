@@ -194,7 +194,7 @@
 								<div class="row">
 									<c:if test="${empty unReadAlert}">안 읽은 알림이 없습니다.</c:if>
 									<c:forEach var="alert" items="${unReadAlert}">
-										<div class="col-xs-6 text-left">
+										<div class="col-xs-2 text-left">
 											<c:choose>
 												<c:when test="${alert.alert_category eq '1'}">알림</c:when>
 												<c:when test="${alert.alert_category eq '2'}">공지</c:when>
@@ -202,7 +202,7 @@
 											</c:choose>
 
 										</div>
-										<div class="col-xs-6 text-right">${alert.alert_content}</div>
+										<div class="col-xs-10 text-right">${alert.alert_content}</div>
 									</c:forEach>
 								</div>
 							</div>
