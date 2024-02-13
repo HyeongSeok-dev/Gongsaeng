@@ -40,8 +40,8 @@
         SELECT *
         FROM cart
         WHERE class_idx = #{class_idx} AND
-              member_id = #{member_id} AND
-              date = #{date}
+              member_id = #{member_id}
+              
     </select>
     
     <select id="selectResMemberCount" resultType="payment">
@@ -87,4 +87,61 @@
     		,#{comIdx}
     	)
     </insert>
+<!--     <insert id="insertCart"> -->
+<!--         INSERT -->
+<!--         INTO cart -->
+<!--         VALUES( -->
+<!--             null  -->
+<!--             , #{member_id} -->
+<!--             , #{class_idx} -->
+<!--             , #{res_visit_date} -->
+<!--             , #{res_member_count} -->
+<!--         ); -->
+<!--     </insert> -->
+
+	<select id="selectCart" resultType="cart">
+        SELECT *
+        FROM cart
+        WHERE res_visit_date = #{resVisitDate} AND class_idx = #{classIdx} AND member_id = #{memberId}
+    </select>
+    
+    <insert id="insertCart">
+        INSERT INTO cart
+        VALUES (
+        null
+        , #{memberId}
+        , #{classIdx}
+        ,#{resVisitDate}
+        , #{resVisitTime}
+        , #{resMemberCount})
+    </insert>
+    
+    <update id="updateResMemberCount">
+        UPDATE cart
+        SET res_member_count = res_member_count + #{resMemberCount}
+        WHERE res_visit_date = #{resVisitDate} AND class_idx = #{classIdx} AND member_id = #{memberId}
+    </update>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+   	<insert id="insertBookmark">
+		INSERT INTO bookmark
+		VALUES (
+			null
+			,#{sId}
+			,#{class_idx}
+		)
+	</insert>
+	
+	<delete id="deleteBookmark">
+		DELETE FROM bookmark
+		WHERE member_id = #{sId}
+		AND class_idx = #{class_idx}
+	</delete>
 </mapper>

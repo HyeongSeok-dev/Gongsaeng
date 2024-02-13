@@ -1422,4 +1422,22 @@ span.similar_recom_title {
 /*test*/
 
 
+.date-container {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.date-item {
+    display: inline-block;
+    font-size: 15px;
+    margin-right: 20px;
+    background-color: #ffffff;
+    padding: 10px 30px;
+}
+
+.selected {
+    background-color: yellow; /* 선택된 날짜는 배경색이 노란색 */
+}
+
  

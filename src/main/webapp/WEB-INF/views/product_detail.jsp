@@ -65,9 +65,7 @@
         <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
         <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script>
         <script src="${pageContext.request.contextPath }/resources/js/product_detail.js"></script>
- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!-- jQuery 라이브러리 -->
     </head>
     <body>
 
@@ -618,11 +616,10 @@
 										</div>
 										<div class="panel-body search-widget">
 											<form action="cartPro" class=" form-inline" method="post">
-											    <input type="hidden" name="member_id" value="${param.com_idx}">		
-											    <input type="hidden" name="class_idx" value="${param.com_idx}">		
+											    <input type="hidden" name="class_idx" value="${cla.class_idx}">		
 											    <input type="hidden" name="member_id" value="${sessionScope.member_id}">		
-											    <input type="hidden" name="res_visit_date" value="${cla.class_start_date} ~ ${cla.class_end_date}">		
-											    <input type="hidden" name="memberes_visit_timer_id" value="${startTime} ~ ${endTime}">		
+											    <input type="hidden" id="res_visit_date" name="res_visit_date" value="${cla.class_start_date} ~ ${cla.class_end_date}">
+												<input type="hidden" id="res_visit_time" name="res_visit_time" value="${startTime} ~ ${endTime}">	
 												
 												<div>
 													<span class="classInfo">기간 : ${cla.class_start_date} ~ ${cla.class_end_date}</span><br>
@@ -637,9 +634,10 @@
 												</div>
 												<br>
 												<div>
-													&nbsp;&nbsp;&nbsp;<button type="submit" id=onCart class="payButton" onclick="">장바구니</button>&nbsp;&nbsp;&nbsp;
+													&nbsp;&nbsp;&nbsp;<button type="submit" id=onCart class="payButton">장바구니</button>&nbsp;&nbsp;&nbsp;
 				<!-- 											<button type="button" id="payment" class="payButton" onclick="payment">결제하기</button> -->
-														<button type="button" class="payButton" onclick="location.href='${pageContext.request.contextPath}/payment?type=pay&&class_idx=${cla.class_idx}'">결제하기</button>
+<%-- 														<button type="button" class="payButton" onclick="location.href='${pageContext.request.contextPath}/payment?type=pay&&class_idx=${cla.class_idx}&res_visit_date='">결제하기</button> --%>
+													<button type="button" class="payButton" onclick="goToPayment()">결제하기</button>
 				                                </div> 
 											</form>
 										</div>
@@ -652,25 +650,33 @@
 											<h3 class="panel-title">원데이 클래스 예약하기</h3>
 										</div>
 										<div class="panel-body search-widget">
-											<form action="" class=" form-inline"> 
-											<label for="reservation-date"><p>예약 날짜</p></label>
-											<input type="date" id="reservation-date" name="reservation-date">
-											<input type="text" id="datepicker">
-											<br><br>
-											<div class="persons-group">
-											    <p>예약 인원</p>
-											    <input type="number" id="res_person" name="res_person" value="1" min="1" max="${availableSeats}">
+<!-- 											<form action="" class=" form-inline">  -->
+												<input type="hidden" name="class_idx" value="${cla.class_idx}">		
+											    <input type="hidden" name="member_id" value="${sessionScope.member_id}">		
+												<input type="hidden" id="res_visit_time" name="res_visit_time" value="${startTime} ~ ${endTime}">	
+												<label for="reservation-date"><p>예약 날짜</p></label>
+												<div class="date-container">
+											        <c:forEach var="dateAndDayOfWeek" items="${dateAndDayOfWeeks}">
+											            <div class="date-item">${dateAndDayOfWeek}
+											            </div>&nbsp;<br>가능인원 : ${availableSeats}
+											        </c:forEach>
+											    </div>
+												<br><br>
+												<div class="persons-group">
+											 	   <p>예약 인원</p>
+										   			<input type="number" id="res_member_count" name="res_member_count" value="1" min="1" max="${availableSeats}">
 											</div>
 											<br>
 											<div>
-												&nbsp;&nbsp;&nbsp;<button type="button" id=onCart class="payButton" onclick="">장바구니</button>&nbsp;&nbsp;&nbsp;
-	<!-- 												<button type="button" id="payment" class="payButton" onclick="payment">결제하기</button>  -->
-													<button type="button" class="payButton" onclick="location.href='${pageContext.request.contextPath}/payment?type=pay'">결제하기</button>
-			                                </div> 
-										</div>
-							        </div>
-							    </c:when>
-							</c:choose>
+												&nbsp;&nbsp;&nbsp;<button id="add-to-cart" class="payButton" >장바구니</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<!-- 											<button type="button" id="payment" class="payButton" onclick="payment">결제하기</button> -->
+												<button type="button" class="payButton" onclick="goToPayment()">결제하기</button>			                                
+											</div> 
+<!-- 										</form> -->
+						       		</div>
+						        </div>
+						    </c:when>
+						</c:choose>
 
                            
 
@@ -944,6 +950,19 @@
 	    	    });
 	    	});
        	</script>
+       	
+       	<script>
+			function goToPayment() {
+			    var res_visit_date = document.getElementById('res_visit_date').value;
+			    var res_visit_time = document.getElementById('res_visit_time').value;
+			    var res_member_count = document.getElementById('res_member_count').value;
+			    var class_idx = '${cla.class_idx}';
+			    var contextPath = '${pageContext.request.contextPath}';
+			
+			    var url = contextPath + '/payment?type=pay&class_idx=' + class_idx + '&res_visit_date=' + encodeURIComponent(res_visit_date) + '&res_visit_time=' + encodeURIComponent(res_visit_time) + '&res_member_count=' + res_member_count;
+			    location.href = url;
+			}
+		</script>
         
 <!--         <script> -->
 <!-- // window.onload = function() { -->
@@ -961,6 +980,17 @@
 <!-- //     }); -->
 <!-- // } -->
 <!-- </script> -->
+<!-- <script> -->
+<!-- //         function handleClick(event) { -->
+<!-- //             var dates = document.getElementsByClassName('date'); -->
+<!-- //             for (var i = 0; i < dates.length; i++) { -->
+<!-- //                 dates[i].style.backgroundColor = 'white'; // 모든 날짜의 배경색을 흰색으로 초기화 -->
+<!-- //             } -->
+<!-- //             event.target.style.backgroundColor = 'yellow'; // 클릭된 날짜의 배경색을 노란색으로 변경 -->
+<!-- //         } -->
+<!-- </script> -->
+    
+   
 
     </body>
 </html>

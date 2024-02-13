@@ -24,7 +24,7 @@ public interface ProductMapper {
 
 	BookmarkVO selectBookmark(@Param("sId") String sId, @Param("class_idx") int class_idx);
 
-	CartVO findCart(@Param ("class_idx") int class_idx, @Param ("member_id") String member_id, @Param ("date") String date);
+	CartVO findCart(@Param ("class_idx") int class_idx, @Param ("member_id") String member_id, @Param ("res_visit_date") String res_visit_date);
 
 	List<PaymentVO> selectResMemberCount(@Param("class_idx") int classIdx);
 
@@ -35,5 +35,28 @@ public interface ProductMapper {
 	int insertCoupon(@Param("sId") String sId, @Param("comIdx") String comIdx);
 
 	void insertFollowing(@Param("sId") String sId, @Param("comIdx") String comIdx);
+//	int insertCart(@Param("class_idx") int class_idx, 
+//			@Param("member_id")String member_id, 
+//			@Param("res_visit_date") String res_visit_date, 
+//			@Param("res_member_count") int res_member_count);
 
+	int insertBookmark(@Param("sId") String sId, @Param("class_idx") int class_idx);
+
+	int deleteBookmark(@Param("sId") String sId, @Param("class_idx") int class_idx);
+
+	CartVO selectCart(@Param("res_visit_date") String resVisitDate,
+					@Param("class_idx") String classIdx, 
+					@Param("member_id") String memberId);
+
+	int updateResMemberCount(@Param("member_id") String memberId, 
+			@Param("class_idx") String classIdx, 
+			@Param("res_visit_date") String resVisitDate, 
+			@Param("res_visit_time") String resVisitTime,
+			@Param("res_member_count") int resMemberCount);
+
+	int insertCart(@Param("res_visit_date") String resVisitDate,
+					@Param("class_idx") String classIdx, 
+					@Param("member_id") String memberId);
+	
+	
 }
