@@ -810,21 +810,21 @@
 		<select id="selectReportDetail" resultType="report">
 			SELECT r.*, 
 			<if test="review_idx !=0">
-				re.member_id AS 'reviewerMember_id', re.review_content
+				re.member_id AS 'reviewerMember_id', re.review_content, c.class_title
 			</if>
 			<if test="class_idx !=0">
 				c.class_title, c.member_id AS 'banjangMember_id', com.com_name
 			</if>
-			FROM report r
+			FROM report r ,class c
 			<if test="review_idx !=0">
 				 , review re
 			</if>
 			<if test="class_idx !=0">
-				, class c , company com
+				, company com
 			</if>
 			WHERE
 			<if test="review_idx !=0">
-				 r.review_idx = re.review_idx 
+				 r.review_idx = re.review_idx AND c.class_idx = re.class_idx
 			</if>
 			<if test="class_idx !=0">
 				r.class_idx = c.class_idx AND c.member_id = com.member_id 
