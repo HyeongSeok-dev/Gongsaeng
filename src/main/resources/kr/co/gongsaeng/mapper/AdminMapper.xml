@@ -765,6 +765,7 @@
 	
 	</insert>
 	
+	
 	<insert id="insertCouponAlert">
 	        INSERT INTO alert
 	        VALUES
