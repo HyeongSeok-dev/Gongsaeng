@@ -40,7 +40,11 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/global.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/mypage.css">
-
+<style type="text/css">
+.following_img{
+	height: 110px;
+}
+</style>
 
 <script src="${pageContext.request.contextPath }/resources/assets/js/modernizr-2.6.2.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
@@ -295,22 +299,22 @@
 								<c:forEach var="following" items="${followingList}">
 									<div class="row">
 										<div class="col-sm-2">
-											<img src="${pageContext.request.contextPath }/resources/upload/${following.com_img}" alt="작가 사진" class="img-responsive">
+											<img src="${pageContext.request.contextPath }/resources/upload/${following.com_img}" alt="작가 사진" class="img-responsive following_img">
 										</div>
-										<div class="col-sm-5">
+										<div class="col-sm-4">
 											<h5>${following.com_name}</h5>
 											<p>${following.com_introduction}</p>
 										</div>
-										<div class="col-sm-5">
+										<div class="col-sm-6">
 											<div class="row">
 												<div class="col-xs-4">
-													<img src="${pageContext.request.contextPath }/resources/upload/${following.class_image1}" alt="작품 사진" class="img-responsive">
+													<img src="${pageContext.request.contextPath }/resources/upload/${following.class_image1}" alt="작품 사진" class="img-responsive following_img">
 												</div>
 												<div class="col-xs-4">
-													<img src="${pageContext.request.contextPath }/resources/upload/${following.class_image2}" alt="작품 사진" class="img-responsive">
+													<img src="${pageContext.request.contextPath }/resources/upload/${following.class_image2}" alt="작품 사진" class="img-responsive following_img">
 												</div>
 												<div class="col-xs-4">
-													<img src="${pageContext.request.contextPath }/resources/upload/${following.class_image3}" alt="작품 사진" class="img-responsive">
+													<img src="${pageContext.request.contextPath }/resources/upload/${following.class_image3}" alt="작품 사진" class="img-responsive following_img">
 												</div>
 											</div>
 										</div>
