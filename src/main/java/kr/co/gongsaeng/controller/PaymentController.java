@@ -55,17 +55,19 @@ public class PaymentController {
 //		int class_idx = 71; //하드코딩
 		
 //		System.out.println("바로결제하기에서 넘어오는 class_idx : " + class_idx);
-		System.out.println(map);
+		System.out.println("map" + map);
 		if (map.get("type").equals("cart")) {
 			//장바구니에서 넘어올때
-            model.addAttribute("List", cartService.getCartListSelect(member_id));
+			List<CartListVO> cartList = cartService.getCartListSelect(member_id);
+            model.addAttribute("cartList", cartList);
+            model.addAttribute("map", map);
+            System.out.println(cartList);
         } else if (map.get("type").equals("pay")) {
         	//상세페이지서 넘어온 파라미터들 map에 넣기
-        	ClassVO  result =  paymentService.getClassListSelect((int)map.get("class_idx"));
-        	map.put("class", result);
+        	ClassVO pay = paymentService.getClassListSelect(Integer.parseInt(map.get("class_idx").toString()));
         	model.addAttribute("map", map);
-//    			System.out.println(result);
-//            model.addAttribute("payList",result);
+        	model.addAttribute("pay", pay);
+        	System.out.println("pay" + pay);
         }
 				
 		
@@ -76,14 +78,10 @@ public class PaymentController {
 		
 		//============================================================================
 		//최종결제금액 파라미터로 넘김
-		model.addAttribute("total", map.get("total"));
-		
 		
 		//account 테이블, cash테이블 조인해서 모든정보 가지고오기
-		CashVO  allList = paymentService.getAllListSelect(member_id);
+		CashVO allList = paymentService.getAllListSelect(member_id);
 		model.addAttribute("allList", allList);
-		
-		logger.info("allList.toString()  : " + allList.toString());
 		
 		//============================================================================
 //		//사용가능한 페이
