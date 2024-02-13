@@ -76,8 +76,9 @@ function totalPayment2(){
 	
 	console.log("최종결제금액 : " + totalPayment);
 	
-	
 	$("#totalPayment_text").text(totalPayment)
+	
+	$("#payment").val(totalPayment)
 	
 }
 	function paymentAgreeView() {
@@ -201,9 +202,13 @@ function totalPayment2(){
 											<tr>
 												<td><span class="info_title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;결제 금액</span></td>
 												<td>${cart.class_price * cart.res_member_count}원</td>
-												<td><input type="hidden" id="res_member_count" value="${cart.res_member_count }"> <input type="hidden" id="res_visit_time"
-													value="${cart.res_visit_time }"> <input type="hidden" id="res_visit_date" value="${cart.res_visit_date }"> <input type="hidden"
-													id="class_idx" value="${cart.class_idx }"> <input type="hidden" id="class_title" value="${cart.class_title }"></td>
+												<td>
+													<input type="hidden" id="res_member_count" value="${cart.res_member_count }"> 
+													<input type="hidden" id="res_visit_time"value="${cart.res_visit_time }"> 
+													<input type="hidden" id="res_visit_date" value="${cart.res_visit_date }"> 
+													<input type="hidden" id="class_idx" value="${cart.class_idx }"> 
+													<input type="hidden" id="class_title" value="${cart.class_title }">
+												</td>
 											</tr>
 										</table>
 									</section>
@@ -236,9 +241,13 @@ function totalPayment2(){
 										<tr>
 											<td><span class="info_title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;결제 금액</span></td>
 											<td>${pay.class_price * map.res_member_count}원</td>
-											<td><input type="hidden" id="res_member_count" value="${map.res_member_count }"> <input type="hidden" id="res_visit_time"
-												value="${map.res_visit_time }"> <input type="hidden" id="res_visit_date" value="${map.res_visit_date }"> <input type="hidden"
-												id="class_idx" value="${pay.class_idx }"> <input type="hidden" id="class_title" value="${pay.class_title }"></td>
+											<td>
+												<input type="hidden" id="res_member_count" value="${map.res_member_count }">
+												 <input type="hidden" id="res_visit_time" value="${map.res_visit_time }"> 
+												 <input type="hidden" id="res_visit_date" value="${map.res_visit_date }"> 
+												 <input type="hidden" id="class_idx" value="${pay.class_idx }">
+												  <input type="hidden" id="class_title" value="${pay.class_title }">
+											  </td>
 										</tr>
 									</table>
 								</section>
@@ -307,7 +316,6 @@ function totalPayment2(){
 								<!-- 엑세스토큰이 존재하지 않을때 계좌인증 함수 호출  -->
 								<!-- 보유중인 페이금액이 없을때 -->
 								<!-- 버튼 누르면 기본적으로 결제상세페이지에 0페이 금액표시 보유금액보다 더 높은금액 사용하기 막기-->
-										
 								<c:choose>
 									<c:when test="${empty allList.member_id }">
 										<button type="button" onclick="agreePage()">사용하기</button>
@@ -316,9 +324,9 @@ function totalPayment2(){
 										<button type="button" onclick="alert('페이잔액을 충전해주세요.');payCharge()">사용하기</button>
 									</c:when>
 									<c:otherwise>
-									<form action="" name="goPay" method="POST" id="goPay">
+<!-- 									<form action="" name="goPay" method="POST" id="goPay"> -->
 											<button id="chargePay" class="use_button charge" type="button" onclick="defaultPay()">사용하기</button>
-										</form>
+<!-- 										</form> -->
 									</c:otherwise>
 								</c:choose>
 
@@ -473,7 +481,7 @@ function totalPayment2(){
 			<%--info페이지에 필요한 할인전 예약금액 --%>
 			<%-- 		<input type="hidden" value="${map.paymentInfo.totalPrice}" name="beforeDiscountTotalPrice"/> --%>
 			<%-- 			<input type="hidden" value="${map.res.res_idx}" name="res_idx" id="res_idx"/> --%>
-			<input type="hidden" value="${map.pay}" name="pay_num" id="pay_num" />
+<%-- 			<input type="hidden" value="${map.pay}" name="pay_num" id="pay_num" /> --%>
 			<!-- 결제자(회원)와 예약자가 다를 수 있기 때문에 결제자 정보 저장 -->
 			<%-- 			<input type="hidden" value="${allList.user_email}" name="user_email" id="user_email"/> --%>
 			<%-- 			<input type="hidden" value="${map.member.user_name}" name="user_name" id="user_name"/> --%>
@@ -481,7 +489,7 @@ function totalPayment2(){
 			<!-- 			<input type="hidden" value="" name="pay_card_co" id="pay_card_co"/> -->
 			<!-- 			<input type="hidden" value="" name="discountPoint" id="discountPoint"/> -->
 			<!-- 			<input type="hidden" value="" name="earnedPoints" id="earnedPoints" /> -->
-			<!-- 			<input type="hidden" value="" name="totalPayment"  id="totalPayment"/> -->
+						<input type="hidden" value="" name="payment"  id="payment"/>
 			<!-- 			<input type="hidden" value="" name="preOrderTotalPrice"  id="preOrderTotalPrice"/> -->
 		</form>
 	</main>
