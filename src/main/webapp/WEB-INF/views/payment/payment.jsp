@@ -139,15 +139,18 @@
 
 		console.log("payValue : " + payValue);
 		console.log("cashValue : " + cashValue);
-
-		if (payValue < cashValue || payValue == cashValue) {
-			// 사용할 페이 값이 작을 경우
-			$("#discountPay_text").text($("#pay").val()); // #discountPoint_text에 #pay 값 표시
-			totalPayment2(); //최종값 계산
-		} else if (payValue > cashValue) {
-			// 사용할 페이 값이 클경우
-			var confirmResult = confirm("보유 중인 페이가 부족합니다. 페이를 충전하시겠습니까?");
-			if (confirmResult) {
+		
+	  if (payValue < cashValue || payValue == cashValue) {
+	    // 사용할 페이 값이 작을 경우
+	    $("#discountPay_text").text($("#pay").val()); // #discountPoint_text에 #pay 값 표시
+	    
+	    $("#discount_payment").val(payValue); //포인트 사용한 값 discount_payment로 넘기기
+	    
+	    totalPayment2(); //최종값 계산
+	  } else if(payValue > cashValue){
+	    // 사용할 페이 값이 클경우
+	    var confirmResult = confirm("보유 중인 페이가 부족합니다. 페이를 충전하시겠습니까?");
+		  if (confirmResult) {
 				window.open("", "pay_main", features);
 				form.action = "/gongsaeng/payment/charge/main";
 				form.target = "pay_main";
@@ -176,12 +179,12 @@
 				alert("최소결제금액 " + selectedMinPrice
 						+ "원 이상 결제시 사용 가능합니다.");
 				return;
-			}
+			}< 1) {
+				disCountCouponValue =
 
 			var disCountCouponValue;
 
-			if (selectedCouponValue < 1) {
-				disCountCouponValue = Math.floor(total
+			if (selectedCouponValue  Math.floor(total
 						* selectedCouponValue);
 			} else {
 				disCountCouponValue = Math
@@ -372,9 +375,9 @@
 										<button type="button" onclick="alert('페이잔액을 충전해주세요.');payCharge()">사용하기</button>
 									</c:when>
 									<c:otherwise>
-<!-- 									<form action="" name="goPay" method="POST" id="goPay"> -->
+									<form action="" name="goPay" method="POST" id="goPay">
 											<button id="chargePay" class="use_button charge" type="button" onclick="defaultPay()">사용하기</button>
-<!-- 										</form> -->
+										</form>
 									</c:otherwise>
 								</c:choose>
 
@@ -527,10 +530,10 @@
 <%-- 			<input type="hidden" value="${map.pay}" name="pay_num" id="pay_num" /> --%>
 			<!-- 결제자(회원)와 예약자가 다를 수 있기 때문에 결제자 정보 저장 -->
 			<%-- 			<input type="hidden" value="${allList.user_email}" name="user_email" id="user_email"/> --%>
-			<%-- 			<input type="hidden" value="${map.member.user_name}" name="user_name" id="user_name"/> --%>
+						<input type="hidden" value="${allList.member_id}" name="member_id" id="member_id"/>
 			<%-- 			<input type="hidden" value="${map.member.user_phone}" name="user_phone" id="user_phone"/> --%>
 			<!-- 			<input type="hidden" value="" name="pay_card_co" id="pay_card_co"/> -->
-			<!-- 			<input type="hidden" value="" name="discountPoint" id="discountPoint"/> -->
+						<input type="hidden" value="" name="discount_payment" id="discount_payment"/>
 			<!-- 			<input type="hidden" value="" name="earnedPoints" id="earnedPoints" /> -->
 						<input type="hidden" value="" name="payment"  id="payment"/>
 			<!-- 			<input type="hidden" value="" name="preOrderTotalPrice"  id="preOrderTotalPrice"/> -->
