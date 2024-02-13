@@ -1291,6 +1291,7 @@ public class AdminController {
 		
 		if(insertCount > 0) {
 			model.addAttribute("msg", "쿠폰이 발급되었습니다.");
+			service.registCouponAlert(map);
 			model.addAttribute("targetURL", "coupon");
 			return "forward";
 		} else {

@@ -162,7 +162,7 @@
 						<div class="row">
 							<div class="col-xs-9">반장님 : ${resInfo.com_name}</div>
 							<div class="col-xs-3 text-right">
-								<button class="btn btn-default" onclick="javascript:location.href='chat?com_idx=${resInfo.com_idx}'">채팅 문의</button>
+<%-- 								<button class="btn btn-default" onclick="javascript:location.href='chat?com_idx=${resInfo.com_idx}'">채팅 문의</button> --%>
 							</div>
 						</div>
 					</div>

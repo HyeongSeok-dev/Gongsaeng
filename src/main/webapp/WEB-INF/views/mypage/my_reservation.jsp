@@ -160,7 +160,7 @@
 									<small>결제 날짜: ${res.pay_date}</small>
 								</div>
 								<div class="col-xs-6 text-right">
-									예약 금액: ${res.payment}원<br>
+									결제 금액: ${res.payment}원<br>
 									<a href="reservationDetail?pay_num=${res.pay_num}"> 상세보기 ></a>
 								</div>
 							</div>
@@ -186,7 +186,7 @@
 								<div class="col-xs-2">
 								
 <!-- 									<button class="btn btn-default btn-block" onclick="javascript:location.href='chat'">채팅 문의</button> -->
-<%-- 									<a href="reservationCancel?pay_num=${res.pay_num}"><button class="btn btn-danger btn-block" <c:if test="${res.pay_status eq 2}">disabled</c:if>  >예약 취소</button></a> --%>
+									<a href="reservationCancel?pay_num=${res.pay_num}"><button class="btn btn-danger btn-block" <c:if test="${res.pay_status eq 2}">disabled</c:if>  >예약 취소</button></a>
 								</div>
 							</div>
 						</div>

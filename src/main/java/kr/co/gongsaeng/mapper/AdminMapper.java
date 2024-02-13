@@ -174,6 +174,8 @@ public interface AdminMapper {
 	
 	int insertCouponToAdmin(Map<String, Object> map);
 	
+	void insertCouponAlert(Map<String, Object> map);
+	
 	
 	
 
