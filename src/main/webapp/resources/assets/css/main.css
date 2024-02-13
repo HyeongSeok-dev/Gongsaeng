@@ -2056,7 +2056,7 @@ proerty-th
 
 /* ### */
 .proerty-th-list .col_company_name a {
-    font-size: 14px;
+    font-size: 15px;
 }
 .proerty-th-list .col_company_address a {
     font-size: 14px;
@@ -2229,6 +2229,11 @@ proerty-th-list
     color: #9B9B9B;
     letter-spacing: 2px;
     position: relative;
+    /* ### */
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
+	overflow: hidden;
 }
 
 .proerty-th-list .proerty-price{
@@ -3808,7 +3813,12 @@ padding-bottom: 15px;
     min-height: 35px;
     max-height: 35px;
     padding: 0px;
-    margin-top: 15px;
+/*     margin-top: 15px; */
+}
+.proerty-th-list .col_company_name {
+    padding: 0px;
+    padding-bottom: 10px;
+    padding-top: 5px;
 }
 .proerty-th-list .item_p {
 	text-align: left;
