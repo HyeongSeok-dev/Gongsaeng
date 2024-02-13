@@ -60,10 +60,11 @@ public class PaymentController {
 			//장바구니에서 넘어올때
             model.addAttribute("List", cartService.getCartListSelect(member_id));
         } else if (map.get("type").equals("pay")) {
-        	//상세페이지에서 넘어올때
-        	List<ClassVO>  result =  paymentService.getClassListSelect(Integer.parseInt(map.get("class_idx")));
-    			System.out.println(result);
-            model.addAttribute("List",result);
+        	//상세페이지서 넘어온 파라미터들 map에 넣기
+        	model.addAttribute("map", map);
+//        	List<ClassVO>  result =  paymentService.getClassListSelect(Integer.parseInt(map.get("class_idx")));
+//    			System.out.println(result);
+//            model.addAttribute("payList",result);
         }
 				
 		
@@ -74,8 +75,6 @@ public class PaymentController {
 		
 		//============================================================================
 		//최종결제금액 파라미터로 넘김
-		
-		
 		model.addAttribute("total", map.get("total"));
 		
 		

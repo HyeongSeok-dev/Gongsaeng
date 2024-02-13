@@ -6,7 +6,7 @@
 
 	<!-- 상세페이지에서 결제하기버튼 눌렀을때 출력되는 리스트 -->
 	<select id="classList" resultType="gclass">
-		SELECT *
+		SELECT class_idx
 		FROM class
 		WHERE class_idx = #{class_idx}
 	</select>
