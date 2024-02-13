@@ -54,7 +54,7 @@
 		)
 	</insert>
 	
-	<!-- 충전페이 인서트 -->
+	<!-- 충전페이 인서트 ==-->
 	<insert id="insertOPay">
 		INSERT
 		INTO cash
