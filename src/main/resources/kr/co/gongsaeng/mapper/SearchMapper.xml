@@ -206,7 +206,7 @@
 				<!-- 시작일 <= 오늘날짜 -->
 				<!-- 시작일  = 오늘날짜인 경우 : 시작시간 <= 지금시간 -->
 				(cl.class_start_date &lt; CURDATE()
-					OR (cl.class_start_date = CURTIME()
+					OR (cl.class_start_date = CURDATE()
 						AND cl.class_start_time &lt;= CURTIME()))
 				<!-- 종료일 >= 오늘날짜 -->
 				<!-- 종료일  = 오늘날짜일 경우 : 종료시간 > 지금시간 -->
@@ -375,7 +375,7 @@
 					<!-- 시작일 <= 오늘날짜 -->
 					<!-- 시작일  = 오늘날짜인 경우 : 시작시간 <= 지금시간 -->
 					(cl.class_start_date &lt; CURDATE()
-						OR (cl.class_start_date = CURTIME()
+						OR (cl.class_start_date = CURDATE()
 							AND cl.class_start_time &lt;= CURTIME()))
 					<!-- 종료일 >= 오늘날짜 -->
 					<!-- 종료일  = 오늘날짜일 경우 : 종료시간 > 지금시간 -->
