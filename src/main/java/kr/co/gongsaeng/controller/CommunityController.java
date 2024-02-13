@@ -243,7 +243,7 @@ public class CommunityController {
 		// 조회된 게시물의 작성자(member_id)와 세션 아이디가 다를 경우 "잘못된 접근입니다" 처리
 		// => 단, 관리자는 자신의 게시물이 아니더라도 삭제가 가능해야하므로
 		//    세션아이디가 관리자가 아닐 경우라는 조건도 추가
-		if(dbQuestion == null || !sId.equals(dbQuestion.getMember_id()) && !sId.equals("admin")) {
+		if(dbQuestion == null || !sId.equals(dbQuestion.getMember_id()) && !sId.equals("admin1234")) {
 			model.addAttribute("msg", "잘못된 접근입니다");
 			return "fail_back";
 		}
@@ -312,7 +312,7 @@ public class CommunityController {
 		// 조회된 게시물의 작성자(member_id)와 세션 아이디가 다를 경우 "잘못된 접근입니다" 처리
 		// => 단, 관리자는 자신의 게시물이 아니더라도 수정 가능해야하므로
 		//    세션아이디가 관리자가 아닐 경우라는 조건도 추가
-		if(board == null || !sId.equals(board.getMember_id()) && !sId.equals("admin")) {
+		if(board == null || !sId.equals(board.getMember_id()) && !sId.equals("admin1234")) {
 			model.addAttribute("msg", "잘못된 접근입니다");
 			return "fail_back";
 		}
@@ -374,7 +374,7 @@ public class CommunityController {
 				// targetURL 속성명으로 로그인 폼 페이지 서블릿 주소 저장
 				model.addAttribute("targetURL", "/gongsaeng/member/login");
 				return "forward";
-			} else if(!sId.equals(board.getMember_id()) && !sId.equals("admin")) {
+			} else if(!sId.equals(board.getMember_id()) && !sId.equals("admin1234")) {
 				model.addAttribute("msg", "잘못된 접근입니다");
 				return "fail_back";
 			}
@@ -522,7 +522,7 @@ public class CommunityController {
 		// BoardService - removeQuestionReplyBoard() 메서드 호출하여 댓글 삭제 작업 요청
 		// (아니면 "invalidSession" 리턴)
 		// => 파라미터 : Map 객체   리턴타입 : int(deleteCount)
-		if(sId.equals(map.get("member_id")) || sId.equals("admin")) {
+		if(sId.equals(map.get("member_id")) || sId.equals("admin1234")) {
 			int deleteCount = service.removeQuestionReplyBoard(map);
 			
 			// 삭제 요청 결과 판별
@@ -657,7 +657,7 @@ public class CommunityController {
 		// 조회된 게시물의 작성자(member_id)와 세션 아이디가 다를 경우 "잘못된 접근입니다" 처리
 		// => 단, 관리자는 자신의 게시물이 아니더라도 삭제가 가능해야하므로
 		//    세션아이디가 관리자가 아닐 경우라는 조건도 추가
-		if(dbTogether == null || !sId.equals(dbTogether.getMember_id()) && !sId.equals("admin")) {
+		if(dbTogether == null || !sId.equals(dbTogether.getMember_id()) && !sId.equals("admin1234")) {
 			model.addAttribute("msg", "잘못된 접근입니다");
 			return "fail_back";
 		}
@@ -726,7 +726,7 @@ public class CommunityController {
 		// 조회된 게시물의 작성자(member_id)와 세션 아이디가 다를 경우 "잘못된 접근입니다" 처리
 		// => 단, 관리자는 자신의 게시물이 아니더라도 수정 가능해야하므로
 		//    세션아이디가 관리자가 아닐 경우라는 조건도 추가
-		if(board == null || !sId.equals(board.getMember_id()) && !sId.equals("admin")) {
+		if(board == null || !sId.equals(board.getMember_id()) && !sId.equals("admin1234")) {
 			model.addAttribute("msg", "잘못된 접근입니다");
 			return "fail_back";
 		}
@@ -788,7 +788,7 @@ public class CommunityController {
 				// targetURL 속성명으로 로그인 폼 페이지 서블릿 주소 저장
 				model.addAttribute("targetURL", "/gongsaeng/member/login");
 				return "forward";
-			} else if(!sId.equals(board.getMember_id()) && !sId.equals("admin")) {
+			} else if(!sId.equals(board.getMember_id()) && !sId.equals("admin1234")) {
 				model.addAttribute("msg", "잘못된 접근입니다");
 				return "fail_back";
 			}
@@ -936,7 +936,7 @@ public class CommunityController {
 		// BoardService - removeTogetherReplyBoard() 메서드 호출하여 댓글 삭제 작업 요청
 		// (아니면 "invalidSession" 리턴)
 		// => 파라미터 : Map 객체   리턴타입 : int(deleteCount)
-		if(sId.equals(map.get("member_id")) || sId.equals("admin")) {
+		if(sId.equals(map.get("member_id")) || sId.equals("admin1234")) {
 			int deleteCount = service.removeTogetherReplyBoard(map);
 			
 			// 삭제 요청 결과 판별

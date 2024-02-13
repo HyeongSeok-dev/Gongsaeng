@@ -423,8 +423,8 @@ function search_keyword(event) {
             	<li class="dropdown ymm-sw " data-wow-delay="0.2s">
                     <a href="index" class="dropdown-toggle active" data-toggle="dropdown" data-hover="dropdown" data-delay="200">커뮤니티<b class="caret"></b></a>
                     <ul class="dropdown-menu navbar-nav">
-                        <li><a href="${pageContext.request.contextPath}/community/question">궁금해요</a></li>
                         <li><a href="${pageContext.request.contextPath}/community/together">함께해요</a></li>
+                        <li><a href="${pageContext.request.contextPath}/community/question">궁금해요</a></li>
                         <li><a href="${pageContext.request.contextPath}/community/myHome">집들이</a></li>
                     </ul>
                 </li>

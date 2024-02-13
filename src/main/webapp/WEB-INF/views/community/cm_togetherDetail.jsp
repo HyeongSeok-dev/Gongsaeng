@@ -219,7 +219,7 @@
 			                    <h6 class="text-muted time" style="font-size: 13px">${fn:substring(board.board_date,0,16)}</h6>
 			                </div>
 			                <div class="pull-right meta">
-				                <c:if test="${not empty sessionScope.sId and (board.member_id eq sessionScope.sId or sessionScope.sId eq 'admin')}">
+				                <c:if test="${not empty sessionScope.sId and (board.member_id eq sessionScope.sId or sessionScope.sId eq 'admin1234')}">
 						                <input type="button" value="수정" onclick="location.href='modifyForm?board_idx=${board.board_idx}&pageNum=${param.pageNum}'">
 										<input type="button" value="삭제" onclick="confirmDelete()">
 				                </c:if>
