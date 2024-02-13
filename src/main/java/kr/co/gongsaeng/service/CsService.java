@@ -42,5 +42,15 @@ public class CsService {
 	public int removeNotice(BoardVO board) {
 		return mapper.deleteNotice(board);
 	}
+	
+	// 일반 공지사항 조회
+	public List<BoardVO> getNoticeList(String sId, int startRow, int listLimit) {
+		return mapper.selectNoticeList(sId, startRow, listLimit);
+	}
+	
+	// 일반 공지사항 목록 개수 조회
+	public int getNoticeListCount(String sId) {
+		return mapper.selectNoticeListCount(sId);
+	}
 
 }

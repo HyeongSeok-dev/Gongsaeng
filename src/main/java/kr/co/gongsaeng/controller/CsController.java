@@ -189,7 +189,40 @@ public class CsController {
 	
 	// [ 회원 공지 조회 ]
 	@GetMapping("cs/notice")
-	public String notice() {
+	public String notice(@RequestParam(defaultValue = "1") int pageNum,
+			HttpSession session, Model model, BoardVO board) {
+		
+		String sId = (String) session.getAttribute("sId");
+		
+		// 페이징 처리를 위해 조회 목록 갯수 조절 시 사용될 변수 선언
+		int listLimit = 10;
+		int startRow = (pageNum - 1) * listLimit;
+		
+		// BoardService - getNoticeList() 메서드 호출하여 게시물 목록 조회 요청
+		// => 파라미터 : 검색타입, 검색어, 시작행번호, 게시물 목록갯수
+		// => 리턴타입 : List<BoardVO>(noticeList)
+		List<BoardVO> noticeList = service.getNoticeList(sId, startRow, listLimit);
+		// --------------------------------------------------------------------
+		// 검색된 예약 내역의 수를 바탕으로 페이지네이션 생성
+		// BoardService - getNoticeListCount() 메서드 호출하여 전체 게시물 목록 갯수 조회 요청
+		// => 파라미터 : 검색타입, 검색어
+		// => 리턴타입 : int(listCount)
+		int listCount = service.getNoticeListCount(sId);
+		int pageListLimit = 5; // 페이지에서 보이는 페이지 번호를 5개로 지정
+		int maxPage = listCount / listLimit + (listCount % listLimit > 0 ? 1 : 0);
+		int startPage = (pageNum - 1) / pageListLimit * pageListLimit + 1;
+		int endPage = startPage + pageListLimit - 1;
+		if(endPage > maxPage) {
+			endPage = maxPage;
+		}
+		
+		// 계산된 페이징 처리 관련 값을 PageInfo 객체에 저장
+		PageInfo pageInfo = new PageInfo(listCount, pageListLimit, maxPage, startPage, endPage);
+		
+		// 게시물 목록과 페이징 정보 저장
+		model.addAttribute("noticeList", noticeList);
+		model.addAttribute("pageInfo", pageInfo);
+		
 		return "cs/cs_notice";
 	}
 

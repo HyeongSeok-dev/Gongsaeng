@@ -25,5 +25,11 @@ public interface CsMapper {
 	
 	// 공지사항 삭제
 	int deleteNotice(BoardVO board);
+
+	// 회원 공지사항 조회
+	List<BoardVO> selectNoticeList(@Param("sId") String sId, @Param("startRow")int startRow, @Param("listLimit")int listLimit);
+	
+	// 회원 공지사항 목록 개수 조회
+	int selectNoticeListCount(String sId);
 	
 }

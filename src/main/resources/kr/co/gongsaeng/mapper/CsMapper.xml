@@ -65,4 +65,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE FROM board	
 		WHERE board_idx = #{board_idx}
 	</delete>
+	
+	<!-- 회원 공지사항 목록조회 - SELECT -->
+	<select id="selectNoticeList" resultType="map">
+		SELECT *
+		FROM board
+		WHERE board_main_category = 1
+		ORDER BY board_idx DESC
+		LIMIT
+			#{startRow}
+			, #{listLimit}
+	</select>
+	
+	<!-- 회원 공지사항 목록 개수 조회 - SELECT -->
+	<select id="selectNoticeListCount" resultType="int">
+	    SELECT COUNT(*)
+	    FROM board
+	    WHERE board_main_category = 1 AND board_sub_category = 1
+	</select>
+	
 </mapper>

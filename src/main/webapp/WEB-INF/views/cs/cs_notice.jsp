@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -52,6 +53,11 @@
         <script src="${pageContext.request.contextPath }/resources/js/cs.js"></script>
     </head>
     <body>
+    <%-- 페이지네이션 - pageNum 파라미터 가져와서 저장(없을 경우 기본값 1로 설정) --%>
+	<c:set var="pageNum" value="1" />
+	<c:if test="${not empty param.pageNum }">
+		<c:set var="pageNum" value="${param.pageNum }" />
+	</c:if>
      <jsp:include page="../inc/top.jsp"></jsp:include>
     	<div class="page-head"> 
             <div class="container">
@@ -72,74 +78,53 @@
 	        <br>
 	        <br>
 		    <div class="panel-group" id="faqAccordion">
-		        <div class="panel panel-default ">
-		            <div class="panel-heading accordion-toggle question-toggle collapsed" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question0">
-		                 <h4 class="panel-title">
-		                    <a href="#" class="ing"><span class="cs_notice">공지</span><span style="margin-left: 20px; font-size: 15px;">공생 회원 이용약관 변경 안내</span></a>
-		              </h4>
-		
-		            </div>
-		            <div id="question0" class="panel-collapse collapse" style="height: 0px;">
-		                <div class="panel-body">
-		                    <p>항상 공생 서비스를 이용해 주시는 고객님께 진심으로 감사의 말씀을 드리며,
-								보다 나은 서비스 제공을 위해 개인정보처리방침 내용 일부가 개정 되었기에 안내해 드립니다.<br>
-								1. 주요변경 내용<br>
-								- 개인정보 수집 및 이용 동의 항목 (필수/선택으로 분리)<br>
-								- 마케팅 알림 수신 동의서 신설<br>
-								- 상품 및 서비스 홍보 마케팅 목적 개인정보 수집 동의서 신설<br>
-								2. 변경공지일- 2023년 12월 14일<br>
-								3. 변경내용 적용일- 2023년 12월 28일<br>
-								 - 공생 개인정보 처리방침 전체 보기 : 바로가기<br>
-								주요 변경 내용을 확인하시고 이용에 참고하여 주시길 바랍니다.<br>
-								감사합니다. 
-		                        </p>
-		                </div>
-		            </div>
-		        </div>
-<!-- 		        <div class="panel panel-default "> -->
-<!-- 		            <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question1"> -->
-<!-- 		                 <h4 class="panel-title"> -->
-<!-- 		                    <a href="#" class="ing"><span class="cs_event">이벤트</span><span style="margin-left: 20px; font-size: 15px;">신년 이벤트</span></a> -->
-<!-- 		              </h4> -->
-		
-<!-- 		            </div> -->
-<!-- 		            <div id="question1" class="panel-collapse collapse" style="height: 0px;"> -->
-<!-- 		                <div class="panel-body"> -->
-<!-- 		                	<p>2024년 이벤트는 어떤 게 있을까요?</p> -->
-<!-- 		                </div> -->
-<!-- 		            </div> -->
-<!-- 		        </div> -->
-<!-- 		        <div class="panel panel-default "> -->
-<!-- 		            <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question2"> -->
-<!-- 		                 <h4 class="panel-title"> -->
-<!-- 		                    <a href="#" class="ing"><span class="cs_event">이벤트</span><span style="margin-left: 20px; font-size: 15px;">출석체크 이벤트</span></a> -->
-<!-- 		              </h4> -->
-		
-<!-- 		            </div> -->
-<!-- 		            <div id="question2" class="panel-collapse collapse" style="height: 0px;"> -->
-<!-- 		                <div class="panel-body"> -->
-<!-- 		                	<p>한 달동안 빠짐없이 출석체크하면 추첨을 통해 푸짐한 상품을 드려요!</p> -->
-<!-- 		                </div> -->
-<!-- 		            </div> -->
-<!-- 		        </div> -->
-<!-- 		        <div class="panel panel-default "> -->
-<!-- 		            <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question3"> -->
-<!-- 		                 <h4 class="panel-title"> -->
-<!-- 		                    <a href="#" class="ing"><span class="cs_notice">공지</span><span style="margin-left: 20px; font-size: 15px;">공생, 누적 견적 수 3300만 건, 등록된 반장 70만 명 돌파</span></a> -->
-<!-- 		              </h4> -->
-		
-<!-- 		            </div> -->
-<!-- 		            <div id="question3" class="panel-collapse collapse" style="height: 0px;"> -->
-<!-- 		                <div class="panel-body"> -->
-<!-- 		                    <p class="cs_p">공생의 누적 견적서 수가 3천3백만 건을 돌파했다고 밝혔다. 현재까지 공생에 등록한 반장의 수는 약 70만 명이다.<br> -->
-<!-- 							공생은 국내 최대 인테리어 서비스 플랫폼으로, 국내에서는 유일하게 인테리어, 레슨, 이벤트 비즈니스 등 넓은 영역에서 서비스를 제공 중이다. 공생의 ‘견적서’는 고수와 고객의 연결고리로써, 반장이 견적서를 보내는 수만큼 반장-고객 매칭이 이루어진다.<br> -->
-<!-- 							코로나19 이후 홈/리빙 서비스 수요 증가, 비대면 레슨 서비스 확대 등과 맞물려 공생의 견적 수 성과는 2021년 상반기에만 2020년 전체 성과를 따라잡았다. 또한 직장을 바라보는 MZ세대의 시선이 달라지면서, 좋아하는 일로 N잡에 도전하는 반장의 수도 꾸준히 늘었다. 2021년 상반기에 공생에 등록한 반장은 12만명이다.<br> -->
-<!-- 							이형석 대표는 “반장과 고객 모두가 공생이라는 생태계 안에서 서로 연결되어 삶의 질을 높이기를 바란다. 머지않은 미래에 고객의 라이프스타일과 고수의 비즈니스 영역 전반에서 가치를 제공하는 플랫폼이 될 것”이라고 전했다.<br> -->
-<!-- 							한편 공생은 지난 6월 320억 원 규모의 시리즈C 투자를 유치하면서 기업 가치를 인정받은 바 있다. </p> -->
-<!-- 		                </div> -->
-<!-- 		            </div> -->
-<!-- 		        </div> -->
+		       <c:forEach var="notice" items="${noticeList}" varStatus="status">
+				    <c:if test="${notice.board_sub_category eq 1}">
+				        <div class="panel panel-default ">
+				            <div class="panel-heading accordion-toggle question-toggle collapsed" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question${status.index}">
+				                <h4 class="panel-title">
+				                    <a href="#" class="ing"><span class="cs_notice">공지</span><span style="margin-left: 20px; font-size: 15px;">${notice.board_subject }</span></a>
+				                </h4>
+				            </div>
+				            <div id="question${status.index}" class="panel-collapse collapse" style="height: 0px;">
+				                <div class="panel-body">
+				                    <p>${notice.board_content }</p>
+				                </div>
+				            </div>
+				        </div>
+				    </c:if>
+				</c:forEach>
 		    </div>
+		<section id="pageList">
+			<%-- [이전] 버튼 클릭 시 BoardList.bo 서블릿 요청(파라미터 : 현재 페이지번호 - 1) --%>
+			<%-- 단, 현재 페이지 번호(pageNum) 가 1보다 클 경우에만 동작(아니면 비활성화 처리) --%>
+			<input type="button" style="width:100px" value="이전" 
+					onclick="location.href = 'notice?pageNum=${pageNum - 1}'"
+					<c:if test="${pageNum <= 1 }">disabled</c:if>
+			>	
+			<%-- 현재 페이지 번호가 저장된 pageInfo 객체를 통해 페이지 번호 출력 --%>
+			<%-- 시작페이지(startPage) 부터 끝페이지(endPage) 까지 표시 --%>
+			<c:forEach var="i" begin="${pageInfo.startPage }" end="${pageInfo.endPage }">
+				<%-- 각 페이지마다 하이퍼링크 설정(페이지번호를 pageNum 파라미터로 전달) --%>
+				<%-- 단, 현재 페이지는 하이퍼링크 제거하고 굵게 표시 --%>
+				<c:choose>
+					<%-- 현재 페이지번호와 표시될 페이지번호가 같을 경우 판별 --%>
+					<c:when test="${pageNum eq i}">
+						<b>${i}</b> <%-- 현재 페이지 번호 --%>
+					</c:when>
+					<c:otherwise>
+						<a href="notice?pageNum=${i}">${i}</a> <%-- 다른 페이지 번호 --%>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			
+			<%-- [다음] 버튼 클릭 시 BoardList.bo 서블릿 요청(파라미터 : 현재 페이지번호 + 1) --%>
+			<%-- 단, 현재 페이지 번호(pageNum) 가 최대 페이지번호 보다 작을 경우에만 동작(아니면 비활성화 처리) --%>
+			<input type="button" style="width:100px" value="다음" 
+				onclick="location.href = 'notice?pageNum=${pageNum + 1}'"
+				<c:if test="${pageNum >= pageInfo.maxPage }">disabled</c:if>
+			>	
+		</section>
 		    <!--/panel-group-->
 		</div>
 		<!-- Footer area -->
