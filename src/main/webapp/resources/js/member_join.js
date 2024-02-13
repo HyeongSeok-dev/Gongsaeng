@@ -91,10 +91,10 @@ $(document).ready(function() {
 			return false;
 		}
 
-		if (!phoneAuthSuccess) {
-			alert("전화번호가 인증되지 않았습니다.");
-			return false;
-		}
+//		if (!phoneAuthSuccess) {
+//			alert("전화번호가 인증되지 않았습니다.");
+//			return false;
+//		}
 
 
 	});
