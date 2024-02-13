@@ -188,6 +188,7 @@ public interface AdminMapper {
 	ReportVO selectReportDetail(@Param("report_idx")int report_idx, @Param("class_idx")int class_idx, @Param("review_idx")int review_idx);
 	// report_detail 수정
 	int updateStatusModify(int report_idx);
+	void insertCouponAlert(Map<String, Object> map);
 	
 	
 	

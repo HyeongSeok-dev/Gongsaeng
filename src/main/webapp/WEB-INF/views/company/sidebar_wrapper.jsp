@@ -17,12 +17,20 @@
 </head>
 <div class="logo">
     <a href="${pageContext.request.contextPath}/company/main" class="simple-text logo-mini">
-        공생 | </a> <a href="${pageContext.request.contextPath}/company/main"
+       	<img src="${pageContext.request.contextPath}/resources/company_assets/img/gongsaeng.png" width="200px"> | </a> <a href="${pageContext.request.contextPath}/company/main"
         class="simple-text logo-normal"> 반장님 페이지</a>
 </div>
 <div class="sidebar-wrapper" id="sidebar-wrapper">
     <ul class="nav">
         <!-- 클래스 관리 드롭다운 메뉴 -->
+    <!-- 반장 CHART 메뉴 항목 추가 -->
+    <li class="nav-item">
+        <a href="${pageContext.request.contextPath}/company/chart" class="nav-link">
+            <i class="now-ui-icons business_chart-pie-36"></i>
+            <p>반장 CHART</p>
+        </a>
+    </li>
+
         <li class="nav-item">
             <a href="#classManagementDropdown" class="nav-link" data-toggle="collapse" aria-expanded="false">
                 <i class="now-ui-icons design_app"></i>
@@ -76,7 +84,7 @@
             </a>
             <div id="leaderSpaceDropdown" class="collapse" aria-labelledby="leaderSpaceDropdown" data-parent="#sidebar-wrapper">
                 <ul class="nav">
-                    <li><a href="${pageContext.request.contextPath}/company/chart">반장 CHART</a></li>
+<%--                     <li><a href="${pageContext.request.contextPath}/company/chart">반장 CHART</a></li> --%>
                     <li><a href="${pageContext.request.contextPath}/company/notification">반장 공지사항</a></li>
 <%--                     <li><a href="${pageContext.request.contextPath}/company/inquiry">반장 1:1문의</a></li> --%>
                 </ul>

@@ -43,4 +43,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		, 0
 	)
 	</insert>
+	
+	<!-- 공지사항 상세조회 -->
+	<select id="selectNoticeDetail" resultType="board">
+		SELECT * 
+		FROM board
+		WHERE board_idx = #{board_idx}
+	</select>
+	
+	<update id="updateNotice">
+		UPDATE board
+		SET
+			board_subject = #{board_subject}
+			, board_content = #{board_content}
+		WHERE
+			board_idx = #{board_idx}
+	</update>
+	
+	<!-- 글 삭제 - DELETE -->
+	<delete id="deleteNotice">
+		DELETE FROM board	
+		WHERE board_idx = #{board_idx}
+	</delete>
 </mapper>

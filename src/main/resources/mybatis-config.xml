@@ -25,5 +25,6 @@
 		<typeAlias type="kr.co.gongsaeng.vo.AdminVO"  alias="admin"/>
 		<typeAlias type="kr.co.gongsaeng.vo.BookmarkVO"  alias="bookmark"/>
 		<typeAlias type="kr.co.gongsaeng.vo.ViewReportDetailByCompanyVO"  alias="reportDetail"/>
+		<typeAlias type="kr.co.gongsaeng.vo.CompanyGenderRatioVO"  alias="genderRatio"/>
 	</typeAliases>
 </configuration>

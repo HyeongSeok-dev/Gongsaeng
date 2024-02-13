@@ -89,6 +89,7 @@ public class ProductController {
 		recentClass.put("class_title", cla.getClass_title().replace("\"", "\\\""));
 
 		String encodedRecentClass = URLEncoder.encode(recentClass.toString(), "UTF-8");
+		boolean recentClassesExist = false;
 
 		// recentClasses 쿠키 존재 여부 확인
 		Cookie[] cookies = request.getCookies();
@@ -96,9 +97,10 @@ public class ProductController {
 			logger.info("쿠키 전체 존재여부 : " + cookies.toString());
 			for (Cookie cookie : cookies) {
 				if (cookie.getName().equals("recentClasses")) {
+					recentClassesExist = true;
 					logger.info("초기 쿠키 이름: {}", cookie.getName());
 					logger.info("초기 쿠키 값: {}", cookie.getValue());
-					
+
 					// 쿠키 값 파싱
 					String decodedValue = URLDecoder.decode(cookie.getValue(), "UTF-8");
 					logger.info("decodedValue" + decodedValue.toString());
@@ -106,14 +108,14 @@ public class ProductController {
 					// JSON 문자열 파싱
 					JSONArray recentClasses;
 					try {
-					  recentClasses = new JSONArray(decodedValue);
+						recentClasses = new JSONArray(decodedValue);
 					} catch (JSONException e) {
-					  logger.error("클래스 1개만 존재 :", e.getMessage());
-					  recentClasses = new JSONArray(); // 빈 배열 생성
-					  recentClasses.put(new JSONObject(decodedValue));
+						logger.error("클래스 1개만 존재 :", e.getMessage());
+						recentClasses = new JSONArray(); // 빈 배열 생성
+						recentClasses.put(new JSONObject(decodedValue));
 					}
 					logger.info("recentClasses" + recentClasses.toString());
-					
+
 					// 해당 상품 idx 존재 여부 확인
 					boolean exists = false;
 					for (int i = 0; i < recentClasses.length(); i++) {
@@ -129,19 +131,19 @@ public class ProductController {
 						// 쿠키에 들어간 상품 정보 수
 						int size = recentClasses.length();
 						System.out.println(size);
-						
+
 						System.out.println("전 recentClasses" + recentClasses);
 						System.out.println("recentClass" + recentClass);
 						// 최근 상품 정보를 맨 앞에 추가
 						recentClasses.put(recentClass);
-						
+
 						JSONArray reversedClasses = new JSONArray();
 
 						// 루프를 사용하여 배열 순서 뒤집기
 						for (int i = recentClasses.length() - 1; i >= 0; i--) {
-						  reversedClasses.put(recentClasses.get(i));
+							reversedClasses.put(recentClasses.get(i));
 						}
-						
+
 						System.out.println("후 reversedClasses" + reversedClasses);
 
 						// 쿠키 값 업데이트
@@ -149,8 +151,9 @@ public class ProductController {
 
 						cookie.setValue(encodedrecentClasses);
 						cookie.setPath("/");
+						cookie.setSecure(false);
 						cookie.setMaxAge(60 * 60 * 24 * 7);
-						
+
 						response.addCookie(cookie);
 						logger.info("추가 후 쿠키 이름: {}", cookie.getName());
 						logger.info("추가 후 쿠키 값: {}", cookie.getValue());
@@ -162,13 +165,18 @@ public class ProductController {
 					}
 				}
 			}
-		} else {
+		}
+
+		if (!recentClassesExist) {
+
 			// recentClasses 쿠키가 없는 경우
 			// 쿠키 생성
+			System.out.println("존재안함");
 			Cookie cookie = new Cookie("recentClasses", encodedRecentClass);
 
 			// 쿠키 유효기간 설정 (예: 7일)
 			cookie.setPath("/");
+			cookie.setSecure(false);
 			cookie.setMaxAge(60 * 60 * 24 * 7);
 
 			// 응답에 쿠키 추가

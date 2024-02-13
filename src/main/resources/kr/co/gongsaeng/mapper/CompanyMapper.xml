@@ -218,31 +218,90 @@
 		    member_id = #{sId} AND report_category = 2
 	</select>
 	
-	<!-- 차트(1. 월별매출) -->
+	<!-- 차트(1. 일별매출) -->
 	<select id="selectRecentSales" resultType="payment">
-	SELECT 
-	    MONTH(pay_date) AS payMonth,
-	    YEAR(pay_date) AS payYear,
-	    SUM(payment) AS totalSales
-	FROM 
+<!-- 	SELECT  -->
+<!-- 	    MONTH(pay_date) AS payMonth, -->
+<!-- 	    YEAR(pay_date) AS payYear, -->
+<!-- 	    SUM(payment) AS totalSales -->
+<!-- 	FROM  -->
+<!-- 	    payment -->
+<!-- 	WHERE  -->
+<!-- 	    com_idx = #{comIdx} -->
+<!-- 	    AND pay_date BETWEEN DATE_SUB(CURDATE(), INTERVAL 12 MONTH) AND CURDATE() -->
+<!-- 	    AND pay_status = 1  -->
+<!-- 	GROUP BY  -->
+<!-- 	    YEAR(pay_date), MONTH(pay_date) -->
+<!-- 	ORDER BY  -->
+<!-- 	    YEAR(pay_date), MONTH(pay_date);	 -->
+		SELECT 
+		    DATE(pay_date) AS payDate,
+		    SUM(payment) AS totalSales
+		FROM 
+		    payment
+		WHERE 
+		    com_idx = #{comIdx}
+		    AND pay_date BETWEEN DATE_SUB(CURDATE(), INTERVAL 10 DAY) AND CURDATE()
+		    AND pay_status = 1 
+		GROUP BY 
+		    DATE(pay_date)
+		ORDER BY 
+		    DATE(pay_date);
+
+	</select>
+
+
+	<!-- 차트 (2. 일별 클래스 결제 갯수) -->
+	<select id="selectDailyClass" resultType="payment">
+	SELECT
+    DATE(pay_date) AS payment_date,
+    COUNT(pay_num) AS total_payments
+	FROM
 	    payment
-	WHERE 
+	WHERE
 	    com_idx = #{comIdx}
-	    AND pay_date BETWEEN DATE_SUB(CURDATE(), INTERVAL 12 MONTH) AND CURDATE()
-	    AND pay_status = 1 
-	GROUP BY 
-	    YEAR(pay_date), MONTH(pay_date)
-	ORDER BY 
-	    YEAR(pay_date), MONTH(pay_date);	
+	    AND pay_status = 1
+	GROUP BY
+	    DATE(pay_date)
+	ORDER BY
+	    payment_date;
 	</select>
 	
-	<!-- 차트(2. 일별 클래스 등록 수) -->
-	<select id="selectClassRegister" resultType="payment">
-		SELECT DATE(pay_date) AS payDate, COUNT(*) AS paymentCount
-		FROM payment
-		WHERE com_idx = #{comIdx} AND pay_status = 1
-		GROUP BY DATE(pay_date)
-		ORDER BY payDate;	</select>
+	<!-- 차트 (3. 성별 비율) -->
+	<select id="selectGenderRatio" resultType="genderRatio">
+	SELECT
+	  m.member_gender,
+	  COUNT(*) AS count
+	FROM
+	  payment p
+	JOIN member m ON p.member_id = m.member_id
+	WHERE
+	  p.com_idx = #{comIdx}
+	  AND p.pay_status = 1 
+	GROUP BY
+	  m.member_gender
+	</select>
+	
+	<!-- 차트 (4. 취소 건수) -->
+	<select id="selectCountCancel" resultType="payment">
+	    SELECT
+        DATE(pay_date) AS cancelDate,
+        COUNT(*) AS cancelCount
+    FROM
+        payment
+    WHERE
+        com_idx = #{comIdx}
+        AND pay_status = 2 
+        AND pay_date >= DATE_SUB(NOW(), INTERVAL 10 DAY)
+    GROUP BY
+        DATE(pay_date)
+    ORDER BY
+        cancelDate DESC
+	
+	</select>
+
+
+
 		
 	<!-- 반장 쿠폰 조회 -->	
 	<select id="selectClassCoupon" resultType="coupon">
@@ -252,7 +311,15 @@
 	</select>
 	
 	
-	
+	<!-- 메인 - (7) 작가 공지사항 -->
+	<select id="selectNotificationList" resultType="board">
+		SELECT *
+		FROM board
+		WHERE 
+			board_main_category = 1 AND
+			board_sub_category = 2
+		ORDER BY board_date DESC
+	</select>
 	
 	
 	

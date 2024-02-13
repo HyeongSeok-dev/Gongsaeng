@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -31,6 +32,8 @@
     	body{
     background:#f5f5f5;
 /*     margin-top:20px; */
+	text-align: center;
+
 }
 .card {
 	border: none;
@@ -43,6 +46,7 @@
 .table th {
     font-weight: 500;
     color: #827fc0;
+    font-size: 15px !important;
 }
 .table thead {
     background-color: #f3f2f7;
@@ -57,6 +61,7 @@
 .thumb-sm {
     height: 32px;
     width: 32px;
+     font-size: 15px !important;
 }
 .badge-soft-warning {
     background-color: rgba(248,201,85,.2);
@@ -167,13 +172,43 @@
 								<div class="row">
 									<div class="col-xl-12">
 										<div class="card">
-											<div class="card-body">
-												<div id="board-list">
-													<div class="container">
-													
-													</div>
-												</div>
-											</div>
+												<form>
+										<table class="table table-bordered">
+											<thead class="thead-dark">
+												<tr>
+													<th scope="col">제목</th>
+													<th scope="col">공지 내용</th>
+													<th scope="col">등록일</th>
+<!-- 													<th scope="col">회원명</th> -->
+<!-- 													<th scope="col">클래스 등록일</th> -->
+<!-- 													<th scope="col">클래스명</th> -->
+<!-- 													<th scope="col">성별</th> -->
+<!-- 													<th scope="col">관심정보</th> -->
+<!-- 													<th scope="col">채팅</th> -->
+<!-- 													<th scope="col">포인트 사용 금액</th> -->
+<!-- 													<th scope="col">수수료</th> -->
+<!-- 													<th scope="col">정산신청</th> -->
+												</tr>
+											</thead>
+											<tbody>
+												<!-- 여기에 각 행을 추가하세요. 예를 들어: -->
+													<c:forEach items="${companyBoardList}" var="notification">
+												<tr>
+													<th>${notification.board_subject }</th>
+													<td>${notification.board_content}</td>	
+													<td><fmt:formatDate value="${notification.board_date}" pattern="yyyy/MM/dd" /></td>
+<%-- 													<td>${classMember.member_name} </td> --%>
+<%--         											<td class="pay-date">${classMember.pay_date}</td> --%>
+<%-- 													<td>${classMember.class_title} </td> --%>
+<%-- 													<td>${classMember.memeber_gender}</td> --%>
+<!-- 													<td>#인테리어</td> -->
+<!-- 													<td><input type="button" value="채팅 보내기"></td> -->
+												</tr>
+													</c:forEach>
+												<!-- 더 많은 행을 추가할 수 있습니다. -->
+											</tbody>
+										</table>
+									</form>
 										</div>
 									</div>
 								</div>

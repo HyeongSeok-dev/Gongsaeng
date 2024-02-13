@@ -162,7 +162,7 @@
 						<div class="row">
 							<div class="col-xs-9">반장님 : ${resInfo.com_name}</div>
 							<div class="col-xs-3 text-right">
-								<button class="btn btn-default" onclick="javascript:location.href='chat?com_idx=${resInfo.com_idx}'">채팅 문의</button>
+<%-- 								<button class="btn btn-default" onclick="javascript:location.href='chat?com_idx=${resInfo.com_idx}'">채팅 문의</button> --%>
 							</div>
 						</div>
 					</div>
@@ -214,7 +214,46 @@
 							</h4>
 						</div>
 						<div id="refundPolicy" class="panel-collapse collapse">
-							<div class="panel-body">환불 정책 내용</div>
+							<div class="panel-body">
+								<table class="table table-striped">
+									<thead style="background-color: #f8f8f8;">
+										<tr>
+											<th>취소 시기</th>
+											<th>환불 정책</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>클래스 5일 전 취소 시</td>
+											<td>100% 환불</td>
+										</tr>
+										<tr>
+											<td>클래스 4일 전 취소 시</td>
+											<td>클래스 금액의 5% 차감 후 환불</td>
+										</tr>
+										<tr>
+											<td>클래스 3일 전 취소 시</td>
+											<td>클래스 금액의 10% 차감 후 환불</td>
+										</tr>
+										<tr>
+											<td>클래스 2일 전 취소 시</td>
+											<td>클래스 금액의 20% 차감 후 환불</td>
+										</tr>
+										<tr>
+											<td>클래스 1일 전 취소 시</td>
+											<td>클래스 금액의 30% 차감 후 환불</td>
+										</tr>
+										<tr>
+											<td>클래스 당일 취소나 불참 시</td>
+											<td>환불 불가</td>
+										</tr>
+										<tr>
+											<td>예약 당일 밤 12시 이전 취소 시</td>
+											<td>100% 환불</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>

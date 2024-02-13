@@ -858,4 +858,21 @@
 	        )
     	</foreach>
 	</insert>
+	
+	
+	<insert id="insertCouponAlert">
+	        INSERT INTO alert
+	        VALUES
+	    <foreach collection="member_id" item="id" separator=",">
+	        (
+	            null
+	            ,#{id}
+	            ,'띵동~ 고객님만을 위한 비밀쿠폰이 도착했습니다! 쿠폰함에서 확인해 주세요.
+	            ,3
+	            ,now()
+	            ,1
+	        )
+    	</foreach>
+	
+	</insert>
 </mapper>

@@ -684,7 +684,7 @@
 					
 				<div class="card">
 					<div class="card-header">
-                       <h5 class="title">클래스 등록 - 기본 정보</h5>
+                       <h5 class="title">클래스 등록 - 검수 요청 및 약관 동의</h5>
                      </div>
 						<div class="card-body">
 							<div class="row">

@@ -27,5 +27,20 @@ public class CsService {
 	public int registAdnt(BoardVO board) {
 		return mapper.insertAdnt(board);
 	}
+	
+	// 공지사항 상세보기
+	public BoardVO getNoticeDetail(int board_idx) {
+		return mapper.selectNoticeDetail(board_idx);
+	}
+	
+	// 공지사항 글 수정
+	public int modifyNotice(BoardVO board) {
+		return mapper.updateNotice(board);
+	}
+	
+	// 공지사항 삭제
+	public int removeNotice(BoardVO board) {
+		return mapper.deleteNotice(board);
+	}
 
 }

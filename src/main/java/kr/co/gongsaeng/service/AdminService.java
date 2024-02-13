@@ -338,6 +338,12 @@ public class AdminService {
 
 	public int reportStatusModify(int report_idx) {
 		return mapper.updateStatusModify(report_idx);
+
+	}
+	
+	public void registCouponAlert(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		mapper.insertCouponAlert(map);
 	}
 
 

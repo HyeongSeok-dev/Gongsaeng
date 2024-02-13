@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 
 import kr.co.gongsaeng.vo.BoardVO;
 import kr.co.gongsaeng.vo.CompanyClassVO;
+import kr.co.gongsaeng.vo.CompanyGenderRatioVO;
 import kr.co.gongsaeng.vo.CompanyReviewDetailVO;
 import kr.co.gongsaeng.vo.CompanyVO;
 import kr.co.gongsaeng.vo.CouponVO;
@@ -97,11 +98,24 @@ public interface CompanyMapper {
 	// 차트 - (1) 12개월 매출
 	List<PaymentVO> selectRecentSales(Integer comIdx);
 
-	// [ 차트 - (2) 일별 클래스 등록수 ] 
-	List<PaymentVO> selectClassRegister(Integer comIdx);
+	// [ 차트 - (2) 일별 클래스 등록 수 ] 
+	List<PaymentVO> selectDailyClass(Integer comIdx);
+
+	// [ 차트 - (3) 성별 비율 ] 
+	List<CompanyGenderRatioVO> selectGenderRatio(Integer comIdx);
+
+	// [ 차트 - (4) 취소 건수 ]
+	List<PaymentVO> selectCountCancel(Integer comIdx);
 
 	// 반장 쿠폰관리
 	List<CouponVO> selectClassCoupon(Integer comIdx);
+
+	// 공지사항 리스트
+	List<BoardVO> selectNotificationList(int i, int j);
+
+
+
+
 
 
 
