@@ -200,7 +200,17 @@
 			            <br><br><br>
 			            <div class="post-heading" style="margin-top: 10px;"> 
 			                <div class="pull-left image">
-			                    <img src="${pageContext.request.contextPath }/resources/upload/${board.member_img}" class="img-circle avatar" alt="user profile image">
+				                <c:choose>
+									<c:when test="${empty board.member_img}">
+										<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" class="img-circle avatar" alt="user profile image">
+									</c:when>
+									<c:when test="${fn:contains(board.member_img,'http')}">
+										<img alt="profile" src="${board.member_img}" class="img-circle avatar" alt="user profile image">
+									</c:when>
+									<c:otherwise>
+					                    <img src="${pageContext.request.contextPath }/resources/upload/${board.member_img}" class="img-circle avatar" alt="user profile image">
+									</c:otherwise>
+								</c:choose>
 			                </div>
 			                <div class="pull-left meta">
 			                    <div class="title h5">
@@ -216,7 +226,7 @@
 			                </div>
 			            </div>
 			            <div class="post-description"> 
-			                <p style="margin-top: 20px; margin-bottom: 20px">${board.board_content }</p>
+			            	<p style="margin-top: 20px; margin-bottom: 20px">${board.board_content }</p>
 			                <div class="cm_img">
 <%-- 			                	<a href="${pageContext.request.contextPath}/resources/img/house.png" target="_blank"> --%>
 <%-- 								    <img src="${pageContext.request.contextPath}/resources/img/house.png" alt="이미지"> --%>
@@ -289,7 +299,18 @@
 			                    	   <c:forEach var="i" begin="1" end="${togetherReplyBoard.reply_re_lev}">
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										</c:forEach>
-			                            <img class="avatar" src="${pageContext.request.contextPath }/resources/upload/${togetherReplyBoard.member_img}" alt="avatar">
+										<c:choose>
+											<c:when test="${empty togetherReplyBoard.member_img}">
+												<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" class="avatar" alt="user profile image">
+											</c:when>
+											<c:when test="${fn:contains(board.member_img,'http')}">
+												<img alt="profile" src="${togetherReplyBoard.member_img}" class="avatar" alt="user profile image">
+											</c:when>
+											<c:otherwise>
+							                    <img class="avatar" src="${pageContext.request.contextPath }/resources/upload/${togetherReplyBoard.member_img}" class="img-circle avatar" alt="user profile image">
+											</c:otherwise>
+										</c:choose>
+<%-- 			                            <img class="avatar" src="${pageContext.request.contextPath }/resources/upload/${togetherReplyBoard.member_img}" alt="avatar"> --%>
 			                        </a>
 			                        <div class="comment-body">
 			                           	<div class="comment-heading">

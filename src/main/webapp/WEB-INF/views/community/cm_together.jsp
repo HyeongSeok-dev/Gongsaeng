@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -127,7 +128,7 @@
 				                <!-- 글제목 두껍게 -->
 				                <h4 class="h4_community" style="font-weight: bold;">${board.board_subject}</h4>
 				                <!-- 글 내용과 댓글은 일반 두께로 -->
-				                <p class="text-truncate" style="font-weight: normal;">${board.board_content}</p>
+				                <p class="text-truncate" style="font-weight: normal;">${fn:substring(board.board_content, 0, 100)}...</p>
 				                <p style="font-weight: normal;"><span class="fa fa-comment"></span> 댓글 개수</p>
 				            </a>
 				        </div>

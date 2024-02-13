@@ -81,7 +81,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectNoticeListCount" resultType="int">
 	    SELECT COUNT(*)
 	    FROM board
-	    WHERE board_main_category = 1 AND board_sub_category = 1
+	    WHERE board_main_category = 1
 	</select>
 	
 </mapper>
