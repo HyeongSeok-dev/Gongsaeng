@@ -96,7 +96,7 @@
       <div class="panel-header panel-header-sm">
       </div>
       <div class="content">
-        <form>
+        <form action="modify" method="post">
 	        <div class="row">
 	          <div class="col-md-12">
 	            <div class="card">
@@ -112,6 +112,7 @@
 		             	<tr>
 		             		<th>대상회원</th>
 		             		<td>
+		             		<input type="hidden" name="board_idx" value="${board.board_idx}">
 			      			<input type="hidden" name="board_main_category" value="1"> <%-- 공지사항 --%>
 		             			 <select name="board_sub_category" required>
 					              	<option value="1" <c:if test="${board.board_sub_category eq 1}"> selected</c:if>>일반 회원</option>
@@ -122,15 +123,13 @@
 		             	<tr>
 		             		<th>제목</th>
 		             		<td>
-		             			<input type="text" class="register_text" name="board_subject">
+		             			<input type="text" value="${board.board_subject}" class="register_text" name="board_subject">
 		             		</td>
 		             	</tr>
 		             	<tr>
 		             		<th>내용</th>
 		             		<td>
-		             			<textarea class="register_textarea" name="board_content">
-		             			
-		             			</textarea>
+		             			<textarea class="register_textarea" name="board_content">${board.board_content}</textarea>
 		             		</td>
 		             	</tr>
 <!-- 		             	<tr> -->
@@ -148,9 +147,9 @@
 	        </div>
 	        <div class="row">
 	        	<div class="col-md-12 btn_bottom">
-		        	<button type="button" class="btn btn_default">목록</button>&nbsp;&nbsp;
+		        	<button type="button" class="btn btn_default" onclick="location.href='./?pageNum=${pageNum}'">목록</button>&nbsp;&nbsp;
 		        	<button type="submit" class="btn btn_default">변경저장</button>&nbsp;&nbsp;
-		        	<button type="reset" class="btn btn-light">초기화</button>
+		        	<button type="button" class="btn btn-light" onclick="confirmDelete()">삭제</button>
 	        	</div>
 	        </div>
         </form>
@@ -185,6 +184,12 @@
                 // 로직에 따라 회원 데이터 필터링 및 표시
             });
         });
+        
+    	function confirmDelete() {
+    		if(confirm("해당 글을 삭제하시겠습니까?")) {
+    			location.href ="delete?board_idx=${board.board_idx}&pageNum=${param.pageNum}";
+    		}
+    	}
     </script>
 
 </body>

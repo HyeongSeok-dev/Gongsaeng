@@ -27,14 +27,14 @@ public class CsController {
 			HttpSession session, Model model, BoardVO board) {
 		
 		String sId = (String) session.getAttribute("sId");
-//		if(session.getAttribute("sId") == null) {
-//		model.addAttribute("msg", "로그인이 필요합니다");
-//		model.addAttribute("targetURL", "/gongsaeng/login");
-//		return "forward";
-//	} else if(!session.getAttribute("sId").equals("admin")) {
-//		model.addAttribute("msg", "잘못된 접근 입니다.");
-//		return "fail_back";
-//	}
+		if(session.getAttribute("sId") == null) {
+		model.addAttribute("msg", "로그인이 필요합니다");
+		model.addAttribute("targetURL", "/gongsaeng/member/login");
+		return "forward";
+	} else if(!session.getAttribute("sId").equals("admin1234")) {
+		model.addAttribute("msg", "잘못된 접근 입니다.");
+		return "fail_back";
+	}
 		// 페이징 처리를 위해 조회 목록 갯수 조절 시 사용될 변수 선언
 		int listLimit = 10;
 		int startRow = (pageNum - 1) * listLimit;
@@ -71,12 +71,31 @@ public class CsController {
 	// [ 공지사항 글쓰기 ]
 	@GetMapping("admin/cs/notice/register")
 	public String csNoticeRegisterForm(HttpSession session, Model model) {
+		
+		if(session.getAttribute("sId") == null) {
+			model.addAttribute("msg", "로그인이 필요합니다");
+			model.addAttribute("targetURL", "/gongsaeng/member/login");
+			return "forward";
+		} else if(!session.getAttribute("sId").equals("admin1234")) {
+			model.addAttribute("msg", "잘못된 접근 입니다.");
+			return "fail_back";
+		}
+		
 		return "admin/cs/notice_register";
 	}
 	
 	@PostMapping("admin/cs/notice/registPro")
 	public String csNoticeRegistPro(BoardVO board, @RequestParam(defaultValue = "1") String pageNum,
-			HttpSession session, Model model, HttpServletRequest request) {
+			HttpSession session, Model model) {
+		
+		if(session.getAttribute("sId") == null) {
+			model.addAttribute("msg", "로그인이 필요합니다");
+			model.addAttribute("targetURL", "/gongsaeng/member/login");
+			return "forward";
+		} else if(!session.getAttribute("sId").equals("admin1234")) {
+			model.addAttribute("msg", "잘못된 접근 입니다.");
+			return "fail_back";
+		}
 	
 	board.setMember_id("admin1234");
 	// BoardService - registAdnt() 메서드 호출하여 게시물 등록 작업 요청
@@ -99,14 +118,15 @@ public class CsController {
 	@GetMapping("admin/cs/notice/detail")
 	public String csNoticeDetail(BoardVO board, @RequestParam int board_idx, HttpSession session, Model model) {
 		String sId = (String)session.getAttribute("sId");
-		
-		// 조회된 게시물의 작성자(member_id)와 세션 아이디가 다를 경우 "잘못된 접근입니다" 처리
-		// => 단, 관리자는 자신의 게시물이 아니더라도 수정 가능해야하므로
-		//    세션아이디가 관리자가 아닐 경우라는 조건도 추가
-//		if(board == null || !sId.equals(board.getMember_id()) && !sId.equals("admin1234")) {
-//			model.addAttribute("msg", "잘못된 접근입니다");
-//			return "fail_back";
-//		}
+
+		if(session.getAttribute("sId") == null) {
+			model.addAttribute("msg", "로그인이 필요합니다");
+			model.addAttribute("targetURL", "/gongsaeng/member/login");
+			return "forward";
+		} else if(!session.getAttribute("sId").equals("admin1234")) {
+			model.addAttribute("msg", "잘못된 접근 입니다.");
+			return "fail_back";
+		}
 		
 		board = service.getNoticeDetail(board_idx);
 		System.out.println(board);
@@ -116,6 +136,58 @@ public class CsController {
 		return "admin/cs/notice_detail";
 	}
 	
+	@PostMapping("admin/cs/notice/modify")
+	public String csNoticeModify(BoardVO board, @RequestParam(defaultValue = "1") String pageNum, 
+			Model model, HttpSession session) {
+		
+		if(session.getAttribute("sId") == null) {
+			model.addAttribute("msg", "로그인이 필요합니다");
+			model.addAttribute("targetURL", "/gongsaeng/member/login");
+			return "forward";
+		} else if(!session.getAttribute("sId").equals("admin1234")) {
+			model.addAttribute("msg", "잘못된 접근 입니다.");
+			return "fail_back";
+		}
+		
+		int updateCount = service.modifyNotice(board);
+		
+		if(updateCount == 0) {
+			model.addAttribute("msg", "수정 실패!");
+			return "fail_back";
+		}
+		
+		model.addAttribute("msg", "수정되었습니다.");
+		model.addAttribute("targetURL", "./?pageNum=" + pageNum);
+		return "forward";
+	}
+	
+	// [ 공지글 삭제 ]
+	@GetMapping("admin/cs/notice/delete")
+	public String csNoticeDelete(
+			BoardVO board, @RequestParam(defaultValue = "1") String pageNum,
+			HttpSession session, Model model) {
+
+		if(session.getAttribute("sId") == null) {
+			model.addAttribute("msg", "로그인이 필요합니다");
+			model.addAttribute("targetURL", "/gongsaeng/member/login");
+			return "forward";
+		} else if(!session.getAttribute("sId").equals("admin1234")) {
+			model.addAttribute("msg", "잘못된 접근 입니다.");
+			return "fail_back";
+		}
+		
+		int deleteCount = service.removeNotice(board);
+		
+		if(deleteCount == 0) {
+			model.addAttribute("msg", "삭제 실패!");
+			return "fail_back";
+		}
+		
+		model.addAttribute("targetURL", "./?pageNum=" + pageNum);
+		return "forward";
+	}
+	
+	// [ 회원 공지 조회 ]
 	@GetMapping("cs/notice")
 	public String notice() {
 		return "cs/cs_notice";

@@ -27,7 +27,6 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
   <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">
 </head>
-
 <body class="">
   <div class="wrapper ">
 	<%-- 페이지네이션 - pageNum 파라미터 가져와서 저장(없을 경우 기본값 1로 설정) --%>
@@ -113,23 +112,6 @@
 							<button class="btn btn_default" type="button" style="margin-bottom: 5px;" onclick="location.href='${pageContext.request.contextPath }/admin/cs/notice/register'">새글쓰기</button>
 		              	</div>
 		              	<div>
-		              		<form action="" class="member_date">
-		              			<div class="search_bar_admin">
-					              	<input type="date" id="start_date">&nbsp;&nbsp;~&nbsp;&nbsp;<input type="date" id="end_date">
-			              		</div>
-			              		<div class="search_bar_admin">
-									<select>
-										<option>전체검색</option>
-										<option>회원아이디</option>
-										<option>반장아이디</option>
-										<option>제목</option>
-										<option>내용</option>
-										<option>제목+내용</option>
-									</select>
-		              				<input type="search">
-				              		<button type="submit" class="btn btn_default" value="검색">검색</button>
-			              		</div>	
-		              		</form>
 		              	</div>
 	              	</div>
 	              	
@@ -151,23 +133,25 @@
 						</th>
 		                <th>제목</th>
 		                <th>내용</th>
+<!-- 		                <th></th> -->
 		            </tr>
 		            <!-- 회원 데이터 로우 -->
 		            <c:forEach var="adnt" items="${adntList}">
-			            <tr class="tr_hover" onclick="location.href='${pageContext.request.contextPath }/admin/cs/notice/detail'">
-			                <td>   	
+			            <tr class="tr_hover">
+			                <td onclick="location.href='${pageContext.request.contextPath }/admin/cs/notice/detail?board_idx=${adnt.board_idx }'">   	
 			                	<fmt:parseDate var="parsedNoticeDate" value="${adnt.board_date}" pattern="yyyy-MM-dd'T'HH:mm" type="both" />
 								<fmt:formatDate value="${parsedNoticeDate}" pattern="yyyy-MM-dd HH:mm" />
 							</td>
 <%-- 			                <td>${fn:substring(adnt.board_date,0,16)}</td> --%>
-			                <td>
+			                <td onclick="location.href='${pageContext.request.contextPath }/admin/cs/notice/detail?board_idx=${adnt.board_idx }'">
 			                	<c:choose>
 					            	<c:when test="${adnt.board_sub_category eq 1}">일반 회원</c:when>
 					            	<c:when test="${adnt.board_sub_category eq 2}">반장(사업체) 회원</c:when>
 					            </c:choose>
 					        </td>
-			                <td>${adnt.board_subject}</td>
-			                <td>${adnt.board_content}</td>
+			                <td onclick="location.href='${pageContext.request.contextPath }/admin/cs/notice/detail?board_idx=${adnt.board_idx }'">${adnt.board_subject}</td>
+			                <td onclick="location.href='${pageContext.request.contextPath }/admin/cs/notice/detail?board_idx=${adnt.board_idx }'">${adnt.board_content}</td>
+<!-- 			                <td><input type="button" value="삭제" onclick="confirmDelete()"></td> -->
 			            </tr>
 		            </c:forEach>
 			    </table>

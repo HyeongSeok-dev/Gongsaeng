@@ -20,4 +20,10 @@ public interface CsMapper {
 	// 공지사항 상세보기
 	BoardVO selectNoticeDetail(int board_idx);
 
+	// 공지사항 수정
+	int updateNotice(BoardVO board);
+	
+	// 공지사항 삭제
+	int deleteNotice(BoardVO board);
+	
 }

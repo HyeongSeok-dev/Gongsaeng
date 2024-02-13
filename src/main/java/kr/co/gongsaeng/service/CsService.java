@@ -32,5 +32,15 @@ public class CsService {
 	public BoardVO getNoticeDetail(int board_idx) {
 		return mapper.selectNoticeDetail(board_idx);
 	}
+	
+	// 공지사항 글 수정
+	public int modifyNotice(BoardVO board) {
+		return mapper.updateNotice(board);
+	}
+	
+	// 공지사항 삭제
+	public int removeNotice(BoardVO board) {
+		return mapper.deleteNotice(board);
+	}
 
 }
