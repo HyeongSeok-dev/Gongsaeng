@@ -4,10 +4,10 @@ $(document).ready(function() {
 	//배열에서 첫 번째 요소의 값을 가져오기
 	var useablePay = parseInt($("#useablePay").text().trim().replace(/,/g, ''));
 	//최종결제금액
-	var payment = parseInt($("#reservationPrice") .text().replace(/,/g, '')); //-------->쿠폰사용금액 빼야함
+	var payment = parseInt($("#reservationPrice") .text().replace(/,/g, '')); 
 
 	//===================================================================================
- 	// 현재보유포인트에 따른 전액사용 선택시
+ 	// 전액사용 선택시
 	$("#useAllPoint").on("click", function() {
 		if(useablePay <= 0) {
 			alert("사용가능한 포인트가 없습니다.");
@@ -28,6 +28,24 @@ $(document).ready(function() {
 			}
 		}	
 	});
+	
+	//===================================================================================
+	//최종 금액 계산 
+	function totalPayment(){
+	
+	//결제금액
+	payment
+	//쿠폰할인
+	var coupon =  parseInt($("#discountCoupon_text") .text().replace(/,/g, '')); 
+	//0페이사용
+	var pay = parseInt($("#discountPay_text") .text().replace(/,/g, '')); 
+	//최종결제금액
+	var totalPayment  = 0;
+	
+	totalPayment = payment - coupon - pay;
+	
+	
+}
 
 	//===================================================================================
 	// 포인트 text 박스에 숫자가 입력될 때 마다 숫자에 천단위 쉼표를 찍어주는 쿼리
