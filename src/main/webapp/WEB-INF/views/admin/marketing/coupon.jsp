@@ -8,7 +8,7 @@
 <head>
 <meta charset="utf-8" />
 <link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath }/resources/admin_assets/img/apple-icon.png">
-<link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/admin_assets/img/favicon.png">
+<%-- <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/admin_assets/img/favicon.png"> --%>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <title>공생|관리자페이지 마케팅센터</title>
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
@@ -46,16 +46,16 @@
 					</button>
 					<%-- search,홈페이지이동,채팅 --%>
 					<div class="collapse navbar-collapse justify-content-end" id="navigation">
-						<form>
-							<div class="input-group no-border">
-								<input type="text" value="" class="form-control" placeholder="Search...">
-								<div class="input-group-append">
-									<div class="input-group-text">
-										<i class="now-ui-icons ui-1_zoom-bold"></i>
-									</div>
-								</div>
-							</div>
-						</form>
+<!-- 						<form> -->
+<!-- 							<div class="input-group no-border"> -->
+<!-- 								<input type="text" value="" class="form-control" placeholder="Search..."> -->
+<!-- 								<div class="input-group-append"> -->
+<!-- 									<div class="input-group-text"> -->
+<!-- 										<i class="now-ui-icons ui-1_zoom-bold"></i> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</form> -->
 						<ul class="navbar-nav">
 <!-- 							<li class="nav-item"><a class="nav-link" href="#pablo"> <i class="now-ui-icons ui-1_calendar-60"></i> -->
 <!-- 									<p> -->

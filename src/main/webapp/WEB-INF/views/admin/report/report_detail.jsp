@@ -60,17 +60,17 @@
           </button>
           <%-- search,홈페이지이동,채팅 --%>
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <form>
-              <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <i class="now-ui-icons ui-1_zoom-bold"></i>
-                  </div>
-                </div>
-              </div>
-            </form>
-<!--             <ul class="navbar-nav"> -->
+<!--             <form> -->
+<!--               <div class="input-group no-border"> -->
+<!--                 <input type="text" value="" class="form-control" placeholder="Search..."> -->
+<!--                 <div class="input-group-append"> -->
+<!--                   <div class="input-group-text"> -->
+<!--                     <i class="now-ui-icons ui-1_zoom-bold"></i> -->
+<!--                   </div> -->
+<!--                 </div> -->
+<!--               </div> -->
+<!--             </form> -->
+            <ul class="navbar-nav">
 <!--               <li class="nav-item"> -->
 <!--                 <a class="nav-link" href="#pablo"> -->
 <!--                   <i class="now-ui-icons ui-1_calendar-60"></i> -->
