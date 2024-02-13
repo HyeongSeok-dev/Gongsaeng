@@ -238,9 +238,9 @@ public class ProductController {
 	}
 	
 	
-	@ResponseBody
+	
     @PostMapping("product/cartPro")
-    public String addToCart(@RequestParam("class_idx") int class_idx, @RequestParam("member_id") String member_id, @RequestParam String res_visit_date, @RequestParam int res_member_count) {
+    public String cartPro(@RequestParam("class_idx") int class_idx, @RequestParam("member_id") String member_id, @RequestParam String res_visit_date, @RequestParam int res_member_count) {
 
         //장바구니에서 물건찾기
         CartVO cart = service.findCart(class_idx, member_id, res_visit_date);
@@ -268,13 +268,13 @@ public class ProductController {
 //            }
 //
 //        }
-        return "cart/cart"; 
+        return "redirect:/cart"; 
     }//addToCart
 	
 	
 
 
-	@GetMapping("product/add-to-cart")
+	@PostMapping("product/add-to-cart")
     public String addToCart(@RequestParam("resVisitDate") String resVisitDate,
             @RequestParam("classIdx") String classIdx,
             @RequestParam("memberId") String memberId,

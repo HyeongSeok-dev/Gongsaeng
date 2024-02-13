@@ -224,20 +224,17 @@
                                         </a>
                                     </div> 
 <!-- cS-hidden -->
-                                    <ul id="image-gallery" class="gallery list-unstyled ">
-                                        <li data-thumb="${pageContext.request.contextPath }/resources/assets/img/property-1/table1-1.png"> 
-                                            <img src="${pageContext.request.contextPath }/resources/assets/img/property-1/table1-1.png" />
-                                        </li>
-                                        <li data-thumb="${pageContext.request.contextPath }/resources/assets/img/property-1/table2.png"> 
-                                            <img src="${pageContext.request.contextPath }/resources/assets/img/property-1/table2.png" />
-                                        </li>
-                                        <li data-thumb="${pageContext.request.contextPath }/resources/assets/img/property-1/table3.png"> 
-                                            <img src="${pageContext.request.contextPath }/resources/assets/img/property-1/table3.png" />
-                                        </li>
-<%--                                         <li data-thumb="${pageContext.request.contextPath }/resources/assets/img/property-1/다운로드.jpg">  --%>
-<%--                                             <img src="${pageContext.request.contextPath }/resources/assets/img/property-1/다운로드.jpg" /> --%>
+<!--                                     <ul id="image-gallery" class="gallery list-unstyled "> -->
+<%--                                         <li data-thumb="${pageContext.request.contextPath }/resources/upload/${cla.class_pic1}">  --%>
+<%--                                             <img src="${pageContext.request.contextPath }/resources/upload/${cla.class_pic1}" /> --%>
 <!--                                         </li> -->
-                                    </ul>
+<%--                                         <li data-thumb="${pageContext.request.contextPath }/resources/upload/${cla.class_pic2}">  --%>
+<%--                                             <img src="${pageContext.request.contextPath }/resources/upload/${cla.class_pic2}" /> --%>
+<!--                                         </li> -->
+<%--                                         <li data-thumb="${pageContext.request.contextPath }/resources/upload/${cla.class_pic3}">  --%>
+<%--                                             <img src="${pageContext.request.contextPath }/resources/upload/${cla.class_pic3}" /> --%>
+<!--                                         </li> -->
+<!--                                     </ul> -->
 
                                 </div>
                             </div>               
@@ -253,19 +250,19 @@
                             
                             
                             
-                            		<div class="sns-grade">
-										<p class="grade">
-												<c:choose>
-													<c:when test="${empty review_score}">
-														<span class="tit">0명의 평가</span>
-													</c:when>
-													<c:otherwise>
-														<span class="point">${review_score.reviewCount}명의 평가 <strong id="lbl_review_point"> ${review_score.avg_score} </strong></span>
-														<span class="star"> <i style="width: ${review_score.avg_score *20}%"></i></span>
-													</c:otherwise>
-												</c:choose>
-										</p>
-									</div>
+<!--                             		<div class="sns-grade"> -->
+<!-- 										<p class="grade"> -->
+<%-- 												<c:choose> --%>
+<%-- 													<c:when test="${empty review_score}"> --%>
+<!-- 														<span class="tit">0명의 평가</span> -->
+<%-- 													</c:when> --%>
+<%-- 													<c:otherwise> --%>
+<%-- 														<span class="point">${review_score.reviewCount}명의 평가 <strong id="lbl_review_point"> ${review_score.avg_score} </strong></span> --%>
+<%-- 														<span class="star"> <i style="width: ${review_score.avg_score *20}%"></i></span> --%>
+<%-- 													</c:otherwise> --%>
+<%-- 												</c:choose> --%>
+<!-- 										</p> -->
+<!-- 									</div> -->
 									<div class="favor-pic-appra">
 										<div class="favor_container">
 											<c:choose>
@@ -498,11 +495,9 @@
                                 <h4 class="s-property-title">클래스 소개</h4> 
                                 <div class="video-thumb">
                                     <a class="video-popup" href="yout" title="Virtual Tour">
-                                        <img src="${pageContext.request.contextPath }/resources/assets/img/detail4.webp" class="img-responsive wp-post-image" alt="Exterior">            
-                                        <img src="${pageContext.request.contextPath }/resources/assets/img/detail3.webp" class="img-responsive wp-post-image" alt="Exterior">            
-                                        <img src="${pageContext.request.contextPath }/resources/assets/img/detail1.webp" class="img-responsive wp-post-image" alt="Exterior">            
-                                        <img src="${pageContext.request.contextPath }/resources/assets/img/detail2.webp" class="img-responsive wp-post-image" alt="Exterior">            
-<%--                                         <img src="${pageContext.request.contextPath }/resources/assets/img/detail5.png" class="img-responsive wp-post-image" alt="Exterior">             --%>
+<%--                                         <img src="${pageContext.request.contextPath }/resources/upload/${cla.class_class_curriculum1}" class="img-responsive wp-post-image" alt="Exterior">             --%>
+<%--                                         <img src="${pageContext.request.contextPath }/resources/upload/${cla.class_class_curriculum2}" class="img-responsive wp-post-image" alt="Exterior">             --%>
+<%--                                         <img src="${pageContext.request.contextPath }/resources/upload/${cla.class_class_curriculum3}" class="img-responsive wp-post-image" alt="Exterior">             --%>
                                     </a>
                                 </div>
                             </div>
@@ -627,7 +622,7 @@
 													<span class="classInfo">시간 : ${startTime} ~ ${endTime}</span>
 <%-- 													<h3 id="classDays">${cla.class_day}</h3> --%>
 												</div>
-												<br>
+												
 												<div class="persons-group">
 										    		<p>예약 인원</p>
 										   			<input type="number" id="res_member_count" name="res_member_count" value="1" min="1" max="${availableSeats}">
@@ -650,15 +645,15 @@
 											<h3 class="panel-title">원데이 클래스 예약하기</h3>
 										</div>
 										<div class="panel-body search-widget">
-<!-- 											<form action="" class=" form-inline">  -->
+											<form action="" class=" form-inline"> 
 												<input type="hidden" name="class_idx" value="${cla.class_idx}">		
 											    <input type="hidden" name="member_id" value="${sessionScope.member_id}">		
 												<input type="hidden" id="res_visit_time" name="res_visit_time" value="${startTime} ~ ${endTime}">	
 												<label for="reservation-date"><p>예약 날짜</p></label>
 												<div class="date-container">
 											        <c:forEach var="dateAndDayOfWeek" items="${dateAndDayOfWeeks}">
-											            <div class="date-item">${dateAndDayOfWeek}
-											            </div>&nbsp;<br>가능인원 : ${availableSeats}
+											            <div class="date-item">${dateAndDayOfWeek}<br>가능인원 : ${availableSeats}
+											            </div>&nbsp;
 											        </c:forEach>
 											    </div>
 												<br><br>
@@ -666,13 +661,13 @@
 											 	   <p>예약 인원</p>
 										   			<input type="number" id="res_member_count" name="res_member_count" value="1" min="1" max="${availableSeats}">
 											</div>
-											<br>
+											
 											<div>
 												&nbsp;&nbsp;&nbsp;<button id="add-to-cart" class="payButton" >장바구니</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<!-- 											<button type="button" id="payment" class="payButton" onclick="payment">결제하기</button> -->
 												<button type="button" class="payButton" onclick="goToPayment()">결제하기</button>			                                
 											</div> 
-<!-- 										</form> -->
+										</form>
 						       		</div>
 						        </div>
 						    </c:when>
@@ -696,7 +691,7 @@
 <!-- 										<br> -->
 <!-- 										<div> -->
 <!-- 											&nbsp;&nbsp;&nbsp;<button type="button" id=onCart class="payButton" onclick="">장바구니</button>&nbsp;&nbsp;&nbsp; -->
-<!-- <!-- 												<button type="button" id="payment" class="payButton" onclick="payment">결제하기</button>  --> -->
+<!-- <!-- 												<button type="button" id="payment" class="payButton" onclick="payment">결제하기</button>  -->
 <%-- 												<button type="button" class="payButton" onclick="location.href='${pageContext.request.contextPath}/payment?type=pay'">결제하기</button> --%>
 <!-- 		                                </div>    -->
 <!--                                         <fieldset> -->
@@ -935,21 +930,21 @@
                 });
             });
         </script>
-		<script type="text/javascript">
-	       $(document).ready(function(){
-	    	    var class_day = '1010000';  // '월 수'를 의미하는 비트 플래그
-	    	    var days = ['일', '월', '화', '수', '목', '금', '토'];
+<!-- 		<script type="text/javascript"> -->
+<!-- // 	       $(document).ready(function(){ -->
+<!-- // 	    	    var class_day = '1010000';  // '월 수'를 의미하는 비트 플래그 -->
+<!-- // 	    	    var days = ['일', '월', '화', '수', '목', '금', '토']; -->
 	
-	    	    $('#datepicker').datepicker({
-	    	        beforeShowDay: function(date) {
-	    	            var day = date.getDay();
-	    	            return [(class_day[day] === '1')];
-	    	        },
-	    	        minDate: new Date(${cla.class_start_date}),  // 시작 날짜
-	    	        maxDate: new Date(${cla.class_end_date})     // 종료 날짜
-	    	    });
-	    	});
-       	</script>
+<!-- // 	    	    $('#datepicker').datepicker({ -->
+<!-- // 	    	        beforeShowDay: function(date) { -->
+<!-- // 	    	            var day = date.getDay(); -->
+<!-- // 	    	            return [(class_day[day] === '1')]; -->
+<!-- // 	    	        }, -->
+<%-- // 	    	        minDate: new Date(${cla.class_start_date}),  // 시작 날짜 --%>
+<%-- // 	    	        maxDate: new Date(${cla.class_end_date})     // 종료 날짜 --%>
+<!-- // 	    	    }); -->
+<!-- // 	    	}); -->
+<!--        	</script> -->
        	
        	<script>
 			function goToPayment() {
@@ -980,15 +975,15 @@
 <!-- //     }); -->
 <!-- // } -->
 <!-- </script> -->
-<!-- <script> -->
-<!-- //         function handleClick(event) { -->
-<!-- //             var dates = document.getElementsByClassName('date'); -->
-<!-- //             for (var i = 0; i < dates.length; i++) { -->
-<!-- //                 dates[i].style.backgroundColor = 'white'; // 모든 날짜의 배경색을 흰색으로 초기화 -->
-<!-- //             } -->
-<!-- //             event.target.style.backgroundColor = 'yellow'; // 클릭된 날짜의 배경색을 노란색으로 변경 -->
-<!-- //         } -->
-<!-- </script> -->
+<script>
+	function handleClick(event) {
+	    var dates = document.getElementsByClassName('date');
+	    for (var i = 0; i < dates.length; i++) {
+	       dates[i].style.backgroundColor = 'white'; // 모든 날짜의 배경색을 흰색으로 초기화
+	   	}
+	    event.target.style.backgroundColor = 'yellow'; // 클릭된 날짜의 배경색을 노란색으로 변경
+	}
+ </script>
     
    
 

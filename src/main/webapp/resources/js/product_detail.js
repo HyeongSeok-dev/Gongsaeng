@@ -283,22 +283,22 @@ $(document).ready(function() {
 	//		});
 	//	}
 
-	kakao.maps.load(function() {
-		calculateDistanceForRestaurants();
-	});
+//	kakao.maps.load(function() {
+//		calculateDistanceForRestaurants();
+//	});
 
 
 });
 
-function mapPopup(address, name) {
-	var encodedAddress = encodeURIComponent(address);
-	var encodedName = encodeURIComponent(name);
-	var url = "map?address=" + encodedAddress + "&name=" + encodedName;
-	var windowName = "MapPopup";
-	var windowSize = "width=1000,height=800,left=200,top=200";
-
-	window.open(url, windowName, windowSize);
-}
+//function mapPopup(address, name) {
+//	var encodedAddress = encodeURIComponent(address);
+//	var encodedName = encodeURIComponent(name);
+//	var url = "map?address=" + encodedAddress + "&name=" + encodedName;
+//	var windowName = "MapPopup";
+//	var windowSize = "width=1000,height=800,left=200,top=200";
+//
+//	window.open(url, windowName, windowSize);
+//}
 
 function issueCoupon(com_idx) {
 
