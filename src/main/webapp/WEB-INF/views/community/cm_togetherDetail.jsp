@@ -265,7 +265,7 @@
 							    <span class="fa fa-eye"></span> 
 								<span id="viewCount" style="margin-right: 10px;">${board.board_readcount }</span>
 								<span class="fa fa-comment"></span> 
-							    <span id="commentCount">3</span>
+							    <span id="commentCount">${commentCount}</span>
 			            </div>
 			            <div class="post-footer">
 			            <form action="TogetherReplyWrite" method="post">

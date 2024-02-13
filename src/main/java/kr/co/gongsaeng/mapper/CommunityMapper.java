@@ -26,6 +26,9 @@ public interface CommunityMapper {
 	// 조회수
 	void updateTogetherReadcount(BoardVO board);
 	
+	// 댓글수
+	int selectCommentCount(int board_idx);
+	
 	// 함께해요 글 삭제
 	int deleteTogether(BoardVO board);
 	
@@ -49,6 +52,8 @@ public interface CommunityMapper {
 	
 	// 대댓글 등록
 	int insertTogetherReReplyBoard(Map<String, String> map);
+
+
 	
 
 }

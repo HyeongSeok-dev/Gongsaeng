@@ -95,21 +95,21 @@
 				    </div>
 				</div>
 			    <br>
-			    <div class="row">
-			        <div class="col-sm-12 text-left">
-			            <button class="btn btn-primary" id="resetButton" style="margin-right: 10px;">초기화</button>
-			            <select class="form-control" id="serviceType" style="display: inline-block; width: auto;">
-                            <option disabled selected>서비스</option>
-			                <option>시공</option>
-                            <option>설치 및 수리</option>
-                            <option>리모델링</option>
-                            <option>리폼</option>
-                            <option>인테리어</option>
-                            <option>기타</option>
-			            </select>
-			        </div>
-			    </div>
-				<br>
+<!-- 			    <div class="row"> -->
+<!-- 			        <div class="col-sm-12 text-left"> -->
+<!-- 			            <button class="btn btn-primary" id="resetButton" style="margin-right: 10px;">초기화</button> -->
+<!-- 			            <select class="form-control" id="serviceType" style="display: inline-block; width: auto;"> -->
+<!--                             <option disabled selected>서비스</option> -->
+<!-- 			                <option>시공</option> -->
+<!--                             <option>설치 및 수리</option> -->
+<!--                             <option>리모델링</option> -->
+<!--                             <option>리폼</option> -->
+<!--                             <option>인테리어</option> -->
+<!--                             <option>기타</option> -->
+<!-- 			            </select> -->
+<!-- 			        </div> -->
+<!-- 			    </div> -->
+<!-- 				<br> -->
 				<c:forEach var="board" items="${boardList}">
 				<div class="cm_text">
 				    <div class="row mt-5">
@@ -129,7 +129,7 @@
 				                <h4 class="h4_community" style="font-weight: bold;">${board.board_subject}</h4>
 				                <!-- 글 내용과 댓글은 일반 두께로 -->
 				                <p class="text-truncate" style="font-weight: normal;">${fn:substring(board.board_content, 0, 100)}...</p>
-				                <p style="font-weight: normal;"><span class="fa fa-comment"></span> 댓글 개수</p>
+				                <p style="font-weight: normal;"><span class="fa fa-comment"></span> ${board.reply_count}</p>
 				            </a>
 				        </div>
 						<div class="col-sm-3">

@@ -40,6 +40,11 @@ public class CommunityService {
 		
 		return board;
 	}
+	
+	// 함께해요 댓글 카운트
+	public int getCommentCount(int board_idx) {
+		return mapper.selectCommentCount(board_idx);
+	}
 
 	// 함께해요 게시물 삭제 요청
 	public int removeTogether(BoardVO board) {
@@ -82,6 +87,7 @@ public class CommunityService {
 		// 대댓글 등록
 		return mapper.insertTogetherReReplyBoard(map);
 	}
+
 	
 
 

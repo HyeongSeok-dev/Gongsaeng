@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.gongsaeng.vo.PageInfo;
+import kr.co.gongsaeng.vo.TinyReplyCommunityVO;
 import kr.co.gongsaeng.service.CommunityService;
 import kr.co.gongsaeng.vo.BoardVO;
 import kr.co.gongsaeng.vo.MemberVO;
@@ -191,7 +192,7 @@ public class CommunityController {
 		
 	
 	@GetMapping("community/togetherDetail")
-	public String togetherDetail(BoardVO board, @RequestParam int board_idx, Model model) {
+	public String togetherDetail(BoardVO board, TinyReplyCommunityVO tinyReply, @RequestParam int board_idx, Model model) {
 		// BoardService - getTogether() 메서드 호출하여 글 상세정보 조회 작업 요청
 		board = service.getTogether(board_idx, true);
 		
@@ -203,6 +204,10 @@ public class CommunityController {
 		
 		// Model 객체에 BoardVO 객체 저장
 		model.addAttribute("board", board);
+		
+		int commentCount = service.getCommentCount(board_idx);
+		model.addAttribute("commentCount", commentCount);
+		
 		// --------------------------------------------------------------------------
 		// [ 댓글 기능 추가 ]
 		// 현재 게시물에 포함되어 있는 댓글 목록 조회(댓글은 페이징 처리 생략)
