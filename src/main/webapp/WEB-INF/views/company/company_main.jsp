@@ -257,8 +257,8 @@ a {
           <div class="col-md-3">
             <div class="card  card-tasks">
               <div class="card-header ">
-                <h5 class="card-category">반장님이 운영중인 클래스입니다.</h5>
-                <h4 class="card-title">운영중인 클래스 현황</h4>
+                <h5 class="card-category">반장님의 진행 및 진행 예정인 클래스입니다.</h5>
+                <h4 class="card-title">클래스 현황<br>(진행중/진행 예정)</h4>
                 <hr class="main_hr">
               </div>
               <div class="card_class_number">
@@ -328,34 +328,10 @@ a {
 
         </div>
       </div>
+    <!--       바텀 -->
       <footer class="footer">
-        <div class=" container-fluid ">
-          <nav>
-            <ul>
-              <li>
-                <a href="https://www.creative-tim.com">
-                  Creative Tim
-                </a>
-              </li>
-              <li>
-                <a href="http://presentation.creative-tim.com">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="http://blog.creative-tim.com">
-                  Blog
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <div class="copyright" id="copyright">
-            &copy; <script>
-              document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
-            </script>, Designed by <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
-          </div>
-        </div>
-      </footer>
+       <jsp:include page="../inc/admin_bottom.jsp"/>
+     </footer>
     </div>
   </div>
   <!--   Core JS Files   -->

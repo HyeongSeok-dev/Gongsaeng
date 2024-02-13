@@ -252,9 +252,9 @@ tbody {
 													<th scope="col">회원명</th>
 													<th scope="col">클래스 등록일</th>
 													<th scope="col">클래스명</th>
-													<th scope="col">성별</th>
+<!-- 													<th scope="col">성별</th> -->
 <!-- 													<th scope="col">관심정보</th> -->
-													<th scope="col">채팅</th>
+<!-- 													<th scope="col">채팅</th> -->
 <!-- 													<th scope="col">포인트 사용 금액</th> -->
 <!-- 													<th scope="col">수수료</th> -->
 <!-- 													<th scope="col">정산신청</th> -->
@@ -268,11 +268,14 @@ tbody {
 													<td>${classMember.classStatus}</td>
 													<td>${classMember.member_id}</td>
 													<td>${classMember.member_name} </td>
-        											<td class="pay-date">${classMember.pay_date}</td>
+        											<td class="pay-date">
+        											<fmt:formatDate value="${classMember.pay_date}" pattern="yyyy/MM/dd" />
+        											
+        											${classMember.pay_date}</td>
 													<td>${classMember.class_title} </td>
-													<td>${classMember.memeber_gender}</td>
+<%-- 													<td>${classMember.memeber_gender}</td> --%>
 <!-- 													<td>#인테리어</td> -->
-													<td><input type="button" value="채팅 보내기"></td>
+<!-- 													<td><input type="button" value="채팅 보내기"></td> -->
 												</tr>
 													</c:forEach>
 												<!-- 더 많은 행을 추가할 수 있습니다. -->
@@ -287,34 +290,10 @@ tbody {
 			</div>
 			<!-- 		      </div> -->
 		</div>
-		<footer class="footer">
-        <div class=" container-fluid ">
-          <nav>
-            <ul>
-              <li>
-                <a href="https://www.creative-tim.com">
-                  Creative Tim
-                </a>
-              </li>
-              <li>
-                <a href="http://presentation.creative-tim.com">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="http://blog.creative-tim.com">
-                  Blog
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <div class="copyright" id="copyright">
-            &copy; <script>
-              document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
-            </script>, Designed by <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
-          </div>
-        </div>
-      </footer>
+    <!--       바텀 -->
+      <footer class="footer">
+       <jsp:include page="../inc/admin_bottom.jsp"/>
+     </footer>
     </div>
   </div>
   <!--   Core JS Files   -->

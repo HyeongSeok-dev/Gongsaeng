@@ -312,7 +312,7 @@ tbody {
 																<c:when test="${sale.pay_category == 1}">
 											              		일반 결제
 											              	</c:when>
-																<c:when test="${sale.pay_category == 1}">
+																<c:when test="${sale.pay_category == 2}">
 											              		포인트 결제
 											              	</c:when>
 															</c:choose></td>
@@ -328,10 +328,9 @@ tbody {
 														</td>
 														<td>${sale.member_id}</td>
 														<!-- 구매자 -->
-														<td><input type="button" value="상세">
-															&nbsp;&nbsp; <!-- 												              <input type="button" value="삭제"> -->
-															<input type="button" value="삭제" class="delete-btn"
-															data-pay-num="${sale.pay_num}"></td>
+													<td> 
+															<input type="button" value="삭제" class="delete-btn" data-pay-num="${sale.pay_num}">
+															</td>
 													</tr>
 												</c:forEach>
 											</tbody>
