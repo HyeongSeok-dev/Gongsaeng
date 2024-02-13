@@ -83,6 +83,7 @@
 		JOIN class c ON c.class_idx = p.class_idx 
 		JOIN company co ON co.com_idx = p.com_idx 
 		WHERE p.member_id = #{member_id}
+		ORDER BY p.pay_date DESC
 		
 	</select>
 	

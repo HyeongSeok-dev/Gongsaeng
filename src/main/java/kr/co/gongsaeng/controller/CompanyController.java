@@ -49,6 +49,7 @@ import kr.co.gongsaeng.service.CompanyService;
 import kr.co.gongsaeng.vo.BoardVO;
 import kr.co.gongsaeng.vo.ClassVO;
 import kr.co.gongsaeng.vo.CompanyClassVO;
+import kr.co.gongsaeng.vo.CompanyGenderRatioVO;
 import kr.co.gongsaeng.vo.CompanyReviewDetailVO;
 import kr.co.gongsaeng.vo.CompanyVO;
 import kr.co.gongsaeng.vo.CouponVO;
@@ -1101,7 +1102,7 @@ public class CompanyController {
 	
 	// 반장 차트
 	@GetMapping("company/chart")
-	public String company_chart(Model model, HttpSession session, PaymentVO payment) {
+	public String company_chart(Model model, HttpSession session, PaymentVO payment, CompanyClassVO companyClass) {
 
 		// 사업체 com_idx 산출
 		String sId = (String)session.getAttribute("sId");
@@ -1117,15 +1118,27 @@ public class CompanyController {
         Gson gson = new Gson();
         // List<PaymentVO>를 JSON 문자열로 변환
         String recentSalesJson = gson.toJson(recentSales);
-		model.addAttribute("recentSalesJson",recentSalesJson);
-
+        System.out.println("recentSalesJson >>>>>" + recentSalesJson);
+        model.addAttribute("recentSalesJson",recentSalesJson);
+        
 		
 		// (2) 일별 클래스 등록수
 		List<PaymentVO> classResgister = companyService.getClassRegister(comIdx);
 		String classRegisterJson = gson.toJson(classResgister);
 		model.addAttribute("classRegisterJson",classRegisterJson);
 		
-		
+
+		// (3) 회원 성비
+		List<CompanyGenderRatioVO> genderRatios = companyService.getGenderRatioByComIdx(comIdx);
+        String genderRatioJson = gson.toJson(genderRatios);
+        model.addAttribute("genderRatioJson",genderRatioJson);
+        
+        // (4) 일별 취소 건수
+        List<PaymentVO> recentCancel = companyService.getRecentCancelByComIdx(comIdx);
+        String recentCancelJson = gson.toJson(recentCancel);
+        model.addAttribute("recentCancelJson",recentCancelJson);
+        
+        
 		
 		
 		return "company/company_chart";
@@ -1147,12 +1160,20 @@ public class CompanyController {
 		model.addAttribute("classCoupon",classCoupon);
 		
 		
-		
-		
-		
-		
 		return "company/company_coupon";
 	}
+	
+	// 반장 공지사항
+	@GetMapping("company/notification")
+	public String company_notification(Model model, BoardVO board) {
+	
+		List<BoardVO> companyBoardList = companyService.getCompanyBoardList(1,2);
+		companyBoardList = companyBoardList == null ? Collections.emptyList() : companyBoardList; // `null` 체크
+		model.addAttribute("companyBoardList",companyBoardList);	
+		
+		return "company/company_notification";
+	}
+
 	
 	
 	@GetMapping("company/sales2")
@@ -1160,11 +1181,6 @@ public class CompanyController {
 		return "company/company_sales2";
 	}
 	
-	
-	@GetMapping("company/notification")
-	public String company_notification() {
-		return "company/company_notification";
-	}
 	
 	@GetMapping("company/inquiry")
 	public String company_inquiry() {

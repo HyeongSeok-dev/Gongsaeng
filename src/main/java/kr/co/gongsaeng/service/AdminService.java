@@ -310,6 +310,11 @@ public class AdminService {
 		return mapper.insertCouponToAdmin(map);
 	}
 
+	public void registCouponAlert(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		mapper.insertCouponAlert(map);
+	}
+
 
 
 

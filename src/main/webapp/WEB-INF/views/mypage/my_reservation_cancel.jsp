@@ -53,15 +53,15 @@
 <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
 <script type="text/javascript">
-$(document).ready(function() {
+	$(document).ready(function() {
 
-	$("#cancel_btn").click(function(event) {
-		if(!confirm('환불금액을 확인해주세요. 예약을 취소하시겠습니까?')){
-			 event.preventDefault();
-		}
-	
+		$("#cancel_btn").click(function(event) {
+			if (!confirm('환불금액을 확인해주세요. 예약을 취소하시겠습니까?')) {
+				event.preventDefault();
+			}
+
+		});
 	});
-});
 </script>
 </head>
 <body>
@@ -95,7 +95,7 @@ $(document).ready(function() {
 								<div id="alert" class="panel-collapse collapse">
 									<ul class="list-group">
 										<li class="list-group-item cursor " onclick="javascript:location.href='alert'">알림</li>
-<!-- 										<li class="list-group-item cursor" onclick="javascript:location.href='chat'">채팅</li> -->
+										<!-- 										<li class="list-group-item cursor" onclick="javascript:location.href='chat'">채팅</li> -->
 									</ul>
 								</div>
 							</li>
@@ -104,7 +104,7 @@ $(document).ready(function() {
 									<ul class="list-group">
 										<li class="list-group-item cursor" onclick="javascript:location.href='coupon'">쿠폰</li>
 										<li class="list-group-item cursor" onclick="javascript:location.href='cash'">캐쉬</li>
-										
+
 									</ul>
 								</div>
 							</li>
@@ -149,60 +149,98 @@ $(document).ready(function() {
 			<div class="col-sm-9">
 				<h2>예약 취소하기</h2>
 				<form action="reservationCancelPro" method="POST">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title text-center">${resInfo.class_title}</h3>
-					</div>
-					<div class="panel-body">
-						<c:choose>
-							<c:when test="${resInfo.class_category eq 1}">
-								<div class="col-xs-6 text-center">정규수업 시작 일시: ${resInfo.class_start_date} &nbsp; ${fn:substring(resInfo.class_start_time,0,5)}</div>
-								<div class="col-xs-6 text-center">정규수업 종료 일시: ${resInfo.class_end_date} &nbsp; ${fn:substring(resInfo.class_end_time,0,5)}</div>
-							</c:when>
-							<c:otherwise>
-								<div class="col-xs-6 text-center">시작 시간: ${resInfo.res_visit_date} &nbsp; ${fn:substring(resInfo.res_visit_time,0,5)}</div>
-								<div class="col-xs-6 text-center">종료 시간: ${resInfo.res_visit_date} &nbsp; ${fn:substring(resInfo.res_visit_time,0,5)}</div>
-							</c:otherwise>
-						</c:choose>
-						<p class="text-center">예약 인원: ${resInfo.res_member_count}명</p>
-						<div class="row">
-							<div class="col-xs-9">반장님 : ${resInfo.com_name}</div>
-							<div class="col-xs-3 text-right">
-								<button class="btn btn-default" type="button" onclick="javascript:location.href='chat?com_idx=${resInfo.com_idx}'">채팅 문의</button>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title text-center">${resInfo.class_title}</h3>
+						</div>
+						<div class="panel-body">
+							<c:choose>
+								<c:when test="${resInfo.class_category eq 1}">
+									<div class="col-xs-6 text-center">정규수업 시작 일시: ${resInfo.class_start_date} &nbsp; ${fn:substring(resInfo.class_start_time,0,5)}</div>
+									<div class="col-xs-6 text-center">정규수업 종료 일시: ${resInfo.class_end_date} &nbsp; ${fn:substring(resInfo.class_end_time,0,5)}</div>
+								</c:when>
+								<c:otherwise>
+									<div class="col-xs-6 text-center">시작 시간: ${resInfo.res_visit_date} &nbsp; ${fn:substring(resInfo.res_visit_time,0,5)}</div>
+									<div class="col-xs-6 text-center">종료 시간: ${resInfo.res_visit_date} &nbsp; ${fn:substring(resInfo.res_visit_time,0,5)}</div>
+								</c:otherwise>
+							</c:choose>
+							<p class="text-center">예약 인원: ${resInfo.res_member_count}명</p>
+							<div class="row">
+								<div class="col-xs-9">반장님 : ${resInfo.com_name}</div>
+								<!-- 							<div class="col-xs-3 text-right"> -->
+								<%-- 								<button class="btn btn-default" type="button" onclick="javascript:location.href='chat?com_idx=${resInfo.com_idx}'">채팅 문의</button> --%>
+								<!-- 							</div> -->
 							</div>
 						</div>
 					</div>
-				</div>
 
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">결제 정보</h3>
-					</div>
-					<div class="panel-body">
-						<p>결제 방법: ${resInfo.pay_method}</p>
-						<p>최종 결제 금액: ${resInfo.payment}원</p>
-						<p>포인트 적립 내역: ${resInfo.point}포인트</p>
-						<hr>
-						<p>
-							<strong>환불 예상 금액: ${resInfo.payment}원</strong>
-						</p>
-						<p>
-							<strong>소멸 포인트: ${resInfo.point}포인트</strong>
-						</p>
-					</div>
-				</div>
-
-				<div class="panel-group">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h3 class="panel-title">취소 및 환불 정책</h3>
+							<h3 class="panel-title">결제 정보</h3>
 						</div>
-						<div class="panel-body">환불 정책 내용</div>
+						<div class="panel-body">
+							<p>결제 방법: ${resInfo.pay_method}</p>
+							<p>최종 결제 금액: ${resInfo.payment}원</p>
+							<p>포인트 적립 내역: ${resInfo.point}포인트</p>
+							<hr>
+							<p>
+								<strong>환불 예상 금액: ${resInfo.payment}원</strong>
+							</p>
+							<p>
+								<strong>소멸 포인트: ${resInfo.point}포인트</strong>
+							</p>
+						</div>
 					</div>
-				</div>
-				<button class="btn btn-danger btn-block" id="cancel_btn" type="submit">예약 취소</button>
-				<input type="hidden" value="${resInfo.pay_num}" name="pay_num">
-				<input type="hidden" value="${resInfo.member_id}" name="member_id">
+
+					<div class="panel-group">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">취소 및 환불 정책</h3>
+							</div>
+							<div class="panel-body">
+								<table class="table table-striped">
+									<thead style="background-color: #f8f8f8;">
+										<tr>
+											<th>취소 시기</th>
+											<th>환불 정책</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>클래스 5일 전 취소 시</td>
+											<td>100% 환불</td>
+										</tr>
+										<tr>
+											<td>클래스 4일 전 취소 시</td>
+											<td>클래스 금액의 5% 차감 후 환불</td>
+										</tr>
+										<tr>
+											<td>클래스 3일 전 취소 시</td>
+											<td>클래스 금액의 10% 차감 후 환불</td>
+										</tr>
+										<tr>
+											<td>클래스 2일 전 취소 시</td>
+											<td>클래스 금액의 20% 차감 후 환불</td>
+										</tr>
+										<tr>
+											<td>클래스 1일 전 취소 시</td>
+											<td>클래스 금액의 30% 차감 후 환불</td>
+										</tr>
+										<tr>
+											<td>클래스 당일 취소나 불참 시</td>
+											<td>환불 불가</td>
+										</tr>
+										<tr>
+											<td>예약 당일 밤 12시 이전 취소 시</td>
+											<td>100% 환불</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<button class="btn btn-danger btn-block" id="cancel_btn" type="submit">예약 취소</button>
+					<input type="hidden" value="${resInfo.pay_num}" name="pay_num"> <input type="hidden" value="${resInfo.member_id}" name="member_id">
 				</form>
 			</div>
 		</div>

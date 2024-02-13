@@ -15,9 +15,9 @@ public class PaymentService {
 	private PaymentMapper mapper;
 
 	//상세페이지에서 결제하기버튼 눌렀을때 출력되는 리스트
-	public List<ClassVO> getClassListSelect(int class_idx) {
+	public ClassVO getClassListSelect(int class_idx) {
 		 
-		List<ClassVO> result = mapper.classList(class_idx);
+		ClassVO result = mapper.classList(class_idx);
 		
 		return result;
 	}
@@ -40,7 +40,8 @@ public class PaymentService {
 	public int paymentSuccess(PaymentVO payment, String sId) {
 		return mapper.insertPayment(payment, sId);
 	}
-
+	
+	
 
 	
 }

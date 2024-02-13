@@ -185,7 +185,7 @@
 					
 					<c:otherwise>
 						<section id="leftSec01" class="section_box">
-						<h2>${List.class_title}</h2>
+						<h2>${map.class_title }</h2>
 						<table class="info_tag">
 							<%-- 대표사진 --%>
 						    <tr>
