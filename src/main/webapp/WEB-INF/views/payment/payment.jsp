@@ -179,12 +179,12 @@
 				alert("최소결제금액 " + selectedMinPrice
 						+ "원 이상 결제시 사용 가능합니다.");
 				return;
-			}< 1) {
-				disCountCouponValue =
+			}
 
 			var disCountCouponValue;
 
-			if (selectedCouponValue  Math.floor(total
+			if (selectedCouponValue < 1) {
+				disCountCouponValue = Math.floor(total
 						* selectedCouponValue);
 			} else {
 				disCountCouponValue = Math
