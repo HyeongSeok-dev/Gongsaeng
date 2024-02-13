@@ -1,6 +1,7 @@
 package kr.co.gongsaeng.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,6 +41,15 @@ public class PaymentService {
 	public int paymentSuccess(PaymentVO payment, String sId) {
 		return mapper.insertPayment(payment, sId);
 	}
+
+	//페이충전금액 인서트
+	public int getOPayInsert(Map<String, Object> withdrawResult, String id) {
+		return mapper.insertOPay(withdrawResult, id);
+	}
+
+
+
+	
 	
 	
 

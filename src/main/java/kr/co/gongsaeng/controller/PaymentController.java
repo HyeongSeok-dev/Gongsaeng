@@ -65,6 +65,7 @@ public class PaymentController {
         } else if (map.get("type").equals("pay")) {
         	//상세페이지서 넘어온 파라미터들 map에 넣기
         	ClassVO pay = paymentService.getClassListSelect(Integer.parseInt(map.get("class_idx").toString()));
+        	map.put("total", Integer.parseInt(map.get("res_member_count").toString())*pay.getClass_price());
         	model.addAttribute("map", map);
         	model.addAttribute("pay", pay);
         	System.out.println("pay" + pay);
@@ -82,6 +83,11 @@ public class PaymentController {
 		//account 테이블, cash테이블 조인해서 모든정보 가지고오기
 		CashVO allList = paymentService.getAllListSelect(member_id);
 		model.addAttribute("allList", allList);
+		
+		//============================================================================
+		//페이충전후 인서트
+		String tranAmt = (String) model.asMap().get("tran_amt");
+//		paymentService.insertPay(tranAmt);
 		
 		//============================================================================
 //		//사용가능한 페이
@@ -253,7 +259,7 @@ public class PaymentController {
 	@PostMapping("payment/charge/BankPayment")
 	public String bankPayment(@RequestParam Map<String, String> map, HttpSession session, Model model) {
 		
-		String id = (String)session.getAttribute("sId");
+		String id = (String)session.getAttribute("sId"); //로그인한 아이디
 		
 		//로그인, 계좌인증 필수처리
 		if(id == null) {
@@ -275,9 +281,14 @@ public class PaymentController {
 		logger.info("withdrawResult>>>>>>>>>>>>>>>>>>>>>>>" + withdrawResult);
 		
 		//요청결과를 model객체에 저장
-		model.addAttribute("withdrawResult", withdrawResult);
+		int insertCount = paymentService.getOPayInsert(withdrawResult,id);
 		
-		return "payment/charge_complete";
+		if(insertCount > 0) { //성공
+			return "payment/charge_complete";
+		}else {
+			return "forward";
+		}
+		
 	}
 	
 	

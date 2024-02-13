@@ -109,19 +109,17 @@ body {
 
 </head>
 <body>
-	<form action="payInsert">
 		<div class="review_complete_ment">
 		<img src="${pageContext.request.contextPath}/resources/img/complete_check.svg" id="check">
 		<h1 class="review_complete">0페이충전 완료!</h1>
 	    <div class="review_complete_content">0페이 충전이 완료되었습니다!</div>
 	    <input type="hidden" value="${withdrawResult.tran_amt}" id="tran_amt">
 	   	<br>
-	    <button type="submit" id="ok">
+	    <button type="button" id="ok">
 	    	확인
 	    </button>
 	    
 	    </div>
-	</form>
     <script>
 		document.getElementById("ok").addEventListener("click", function() {
 			window.close(); // 팝업 창 닫기

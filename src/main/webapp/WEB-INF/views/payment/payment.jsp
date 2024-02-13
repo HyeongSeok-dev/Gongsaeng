@@ -85,6 +85,9 @@
 		
 		var payValue;
 		
+	    var features = "scrollbars=yes,width=600,height=800,location=no, resizable=yes";
+	    var form = document.goPay;
+		
 		console.log(typeof $("#pay").val() );
 		console.log($("#pay").val() == "" || $("#pay").val() == null);
 		
@@ -108,8 +111,14 @@
 	    $("#discountPay_text").text($("#pay").val()); // #discountPoint_text에 #pay 값 표시
 	  } else if(payValue > cashValue){
 	    // 사용할 페이 값이 클경우
-	    alert("보유중인 페이가 부족합니다");
-	    $("#pay").focus(); // #pay로 포커스 이동
+	    var confirmResult = confirm("보유 중인 페이가 부족합니다. 페이를 충전하시겠습니까?");
+		  if (confirmResult) {
+				window.open("", "pay_main", features);
+				form.action = "/gongsaeng/payment/charge/main";
+				form.target = "pay_main";
+				form.method = "POST";
+				form.submit();
+		  }
 	  } else if(payValue == "0"){
 	    alert("사용할 페이를 입력해주세요");
 	    $("#pay").focus(); // #pay로 포커스 이동
@@ -134,6 +143,7 @@
 			</div>
 		</div>
 		<form action="paymentPro" name="payForm" method="POST" id="payForm">
+		
 			<div class="div_outter">
 
 
@@ -274,20 +284,19 @@
 								<!-- 							<button id="chargePay" class="use_button charge" type="button" onclick="agreePage();">사용하기</button> -->
 								<!-- 엑세스토큰이 존재하지 않을때 계좌인증 함수 호출  -->
 								<!-- 보유중인 페이금액이 없을때 -->
-								<!-- 아무 입력하지 않았을때 -->
 								<!-- 버튼 누르면 기본적으로 결제상세페이지에 0페이 금액표시 보유금액보다 더 높은금액 사용하기 막기-->
+										
 								<c:choose>
 									<c:when test="${empty allList.member_id }">
-										<button type="button" onclick="agreePage()">사용하기1</button>
+										<button type="button" onclick="agreePage()">사용하기</button>
 									</c:when>
 									<c:when test=" ${allList.cash_value eq 0}">
-										<button type="button" onclick="alert('페이잔액을 충전해주세요.');payCharge()">사용하기2</button>
-									</c:when>
-									<c:when test="${empty allList.cash_value}">
-										<button type="button" onclick="alert('사용할 페이를 입력해주세요.'); document.querySelector('#useablePay').focus();">사용하기3</button>
+										<button type="button" onclick="alert('페이잔액을 충전해주세요.');payCharge()">사용하기</button>
 									</c:when>
 									<c:otherwise>
-										<button id="chargePay" class="use_button charge" type="button" onclick="defaultPay()">사용하기0</button>
+									<form action="" name="goPay" method="POST" id="goPay">
+											<button id="chargePay" class="use_button charge" type="button" onclick="defaultPay()">사용하기</button>
+										</form>
 									</c:otherwise>
 								</c:choose>
 

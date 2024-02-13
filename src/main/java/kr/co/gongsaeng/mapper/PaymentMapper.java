@@ -1,6 +1,7 @@
 package kr.co.gongsaeng.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.*;
 
@@ -21,6 +22,9 @@ public interface PaymentMapper {
 	//결제정보 인서트
 	int insertPayment(@Param("payment") PaymentVO payment, 
 			@Param("sId") String sId);
+
+	//충전페이 인서트
+	int insertOPay(Map<String, Object> withdrawResult, String id);
 
 
 

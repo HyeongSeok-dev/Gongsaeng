@@ -124,7 +124,7 @@ $(document).ready(function() {
 		// 라디오버튼에 따른 결제팝업 변경
 		
 		var IMP = window.IMP;
-		IMP.init('imp22106057');
+		IMP.init('imp05703412');
 		
 		if($('input[name="pay_method"]:checked').length == 0) { //결제수단에서 라디오버튼 미 선택시 경고창 출력
                 alert("결제수단을 선택해주세요.");
@@ -141,19 +141,19 @@ $(document).ready(function() {
 					console.log("kakao");
 					IMP.request_pay({
 					  pg: "kakaopay",
-//					  merchant_uid: $("#class_idx").val(), //상품번호(클래스아이디)
-//					  name: "공생 클래스 수강 - " + $("#class_title").val() +" "+ $("#res_visit_date").val() +
-//					  	"" + $("#res_visit_time") + "부터시작" + $("#res_member_count").val() + "명",
+					  merchant_uid: $("#class_idx").val(), //상품번호(클래스아이디)
+					  name: "공생 클래스 수강 - " + $("#class_title").val() +" "+ $("#res_visit_date").val() +
+					  	"" + $("#res_visit_time") + "부터시작" + $("#res_member_count").val() + "명",
 //					  amount: parseInt($("#payment").text().trim().replace(/,/g, '')), //할인된금액(최종결제금액)
-//					  amount : $("#totalPayment_text").text(), //할인된금액(최종결제금액)
-//					  buyer_email: $("#member_email").val(), //생략가능(pg사에 따라 다름)
-//					  buyer_name: $("#member_name").val() //생략가능(pg사에 따라 다름)
+					  amount : $("#totalPayment_text").text(), //할인된금액(최종결제금액)
+					  buyer_email: $("#member_email").val(), //생략가능(pg사에 따라 다름)
+					  buyer_name: $("#member_name").val() //생략가능(pg사에 따라 다름)
 					  //=====================================================
-					  merchant_uid: "order_no_0001", // 상점에서 생성한 고유 주문번호
-					  name: "주문명:결제테스트",
-					  amount: 1004,
-					  buyer_email: "test@portone.io",
-					  buyer_name: "구매자이름"
+//					  merchant_uid: "order_no_0001", // 상점에서 생성한 고유 주문번호
+//					  name: "주문명:결제테스트",
+//					  amount: 1004,
+//					  buyer_email: "test@portone.io",
+//					  buyer_name: "구매자이름"
 					}, function (rsp) { 
 						console.log("function");
 						console.log("rsp : " + rsp);
@@ -163,24 +163,24 @@ $(document).ready(function() {
 					      // jQuery로 HTTP 요청
 						console.log("imp_uid : " + rsp.imp_uid);
 						
-//					      $("#pay_num").val(rsp.imp_uid); //폼에 결제번호 넣기
-//					      jQuery.ajax({
-//					        url: "paymentPro", 
-//					        method: "post",
-//					        dataType: "json",
-//					        data: $("form").serialize()
-//					      }).done(function (data) {
-//					         //가맹점 서버 결제 API 성공시 로직
-//					        console.log("성공 : " + data);
-//					        if(data) {
-//					        	window.location.href="payment/info?res_num=" + rsp.merchant_uid
-//											+ "&discountPoint=" + discountPoint 
-//											+ "&earnedPoints=" + earnedPoints
-//											+ "&finalTotalPayment=" + totalPayment;
-//							} else {
-//								console.log("결제내역 데이터베이스 입력 실패")
-//							}
-//					      });  //ajax
+					      $("#pay_num").val(rsp.imp_uid); //폼에 결제번호 넣기
+					      jQuery.ajax({
+					        url: "paymentPro", 
+					        method: "post",
+					        dataType: "json",
+					        data: $("form").serialize()
+					      }).done(function (data) {
+					         //가맹점 서버 결제 API 성공시 로직
+					        console.log("성공 : " + data);
+					        if(data) {
+					        	window.location.href="payment/info?res_num=" + rsp.merchant_uid
+											+ "&discountPoint=" + discountPoint 
+											+ "&earnedPoints=" + earnedPoints
+											+ "&finalTotalPayment=" + totalPayment;
+							} else {
+								console.log("결제내역 데이터베이스 입력 실패")
+							}
+					      });  //ajax
 					  }
 					});
 	//		} else if($('input[type=radio][value="2"]').is(':checked')) { // 네이버페이
