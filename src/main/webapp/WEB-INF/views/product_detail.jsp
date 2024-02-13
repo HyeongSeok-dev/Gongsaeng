@@ -383,7 +383,7 @@
                                     <div class="item-entry overflow abc">
 	                                        <a href="">
 	                                 	       <img src="${pageContext.request.contextPath }/resources/upload/${review.member_img}" class="img-circle reviewProImg">
-	                                 	       <img src="${pageContext.request.contextPath }/resources/upload/${review.}" class="img-circle reviewProImg">
+<%-- 	                                 	       <img src="${pageContext.request.contextPath }/resources/upload/${review.}" class="img-circle reviewProImg"> --%>
 	                                        </a>
 	                                        <h5><a href="property-1.html">${review.member_nick}</a></h5>
                                         <div class="dot-hr"></div>
@@ -394,7 +394,7 @@
 									</c:forEach>
                             </div>
                             <div class="ReviewSection__LinkWrapper-h5kv09-1 dzAqdb">
-								<a class="ReviewSection__StyledLink-h5kv09-2 PIawM" href="${pageContext.request.contextPath }/review/detail?class_idx=${cla.class_idx}">3개 후기 더보기
+								<a class="ReviewSection__StyledLink-h5kv09-2 PIawM" href="${pageContext.request.contextPath }/review/detail?class_idx=${cla.class_idx}">리뷰 더보기
 									<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' viewBox='0 0 12 12'%3E %3Cpath fill='%230075EF' fill-rule='evenodd' d='M3.97 1.72c.293-.293.767-.293 1.06 0L9.31 6l-4.28 4.28c-.293.293-.767.293-1.06 0-.293-.293-.293-.767 0-1.06L7.19 6 3.97 2.78c-.293-.293-.293-.767 0-1.06z' clip-rule='evenodd'/%3E %3C/svg%3E" alt="arrow-blue">
 								</a>
 							</div>
@@ -495,9 +495,9 @@
                                 <h4 class="s-property-title">클래스 소개</h4> 
                                 <div class="video-thumb">
                                     <a class="video-popup" href="yout" title="Virtual Tour">
-                                        <img src="${pageContext.request.contextPath }/resources/upload/${cla.class_class_curriculum1}" class="img-responsive wp-post-image" alt="Exterior">            
-                                        <img src="${pageContext.request.contextPath }/resources/upload/${cla.class_class_curriculum2}" class="img-responsive wp-post-image" alt="Exterior">            
-                                        <img src="${pageContext.request.contextPath }/resources/upload/${cla.class_class_curriculum3}" class="img-responsive wp-post-image" alt="Exterior">            
+<%--                                         <img src="${pageContext.request.contextPath }/resources/upload/${cla.class_class_curriculum1}" class="img-responsive wp-post-image" alt="Exterior">             --%>
+<%--                                         <img src="${pageContext.request.contextPath }/resources/upload/${cla.class_class_curriculum2}" class="img-responsive wp-post-image" alt="Exterior">             --%>
+<%--                                         <img src="${pageContext.request.contextPath }/resources/upload/${cla.class_class_curriculum3}" class="img-responsive wp-post-image" alt="Exterior">             --%>
                                     </a>
                                 </div>
                             </div>
@@ -735,7 +735,7 @@
         <div class="footer-area">
 			<jsp:include page="./inc/bottom.jsp"/>
 		</div>
-			<button onclick="location.href='${pageContext.request.contextPath}/mypage/review/write'">리뷰쓰기</button>
+			<button onclick="location.href='${pageContext.request.contextPath}/review/write'">리뷰쓰기</button>
 			<button onclick="location.href='${pageContext.request.contextPath}/review/report'">리뷰신고</button>
 			<button onclick="location.href='${pageContext.request.contextPath}/review/modify'">리뷰수정</button>
 			<button onclick="location.href='${pageContext.request.contextPath}/review/detail'">리뷰리스트</button>

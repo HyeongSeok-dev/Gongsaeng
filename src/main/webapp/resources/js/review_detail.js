@@ -231,4 +231,6 @@ deleteButtons.forEach(function(deleteButton) {
     });
 }); 
 
+
 }); //document.addEventListener의 끝
+

@@ -421,7 +421,7 @@ function showCommentForm(element) {
 	                    '<div class="reviewer_photo">' +
 	                        '<a href="#" target="_blank" class="profile_link">' +
 	                            '<div class="profile_image">' +
-	                                '<img src="${pageContext.request.contextPath}/resources/upload/' + review.member_img + '" alt="프로필" width="38" height="38">' +
+	                                '<img src="' + contextPath + '/resources/upload/' + review.member_img + '" alt="프로필" width="38" height="38">' +
 // 	                            '<img src="' + contextPath + reviews.member_img + '" width="15" height="15">' +
 	                            '</div>' +
 	                        '</a>' +
@@ -581,7 +581,7 @@ function showCommentForm(element) {
                     '<div class="reviewer_photo">' +
                         '<a href="#" target="_blank" class="profile_link">' +
                             '<div class="profile_image">' +
-//                           	  '<img src="' + contextPath + '/resources/upload/' + review.member_img + '" alt="프로필" width="38" height="38">' +
+                          	  '<img src="' + contextPath + '/resources/upload/' + review.member_img + '" alt="프로필" width="38" height="38">' +
                             '</div>' +
                         '</a>' +
                     '</div>' +
@@ -589,7 +589,7 @@ function showCommentForm(element) {
 //                         '<div class="reviewer_name">' + review.user_id + '</div>' +
 	                        '<div class="reviewer_name">' + review.member_nick + '</div>' +
                         '<div class="score1">' +
-//                             '<img src="' + contextPath + '/resources/img/review_star.png" width="15" height="15">' +
+                            '<img src="' + contextPath + '/resources/img/review_star.png" width="15" height="15">' +
                             (review.review_score / 2).toFixed(1) +
                         '</div>' +
                     '</div>' +
@@ -738,11 +738,14 @@ function showCommentForm(element) {
 			</svg>
 		</h2>
 <!-- 		<div class="review_write_button"> -->
-<%-- 		    <a href="${pageContext.request.contextPath}/review/write?com_id=${param.com_id}"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a> --%>
 <!-- 		</div> -->
 	<div class="review_write_button">
-	    <c:choose>
-	        <c:when test="${visitCount > 0}">
+<%-- 				<button onclick="location.href='${pageContext.request.contextPath}/review/write?class_idx=${reviews.class_idx}'">리뷰쓰기</button> --%>
+	
+<%-- 	   		 <input type="hidden" name="class_idx" value="${reviews.class_idx}">	 --%>
+<%-- 		    <a href="${pageContext.request.contextPath}/review/write?class_idx=${reviews.class_idx}"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a> --%>
+<%-- 	    <c:choose> --%>
+<%-- 	        <c:when test="${visitCount > 0}"> --%>
 <%-- 	             <a href="${pageContext.request.contextPath}/review/write?com_id=${param.com_id}"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a> --%>
 <%-- <a href="${pageContext.request.contextPath}/my/reservation"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a> --%>
 			 <%-- ==================================================================== --%>
@@ -750,13 +753,15 @@ function showCommentForm(element) {
 						<button type="submit">
 							<span class="write_button_text"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;리뷰쓰기</span>
 						</button>
+										<button class="write_button_text" onclick="location.href='${pageContext.request.contextPath}/review/write?class_idx=${review.class_idx}">등록하기</button>
+						
 				</form>
 			 <%-- = =================================================================== --%>
-	        </c:when>
-	        <c:otherwise>
-	            <a href="#" onclick="alert('방문 완료한 회원만 리뷰를 작성하실 수 있습니다.'); return false;"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a>
-	        </c:otherwise>
-	    </c:choose>
+<%-- 	        </c:when> --%>
+<%-- 	        <c:otherwise> --%>
+<!-- 	            <a href="#" onclick="alert('방문 완료한 회원만 리뷰를 작성하실 수 있습니다.'); return false;"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a> -->
+<%-- 	        </c:otherwise> --%>
+<%-- 	    </c:choose> --%>
 	</div>
 	</div>
 	<!-- ======================================================================================== -->
@@ -774,7 +779,8 @@ function showCommentForm(element) {
 		        <c:forEach items="${reviews}" var="review" varStatus="status">
 		            <!-- review_img_1 필드에 이미지가 존재하면 표시 -->
 		            <c:if test="${not empty review.review_img_1}">
-<%-- 		                <img src="${pageContext.request.contextPath}/resources/upload/${review.review_img_1}" alt="Review Image ${status.index + 1}" /> --%>
+		            <!-- 차트랑관련. -->
+		                <img src="${pageContext.request.contextPath}/resources/upload/${review.review_img_1}" alt="Review Image ${status.index + 1}" />
 		            </c:if>
 		        </c:forEach>
 		    </div>
