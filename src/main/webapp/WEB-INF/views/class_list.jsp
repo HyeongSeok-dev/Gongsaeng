@@ -64,24 +64,24 @@ $(function() {
     
     /// input type="text" js 설정 때 했던 흔적..
 	// 초기화 버튼 클릭 시
-//     $('button[type="reset"]').click(function(e){
+    $('button[type="reset"]').click(function(e){
     	// 기본 이벤트 실행X
 //         e.preventDefault();
         
         // 셀렉트박스(selectpicker), 체크박스 초기화
-//         $('.selectpicker').selectpicker('deselectAll');
-//         $(".classOffering").each(function() {
-//             $(this).iCheck('uncheck').iCheck('update');
-//         });
+        $('.selectpicker').selectpicker('deselectAll');
+        $(".classOffering").each(function() {
+            $(this).iCheck('uncheck').iCheck('update');
+        });
         
         // 시작일과 종료일 초기화 - min, max 속성 제거
-//         $('.class_start_date').val('').prop('min', '').prop('max', '');
-//         $('.class_end_date').val('').prop('min', '').prop('max', '');
+        $('.class_start_date').val('').prop('min', '').prop('max', '');
+        $('.class_end_date').val('').prop('min', '').prop('max', '');
         
         // 최소금액과 최대금액 값을 초기화
-//         $('#minAmount').val('0');
-//         $('#maxAmount').val('1,000,000');
-//     });
+        $('#minAmount').val('0');
+        $('#maxAmount').val('1,000,000');
+    });
 	
     // 'input[name="className"]' 입력 필드의 값이 변경될 때
     $("input[name='className']").on('input', function() {
@@ -408,7 +408,7 @@ function load_list() {
 			    	else if(searchClass.class_sub_category === 2) {classCategory += ' &gt 칸막이 시공';}
 			    	else if(searchClass.class_sub_category === 3) {classCategory += ' &gt 페인트 시공';}
 			    	else if(searchClass.class_sub_category === 4) {classCategory += ' &gt 방음 시공';}
-			    	else if(searchClass.class_sub_category === 5) {classCategory += ' &gt 단열 시공';}
+			    	else if(searchClass.class_sub_category === 5) {classCategory += ' &gt 단열 필름 시공';}
 			    } else if(searchClass.class_main_category === 3) {
 			    	classCategory = '부분 인테리어';
 			    	if(searchClass.class_sub_category === 1) {classCategory += ' &gt 샷시 설치 및 수리';}
