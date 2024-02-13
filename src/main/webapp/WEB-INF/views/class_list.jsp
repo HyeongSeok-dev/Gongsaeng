@@ -47,6 +47,8 @@ let maxPage = "";
 // 상단바 전체메뉴
 let classMainCategory = new URL(location.href).searchParams.get("classMainCategory");
 let classSubCategory = new URL(location.href).searchParams.get("classSubCategory");
+// 클릭한 업체만 볼 수 있는 클래스 리스트로 이동하기 위한 파라미터
+let comIdx = new URL(location.href).searchParams.get("com_idx");
 
 $(function() {
     // 메인에서 sort값 들고와서
@@ -290,7 +292,8 @@ function load_list() {
 			maxAmount: $("#maxAmount").val().replace(/,/g, ''),
 			classOffering: classOffering,
 			pageNum: pageNum,
-			sort: $('.sort-by-list .active').data('value')
+			sort: $('.sort-by-list .active').data('value'),
+			comIdx: comIdx
 	}
 
 	$.ajax({
@@ -315,6 +318,7 @@ function load_list() {
 			console.log("pageNum >>> " + pageNum);
 			console.log("maxPage >>> " + maxPage);
 			console.log("sort >>> " + searchData.sort);
+			console.log("comIdx >>> " + searchData.comIdx);
 			console.log("listCount >>> " + data.listCount);
 			
 			let contextPath = "<%=request.getContextPath()%>";
@@ -439,7 +443,7 @@ function load_list() {
 					'	<div class="col-sm-6 col-md-3 p0">'
 					+ '		<div class="box-two proerty-item" id="class_list_item">'
 					+ '			<div class="item-thumb">'
-					+ '				<a href="' + contextPath + '/product/detail?com_idx=' + searchClass.com_idx + '">'
+					+ '				<a href="' + contextPath + '/product/detail?class_idx=' + searchClass.class_idx + '">'
 					+ '					<img src="' + contextPath + '/resources/upload/' + searchClass.class_pic1 + '" onerror="this.onerror=null; this.src=\'' + contextPath + '/resources/img/noimg.png\'">'
 					+ '				</a>'
 					+ '				<span class="jss162">'
@@ -480,7 +484,7 @@ function load_list() {
 					+ '					<div class="row">'
 					+ '						<div class="col-sm-12 col_company_name">'
 					+ '							<h6>'
-					+ '								<a href="' + contextPath + '/com_idx=' + searchClass.com_idx + '">'
+					+ '								<a href="' + contextPath + '/class/list?com_idx=' + searchClass.com_idx + '" value="' + searchClass.com_idx + '">'
 					+ 									searchClass.com_name + ' / '
 					+ '									<span class="col_company_address">'
 					+ 										searchClass.classAddress
@@ -525,6 +529,7 @@ function load_list() {
 			console.log("pageNum >>> " + pageNum);
 			console.log("maxPage >>> " + maxPage);
 			console.log("sort >>> " + searchData.sort);
+			console.log("comIdx >>> " + searchData.comIdx);
 		}
 	});
 }
@@ -755,7 +760,7 @@ function load_list() {
 	                </div><!--/ .layout-switcher-->
 	            </div>
 				
-	            <div class="col-md-12 clear" style="padding-bottom: 100px;">
+	            <div class="col-md-12 clear class_list_items_area" style="padding-bottom: 100px;">
 	                <div id="list-type" class="proerty-th">
 						<%-- AJAX 를 활용한 요청으로 전달받은 클래스 카드 목록 출력 위치 (+ 무한스크롤) --%>
 					</div>

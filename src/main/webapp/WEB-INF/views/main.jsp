@@ -122,7 +122,6 @@
                         </div>
                         
                         <div class="col-xs-6 page-subheader sorting pl0">
-<%-- 							<button class="plus_class_List" onclick="location.href='${pageContext.request.contextPath}/class/list'"> --%>
 							<button class="plus_class_List" onclick="plus_class_List()">
 								더보기
 							</button>
@@ -272,7 +271,7 @@
 											<div class="row">
 												<div class="col-sm-12 col_company_name">
 													<h6>
-														<a href="${pageContext.request.contextPath}/com_idx=${recentClass.com_idx}">
+														<a href="${pageContext.request.contextPath}/class/list?com_idx=${recentClass.com_idx}">
 															${recentClass.com_name} / 
 															<span class="col_company_address">${recentClass.classAddress}</span>
 														</a>
@@ -439,7 +438,7 @@
 											<div class="row">
 												<div class="col-sm-12 col_company_name">
 													<h6>
-														<a href="${pageContext.request.contextPath}/com_idx=${popularClass.com_idx}">
+														<a href="${pageContext.request.contextPath}/class/list?com_idx=${popularClass.com_idx}">
 															${popularClass.com_name} / 
 															<span class="col_company_address">${popularClass.classAddress}</span>
 														</a>
@@ -631,7 +630,7 @@
 															<div class="row">
 																<div class="col-sm-12 col_company_name">
 																	<h6>
-																		<a href="${pageContext.request.contextPath}/com_idx=${deadlineSoonClass.com_idx}">
+																		<a href="${pageContext.request.contextPath}/class/list?com_idx=${deadlineSoonClass.com_idx}">
 																			${deadlineSoonClass.com_name} / 
 																			<span class="col_company_address">${deadlineSoonClass.classAddress}</span>
 																		</a>

@@ -23,8 +23,9 @@
 		FROM class cl
 			JOIN company co
 				ON co.member_id = cl.member_id
-		WHERE
-			cl.class_end_date >= CURDATE()
+<!-- 		WHERE -->
+<!-- 			cl.class_end_date >= CURDATE() -->
+		<!-- 굳이 할 필요없어서 생략 -->
 		GROUP BY 
 			cl.class_idx
 			, co.com_idx
@@ -54,13 +55,15 @@
 				ON co.member_id = cl.member_id
 			LEFT JOIN payment pa
 				ON pa.class_idx = cl.class_idx
-		WHERE
+<!-- 		WHERE -->
 			<!-- 종료되지 않은 클래스 기준 -->
 			<!-- 종료일 >= 오늘날짜 -->
 			<!-- 종료일  = 오늘날짜일 경우 : 종료시간 > 지금시간 -->
-			cl.class_end_date &gt; CURDATE()
-				OR (cl.class_end_date = CURDATE()
-					AND cl.class_end_time &gt; CURTIME())
+<!-- 			cl.class_end_date &gt; CURDATE() -->
+<!-- 				OR (cl.class_end_date = CURDATE() -->
+<!-- 					AND cl.class_end_time &gt; CURTIME()) -->
+			<!-- 주석처리 이유 : 나중에 데이터를 추가하지 않는 이상
+					시간이 지나면 쿼리 결과에 의해 메인이 비게 되므로 -->
 		GROUP BY 
 			cl.class_idx
 			, co.com_idx
@@ -273,6 +276,11 @@
 		<!-- 클래스 금액 -->
 		AND
 			cl.class_price BETWEEN #{searchData.minAmount} AND #{searchData.maxAmount}
+		<!-- 업체를 클릭할 경우 해당 업체의 클래스 목록을 조회할 수 있게 -->
+		<if test="searchData.comIdx != null and !searchData.comIdx.equals('')">
+		AND
+			com_idx = #{searchData.comIdx}
+		</if>
 		ORDER BY
 			<choose>
 				<when test="searchData.sort != null and searchData.sort == 'sort_popular'">
@@ -371,7 +379,7 @@
 				<when test="searchData.classState == 'classState3'">
 					<!-- 예약인원수 > 0 -->
 					<!-- 최소인원수나 진행중 기준 이런거 플젝 마감일에야 생각나서 제외 -->
-<!-- 					resTotalCount &gt; 0 -->
+	<!-- 				resTotalCount &gt; 0 -->
 					<!-- 시작일 <= 오늘날짜 -->
 					<!-- 시작일  = 오늘날짜인 경우 : 시작시간 <= 지금시간 -->
 					(cl.class_start_date &lt; CURDATE()
@@ -442,6 +450,11 @@
 			<!-- 클래스 금액 -->
 			AND
 				cl.class_price BETWEEN #{searchData.minAmount} AND #{searchData.maxAmount}
+			<!-- 업체를 클릭할 경우 해당 업체의 클래스 목록을 조회할 수 있게 -->
+			<if test="searchData.comIdx != null and !searchData.comIdx.equals('')">
+			AND
+				com_idx = #{searchData.comIdx}
+			</if>
 			ORDER BY
 				<choose>
 					<when test="searchData.sort != null and searchData.sort == 'sort_popular'">

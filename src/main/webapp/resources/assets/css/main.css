@@ -4307,3 +4307,21 @@ input.currency {
 .list_count_area {
 	font-size: 15px;
 }
+
+/* 클래스 리스트에서 90% 사이즈로 조절 시
+	카드가 두줄 밖에 안나오는 문제 해결 */
+@media (min-width: 992px) {
+	.class_list_items_area {
+	    width: 110%;
+	}	
+}
+
+/* 클래스 카드 썸네일 사이즈 제한 */
+/* 앞에 적용된게 있어서 실상 적용된건 radius뿐 */
+.item-thumb img {
+	border-radius: 3px;
+	width: 366px;  /* 원하는 너비를 설정하세요 */
+	height: 225px; /* 원하는 높이를 설정하세요 */
+	object-fit: cover; /* 이미지의 비율을 유지하면서, 지정된 너비와 높이에 맞게 이미지를 잘라내거나 확대/축소합니다. */
+}
+
