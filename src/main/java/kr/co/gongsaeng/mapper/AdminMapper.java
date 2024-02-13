@@ -174,6 +174,20 @@ public interface AdminMapper {
 	
 	int insertCouponToAdmin(Map<String, Object> map);
 	
+	// company_refund.jsp
+	int updateRefundApproval(String pay_num);
+	int updateRefundRejection(String pay_num);
+	String selectCompanyMember(String com_idx);
+	void insertRfundResult(@Param("member_id") String member_id, @Param("cash_value") String cash_value,@Param("pay_num") String pay_num);
+	int updateDoRefund(String pay_num);
+	
+	// company_refund_detail.jsp
+	PaymentVO selectCompanyRefund(String pay_num);
+	
+	//report_idx.jsp
+	ReportVO selectReportDetail(@Param("report_idx")int report_idx, @Param("class_idx")int class_idx, @Param("review_idx")int review_idx);
+	// report_detail 수정
+	int updateStatusModify(int report_idx);
 	void insertCouponAlert(Map<String, Object> map);
 	
 	

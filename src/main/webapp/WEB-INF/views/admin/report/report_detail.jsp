@@ -26,6 +26,14 @@
   <link href="${pageContext.request.contextPath }/resources/admin_assets/css/admin.css" rel="stylesheet" />
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/global.css">
   <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">
+  <script src="${pageContext.request.contextPath }/resources/js/jquery-3.7.1.js"></script>
+  <script type="text/javascript">
+  	$(function() {
+		$("#modifyStatus").on("click",function(){
+			$("form").submit();
+		});
+	});
+  </script>
 </head>
 
 <body class="">
@@ -101,47 +109,74 @@
             <div class="card">
               <div class="card-header">
                 <h5 class="title">신고 상세 정보</h5>
-                <h5>처리중/승인/반려 표시</h5>
+                <form action="modifyReport">
+					<select name="report_status">
+						<option value="1" <c:if test="${report.report_status eq 1 }">selected</c:if>>접수</option>
+						<option value="2" <c:if test="${report.report_status eq 2 }">selected</c:if>>승인</option>
+						<option value="3" <c:if test="${report.report_status eq 3 }">selected</c:if>>반려</option>
+					</select>
+				</form>
               </div>
               <div class="card-body">
 	             <table class="table table-bordered">
+	             	<colgroup>
+	             		<col width="25%">
+	             		<col width="25%">
+	             		<col width="25%">
+	             		<col width="25%">
+	             	</colgroup>
 	             	<tr>
 	             		<th>신고번호</th>
-	             		<td>신고번호</td>
+	             		<td>${report.report_idx }</td>
 	             		<th>신고일자</th>
-	             		<td>신고일자</td>
+	             		<td>${report.report_date }</td>
 	             	</tr>
 	             	<tr>
 	             		<th>신고자아이디</th>
-	             		<td>신고자아이디</td>
+	             		<td>${report.member_id }</td>
 	             		<th>피신고자아이디</th>
-	             		<td>피신고자아이디</td>
+	             		<td>
+		             		<c:choose>
+								<c:when test="${report.report_category eq 2 }">
+				             		${report.banjangMember_id }
+								</c:when>	             		
+								<c:when test="${report.report_category eq 1 }">
+				             		${report.reviewerMember_id }
+								</c:when>	             		
+		             		</c:choose>
+	             		</td>
 	             	</tr>
-	             	<!-- 클래스신고시 -->
-	             	<tr>
-	             		<th>사업체명</th>
-	             		<td>사업체명</td>
-	             		<th>클래스명</th>
-	             		<td>클래스명</td>
-	             	</tr>
-	             	<!-- 리뷰신고시 -->
-	             	<tr>
-	             		<th>클래스명</th>
-	             		<td>클래스명</td>
-	             		<th>리뷰내용</th>
-	             		<td>리뷰내용</td>
-	             	</tr>
+	             	<c:choose>
+	             		<c:when test="${report.report_category eq 2 }">
+			             	<!-- 클래스신고시 -->
+			             	<tr>
+			             		<th>사업체명</th>
+			             		<td>${report.com_name }</td>
+			             		<th>클래스명</th>
+			             		<td>${report.class_title }</td>
+			             	</tr>
+	             		</c:when>
+	             		<c:when test="${report.report_category eq 1 }">
+			             	<!-- 리뷰신고시 -->
+			             	<tr>
+			             		<th>클래스명</th>
+			             		<td>${report.class_title }</td>
+			             		<th>리뷰내용</th>
+			             		<td>${report.review_content }</td>
+			             	</tr>
+	             		</c:when>
+	             	</c:choose>
 	             	<tr>
 	             		<th>신고사유</th>
-	             		<td colspan="3">신고사유</td>
+	             		<td colspan="3">${report.report_reason }</td>
 	             	</tr>
 	             	<tr>
 	             		<th>상세내용</th>
-	             		<td colspan="3">상세내용</td>
+	             		<td colspan="3">${report.report_content }</td>
 	             	</tr>
 	             	<tr>
 	             		<th>답변받을 이메일</th>
-	             		<td colspan="3">답변받을 이메일</td>
+	             		<td colspan="3">${report.member_email}</td>
 	             	</tr>
 	             </table>	 	
               </div>
@@ -150,8 +185,15 @@
         </div>
         <div class="row">
         	<div class="col-md-12 btn_bottom">
-	        	<button type="button" class="btn">목록</button>&nbsp;&nbsp;
-	        	<button type="button" class="btn">변경저장</button>
+        		<c:choose>
+					<c:when test="${report.report_category eq 2 }">
+			        	<button type="button" class="btn btn_default" onclick="location.replace('${pageContext.request.contextPath }/admin/report/class')">목록</button>&nbsp;&nbsp;
+					</c:when>	             		
+					<c:when test="${report.report_category eq 1 }">
+			        	<button type="button" class="btn btn_default" onclick="location.replace('${pageContext.request.contextPath }/admin/report/review')">목록</button>&nbsp;&nbsp;
+					</c:when>	             		
+           		</c:choose>
+	        	<button type="button" class="btn btn_default" id="modifyStatus">변경저장</button>
         	</div>
         </div>
       </div>
@@ -160,44 +202,6 @@
      </footer>
     </div>
   </div>
-  
-   <!-- 모달 창 -->
-    <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="filterModalLabel">회원 유형 선택</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="allCheck">
-                        <label class="form-check-label" for="allCheck">
-                            전체 선택
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="leaderCheck">
-                        <label class="form-check-label" for="leaderCheck">
-                            반장 회원
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="generalCheck">
-                        <label class="form-check-label" for="generalCheck">
-                            일반 회원
-                        </label>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                    <button type="button" class="btn btn-primary">적용</button>
-                </div>
-            </div>
-        </div>
-    </div>
   <!--   Core JS Files   -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/core/popper.min.js"></script>
@@ -212,18 +216,6 @@
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="${pageContext.request.contextPath }/resources/admin_assets/demo/demo.js"></script>
-	<script>
-        $(document).ready(function() {
-            // 필터 기능 구현
-            $('#leaderFilter, #withdrawalFilter').change(function() {
-                var leaderFilter = $('#leaderFilter').val();
-                var withdrawalFilter = $('#withdrawalFilter').val();
-                
-                // 로직에 따라 회원 데이터 필터링 및 표시
-            });
-        });
-    </script>
-
 </body>
 
 </html>

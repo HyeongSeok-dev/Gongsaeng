@@ -285,9 +285,9 @@ tbody {
 											</thead>
 											<tbody>
 												<!-- 여기에 각 행을 추가하세요. 예를 들어: -->
-													<c:forEach items="${companyReviewDetail}" var="review" >
+													<c:forEach items="${companyReviewDetail}" var="review"  varStatus="status">
 												<tr>
-														<th scope="row">1</th>
+														<th scope="row">${status.index + 1}</th>
 														<td>${review.class_title}</td> <!-- 클래스명 -->
 														<td>${review.member_id}</td> <!-- 회원아이디 -->
 <!-- 														<td>구승민</td> -->

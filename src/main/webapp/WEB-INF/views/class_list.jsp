@@ -60,17 +60,26 @@ $(function() {
         $('.order_popularity').parent().addClass("active");
     }
     
-	// 초기화 버튼 클릭 시 셀렉트박스(selectpicker), 체크박스 초기화
-    $('button[type="reset"]').click(function(e){
-        e.preventDefault();
-        $('.selectpicker').selectpicker('deselectAll');
-        $(".classOffering").each(function() {
-            $(this).iCheck('uncheck').iCheck('update');
-        });
+    /// input type="text" js 설정 때 했던 흔적..
+	// 초기화 버튼 클릭 시
+//     $('button[type="reset"]').click(function(e){
+    	// 기본 이벤트 실행X
+//         e.preventDefault();
+        
+        // 셀렉트박스(selectpicker), 체크박스 초기화
+//         $('.selectpicker').selectpicker('deselectAll');
+//         $(".classOffering").each(function() {
+//             $(this).iCheck('uncheck').iCheck('update');
+//         });
+        
         // 시작일과 종료일 초기화 - min, max 속성 제거
-        $('.class_start_date').val('').prop('min', '').prop('max', '');
-        $('.class_end_date').val('').prop('min', '').prop('max', '');
-    });
+//         $('.class_start_date').val('').prop('min', '').prop('max', '');
+//         $('.class_end_date').val('').prop('min', '').prop('max', '');
+        
+        // 최소금액과 최대금액 값을 초기화
+//         $('#minAmount').val('0');
+//         $('#maxAmount').val('1,000,000');
+//     });
 	
     // 'input[name="className"]' 입력 필드의 값이 변경될 때
     $("input[name='className']").on('input', function() {
@@ -97,7 +106,7 @@ $(function() {
             $('.class_end_date').val('').prop('min', $('.class_start_date').val()).prop('max', '');
         }
         // "종료" 선택한 경우
-        else if ($(this).val() == "classState3") {
+        else if ($(this).val() == "classState4") {
             // 시작일은 초기화하고, 선택 범위는 종료일 이전만 가능하게 함
             $('.class_start_date').val('').prop('min', '').prop('max', currentDate);
             // 종료일을 오늘로 설정하고, 오늘 이후 날짜는 선택할 수 없게 함
@@ -619,7 +628,8 @@ function load_list() {
 	                                <select id="classState" class="selectpicker show-tick form-control" title="상태">
 	                                    <option value="classState1">모집중</option>
 	                                    <option value="classState2">마감</option>
-	                                    <option value="classState3">종료</option>  
+	                                    <option value="classState3">진행중</option>
+	                                    <option value="classState4">종료</option>  
 	                                </select>
 	                            </div>
 	                        </div>

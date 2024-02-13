@@ -145,30 +145,30 @@
 							</div>
 							<div class="card-body">
 								<div class="card-body-header">
-									<div>
-										<form action="" class="member_date">
-											<div class="search_bar_admin">
-												<div>
-													<select>
-														<option>전체일자</option>
-														<option>발급일자</option>
-														<option>유효기간</option>
-													</select>
-												</div>
-												<div>
-													<input type="date" id="start_date">&nbsp;&nbsp;~&nbsp;&nbsp;<input type="date" id="end_date">
-												</div>
-											</div>
-											<div class="search_bar_admin">
-												<div>
-													<input type="search">
-												</div>
-												<div>
-													<button type="submit" class="btn btn_default" value="검색">검색</button>
-												</div>
-											</div>
-										</form>
-									</div>
+<!-- 									<div> -->
+<!-- 										<form action="" class="member_date"> -->
+<!-- 											<div class="search_bar_admin"> -->
+<!-- 												<div> -->
+<!-- 													<select> -->
+<!-- 														<option>전체일자</option> -->
+<!-- 														<option>발급일자</option> -->
+<!-- 														<option>유효기간</option> -->
+<!-- 													</select> -->
+<!-- 												</div> -->
+<!-- 												<div> -->
+<!-- 													<input type="date" id="start_date">&nbsp;&nbsp;~&nbsp;&nbsp;<input type="date" id="end_date"> -->
+<!-- 												</div> -->
+<!-- 											</div> -->
+<!-- 											<div class="search_bar_admin"> -->
+<!-- 												<div> -->
+<!-- 													<input type="search"> -->
+<!-- 												</div> -->
+<!-- 												<div> -->
+<!-- 													<button type="submit" class="btn btn_default" value="검색">검색</button> -->
+<!-- 												</div> -->
+<!-- 											</div> -->
+<!-- 										</form> -->
+<!-- 									</div> -->
 								</div>
 								<table class="table table-bordered">
 									<colgroup>
@@ -182,11 +182,14 @@
 									</colgroup>
 									<tr>
 										<th>발행일자</th>
-										<th><select>
-												<option>발급자</option>
-												<option>관리자발급</option>
-												<option>반장발급</option>
-										</select></th>
+										<th>
+										발급자
+<!-- 										<select> -->
+<!-- 												<option>발급자</option> -->
+<!-- 												<option>관리자발급</option> -->
+<!-- 												<option>반장발급</option> -->
+<!-- 										</select> -->
+										</th>
 										<th>쿠폰이름</th>
 										<th>쿠폰 소유자</th>
 										<th>유효기간</th>

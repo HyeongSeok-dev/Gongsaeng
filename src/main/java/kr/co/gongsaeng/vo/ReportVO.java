@@ -20,8 +20,8 @@ public class ReportVO {
 	// [관리자 페이지]
 	// 클래스 신고
 	private String class_title;
-	private String banjangMember_id;
-	private String reviewerMember_id;
+	private String banjangMember_id; //클래스신고시 피신고자
+	private String reviewerMember_id; //리뷰신고시 피신고자
 	private String com_name;
 	
 	// 피신고건수(company_detail)

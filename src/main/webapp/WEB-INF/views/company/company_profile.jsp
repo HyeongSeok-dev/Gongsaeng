@@ -244,9 +244,9 @@ margin-left: 10px;
 <div class="row my-4">
 <div class="col-md-12">
 <div>
-<p class="text-muted mb-2 fw-medium"><i class="mdi mdi-email-outline me-2"></i><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0b416a6578637c6e6767784b7b796469626825686466">[강사 이메일]</a>
+<p class="text-muted mb-2 fw-medium"><i class="mdi mdi-email-outline me-2"></i><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0b416a6578637c6e6767784b7b796469626825686466">${companyProfile.com_email}</a>
 </p>
-<p class="text-muted fw-medium mb-0"><i class="mdi mdi-phone-in-talk-outline me-2"></i>[강사 폰번호]
+<p class="text-muted fw-medium mb-0"><i class="mdi mdi-phone-in-talk-outline me-2"></i>${companyProfile.com_tel}
 </p>
 <div class="company_profile_high_btn">
 <button type="button" class="btn btn-outline-warning" id="banFollow1">팔로우</button>
@@ -277,7 +277,7 @@ margin-left: 10px;
 <div class="tab-content p-4">
 <!-- <div class="tab-content"> -->
     <div id="profile-tab" class="tab-pane fade show active" role="tabpanel">
-        <h4>반장 프로필 내용</h4>
+        <h4>${companyProfile.com_introduction }</h4>
         <!-- 반장 프로필 관련 내용 -->
     </div>
     <div id="class-tab" class="tab-pane fade" role="tabpanel">

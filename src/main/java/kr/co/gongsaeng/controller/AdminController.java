@@ -64,7 +64,7 @@ public class AdminController {
 //			model.addAttribute("msg", "로그인이 필요합니다");
 //			model.addAttribute("targetURL", "/gongsaeng/member/login");
 //			return "forward";
-//		} else if(!session.getAttribute("sId").equals("admin")) {
+//		} else if(!session.getAttribute("sId").equals("admin1234")) {
 //			model.addAttribute("msg", "잘못된 접근 입니다.");
 //			return "fail_back";
 //		}
@@ -213,7 +213,7 @@ public class AdminController {
 ////			model.addAttribute("msg", "로그인이 필요합니다");
 ////			model.addAttribute("targetURL", "/gongsaeng/member/login");
 ////			return "forward";
-////		} else if(!session.getAttribute("sId").equals("admin")) {
+////		} else if(!session.getAttribute("sId").equals("admin1234")) {
 ////			model.addAttribute("msg", "잘못된 접근 입니다.");
 ////			return "fail_back";
 ////		}
@@ -226,7 +226,7 @@ public class AdminController {
 ////			model.addAttribute("msg", "로그인이 필요합니다");
 ////			model.addAttribute("targetURL", "/gongsaeng/member/login");
 ////			return "forward";
-////		} else if(!session.getAttribute("sId").equals("admin")) {
+////		} else if(!session.getAttribute("sId").equals("admin1234")) {
 ////			model.addAttribute("msg", "잘못된 접근 입니다.");
 ////			return "fail_back";
 ////		}
@@ -239,7 +239,7 @@ public class AdminController {
 ////			model.addAttribute("msg", "로그인이 필요합니다");
 ////			model.addAttribute("targetURL", "/gongsaeng/member/login");
 ////			return "forward";
-////		} else if(!session.getAttribute("sId").equals("admin")) {
+////		} else if(!session.getAttribute("sId").equals("admin1234")) {
 ////			model.addAttribute("msg", "잘못된 접근 입니다.");
 ////			return "fail_back";
 ////		}
@@ -256,7 +256,7 @@ public class AdminController {
 //			model.addAttribute("msg", "로그인이 필요합니다");
 //			model.addAttribute("targetURL", "/gongsaeng/member/login");
 //			return "forward";
-//		} else if(!session.getAttribute("sId").equals("admin")) {
+//		} else if(!session.getAttribute("sId").equals("admin1234")) {
 //			model.addAttribute("msg", "잘못된 접근 입니다.");
 //			return "fail_back";
 //		}
@@ -281,7 +281,7 @@ public class AdminController {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/member/login");
 //		return "forward";
-//	} else if(!session.getAttribute("sId").equals("admin")) {
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}
@@ -372,7 +372,7 @@ public class AdminController {
 //			model.addAttribute("msg", "로그인이 필요합니다");
 //			model.addAttribute("targetURL", "/gongsaeng/login");
 //			return "forward";
-//		} else if(!session.getAttribute("sId").equals("admin")) {
+//		} else if(!session.getAttribute("sId").equals("admin1234")) {
 //			model.addAttribute("msg", "잘못된 접근 입니다.");
 //			return "fail_back";
 //		}
@@ -454,7 +454,7 @@ public class AdminController {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
 //		return "forward";
-//	} else if(!session.getAttribute("sId").equals("admin")) {
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}
@@ -476,7 +476,7 @@ public class AdminController {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
 //		return "forward";
-//	} else if(!session.getAttribute("sId").equals("admin")) {
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}
@@ -496,7 +496,7 @@ public class AdminController {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
 //		return "forward";
-//	} else if(!session.getAttribute("sId").equals("admin")) {
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}
@@ -561,7 +561,7 @@ public class AdminController {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
 //		return "forward";
-//	} else if(!session.getAttribute("sId").equals("admin")) {
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}
@@ -591,7 +591,7 @@ public class AdminController {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
 //		return "forward";
-//	} else if(!session.getAttribute("sId").equals("admin")) {
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}
@@ -610,7 +610,7 @@ public class AdminController {
 //			model.addAttribute("msg", "로그인이 필요합니다");
 //			model.addAttribute("targetURL", "/gongsaeng/login");
 //			return "forward";
-//		} else if(!session.getAttribute("sId").equals("admin")) {
+//		} else if(!session.getAttribute("sId").equals("admin1234")) {
 //			model.addAttribute("msg", "잘못된 접근 입니다.");
 //			return "fail_back";
 //		}
@@ -631,7 +631,7 @@ public class AdminController {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
 //		return "forward";
-//	} else if(!session.getAttribute("sId").equals("admin")) {
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}
@@ -649,7 +649,7 @@ public class AdminController {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
 //		return "forward";
-//	} else if(!session.getAttribute("sId").equals("admin")) {
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}
@@ -671,7 +671,7 @@ public class AdminController {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
 //		return "forward";
-//	} else if(!session.getAttribute("sId").equals("admin")) {
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}
@@ -710,7 +710,7 @@ public class AdminController {
 //			model.addAttribute("msg", "로그인이 필요합니다");
 //			model.addAttribute("targetURL", "/gongsaeng/login");
 //			return "forward";
-//		} else if(!session.getAttribute("sId").equals("admin")) {
+//		} else if(!session.getAttribute("sId").equals("admin1234")) {
 //			model.addAttribute("msg", "잘못된 접근 입니다.");
 //			return "fail_back";
 //		}
@@ -769,7 +769,7 @@ public class AdminController {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
 //		return "forward";
-//	} else if(!session.getAttribute("sId").equals("admin")) {
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}
@@ -789,7 +789,7 @@ public class AdminController {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
 //		return "forward";
-//	} else if(!session.getAttribute("sId").equals("admin")) {
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}		
@@ -807,7 +807,7 @@ public class AdminController {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
 //		return "forward";
-//	} else if(!session.getAttribute("sId").equals("admin")) {
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}
@@ -826,7 +826,7 @@ public class AdminController {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
 //		return "forward";
-//	} else if(!session.getAttribute("sId").equals("admin")) {
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}
@@ -845,7 +845,7 @@ public class AdminController {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
 //		return "forward";
-//	} else if(!session.getAttribute("sId").equals("admin")) {
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}		
@@ -923,7 +923,7 @@ public class AdminController {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
 //		return "forward";
-//	} else if(!session.getAttribute("sId").equals("admin")) {
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}
@@ -942,7 +942,7 @@ public class AdminController {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
 //		return "forward";
-//	} else if(!session.getAttribute("sId").equals("admin")) {
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}
@@ -960,7 +960,7 @@ public class AdminController {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
 //		return "forward";
-//	} else if(!session.getAttribute("sId").equals("admin")) {
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}
@@ -978,7 +978,7 @@ public class AdminController {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
 //		return "forward";
-//	} else if(!session.getAttribute("sId").equals("admin")) {
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}
@@ -1076,6 +1076,92 @@ public class AdminController {
 		
 	}
 	
+		// 사업체 환급금 목록
+		@GetMapping("admin/company/refund/detail")
+		public String companyRefundDetailForm(HttpSession session, Model model,String pay_num) {
+//			if(session.getAttribute("sId") == null) {
+//			model.addAttribute("msg", "로그인이 필요합니다");
+//			model.addAttribute("targetURL", "/gongsaeng/login");
+//			return "forward";
+//		} else if(!session.getAttribute("sId").equals("admin1234")) {
+//			model.addAttribute("msg", "잘못된 접근 입니다.");
+//			return "fail_back";
+//		}
+			PaymentVO refund = service.getcompanyRefund(pay_num);
+			
+			model.addAttribute("refund",refund);
+					
+			return"admin/company/company_refund_detail";
+		}
+	
+	@GetMapping("admin/company/refund/refundApproval")
+	public String refundApprovalPro(HttpSession session, Model model, String pay_num) {
+//		if(session.getAttribute("sId") == null) {
+//		model.addAttribute("msg", "로그인이 필요합니다");
+//		model.addAttribute("targetURL", "/gongsaeng/login");
+//		return "forward";
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
+//		model.addAttribute("msg", "잘못된 접근 입니다.");
+//		return "fail_back";
+//	}
+		System.out.println("refundApprovalPro pn: "+pay_num);
+		
+		int updateCount = service.refundApproval(pay_num);
+		
+		if(updateCount > 0) {
+			return "redirect:/admin/company/refund";
+		} else {
+			model.addAttribute("msg", "환급 승인 실패");
+			return "fail_back";
+		}
+	}
+	
+	@GetMapping("admin/company/refund/refundRejection")
+	public String refundRejectionPro(HttpSession session, Model model, String pay_num) {
+//		if(session.getAttribute("sId") == null) {
+//		model.addAttribute("msg", "로그인이 필요합니다");
+//		model.addAttribute("targetURL", "/gongsaeng/login");
+//		return "forward";
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
+//		model.addAttribute("msg", "잘못된 접근 입니다.");
+//		return "fail_back";
+//	}
+		System.out.println("refundRejectionPro pn: "+pay_num);
+		int updateCount = service.refundRejection(pay_num);
+		
+		if(updateCount > 0) {
+			return "redirect:/admin/company/refund";
+		} else {
+			model.addAttribute("msg", "환급 거절 실패");
+			return "fail_back";
+		}
+	}
+	
+	@GetMapping("admin/company/refund/doRefund")
+	public String doRefundPro(HttpSession session, Model model, @RequestParam("pay_num") String pay_num,
+			@RequestParam("com_idx") String com_idx, @RequestParam("cash_value") double cash_valueD) {
+//		if(session.getAttribute("sId") == null) {
+//		model.addAttribute("msg", "로그인이 필요합니다");
+//		model.addAttribute("targetURL", "/gongsaeng/login");
+//		return "forward";
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
+//		model.addAttribute("msg", "잘못된 접근 입니다.");
+//		return "fail_back";
+//	}
+		System.out.println("pn: "+ pay_num);
+		System.out.println("idx: "+ com_idx);
+		System.out.println("value: "+ cash_valueD);
+		String cash_value = String.format("2%.2f", cash_valueD);
+		int updateCount = service.doRefund(pay_num, com_idx, cash_value);
+		
+		if(updateCount > 0) {
+			return "redirect:/admin/company/refund";
+		} else {
+			model.addAttribute("msg", "환급 실패");
+			return "fail_back";
+			}
+//		return "fail_back";
+	}
 	
 	//==========================================[ O페이 ] 
 	// 페이와 연동된 회원계좌목록
@@ -1085,7 +1171,7 @@ public class AdminController {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
 //		return "forward";
-//	} else if(!session.getAttribute("sId").equals("admin")) {
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}
@@ -1103,7 +1189,7 @@ public class AdminController {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
 //		return "forward";
-//	} else if(!session.getAttribute("sId").equals("admin")) {
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}
@@ -1118,7 +1204,7 @@ public class AdminController {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
 //		return "forward";
-//	} else if(!session.getAttribute("sId").equals("admin")) {
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}
@@ -1134,7 +1220,7 @@ public class AdminController {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
 //		return "forward";
-//	} else if(!session.getAttribute("sId").equals("admin")) {
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}
@@ -1148,7 +1234,7 @@ public class AdminController {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
 //		return "forward";
-//	} else if(!session.getAttribute("sId").equals("admin")) {
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}
@@ -1163,7 +1249,7 @@ public class AdminController {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
 //		return "forward";
-//	} else if(!session.getAttribute("sId").equals("admin")) {
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}
@@ -1178,7 +1264,7 @@ public class AdminController {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
 //		return "forward";
-//	} else if(!session.getAttribute("sId").equals("admin")) {
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}
@@ -1198,7 +1284,7 @@ public class AdminController {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
 //		return "forward";
-//	} else if(!session.getAttribute("sId").equals("admin")) {
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}
@@ -1209,17 +1295,58 @@ public class AdminController {
 	}
 	
 	// 신고 상세
-	@GetMapping("admin/report/detail")
-	public String reportClassDetail(HttpSession session, Model model) {
+	@GetMapping("admin/report/class/detail")
+	public String reportClassDetail(HttpSession session, Model model, @RequestParam("report_idx") int report_idx,
+									@RequestParam("class_idx") int class_idx) {
 //		if(session.getAttribute("sId") == null) {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
 //		return "forward";
-//	} else if(!session.getAttribute("sId").equals("admin")) {
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}
+		int review_idx = 0;
+		ReportVO report = service.getReportDetail(report_idx, class_idx, review_idx);
+		
+		model.addAttribute("report", report);
 		return "admin/report/report_detail";
+	}
+	@GetMapping("admin/report/review/detail")
+	public String reporReviewDetail(HttpSession session, Model model,  @RequestParam("report_idx") int report_idx,
+									@RequestParam("review_idx") int review_idx ) {
+//		if(session.getAttribute("sId") == null) {
+//		model.addAttribute("msg", "로그인이 필요합니다");
+//		model.addAttribute("targetURL", "/gongsaeng/login");
+//		return "forward";
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
+//		model.addAttribute("msg", "잘못된 접근 입니다.");
+//		return "fail_back";
+//	}
+		int class_idx = 0;
+		ReportVO report = service.getReportDetail(report_idx, class_idx, review_idx);
+		
+		model.addAttribute("report", report);
+		return "admin/report/report_detail";
+	}
+	@GetMapping("admin/report/modifyReport")
+	public String reportModifyPro(HttpSession session, Model model, @RequestParam int report_idx) {
+//		if(session.getAttribute("sId") == null) {
+//		model.addAttribute("msg", "로그인이 필요합니다");
+//		model.addAttribute("targetURL", "/gongsaeng/login");
+//		return "forward";
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
+//		model.addAttribute("msg", "잘못된 접근 입니다.");
+//		return "fail_back";
+//	}
+		int updateCount = service.reportStatusModify(report_idx);
+		
+		if(updateCount > 0) {
+			return "javascript:location.replace()";
+		} else {
+			model.addAttribute("msg" , "수정 실패!!");
+			return "fail_back";
+		}
 	}
 
 	//===============================================[ 마케팅 센터 ]
@@ -1230,7 +1357,7 @@ public class AdminController {
 ////		model.addAttribute("msg", "로그인이 필요합니다");
 ////		model.addAttribute("targetURL", "/gongsaeng/login");
 ////		return "forward";
-////	} else if(!session.getAttribute("sId").equals("admin")) {
+////	} else if(!session.getAttribute("sId").equals("admin1234")) {
 ////		model.addAttribute("msg", "잘못된 접근 입니다.");
 ////		return "fail_back";
 ////	}
@@ -1251,7 +1378,7 @@ public class AdminController {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
 //		return "forward";
-//	} else if(!session.getAttribute("sId").equals("admin")) {
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}
@@ -1267,7 +1394,7 @@ public class AdminController {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
 //		return "forward";
-//	} else if(!session.getAttribute("sId").equals("admin")) {
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}

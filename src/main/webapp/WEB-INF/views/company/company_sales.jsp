@@ -278,7 +278,7 @@ tbody {
 										<table class="table table-bordered">
 											<thead class="thead-dark">
 												<tr>
-													<th scope="col">#</th>
+<!-- 													<th scope="col">#</th> -->
 													<th scope="col">결제상태</th>
 													<th scope="col">결제번호</th>
 													<th scope="col">클래스명</th>
@@ -293,7 +293,7 @@ tbody {
 												<c:forEach items="${saleList}" var="sale">
 													<tr class="sales-row" data-status="${sale.pay_status}"
 														data-purchase-date="${sale.formatted_pay_date}">
-														<th scope="row">1</th>
+<!-- 														<th scope="row">1</th> -->
 														<!-- # -->
 														<td><c:choose>
 																<c:when test="${sale.pay_status == 1}">

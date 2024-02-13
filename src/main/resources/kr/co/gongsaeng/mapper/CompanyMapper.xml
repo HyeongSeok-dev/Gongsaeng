@@ -321,7 +321,12 @@
 		ORDER BY board_date DESC
 	</select>
 	
-	
+	<!-- 반장 프로필 조회 -->
+	<select id="selectCompanyProfile" resultType="company">
+		SELECT * 
+		FROM company
+		WHERE com_idx = #{comIdx}
+	</select>
 	
 	
 	
