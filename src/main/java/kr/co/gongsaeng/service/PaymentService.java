@@ -47,6 +47,11 @@ public class PaymentService {
 		return mapper.insertOPay(withdrawResult, id);
 	}
 
+	public int getForPayCom_idx(int class_idx) {
+		String member_id = mapper.selectMember_id(class_idx);
+		return mapper.selectCom_idx(member_id);
+	}
+
 
 
 	

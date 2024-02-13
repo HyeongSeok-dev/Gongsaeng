@@ -26,6 +26,10 @@ public interface PaymentMapper {
 	//충전페이 인서트
 	int insertOPay(Map<String, Object> withdrawResult, String id);
 
+	//com_idx를 찾기위한 select
+	String selectMember_id(int class_idx);
+	int selectCom_idx(String member_id);
+
 
 
 }

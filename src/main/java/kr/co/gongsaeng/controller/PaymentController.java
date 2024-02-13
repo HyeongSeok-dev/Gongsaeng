@@ -360,6 +360,14 @@ public class PaymentController {
 		}
 		System.out.println(payment);
 		
+		// com_idx를 출력하기 위한 select
+		
+		int class_idx = Integer.parseInt(map.get("class_idx"));
+		System.out.println("class_idx : " + class_idx);
+		int com_idx = paymentService.getForPayCom_idx(class_idx);
+		System.out.println("com_idx : " + com_idx);
+		
+		
 		//결제정보 인서트
 		int insertCount = paymentService.paymentSuccess(payment, sId);
 		if(insertCount > 0) {

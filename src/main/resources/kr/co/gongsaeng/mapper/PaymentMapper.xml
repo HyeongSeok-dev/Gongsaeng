@@ -69,4 +69,19 @@
 		)
 	</insert>
 	
+	<!-- ==========================paymentPro============================  -->
+	<!-- class_idx를 이용한 반장 memger_id 찾기 -->
+	<select id="selectMember_id" resultType="String">
+		SELECT member_id
+		FROM class
+		WHERE class_idx = #{class_idx}
+	</select>
+	<!-- 반장 memger_id 를 이용한 com_idx찾기 -->
+	<select id="selectCom_idx" resultType="int">
+		SELECT com_idx
+		FORM company
+		WHERE member_id = #{member_id}
+	</select>
+	
+	
 </mapper>
