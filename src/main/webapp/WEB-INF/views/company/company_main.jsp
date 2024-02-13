@@ -375,25 +375,27 @@ a {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
   
   <script>
-    $(document).ready(function() {
-      // Javascript method's body can be found in assets/js/demos.js
-      demo.initDashboardPageCharts();
+       
+  $(document).ready(function() {
+    // Javascript method's body can be found in assets/js/demos.js
+    demo.initDashboardPageCharts();
 
-    });
-    
-    
- // 이 함수는 날짜 문자열의 시간 부분을 제거하고 YYYY/MM/DD 형식으로 반환합니다.
-    function formatDateToYYYYMMDD(dateString) {
-        return dateString.split(" ")[0].replace(/-/g, '/');
-    }
+  });
+  
+  
+// 이 함수는 날짜 문자열의 시간 부분을 제거하고 YYYY/MM/DD 형식으로 반환합니다.
+  function formatDateToYYYYMMDD(dateString) {
+      return dateString.split(" ")[0].replace(/-/g, '/');
+  }
 
-    
-   // =================================
-       function showDetails(subject, date, content) {
-            document.getElementById('modalTitle').innerHTML = subject;
-            document.getElementById('modalDate').innerHTML = date;
-            document.getElementById('modalContent').innerHTML = content;
-        }
+  
+ // =================================
+     function showDetails(subject, date, content) {
+          document.getElementById('modalTitle').innerHTML = subject;
+          document.getElementById('modalDate').innerHTML = date;
+          document.getElementById('modalContent').innerHTML = content;
+      }
+
 	   
   </script>
 </body>
