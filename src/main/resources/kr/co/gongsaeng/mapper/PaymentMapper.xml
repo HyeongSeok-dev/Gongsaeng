@@ -60,7 +60,7 @@
 		INTO cash
 		VALUES(
 			null
-			, #{id}
+			, #{sId}
 			, #{cash_value}
 			, 1
 			, 1
