@@ -95,7 +95,7 @@
 								<div id="offer" class="panel-collapse collapse">
 									<ul class="list-group">
 										<li class="list-group-item cursor" onclick="javascript:location.href='coupon'">쿠폰</li>
-										<li class="list-group-item cursor" onclick="javascript:location.href='cash'">캐쉬</li>
+										<li class="list-group-item cursor" onclick="javascript:location.href='cash'">0페이</li>
 										
 									</ul>
 								</div>

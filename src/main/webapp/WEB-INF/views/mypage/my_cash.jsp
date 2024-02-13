@@ -98,7 +98,7 @@
 								<div id="offer" class="panel-collapse collapse in ">
 									<ul class="list-group">
 										<li class="list-group-item cursor" onclick="javascript:location.href='coupon'">쿠폰</li>
-										<li class="list-group-item cursor active" onclick="javascript:location.href='cash'">캐쉬</li>
+										<li class="list-group-item cursor active" onclick="javascript:location.href='cash'">0페이</li>
 										
 									</ul>
 								</div>
@@ -144,18 +144,18 @@
 			<div class="col-sm-9">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h4 class="panel-title">캐쉬</h4>
+						<h4 class="panel-title">0페이</h4>
 					</div>
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-sm-6">
 
 								<p>
-									현재 캐쉬:
-									<c:if test="${empty totalCash.total_cash}">0</c:if>${totalCash.total_cash}캐쉬</p>
+									현재 0페이:
+									<c:if test="${empty totalCash.total_cash}">0</c:if>${totalCash.total_cash}원</p>
 							</div>
 							<div class="col-sm-6 text-right">
-								<button class="btn btn-primary">캐쉬 충전/환불</button>
+								<button class="btn btn-primary">0페이 충전/환불</button>
 							</div>
 						</div>
 						<table class="table">
