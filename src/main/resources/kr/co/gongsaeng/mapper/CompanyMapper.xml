@@ -296,7 +296,7 @@
     GROUP BY
         DATE(pay_date)
     ORDER BY
-        cancelDate DESC
+        cancelDate ASC
 	
 	</select>
 

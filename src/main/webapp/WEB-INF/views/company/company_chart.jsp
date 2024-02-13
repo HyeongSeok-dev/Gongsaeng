@@ -278,8 +278,8 @@ const dailySalesChart = new Chart(dailySalesCtx, {
         datasets: [{
             label: '일별 매출',
             data: salesData.map(data => data.totalSales),
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            borderColor: 'rgba(255, 99, 132, 1)',
+            backgroundColor: 'rgba(000, 051, 204, 0.5)',
+            borderColor: 'rgba(000, 051, 204, 1)',
             borderWidth: 1
         }]
     },
@@ -308,8 +308,8 @@ const dailySalesChart = new Chart(dailySalesCtx, {
             datasets: [{
                 label: '일별 클래스 등록 수 (최근 10일간)',
                 data: classRegisterData.map(data => parseInt(data.total_payments, 10)),
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(051, 153, 000, 0.2)',
+                borderColor: 'rgba(051, 153, 000, 1)',
                 borderWidth: 1,
                 fill: false, // 배경색 채우기 없음
 
@@ -359,12 +359,12 @@ var genderRatioChart = new Chart(ctx, {
             label: '성별 비율',
             data: data, // 수정된 데이터 사용
             backgroundColor: [
-                'rgba(54, 162, 235, 0.2)', // 남성 색상
-                'rgba(255, 99, 132, 0.2)'  // 여성 색상
+                'rgba(255, 99, 132, 0.2)',  // 여성 색상
+                'rgba(54, 162, 235, 0.2)' // 남성 색상
             ],
             borderColor: [
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 99, 132, 1)'
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)'
             ],
             borderWidth: 1
         }]
@@ -406,8 +406,9 @@ try {
          datasets: [{
              label: '일별 취소 건수',
              data: cancellationData.map(data => parseInt(data.cancelCount, 10)),
-             backgroundColor: 'rgba(255, 99, 132, 0.2)',
-             borderColor: 'rgba(255, 99, 132, 1)',
+//              backgroundColor: 'rgba(255, 99, 132, 0.2)',
+             backgroundColor: 'rgba(153, 000, 000, 0.5)',
+             borderColor: 'rgba(153, 000, 000, 0.5)',
              borderWidth: 1
          }]
      },
