@@ -460,6 +460,7 @@ $(document).ready(function () {
 
         $('#list-type').removeClass('proerty-th-list');
         $('#list-type').addClass('proerty-th');
+        $("#list-type").parent().addClass("class_list_items_area");
     });
 
     $('.layout-list').on('click', function () {
@@ -468,6 +469,7 @@ $(document).ready(function () {
 
         $('#list-type').addClass('proerty-th-list');
         $('#list-type').removeClass('proerty-th');
+        $("#list-type").parent().removeClass("class_list_items_area");
     });
     
 
