@@ -28,7 +28,8 @@ public interface PaymentMapper {
 
 	//com_idx를 찾기위한 select
 	String selectMember_id(int class_idx);
-	int selectCom_idx(String member_id);
+	
+	Map<String, Object> selectCom_idx(String member_id);
 
 
 

@@ -320,8 +320,6 @@ public class PaymentController {
 //		System.out.println("pay_po_price_String 변환전 : " + (String)map.get("preOrderTotalPrice"));
 //		System.out.println("0원결제 : " + (((String)map.get("preOrderTotalPrice")).length() == 0));
 		
-		//주문번호 res_num
-		payment.setPay_num((String)map.get("res_num"));
 		
 		//카카오페이
 		//1차 int -> 2차 String**************************************
@@ -364,9 +362,19 @@ public class PaymentController {
 		
 		int class_idx = Integer.parseInt(map.get("class_idx"));
 		System.out.println("class_idx : " + class_idx);
-		int com_idx = paymentService.getForPayCom_idx(class_idx);
+		Map<String, Object> companyInfo = paymentService.getForPayCom_idx(class_idx);
+		int com_idx = Integer.parseInt(companyInfo.get("com_idx").toString());
 		System.out.println("com_idx : " + com_idx);
 		
+		payment.setCom_idx(com_idx);
+		payment.setClass_idx(class_idx);
+		payment.setPayment(Integer.parseInt(map.get("payment")));
+		payment.setDiscount_payment(Integer.parseInt(map.get("discount_payment")));
+		payment.setRes_visit_date(map.get("res_visit_date"));
+		payment.setRes_visit_time(map.get("res_visit_time"));
+		payment.setRes_member_count(Integer.parseInt(map.get("res_member_count")));
+		
+		System.out.println(payment);
 		
 		//결제정보 인서트
 		int insertCount = paymentService.paymentSuccess(payment, sId);

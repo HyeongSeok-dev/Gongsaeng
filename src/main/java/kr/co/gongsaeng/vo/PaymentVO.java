@@ -22,7 +22,7 @@ public class PaymentVO {
 	private int pay_status;
 	private int pay_category;
 	private int pay_cal_status; //환급상태
-	private Date res_visit_date; // 예약일
+	private String res_visit_date; // 예약일
 	private String res_visit_time; // 예약시간
 	private Date refund_request_date; //환급신청일
 	private Date refund_date; //환급완료일

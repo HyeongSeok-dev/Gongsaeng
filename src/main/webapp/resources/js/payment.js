@@ -39,19 +39,25 @@ $(document).ready(function() {
 		//결제금액
 		payment
 		//쿠폰할인
-		var coupon =  parseInt($("#discountCoupon_text") .text().trim().replace(/,/g, '')); 
+		var coupon = parseInt($("#discountCoupon_text").text().trim().replace(
+				/,/g, ''));
 		//0페이사용
-		var pay = parseInt($("#discountPay_text") .text().trim().replace(/,/g, '')); 
+		var pay = parseInt($("#discountPay_text").text().trim().replace(/,/g,
+				''));
 		//최종결제금액
-		var totalPayment  = 0;
-		
+		var totalPayment = 0;
+
+		var discountPayment = 0;
 		totalPayment = payment - coupon - pay;
+		discountPayment = coupon + pay;
 		
 		console.log("최종결제금액 : " + totalPayment);
-		
-		
+
+	    $("#discount_payment").val(discountPayment);
+	    
 		$("#totalPayment_text").text(totalPayment)
 		
+		$("#payment").val(totalPayment);
 	}
 	
 	totalPayment();
@@ -123,7 +129,7 @@ $(document).ready(function() {
 	$("#payBtn").on("click",function() {
 		
 		// 라디오버튼에 따른 결제팝업 변경
-		
+		totalPayment();
 		var IMP = window.IMP;
 		IMP.init('imp05703412');
 		
@@ -142,7 +148,7 @@ $(document).ready(function() {
 					console.log("kakao");
 					IMP.request_pay({
 					  pg: "kakaopay",
-					  merchant_uid: $("#class_idx").val(), //상품번호(클래스아이디)
+					  merchant_uid:"kakaoPay_3" +  $("#class_idx").val(), //상품번호(클래스아이디)
 					  name: "공생 클래스 수강 - " + $("#class_title").val() +" "+ $("#res_visit_date").val() +
 					  	"" + $("#res_visit_time") + "부터시작" + $("#res_member_count").val() + "명",
 //					  amount: parseInt($("#payment").text().trim().replace(/,/g, '')), //할인된금액(최종결제금액)
@@ -159,6 +165,8 @@ $(document).ready(function() {
 						console.log("function");
 						console.log("rsp : " + rsp);
 						console.log("status : " + rsp.status);
+						console.log("status : " + rsp.error_code);
+						console.log("status : " + rsp.error_msg);
 					    if (rsp.success) {
 					      // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
 					      // jQuery로 HTTP 요청
