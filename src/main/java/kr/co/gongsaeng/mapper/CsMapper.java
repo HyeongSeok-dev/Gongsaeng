@@ -16,5 +16,8 @@ public interface CsMapper {
 	
 	// 공지사항 글쓰기
 	int insertAdnt(BoardVO board);
+	
+	// 공지사항 상세보기
+	BoardVO selectNoticeDetail(int board_idx);
 
 }

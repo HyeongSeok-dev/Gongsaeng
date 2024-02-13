@@ -27,5 +27,10 @@ public class CsService {
 	public int registAdnt(BoardVO board) {
 		return mapper.insertAdnt(board);
 	}
+	
+	// 공지사항 상세보기
+	public BoardVO getNoticeDetail(int board_idx) {
+		return mapper.selectNoticeDetail(board_idx);
+	}
 
 }

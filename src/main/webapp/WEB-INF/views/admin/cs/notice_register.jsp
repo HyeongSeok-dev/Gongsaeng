@@ -111,7 +111,6 @@
 		             	</colgroup>
 		             	<tr>
 		             		<th>대상회원</th>
-<!-- 		             		<th>대상회원/분류</th> -->
 		             		<td>
 			      			<input type="hidden" name="board_main_category" value="1"> <%-- 공지사항 --%>
 		             			 <select name="board_sub_category">
@@ -135,14 +134,14 @@
 		             			</textarea>
 		             		</td>
 		             	</tr>
-		             	<tr>
-		             		<th>파일</th>
-		             		<td>
-		             			<input type="file" class="form-control profileImg" accept="image/*">
-		    	       		 	<button type="button" class="btn btn_default">파일선택</button>
-			           		 	<span>파일명</span>
-		             		</td>
-						</tr>
+<!-- 		             	<tr> -->
+<!-- 		             		<th>파일</th> -->
+<!-- 		             		<td> -->
+<!-- 		             			<input type="file" class="form-control profileImg" accept="image/*"> -->
+<!-- 		    	       		 	<button type="button" class="btn btn_default">파일선택</button> -->
+<!-- 			           		 	<span>파일명</span> -->
+<!-- 		             		</td> -->
+<!-- 						</tr> -->
 		             </table>	 	
 	              </div>
 	            </div>
@@ -150,7 +149,7 @@
 	        </div>
 	        <div class="row">
 	        	<div class="col-md-12 btn_bottom">
-		        	<button type="button" class="btn btn_default">목록</button>&nbsp;&nbsp;
+		        	<button type="button" class="btn btn_default" onclick="location.href = './?pageNum=${pageNum}'">목록</button>&nbsp;&nbsp;
 		        	<button type="submit" class="btn btn_default">등록</button>&nbsp;&nbsp;
 		        	<button type="reset" class="btn btn-light">초기화</button>
 	        	</div>

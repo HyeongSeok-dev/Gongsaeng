@@ -43,4 +43,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		, 0
 	)
 	</insert>
+	
+	<!-- 공지사항 상세조회 -->
+	<select id="selectNoticeDetail" resultType="board">
+		SELECT * 
+		FROM board
+		WHERE board_idx = #{board_idx}
+	</select>
 </mapper>

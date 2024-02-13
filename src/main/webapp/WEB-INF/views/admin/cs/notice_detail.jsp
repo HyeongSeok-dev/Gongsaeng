@@ -110,45 +110,37 @@
 		             		<col width="75%"/>
 		             	</colgroup>
 		             	<tr>
-		             		<th>대상회원/분류</th>
+		             		<th>대상회원</th>
 		             		<td>
-		             			<select name="">
-					              	<option value="0">대상선택</option>
-					              	<option value="1">반장회원</option>
-					              	<option value="2">일반회원</option>
+			      			<input type="hidden" name="board_main_category" value="1"> <%-- 공지사항 --%>
+		             			 <select name="board_sub_category" required>
+					              	<option value="1" <c:if test="${board.board_sub_category eq 1}"> selected</c:if>>일반 회원</option>
+					              	<option value="2" <c:if test="${board.board_sub_category eq 2}"> selected</c:if>>반장(사업체) 회원</option>
 			              		</select>
-		             			<select>
-									<option>분류</option>
-									<option>이용안내</option>
-									<option>회원정보</option>
-									<option>결제/환불</option>
-									<option>쿠폰/이벤트</option>
-									<option>기타</option>
-								</select>
 		             		</td>
 		             	</tr>
 		             	<tr>
 		             		<th>제목</th>
 		             		<td>
-		             			<input type="text" class="register_text">
+		             			<input type="text" class="register_text" name="board_subject">
 		             		</td>
 		             	</tr>
 		             	<tr>
-		             		<th>제목</th>
+		             		<th>내용</th>
 		             		<td>
-		             			<textarea class="register_textarea">
+		             			<textarea class="register_textarea" name="board_content">
 		             			
 		             			</textarea>
 		             		</td>
 		             	</tr>
-		             	<tr>
-		             		<th>파일</th>
-		             		<td>
-		             			<input type="file" class="form-control profileImg" accept="image/*">
-		    	       		 	<button type="button" class="btn btn_default">파일선택</button>
-			           		 	<span>파일명</span>
-		             		</td>
-						</tr>
+<!-- 		             	<tr> -->
+<!-- 		             		<th>파일</th> -->
+<!-- 		             		<td> -->
+<!-- 		             			<input type="file" class="form-control profileImg" accept="image/*"> -->
+<!-- 		    	       		 	<button type="button" class="btn btn_default">파일선택</button> -->
+<!-- 			           		 	<span>파일명</span> -->
+<!-- 		             		</td> -->
+<!-- 						</tr> -->
 		             </table>	 	
 	              </div>
 	            </div>

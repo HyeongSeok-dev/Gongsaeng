@@ -175,7 +175,7 @@
 					<%-- [이전] 버튼 클릭 시 BoardList.bo 서블릿 요청(파라미터 : 현재 페이지번호 - 1) --%>
 					<%-- 단, 현재 페이지 번호(pageNum) 가 1보다 클 경우에만 동작(아니면 비활성화 처리) --%>
 					<input type="button" style="width:100px" value="이전" 
-							onclick="location.href = 'cs/notice?pageNum=${pageNum - 1}'"
+							onclick="location.href = './?pageNum=${pageNum - 1}'"
 							<c:if test="${pageNum <= 1 }">disabled</c:if>
 					>	
 				
@@ -190,7 +190,7 @@
 								<b>${i}</b> <%-- 현재 페이지 번호 --%>
 							</c:when>
 							<c:otherwise>
-								<a href="cs/notice?pageNum=${i}">${i}</a> <%-- 다른 페이지 번호 --%>
+								<a href="./?pageNum=${i}">${i}</a> <%-- 다른 페이지 번호 --%>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
@@ -198,7 +198,7 @@
 					<%-- [다음] 버튼 클릭 시 BoardList.bo 서블릿 요청(파라미터 : 현재 페이지번호 + 1) --%>
 					<%-- 단, 현재 페이지 번호(pageNum) 가 최대 페이지번호 보다 작을 경우에만 동작(아니면 비활성화 처리) --%>
 					<input type="button" style="width:100px" value="다음" 
-						onclick="location.href = 'cs/notice?pageNum=${pageNum + 1}'"
+						onclick="location.href = './?pageNum=${pageNum + 1}'"
 						<c:if test="${pageNum >= pageInfo.maxPage }">disabled</c:if>
 					>				</section>
 	

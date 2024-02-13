@@ -21,7 +21,7 @@ public class CsController {
 	@Autowired
 	private CsService service;
 	
-	// 관리자페이지 공지사항 조회
+	// [ 관리자페이지 공지사항 조회 ]
 	@GetMapping("admin/cs/notice")
 	public String csNotice(@RequestParam(defaultValue = "1") int pageNum,
 			HttpSession session, Model model, BoardVO board) {
@@ -68,7 +68,7 @@ public class CsController {
 		return "admin/cs/notice";
 	}
 	
-	// [공지사항 글쓰기]
+	// [ 공지사항 글쓰기 ]
 	@GetMapping("admin/cs/notice/register")
 	public String csNoticeRegisterForm(HttpSession session, Model model) {
 		return "admin/cs/notice_register";
@@ -91,12 +91,28 @@ public class CsController {
 	}
 	
 	model.addAttribute("msg", "글이 등록되었습니다.");
-	model.addAttribute("targetURL", "?pageNum=" + pageNum);
+	model.addAttribute("targetURL", "./?pageNum=" + pageNum);
 	return "forward";
 }
 	
+	// [ 공지사항 상세/수정 ]	
 	@GetMapping("admin/cs/notice/detail")
-	public String csNoticeDetail() {
+	public String csNoticeDetail(BoardVO board, @RequestParam int board_idx, HttpSession session, Model model) {
+		String sId = (String)session.getAttribute("sId");
+		
+		// 조회된 게시물의 작성자(member_id)와 세션 아이디가 다를 경우 "잘못된 접근입니다" 처리
+		// => 단, 관리자는 자신의 게시물이 아니더라도 수정 가능해야하므로
+		//    세션아이디가 관리자가 아닐 경우라는 조건도 추가
+//		if(board == null || !sId.equals(board.getMember_id()) && !sId.equals("admin1234")) {
+//			model.addAttribute("msg", "잘못된 접근입니다");
+//			return "fail_back";
+//		}
+		
+		board = service.getNoticeDetail(board_idx);
+		System.out.println(board);
+		
+		model.addAttribute("board", board);
+		
 		return "admin/cs/notice_detail";
 	}
 	
