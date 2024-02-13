@@ -90,7 +90,7 @@
 								<div id="alert" class="panel-collapse collapse">
 									<ul class="list-group">
 										<li class="list-group-item cursor " onclick="javascript:location.href='alert'">알림</li>
-<!-- 										<li class="list-group-item cursor" onclick="javascript:location.href='chat'">채팅</li> -->
+										<!-- 										<li class="list-group-item cursor" onclick="javascript:location.href='chat'">채팅</li> -->
 									</ul>
 								</div>
 							</li>
@@ -99,7 +99,7 @@
 									<ul class="list-group">
 										<li class="list-group-item cursor" onclick="javascript:location.href='coupon'">쿠폰</li>
 										<li class="list-group-item cursor active" onclick="javascript:location.href='cash'">0페이</li>
-										
+
 									</ul>
 								</div>
 							</li>
@@ -155,7 +155,9 @@
 									<c:if test="${empty totalCash.total_cash}">0</c:if>${totalCash.total_cash}원</p>
 							</div>
 							<div class="col-sm-6 text-right">
-								<button class="btn btn-primary">0페이 충전/환불</button>
+								<form name="goPay" method="POST" id="goPay">
+									<button type="button" class="btn btn-primary" onclick="payBtn()">0페이 충전/환불</button>
+								</form>
 							</div>
 						</div>
 						<table class="table">
@@ -204,5 +206,16 @@
 
 		</div>
 	</div>
+	<script type="text/javascript">
+		function payBtn() {
+			var features = "scrollbars=yes,width=1000,height=800,location=no, resizable=yes";
+			var form = document.goPay;
+			window.open("", "pay_main", features);
+			form.action = "/gongsaeng/payment/charge/main";
+			form.target = "pay_main";
+			form.method = "POST";
+			form.submit();
+		}
+	</script>
 </body>
 </html>

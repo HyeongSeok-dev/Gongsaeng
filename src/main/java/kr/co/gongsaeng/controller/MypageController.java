@@ -407,7 +407,7 @@ public class MypageController {
 		member.setMember_id(sId);
 		member = service.getMemberInfo(member);
 
-		List<MyResVO> resList = service.getResList(member);
+		List<MyResVO> resList = service.getReviewWriteableResList(member);
 
 		model.addAttribute("member", member);
 		model.addAttribute("resList", resList);

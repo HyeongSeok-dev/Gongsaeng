@@ -12,7 +12,7 @@ body {
 }
 
 #frame {
-  width: 700px;
+  width: 95%;
   min-width: 360px;
   max-width: 1000px;
   height: 800px;
@@ -542,7 +542,7 @@ body {
   color: #435f7a;
 }
 #frame .content .messages {
-  height: auto;
+  height: 680px;
   min-height: calc(100% - 93px);
   max-height: calc(100% - 93px);
   overflow-y: scroll;

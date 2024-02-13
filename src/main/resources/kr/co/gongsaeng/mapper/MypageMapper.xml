@@ -84,7 +84,6 @@
 		JOIN company co ON co.com_idx = p.com_idx 
 		WHERE p.member_id = #{member_id}
 		ORDER BY p.pay_date DESC
-		
 	</select>
 	
 	<select id="selectResInfo" resultType="myRes">
@@ -197,5 +196,18 @@
 		LEFT JOIN member m ON r.member_id = m.member_id
 		WHERE r.member_id = #{member_id}
 		GROUP BY r.review_idx
+	</select>
+	
+		
+	<select id="selectReviewWriteableResList" resultType="myRes">
+		SELECT p.pay_num, p.com_idx,p.class_idx, p.member_id ,payment,discount_payment,pay_method,pay_date,pay_status,class_pic1,com_name,class_title,p.res_visit_date,p.res_visit_time,p.res_request,p.res_member_count,c.class_start_time,c.class_end_time,c.class_category,c.class_start_date,c.class_end_date
+		FROM payment p
+		JOIN class c ON c.class_idx = p.class_idx 
+		JOIN company co ON co.com_idx = p.com_idx 
+		LEFT JOIN review r ON p.pay_num = r.pay_num
+		WHERE p.member_id = #{member_id}
+		AND p.pay_status = 1
+		AND r.pay_num IS NULL
+		ORDER BY p.pay_date DESC
 	</select>
 </mapper>

@@ -59,5 +59,7 @@ public interface MypageMapper {
 
 	List<Map<String, String>> selectReviewList(MemberVO member);
 
+	List<MyResVO> selectReviewWriteableResList(MemberVO member);
+
 
 }

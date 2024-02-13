@@ -142,5 +142,10 @@ public class MypageService {
 		return mapper.selectReviewList(member);
 	}
 
+	public List<MyResVO> getReviewWriteableResList(MemberVO member) {
+		// TODO Auto-generated method stub
+		return mapper.selectReviewWriteableResList(member);
+	}
+
 	
 }
