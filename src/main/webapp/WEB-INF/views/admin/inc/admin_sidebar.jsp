@@ -53,6 +53,7 @@
 	                <p>회원</p>
 	            </a>
 	        </li>
+
 	        <!-- 사업체 드롭다운 메뉴-->
 	        <li class="nav-item">
 	            <a href="#company" class="nav-link" data-toggle="collapse" aria-expanded="false">
@@ -69,33 +70,39 @@
 	            </div>
 	        </li>
 	        <!-- 페이 드롭다운 메뉴 -->
+<!-- 	        <li class="nav-item"> -->
+<!-- 	            <a href="#pay" class="nav-link" data-toggle="collapse" aria-expanded="false"> -->
+<!-- 	                <i class="now-ui-icons business_money-coins"></i> -->
+<!-- 	                <p>0페이<b class="caret"></b></p> -->
+<!-- 	            </a> -->
+<!-- 	            <div id="pay" class="collapse" aria-labelledby="pay" data-parent="#sidebar-wrapper"> -->
+<!-- 	                <ul class="nav"> -->
+<%-- <%-- 	                    <li><a href="${pageContext.request.contextPath}/admin/community"></a></li> --%>
+<%-- 	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/OPay/account">계좌 관리</a></li> --%>
+<%-- 	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/OPay/deposit/withdraw">충전송금관리</a></li> --%>
+<%-- 	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/OPay/use">사용환불관리</a></li> --%>
+<!-- 	                </ul> -->
+<!-- 	            </div> -->
+<!-- 	        </li> -->
 	        <li class="nav-item">
-	            <a href="#pay" class="nav-link" data-toggle="collapse" aria-expanded="false">
-	                <i class="now-ui-icons business_money-coins"></i>
-	                <p>0페이<b class="caret"></b></p>
+	            <a href="${pageContext.request.contextPath}/admin//marketing/coupon">
+	                <i class="now-ui-icons  shopping_tag-content"></i>
+	                <p>쿠폰</p>
 	            </a>
-	            <div id="pay" class="collapse" aria-labelledby="pay" data-parent="#sidebar-wrapper">
-	                <ul class="nav">
-<%-- 	                    <li><a href="${pageContext.request.contextPath}/admin/community"></a></li> --%>
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/OPay/account">계좌 관리</a></li>
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/OPay/deposit/withdraw">충전송금관리</a></li>
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/OPay/use">사용환불관리</a></li>
-	                </ul>
-	            </div>
 	        </li>
 	        <!-- 마케팅센터 드롭다운 메뉴 -->
-	        <li class="nav-item">
-	            <a href="#marketing" class="nav-link" data-toggle="collapse" aria-expanded="false">
-	                <i class="now-ui-icons ui-1_bell-53"></i>
-	                <p>마케팅센터<b class="caret"></b></p>
-	            </a>
-	            <div id="marketing" class="collapse" aria-labelledby="marketing" data-parent="#sidebar-wrapper">
-	                <ul class="nav">
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/marketing/coupon">쿠폰관리</a></li>
-	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/marketing/event">알림관리</a></li>
-	                </ul>
-	            </div>
-	        </li>
+<!-- 	        <li class="nav-item"> -->
+<!-- 	            <a href="#marketing" class="nav-link" data-toggle="collapse" aria-expanded="false"> -->
+<!-- 	                <i class="now-ui-icons ui-1_bell-53"></i> -->
+<!-- 	                <p>마케팅센터<b class="caret"></b></p> -->
+<!-- 	            </a> -->
+<!-- 	            <div id="marketing" class="collapse" aria-labelledby="marketing" data-parent="#sidebar-wrapper"> -->
+<!-- 	                <ul class="nav"> -->
+<%-- 	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/marketing/coupon">쿠폰관리</a></li> --%>
+<%-- 	                    <li class="nav_drop_list"><a href="${pageContext.request.contextPath}/admin/marketing/event">알림관리</a></li> --%>
+<!-- 	                </ul> -->
+<!-- 	            </div> -->
+<!-- 	        </li> -->
 	        <!-- 커뮤니티 드롭다운 메뉴 -->
 <!-- 	        <li class="nav-item"> -->
 <!-- 	            <a href="#marketing" class="nav-link" data-toggle="collapse" aria-expanded="false"> -->

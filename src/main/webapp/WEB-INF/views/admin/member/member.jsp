@@ -104,53 +104,53 @@
               </div>
               <div class="card-body">
               	<form action="memberSearch">
-	               <div class="row">
-		               <div class="col-md-6 col_checkbox_2">
-				            <div class="row row_checkbox">
-					              	<input type="checkbox" value="0" name="member_status0" id="statusAllCheck"
-					              		<c:if test="${param.member_status eq '0'}">checked</c:if>> &nbsp;전체상태&nbsp;
-					              	<input type="checkbox" value="1" name="member_status1" class="member_status" id="statusNormal"
-					              		<c:if test="${param.member_status eq '1'}">checked</c:if>> &nbsp;정상&nbsp;
-					              	<input type="checkbox" value="2" name="member_status2" class="member_status" id="statusDormantl"
-					              		<c:if test="${param.member_status eq '2'}">checked</c:if>> &nbsp;휴면&nbsp;
-					              	<input type="checkbox" value="3" name="member_status3" class="member_status" id="statusWithdraw"
-					              		<c:if test="${param.member_status eq '3'}">checked</c:if>> &nbsp;탈퇴&nbsp;
-			              	</div>
-				            <div class="row row_checkbox">
-					              	<input type="checkbox" value="0" name="member_category0" id="categoryAllCheck"
-					              		<c:if test="${param.member_category eq '0'}">checked</c:if>> &nbsp;전체분류&nbsp;
-					              	<input type="checkbox" value="1" name="member_category1" class="member_category" id="categoryNormalCheck"
-					              		<c:if test="${param.member_category eq '1'}">checked</c:if>> &nbsp;일반&nbsp;
-					              	<input type="checkbox" value="2" name="member_category2" class="member_category" id="categoryBanjangCheck"
-					              		<c:if test="${param.member_category eq '2'}">checked</c:if>> &nbsp;반장&nbsp;
-					              	<input type="checkbox" value="2" name="com_status2" class="member_category" id="categoryApprovalCheck"
-					              		<c:if test="${param.com_status eq '2'}">checked</c:if>> &nbsp;반장승인대기&nbsp;
-					              	<input type="checkbox" value="5" name="com_status5" class="member_category" id="banjangRejectionCheck"
-					              		<c:if test="${param.com_status eq '5'}">checked</c:if>> &nbsp;반장승인거절&nbsp;
-			              	</div>
-		              	</div>
-		              	<div class="col-md-6">
-		              		<div class="member_date filter_search">
-		              			<div class="search_bar_admin">
-		              				<select name="searchDate">
-						              	<option value="allDate" <c:if test="${param.searchDate eq 'allDate'}">selected</c:if>>전체일자</option>
-						              	<option value="registerDate" <c:if test="${param.searchDate eq 'registerDate'}">selected</c:if>>가입일자</option>
-						              	<option value="withdrawDate" <c:if test="${param.searchDate eq 'withdrawDate'}">selected</c:if>>탈퇴일자</option>
-				              		</select>
-				              		<input type="date" id="start_date">&nbsp;&nbsp;~&nbsp;&nbsp;<input type="date" id="end_date">
-			              		</div>
-			              		<div class="search_bar_admin">
-									<select name="searchType">
-										<option value="id_nick" <c:if test="${param.searchType eq 'id_nick'}">selected</c:if>>전체검색</option>
-										<option value="id" <c:if test="${param.searchType eq 'id'}">selected</c:if>>아이디</option>
-										<option value="nick" <c:if test="${param.searchType eq 'nick'}">selected</c:if>>닉네임</option>
-									</select>&nbsp;
-		              				<input type="search" value="" id="searchText">&nbsp;
-				              		<button type="submit" class="btn btn_default" id="searchBtn" value="검색">검색</button>
-			              		</div>	
-			              	</div>
-		              	</div>
-	              	</div>
+<!-- 	               <div class="row"> -->
+<!-- 		               <div class="col-md-6 col_checkbox_2"> -->
+<!-- 				            <div class="row row_checkbox"> -->
+<!-- 					              	<input type="checkbox" value="0" name="member_status0" id="statusAllCheck" -->
+<%-- 					              		<c:if test="${param.member_status eq '0'}">checked</c:if>> &nbsp;전체상태&nbsp; --%>
+<!-- 					              	<input type="checkbox" value="1" name="member_status1" class="member_status" id="statusNormal" -->
+<%-- 					              		<c:if test="${param.member_status eq '1'}">checked</c:if>> &nbsp;정상&nbsp; --%>
+<!-- 					              	<input type="checkbox" value="2" name="member_status2" class="member_status" id="statusDormantl" -->
+<%-- 					              		<c:if test="${param.member_status eq '2'}">checked</c:if>> &nbsp;휴면&nbsp; --%>
+<!-- 					              	<input type="checkbox" value="3" name="member_status3" class="member_status" id="statusWithdraw" -->
+<%-- 					              		<c:if test="${param.member_status eq '3'}">checked</c:if>> &nbsp;탈퇴&nbsp; --%>
+<!-- 			              	</div> -->
+<!-- 				            <div class="row row_checkbox"> -->
+<!-- 					              	<input type="checkbox" value="0" name="member_category0" id="categoryAllCheck" -->
+<%-- 					              		<c:if test="${param.member_category eq '0'}">checked</c:if>> &nbsp;전체분류&nbsp; --%>
+<!-- 					              	<input type="checkbox" value="1" name="member_category1" class="member_category" id="categoryNormalCheck" -->
+<%-- 					              		<c:if test="${param.member_category eq '1'}">checked</c:if>> &nbsp;일반&nbsp; --%>
+<!-- 					              	<input type="checkbox" value="2" name="member_category2" class="member_category" id="categoryBanjangCheck" -->
+<%-- 					              		<c:if test="${param.member_category eq '2'}">checked</c:if>> &nbsp;반장&nbsp; --%>
+<!-- 					              	<input type="checkbox" value="2" name="com_status2" class="member_category" id="categoryApprovalCheck" -->
+<%-- 					              		<c:if test="${param.com_status eq '2'}">checked</c:if>> &nbsp;반장승인대기&nbsp; --%>
+<!-- 					              	<input type="checkbox" value="5" name="com_status5" class="member_category" id="banjangRejectionCheck" -->
+<%-- 					              		<c:if test="${param.com_status eq '5'}">checked</c:if>> &nbsp;반장승인거절&nbsp; --%>
+<!-- 			              	</div> -->
+<!-- 		              	</div> -->
+<!-- 		              	<div class="col-md-6"> -->
+<!-- 		              		<div class="member_date filter_search"> -->
+<!-- 		              			<div class="search_bar_admin"> -->
+<!-- 		              				<select name="searchDate"> -->
+<%-- 						              	<option value="allDate" <c:if test="${param.searchDate eq 'allDate'}">selected</c:if>>전체일자</option> --%>
+<%-- 						              	<option value="registerDate" <c:if test="${param.searchDate eq 'registerDate'}">selected</c:if>>가입일자</option> --%>
+<%-- 						              	<option value="withdrawDate" <c:if test="${param.searchDate eq 'withdrawDate'}">selected</c:if>>탈퇴일자</option> --%>
+<!-- 				              		</select> -->
+<!-- 				              		<input type="date" id="start_date">&nbsp;&nbsp;~&nbsp;&nbsp;<input type="date" id="end_date"> -->
+<!-- 			              		</div> -->
+<!-- 			              		<div class="search_bar_admin"> -->
+<!-- 									<select name="searchType"> -->
+<%-- 										<option value="id_nick" <c:if test="${param.searchType eq 'id_nick'}">selected</c:if>>전체검색</option> --%>
+<%-- 										<option value="id" <c:if test="${param.searchType eq 'id'}">selected</c:if>>아이디</option> --%>
+<%-- 										<option value="nick" <c:if test="${param.searchType eq 'nick'}">selected</c:if>>닉네임</option> --%>
+<!-- 									</select>&nbsp; -->
+<!-- 		              				<input type="search" value="" id="searchText">&nbsp; -->
+<!-- 				              		<button type="submit" class="btn btn_default" id="searchBtn" value="검색">검색</button> -->
+<!-- 			              		</div>	 -->
+<!-- 			              	</div> -->
+<!-- 		              	</div> -->
+<!-- 	              	</div> -->
 	              	<div id="tableDivArea">
 	              	<table class="table table-bordered">
                 		<colgroup>

@@ -156,7 +156,7 @@
 		        <div class="card-header todo_title">[ 오늘 신청 목록 ]</div>
 		        <br>
 		        <div class="card-body todo_count">
-		            <a onclick="location.href='${pageContext.request.contextPath }/admin/company/refund'">
+		            <a onclick="location.href='${pageContext.request.contextPath }/admin/company'">
 		            	사업체 가입 신청 : <b id="newComRegCount">
 		            	<c:choose>
 		            		<c:when test="${empty admin.newComRegCount}">

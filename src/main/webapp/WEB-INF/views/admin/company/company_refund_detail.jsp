@@ -103,122 +103,75 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h5 class="title">
-                <c:choose>
-					<c:when test="${empty param.member_id }">
-    	             사업체 환급 목록
-					</c:when>
-					<c:otherwise>
- 	                 ${param.member_id }님의 사업체 환급 목록
-					</c:otherwise>
-                </c:choose>
-                </h5>
+                <h5 class="title"> 사업체 환급 상세 </h5>
               </div>
               <div class="card-body">
-<!-- 	              <div class="row"> -->
-<!-- 	               		<div class="col-md-6 col_checkbox"> -->
-<!-- 		               		<div class=" col_checkbox"> -->
-<!-- 				              	<input type="checkbox" value="전체선택" id="calStausAllCheck"> &nbsp;전체선택&nbsp; -->
-<!-- 				              	<input type="checkbox" value="2" name="pay_cal_staus" class="pay_cal_staus"> &nbsp;신규신청&nbsp; -->
-<!-- 				              	<input type="checkbox" value="3" name="pay_cal_staus" class="pay_cal_staus"> &nbsp;환급승인&nbsp; -->
-<!-- 				              	<input type="checkbox" value="4" name="pay_cal_staus" class="pay_cal_staus"> &nbsp;환급완료&nbsp; -->
-<!-- 			              	</div> -->
-<!-- 		              	</div> -->
-<!-- 		              	<div class="col-md-6"> -->
-<!-- 		              		<form action="" class="member_date"> -->
-		              			
-<!-- 		              			<div class="search_bar_admin"> -->
-<!-- 					              	<div> -->
-<!-- 					              		<select name="class_state"> -->
-<!-- 							              	<option value="0">전체일자</option> -->
-<!-- 							              	<option value="1">신청일자</option> -->
-<!-- 							              	<option value="2">처리일자</option> -->
-<!-- 					              		</select> -->
-<!-- 					              		<input type="date" id="start_date">&nbsp;&nbsp;~&nbsp;&nbsp;<input type="date" id="end_date"> -->
-<!-- 					              	</div> -->
-<!-- 			              		</div> -->
-<!-- 			              		<div class="search_bar_admin"> -->
-<!-- 									<select> -->
-<!-- 										<option>전체검색</option> -->
-<!-- 										<option>아이디</option> -->
-<!-- 										<option>사업체명</option> -->
-<!-- 									</select>&nbsp; -->
-<!-- 		              				<input type="search">&nbsp; -->
-<!-- 				              		<button type="submit" class="btn btn_default" value="검색">검색</button> -->
-<!-- 			              		</div>	 -->
-<!-- 		              		</form> -->
-<!-- 		              	</div> -->
-<!-- 	              	</div> -->
-	              	
                 <table class="table table-bordered">
                 	<colgroup>
-	             		<col width="15%" />
-	             		<col width="15%" />
-	             		<col width="15%" />
-	             		<col width="15%" />
-	             		<col width="15%" />
-	             		<col width="15%" />
-	             		<col width="15%" />
+	             		<col width="20%" />
+	             		<col width="80%" />
 		            </colgroup>
 		            <tr>
 		                <th>신청일자</th>
-		                <th>사업체명</th>
-		                <th>신청금액</th>
-		                <th>수수료</th>
-		                <th>최종환급금액</th>
-		                <th>정산일자</th>
-		                <th>처리상태</th>
+		                <td>${refund.refund_request_date}</td>
 		            </tr>
-		            <!-- 회원 데이터 로우 -->
-		           
-	           	 <c:choose>
-	           	 	<c:when test="${empty refundList }">
-		           	 	<tr>
-				       		<td colspan="7"> 불러올 정보가 없습니다. </td>
-		           	 	</tr>
-			       	</c:when>
-			       	<c:otherwise>
-			            <c:forEach var="refund" items="${refundList }">
-					       	<c:if test="${refund.pay_cal_status > 1 }">
-					            <tr class="tr_hover" onclick="location.href='${pageContext.request.contextPath }/admin/company/refund/detail?pay_num=${refund.pay_num }'">
-					                <td>${refund.refund_request_date}</td>
-					                <td>
-					                	${refund.com_name }
-					                </td>
-					                <td> <span class="regPay">${refund.payment}</span> 원</td>
-					                <td> <span class="payFee">${refund.payment * 0.1}</span>원</td>
-					                <td> <span class="payRef">${refund.payment * 0.9}</span>원</td>
-					                <td>
-					                <c:choose>
-					                	<c:when test="${empty refund.refund_date}">
-							                미정산
-					                	</c:when>
-										<c:otherwise>
-							                ${refund.refund_date}
-										</c:otherwise>
-					                </c:choose>
-					                </td>
-					                <td class="td_btn">
-										<c:choose>
-											<c:when test="${refund.pay_cal_status eq 2 }">
-												정산신청
-											</c:when>
-											<c:when test="${refund.pay_cal_status eq 3 }">
-												정산승인 처리중
-											</c:when>
-											<c:when test="${refund.pay_cal_status eq 4 }">
-								                환급완료
-											</c:when>
-										</c:choose>
-					                </td>
-					       	</c:if>
-			            </c:forEach>
-			       	</c:otherwise>
-		          </c:choose>
+		            <tr>
+		                <th>사업체명</th>
+		                 <td>
+		                	${refund.com_name }
+		                </td>
+		            </tr>
+		            <tr>
+		                <th>신청금액</th>
+		                <td> <span class="regPay">${refund.payment}</span> 원</td>
+		            </tr>
+		            <tr>
+		                <th>수수료</th>
+		                <td> <span class="payFee">${refund.payment * 0.1}</span>원</td>
+		            </tr>
+		            <tr>
+		                <th>최종환급금액</th>
+		                <td> <span class="payRef">${refund.payment * 0.9}</span>원</td>
+		            </tr>
+		            <tr>
+		                <th>정산일자</th>
+		                <td>
+		                <c:choose>
+		                	<c:when test="${empty refund.refund_date}">
+				                미정산
+		                	</c:when>
+							<c:otherwise>
+				                ${refund.refund_date}
+							</c:otherwise>
+		                </c:choose>
+		                </td>
+		            </tr>
+		            <c:if test="${refund.pay_cal_status eq 4 }">
+			            <tr>
+			            	<th>정산상태</th>
+			            	<td>환급완료</td>
+			            </tr>
+		            </c:if>
 			    </table>
               </div>
             </div>
           </div>
+        </div>
+       <div class="row">
+        	<div class="col-md-12 btn_bottom">
+				<c:choose>
+					<c:when test="${refund.pay_cal_status eq 2 }">
+		               	<button type="button" class="btn btn_default refundApproval" value="환급승인" 
+		               		onclick="location.href='refundApproval?pay_num=${refund.pay_num}'">승인</button>
+		               	<button type="button" class="btn btn_light refundRejection" value="환급거절" 
+		               		onclick="location.href='refundRejection?pay_num=${refund.pay_num}'">거절</button>
+					</c:when>
+					<c:when test="${refund.pay_cal_status eq 3 }">
+		                <button type="button" class="btn btn_default doRefund" value="환급" 
+		                	onclick="location.href='doRefund?pay_num=${refund.pay_num}&com_idx=${refund.com_idx }&cash_value=${refund.payment * 0.9}'">환급하기</button>
+					</c:when>
+				</c:choose>
+			</div>
         </div>
       </div>
       <footer class="footer">

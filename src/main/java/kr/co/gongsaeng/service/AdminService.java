@@ -310,6 +310,36 @@ public class AdminService {
 		return mapper.insertCouponToAdmin(map);
 	}
 
+	// company_refund.jsp
+	public int refundApproval(String pay_num) {
+		return mapper.updateRefundApproval(pay_num);
+	}
+
+	public int refundRejection(String pay_num) {
+		return mapper.updateRefundRejection(pay_num);
+	}
+
+	public int doRefund(String pay_num, String com_idx, String cash_value) {
+		String member_id = mapper.selectCompanyMember(com_idx);
+		mapper.insertRfundResult(member_id, cash_value,pay_num);
+		return mapper.updateDoRefund(pay_num);
+	}
+
+	public PaymentVO getcompanyRefund(String pay_num) {
+		return mapper.selectCompanyRefund(pay_num);
+	}
+
+	// report_detail.jsp
+	public ReportVO getReportDetail(int report_idx, int class_idx, int review_idx) {
+		System.out.println("클래스 신고 : " + report_idx + "," + class_idx);
+		System.out.println("리뷰 신고 : " + report_idx + "," + review_idx);
+		return mapper.selectReportDetail(report_idx, class_idx, review_idx);
+	}
+
+	public int reportStatusModify(int report_idx) {
+		return mapper.updateStatusModify(report_idx);
+	}
+
 
 
 

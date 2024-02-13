@@ -103,32 +103,32 @@
                 <h5 class="title">리뷰 신고 목록</h5>
               </div>
               <div class="card-body">
-				<div class="row">
-	              	<div class="col-md-6 col_checkbox">
-						<input type="checkbox" value="0" id="reportStatusAllCheck"> &nbsp;전체선택&nbsp;
-	        	      	<input type="checkbox" value="1" name="report_status" class="report_status"> &nbsp;처리중&nbsp;
-		              	<input type="checkbox" value="2" name="report_status" class="report_status"> &nbsp;승인&nbsp;
-		              	<input type="checkbox" value="3" name="report_status" class="report_status"> &nbsp;반려&nbsp;
-	              	</div>
-	              	<div class="col-md-6">
-	              		<form action="" class="member_date filter_search">
-	              			<div class="search_bar_admin">
-			              		<input type="date" id="start_date">&nbsp;&nbsp;~&nbsp;&nbsp;<input type="date" id="end_date">
-		              		</div>
-		              		<div class="search_bar_admin">
-								<select>
-									<option>전체검색</option>
-									<option>신고자아이디</option>
-									<option>피신고자아이디</option>
-									<option>클래스명</option>
-									<option>신고사유</option>
-								</select>&nbsp;
-	              				<input type="search">&nbsp;
-			              		<button type="submit" class="btn btn_default" value="검색">검색</button>
-		              		</div>	
-	              		</form>
-	              	</div>
-              	</div>		
+<!-- 				<div class="row"> -->
+<!-- 	              	<div class="col-md-6 col_checkbox"> -->
+<!-- 						<input type="checkbox" value="0" id="reportStatusAllCheck"> &nbsp;전체선택&nbsp; -->
+<!-- 	        	      	<input type="checkbox" value="1" name="report_status" class="report_status"> &nbsp;처리중&nbsp; -->
+<!-- 		              	<input type="checkbox" value="2" name="report_status" class="report_status"> &nbsp;승인&nbsp; -->
+<!-- 		              	<input type="checkbox" value="3" name="report_status" class="report_status"> &nbsp;반려&nbsp; -->
+<!-- 	              	</div> -->
+<!-- 	              	<div class="col-md-6"> -->
+<!-- 	              		<form action="" class="member_date filter_search"> -->
+<!-- 	              			<div class="search_bar_admin"> -->
+<!-- 			              		<input type="date" id="start_date">&nbsp;&nbsp;~&nbsp;&nbsp;<input type="date" id="end_date"> -->
+<!-- 		              		</div> -->
+<!-- 		              		<div class="search_bar_admin"> -->
+<!-- 								<select> -->
+<!-- 									<option>전체검색</option> -->
+<!-- 									<option>신고자아이디</option> -->
+<!-- 									<option>피신고자아이디</option> -->
+<!-- 									<option>클래스명</option> -->
+<!-- 									<option>신고사유</option> -->
+<!-- 								</select>&nbsp; -->
+<!-- 	              				<input type="search">&nbsp; -->
+<!-- 			              		<button type="submit" class="btn btn_default" value="검색">검색</button> -->
+<!-- 		              		</div>	 -->
+<!-- 	              		</form> -->
+<!-- 	              	</div> -->
+<!--               	</div>		 -->
 	              	
                 <table class="table table-bordered">
 			        <colgroup>
@@ -150,7 +150,7 @@
 		            <!-- 회원 데이터 로우 -->
 	       		    <c:forEach var="report" items="${reportList }">
 		            	<c:if test="${report.report_category eq 1 }">
-				            <tr class="tr_hover" onclick="location.href='${pageContext.request.contextPath }/admin/report/detail'">
+				            <tr class="tr_hover" onclick="location.href='${pageContext.request.contextPath }/admin/report/review/detail?report_idx=${report.report_idx }&review_idx=${report.review_idx }'">
 				                <td>${report.report_date }</td>
 				                <td>${report.review_idx }</td>
 				                <td>${report.member_id }</td>
