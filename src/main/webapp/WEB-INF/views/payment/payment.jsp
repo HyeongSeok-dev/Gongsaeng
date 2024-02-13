@@ -1,6 +1,8 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,95 +60,140 @@
 <script src="${pageContext.request.contextPath }/resources/js/payment.js"></script>
 
 
-<script type="text/javascript"> 
+<script type="text/javascript">
+	//최종결제금액 계산
+	function totalPayment2() {
 
-//최종결제금액 계산
-function totalPayment2(){
-	
-	//결제금액
-	var payment = parseInt($("#reservationPrice") .text().replace(/,/g, '')); 
-	//쿠폰할인
-	var coupon =  parseInt($("#discountCoupon_text") .text().trim().replace(/,/g, '')); 
-	//0페이사용
-	var pay = parseInt($("#discountPay_text") .text().trim().replace(/,/g, '')); 
-	//최종결제금액
-	var totalPayment  = 0;
-	
-	totalPayment = payment - coupon - pay;
-	
-	console.log("최종결제금액 : " + totalPayment);
-	
-	
-	$("#totalPayment_text").text(totalPayment)
-	
-}
+		//결제금액
+		var payment = parseInt($("#reservationPrice").text().replace(/,/g, ''));
+		//쿠폰할인
+		var coupon = parseInt($("#discountCoupon_text").text().trim().replace(
+				/,/g, ''));
+		//0페이사용
+		var pay = parseInt($("#discountPay_text").text().trim().replace(/,/g,
+				''));
+		//최종결제금액
+		var totalPayment = 0;
+
+		totalPayment = payment - coupon - pay;
+
+		console.log("최종결제금액 : " + totalPayment);
+
+		$("#totalPayment_text").text(totalPayment)
+
+	}
 	function paymentAgreeView() {
-			/* 팝업창 중앙 정렬 */
-			var popupW = 950;
-			var popupH = 700;
-			var left = Math.ceil((window.screen.width - popupW)/2);
-			var top = Math.ceil((window.screen.height - popupH)/2);
-			window.open('${pageContext.request.contextPath }/payment/agree','','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')	
-		}
-	
+		/* 팝업창 중앙 정렬 */
+		var popupW = 950;
+		var popupH = 700;
+		var left = Math.ceil((window.screen.width - popupW) / 2);
+		var top = Math.ceil((window.screen.height - popupH) / 2);
+		window
+				.open(
+						'${pageContext.request.contextPath }/payment/agree',
+						'',
+						'width='
+								+ popupW
+								+ ',height='
+								+ popupH
+								+ ',left='
+								+ left
+								+ ',top='
+								+ top
+								+ ',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no')
+	}
+
 	//충전하기
-	function payCharge(){
-		window.open("payment/charge/main", "_blank2", "width=600, height=800");	
+	function payCharge() {
+		window.open("payment/charge/main", "_blank2", "width=600, height=800");
 	}
-	
+
 	//계좌등록을 안했는데 포인트 사용하고 버튼누르면 계좌를 등록하기위한
-// 	개인정보 동의 페이지(charge_agree)페이지로 이동
+	// 	개인정보 동의 페이지(charge_agree)페이지로 이동
 	function agreePage() {
-	    alert('계좌를 등록해주세요.');
-	    window.open('payment/charge/agree', '_blank', 'width=600, height=800 ');
+		alert('계좌를 등록해주세요.');
+		window.open('payment/charge/agree', '_blank', 'width=600, height=800 ');
 	}
-	
+
 	//버튼 누르면 기본적으로 결제상세페이지에 0페이 금액표시 보유금액보다 더 높은금액 사용하기 막기
 	function defaultPay() {
-		
+
 		var payValue;
-		
-	    var features = "scrollbars=yes,width=600,height=800,location=no, resizable=yes";
-	    var form = document.goPay;
-		
-		console.log(typeof $("#pay").val() );
+
+		var features = "scrollbars=yes,width=600,height=800,location=no, resizable=yes";
+		var form = document.goPay;
+
+		console.log(typeof $("#pay").val());
 		console.log($("#pay").val() == "" || $("#pay").val() == null);
-		
-		if($("#pay").val() == "" || $("#pay").val() == null){
+
+		if ($("#pay").val() == "" || $("#pay").val() == null) {
 			$("#pay").val(0);
-		console.log("payValue : " + $("#pay").val());
-			
+			console.log("payValue : " + $("#pay").val());
+
 			payValue = parseInt($("#pay").val()); //사용할페이 적는곳
-		}else{
+		} else {
 			payValue = parseInt($("#pay").val().replace(/[^0-9]/g, '')); //사용할페이 적는곳
 		}
-		
+
 		var cashValue = parseInt("${allList.cash_value}"); // 보유중인 페이잔액
 
 		console.log("payValue : " + payValue);
 		console.log("cashValue : " + cashValue);
-		
-		
-	  if (payValue < cashValue || payValue == cashValue) {
-	    // 사용할 페이 값이 작을 경우
-	    $("#discountPay_text").text($("#pay").val()); // #discountPoint_text에 #pay 값 표시
-	    totalPayment2(); //최종값 계산
-	  } else if(payValue > cashValue){
-	    // 사용할 페이 값이 클경우
-	    var confirmResult = confirm("보유 중인 페이가 부족합니다. 페이를 충전하시겠습니까?");
-		  if (confirmResult) {
+
+		if (payValue < cashValue || payValue == cashValue) {
+			// 사용할 페이 값이 작을 경우
+			$("#discountPay_text").text($("#pay").val()); // #discountPoint_text에 #pay 값 표시
+			totalPayment2(); //최종값 계산
+		} else if (payValue > cashValue) {
+			// 사용할 페이 값이 클경우
+			var confirmResult = confirm("보유 중인 페이가 부족합니다. 페이를 충전하시겠습니까?");
+			if (confirmResult) {
 				window.open("", "pay_main", features);
 				form.action = "/gongsaeng/payment/charge/main";
 				form.target = "pay_main";
 				form.method = "POST";
 				form.submit();
-		  }
-	  } else if(payValue == "0"){
-	    alert("사용할 페이를 입력해주세요");
-	    $("#pay").focus(); // #pay로 포커스 이동
-	  }
-}
+			}
+		} else if (payValue == "0") {
+			alert("사용할 페이를 입력해주세요");
+			$("#pay").focus(); // #pay로 포커스 이동
+		}
+	}
+	//=================================================================================== 쿠폰기능
+	$(document).ready(
+		function() {
+			var total = ${map.total};
+			$("#coupon_selector").change(function() {
+			var selectedCoupon = $(this).val();
+			console.log(selectedCoupon);
+			console.log(total);
+			var selectedCouponValue = $("#coupon_value_" + selectedCoupon).val();
+			var selectedMinPrice = $("#coupon_min_price_" + selectedCoupon).val();
+			console.log(selectedCouponValue);
+			console.log(selectedMinPrice);
 
+			if (total < selectedMinPrice) {
+				alert("최소결제금액 " + selectedMinPrice
+						+ "원 이상 결제시 사용 가능합니다.");
+				return;
+			}
+
+			var disCountCouponValue;
+
+			if (selectedCouponValue < 1) {
+				disCountCouponValue = Math.floor(total
+						* selectedCouponValue);
+			} else {
+				disCountCouponValue = Math
+						.floor(selectedCouponValue);
+			}
+			console.log(disCountCouponValue);
+			
+			 $("#discountCoupon_text").text(disCountCouponValue.toFixed(0));
+			 totalPayment2();
+
+		});
+	});
 </script>
 </head>
 <body>
@@ -165,7 +212,7 @@ function totalPayment2(){
 			</div>
 		</div>
 		<form action="paymentPro" name="payForm" method="POST" id="payForm">
-		
+
 			<div class="div_outter">
 
 
@@ -201,9 +248,7 @@ function totalPayment2(){
 											<tr>
 												<td><span class="info_title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;결제 금액</span></td>
 												<td>${cart.class_price * cart.res_member_count}원</td>
-												<td><input type="hidden" id="res_member_count" value="${cart.res_member_count }"> <input type="hidden" id="res_visit_time"
-													value="${cart.res_visit_time }"> <input type="hidden" id="res_visit_date" value="${cart.res_visit_date }"> <input type="hidden"
-													id="class_idx" value="${cart.class_idx }"> <input type="hidden" id="class_title" value="${cart.class_title }"></td>
+												<td><input type="hidden" id="res_member_count" value="${cart.res_member_count }"> <input type="hidden" id="res_visit_time" value="${cart.res_visit_time }"> <input type="hidden" id="res_visit_date" value="${cart.res_visit_date }"> <input type="hidden" id="class_idx" value="${cart.class_idx }"> <input type="hidden" id="class_title" value="${cart.class_title }"></td>
 											</tr>
 										</table>
 									</section>
@@ -236,9 +281,7 @@ function totalPayment2(){
 										<tr>
 											<td><span class="info_title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;결제 금액</span></td>
 											<td>${pay.class_price * map.res_member_count}원</td>
-											<td><input type="hidden" id="res_member_count" value="${map.res_member_count }"> <input type="hidden" id="res_visit_time"
-												value="${map.res_visit_time }"> <input type="hidden" id="res_visit_date" value="${map.res_visit_date }"> <input type="hidden"
-												id="class_idx" value="${pay.class_idx }"> <input type="hidden" id="class_title" value="${pay.class_title }"></td>
+											<td><input type="hidden" id="res_member_count" value="${map.res_member_count }"> <input type="hidden" id="res_visit_time" value="${map.res_visit_time }"> <input type="hidden" id="res_visit_date" value="${map.res_visit_date }"> <input type="hidden" id="class_idx" value="${pay.class_idx }"> <input type="hidden" id="class_title" value="${pay.class_title }"></td>
 										</tr>
 									</table>
 								</section>
@@ -246,15 +289,23 @@ function totalPayment2(){
 						</c:choose>
 
 						<!-- 쿠폰선택========================================================== -->
+
+
 						<section id="leftSec02" class="section_box">
 							<h2>쿠폰선택</h2>
-							<br> <select>
+							<br> <select id="coupon_selector">
 								<option value="">쿠폰을 선택하세요</option>
-								<c:forEach var="couponList" items="${couponList}">
-									<option value="coupon" id="coupon">${couponList.coupon_name}</option>
+								<c:forEach var="coupon" items="${couponList}">
+									<option value="${coupon.coupon_idx}" id="coupon">${coupon.coupon_name}/
+										<c:choose><c:when test="${coupon.coupon_value lt 1}">${fn:substringBefore(coupon.coupon_value * 100,'.')}% 할인</c:when>
+											<c:otherwise>${fn:substringBefore(coupon.coupon_value,'.')}원 할인</c:otherwise></c:choose>/${coupon.coupon_min_price}원 이상 결제시</option>
 								</c:forEach>
 							</select>
 						</section>
+						<c:forEach var="coupon" items="${couponList}">
+							<input type="hidden" id="coupon_value_${coupon.coupon_idx}" value="${coupon.coupon_value}">
+							<input type="hidden" id="coupon_min_price_${coupon.coupon_idx}" value="${coupon.coupon_min_price}">
+						</c:forEach>
 
 						<!-- 포인트============================================================ -->
 
@@ -283,22 +334,16 @@ function totalPayment2(){
 							<div class="pay">
 								<div class="pay_result">
 									<!-- 									<span class="font_stlye">포인트</span>  -->
-									<span class="pay_available"> 
-										&nbsp;&nbsp;보유중인페이금액&nbsp; 
-										<span id="useablePay"> 
-											<c:choose>
-												<c:when test= "${empty allList.cash_value}">
+									<span class="pay_available"> &nbsp;&nbsp;보유중인페이금액&nbsp; <span id="useablePay"> <c:choose>
+												<c:when test="${empty allList.cash_value}">
 												0
 												</c:when>
 												<c:otherwise>
 												${allList.cash_value}
 												</c:otherwise>
 											</c:choose>
-										 </span> 
-									 	원 &nbsp;
-										 <span>
-										 	<a id="useAllPoint">전액사용</a>
-										 </span>
+									</span> 원 &nbsp; <span> <a id="useAllPoint">전액사용</a>
+									</span>
 									</span>
 								</div>
 								<input type="text" placeholder="사용할 0페이를 입력해 주세요" class="pay_to_use" name="payToUse" id="pay" /><span class="won">원</span>
@@ -307,7 +352,7 @@ function totalPayment2(){
 								<!-- 엑세스토큰이 존재하지 않을때 계좌인증 함수 호출  -->
 								<!-- 보유중인 페이금액이 없을때 -->
 								<!-- 버튼 누르면 기본적으로 결제상세페이지에 0페이 금액표시 보유금액보다 더 높은금액 사용하기 막기-->
-										
+
 								<c:choose>
 									<c:when test="${empty allList.member_id }">
 										<button type="button" onclick="agreePage()">사용하기</button>
@@ -316,7 +361,7 @@ function totalPayment2(){
 										<button type="button" onclick="alert('페이잔액을 충전해주세요.');payCharge()">사용하기</button>
 									</c:when>
 									<c:otherwise>
-									<form action="" name="goPay" method="POST" id="goPay">
+										<form action="" name="goPay" method="POST" id="goPay">
 											<button id="chargePay" class="use_button charge" type="button" onclick="defaultPay()">사용하기</button>
 										</form>
 									</c:otherwise>
@@ -334,8 +379,7 @@ function totalPayment2(){
 								<!-- 						</div>	 -->
 								<!-- 카카오페이 -->
 								<div style="display: flex; align-items: center;">
-									<input type="radio" name="pay_method" value="1" id="kakaoPay">&nbsp; <img
-										src="${pageContext.request.contextPath }/resources/img/kakaoPay_png.png" width="65" id="kakao"> <span class="font_stlye"> </span>
+									<input type="radio" name="pay_method" value="1" id="kakaoPay">&nbsp; <img src="${pageContext.request.contextPath }/resources/img/kakaoPay_png.png" width="65" id="kakao"> <span class="font_stlye"> </span>
 								</div>
 								<br>
 								<!-- 카드결제 -->
@@ -357,32 +401,28 @@ function totalPayment2(){
 							<div class="agree_top">
 								<!-- 이용약관동의 -->
 								<div class="agree_main">
-									<span style="display: flex; align-items: center;"> <input type="checkbox" id="payAgree" name="agreement" class="agree"> <span
-										class="each_agree" style="width: 300px;"> <span class="agree_font">[필수]</span> 결제이용 약관 동의 합니다.
+									<span style="display: flex; align-items: center;"> <input type="checkbox" id="payAgree" name="agreement" class="agree"> <span class="each_agree" style="width: 300px;"> <span class="agree_font">[필수]</span> 결제이용 약관 동의 합니다.
 									</span>
 									</span> <span> <a onclick="paymentAgreeView()" class="info-content agree">보기</a>
 									</span>
 								</div>
 								<!-- 환불정책동의 -->
 								<div class="agree_main">
-									<span style="display: flex; align-items: center;"> <input type="checkbox" id="payBackAgree" name="agreement" class="agree"> <span
-										class="each_agree"> <span class="agree_font">[필수]</span> 환불정책 약관 동의 합니다.
+									<span style="display: flex; align-items: center;"> <input type="checkbox" id="payBackAgree" name="agreement" class="agree"> <span class="each_agree"> <span class="agree_font">[필수]</span> 환불정책 약관 동의 합니다.
 									</span>
 									</span> <span> <a onclick="paymentAgreeView()" class="info-content agree">보기</a>
 									</span>
 								</div>
 								<!-- 정보동의 -->
 								<div class="agree_main">
-									<span style="display: flex; align-items: center;"> <input type="checkbox" name="per_info_consent" class="agree"> <span
-										class="each_agree"> <span class="agree_font">[선택]</span> 개인정보 제3자 제공 동의 합니다.
+									<span style="display: flex; align-items: center;"> <input type="checkbox" name="per_info_consent" class="agree"> <span class="each_agree"> <span class="agree_font">[선택]</span> 개인정보 제3자 제공 동의 합니다.
 									</span>
 									</span> <span> <a onclick="paymentAgreeView()" class="info-content agree">보기</a>
 									</span>
 								</div>
 								<!-- 전체동의 -->
 								<div class="agree_main">
-									<span style="display: flex; align-items: center;"> <input type="checkbox" name="checkAllAgree" value="전체동의" class="agree" id="checkAllAgree">
-										<span class="each_agree"> <span class="all_agree">[전체동의]</span> 서비스약관에 동의 합니다.
+									<span style="display: flex; align-items: center;"> <input type="checkbox" name="checkAllAgree" value="전체동의" class="agree" id="checkAllAgree"> <span class="each_agree"> <span class="all_agree">[전체동의]</span> 서비스약관에 동의 합니다.
 									</span>
 									</span>
 								</div>
@@ -405,7 +445,7 @@ function totalPayment2(){
 											<span class="detail">결제금액</span> <span class="detail_price"><span id="reservationPrice">${map.total}</span> 원</span>
 											<%--paymentVO --%>
 											<%-- param--%>
-<%-- 											<input type="hidden" value="${map.res.res_table_price}" name="pay_per_price" /> --%>
+											<%-- 											<input type="hidden" value="${map.res.res_table_price}" name="pay_per_price" /> --%>
 										</div>
 
 										<!-- 쿠폰할인 -->

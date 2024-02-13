@@ -65,15 +65,13 @@
 			<div class="col-sm-3">
 				<c:choose>
 					<c:when test="${empty member.member_img}">
-						<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" style="cursor: pointer; max-height: 250px;"
-							onclick="location.href='modifyProfile'">
+						<img alt="profile" src="${pageContext.request.contextPath }/resources/img/default_user_img.png" style="cursor: pointer; max-height: 250px;" onclick="location.href='modifyProfile'">
 					</c:when>
 					<c:when test="${fn:contains(member.member_img,'http')}">
 						<img alt="profile" src="${member.member_img}" style="cursor: pointer; max-height: 250px;" onclick="location.href='modifyProfile'">
 					</c:when>
 					<c:otherwise>
-						<img alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}" style="cursor: pointer; max-height: 250px;"
-							onclick="location.href='modifyProfile'">
+						<img alt="profile" src="${pageContext.request.contextPath }/resources/upload/${member.member_img}" style="cursor: pointer; max-height: 250px;" onclick="location.href='modifyProfile'">
 					</c:otherwise>
 				</c:choose>
 				<div class="panel panel-default">
@@ -87,7 +85,7 @@
 								<div id="alert" class="panel-collapse collapse">
 									<ul class="list-group">
 										<li class="list-group-item cursor " onclick="javascript:location.href='alert'">알림</li>
-<!-- 										<li class="list-group-item cursor" onclick="javascript:location.href='chat'">채팅</li> -->
+										<!-- 										<li class="list-group-item cursor" onclick="javascript:location.href='chat'">채팅</li> -->
 									</ul>
 								</div>
 							</li>
@@ -96,7 +94,7 @@
 									<ul class="list-group">
 										<li class="list-group-item cursor" onclick="javascript:location.href='coupon'">쿠폰</li>
 										<li class="list-group-item cursor" onclick="javascript:location.href='cash'">0페이</li>
-										
+
 									</ul>
 								</div>
 							</li>
@@ -112,7 +110,7 @@
 							<li class="list-group-item cursor" data-toggle="collapse" href="#review">리뷰/신고
 								<div id="review" class="panel-collapse collapse">
 									<ul class="list-group">
-										<li class="list-group-item cursor " onclick="javascript:location.href='reviewWrite'">리뷰쓰기 / 신고 </li>
+										<li class="list-group-item cursor " onclick="javascript:location.href='reviewWrite'">리뷰쓰기 / 신고</li>
 										<li class="list-group-item cursor " onclick="javascript:location.href='reviewList'">내가 쓴 리뷰</li>
 									</ul>
 								</div>
@@ -144,9 +142,9 @@
 						<h2 class="panel-title">내가 쓴 글</h2>
 					</div>
 					<div class="panel panel-default">
-							<c:if test="${empty myCommunityList}">
-								<div class="panel-body">내가 쓴 커뮤니티 글이 없습니다.</div>
-							</c:if>
+						<c:if test="${empty myCommunityList}">
+							<div class="panel-body">내가 쓴 커뮤니티 글이 없습니다.</div>
+						</c:if>
 						<div class="cm_text panel-body">
 							<c:forEach var="community" items="${myCommunityList}">
 								<div class="row mt-5">
@@ -159,7 +157,15 @@
 												<p>함께해요</p>
 											</c:when>
 										</c:choose>
-										<a href="questionDetail?board_idx=${community.board_idx}" class="cm_context"> <!-- 글제목 두껍게 -->
+
+										<a href="<c:choose>
+											<c:when test="${community.board_main_category eq 5}">
+												questionDetail
+											</c:when>
+											<c:when test="${community.board_main_category eq 6}">
+												togetherDetail
+											</c:when>
+										</c:choose>?board_idx=${community.board_idx}" class="cm_context"> <!-- 글제목 두껍게 -->
 											<h4 class="h4_community" style="font-weight: bold;">${community.board_subject}</h4> <!-- 글 내용과 댓글은 일반 두께로 -->
 											<p class="text-truncate" style="font-weight: normal;">${community.board_content}</p>
 											<p style="font-weight: normal;">
