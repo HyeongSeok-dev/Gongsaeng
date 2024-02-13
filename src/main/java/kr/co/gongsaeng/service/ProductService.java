@@ -3,6 +3,7 @@ package kr.co.gongsaeng.service;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -63,18 +64,10 @@ public class ProductService {
 
 	
 
-	public CartVO getSelectCart(String resVisitDate, String classIdx, String memberId) {
-		return mapper.selectCart(resVisitDate, classIdx, memberId);
-	}
 
-	public int getUpdateResMemberCount(String memberId, String classIdx, String resVisitDate, String resVisitTime,
-			int resMemberCount) {
-		return mapper.updateResMemberCount(memberId, classIdx, resVisitDate, resVisitTime, resMemberCount);
-		
-	}
 
-	public int registerInsertCart(String resVisitDate, String classIdx, String memberId) {
-		return mapper.insertCart(resVisitDate, classIdx, memberId);
+	public int registerInsertCart(@Param("date") String date, int class_idx, String member_id, String res_visit_time, int res_member_count) {
+		return mapper.insertCart(date, class_idx, member_id, res_visit_time, res_member_count);
 		
 	}
 

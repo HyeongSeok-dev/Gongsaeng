@@ -421,7 +421,7 @@ function showCommentForm(element) {
 	                    '<div class="reviewer_photo">' +
 	                        '<a href="#" target="_blank" class="profile_link">' +
 	                            '<div class="profile_image">' +
-	                                '<img src="' + contextPath + '/resources/upload/profile_test.jpg" alt="프로필" width="38" height="38">' +
+	                                '<img src="${pageContext.request.contextPath}/resources/upload/' + review.member_img + '" alt="프로필" width="38" height="38">' +
 // 	                            '<img src="' + contextPath + reviews.member_img + '" width="15" height="15">' +
 	                            '</div>' +
 	                        '</a>' +
@@ -581,7 +581,7 @@ function showCommentForm(element) {
                     '<div class="reviewer_photo">' +
                         '<a href="#" target="_blank" class="profile_link">' +
                             '<div class="profile_image">' +
-                                '<img src="' + contextPath + '/resources/upload/profile_test.jpg" alt="프로필" width="38" height="38">' +
+//                           	  '<img src="' + contextPath + '/resources/upload/' + review.member_img + '" alt="프로필" width="38" height="38">' +
                             '</div>' +
                         '</a>' +
                     '</div>' +
@@ -589,7 +589,7 @@ function showCommentForm(element) {
 //                         '<div class="reviewer_name">' + review.user_id + '</div>' +
 	                        '<div class="reviewer_name">' + review.member_nick + '</div>' +
                         '<div class="score1">' +
-                            '<img src="' + contextPath + '/resources/img/review_star.png" width="15" height="15">' +
+//                             '<img src="' + contextPath + '/resources/img/review_star.png" width="15" height="15">' +
                             (review.review_score / 2).toFixed(1) +
                         '</div>' +
                     '</div>' +
@@ -774,7 +774,7 @@ function showCommentForm(element) {
 		        <c:forEach items="${reviews}" var="review" varStatus="status">
 		            <!-- review_img_1 필드에 이미지가 존재하면 표시 -->
 		            <c:if test="${not empty review.review_img_1}">
-		                <img src="${pageContext.request.contextPath}/resources/upload/${review.review_img_1}" alt="Review Image ${status.index + 1}" />
+<%-- 		                <img src="${pageContext.request.contextPath}/resources/upload/${review.review_img_1}" alt="Review Image ${status.index + 1}" /> --%>
 		            </c:if>
 		        </c:forEach>
 		    </div>
@@ -829,7 +829,7 @@ function showCommentForm(element) {
 <!-- 	        <input type="checkbox" class="category_button" data-category="quantity"> -->
 <%-- 	        <span class="button_text">음식량 ${categoryCount.review_category_count_quantity}</span> --%>
 <!-- 	    </label> -->
-	</div>
+<!-- 	</div> -->
 	<br>
 	<br>
 	<!-- ========================================================================================= -->

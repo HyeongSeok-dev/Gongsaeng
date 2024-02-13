@@ -89,22 +89,22 @@
     </insert>
 
 
-	<select id="selectCart" resultType="cart">
-        SELECT *
-        FROM cart
-        WHERE res_visit_date = #{resVisitDate} AND class_idx = #{classIdx} AND member_id = #{memberId}
-    </select>
+<!-- 	<select id="selectCart" resultType="cart"> -->
+<!--         SELECT * -->
+<!--         FROM cart -->
+<!--         WHERE res_visit_date = #{resVisitDate} AND class_idx = #{classIdx} AND member_id = #{memberId} -->
+<!--     </select> -->
     
-<!--     <insert id="insertCart"> -->
-<!--         INSERT INTO cart -->
-<!--         VALUES ( -->
-<!--         null -->
-<!--         , #{memberId} -->
-<!--         , #{classIdx} -->
-<!--         ,#{resVisitDate} -->
-<!--         , #{resVisitTime} -->
-<!--         , #{resMemberCount}) -->
-<!--     </insert> -->
+    <insert id="insertCart">
+        INSERT INTO cart
+        VALUES (
+        null
+        , #{member_id}
+        , #{class_idx}
+        , #{date,jdbcType=VARCHAR}
+        , #{res_visit_time}
+        , #{res_member_count})
+    </insert>
     
     <update id="updateResMemberCount">
         UPDATE cart
@@ -125,10 +125,6 @@
 			,#{res_member_count}    	
     	)
     </insert>
-    
-    
-    
-    
     
    	<insert id="insertBookmark">
 		INSERT INTO bookmark

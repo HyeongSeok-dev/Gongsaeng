@@ -1437,7 +1437,8 @@ span.similar_recom_title {
 }
 
 .selected {
-    background-color: yellow; /* 선택된 날짜는 배경색이 노란색 */
+    background-color: #c2c2c2; /* 선택된 날짜는 배경색이 노란색 */
+    color: #fff;
 }
 
  

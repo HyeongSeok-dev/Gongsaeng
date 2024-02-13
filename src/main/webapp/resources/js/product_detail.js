@@ -1,6 +1,6 @@
+	var selectedDate = null;
 $(document).ready(function() {
 
-	var selectedDate = null;
 
 	// 날짜 클릭 이벤트
 	$(".date-item").click(function() {
@@ -9,6 +9,19 @@ $(document).ready(function() {
 		selectedDate = $(this).text(); // 선택된 날짜 저장
 
 	});
+	
+				function goToPayment2() {
+			    var res_visit_date = selectedDate; // 선택된 날짜를 사용합니다.
+			    var res_visit_time = document.getElementById('res_visit_time').value;
+			    var res_member_count = document.getElementById('res_member_count').value;
+			    var class_idx = '${cla.class_idx}';
+			    var contextPath = '${pageContext.request.contextPath}';
+			    
+			    var url = contextPath + '/payment?type=pay&class_idx=' + class_idx + '&res_visit_date=' + encodeURIComponent(res_visit_date) + '&res_visit_time=' + encodeURIComponent(res_visit_time) + '&res_member_count=' + res_member_count;
+			    location.href = url;
+			}
+	
+	
 
 	// '장바구니' 버튼 클릭 이벤트
 	$("#add-to-cart").click(function() {
@@ -20,19 +33,28 @@ $(document).ready(function() {
 
 			$.ajax({
 				url: "add-to-cart", // 서버의 '장바구니' 처리 URL
-				type: "GET", // HTTP 메소드
+//				type: "POST", // HTTP 메소드
 				data: { // 서버로 보낼 데이터
-					"res_visit_date": selectedDate,
-					"class_idx": classIdx,
-					"member_id": memberId,
-					"res_visit_time": resVisitTime,
-					"res_member_count": resMemberCount
+					res_visit_date: selectedDate,
+					class_idx: classIdx,
+					member_id: memberId,
+					res_visit_time: resVisitTime,
+					res_member_count: resMemberCount
 				},
-				success: function(response) {
+				dataType: "json",
+				success: function(result) {
+					if (result == true) {
+						alert("장바구니에 추가되었습니다.");
+						location.href = "/gongsaeng/cart";
+					} else {
+						alert("북마크 제거에 실패했습니다. 다시 시도해주세요");
+					}
+//					console.log(response);
 					// 서버로부터의 응답 처리
-					alert("장바구니에 추가되었습니다.");
-					window.location.href = "/payment/cart";
-				}
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+        console.log(textStatus, errorThrown); // 오류 정보 출력
+    }
 			});
 		} else {
 			alert("날짜를 선택해주세요.");
@@ -52,35 +74,35 @@ $(document).ready(function() {
 	//
 	//		console.log(url);
 	//	});
-
-	fetchRestaurants('near');
+//
+//	fetchRestaurants('near');
 	//즐겨찾기 누르기
 
-	$(".favorite_button").click(function() {
-		var comId = $("#com_id").val(); // 회사 아이디 가져오기
-
-		// Ajax 요청 보내기
-		$.ajax({
-			type: "POST",
-			url: "favor",
-			data: { com_id: comId },
-			success: function(response) {
-				if (response != 'notLogin') {
-					if (response === 'true') {
-						$(".favor_container").html("<div class='favor_on'><span id='favorite_button'> 북마크 </span></div>");
-					} else if (response === 'false') {
-						$(".favor_container").html("<div class='favor_off'><span id='favorite_button'> 북마크 </span></div>");
-					}
-				} else {
-					alert('로그인 후 북마크가 가능합니다!');
-					window.location.href = "../login";
-				}
-			},
-			error: function() {
-				alert("오류가 발생했습니다.");
-			}
-		});
-	});
+//	$(".favorite_button").click(function() {
+//		var comId = $("#com_id").val(); // 회사 아이디 가져오기
+//
+//		// Ajax 요청 보내기
+//		$.ajax({
+//			type: "POST",
+//			url: "favor",
+//			data: { com_id: comId },
+//			success: function(response) {
+//				if (response != 'notLogin') {
+//					if (response === 'true') {
+//						$(".favor_container").html("<div class='favor_on'><span id='favorite_button'> 북마크 </span></div>");
+//					} else if (response === 'false') {
+//						$(".favor_container").html("<div class='favor_off'><span id='favorite_button'> 북마크 </span></div>");
+//					}
+//				} else {
+//					alert('로그인 후 북마크가 가능합니다!');
+//					window.location.href = "../login";
+//				}
+//			},
+//			error: function() {
+//				alert("오류가 발생했습니다.");
+//			}
+//		});
+//	});
 
 
 

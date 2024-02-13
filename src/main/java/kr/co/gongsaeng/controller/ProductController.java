@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -278,24 +279,33 @@ public class ProductController {
 		CartVO cart = service.findCart(class_idx, member_id, res_visit_date);
 		System.out.println("cart>>>" + cart);
 
-		int insertCart = service.addToCart(class_idx, member_id, res_visit_date, res_member_count, res_visit_time);
+		int insertCartF = service.addToCart(class_idx, member_id, res_visit_date, res_member_count, res_visit_time);
 
 		return "redirect:/cart";
 	}// addToCart
+	
+	
+	@ResponseBody
+	@GetMapping("product/add-to-cart")
+	public String addToCart(@RequestParam("res_visit_date") @Param("date") String res_visit_date,
+			@RequestParam("class_idx") int class_idx,
+			@RequestParam("member_id") String member_id,
+			@RequestParam("res_visit_time") String res_visit_time,
+			@RequestParam("res_member_count") int res_member_count) {
+			
+			String original = res_visit_date;
+			int index = original.indexOf("가능인원");
+			String date = original.substring(0, index).trim();
+			System.out.println("date>>>>>" + date);
 
-	@PostMapping("product/add-to-cart")
-	public String addToCart(@RequestParam("resVisitDate") String resVisitDate,
-			@RequestParam("classIdx") String classIdx, @RequestParam("memberId") String memberId,
-			@RequestParam("resVisitTime") String resVisitTime, @RequestParam("resMemberCount") int resMemberCount) {
-
-		CartVO existingCart = service.getSelectCart(resVisitDate, classIdx, memberId);
-		if (existingCart != null) {
-			int plusCart = service.getUpdateResMemberCount(memberId, classIdx, resVisitDate, resVisitTime,
-					resMemberCount);
-		} else {
-			int insertCart = service.registerInsertCart(resVisitDate, classIdx, memberId);
-		}
-		return "cart/cart"; // 뷰 이름 반환
+			int insertCart = service.registerInsertCart(date, class_idx, member_id, res_visit_time, res_member_count);
+//			int insertCart = service.registerInsertCart(res_visit_date, class_idx, member_id, res_visit_time, res_member_count);
+			if (insertCart > 0) {
+				return "true";
+			} else {
+				return "false";
+			}
+			
 	}
 
 	@ResponseBody
