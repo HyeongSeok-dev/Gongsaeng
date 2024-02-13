@@ -68,7 +68,7 @@
 		)
 	</insert>
 	
-	<!-- ==========================paymentPro============================  -->
+	<!-- ==========================paymentPro=============================  -->
 	<!-- class_idx를 이용한 반장 memger_id 찾기 -->
 	<select id="selectMember_id" resultType="String">
 		SELECT member_id

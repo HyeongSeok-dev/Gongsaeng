@@ -225,7 +225,7 @@
 
 				<div class="div_inner">
 					<div class="div_left_box">
-						<!-- 수강클래스====================================================== -->
+						<!-- 수강클래스======================================================= -->
 						<c:choose>
 							<c:when test="${map.type eq 'cart'}">
 								<c:forEach var="cart" items="${cartList}">

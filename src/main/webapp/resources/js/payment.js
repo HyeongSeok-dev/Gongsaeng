@@ -182,10 +182,11 @@ $(document).ready(function() {
 					         //가맹점 서버 결제 API 성공시 로직
 					        console.log("성공 : " + data);
 					        if(data) {
-					        	window.location.href="payment/info?res_num=" + rsp.merchant_uid
-											+ "&discountPoint=" + discountPoint 
-											+ "&earnedPoints=" + earnedPoints
-											+ "&finalTotalPayment=" + totalPayment;
+//					        	window.location.href="payment/info?res_num=" + rsp.merchant_uid
+//											+ "&discountPoint=" + discountPoint 
+//											+ "&earnedPoints=" + earnedPoints
+//											+ "&finalTotalPayment=" + totalPayment;
+								window.location.href="mypage/reservation";
 							} else {
 								console.log("결제내역 데이터베이스 입력 실패")
 							}
