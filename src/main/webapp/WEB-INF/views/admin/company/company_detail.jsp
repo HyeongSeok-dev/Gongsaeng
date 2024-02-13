@@ -104,7 +104,7 @@
       <!-- End Navbar -->
       <div class="panel-header panel-header-sm">
       </div>
-   	<form action="/gongsaeng/admin/company/modifyPro" name="comModifyPro" method="post" enctype="multipart/form-data">
+<!--    	<form action="/gongsaeng/admin/company/modifyPro" name="comModifyPro" method="post" enctype="multipart/form-data"> -->
       <div class="content">
         <div class="row">
           <div class="col-md-12">
@@ -354,7 +354,7 @@
         	</div>
         </div>
       </div>
-	  </form>
+<!-- 	  </form> -->
       <footer class="footer">
        <jsp:include page="../inc/admin_bottom.jsp"/>
      </footer>

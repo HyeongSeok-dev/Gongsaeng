@@ -75,11 +75,17 @@
 		//최종결제금액
 		var totalPayment = 0;
 
+		var discountPayment = 0;
 		totalPayment = payment - coupon - pay;
-
+		discountPayment = coupon + pay;
+		
 		console.log("최종결제금액 : " + totalPayment);
 
+	    $("#discount_payment").val(discountPayment);
+	    
 		$("#totalPayment_text").text(totalPayment)
+		
+		$("#payment").val(totalPayment);
 
 	}
 	function paymentAgreeView() {
@@ -144,8 +150,6 @@
 	    // 사용할 페이 값이 작을 경우
 	    $("#discountPay_text").text($("#pay").val()); // #discountPoint_text에 #pay 값 표시
 	    
-	    $("#discount_payment").val(payValue); //포인트 사용한 값 discount_payment로 넘기기
-	    
 	    totalPayment2(); //최종값 계산
 	  } else if(payValue > cashValue){
 	    // 사용할 페이 값이 클경우
@@ -194,7 +198,7 @@
 			
 			 $("#discountCoupon_text").text(disCountCouponValue.toFixed(0));
 			 totalPayment2();
-
+			 $("#discount_payment").val(disCountCouponValue.toFixed(0));
 		});
 	});
 </script>
@@ -252,10 +256,11 @@
 												<td><span class="info_title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;결제 금액</span></td>
 												<td>${cart.class_price * cart.res_member_count}원</td>
 												<td>
-													<input type="hidden" id="res_member_count" value="${cart.res_member_count }"> 
-													<input type="hidden" id="res_visit_time"value="${cart.res_visit_time }"> 
-													<input type="hidden" id="res_visit_date" value="${cart.res_visit_date }"> 
-													<input type="hidden" id="class_idx" value="${cart.class_idx }"> 
+													<input type="hidden" name="res_member_count" id="res_member_count" value="${cart.res_member_count }"> 
+													<input type="hidden" name="res_visit_time" id="res_visit_time" value="${cart.res_visit_time }">
+													<input type="hidden" name="res_num" id="res_num" value="${cart.res_num }">  
+													<input type="hidden" name="res_visit_date" id="res_visit_date" value="${cart.res_visit_date }"> 
+													<input type="hidden" name="class_idx" id="class_idx" value="${cart.class_idx }"> 
 													<input type="hidden" id="class_title" value="${cart.class_title }">
 												</td>
 											</tr>
@@ -291,10 +296,11 @@
 											<td><span class="info_title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;결제 금액</span></td>
 											<td>${pay.class_price * map.res_member_count}원</td>
 											<td>
-												<input type="hidden" id="res_member_count" value="${map.res_member_count }">
-												 <input type="hidden" id="res_visit_time" value="${map.res_visit_time }"> 
-												 <input type="hidden" id="res_visit_date" value="${map.res_visit_date }"> 
-												 <input type="hidden" id="class_idx" value="${pay.class_idx }">
+												<input type="hidden" name="res_member_count" id="res_member_count" value="${map.res_member_count }">
+												 <input type="hidden" name="res_visit_time" id="res_visit_time" value="${map.res_visit_time }"> 
+												 <input type="hidden" name="res_num" id="res_num" value="${map.res_num }"> 
+												 <input type="hidden" name="res_visit_date" id="res_visit_date" value="${map.res_visit_date }"> 
+												 <input type="hidden" name="class_idx" id="class_idx" value="${pay.class_idx }">
 												  <input type="hidden" id="class_title" value="${pay.class_title }">
 											  </td>
 										</tr>
@@ -448,6 +454,12 @@
 							<button type="button" class="pay_button" id="payBtn">결제</button>
 						</div>
 
+						<input type="hidden" value="${allList.member_id}" name="member_id" id="member_id"/>
+			<%-- 			<input type="hidden" value="${map.member.user_phone}" name="user_phone" id="user_phone"/> --%>
+			<!-- 			<input type="hidden" value="" name="pay_card_co" id="pay_card_co"/> -->
+						<input type="hidden" value="" name="discount_payment" id="discount_payment"/>
+			<!-- 			<input type="hidden" value="" name="earnedPoints" id="earnedPoints" /> -->
+						<input type="hidden" value="" name="payment"  id="payment"/>
 					</div>
 					<div class="div_right_box">
 						<div class="right_box_stiky">
@@ -530,12 +542,7 @@
 <%-- 			<input type="hidden" value="${map.pay}" name="pay_num" id="pay_num" /> --%>
 			<!-- 결제자(회원)와 예약자가 다를 수 있기 때문에 결제자 정보 저장 -->
 			<%-- 			<input type="hidden" value="${allList.user_email}" name="user_email" id="user_email"/> --%>
-						<input type="hidden" value="${allList.member_id}" name="member_id" id="member_id"/>
-			<%-- 			<input type="hidden" value="${map.member.user_phone}" name="user_phone" id="user_phone"/> --%>
-			<!-- 			<input type="hidden" value="" name="pay_card_co" id="pay_card_co"/> -->
-						<input type="hidden" value="" name="discount_payment" id="discount_payment"/>
-			<!-- 			<input type="hidden" value="" name="earnedPoints" id="earnedPoints" /> -->
-						<input type="hidden" value="" name="payment"  id="payment"/>
+						
 			<!-- 			<input type="hidden" value="" name="preOrderTotalPrice"  id="preOrderTotalPrice"/> -->
 		</form>
 	</main>

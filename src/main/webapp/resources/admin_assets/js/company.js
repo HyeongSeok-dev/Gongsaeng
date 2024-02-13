@@ -41,7 +41,8 @@ $(function() {
 	}
 	// 소숫점 1의 자리 반올림
     function roundToFirstDecimalPlace(num) {
-    	return Math.round(num * 10) / 10;
+    	return Math.round(num);
+//    	return Math.round(num * 10) / 10;
 	}
 
 	// foreach 반복문의 클래스에 적용
