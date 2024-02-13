@@ -187,7 +187,9 @@ public interface AdminMapper {
 	//report_idx.jsp
 	ReportVO selectReportDetail(@Param("report_idx")int report_idx, @Param("class_idx")int class_idx, @Param("review_idx")int review_idx);
 	// report_detail 수정
-	int updateStatusModify(int report_idx);
+	int updateStatusModify(@Param("report_idx") int report_idx,@Param("report_status") int report_status);
+	
+	// 쿠폰등록 
 	void insertCouponAlert(Map<String, Object> map);
 	
 	

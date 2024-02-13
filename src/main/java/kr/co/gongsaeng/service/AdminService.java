@@ -336,13 +336,11 @@ public class AdminService {
 		return mapper.selectReportDetail(report_idx, class_idx, review_idx);
 	}
 
-	public int reportStatusModify(int report_idx) {
-		return mapper.updateStatusModify(report_idx);
-
+	public int reportStatusModify(int report_idx,int report_status) {
+		return mapper.updateStatusModify(report_idx, report_status);
 	}
 	
 	public void registCouponAlert(Map<String, Object> map) {
-		// TODO Auto-generated method stub
 		mapper.insertCouponAlert(map);
 	}
 

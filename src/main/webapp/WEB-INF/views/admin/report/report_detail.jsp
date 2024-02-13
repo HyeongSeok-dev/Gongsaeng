@@ -187,10 +187,10 @@
         	<div class="col-md-12 btn_bottom">
         		<c:choose>
 					<c:when test="${report.report_category eq 2 }">
-			        	<button type="button" class="btn btn_default" onclick="location.replace('${pageContext.request.contextPath }/admin/report/class')">목록</button>&nbsp;&nbsp;
+			        	<button type="button" class="btn btn_default" onclick="location.replace('${pageContext.request.contextPath }/admin/report/class?report_idx=${report.report_idx }')">목록</button>&nbsp;&nbsp;
 					</c:when>	             		
 					<c:when test="${report.report_category eq 1 }">
-			        	<button type="button" class="btn btn_default" onclick="location.replace('${pageContext.request.contextPath }/admin/report/review')">목록</button>&nbsp;&nbsp;
+			        	<button type="button" class="btn btn_default" onclick="location.replace('${pageContext.request.contextPath }/admin/report/review?report_idx=${report.report_idx }')">목록</button>&nbsp;&nbsp;
 					</c:when>	             		
            		</c:choose>
 	        	<button type="button" class="btn btn_default" id="modifyStatus">변경저장</button>

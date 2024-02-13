@@ -1329,8 +1329,10 @@ public class AdminController {
 		model.addAttribute("report", report);
 		return "admin/report/report_detail";
 	}
-	@GetMapping("admin/report/modifyReport")
-	public String reportModifyPro(HttpSession session, Model model, @RequestParam int report_idx) {
+	
+	@GetMapping("admin/report/class/modifyReport")
+	public String reportClassModifyPro(HttpSession session, Model model, @RequestParam(defaultValue = "1") int report_idx
+										,@RequestParam(defaultValue = "1") int report_status) {
 //		if(session.getAttribute("sId") == null) {
 //		model.addAttribute("msg", "로그인이 필요합니다");
 //		model.addAttribute("targetURL", "/gongsaeng/login");
@@ -1339,15 +1341,37 @@ public class AdminController {
 //		model.addAttribute("msg", "잘못된 접근 입니다.");
 //		return "fail_back";
 //	}
-		int updateCount = service.reportStatusModify(report_idx);
+		int updateCount = service.reportStatusModify(report_idx, report_status);
 		
 		if(updateCount > 0) {
-			return "javascript:location.replace()";
+			return "javascript:location.reload()";
 		} else {
 			model.addAttribute("msg" , "수정 실패!!");
 			return "fail_back";
 		}
 	}
+	
+	@GetMapping("admin/report/reivew/modifyReport")
+	public String reportReivewModifyPro(HttpSession session, Model model, @RequestParam(defaultValue = "1") int report_idx
+			,@RequestParam(defaultValue = "1") int report_status) {
+//		if(session.getAttribute("sId") == null) {
+//		model.addAttribute("msg", "로그인이 필요합니다");
+//		model.addAttribute("targetURL", "/gongsaeng/login");
+//		return "forward";
+//	} else if(!session.getAttribute("sId").equals("admin1234")) {
+//		model.addAttribute("msg", "잘못된 접근 입니다.");
+//		return "fail_back";
+//	}
+		int updateCount = service.reportStatusModify(report_idx,report_status);
+		
+		if(updateCount > 0) {
+			return "javascript:'location.reload()'";
+		} else {
+			model.addAttribute("msg" , "수정 실패!!");
+			return "fail_back";
+		}
+	}
+	
 
 	//===============================================[ 마케팅 센터 ]
 	// 이벤트 목록

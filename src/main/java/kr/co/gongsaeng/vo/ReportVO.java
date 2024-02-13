@@ -23,6 +23,7 @@ public class ReportVO {
 	private String banjangMember_id; //클래스신고시 피신고자
 	private String reviewerMember_id; //리뷰신고시 피신고자
 	private String com_name;
+	private String review_content;
 	
 	// 피신고건수(company_detail)
 	private int reportBeforCount;//전월 

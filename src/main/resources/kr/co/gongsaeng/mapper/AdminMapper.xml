@@ -831,6 +831,13 @@
 			</if>
 			AND report_idx = #{report_idx}
 		</select>
+		
+		<!-- 신고상태변경 -->
+		<update id="updateStatusModify">
+			UPDATE report
+			SET report_status = #{report_status}
+			WHERE report_idx
+		</update>
 	
 	<select id="selectMemberIdList" resultType="String">
 		SELECT member_id
@@ -867,7 +874,7 @@
 	        (
 	            null
 	            ,#{id}
-	            ,'띵동~ 고객님만을 위한 비밀쿠폰이 도착했습니다! 쿠폰함에서 확인해 주세요.
+	            ,'띵동~ 고객님만을 위한 비밀쿠폰이 도착했습니다! 쿠폰함에서 확인해 주세요.'
 	            ,3
 	            ,now()
 	            ,1
