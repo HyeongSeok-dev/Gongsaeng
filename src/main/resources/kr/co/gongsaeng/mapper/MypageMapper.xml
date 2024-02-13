@@ -78,7 +78,7 @@
 
 
 	<select id="selectResList" resultType="myRes">
-		select pay_num, p.com_idx,p.class_idx, p.member_id ,payment,discount_payment,pay_method,pay_date,pay_status,class_pic1,com_name,class_title,p.res_visit_date,p.res_visit_time,p.res_request,p.res_member_count,c.class_start_time,c.class_end_time,c.class_category,c.class_start_date,c.class_end_date
+		select pay_num, p.com_idx,p.class_idx, p.member_id ,payment,discount_payment,pay_method,pay_date,pay_status,class_pic1,com_name,class_title,p.res_visit_date,p.res_visit_time,p.res_member_count,c.class_start_time,c.class_end_time,c.class_category,c.class_start_date,c.class_end_date
 		FROM payment p
 		JOIN class c ON c.class_idx = p.class_idx 
 		JOIN company co ON co.com_idx = p.com_idx 
@@ -87,7 +87,7 @@
 	</select>
 	
 	<select id="selectResInfo" resultType="myRes">
-		select pay_num, p.com_idx,p.class_idx, p.member_id ,payment,discount_payment,pay_method,pay_date,pay_status,class_pic1,com_name,class_title,com_post_code, com_address1,com_address2, member_name, member_phone,p.res_visit_date,p.res_visit_time,p.res_request,p.res_member_count,c.class_start_time,c.class_end_time,c.class_category,c.class_start_date,c.class_end_date
+		select pay_num, p.com_idx,p.class_idx, p.member_id ,payment,discount_payment,pay_method,pay_date,pay_status,class_pic1,com_name,class_title,com_post_code, com_address1,com_address2, member_name, member_phone,p.res_visit_date,p.res_visit_time,p.res_member_count,c.class_start_time,c.class_end_time,c.class_category,c.class_start_date,c.class_end_date
 		FROM payment p
 		JOIN class c ON c.class_idx = p.class_idx 
 		JOIN company co ON co.com_idx = p.com_idx 
@@ -200,7 +200,7 @@
 	
 		
 	<select id="selectReviewWriteableResList" resultType="myRes">
-		SELECT p.pay_num, p.com_idx,p.class_idx, p.member_id ,payment,discount_payment,pay_method,pay_date,pay_status,class_pic1,com_name,class_title,p.res_visit_date,p.res_visit_time,p.res_request,p.res_member_count,c.class_start_time,c.class_end_time,c.class_category,c.class_start_date,c.class_end_date
+		SELECT p.pay_num, p.com_idx,p.class_idx, p.member_id ,payment,discount_payment,pay_method,pay_date,pay_status,class_pic1,com_name,class_title,p.res_visit_date,p.res_visit_time,p.res_member_count,c.class_start_time,c.class_end_time,c.class_category,c.class_start_date,c.class_end_date
 		FROM payment p
 		JOIN class c ON c.class_idx = p.class_idx 
 		JOIN company co ON co.com_idx = p.com_idx 

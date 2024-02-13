@@ -186,7 +186,6 @@
 					<div class="panel-body">
 						<p>예약자: ${resInfo.member_name}</p>
 						<p>연락처: ${resInfo.member_phone}</p>
-						<p>요청사항: ${resInfo.res_request}</p>
 					</div>
 				</div>
 
