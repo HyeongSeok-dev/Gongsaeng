@@ -19,5 +19,5 @@ public class SearchVO {
     private String maxAmount;
     private String classOffering;
     private String sort;
-    private int comIdx;
+    private String comIdx;
 }
