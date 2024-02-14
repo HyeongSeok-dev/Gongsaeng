@@ -156,7 +156,7 @@
 							</div>
 							<div class="col-sm-6 text-right">
 								<form name="goPay" method="POST" id="goPay">
-									<button type="button" class="btn btn-primary" onclick="payBtn()">0페이 충전/환불</button>
+<!-- 									<button type="button" class="btn btn-primary" onclick="payBtn()">0페이 충전/환불</button> -->
 								</form>
 							</div>
 						</div>

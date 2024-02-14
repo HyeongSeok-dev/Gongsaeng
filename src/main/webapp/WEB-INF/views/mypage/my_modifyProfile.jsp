@@ -254,7 +254,7 @@
 											oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 									</div>
 									<div class="col-sm-2 text-center">
-										<button type="button" class="btn btn-info" id="auth_phone_number_btn" disabled="disabled">인증하기</button>
+										<button type="button" class="btn btn-info" id="auth_phone_number_btn">인증하기</button>
 									</div>
 									<div class="col-sm-3">
 										<span id="checkPhoneResult"></span>
