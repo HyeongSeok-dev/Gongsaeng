@@ -55,7 +55,7 @@
 <script src="${pageContext.request.contextPath }/resources/assets/js/icheck.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/assets/js/price-range.js"></script>
 <%-- <script src="${pageContext.request.contextPath }/resources/assets/js/main.js"></script> --%>
-<script src="${pageContext.request.contextPath }/resources/js/my_bookmark_add.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/my_bookmark.js"></script>
 
 
 </head>
