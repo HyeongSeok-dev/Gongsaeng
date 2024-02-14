@@ -148,7 +148,7 @@ $(document).ready(function() {
 					console.log("kakao");
 					IMP.request_pay({
 					  pg: "kakaopay",
-					  merchant_uid:"kakaoPay_3" +  $("#class_idx").val(), //상품번호(클래스아이디)
+					  merchant_uid:"kakaoPay_5" +  $("#class_idx").val(), //상품번호(클래스아이디)
 					  name: "공생 클래스 수강 - " + $("#class_title").val() +" "+ $("#res_visit_date").val() +
 					  	"" + $("#res_visit_time") + "부터시작" + $("#res_member_count").val() + "명",
 //					  amount: parseInt($("#payment").text().trim().replace(/,/g, '')), //할인된금액(최종결제금액)
