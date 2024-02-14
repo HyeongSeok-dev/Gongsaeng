@@ -258,7 +258,7 @@
 												<td>
 													<input type="hidden" name="res_member_count" id="res_member_count" value="${cart.res_member_count }"> 
 													<input type="hidden" name="res_visit_time" id="res_visit_time" value="${cart.res_visit_time }">
-													<input type="hidden" name="res_num" id="res_num" value="${cart.res_num }">  
+<%-- 													<input type="hidden" name="res_num" id="res_num" value="${cart.res_num }">   --%>
 													<input type="hidden" name="res_visit_date" id="res_visit_date" value="${cart.res_visit_date }"> 
 													<input type="hidden" name="class_idx" id="class_idx" value="${cart.class_idx }"> 
 													<input type="hidden" id="class_title" value="${cart.class_title }">
