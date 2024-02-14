@@ -199,9 +199,12 @@ tbody {
 				            <!-- 정산 신청일 검색 -->
 <div class="form-row">
     <div class="col">
-        <label for="refundRequestDateStart">정산 신청일 시작</label>
+        <label for="refundRequestDateStart">정산 신청일 시작</label> 
         <input type="date" class="form-control" id="refundRequestDateStart">
     </div>
+    	<div class="col-xs-1 text-center">
+			<span class="form-control-plaintext">~</span>
+		</div>
     <div class="col">
         <label for="refundRequestDateEnd">정산 신청일 끝</label>
         <input type="date" class="form-control" id="refundRequestDateEnd">
@@ -217,6 +220,9 @@ tbody {
         <label for="refundDateStart">정산 완료일 시작</label>
         <input type="date" class="form-control" id="refundDateStart">
     </div>
+    	<div class="col-xs-1 text-center">
+			<span class="form-control-plaintext">~</span>
+		</div>
     <div class="col">
         <label for="refundDateEnd">정산 완료일 끝</label>
         <input type="date" class="form-control" id="refundDateEnd">

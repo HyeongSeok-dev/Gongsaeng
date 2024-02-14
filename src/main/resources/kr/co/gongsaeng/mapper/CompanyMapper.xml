@@ -328,12 +328,12 @@
 		WHERE com_idx = #{comIdx}
 	</select>
 	
-	
-	
-	
-	
-	
-	
+	<!-- 멤버 카테고리 제한(2) -->
+	<select id="selectMemberCategory" resultType="Integer">
+		SELECT member_category
+		FROM member
+		WHERE member_id = #{sId}
+	</select>
 	
 	
 	

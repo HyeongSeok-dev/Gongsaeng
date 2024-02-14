@@ -116,6 +116,9 @@ public interface CompanyMapper {
 	// 반장 프로필 조회
 	List<CompanyVO> selectCompanyProfile(Integer comIdx);
 
+	// 세션아이디 사업자 제한
+	Integer selectMemberCategory(String sId);
+
 
 
 

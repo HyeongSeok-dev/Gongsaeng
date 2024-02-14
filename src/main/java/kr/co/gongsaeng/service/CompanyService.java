@@ -213,6 +213,12 @@ public class CompanyService {
 		return mapper.selectCompanyProfile(comIdx);
 	}
 
+	// 사업자 아이디 제한
+	public Integer findMemberCategoryBySId(String sId) {
+
+		return mapper.selectMemberCategory(sId);
+	}
+
 
 
 

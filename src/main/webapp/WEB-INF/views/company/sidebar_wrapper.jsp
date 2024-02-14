@@ -16,7 +16,7 @@
 </style>
 </head>
 <div class="logo">
-    <a href="${pageContext.request.contextPath}/company/main" class="simple-text logo-mini">
+    <a href="${pageContext.request.contextPath}" class="simple-text logo-mini">
        	<img src="${pageContext.request.contextPath}/resources/company_assets/img/gongsaeng.png" width="200px"> | </a> <a href="${pageContext.request.contextPath}/company/main"
         class="simple-text logo-normal"> 반장님 페이지</a>
 </div>

@@ -252,7 +252,7 @@ tbody {
 													<div class="form-row col-xl-12 mt-1">
 														<div class="col-xl-6"></div>
 														<div>
-															<input type="checkbox" id="statusNormal" checked> 정상 &nbsp;
+															<input type="checkbox" id="statusNormal" checked> 완료 &nbsp;
 															<input type="checkbox" id="statusCancelled" checked> 취소
 														</div>
 													</div>
@@ -297,10 +297,10 @@ tbody {
 														<!-- # -->
 														<td><c:choose>
 																<c:when test="${sale.pay_status == 1}">
-											              		정상
+											              		결제 완료
 											              	</c:when>
 																<c:when test="${sale.pay_status == 2}">
-											              		취소
+											              		결제 취소
 											              	</c:when>
 															</c:choose></td>
 														<!-- 결제 상태 -->

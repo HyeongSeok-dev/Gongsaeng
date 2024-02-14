@@ -76,7 +76,15 @@ public class CompanyController {
 		// 사업체 com_idx 산출
 		String sId = (String)session.getAttribute("sId");
 		System.out.println("Current sId from session: >>>>>>>>>>>>> " + sId);
-			
+		
+		// 사용자 member_category 확인
+	    Integer memberCategory = companyService.findMemberCategoryBySId(sId);
+	    if (memberCategory == null || memberCategory != 2) {
+
+	    	model.addAttribute("msg","반장 회원만 접근하실 수 있습니다!");
+			model.addAttribute("targetURL","/gongsaeng/member/login");
+	        return "forward";	    
+	    }
 		
 		Integer comIdx = companyService.findComIdxBysId(sId);
 		System.out.println("Current comIdx from session: >>>>>>>>>>>>> " + comIdx);
@@ -171,13 +179,24 @@ public class CompanyController {
 		model.addAttribute("companyAddress",companyAddress);
 		System.out.println("클래스 등록 companyAddress >>>>>>>>" + companyAddress);
 		
+		// 사용자 member_category 확인
+	    Integer memberCategory = companyService.findMemberCategoryBySId(sId);
+	    if (memberCategory == null || memberCategory != 2) {
+
+	    	model.addAttribute("msg","반장 회원만 접근하실 수 있습니다!");
+			model.addAttribute("targetURL","/gongsaeng/member/login");
+	        return "forward";	   
+	    }
+		
+		
 		
 		return "company/company_register7";
 	}
 	
 	@PostMapping("company/classRegisterPro")
 	public String classRegisterPro(HttpSession session, Model model, HttpServletRequest request, ClassVO gclass, @RequestParam("class_offering") int[] classOfferings,
-	@RequestParam("class_day") String[] classDay) {//		if(session.getAttribute("sId") == null) {
+	@RequestParam("class_day") String[] classDay) {
+		//		if(session.getAttribute("sId") == null) {
 //			model.addAttribute("msg", "로그인이 필요합니다");
 //			model.addAttribute("targetURL", "MemberLoginForm");
 //			return "forward";
@@ -185,6 +204,19 @@ public class CompanyController {
 	    String memberId = (String) session.getAttribute("sId");
 	    gclass.setMember_id(memberId);
 
+	    // ------------------------------------------------------------------------
+		// 사용자 member_category 확인
+	    String sId = (String)session.getAttribute("sId");
+	    Integer memberCategory = companyService.findMemberCategoryBySId(sId);
+	    if (memberCategory == null || memberCategory != 2) {
+
+	    	model.addAttribute("msg","반장 회원만 접근하실 수 있습니다!");
+			model.addAttribute("targetURL","/gongsaeng/member/login");
+	        return "forward";	 
+	    }
+	    // ------------------------------------------------------------------------
+		
+	    
 	    
 	    String class_post_code = request.getParameter("class_post_code").replace(",", "");
 	    String class_address1 = request.getParameter("class_address1").replace(",", "");
@@ -459,6 +491,18 @@ public class CompanyController {
 		@GetMapping("company/classModifyForm")
 		public String boardModifyForm(@RequestParam("class_idx") int classIdx, HttpSession session, Model model) {
 		
+		    // ------------------------------------------------------------------------
+			// 사용자 member_category 확인
+		    String sId = (String)session.getAttribute("sId");
+		    Integer memberCategory = companyService.findMemberCategoryBySId(sId);
+		    if (memberCategory == null || memberCategory != 2) {
+
+		    	model.addAttribute("msg","반장 회원만 접근하실 수 있습니다!");
+				model.addAttribute("targetURL","/gongsaeng/member/login");
+		        return "forward";	 
+		    }
+		    // ------------------------------------------------------------------------
+			
 	        // 클래스 상세정보 조회
 	        Map<String, Object> classDetail = classService.getClassDetail(classIdx);
 	        if (classDetail != null) {
@@ -614,7 +658,17 @@ public class CompanyController {
 			@PostMapping("company/classModifyPro")
 			public String modifyPro(ClassVO gclass, HttpSession session, Model model,@RequestParam("class_idx") int classIdx) {
 				// 세션 아이디에 따른 차단 처리
+			    // ------------------------------------------------------------------------
+				// 사용자 member_category 확인
+			    String sId = (String)session.getAttribute("sId");
+			    Integer memberCategory = companyService.findMemberCategoryBySId(sId);
+			    if (memberCategory == null || memberCategory != 2) {
 
+			    	model.addAttribute("msg","반장 회원만 접근하실 수 있습니다!");
+					model.addAttribute("targetURL","/gongsaeng/member/login");
+			        return "forward";	 
+			    }
+				
 				// -------------------------------------------------------------------
 				// [ 수정 과정에서 파일 업로드 처리 ]
 				String uploadDir = "/resources/upload"; // 가상의 경로(이클립스 프로젝트 상에 생성한 경로)
@@ -766,6 +820,7 @@ public class CompanyController {
 	        model.addAttribute("msg", "잘못된 접근입니다");
 	        return "fail_back";
 	    }
+	    
 
 	    // MemberVO 객체 생성 및 member_id 설정
 	    MemberVO member = new MemberVO();
@@ -858,6 +913,17 @@ public class CompanyController {
 	public String classList(HttpSession session, Model model, ClassVO gclass, HttpServletRequest request) {
 	    String sId = (String)session.getAttribute("sId");
 
+	    // ------------------------------------------------------------------------
+		// 사용자 member_category 확인
+	    Integer memberCategory = companyService.findMemberCategoryBySId(sId);
+	    if (memberCategory == null || memberCategory != 2) {
+
+	    	model.addAttribute("msg","반장 회원만 접근하실 수 있습니다!");
+			model.addAttribute("targetURL","/gongsaeng/member/login");
+	        return "forward";	 
+	    }
+	    // ------------------------------------------------------------------------
+	    
 //	    int listLimit = 7; // 한 페이지당 보여질 목록의 수
 //	    int startRow = (pageNum - 1) * listLimit; // 시작 행 번호
 
@@ -889,8 +955,19 @@ public class CompanyController {
 	// [ 클래스 삭제 ]
 	
 	 @PostMapping("company/deleteClass")
-	 public String deleteClass(@RequestParam("class_idx") String class_idx, Model model) {
+	 public String deleteClass(@RequestParam("class_idx") String class_idx, Model model, HttpSession session) {
 	   
+		    // ------------------------------------------------------------------------
+			// 사용자 member_category 확인
+		    String sId = (String)session.getAttribute("sId");
+		    Integer memberCategory = companyService.findMemberCategoryBySId(sId);
+		    if (memberCategory == null || memberCategory != 2) {
+
+		    	model.addAttribute("msg","반장 회원만 접근하실 수 있습니다!");
+				model.addAttribute("targetURL","/gongsaeng/member/login");
+		        return "forward";	 
+		    }
+		    // ------------------------------------------------------------------------
 		 int deleteCount = classService.removeClass(class_idx);
 		 if(deleteCount > 0) { // 삭제 성공
 				model.addAttribute("msg", "해당 클래스가 삭제되었습니다.");
@@ -910,6 +987,17 @@ public class CompanyController {
 		String sId = (String)session.getAttribute("sId");
 		System.out.println("Current sId from session: >>>>>>>>>>>>> " + sId);
 		
+	    // ------------------------------------------------------------------------
+		// 사용자 member_category 확인
+	    Integer memberCategory = companyService.findMemberCategoryBySId(sId);
+	    if (memberCategory == null || memberCategory != 2) {
+
+	    	model.addAttribute("msg","반장 회원만 접근하실 수 있습니다!");
+			model.addAttribute("targetURL","/gongsaeng/member/login");
+	        return "forward";	 
+	    }
+	    // ------------------------------------------------------------------------
+		
 	    List<ClassVO> classList = classService.getClassSchedulesByMemberId(sId);
 	    model.addAttribute("classList", classList);
 		
@@ -921,6 +1009,17 @@ public class CompanyController {
 	public String company_sales(HttpSession session, Model model, PaymentVO payment) {
 		String sId = (String)session.getAttribute("sId");
 		System.out.println("Current sId from session: >>>>>>>>>>>>> " + sId);
+		
+	    // ------------------------------------------------------------------------
+		// 사용자 member_category 확인
+	    Integer memberCategory = companyService.findMemberCategoryBySId(sId);
+	    if (memberCategory == null || memberCategory != 2) {
+
+	    	model.addAttribute("msg","반장 회원만 접근하실 수 있습니다!");
+			model.addAttribute("targetURL","/gongsaeng/member/login");
+	        return "forward";	 
+	    }
+	    // ------------------------------------------------------------------------
 		
 		Integer comIdx = companyService.findComIdxBysId(sId);
 		System.out.println("Current comIdx from session: >>>>>>>>>>>>> " + comIdx);
@@ -968,7 +1067,19 @@ public class CompanyController {
 		// 정산금액 산출(수수료 : 10%)
 		String sId = (String)session.getAttribute("sId");
 		System.out.println("Current sId from session: >>>>>>>>>>>>> " + sId);
-			
+		
+	    // ------------------------------------------------------------------------
+		// 사용자 member_category 확인
+	    Integer memberCategory = companyService.findMemberCategoryBySId(sId);
+	    if (memberCategory == null || memberCategory != 2) {
+
+	    	model.addAttribute("msg","반장 회원만 접근하실 수 있습니다!");
+			model.addAttribute("targetURL","/gongsaeng/member/login");
+	        return "forward";	 
+	    }
+	    // ------------------------------------------------------------------------
+
+		
 		Integer comIdx = companyService.findComIdxBysId(sId);
 		System.out.println("Current comIdx from session: >>>>>>>>>>>>> " + comIdx);
 		 
@@ -994,6 +1105,8 @@ public class CompanyController {
 		 String sId = (String)session.getAttribute("sId");
 		 System.out.println("Current sId from session: >>>>>>>>>>>>> " + sId);
 		 
+		 
+		 
 		 Integer comIdx = companyService.findComIdxBysId(sId);
 		 System.out.println("Current comIdx from session: >>>>>>>>>>>>> " + comIdx);
 
@@ -1008,7 +1121,7 @@ public class CompanyController {
 	 @PostMapping("/company/income/updatePayCalStatusBatch")
 	 @ResponseBody
 	 public ResponseEntity<?> updatePayCalStatusBatch(@RequestParam("payNums") List<String> payNums, 
-	                                                  @RequestParam("pay_cal_status") int payCalStatus) {
+	                                                  @RequestParam("pay_cal_status") int payCalStatus, HttpSession session) {
 	     Map<String, Object> map = new HashMap<>();
 	     try {
 	         // 각 payNum에 대해 반복하여 상태 업데이트 처리
@@ -1040,6 +1153,18 @@ public class CompanyController {
 		
 		 String sId = (String)session.getAttribute("sId");
 		 System.out.println("Current sId from session: >>>>>>>>>>>>> " + sId);
+		 
+		    // ------------------------------------------------------------------------
+			// 사용자 member_category 확인
+		    Integer memberCategory = companyService.findMemberCategoryBySId(sId);
+		    if (memberCategory == null || memberCategory != 2) {
+
+		    	model.addAttribute("msg","반장 회원만 접근하실 수 있습니다!");
+				model.addAttribute("targetURL","/gongsaeng/member/login");
+		        return "forward";	 
+		    }
+		    // ------------------------------------------------------------------------
+
 		 
 		 Integer comIdx = companyService.findComIdxBysId(sId);
 		 System.out.println("Current comIdx from session: >>>>>>>>>>>>> " + comIdx);
@@ -1075,6 +1200,18 @@ public class CompanyController {
 		String sId = (String)session.getAttribute("sId");
 		System.out.println("Current sId from session: >>>>>>>>>>>>> " + sId);
 		
+	    // ------------------------------------------------------------------------
+		// 사용자 member_category 확인
+	    Integer memberCategory = companyService.findMemberCategoryBySId(sId);
+	    if (memberCategory == null || memberCategory != 2) {
+
+	    	model.addAttribute("msg","반장 회원만 접근하실 수 있습니다!");
+			model.addAttribute("targetURL","/gongsaeng/member/login");
+	        return "forward";	 
+	    }
+	    // ------------------------------------------------------------------------
+
+		
 		Integer comIdx = companyService.findComIdxBysId(sId);
 		System.out.println("Current comIdx from session: >>>>>>>>>>>>> " + comIdx);
 		
@@ -1090,6 +1227,18 @@ public class CompanyController {
 	public String company_chat(HttpSession session, Model model) {
 		String sId = (String)session.getAttribute("sId");
 		System.out.println("Current sId from session: >>>>>>>>>>>>> " + sId);
+		
+	    // ------------------------------------------------------------------------
+		// 사용자 member_category 확인
+	    Integer memberCategory = companyService.findMemberCategoryBySId(sId);
+	    if (memberCategory == null || memberCategory != 2) {
+
+	    	model.addAttribute("msg","반장 회원만 접근하실 수 있습니다!");
+			model.addAttribute("targetURL","/gongsaeng/member/login");
+	        return "forward";	 
+	    }
+	    // ------------------------------------------------------------------------
+
 		
 //		Integer comIdx = companyService.findComIdxBysId(sId);
 //		System.out.println("Current comIdx from session: >>>>>>>>>>>>> " + comIdx);
@@ -1107,6 +1256,18 @@ public class CompanyController {
 		// 사업체 com_idx 산출
 		String sId = (String)session.getAttribute("sId");
 		System.out.println("Current sId from session: >>>>>>>>>>>>> " + sId);
+		
+	    // ------------------------------------------------------------------------
+		// 사용자 member_category 확인
+	    Integer memberCategory = companyService.findMemberCategoryBySId(sId);
+	    if (memberCategory == null || memberCategory != 2) {
+
+	    	model.addAttribute("msg","반장 회원만 접근하실 수 있습니다!");
+			model.addAttribute("targetURL","/gongsaeng/member/login");
+	        return "forward";	 
+	    }
+	    // ------------------------------------------------------------------------
+
 		
 		Integer comIdx = companyService.findComIdxBysId(sId);
 		System.out.println("Current comIdx from session: >>>>>>>>>>>>> " + comIdx);
@@ -1153,6 +1314,18 @@ public class CompanyController {
 		String sId = (String)session.getAttribute("sId");
 		System.out.println("Current sId from session: >>>>>>>>>>>>> " + sId);
 		
+	    // ------------------------------------------------------------------------
+		// 사용자 member_category 확인
+	    Integer memberCategory = companyService.findMemberCategoryBySId(sId);
+	    if (memberCategory == null || memberCategory != 2) {
+
+	    	model.addAttribute("msg","반장 회원만 접근하실 수 있습니다!");
+			model.addAttribute("targetURL","/gongsaeng/member/login");
+	        return "forward";	 
+	    }
+	    // ------------------------------------------------------------------------
+
+		
 		Integer comIdx = companyService.findComIdxBysId(sId);
 		System.out.println("Current comIdx from session: >>>>>>>>>>>>> " + comIdx);
 		
@@ -1165,8 +1338,21 @@ public class CompanyController {
 	
 	// 반장 공지사항
 	@GetMapping("company/notification")
-	public String company_notification(Model model, BoardVO board) {
+	public String company_notification(Model model, BoardVO board, HttpSession session) {
 	
+	    // ------------------------------------------------------------------------
+		// 사용자 member_category 확인
+	    String sId = (String)session.getAttribute("sId");
+		Integer memberCategory = companyService.findMemberCategoryBySId(sId);
+	    if (memberCategory == null || memberCategory != 2) {
+
+	    	model.addAttribute("msg","반장 회원만 접근하실 수 있습니다!");
+			model.addAttribute("targetURL","/gongsaeng/member/login");
+	        return "forward";	 
+	    }
+	    // ------------------------------------------------------------------------
+
+		
 		List<BoardVO> companyBoardList = companyService.getCompanyBoardList(1,2);
 		companyBoardList = companyBoardList == null ? Collections.emptyList() : companyBoardList; // `null` 체크
 		model.addAttribute("companyBoardList",companyBoardList);	

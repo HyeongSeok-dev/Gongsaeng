@@ -203,9 +203,9 @@ tbody {
 														type="date" class="form-control" id="purchaseDateStart"
 														name="purchaseDateStart">
 												</div>
-												<div class="col-xs-1 text-center">
-													<span class="form-control-plaintext">~</span>
-												</div>
+													<div class="col-xs-1 text-center">
+			<span class="form-control-plaintext">~</span>
+		</div>
 												<div class="col-xl-2">
 													<label for="purchaseDateEnd"></label> <input type="date"
 														class="form-control" id="purchaseDateEnd"
