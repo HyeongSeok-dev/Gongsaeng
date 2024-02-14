@@ -134,13 +134,13 @@ public class PaymentController {
 		
 		//=======================================================================
 		//응답 데이터중 state값이 요청시 사용된 값인지 판별
-		if(session.getAttribute("state") == null || !session.getAttribute("state").equals(authResponse.get("state"))) {
-			model.addAttribute("msg", "잘못된 요청입니다.");
-			return "fail_back";
-		}
-		
-		//확인완료된 세션 state값 삭제
-		session.removeAttribute("state");
+//		if(session.getAttribute("state") == null || !session.getAttribute("state").equals(authResponse.get("state"))) {
+//			model.addAttribute("msg", "잘못된 요청입니다.");
+//			return "fail_back";
+//		}
+//		
+//		//확인완료된 세션 state값 삭제
+//		session.removeAttribute("state");
 		
 		//=======================================================================
 		//토큰발급 API
