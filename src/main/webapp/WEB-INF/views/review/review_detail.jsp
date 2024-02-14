@@ -741,7 +741,7 @@ function showCommentForm(element) {
 <!-- 		</div> -->
 	<div class="review_write_button">
 <%-- 				<button onclick="location.href='${pageContext.request.contextPath}/review/write?class_idx=${reviews.class_idx}'">리뷰쓰기</button> --%>
-	
+<%-- 	<a href="${pageContext.request.contextPath}/review/detail?class_idx=${classIdx}">리뷰</a> --%>
 <%-- 	   		 <input type="hidden" name="class_idx" value="${reviews.class_idx}">	 --%>
 <%-- 		    <a href="${pageContext.request.contextPath}/review/write?class_idx=${reviews.class_idx}"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a> --%>
 <%-- 	    <c:choose> --%>
@@ -749,13 +749,13 @@ function showCommentForm(element) {
 <%-- 	             <a href="${pageContext.request.contextPath}/review/write?com_id=${param.com_id}"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a> --%>
 <%-- <a href="${pageContext.request.contextPath}/my/reservation"><i class="fas fa-pencil-alt"></i> &nbsp;리뷰쓰기</a> --%>
 			 <%-- ==================================================================== --%>
-				<form action="${pageContext.request.contextPath}/my/reservation">
-						<button type="submit">
-							<span class="write_button_text"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;리뷰쓰기</span>
-						</button>
-										<button class="write_button_text" onclick="location.href='${pageContext.request.contextPath}/review/write?class_idx=${review.class_idx}">등록하기</button>
+<%-- 				<form action="${pageContext.request.contextPath}/my/reservation"> --%>
+<!-- 						<button type="submit"> -->
+<!-- 							<span class="write_button_text"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;리뷰쓰기</span> -->
+<!-- 						</button> -->
+<%-- 										<button class="write_button_text" onclick="location.href='${pageContext.request.contextPath}/review/write?class_idx=${review.class_idx}">등록하기</button> --%>
 						
-				</form>
+<!-- 				</form> -->
 			 <%-- = =================================================================== --%>
 <%-- 	        </c:when> --%>
 <%-- 	        <c:otherwise> --%>
@@ -796,6 +796,8 @@ function showCommentForm(element) {
 		<h2 class="review_subject">
 			리뷰&nbsp;&nbsp;<span class="review_subject_count"><b>${reviewCount}</b>개</span>
 		</h2>
+			<a href="${pageContext.request.contextPath}/review/write?class_idx=${classIdx}">리뷰쓰기</a>
+		
 		<label class="checkbox-container">
 <!-- 		    <input type="checkbox" id="photoReviewCheckbox"> -->
 <!-- 		    <span class="checkmark"></span>사진 리뷰만 보기  -->
