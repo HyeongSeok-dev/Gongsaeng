@@ -129,6 +129,7 @@
 							<div class="input-group-addon">@</div>
 						</div>
 					</div>
+					
 
 					<div class="col-sm-4">
 						<input type="text" id="customEmail" required class="form-control mail" name="member_email2" style="display: none;" placeholder="이메일을 입력하세요"
