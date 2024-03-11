@@ -22,6 +22,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -80,23 +81,51 @@ public class MypageController {
 			}
 		}
 
+		// ----------------------------------------------------------------------------------
+//		if (recentClassesCookie != null) {
+//			String decodedValue = URLDecoder.decode(recentClassesCookie.getValue(), "UTF-8");
+//			recentClasses = new JSONArray(decodedValue);
+
+//			for (int i = 0; i < recentClasses.length(); i++) {
+//				JSONObject json = recentClasses.getJSONObject(i);
+//				Map<String, Object> map = new HashMap<>();
+//				Iterator<String> keys = json.keys();
+//				while (keys.hasNext()) {
+//					String key = keys.next();
+//					map.put(key, json.get(key));
+//				}
+//				recentList.add(map);
+//			}
+//
+//		}
+		// ----------------------------------------------------------------------------------
+	    
 		if (recentClassesCookie != null) {
-			String decodedValue = URLDecoder.decode(recentClassesCookie.getValue(), "UTF-8");
-			recentClasses = new JSONArray(decodedValue);
-
-			for (int i = 0; i < recentClasses.length(); i++) {
-				JSONObject json = recentClasses.getJSONObject(i);
-				Map<String, Object> map = new HashMap<>();
-				Iterator<String> keys = json.keys();
-				while (keys.hasNext()) {
-					String key = keys.next();
-					map.put(key, json.get(key));
-				}
-				recentList.add(map);
-			}
-
-		}
-
+	        try {
+	            String decodedValue = URLDecoder.decode(recentClassesCookie.getValue(), "UTF-8");
+	            // 배열 형태의 문자열인지 확인
+	            if (decodedValue.startsWith("[") && decodedValue.endsWith("]")) {
+	                recentClasses = new JSONArray(decodedValue);
+	                for (int i = 0; i < recentClasses.length(); i++) {
+	                    JSONObject json = recentClasses.getJSONObject(i);
+	                    Map<String, Object> map = new HashMap<>();
+	                    Iterator<String> keys = json.keys();
+	                    while (keys.hasNext()) {
+	                        String key = keys.next();
+	                        map.put(key, json.get(key));
+	                    }
+	                    recentList.add(map);
+	                }
+	            } else {
+	                // 로그 출력 또는 오류 처리
+	                System.err.println("Invalid JSON format in cookie");
+	            }
+	        } catch (JSONException e) {
+	            // 로그 출력 또는 오류 처리
+	            System.err.println("Error parsing JSON: " + e.getMessage());
+	        }
+	    }
+	    // ----------------------------------------------------------------------------------	    
 		model.addAttribute("myMainInfo", myMainInfo);
 		model.addAttribute("unReadChats", unReadChats);
 		model.addAttribute("unReadAlert", unReadAlert);

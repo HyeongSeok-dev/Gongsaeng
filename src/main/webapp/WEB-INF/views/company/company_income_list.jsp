@@ -7,11 +7,10 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath }/resources/company_assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/company_assets/img/favicon.png">
+<link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/img/gs_favi.png">  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Now UI Dashboard by Creative Tim
+    공생 | 정산 내역
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -106,245 +105,229 @@ tbody {
 .form-control-plaintext {
     margin-top: 25px;
 }
+
+/* 일반 테이블 행에 대한 hover 효과 */
+.table tbody tr:hover {
+    background-color: #f2f2f2; /* 호버 시 배경 색상 */
+    cursor: pointer; /* 커서 변경 */
+}
+
+/* 모달 창 내의 테이블 행에는 hover 효과 적용 안 함 */
+.modal-table tbody tr:hover {
+    background-color: transparent; /* 기본 배경 색상 유지 */
+    cursor: default; /* 기본 커서 사용 */
+}
+
+.table tbody tr:hover .no-hover-cell {
+    background-color: inherit; /* 상속된 배경색 사용 */
+}
+
 </style>  
- 
 </head>
 
 <body>
-
 <!--   <div class="wrapper "> -->
     <div class="sidebar" data-color="orange">
      <jsp:include page="./sidebar_wrapper.jsp"/>
     </div>
     <div class="main-panel" id="main-panel">
-      <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
-        <div class="container-fluid">
-          <div class="navbar-wrapper">
-            <div class="navbar-toggle">
-              <button type="button" class="navbar-toggler">
-                <span class="navbar-toggler-bar bar1"></span>
-                <span class="navbar-toggler-bar bar2"></span>
-                <span class="navbar-toggler-bar bar3"></span>
-              </button>
-            </div>
-            <a class="navbar-brand" href="#pablo">정산 내역</a>
-          </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <form>
-              <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <i class="now-ui-icons ui-1_zoom-bold"></i>
-                  </div>
-                </div>
-              </div>
-            </form>
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons media-2_sound-wave"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Stats</span>
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="now-ui-icons location_world"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Some Actions</span>
-                  </p>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons users_single-02"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Account</span>
-                  </p>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <!-- End Navbar -->
+		<!-- Navbar -->
+			<nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
+				<div class="container-fluid">
+					<div class="navbar-wrapper">
+						<a class="navbar-brand" href="#pablo">정산 내역</a>
+					</div>
+					<div class="collapse navbar-collapse justify-content-end" id="navigation">
+						<ul class="navbar-nav">
+							<li class="nav-item">
+								<a class="nav-link" href="#pablo"> 
+									<i class="now-ui-icons users_single-02"></i>
+									<p>
+										<span class="d-lg-none d-md-block">Account</span>
+									</p>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		<!-- End Navbar -->
       <div class="panel-header">
         <div class="header text-center">
           <h2 class="title">정산 내역</h2>
         </div>
       </div>
 		<div class="content">
-			  <div class="row">
-				 <div class="col-xl-12">
-				  <div class="card col-xl-12">
-				    <div class="card-header"></div>
-				    <div class="container-fluid">
-				      <div class="row">
-				        <div class="col-xl-12">
-				          <div class="card">
-				            <form>
-				            <!-- 정산 신청일 검색 -->
-<div class="form-row">
-    <div class="col">
-        <label for="refundRequestDateStart">정산 신청일 시작</label> 
-        <input type="date" class="form-control" id="refundRequestDateStart">
-    </div>
-    	<div class="col-xs-1 text-center">
-			<span class="form-control-plaintext">~</span>
-		</div>
-    <div class="col">
-        <label for="refundRequestDateEnd">정산 신청일 끝</label>
-        <input type="date" class="form-control" id="refundRequestDateEnd">
-    </div>
-    <div class="col">
-        <button type="button" class="btn btn-info mt-4" onclick="filterByRefundRequestDate()">검색</button>
-    </div>
-</div>
+			<div class="row">
+				<div class="col-xl-12">
+					<div class="card col-xl-12">
+						<div class="card-header"></div>
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-xl-12">
+									<div class="card">
+										<form>
+											<!-- 정산 신청일 검색 -->
+											<div class="form-row">
+												<div class="col">
+													<label for="refundRequestDateStart">
+														정산 신청일 시작
+													</label> 
+													<input type="date" class="form-control" id="refundRequestDateStart">
+												</div>
+												<div class="col-xs-1 text-center">
+													<span class="form-control-plaintext">~</span>
+												</div>
+												<div class="col">
+													<label for="refundRequestDateEnd">
+														정산 신청일 끝
+													</label> 
+													<input type="date" class="form-control" id="refundRequestDateEnd">
+												</div>
+												<div class="col">
+													<button type="button" class="btn btn-info mt-4" onclick="filterByRefundRequestDate()">
+														검색
+													</button>
+												</div>
+											</div>
 
-<!-- 정산 완료일 검색 -->
-<div class="form-row">
-    <div class="col">
-        <label for="refundDateStart">정산 완료일 시작</label>
-        <input type="date" class="form-control" id="refundDateStart">
-    </div>
-    	<div class="col-xs-1 text-center">
-			<span class="form-control-plaintext">~</span>
-		</div>
-    <div class="col">
-        <label for="refundDateEnd">정산 완료일 끝</label>
-        <input type="date" class="form-control" id="refundDateEnd">
-    </div>
-    <div class="col">
-        <button type="button" class="btn btn-info mt-4" onclick="filterByRefundDate()">검색</button>
-    </div>
-</div>
-				                <!-- 추가 컨텐츠를 위한 공간 -->
-				               <!-- 정산 상태 필터링을 위한 체크박스 -->
-								<div class="filter-checkboxes">
-								  <input type="checkbox" id="statusUnsettled" checked> 미정산
-								  <input type="checkbox" id="statusApplied" checked> 정산 신청완료
-								  <input type="checkbox" id="statusApproving" checked> 정산 승인중
-								  <input type="checkbox" id="statusSettled" checked> 정산완료
+											<!-- 정산 완료일 검색 -->
+											<div class="form-row">
+												<div class="col">
+													<label for="refundDateStart">정산 완료일 시작</label> 
+													<input type="date" class="form-control" id="refundDateStart">
+												</div>
+												<div class="col-xs-1 text-center">
+													<span class="form-control-plaintext">~</span>
+												</div>
+												<div class="col">
+													<label for="refundDateEnd">정산 완료일 끝</label> 
+													<input type="date" class="form-control" id="refundDateEnd">
+												</div>
+												<div class="col">
+													<button type="button" class="btn btn-info mt-4" onclick="filterByRefundDate()">검색</button>
+												</div>
+											</div>
+											<!-- 추가 컨텐츠를 위한 공간 -->
+											<!-- 정산 상태 필터링을 위한 체크박스 -->
+											<div class="filter-checkboxes">
+												<input type="checkbox" id="statusUnsettled" checked>미정산 
+												<input type="checkbox" id="statusApplied" checked>정산 신청 완료 
+												<input type="checkbox" id="statusApproving" checked>정산 승인 완료
+												<input type="checkbox" id="statusSettled" checked>정산완료
+											</div>
+											<!-- 새로운 버튼을 위한 새로운 form-row 추가 -->
+											<!-- 검색 및 필터 영역 아래에 초기화 버튼 추가 -->
+											<div class="form-row">
+												<div class="col">
+													<button type="button" class="btn btn-secondary mt-4" onclick="resetFilters()">
+														초기화
+													</button>
+												</div>
+											</div>
+										</form>
+									</div>
 								</div>
-				                 <!-- 새로운 버튼을 위한 새로운 form-row 추가 -->
-<!-- 검색 및 필터 영역 아래에 초기화 버튼 추가 -->
-<div class="form-row">
-    <div class="col">
-        <button type="button" class="btn btn-secondary mt-4" onclick="resetFilters()">초기화</button>
-    </div>
-</div>
-
-				            </form>
-				          </div>
-				        </div>
-				      </div>
-				    </div>
-				  </div>
+							</div>
+						</div>
+					</div>
 				</div>
-		      </div>
-<!-- 		      			  <div class="row"> -->
-				 <div class="col-md-12">
-				  <div class="card col-md-12">
-				    <div class="card-header"></div>
-				    <div class="container-fluid">
-				      <div class="row">
-				        <div class="col-xl-12">
-				          <div class="card">
-				            <form>
-								 <table class="table table-bordered">
-											          <thead class="thead-dark">
-											            <tr>
-											            <button id="submitSelected" class="btn btn-primary">선택한 항목 정산 신청</button>
-											            
-											              <!-- 전체 선택 체크박스 -->
-											              <th scope="col">
-											              	<input type="checkbox" id="selectAll">
-											              </th>
-											              <th scope="col">결제 번호</th>
-											              <th scope="col">정산 상태</th>
-											              <th scope="col">정산 신청일</th>
-											              <th scope="col">총 결제 금액</th>
-											              <th scope="col">할인 금액(쿠폰/포인트)</th>
-											              <th scope="col">수수료 (10%)</th>
-											              <th scope="col">정산 금액</th>
-											              <th scope="col">정산 완료일</th>
-<!-- 											              <th scope="col">정산 신청</th> -->
-											            </tr>
-											          </thead>
-											          <tbody>
-											            <c:forEach items="${paymentInfo}" var="payment">
-											            <tr>
-											              <td>
-											              	 <c:choose>
-												              	<c:when test="${payment.pay_cal_status == 1 }"> 
-													              	<input type="checkbox" name="payNums" value="${payment.pay_num}">
-												              	</c:when>
-												              	<c:otherwise>
-																	
-												              	</c:otherwise>
-												              </c:choose>
-											              </td>
-											              <td>${payment.pay_num }</td> <!-- 결제번호 -->
-											              <!-- 정산상태 -->
-											              <td>
-											              	<c:choose>
-											              		<c:when test="${payment.pay_cal_status == 1}">
+			</div>
+			<div class="col-md-12">
+				<div class="card col-md-12">
+					<div class="card-header"></div>
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-xl-12">
+								<div class="card">
+									<form>
+										<table class="table table-bordered">
+											<thead class="thead-dark">
+												<tr>
+													<button id="submitSelected" class="btn btn-primary">
+														선택한 항목 정산 신청
+													</button>
+													<!-- 전체 선택 체크박스 -->
+													<th scope="col">
+														<input type="checkbox" id="selectAll">
+													</th>
+													<th scope="col">결제 번호</th>
+													<th scope="col">정산 상태</th>
+													<th scope="col">정산 신청일</th>
+													<th scope="col">총 결제 금액</th>
+													<th scope="col">할인 금액(쿠폰/포인트)</th>
+													<th scope="col">수수료 (10%)</th>
+													<th scope="col">정산 금액</th>
+													<th scope="col">정산 완료일</th>
+												</tr>
+											</thead>
+											<tbody>
+												<c:forEach items="${paymentInfo}" var="payment">
+													    <tr class="income-row"
+													        data-pay-cal-status="${payment.pay_cal_status}"
+													        data-pay-num="${payment.pay_num}"
+													        data-pay-request-date="${payment.refund_request_date}"
+													        data-total-payment="${payment.payment + payment.discount_payment}"
+													        data-discount-payment="${payment.discount_payment}"
+													        data-commission="${payment.payment * 0.1}"
+													        data-payment="${payment.payment * 0.9}"
+													        data-refund-date="${payment.refund_date}">
+														<td class="no-click-event">
+														    <c:choose>
+														        <c:when test="${payment.pay_cal_status == 1}">
+														            <input type="checkbox" name="payNums" value="${payment.pay_num}">
+														        </c:when>
+														    </c:choose>
+														</td>
+														<td>${payment.pay_num }</td>
+														<!-- 결제번호 -->
+														<!-- 정산상태 -->
+														<td>
+															<c:choose>
+																<c:when test="${payment.pay_cal_status == 1}">
 																	미정산
-																</c:when>											              		
-											              		<c:when test="${payment.pay_cal_status == 2}">
-																	정산 신청완료		
-																</c:when>											              		
-											              		<c:when test="${payment.pay_cal_status == 3}">
-																	정산 승인중
-																</c:when>											              		
-											              		<c:when test="${payment.pay_cal_status == 4}">
+																</c:when>
+																<c:when test="${payment.pay_cal_status == 2}">
+																	정산 신청 완료		
+																</c:when>
+																<c:when test="${payment.pay_cal_status == 3}">
+																	정산 승인 완료
+																</c:when>
+																<c:when test="${payment.pay_cal_status == 4}">
 																	정산완료
-																</c:when>											              		
-											              	</c:choose>
-											              </td> 
-															<td data-type="refund_request_date">${payment.refund_request_date}</td>
-																<td><fmt:formatNumber value="${payment.payment + payment.discount_payment}" type="number" pattern="#,##0"/></td> <!-- 정산금액 -->
-											              <td>- <fmt:formatNumber value="${payment.discount_payment }" type="number" pattern="#,##0"/></td> <!-- 할인 금액 -->
-																<td>- <fmt:formatNumber value="${payment.payment * 0.1}" type="number" pattern="#,##0"/></td> <!-- 수수료 -->
-																<td><fmt:formatNumber value="${payment.payment * 0.9}"  type="number" pattern="#,##0"/></td> <!-- 정산금액 -->
-															<td data-type="refund_date">${payment.refund_date}</td>
-<!-- 											             <td> -->
-											              	<!-- 누르면 pay_cal_status 변경 ( 1 => 2 ) -->
-<%-- 											              <c:if test="${payment.pay_cal_status == 1}"> --%>
-<%-- 															<button type="button" class="submit-calculation-request" data-pay-num="${payment.pay_num}">정산 신청</button> --%>
-<%-- 											              </c:if> --%>
-<!-- 											             </td> -->
-											            </tr>
-											            </c:forEach>
-											          </tbody>
-													 </table>
-										            </form>
-										          </div>
-										        </div>
-										      </div>
-										    </div>
-										  </div>
-										</div>
-		    </div>
-         <!--       바텀 -->
+																</c:when>
+															</c:choose>
+														</td>
+														<td data-type="refund_request_date">${payment.refund_request_date}</td>
+														<td>
+														<fmt:formatNumber value="${payment.payment + payment.discount_payment}" type="number" pattern="#,##0" />원</td>
+														<!-- 총 결제 금액 -->
+														<td>- <fmt:formatNumber value="${payment.discount_payment }" type="number" pattern="#,##0" />원
+														</td>
+														<!-- 할인 금액 -->
+														<td>- <fmt:formatNumber value="${payment.payment * 0.1}" type="number" pattern="#,##0" />원
+														</td>
+														<!-- 수수료 -->
+														<td><fmt:formatNumber value="${payment.payment * 0.9}" type="number" pattern="#,##0" />원</td>
+														<!-- 정산금액 -->
+														<td data-type="refund_date">${payment.refund_date}</td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 바텀 -->
       <footer class="footer">
        <jsp:include page="../inc/admin_bottom.jsp"/>
      </footer>
     </div>
-  </div>
   <!--   Core JS Files   -->
   <script src="${pageContext.request.contextPath }/resources/company_assets/js/core/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/company_assets/js/core/popper.min.js"></script>
@@ -361,33 +344,8 @@ tbody {
   <script src="${pageContext.request.contextPath }/resources/company_assets/demo/demo.js"></script>
 <!--   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
   
-     <script>
-//      $(document).ready(function() {
-//     	    $('.submit-calculation-request').click(function(e) {
-//     	        e.preventDefault();
-//     	        var payNum = $(this).data('pay-num');
-//     	        $.ajax({
-//     	            url: '${pageContext.request.contextPath}/company/income/updatePayCalStatus',
-//     	            type: 'POST',
-//     	            data: {
-//     	                'pay_num': payNum,
-//     	                'pay_cal_status': 2
-//     	            },
-//     	            success: function(response) {
-//     	                if (response.success) {
-//     	                    alert(response.message);
-//     	                    location.reload();
-//     	                } else {
-//     	                    alert(response.message);
-//     	                }
-//     	            },
-//     	            error: function(xhr) {
-//     	                var response = JSON.parse(xhr.responseText);
-//     	                alert("정산 신청에 실패했습니다: " + response.message);
-//     	            }
-//     	        });
-//     	    });
-//     	});
+   <script>
+
 
     // 정산 신청일 기준 검색
     function filterByRefundRequestDate() {
@@ -420,6 +378,11 @@ tbody {
     
     
 	$(document).ready(function() {
+		
+	    $('#paymentDetailModal').on('shown.bs.modal', function() {
+	        $('.modal-body table').css('display', 'table'); 
+	    });
+		
 	    $('#selectAll').click(function(e) {
 	        $('input[name="payNums"]').prop('checked', this.checked);
 	    });
@@ -432,7 +395,7 @@ tbody {
 	
 	        if (selectedPayNums.length > 0) {
 	            $.ajax({
-	                url: '${pageContext.request.contextPath}/company/income/updatePayCalStatusBatch', // 수정된 경로
+	                url: '${pageContext.request.contextPath}/company/income/updatePayCalStatusBatch', 
 	                type: 'POST',
 	                traditional: true,
 	                data: {
@@ -455,6 +418,7 @@ tbody {
 	            alert("정산 신청할 항목을 선택하세요.");
 	        }
 	    });
+	    
 	    // 체크박스 상태 변경 시 필터링 실행
 	    $('.filter-checkboxes input').change(function() {
 	        filterPayments();
@@ -468,9 +432,9 @@ tbody {
 	            // 체크된 상태에 따라 행을 표시하거나 숨깁니다.
 	            if (status.includes("미정산") && $('#statusUnsettled').is(':checked')) {
 	                showRow = true;
-	            } else if (status.includes("정산 신청완료") && $('#statusApplied').is(':checked')) {
+	            } else if (status.includes("정산 신청 완료") && $('#statusApplied').is(':checked')) {
 	                showRow = true;
-	            } else if (status.includes("정산 승인중") && $('#statusApproving').is(':checked')) {
+	            } else if (status.includes("정산 승인 완료") && $('#statusApproving').is(':checked')) {
 	                showRow = true;
 	            } else if (status.includes("정산완료") && $('#statusSettled').is(':checked')) {
 	                showRow = true;
@@ -482,7 +446,50 @@ tbody {
 	    }
 
 	    // 페이지 로드 시 필터링을 실행하여 초기 상태를 설정합니다.
+	    // 테이블 행 클릭 이벤트
+	    $('.income-row').on('click', function() {
+	        // 데이터 추출
+	        var payNum = $(this).data('pay-num'); // 결제 번호
+	        var payCalStatus = $(this).data('pay-cal-status') === 1 ? '미정산' : 
+	                           $(this).data('pay-cal-status') === 2 ? '정산 신청 완료' : 
+	                           $(this).data('pay-cal-status') === 3 ? '정산 승인 완료' : '정산 완료'; // 정산 상태
+	        var payRequestDate = $(this).data('pay-request-date'); // 정산 신청일
+	        var totalPayment = $(this).data('total-payment'); // 총 결제 금액
+	        var discountPayment = $(this).data('discount-payment'); // 할인 금액
+	        var commission = $(this).data('commission'); // 수수료
+	        var payment = $(this).data('payment'); // 정산 금액
+	        var refundDate = $(this).data('refund-date'); // 정산 완료일
+
+	        // 모달 데이터 설정
+	        $('#modalPayStatus').text(payCalStatus);
+	        $('#modalpayNum').text(payNum);
+	        $('#modalPayRequestDate').text(payRequestDate);
+	        $('#modalTotalPayment').text(totalPayment.toLocaleString() + '원');
+	        $('#modalDiscountPayment').text(discountPayment.toLocaleString() + '원');
+	        $('#modalCommission').text(commission.toLocaleString() + '원');
+	        $('#modalPayment').text(payment.toLocaleString() + '원');
+	        $('#modalRefundDate').text(refundDate);
+
+	        // 모달 표시
+	        $('#paymentDetailModal').modal('show');
+	    }); 
+
+	     
 	    filterPayments();
+	    
+	    // 테이블의 각 행에 클릭 이벤트 리스너 추가
+	    $('tbody tr').click(function(e) {
+	        // 클릭된 요소가 'no-click-event' 클래스를 가진 요소 내부에 있는지 확인
+	        if (!$(e.target).closest('.no-click-event').length) {
+	            var payNum = $(this).data('pay-num');  // 해당 행의 pay_num 데이터 추출
+	            if (payNum) {  // pay_num 데이터가 있으면
+	                window.location.href = '${pageContext.request.contextPath}/company/income/list/detail?payNum=' + payNum;
+	            }
+	        }
+	    });
+
+	    
+	    
 	});
 	
     </script>

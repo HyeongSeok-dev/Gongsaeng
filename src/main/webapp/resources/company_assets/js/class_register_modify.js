@@ -1,6 +1,66 @@
 // 전역 변수로 일정 데이터를 저장할 배열 선언
 var schedules = [];
 
+
+function updateCheckboxValue(checkbox) {
+    var label = document.querySelector('label[for="' + checkbox.id + '"]');
+    if (label) {
+        if (checkbox.checked) {
+            label.classList.add('checked');
+        } else {
+            label.classList.remove('checked');
+        }
+    }
+}
+
+// 이미지 변경 시 호출되는 함수
+function changeImage(input, previewId) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        
+        reader.onload = function (e) {
+            // 프리뷰 이미지를 변경
+            var previewImg = document.querySelector(`#${previewId} img`);
+            previewImg.src = e.target.result;
+            // 프리뷰 영역을 보이게 설정
+            document.getElementById(previewId).style.display = 'block';
+        };
+        
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+// 이미지 미리보기 함수
+function previewImage(previewId, input) {
+    var file = input.files[0];
+    if (file) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById(previewId).innerHTML = '<img src="' + e.target.result + '" width="150" height="150"/><span class="chk_style" onclick="removeImage(\'' + previewId + '\', \'' + input.id + '\');">x</span>';
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+// 이미지 프리뷰 업데이트 함수에 파일 이름 저장 로직 추가
+function updateImagePreview(index) {
+    var fileInput = document.getElementById('curriculum_imageFile' + index);
+    var preview = document.getElementById('curriculum_imagePreview' + index);
+
+    if (fileInput.files && fileInput.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            preview.innerHTML = '<img src="' + e.target.result + '" width="150" height="150"><span class="chk_style" onclick="removePreview(\'curriculum_imagePreview' + index + '\', \'curriculum_imageFile' + index + '\');">x</span>';
+        };
+
+        reader.readAsDataURL(fileInput.files[0]);
+        fileInput.setAttribute('data-filename', fileInput.files[0].name); // 파일 이름을 data-filename 속성에 저장
+    }
+}
+
+
+
 $(document).ready(function() {
 
 
@@ -43,9 +103,7 @@ $(document).ready(function() {
 	 // 주소 선택 라디오 버튼 이벤트 핸들러 등록
 	  setupAddressSelection();
 
-
-
-});
+	});
 
 
 /* 1페이지 */
@@ -90,6 +148,9 @@ $(document).ready(function() {
     // 숨겨진 input 태그에서 값을 읽어옴
     var selectedMainCategory = $('#hiddenMainCategory').val();
     var selectedSubCategory = $('#hiddenSubCategory').val();
+     
+    // 요일 체크박스의 초기 상태를 저장합니다.
+    var initialDays = '${classDetail.class_day}';
 
     // 값 확인을 위한 로그 출력
     console.log("Selected Main Category:", selectedMainCategory);
@@ -146,12 +207,6 @@ $(document).ready(function() {
 	                {value: '3', text: '미장 시공'}
 	            ],
 
-
-
-
-
-
-	            // 다른 대분류에 대한 소분류 데이터 추가...
 	        };
 	
 	        if (subCategories[mainCategory]) {
@@ -207,19 +262,19 @@ $(document).ready(function() {
 
 
 
-// 주소 선택 처리 함수
-function setupAddressSelection() {
-    $('#existingAddress').change(function() {
-        if(this.checked) {
-            $('#additionalAddress').hide();
-            // 새 주소 입력 필드의 name 속성 제거
-            $('#newPostCode, #newAddress1, #newAddress2').removeAttr('name');
-            // 기존 주소 입력 필드의 name 속성 추가
-            $('#postCode').attr('name', 'class_post_code');
-            $('#address1').attr('name', 'class_address1');
-            $('#address2').attr('name', 'class_address2');
-        }
-    });
+	// 주소 선택 처리 함수
+	function setupAddressSelection() {
+	    $('#existingAddress').change(function() {
+	        if(this.checked) {
+	            $('#additionalAddress').hide();
+	            // 새 주소 입력 필드의 name 속성 제거
+	            $('#newPostCode, #newAddress1, #newAddress2').removeAttr('name');
+	            // 기존 주소 입력 필드의 name 속성 추가
+	            $('#postCode').attr('name', 'class_post_code');
+	            $('#address1').attr('name', 'class_address1');
+	            $('#address2').attr('name', 'class_address2');
+	        }
+	    });
 
     $('#newAddress').change(function() {
         if(this.checked) {
@@ -233,8 +288,8 @@ function setupAddressSelection() {
         }
     });
 }
-	// ---------------------------------------------------------------------------------
 
+  // ---------------------------------------------------------------------------------
   //<!-- 이미지 추가버튼 스크립트 -->--------------------
 	var preview_array  = [false, false, false];
 	
@@ -242,16 +297,6 @@ function setupAddressSelection() {
 	function img_preview() {
 
 		for(var i=0; i<preview_array.length; i++){
-
-// 			for(var i=0; i<preview_array.length; i++){
-// 				if(i=[i]){
-// 					if(preview_array[i]==false){
-// 						send_[i]();
-// 						return;
-// 					}
-// 				}
-// 			}
-			
 			
 			/* i가 0일때 */
 			if(i==0){
@@ -320,6 +365,7 @@ function setupAddressSelection() {
 			if( $("#sumimage")[0].files[0]==undefined) {
 				return;
 			}
+			
 			imgcheck0(this);
 			
 		})
@@ -328,41 +374,41 @@ function setupAddressSelection() {
 
 
 
-//<!-- 이미지 미리보기 -->-----------------------------------
-function imgcheck0(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            // 기존 프리뷰 이미지가 있다면 제거
-            $("#img_preview0 img").remove();
-
-            // 새로운 프리뷰 이미지 생성
-            var newImg = $('<img>', {
-                src: e.target.result,
-                width: "150px",
-                height: "150px"
-            });
-
-            // 삭제 버튼 추가 (기존에 있던 삭제 버튼이 있다면 재사용)
-            var delBtn = $("#del_sum").length ? $("#del_sum") : $('<span>', {
-                id: "del_sum",
-                class: "chk_style",
-                onclick: "del_sum();",
-                text: "x"
-            });
-
-            // 프리뷰 영역에 새 이미지와 삭제 버튼 추가
-            $("#img_preview0").append(newImg).append(delBtn).css("display", "inline-block");
-
-            // 이미지 업로드 상태 업데이트
-            preview_array[0] = true;
-
-            // 이미지 카운트 업데이트
-            img_num();
-        }
-        reader.readAsDataURL(input.files[0]);
-    }
-}
+	//<!-- 이미지 미리보기 -->-----------------------------------
+	function imgcheck0(input) {
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+	        reader.onload = function (e) {
+	            // 기존 프리뷰 이미지가 있다면 제거
+	            $("#img_preview0 img").remove();
+	
+	            // 새로운 프리뷰 이미지 생성
+	            var newImg = $('<img>', {
+	                src: e.target.result,
+	                width: "150px",
+	                height: "150px"
+	            });
+	
+	            // 삭제 버튼 추가 (기존에 있던 삭제 버튼이 있다면 재사용)
+	            var delBtn = $("#del_sum").length ? $("#del_sum") : $('<span>', {
+	                id: "del_sum",
+	                class: "chk_style",
+	                onclick: "del_sum();",
+	                text: "x"
+	            });
+	
+	            // 프리뷰 영역에 새 이미지와 삭제 버튼 추가
+	            $("#img_preview0").append(newImg).append(delBtn).css("display", "inline-block");
+	
+	            // 이미지 업로드 상태 업데이트
+	            preview_array[0] = true;
+	
+	            // 이미지 카운트 업데이트
+	            img_num();
+	        }
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
 	
 	
 	/* 1번사진 */
@@ -382,40 +428,40 @@ function imgcheck0(input) {
 		
 	});
 	
-	function imgcheck1(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            // 기존 프리뷰 이미지가 있다면 제거
-            $("#img_preview1 img").remove();
-
-            // 새로운 프리뷰 이미지 생성
-            var newImg = $('<img>', {
-                src: e.target.result,
-                width: "150px",
-                height: "150px"
-            });
-
-            // 삭제 버튼 추가 (기존에 있던 삭제 버튼이 있다면 재사용)
-            var delBtn = $("#del_img1").length ? $("#del_img1") : $('<span>', {
-                id: "del_img1",
-                class: "chk_style",
-                onclick: "del_img1();",
-                text: "x"
-            });
-
-            // 프리뷰 영역에 새 이미지와 삭제 버튼 추가
-            $("#img_preview1").append(newImg).append(delBtn).css("display", "inline-block");
-
-            // 이미지 업로드 상태 업데이트
-            preview_array[1] = true;
-
-            // 이미지 카운트 업데이트
-            img_num();
-        }
-        reader.readAsDataURL(input.files[0]);
-    }
-}
+		function imgcheck1(input) {
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+	        reader.onload = function (e) {
+	            // 기존 프리뷰 이미지가 있다면 제거
+	            $("#img_preview1 img").remove();
+	
+	            // 새로운 프리뷰 이미지 생성
+	            var newImg = $('<img>', {
+	                src: e.target.result,
+	                width: "150px",
+	                height: "150px"
+	            });
+	
+	            // 삭제 버튼 추가 (기존에 있던 삭제 버튼이 있다면 재사용)
+	            var delBtn = $("#del_img1").length ? $("#del_img1") : $('<span>', {
+	                id: "del_img1",
+	                class: "chk_style",
+	                onclick: "del_img1();",
+	                text: "x"
+	            });
+	
+	            // 프리뷰 영역에 새 이미지와 삭제 버튼 추가
+	            $("#img_preview1").append(newImg).append(delBtn).css("display", "inline-block");
+	
+	            // 이미지 업로드 상태 업데이트
+	            preview_array[1] = true;
+	
+	            // 이미지 카운트 업데이트
+	            img_num();
+	        }
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
 
 	/* 2번사진 */
 
@@ -435,98 +481,68 @@ function imgcheck0(input) {
 	});
 	
 	
+		
+	function imgcheck2(input) {
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+	        reader.onload = function (e) {
+	            // 기존 프리뷰 이미지가 있다면 제거
+	            $("#img_preview2 img").remove();
 	
-function imgcheck2(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            // 기존 프리뷰 이미지가 있다면 제거
-            $("#img_preview2 img").remove();
-
-            // 새로운 프리뷰 이미지 생성
-            var newImg = $('<img>', {
-                src: e.target.result,
-                width: "150px",
-                height: "150px"
-            });
-
-            // 삭제 버튼 추가 (기존에 있던 삭제 버튼이 있다면 재사용)
-            var delBtn = $("#del_img2").length ? $("#del_img2") : $('<span>', {
-                id: "del_img2",
-                class: "chk_style",
-                onclick: "del_img2();",
-                text: "x"
-            });
-
-            // 프리뷰 영역에 새 이미지와 삭제 버튼 추가
-            $("#img_preview2").append(newImg).append(delBtn).css("display", "inline-block");
-
-            // 이미지 업로드 상태 업데이트
-            preview_array[2] = true;
-
-            // 이미지 카운트 업데이트
-            img_num();
-        }
-        reader.readAsDataURL(input.files[0]);
-    }
-}
+	            // 새로운 프리뷰 이미지 생성
+	            var newImg = $('<img>', {
+	                src: e.target.result,
+	                width: "150px",
+	                height: "150px"
+	            });
+	
+	            // 삭제 버튼 추가 (기존에 있던 삭제 버튼이 있다면 재사용)
+	            var delBtn = $("#del_img2").length ? $("#del_img2") : $('<span>', {
+	                id: "del_img2",
+	                class: "chk_style",
+	                onclick: "del_img2();",
+	                text: "x"
+	            });
+	
+	            // 프리뷰 영역에 새 이미지와 삭제 버튼 추가
+	            $("#img_preview2").append(newImg).append(delBtn).css("display", "inline-block");
+	
+	            // 이미지 업로드 상태 업데이트
+	            preview_array[2] = true;
+	
+	            // 이미지 카운트 업데이트
+	            img_num();
+	        }
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
 	
 	//<!-- 이미지미리보기삭제 -->--------------------------------
 
-	function del_sum() {
-		/* alert('썸네일이미지 지움'); */
-		/* 실제 DB에 들어가는 input value 지움 */
-		$('#sumimage').val('');
+		// 대표 이미지 삭제 기능
+		function del_sum() {
+		    $('#sumimage').val(''); // input 파일 선택을 초기화
+		    $('#img_preview0').hide(); // 프리뷰 영역 숨김
+		    preview_array[0] = false; // 프리뷰 상태 업데이트
+		    img_num(); // 이미지 수 업데이트 함수 호출
+		}
 		
-      $("#img_preview0").css("display","none");
-		$('#imgup_sum').hide();
-		$("#del_sum").hide(); 
+		// 1번 이미지 삭제 기능
+		function del_img1() {
+		    $('#imageFile1').val(''); // input 파일 선택을 초기화
+		    $('#img_preview1').hide(); // 프리뷰 영역 숨김
+		    preview_array[1] = false; // 프리뷰 상태 업데이트
+		    img_num(); // 이미지 수 업데이트 함수 호출
+		}
 		
-		/* 썸네일 비움 */
-		preview_array[0] = false;
-		
-		/* 이미지 넘버변경 */
-		img_num();
-		
-		return;
-	}
+		// 2번 이미지 삭제 기능
+		function del_img2() {
+		    $('#imageFile2').val(''); // input 파일 선택을 초기화
+		    $('#img_preview2').hide(); // 프리뷰 영역 숨김
+		    preview_array[2] = false; // 프리뷰 상태 업데이트
+		    img_num(); // 이미지 수 업데이트 함수 호출
+		}
 
-
-	function del_img1() {
-		/* alert('1번이미지 지움'); */
-		
-		$('#imageFile1').val('');
-		
-		$("#img_preview1").css("display","none");
-		$('#imgup_1').hide();
-		$("#del_img1").hide();
-		
-		/* 1번사진 비움 */
-		preview_array[1] = false;
-		
-		/* 이미지 넘버변경 */
-		img_num();
-		
-		return;
-	}
-	
-	function del_img2() {
-		/* alert('2번이미지 지움'); */
-		
-		$('#imageFile2').val('');
-		
-		$("#img_preview2").css("display","none");
-		$('#imgup_2').hide();
-		$("#del_img2").hide();
-		
-		/* 2번사진 비움 */
-		preview_array[2] = false;
-		
-		/* 이미지 넘버변경 */
-		img_num();
-		
-		return;
-	}
 	
 // -----------------------------------------------2페이지 올라감
 //$(document).ready(function() {
@@ -544,114 +560,156 @@ function imgcheck2(input) {
     });
 
     // '저장' 버튼 클릭 이벤트 핸들러
-    $('#saveButton').click(function(event) {
-        event.preventDefault();
-        // 일정 데이터 처리 로직
-        processScheduleData();
-        // 모달 닫기
+//    $('#saveButton').click(function(event) {
+//        event.preventDefault();
+//        // 일정 데이터 처리 로직
+//        processScheduleData();
+//        // 모달 닫기
 //        $('#scheduleModal').modal('hide');
-        $('#scheduleModal').modal('remove');
-//   		 $('.modal-backdrop').remove();
+//    });
 
-    });
-    
-    
-    
-//});
+// '저장' 버튼 클릭 이벤트 핸들러
+$('#saveButton').click(function(event) {
+    event.preventDefault(); // 폼 제출 방지
 
-function updateCheckboxValue(checkbox) {
-    var label = document.querySelector('label[for="' + checkbox.id + '"]');
-    // 요소가 존재하는지 확인
-    if (label) {
-        if (checkbox.checked) {
-            label.classList.add('checked');
-        } else {
-            label.classList.remove('checked');
+    // 선택된 요일 정보를 저장할 변수 초기화
+    var selectedDays = '';
+
+    // 각 체크박스를 순회하면서 선택된 요일 정보 수집
+    $('input[type="checkbox"][name="class_day"]').each(function() {
+        if ($(this).is(':checked')) {
+            // 체크박스가 선택되었다면, 해당 요일의 value 값을 selectedDays 문자열에 추가
+            selectedDays += $(this).val();
         }
-    }
-}
-
-function getDatesBetweenDates(startDate, endDate, dayIndex) {
-    var dates = [];
-    var currentDate = new Date(startDate);
-    currentDate.setHours(0, 0, 0, 0);
-    endDate = new Date(endDate);
-    endDate.setHours(0, 0, 0, 0);
-
-    while (currentDate <= endDate) {
-        if (currentDate.getDay() === dayIndex) {
-            dates.push(new Date(currentDate));
-        }
-        currentDate.setDate(currentDate.getDate() + 1);
-    }
-    return dates;
-}
-
-function dayStringToIndex(dayString) {
-    var daysMapping = {'월': 1, '화': 2, '수': 3, '목': 4, '금': 5, '토': 6, '일': 0};
-    return daysMapping[dayString];
-}
-
-function resetModalContent() {
-    // 모달 내용 초기화 로직
-    // 입력 필드, 체크박스, 테이블 내용 등을 초기화합니다.
-    $('#startDate, #endDate, #startTime, #endTime').val('');
-    $('input[type="checkbox"]').prop('checked', false).each(function() {
-        updateCheckboxValue(this);
-    });
-    $('#scheduleTable tbody').empty();
-}
-
-function processScheduleData() {
-    // 선택된 요일 추출 및 기타 입력값 처리 로직
-    var selectedDays = [];
-    var startDate = $('#startDate').val();
-    var endDate = $('#endDate').val();
-    var startTime = $('#startTime').val();
-    var endTime = $('#endTime').val();
-    var maxParticipants = $('.modal_select select').val();
-
-    // 체크박스에서 선택된 요일 처리
-    $('input[type="checkbox"]:checked').each(function() {
-        var day = dayStringToIndex($(this).next('label').text().trim());
-        selectedDays.push(day);
     });
 
-    // 날짜 데이터 생성 및 테이블에 행 추가 로직
-    selectedDays.forEach(function(dayIndex) {
-        var dates = getDatesBetweenDates(startDate, endDate, dayIndex);
-        dates.forEach(function(date) {
-            addScheduleRow(date, dayIndex, startTime, endTime, maxParticipants);
-        });
-    });
+    // 선택된 요일 정보를 hidden input 필드에 설정
+    $('#selectedDays').val(selectedDays);
 
-    console.log("일정이 처리되었습니다.");
-}
+    // 일정 데이터 처리 로직 호출
+    processScheduleData();
 
-function addScheduleRow(date, dayIndex, startTime, endTime, maxParticipants) {
-    // 테이블에 새로운 일정 행을 추가하는 로직
-    var dayMapping = ['일', '월', '화', '수', '목', '금', '토'];
-    var formattedDate = date.toISOString().split('T')[0];
-    var dayName = dayMapping[dayIndex];
-    var newRow = `<tr>
-                    <td>${dayName}</td>
-                    <td>${formattedDate}</td>
-                    <td>${startTime} ~ ${endTime}</td>
-                    <td>${maxParticipants}명</td>
-                  </tr>`;
-    $('#scheduleTable tbody').append(newRow);
-//    $('#scheduleTable').append(newRow);
-}
+    // 모달 닫기
+    $('#scheduleModal').modal('hide');
+    // 모달 및 배경 제거를 위한 추가 코드 (필요한 경우)
+    $('.modal-backdrop').remove();
+    $('body').removeClass('modal-open');
+});
 
-
-
-// ========================================================================================
-
-// ----------------------------------------------
-// ========================================================================================
 
 
     
+ 	    // 모달이 닫힐 때의 이벤트 핸들러
+    $('#scheduleModal').on('hidden.bs.modal', function () {
+        $('.modal-backdrop').remove(); // 배경 제거
+        $('body').removeClass('modal-open'); // 클래스 제거
+    });   
+    
+    
+	function getDatesBetweenDates(startDate, endDate, dayIndex) {
+	    var dates = [];
+	    var currentDate = new Date(startDate);
+	    currentDate.setHours(0, 0, 0, 0);
+	    endDate = new Date(endDate);
+	    endDate.setHours(0, 0, 0, 0);
+	
+	    while (currentDate <= endDate) {
+	        if (currentDate.getDay() === dayIndex) {
+	            dates.push(new Date(currentDate));
+	        }
+	        currentDate.setDate(currentDate.getDate() + 1);
+	    }
+	    return dates;
+	}
+
+	function dayStringToIndex(dayString) {
+	    var daysMapping = {'월': 1, '화': 2, '수': 3, '목': 4, '금': 5, '토': 6, '일': 0};
+	    return daysMapping[dayString];
+	}
+	
+	function resetModalContent() {
+	    // 모달 내용 초기화 로직
+	    // 입력 필드, 체크박스, 테이블 내용 등을 초기화합니다.
+	    $('#startDate, #endDate, #startTime, #endTime').val('');
+	    $('input[type="checkbox"]').prop('checked', false).each(function() {
+	        updateCheckboxValue(this);
+	    });
+	    $('#scheduleTable tbody').empty();
+	}
+
+	function processScheduleData() {
+	    // 선택된 요일 추출 및 기타 입력값 처리 로직
+	    var selectedDays = [];
+	    var startDate = $('#startDate').val();
+	    var endDate = $('#endDate').val();
+	    var startTime = $('#startTime').val();
+	    var endTime = $('#endTime').val();
+	    var maxParticipants = $('.modal_select select').val();
+	
+	    // 체크박스에서 선택된 요일 처리
+	    $('input[type="checkbox"]:checked').each(function() {
+	        var day = dayStringToIndex($(this).next('label').text().trim());
+	        selectedDays.push(day);
+	    });
+	
+	    // 날짜 데이터 생성 및 테이블에 행 추가 로직
+	    selectedDays.forEach(function(dayIndex) {
+	        var dates = getDatesBetweenDates(startDate, endDate, dayIndex);
+	        dates.forEach(function(date) {
+	            addScheduleRow(date, dayIndex, startTime, endTime, maxParticipants);
+	        });
+	    });
+	
+	    console.log("일정이 처리되었습니다.");
+	}
+
+	function addScheduleRow(date, dayIndex, startTime, endTime, maxParticipants) {
+	    // 테이블에 새로운 일정 행을 추가하는 로직
+	    var dayMapping = ['일', '월', '화', '수', '목', '금', '토'];
+	    var formattedDate = date.toISOString().split('T')[0];
+	    var dayName = dayMapping[dayIndex];
+		var newRow = `<tr data-date="${formattedDate}">
+	                    <td>${dayName}</td>
+	                    <td>${formattedDate}</td>
+	                    <td>${startTime} ~ ${endTime}</td>
+	                    <td>${maxParticipants}명</td>
+	                  </tr>`;
+	    $('#scheduleTable tbody').append(newRow);
+		    sortTableRowsByDate();
+	}
+
+	 // 일정등록 - 일자별 정렬
+	function sortTableRowsByDate() {
+	    var rows = $('#scheduleTable tbody tr').get();
+	
+	    rows.sort(function(a, b) {
+	        var keyA = $(a).data('date');
+	        var keyB = $(b).data('date');
+	        if (keyA < keyB) return -1;
+	        if (keyA > keyB) return 1;
+	        return 0;
+	    });
+	
+	    $.each(rows, function(index, row) {
+	        $('#scheduleTable tbody').append(row);
+	    });
+	}
+	
+	// '일정 등록' 버튼 클릭 이벤트 핸들러
+	$('#openScheduleModal').click(function() {
+	    resetModalContent(); // 모달 내용 초기화 함수 호출
+	    $('#scheduleModal').modal('show');
+	});
+	
+	function formatPrice(input) {
+	    // 숫자를 제외한 모든 문자를 제거합니다.
+	    var num = input.value.replace(/\D/g, '');
+	    // 숫자를 3자리마다 쉼표로 구분하여 포맷팅합니다.
+	    var formatted = num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	    // 포맷된 문자열을 입력 필드에 다시 설정합니다.
+	    input.value = formatted;
+	}
+// ========================================================================================
   /* 3페이지 */
 
 		$('#keyword').on('input', function(e) {

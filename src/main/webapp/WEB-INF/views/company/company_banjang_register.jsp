@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/img/gs_favi.png">
 	<!-- 다음 주소검색 API 사용을 위한 라이브러리 추가 -->
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -312,7 +313,5 @@ input[type="checkbox"] {
 			</div>
 		</div>
 	</div>
-
-
 </body>
 </html>

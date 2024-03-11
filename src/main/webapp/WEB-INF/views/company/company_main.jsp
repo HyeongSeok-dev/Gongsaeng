@@ -3,9 +3,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8" />
+  <!-- favicon  -->
+  <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/img/gs_favi.png">
   <link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath }/resources/admin_assets/img/apple-icon.png">
 <%--   <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/admin_assets/img/favicon.png"> --%>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -84,18 +85,16 @@ a {
 
 /* 공지사항 목록 스타일 */
 .card-body ul {
-    list-style-type: square; /* 목록 앞의 동그라미(bullet) 제거 */
-    padding-left: 15px; /* 기본 패딩 제거 */
+    list-style-type: square; 
+    padding-left: 15px; 
 }
 
 .card-body ul li a {
-    font-size: 15px; /* 글씨 크기 조절 */
-/*     font-weight: bold;  */
+    font-size: 15px; 
 }
 
-/* 추가된 공지사항 목록의 스타일 */
 .card-body ul li {
-    margin-bottom: 10px; /* 항목간 간격 조절 */
+    margin-bottom: 10px;
 }
 
 .modal-body {
@@ -116,70 +115,50 @@ a {
 	text-align: center;
 }
 
+.card-category, .card-title {
+	text-align: center;
+}
+
+.main_text>b {
+	font-size: 25px;
+}
+
+.sidebar .logo .simple-text, .off-canvas-sidebar .logo .simple-text {
+	font-size: 16px!important;
+}
+
+.company_name {
+	font-size: 16px;
+}
+
 </style>
 
 </head>
 
-
-<body class="">
-        <div class="sidebar" data-color="orange">
-            <!-- Include sidebar_wrapper.jsp -->
-            <jsp:include page="./sidebar_wrapper.jsp"/>
-        </div>
+<body>
+    <div class="sidebar" data-color="orange">
+      <!-- Include sidebar_wrapper.jsp -->
+      <jsp:include page="./sidebar_wrapper.jsp"/>
+    </div>
     <div class="main-panel" id="main-panel">
-      <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
-        <div class="container-fluid">
-          <div class="navbar-wrapper">
-            <div class="navbar-toggle">
-              <button type="button" class="navbar-toggler">
-                <span class="navbar-toggler-bar bar1"></span>
-                <span class="navbar-toggler-bar bar2"></span>
-                <span class="navbar-toggler-bar bar3"></span>
-              </button>
-            </div>
-<!--             <a class="navbar-brand" href="#pablo">Dashboard</a> -->
-            <a class="navbar-brand" href="#pablo"></a>
-          </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <form>
-              <div class="input-group no-border mb-4">
-                <input type="text" value="" class="form-control" placeholder="Search...">
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <i class="now-ui-icons ui-1_zoom-bold"></i>
-                  </div>
-                </div>
-              </div>
-            </form>
-            <ul class="navbar-nav">
-              <li class="nav-item">
-<!--                 <a class="nav-link" href="#pablo"> -->
-                <a class="nav-link" href="${pageContext.request.contextPath}/company/profile">
-                  <i class="now-ui-icons media-2_sound-wave"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Stats</span>
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                 <a class="nav-link" href="${pageContext.request.contextPath}/company/profile">
-                  <i class="now-ui-icons users_single-02"></i>
-                  </a>
-                  <p>
-                    <span class="d-lg-none d-md-block">Account</span>
-                  </p>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+		<!-- Navbar -->
+			<nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
+				<div class="container-fluid">
+					<div class="collapse navbar-collapse justify-content-end" id="navigation">
+						<ul class="navbar-nav">
+							<li class="nav-item">
+								<a class="nav-link" href="#pablo"> 
+									<p>
+										  <span class="company_name"><b>${companyName}</b>&nbsp;반장님&nbsp;</span>&nbsp; | 
+										  <span class="d-lg-none d-md-block">Account</span>
+									</p>
+									<i class="now-ui-icons users_single-02"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
       <!-- End Navbar -->
       <div class="panel-header panel-header-lg">
 <!--         <p class="class_sales_text1">매출 통계 내역(월별)</p> -->
@@ -187,148 +166,194 @@ a {
 <%-- <p>Day of the Week: ${dayOfWeek}</p> --%>
 <%--         <canvas id="bigDashboardChart"></canvas> --%>
       </div>
-      <div class="content">
-        <div class="row">
-          <div class="col-lg-3 col-md-4">
-            <div class="card card-chart">
-              <div class="card-header">
-                <h5 class="card-category">총 클래스 누적 정산 금액입니다.</h5>
-                 <a href="${pageContext.request.contextPath}/company/income/list"><h4 class="card-title">클래스 누적 정산 금액</h4></a>
-                <hr class="main_hr">
-              </div>
-<!--               <div class="card-body"> -->
-    			 <div class="card-body yesterday_sales">
-		            <p class="main_text">클래스 총 정산 금액  : <b><fmt:formatNumber value="${totalSales * 0.9}" groupingUsed="true" pattern="#,##0" /></b>원</p>
-		            <p class="main_text">클래스 총 환불 금액 : <b><fmt:formatNumber value="${totalRefund}" groupingUsed="true" pattern="#,##0" /></b>원</p>
-<%-- 		            <p class="main_text">클래스 총 환불 금액 : <b>${totalRefund}</b>원</p> --%>
-<!-- 		            <p class="main_text">조회수 : <b>0</b>회</p> -->
-<!-- 		        </div> -->
-              </div>
-            </div>
-          </div>
-          
-          <div class="col-lg-3 ">
-            <div class="card card-chart">
-              <div class="card-header">
-                <h5 class="card-category"></h5>
-<!--                 <h4 class="card-title">Shipped Products</h4> -->
-                <h5 class="card-category">당월 매출입니다</h5>
-                 <a href="${pageContext.request.contextPath}/company/sales"><h4 class="card-title">월간 매출</h4></a>
-    			 <hr class="main_hr">
-              </div>
-              <div class="card-body">
-    			 <div class="card-body yesterday_sales">
-		            <p class="main_text">클래스 판매금액 : <b><fmt:formatNumber value="${monthlySales}" groupingUsed="true" pattern="#,##0" /></b>원</p>
-		            <p class="main_text">할인쿠폰 :<b> - <fmt:formatNumber value="${monthlyCoupons}" groupingUsed="true" pattern="#,##0" /></b>원</p>
-<!-- 		            <p>신고 : <b>0</b>건</p> -->
-		        </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="col-lg-3 col-md-4">
-            <div class="card card-chart">
-              <div class="card-header">
-                <h5 class="card-category">당월 클래스 등록 현황입니다</h5>
-                 <a href="${pageContext.request.contextPath}/company/sales"><h4 class="card-title">월간 클래스 등록 현황</h4></a>
-                <hr class="main_hr">
-              </div>
-    			 <div class="card-body yesterday_sales">
-		            <p class="main_text">클래스 판매수 : <b>${monthlyNumberOfClassSales}</b>건</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4">
-            <div class="card card-chart">
-              <div class="card-header">
-                <h5 class="card-category">당월 클래스 취소 현황입니다</h5>
-                <a href="${pageContext.request.contextPath}/company/sales"><h4 class="card-title">월간 클래스 취소 현황</h4></a>
-                
-                <hr class="main_hr">
-              </div>
-    			 <div class="card-body yesterday_sales">
-		            <p class="main_text">취소 요청 : <b>${montlyCancelClass}</b>건</p>
-		            <p class="main_text">환불 금액 : <b> <fmt:formatNumber value="${montlyCancelClassAmount}" groupingUsed="true" pattern="#,##0" /></b>원</p>
-		        </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-3">
-            <div class="card  card-tasks">
-              <div class="card-header ">
-                <h5 class="card-category">반장님의 진행 및 진행 예정인 클래스입니다.</h5>
-                <h4 class="card-title">클래스 현황<br>(진행중/진행 예정)</h4>
-                <hr class="main_hr">
-              </div>
-              <div class="card_class_number">
-                <div class="card-body yesterday_sales">
-		            <a href="${pageContext.request.contextPath}/company/class"><span class="class_number">${numberOfClass}</span><span class="class_per_case">건</span></a>
-		        </div>
-		      </div>  
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="card  card-tasks">
-              <div class="card-header ">
-                <h5 class="card-category">운영중인 클래스 신고 현황입니다</h5>
-                <h4 class="card-title">클래스 신고 현황</h4>
-                <hr class="main_hr">
-              </div>
-              <div class="card_class_number">
-                <div class="card-body yesterday_sales">
-		            <a href="${pageContext.request.contextPath}/company/report"><span class="class_number">${reportCount[0]}</span><span class="class_per_case">건</span></a>
-		        </div>
-		      </div>  
-            </div>
-          </div>
-<!--           <div class="col-md-9"> -->
-        <div class="col-lg-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">작가 공지사항</h4>
-                        <hr class="main_hr">
-                    </div>
+		<div class="content">
+			<div class="row">
+				<div class="col-lg-3 col-md-4">
+					<div class="card card-chart">
+						<div class="card-header">
+							<h5 class="card-category">총 클래스 누적 정산 금액입니다.</h5>
+							<a href="${pageContext.request.contextPath}/company/income/list">
+								<h4 class="card-title">클래스 누적 정산 금액</h4>
+							</a>
+							<hr class="main_hr">
+						</div>
+						<div class="card-body yesterday_sales">
+							<p class="main_text">
+								클래스 총 정산 금액 : <br>
+								<b><a
+									href="${pageContext.request.contextPath}/company/income/list"><fmt:formatNumber
+											value="${totalSales * 0.9}" groupingUsed="true"
+											pattern="#,##0" /></a></b>원
+							</p>
+							<p class="main_text">
+								클래스 총 환불 금액 : <br>
+								<b>- <a
+									href="${pageContext.request.contextPath}/company/sales"><fmt:formatNumber
+											value="${totalRefund}" groupingUsed="true" pattern="#,##0" /></a></b>원
+							</p>
+							<!-- 		            <p class="main_text">조회수 : <b>0</b>회</p> -->
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 ">
+					<div class="card card-chart">
+						<div class="card-header">
+							<h5 class="card-category"></h5>
+							<!--                 <h4 class="card-title">Shipped Products</h4> -->
+							<h5 class="card-category">당월 매출입니다</h5>
+							<a href="${pageContext.request.contextPath}/company/sales">
+								<h4 class="card-title">월간 매출</h4>
+							</a>
+							<hr class="main_hr">
+						</div>
+						<!--               <div class="card-body"> -->
+						<div class="card-body yesterday_sales">
+							<p class="main_text">
+								클래스 판매 금액 : <br>
+								<b><a
+									href="${pageContext.request.contextPath}/company/sales"><fmt:formatNumber
+											value="${monthlySales}" groupingUsed="true" pattern="#,##0" /></a></b>원
+							</p>
+							<p class="main_text">
+								할인 쿠폰 :<br>
+								<b> - <a
+									href="${pageContext.request.contextPath}/company/coupon"><fmt:formatNumber
+											value="${monthlyCoupons}" groupingUsed="true" pattern="#,##0" /></a></b>원
+							</p>
+							<!-- 		            <p>신고 : <b>0</b>건</p> -->
+						</div>
+						<!--               </div> -->
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-4">
+					<div class="card card-chart">
+						<div class="card-header">
+							<h5 class="card-category">당월 클래스 등록 현황입니다</h5>
+							<a href="${pageContext.request.contextPath}/company/sales">
+								<h4 class="card-title">월간 클래스 등록 현황</h4>
+							</a>
+							<hr class="main_hr">
+						</div>
+						<div class="card-body yesterday_sales">
+							<p class="main_text">
+								클래스 판매수 : <br>
+								<b><a
+									href="${pageContext.request.contextPath}/company/sales">${monthlyNumberOfClassSales}</a></b>건
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-4">
+					<div class="card card-chart">
+						<div class="card-header">
+							<h5 class="card-category">당월 클래스 취소 현황입니다</h5>
+							<a href="${pageContext.request.contextPath}/company/sales">
+								<h4 class="card-title">월간 클래스 취소 현황</h4>
+							</a>
+							<hr class="main_hr">
+						</div>
+						<div class="card-body yesterday_sales">
+							<p class="main_text">
+								취소 요청 : <br>
+								<b><a
+									href="${pageContext.request.contextPath}/company/sales">${montlyCancelClass}</a></b>건
+							</p>
+							<p class="main_text">
+								환불 금액 : <br>
+								<b><a
+									href="${pageContext.request.contextPath}/company/sales">- <fmt:formatNumber
+											value="${montlyCancelClassAmount}" groupingUsed="true"
+											pattern="#,##0" /></a></b>원
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">
+					<div class="card  card-tasks">
+						<div class="card-header ">
+							<h5 class="card-category">반장님의 진행중인 클래스입니다.</h5>
+							<a href="${pageContext.request.contextPath}/company/class">
+								<h4 class="card-title">
+									클래스 현황<br>
+								</h4>
+							</a>
+							<hr class="main_hr">
+						</div>
+						<div class="card_class_number">
+							<div class="card-body yesterday_sales">
+								<a href="${pageContext.request.contextPath}/company/class">
+									<span class="class_number"> ${numberOfClass} </span> <span
+									class="class_per_case"> 건 </span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="card  card-tasks">
+						<div class="card-header ">
+							<h5 class="card-category">운영중인 클래스 신고 현황입니다</h5>
+							<a href="${pageContext.request.contextPath}/company/report">
+								<h4 class="card-title">클래스 신고 현황</h4>
+							</a>
+							<hr class="main_hr">
+						</div>
+						<div class="card_class_number">
+							<div class="card-body yesterday_sales">
+								<a href="${pageContext.request.contextPath}/company/report"><span
+									class="class_number">${reportCount[0]}</span><span
+									class="class_per_case">건</span></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--           <div class="col-md-9"> -->
+				<div class="col-lg-6">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">작가 공지사항</h4>
+							<hr class="main_hr">
+						</div>
 						<div class="card-body">
 							<ul>
 								<c:forEach var="board" items="${companyBoard}">
-									<li>
-										<a href="#!" data-toggle="modal"
+									<li><a href="#!" data-toggle="modal"
 										data-target="#boardModal"
 										onclick="showDetails('${board.board_subject}', '${board.board_date}', '${board.board_content}')">
 											${board.board_subject} / <fmt:formatDate
 												value="${board.board_date}" pattern="yyyy-MM-dd" />
-										</a>
-									</li>
+									</a></li>
 								</c:forEach>
 							</ul>
 						</div>
 					</div>
-            </div>
-		 <!-- Modal -->
-		<div class="modal fade" id="boardModal" tabindex="-1" role="dialog" aria-labelledby="boardModalLabel" aria-hidden="true">
-		    <div class="modal-dialog" role="document">
-		        <div class="modal-content">
-		            <div class="modal-header">
-		                <h5 class="modal-title" id="modalTitle"></h5>
-		                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		                    <span aria-hidden="true">&times;</span>
-		                </button>
-		            </div>
-		            <div class="modal-body">
-		                <p id="modalDate"></p> <!-- 날짜를 표시할 p 태그 -->
-		                <div id="modalContent"></div>
-		            </div>
-		            <div class="modal-footer">
-		                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		            </div>
-		        </div>
-		    </div>
+				</div>
+				<!-- Modal -->
+				<div class="modal fade" id="boardModal" tabindex="-1" role="dialog" aria-labelledby="boardModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="modalTitle"></h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<p id="modalDate"></p>
+								<div id="modalContent"></div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary"
+									data-dismiss="modal">닫기</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-
-        </div>
-      </div>
-    <!--       바텀 -->
+		<!--  바텀 -->
       <footer class="footer">
        <jsp:include page="../inc/admin_bottom.jsp"/>
      </footer>
@@ -359,11 +384,10 @@ a {
   });
   
   
-// 이 함수는 날짜 문자열의 시간 부분을 제거하고 YYYY/MM/DD 형식으로 반환합니다.
+ // 문자열 시간 부분 제거 -> YYYY/MM/DD 
   function formatDateToYYYYMMDD(dateString) {
       return dateString.split(" ")[0].replace(/-/g, '/');
   }
-
   
  // =================================
      function showDetails(subject, date, content) {
@@ -372,7 +396,6 @@ a {
           document.getElementById('modalContent').innerHTML = content;
       }
 
-	   
   </script>
 </body>
 

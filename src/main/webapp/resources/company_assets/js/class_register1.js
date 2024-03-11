@@ -46,7 +46,6 @@ $(document).ready(function() {
 
 });
 
-
 /* 1페이지 */
   	document.getElementById('newAddress').addEventListener('change', function() {
 	      if(this.checked) {
@@ -84,18 +83,18 @@ $(document).ready(function() {
 		};
 		
 		// 주소 선택 처리 함수
-function setupAddressSelection() {
-    $('#existingAddress').change(function() {
-        if(this.checked) {
-            $('#additionalAddress').hide();
-            // 새 주소 입력 필드의 name 속성 제거
-            $('#newPostCode, #newAddress1, #newAddress2').removeAttr('name');
-            // 기존 주소 입력 필드의 name 속성 추가
-            $('#postCode').attr('name', 'class_post_code');
-            $('#address1').attr('name', 'class_address1');
-            $('#address2').attr('name', 'class_address2');
-        }
-    });
+	function setupAddressSelection() {
+	    $('#existingAddress').change(function() {
+	        if(this.checked) {
+	            $('#additionalAddress').hide();
+	            // 새 주소 입력 필드의 name 속성 제거
+	            $('#newPostCode, #newAddress1, #newAddress2').removeAttr('name');
+	            // 기존 주소 입력 필드의 name 속성 추가
+	            $('#postCode').attr('name', 'class_post_code');
+	            $('#address1').attr('name', 'class_address1');
+	            $('#address2').attr('name', 'class_address2');
+	        }
+	    });
 
     $('#newAddress').change(function() {
         if(this.checked) {
@@ -170,33 +169,7 @@ function setupAddressSelection() {
         subInteriorSelect.innerHTML = '<option value="">소분류를 선택하세요</option>';
     }
   });
-  
-//   // '기존 공방 주소 출력하기' 선택 시
-//    document.getElementById('existingAddress').addEventListener('change', function() {
-//        if (this.checked) {
-//            // '기존 공방 주소' 필드의 required 속성 제거
-//            document.getElementById('postCode').required = true;
-//            document.getElementById('address1').required = true;
-//            document.getElementById('address2').required = true;
-//            
-//            // 추가 주소 필드 숨기기
-//            document.getElementById('additionalAddress').style.display = 'none';
-//        }
-//    });
-//
-//    // '다른 주소 사용하기' 선택 시
-//    document.getElementById('newAddress').addEventListener('change', function() {
-//        if (this.checked) {
-//            // '새 주소' 필드에 required 속성 추가
-//            document.getElementById('newPostCode').required = true;
-//            document.getElementById('newAddress1').required = true;
-//            document.getElementById('newAddress2').required = true;
-//
-//            // 추가 주소 필드 표시
-//            document.getElementById('additionalAddress').style.display = 'block';
-//        }
-//    });
-  
+ 
   
 });
   //<!-- 이미지 추가버튼 스크립트 -->--------------------
@@ -258,7 +231,7 @@ function setupAddressSelection() {
 
 //-----------------------------------------------------
 
-//<!-- 이미지 장수 표현 함수 -->-----------------------
+	//  이미지 장수 표현 함수 
 	function img_num() {
 		var img_number = 0;
 		
@@ -267,13 +240,12 @@ function setupAddressSelection() {
 				img_number++;
 			}	
 		}
+		
 		/* 이미지 장수 표시 */
 		$("#img_number").html('('+ img_number + '/3)');
 	}
 	
 	//-----------------------------------------------------------
-
-	
 	
 	function send_0() {
 		$("#sumimage").click();
@@ -514,34 +486,30 @@ function setupAddressSelection() {
 // -----------------------------------------------2페이지 올라감
 //$(document).ready(function() {
     // 페이지 로딩 시 초기화 작업
-    $('input[type="checkbox"]').each(function() {
+   $('input[type="checkbox"]').each(function() {
         updateCheckboxValue(this);
     });
 
-    // '일정 등록' 버튼 클릭 이벤트 핸들러
-    $('.btn-secondary').click(function() {
-        // 모달창 표시 전에 실행할 코드
-        resetModalContent(); // 모달 내용 초기화 함수 호출
-        // 모달창 표시
-        $('#scheduleModal').modal('show');
+    // '일정 등록' 버튼 클릭 이벤트 핸들러, 올바른 선택자를 사용하세요
+    $('#openScheduleModal').click(function() {
+        resetModalContent(); // 모달 내용 초기화
+        $('#scheduleModal').modal('show'); // 모달창 표시
     });
 
     // '저장' 버튼 클릭 이벤트 핸들러
     $('#saveButton').click(function(event) {
-        event.preventDefault();
-        // 일정 데이터 처리 로직
-        processScheduleData();
-        // 모달 닫기
-//        $('#scheduleModal').modal('hide');
-        $('#scheduleModal').modal('remove');
-//   		 $('.modal-backdrop').remove();
+        event.preventDefault(); // 기본 이벤트 방지
+        processScheduleData(); // 데이터 처리
+        $('#scheduleModal').modal('hide'); // 모달창 닫기
+    });
 
+    // 모달이 닫힐 때의 이벤트 핸들러
+    $('#scheduleModal').on('hidden.bs.modal', function () {
+        $('.modal-backdrop').remove(); // 배경 제거
+        $('body').removeClass('modal-open'); // 클래스 제거
     });
     
     
-    
-//});
-
 function updateCheckboxValue(checkbox) {
     var label = document.querySelector('label[for="' + checkbox.id + '"]');
     // 요소가 존재하는지 확인
@@ -553,85 +521,152 @@ function updateCheckboxValue(checkbox) {
         }
     }
 }
+	
+	function getDatesBetweenDates(startDate, endDate, dayIndex) {
+	    var dates = [];
+	    var currentDate = new Date(startDate);
+	    currentDate.setHours(0, 0, 0, 0);
+	    endDate = new Date(endDate);
+	    endDate.setHours(0, 0, 0, 0);
+	
+	    while (currentDate <= endDate) {
+	        if (currentDate.getDay() === dayIndex) {
+	            dates.push(new Date(currentDate));
+	        }
+	        currentDate.setDate(currentDate.getDate() + 1);
+	    }
+	    return dates;
+	}
 
-function getDatesBetweenDates(startDate, endDate, dayIndex) {
-    var dates = [];
-    var currentDate = new Date(startDate);
-    currentDate.setHours(0, 0, 0, 0);
-    endDate = new Date(endDate);
-    endDate.setHours(0, 0, 0, 0);
+	function dayStringToIndex(dayString) {
+	    var daysMapping = {'월': 1, '화': 2, '수': 3, '목': 4, '금': 5, '토': 6, '일': 0};
+	    return daysMapping[dayString];
+	}
+	
+	function resetModalContent() {
+	    // 모달 내용 초기화 로직
+	    // 입력 필드, 체크박스, 테이블 내용 등을 초기화합니다.
+	    $('#startDate, #endDate, #startTime, #endTime').val('');
+	    $('input[type="checkbox"]').prop('checked', false).each(function() {
+	        updateCheckboxValue(this);
+	    });
+	    $('#scheduleTable tbody').empty();
+	}
 
-    while (currentDate <= endDate) {
-        if (currentDate.getDay() === dayIndex) {
-            dates.push(new Date(currentDate));
-        }
-        currentDate.setDate(currentDate.getDate() + 1);
-    }
-    return dates;
-}
+	function processScheduleData() {
+	    // 선택된 요일 추출 및 기타 입력값 처리 로직
+	    var selectedDays = [];
+	    var startDate = $('#startDate').val();
+	    var endDate = $('#endDate').val();
+	    var startTime = $('#startTime').val();
+	    var endTime = $('#endTime').val();
+	    var maxParticipants = $('.modal_select select').val();
+	
+	    // 체크박스에서 선택된 요일 처리
+	    $('input[type="checkbox"]:checked').each(function() {
+	        var day = dayStringToIndex($(this).next('label').text().trim());
+	        selectedDays.push(day);
+	    });
+	
+	    // 날짜 데이터 생성 및 테이블에 행 추가 로직
+	    selectedDays.forEach(function(dayIndex) {
+	        var dates = getDatesBetweenDates(startDate, endDate, dayIndex);
+	        dates.forEach(function(date) {
+	            addScheduleRow(date, dayIndex, startTime, endTime, maxParticipants);
+	        });
+	    });
+	
+	    console.log("일정이 처리되었습니다.");
+	}
 
-function dayStringToIndex(dayString) {
-    var daysMapping = {'월': 1, '화': 2, '수': 3, '목': 4, '금': 5, '토': 6, '일': 0};
-    return daysMapping[dayString];
-}
+	function addScheduleRow(date, dayIndex, startTime, endTime, maxParticipants) {
+	    // 테이블에 새로운 일정 행을 추가하는 로직
+	    var dayMapping = ['일', '월', '화', '수', '목', '금', '토'];
+	    var formattedDate = date.toISOString().split('T')[0];
+	    var dayName = dayMapping[dayIndex];
+		var newRow = `<tr data-date="${formattedDate}">
+	                <td>${dayName}</td>
+	                <td>${formattedDate}</td>
+	                <td>${startTime} ~ ${endTime}</td>
+	                <td>${maxParticipants}명</td>
+	              </tr>`;
+	
+	    $('#scheduleTable tbody').append(newRow);
+	    sortTableRowsByDate();
+	}
 
-function resetModalContent() {
-    // 모달 내용 초기화 로직
-    // 입력 필드, 체크박스, 테이블 내용 등을 초기화합니다.
-    $('#startDate, #endDate, #startTime, #endTime').val('');
-    $('input[type="checkbox"]').prop('checked', false).each(function() {
-        updateCheckboxValue(this);
-    });
-    $('#scheduleTable tbody').empty();
-}
+	 // 일정등록 - 일자별 정렬
+	function sortTableRowsByDate() {
+	    var rows = $('#scheduleTable tbody tr').get();
+	
+	    rows.sort(function(a, b) {
+	        var keyA = $(a).data('date');
+	        var keyB = $(b).data('date');
+	        if (keyA < keyB) return -1;
+	        if (keyA > keyB) return 1;
+	        return 0;
+	    });
+	
+	    $.each(rows, function(index, row) {
+	        $('#scheduleTable tbody').append(row);
+	    });
+	}
 
-function processScheduleData() {
-    // 선택된 요일 추출 및 기타 입력값 처리 로직
-    var selectedDays = [];
-    var startDate = $('#startDate').val();
-    var endDate = $('#endDate').val();
-    var startTime = $('#startTime').val();
-    var endTime = $('#endTime').val();
-    var maxParticipants = $('.modal_select select').val();
+	// '일정 등록' 버튼 클릭 이벤트 핸들러
+	$('#openScheduleModal').click(function() {
+	    resetModalContent(); // 모달 내용 초기화 함수 호출
+	    $('#scheduleModal').modal('show');
+	});
 
-    // 체크박스에서 선택된 요일 처리
-    $('input[type="checkbox"]:checked').each(function() {
-        var day = dayStringToIndex($(this).next('label').text().trim());
-        selectedDays.push(day);
-    });
+	// 파일 입력 필드가 변경될 때마다 실행될 함수를 정의합니다.
+	function readURL(input, previewId) {
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+	        
+	        reader.onload = function (e) {
+	            $('#' + previewId).attr('src', e.target.result);
+	            $('#' + previewId).show(); // 프리뷰 이미지를 보이게 합니다.
+	            $('#' + previewId).next('.remove-image').show(); // 'X' 버튼을 보이게 합니다.
+	        };
+	        
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
+	
+	// 각 파일 입력 필드에 대해 'change' 이벤트 리스너를 추가합니다.
+	$("#curriculum_imageFile0").change(function(){
+	    readURL(this, 'previewImg0');
+	});
+	$("#curriculum_imageFile1").change(function(){
+	    readURL(this, 'previewImg1');
+	});
+	$("#curriculum_imageFile2").change(function(){
+	    readURL(this, 'previewImg2');
+	});
+	
+	
+	// removeFile 함수를 수정합니다.
+	function removeFile(inputId, previewId) {
+	    $('#' + inputId).val('');
+	    $('#' + previewId).attr('src', '');
+	    $('#' + previewId).hide(); // 프리뷰 이미지를 숨깁니다.
+	    $('#' + previewId).next('.remove-image').hide(); // 'X' 버튼을 숨깁니다.
+	}
 
-    // 날짜 데이터 생성 및 테이블에 행 추가 로직
-    selectedDays.forEach(function(dayIndex) {
-        var dates = getDatesBetweenDates(startDate, endDate, dayIndex);
-        dates.forEach(function(date) {
-            addScheduleRow(date, dayIndex, startTime, endTime, maxParticipants);
-        });
-    });
 
-    console.log("일정이 처리되었습니다.");
-}
-
-function addScheduleRow(date, dayIndex, startTime, endTime, maxParticipants) {
-    // 테이블에 새로운 일정 행을 추가하는 로직
-    var dayMapping = ['일', '월', '화', '수', '목', '금', '토'];
-    var formattedDate = date.toISOString().split('T')[0];
-    var dayName = dayMapping[dayIndex];
-    var newRow = `<tr>
-                    <td>${dayName}</td>
-                    <td>${formattedDate}</td>
-                    <td>${startTime} ~ ${endTime}</td>
-                    <td>${maxParticipants}명</td>
-                  </tr>`;
-    $('#scheduleTable tbody').append(newRow);
-//    $('#scheduleTable').append(newRow);
-}
-
-
+	// 판매 가격 천단위 포매팅
+	
+	function formatPrice(input) {
+	    // 숫자 외의 문자를 제거합니다.
+	    let value = input.value.replace(/\D/g, '');
+	    // 숫자를 천 단위로 구분하여 다시 포맷합니다.
+	    value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+	    // 포맷된 문자열을 입력 필드의 값으로 설정합니다.
+	    input.value = value;
+	}
 
 // ========================================================================================
 
-
-    
   /* 3페이지 */
 
 		$('#keyword').on('input', function(e) {
@@ -654,37 +689,12 @@ function addScheduleRow(date, dayIndex, startTime, endTime, maxParticipants) {
 	
 	/* 4페이지 */
 
-//	$("#goToContactTab").click(function() {
-//        // '기타 제공사항' 탭으로 이동
-//      	$('#contact-tab').tab('show');
-//    });
-
-//	$("#goTo1Tab").click(function() {
-//      	$('#home-tab').tab('show');
-//    });
-//
-//	$("#goTo2Tab").click(function() {
-//      	$('#profile-tab').tab('show');
-//    });
-//    
-//	$("#goTo3Tab").click(function() {
-//      	$('#contact-tab').tab('show');
-//    });
-//
-//	$("#goTo4Tab").click(function() {
-//      	$('#extra-tab').tab('show');
-//    });
-
-
-
-		
-
 		function submitReview() {
 	    // 각 체크박스의 상태 확인
 	    var isTermsAgreed = document.getElementById('termsAgreement').checked;
 	    var isPrivacyPolicyAgreed = document.getElementById('privacyPolicyAgreement').checked;
 	    var isRefundPolicyAgreed = document.getElementById('refundPolicyAgreement').checked;
-
+	
 	    // 모든 체크박스가 선택되었는지 확인
 	    if (isTermsAgreed && isPrivacyPolicyAgreed && isRefundPolicyAgreed) {
 	        // 모든 조건이 충족 -> 실제 검수 신청 로직 처리
@@ -694,3 +704,52 @@ function addScheduleRow(date, dayIndex, startTime, endTime, maxParticipants) {
 	        alert('모든 약관에 동의해야 클래스 등록이 가능합니다.');
 	    }
 	} 
+
+
+    // 서비스 이용약관 모달 열기
+    $('#termsModalButton').click(function() {
+        $('#termsModal').modal('show');
+    });
+
+    // 개인정보 처리방침 모달 열기
+    $('#privacyPolicyModalButton').click(function() {
+        $('#privacyPolicyModal').modal('show');
+    });
+
+    // 환불 규정 모달 열기
+    $('#refundPolicyModalButton').click(function() {
+        $('#refundPolicyModal').modal('show');
+    });
+    
+    
+	function submitClass() {
+	    var file1 = document.getElementById('sumimage').files.length;
+	    var file2 = document.getElementById('imageFile1').files.length;
+	    var file3 = document.getElementById('imageFile2').files.length;
+	    var curriculumFilesCount = 3; // 커리큘럼 파일 개수
+	    var uploadedCurriculumFiles = 0; // 업로드된 커리큘럼 파일 개수
+	
+	    // 대표 이미지 파일이 세 개 모두 등록되었는지 확인
+	    if (file1 === 0 || file2 === 0 || file3 === 0) {
+	        alert("대표이미지를 3장 등록해주세요.");
+	        return false; // 폼 제출을 막습니다.
+	    }
+	
+	    // 커리큘럼 파일이 모두 등록되었는지 확인
+	    for (var i = 0; i < curriculumFilesCount; i++) {
+	        if (document.getElementById('curriculum_imageFile' + i).files.length > 0) {
+	            uploadedCurriculumFiles++; // 파일이 등록되었다면 카운트를 증가
+	        }
+	    }
+	
+	    // 모든 커리큘럼 파일이 등록되었는지 확인
+	    if (uploadedCurriculumFiles < curriculumFilesCount) {
+	        alert("모든 커리큘럼 사진을 등록해주세요.");
+	        return false; // 폼 제출을 막습니다.
+	    }
+	
+	    // 대표 이미지와 커리큘럼 이미지가 모두 등록되었다면 폼 제출을 계속
+	    return true; // 실제 폼 제출은 이 부분에서 처리됩니다.
+	}
+
+

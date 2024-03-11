@@ -96,11 +96,25 @@
 	</update>
 	
 <!-- 	회원목록 출력 -->
-	<select id="selectCompanyClassMember" resultType="companyClass">
-		SELECT *
-		FROM ViewPaymentClassMember	
-		WHERE com_idx = #{comIdx}
-	</select>
+<select id="selectCompanyClassMember" resultType="companyClass">
+  <![CDATA[
+    SELECT *, 
+        CASE 
+            WHEN class_start_date > CURRENT_DATE THEN '진행예정'
+            WHEN class_end_date >= CURRENT_DATE THEN '진행중'  -- class_end_date가 오늘을 포함하여 그 이후인 경우
+            ELSE '종료'
+        END AS classStatus
+    FROM ViewPaymentClassMember2
+    WHERE com_idx = #{comIdx}
+    ORDER BY 
+        CASE 
+            WHEN class_start_date > CURRENT_DATE THEN 2  -- 진행예정
+            WHEN class_end_date >= CURRENT_DATE THEN 1  -- 진행중
+            ELSE 3  -- 종료
+        END,
+        class_start_date ASC  -- 시작 날짜 기준 추가 정렬
+  ]]>
+</select>
 
 	<!-- 리뷰 목록 출력 -->
 	<select id="selectCompanyReviewDetail" resultType="companyReview">
@@ -181,11 +195,16 @@
 	
 	<!-- 메인 - (5-1) 운영중인 클래스 현황 -->
 	<select id="selectCountClass" resultType="Integer">
-		SELECT COALESCE(COUNT(class_idx),0) AS NumberOfClass
-		FROM class
-		WHERE member_id = #{member_id}
-			AND class_end_date >= CURDATE()
+    <![CDATA[
+        SELECT COALESCE(COUNT(class_idx),0) AS NumberOfClass
+        FROM class
+        WHERE member_id = #{member_id}
+            AND class_start_date <= CURDATE()
+            AND class_end_date >= CURDATE()
+    ]]>
 	</select>
+	<!-- <![CDATA[ 와 ]]> 사이에 SQL 쿼리를 넣으면, 해당 쿼리는 XML 파서에 의해 처리되지 않고 그대로 유지 -->
+	
 	
 	<!-- 메인 - (6) 클래스 신고 현황 -->
 	<select id="countReport" resultType="Integer">
@@ -261,6 +280,7 @@
 	WHERE
 	    com_idx = #{comIdx}
 	    AND pay_status = 1
+        AND pay_date >= DATE_SUB(NOW(), INTERVAL 10 DAY)
 	GROUP BY
 	    DATE(pay_date)
 	ORDER BY
@@ -299,9 +319,6 @@
         cancelDate ASC
 	
 	</select>
-
-
-
 		
 	<!-- 반장 쿠폰 조회 -->	
 	<select id="selectClassCoupon" resultType="coupon">
@@ -335,6 +352,26 @@
 		WHERE member_id = #{sId}
 	</select>
 	
+	<!-- 매출내역 - 회사명 출력 -->
+	<select id="selectComName" resultType="String">
+		SELECT com_name
+		FROM company
+		WHERE com_idx = #{comIdxFromSale}
+	</select>
+	
+	<!-- 정산 세부내역 -->
+	<select id="selectPaymentByPayNum" resultType="payment">
+		SELECT *
+		FROM payment
+		WHERE pay_num = #{payNum}
+	</select>
+	
+	<!-- 메인페이지 회사명 출력 -->
+	<select id="selectCompanyName" resultType="String">
+		SELECT com_name
+		FROM company
+		WHERE member_id = #{sId}
+	</select>
 	
 	
 </mapper>

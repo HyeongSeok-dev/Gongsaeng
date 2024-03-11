@@ -10,4 +10,8 @@ public class CompanyReviewDetailVO {
 	private Double review_score;
 	private String review_content;
 	private String review_regdate;
+	private String review_img_1;
+	private String review_img_2;
+	private String review_img_3;
+	private int review_idx;
 }

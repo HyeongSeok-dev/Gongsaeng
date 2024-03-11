@@ -1,16 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath }/resources/company_assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/company_assets/img/favicon.png">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<!-- favicon 넣는 자리 -->
+<link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/img/gs_favi.png">  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Now UI Dashboard by Creative Tim
+    공생 | 회원 목록
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -111,85 +112,95 @@ tbody {
 .member_btn {
  	margin-top: 23px;
 }
+
+/* 일반 테이블 행에 대한 hover 효과 */
+.table tbody tr:hover {
+    background-color: #f2f2f2; /* 호버 시 배경 색상 */
+    cursor: pointer; /* 커서 변경 */
+}
+
+.modal-body .table tbody tr:hover {
+    background-color: transparent!important; /* 기본 배경색 유지 */
+    cursor: default!important; /* 기본 커서 사용 */
+}
+
+/* 이미지를 원형으로 표시 */
+.rounded-circle {
+  border-radius: 50%;
+}
+
+.modal-body table {
+    display: block !important;
+}
+
+
+/* 테이블 스타일링 */
+.table th, .table td {
+}
+
+#memberModal .modal-body tbody tr {
+    display: table-row !important;
+    text-align: center !important;
+	max-width: auto;
+}
+
+.modal-body {
+    display: flex!important;
+    justify-content: center!important; 
+    align-items: center!important; 
+    text-align: center!important;
+    flex-direction: column!important;
+}
+
+.modal-content {
+    min-width: 300px!important; 
+}
+
+#modalClassTitles {
+	text-align: left;
+}
+
+.modal-body .table th {
+    min-width: max-content;
+    white-space: nowrap; 
+}
+
+
 </style>  
   
 </head>
-
 <body class="">
 <!--   <div class="wrapper "> -->
     <div class="sidebar" data-color="orange">
       <jsp:include page="./sidebar_wrapper.jsp"/>
     </div>
-    <div class="main-panel" id="main-panel">
-      <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
-        <div class="container-fluid">
-          <div class="navbar-wrapper">
-            <div class="navbar-toggle">
-              <button type="button" class="navbar-toggler">
-                <span class="navbar-toggler-bar bar1"></span>
-                <span class="navbar-toggler-bar bar2"></span>
-                <span class="navbar-toggler-bar bar3"></span>
-              </button>
-            </div>
-            <a class="navbar-brand" href="#pablo">회원 목록</a>
-          </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <form>
-              <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <i class="now-ui-icons ui-1_zoom-bold"></i>
-                  </div>
-                </div>
-              </div>
-            </form>
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons media-2_sound-wave"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Stats</span>
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="now-ui-icons location_world"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Some Actions</span>
-                  </p>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons users_single-02"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Account</span>
-                  </p>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <!-- End Navbar -->
-      <div class="panel-header">
-        <div class="header text-center">
-          <h2 class="title">회원 목록</h2>
-        </div>
-      </div>
+	<div class="main-panel" id="main-panel">
+		<!-- Navbar -->
+			<nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
+				<div class="container-fluid">
+					<div class="navbar-wrapper">
+						<a class="navbar-brand" href="#pablo">회원 목록</a>
+					</div>
+					<div class="collapse navbar-collapse justify-content-end" id="navigation">
+						<ul class="navbar-nav">
+							<li class="nav-item">
+								<a class="nav-link" href="#pablo"> 
+									<i class="now-ui-icons users_single-02"></i>
+									<p>
+										<span class="d-lg-none d-md-block">Account</span>
+									</p>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		<!-- End Navbar -->
+		<div class="panel-header">
+			<div class="header text-center">
+				<h2 class="title">회원 목록</h2>
+			</div>
+		</div>
 		<div class="content">
 			<div class="row">
 				<div class="col-xl-12">
@@ -202,29 +213,34 @@ tbody {
 										<form>
 											<div class="form-row align-items-center">
 												<div class="col-xl-2">
-													<label for="purchaseDateStart">클래스 등록일 검색</label> <input
-														type="date" class="form-control" id="purchaseDateStart"
-														name="purchaseDateStart">
+													<label for="purchaseDateStart">클래스 등록일 검색</label> 
+													<input type="date" class="form-control" id="purchaseDateStart" name="purchaseDateStart">
 												</div>
 												<div class="col-xs-1 text-center">
 													<span class="form-control-plaintext">~</span>
 												</div>
 												<div class="col-xl-2">
-													<label for="purchaseDateEnd"></label> <input type="date"
-														class="form-control" id="purchaseDateEnd"
-														name="purchaseDateEnd">
+													<label for="purchaseDateEnd"></label> 
+													<input type="date" class="form-control" id="purchaseDateEnd" name="purchaseDateEnd">
 												</div>
 												<div class="form-group col-xl-7">
-														<div class="form-row member_btn">
-														 <input type="button" value="초기화" class="btn btn-info m-1 btn-reset">
-	    												 <input type="button" value="검색" class="btn btn-info m-1 btn-search">
+													<div class="form-row member_btn">
+														<input type="button" value="검색" class="btn btn-info m-1 btn-search"> 
+														<input type="button" value="초기화" class="btn btn-info m-1 btn-reset">
 													</div>
 												</div>
-												<!-- 클래스 진행 여부 체크박스 -->
+											</div>
+											<!-- 클래스 진행 여부 체크박스 -->
 											<div class="filter-checkboxes">
-											  <label><input type="checkbox" id="statusPlanned" checked> 진행예정</label>
-											  <label><input type="checkbox" id="statusOngoing" checked> 진행중</label>
-											  <label><input type="checkbox" id="statusFinished" checked> 종료</label>
+												<label> 
+													<input type="checkbox" id="statusPlanned" checked>진행예정
+												</label> 
+												<label> 
+													<input type="checkbox" id="statusOngoing" checked>진행중
+												</label> 
+												<label> 
+													<input type="checkbox" id="statusFinished" checked>종료
+												</label>
 											</div>
 										</form>
 									</div>
@@ -234,7 +250,6 @@ tbody {
 					</div>
 				</div>
 			</div>
-			<!-- 		      			  <div class="row"> -->
 			<div class="col-md-12">
 				<div class="card col-md-12">
 					<div class="card-header"></div>
@@ -250,35 +265,51 @@ tbody {
 													<th scope="col">클래스 진행 여부</th>
 													<th scope="col">회원아이디</th>
 													<th scope="col">회원명</th>
+													<th scope="col">성별</th>
 													<th scope="col">클래스 등록일</th>
 													<th scope="col">클래스명</th>
-<!-- 													<th scope="col">성별</th> -->
-<!-- 													<th scope="col">관심정보</th> -->
-<!-- 													<th scope="col">채팅</th> -->
-<!-- 													<th scope="col">포인트 사용 금액</th> -->
-<!-- 													<th scope="col">수수료</th> -->
-<!-- 													<th scope="col">정산신청</th> -->
 												</tr>
 											</thead>
 											<tbody>
-												<!-- 여기에 각 행을 추가하세요. 예를 들어: -->
-												<c:forEach items="${companyClassMember}" var="classMember" varStatus="status">
-												<tr>
-													<td scope="row">${status.index + 1}</td>
-													<td>${classMember.classStatus}</td>
-													<td>${classMember.member_id}</td>
-													<td>${classMember.member_name} </td>
-        											<td class="pay-date">
-        											<fmt:formatDate value="${classMember.pay_date}" pattern="yyyy/MM/dd" />
-        											
-        											${classMember.pay_date}</td>
-													<td>${classMember.class_title} </td>
-<%-- 													<td>${classMember.memeber_gender}</td> --%>
-<!-- 													<td>#인테리어</td> -->
-<!-- 													<td><input type="button" value="채팅 보내기"></td> -->
-												</tr>
-													</c:forEach>
-												<!-- 더 많은 행을 추가할 수 있습니다. -->
+											<c:forEach items="${companyClassMember}" var="classMember" varStatus="status">
+											    <c:if test="${not displayedMembers.contains(classMember.member_id)}">
+											        <tr class="member-row"
+											            data-pay-date="${classMember.pay_date}"
+											            data-member-gender="${classMember.member_gender}"
+											            data-class-status="${classMember.classStatus}"
+											            data-member-id="${classMember.member_id}"
+											            data-member-name="${classMember.member_name}"
+											            data-member-gender="${classMember.member_gender}"
+											            data-member-birth="${classMember.member_birthday}"
+											            data-member-email="${classMember.member_email}"
+											            data-class-titles="${memberClassesStringMap[classMember.member_id]}"
+											            data-member-nick="${classMember.member_nick}"
+											            data-member-phone="${classMember.member_phone}"
+											            data-member-img="${pageContext.request.contextPath}/resources/upload/${classMember.member_img}"
+											            data-member-status="${classMember.member_status}">
+											            
+											            <td scope="row">${status.index + 1}</td>
+											            <td>${classMember.classStatus}</td>
+											            <td>${classMember.member_id}</td>
+											            <td>${classMember.member_name}</td>
+											            <td>
+											                <c:choose>
+											                    <c:when test="${classMember.member_gender == 1}">
+											                        남성
+											                    </c:when>
+											                    <c:otherwise>
+											                        여성
+											                    </c:otherwise>
+											                </c:choose>
+											            </td>
+											            <td class="pay-date">
+											                <fmt:formatDate value="${classMember.pay_date}" pattern="yyyy/MM/dd" />
+											            </td>
+											            <td>${classMember.class_title}</td>
+											        </tr>
+											        <c:set var="added" value="${displayedMembers.add(classMember.member_id)}" scope="page"/>
+											    </c:if>
+											</c:forEach>
 											</tbody>
 										</table>
 									</form>
@@ -288,15 +319,72 @@ tbody {
 					</div>
 				</div>
 			</div>
-			<!-- 		      </div> -->
 		</div>
-    <!--       바텀 -->
-      <footer class="footer">
-       <jsp:include page="../inc/admin_bottom.jsp"/>
-     </footer>
-    </div>
-  </div>
-  <!--   Core JS Files   -->
+		<!-- Modal -->
+		<div class="modal fade" id="memberModal" tabindex="-1" role="dialog" aria-labelledby="memberModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="memberModalLabel">회원 상세 정보</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body text-center">
+		        <!-- 회원 이미지 -->
+		        <img id="modalMemberImg" src="" alt="회원 이미지" class="rounded-circle" style="width: 100px; height: 100px; object-fit: cover;"/>
+		        <!-- 회원 아이디 -->
+		        <h5 id="modalMemberId" class="mt-3"></h5>
+		        <!-- 회원 상세 정보 테이블 -->
+		        <table class="table mt-3">
+		          <tbody>
+		            <tr>
+		              <th>이름</th>
+		              <td><span id="modalMemberName"></span></td>
+		            </tr>
+		            <tr>
+		              <th>회원 상태</th>
+		              <td><span id="modalMemberStatus"></span></td>
+		            </tr>
+		            <tr>
+		              <th>닉네임</th>
+		              <td><span id="modalMemberNick"></span></td>
+		            </tr>
+		            <tr>
+		              <th>수강 내역</th>
+		              <td><ul id="modalClassTitles"></ul></td>
+		            </tr>
+		            <tr>
+		              <th>성별</th>
+		              <td><span id="modalMemberGender"></span></td>
+		            </tr>
+		            <tr>
+		              <th>생년월일</th>
+		              <td><span id="modalMemberBirth"></span></td>
+		            </tr>
+		            <tr>
+		              <th>이메일</th>
+		              <td><span id="modalMemberEmail"></span></td>
+		            </tr>
+		            <tr>
+		              <th>전화번호</th>
+		              <td><span id="modalMemberPhone"></span></td>
+		            </tr>
+		          </tbody>
+		        </table>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!-- 바텀 -->
+		<footer class="footer">
+			<jsp:include page="../inc/admin_bottom.jsp" />
+		</footer>
+	</div>
+	<!--   Core JS Files   -->
   <script src="${pageContext.request.contextPath }/resources/company_assets/js/core/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/company_assets/js/core/popper.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/company_assets/js/core/bootstrap.min.js"></script>
@@ -326,25 +414,37 @@ tbody {
   });
   
   $(document).ready(function() {
-	    // 초기화 버튼 이벤트 핸들러
-	    $('.btn-reset').click(function() {
-	        location.reload(); // 페이지 새로고침
+	 // 초기화 버튼 이벤트 핸들러
+	  $('.btn-reset').click(function() {
+      // 페이지 새로고침
+       location.reload();
+    }); 
+	    
+	// 검색 버튼 이벤트 핸들러
+	$('.btn-search').click(function() {
+	    var startDate = $('#purchaseDateStart').val();
+	    var endDate = $('#purchaseDateEnd').val();
+
+	    $('tbody tr').each(function() {
+	        // 각 행에서 날짜 데이터를 가져옴
+	        var payDate = $(this).find('.pay-date').text();
+	        // 문자열 형태의 날짜를 Date 객체로 변환
+	        var payDateObj = new Date(payDate);
+	        var startDateObj = startDate ? new Date(startDate) : null;
+	        var endDateObj = endDate ? new Date(endDate) : null;
+	
+	        // 날짜가 검색 범위 내에 있는지 확인
+	        var isVisible = true; // 기본적으로 모든 행을 보이게 설정
+	        if (startDateObj && payDateObj < startDateObj) {
+	            isVisible = false; // 시작 날짜 이전이면 숨김
+	        }
+	        if (endDateObj && payDateObj > endDateObj) {
+	            isVisible = false; // 종료 날짜 이후면 숨김
+	        }
+	        $(this).toggle(isVisible); // 조건에 따라 행 표시/숨김
 	    });
+	});
 
-	    // 검색 버튼 이벤트 핸들러
-	    $('.btn-search').click(function() {
-	        var startDate = $('#purchaseDateStart').val();
-	        var endDate = $('#purchaseDateEnd').val();
-
-	        $('tbody tr').each(function() {
-	            // 각 행에서 날짜 데이터를 가져옴
-	            var payDate = $(this).find('.pay-date').text();
-
-	            // 날짜가 검색 범위 내에 있는지 확인
-	            var isVisible = (payDate >= startDate && payDate <= endDate) || (!startDate && !endDate);
-	            $(this).toggle(isVisible); // 조건에 따라 행 표시/숨김
-	        });
-	    });
 	// -----------------------------------------------------------------------------------
 	   // 체크박스 상태 변경 시 테이블 필터링
     $('#statusPlanned, #statusOngoing, #statusFinished').change(function() {
@@ -371,11 +471,45 @@ tbody {
 
     filterTable(); // 페이지 로드 시 테이블 필터링 실행
   
-  
-  
+    $('tr.member-row').click(function() {
+        var memberId = $(this).data('member-id');
+        var memberName = $(this).data('member-name');
+        var memberNick = $(this).data('member-nick');
+        var memberBirth = $(this).data('member-birth');
+        var memberEmail = $(this).data('member-email');
+        var memberPhone = $(this).data('member-phone');
+        var memberImg = $(this).data('member-img');
+        var memberGender = $(this).data('member-gender');
+        var memberStatus = $(this).data('member-status');
+        var classStatus = $(this).data('class-status');
+        var classTitles = $(this).data('class-titles').split(','); // 문자열 -> 배열로 변환
+
+        // 모달 내용 업데이트
+        $('#modalMemberId').text(memberId);
+        $('#modalMemberName').text(memberName);
+        $('#modalMemberNick').text(memberNick);
+        $('#modalMemberBirth').text(memberBirth);
+        $('#modalMemberEmail').text(memberEmail);
+        $('#modalMemberPhone').text(memberPhone);
+//         $('#modalMemberImg').text(memberImg);
+		$('#modalMemberImg').attr('src', memberImg); // 이미지 태그의 src 속성 업데이트
+        $('#modalMemberGender').text(memberGender == '1' ? '남성' : '여성');
+        $('#modalMemberStatus').text(memberStatus == '1' ? '정상' : (memberStatus == '2' ? '휴면' : '탈퇴'));
+        $('#modalClassStatus').text(classStatus);
+
+        // 클래스명 목록을 업데이트합니다.
+        var classTitlesList = $('#modalClassTitles');
+        classTitlesList.empty(); // 목록 초기화
+        classTitles.forEach(function(title) {
+        	classTitlesList.append($('<li>').text(title)); // 각 클래스명을 목록에 추가
+        });
+
+        $('#memberModal').modal('show'); // 모달 표시
+    });
+
+    
   });
   
   </script>
 </body>
-
 </html>

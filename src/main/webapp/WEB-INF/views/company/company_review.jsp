@@ -3,14 +3,12 @@
 
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath }/resources/company_assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/company_assets/img/favicon.png">
+  <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/img/gs_favi.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Now UI Dashboard by Creative Tim
+	공생 | 리뷰 목록
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -23,13 +21,13 @@
   <link href="${pageContext.request.contextPath }/resources/company_assets/demo/demo.css" rel="stylesheet" />
   <!-- CSS(List) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- global CSS -->
-    <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet" />	
+  <!-- global CSS -->
+  <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet" />	
   
 <style type="text/css">
-    	body{
+
+body {
     background:#f5f5f5;
-/*     margin-top:20px; */
 }
 
 .card {
@@ -109,79 +107,35 @@ tbody {
 }
 
 </style>  
-  
 </head>
 
-<body class="">
+<body>
 <!--   <div class="wrapper "> -->
     <div class="sidebar" data-color="orange">
        <jsp:include page="./sidebar_wrapper.jsp"/>
     </div>
     <div class="main-panel" id="main-panel">
-      <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
-        <div class="container-fluid">
-          <div class="navbar-wrapper">
-            <div class="navbar-toggle">
-              <button type="button" class="navbar-toggler">
-                <span class="navbar-toggler-bar bar1"></span>
-                <span class="navbar-toggler-bar bar2"></span>
-                <span class="navbar-toggler-bar bar3"></span>
-              </button>
-            </div>
-            <a class="navbar-brand" href="#pablo">리뷰 목록</a>
-          </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <form>
-              <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <i class="now-ui-icons ui-1_zoom-bold"></i>
-                  </div>
-                </div>
-              </div>
-            </form>
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons media-2_sound-wave"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Stats</span>
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="now-ui-icons location_world"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Some Actions</span>
-                  </p>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons users_single-02"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Account</span>
-                  </p>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <!-- End Navbar -->
+		<!-- Navbar -->
+			<nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
+				<div class="container-fluid">
+					<div class="navbar-wrapper">
+						<a class="navbar-brand" href="#pablo">리뷰 목록</a>
+					</div>
+					<div class="collapse navbar-collapse justify-content-end" id="navigation">
+						<ul class="navbar-nav">
+							<li class="nav-item">
+								<a class="nav-link" href="#pablo"> 
+									<i class="now-ui-icons users_single-02"></i>
+									<p>
+										<span class="d-lg-none d-md-block">Account</span>
+									</p>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		<!-- End Navbar -->
       <div class="panel-header">
         <div class="header text-center">
           <h2 class="title">리뷰 목록</h2>
@@ -196,31 +150,19 @@ tbody {
 							<div class="row">
 								<div class="col-xl-12">
 									<div class="card">
-										<form>
-											<div class="form-row align-items-center">
+									<form>
+										<div class="form-row align-items-center">
 												<div class="col-xl-2">
-													<label for="purchaseDateStart">리뷰 등록일 검색</label> <input
-														type="date" class="form-control" id="purchaseDateStart"
-														name="purchaseDateStart">
+													<label for="purchaseDateStart">리뷰 등록일 검색</label> 
+													<input type="date" class="form-control" id="purchaseDateStart" name="purchaseDateStart">
 												</div>
 													<div class="col-xs-1 text-center">
-			<span class="form-control-plaintext">~</span>
-		</div>
+														<span class="form-control-plaintext">~</span>
+													</div>
 												<div class="col-xl-2">
-													<label for="purchaseDateEnd"></label> <input type="date"
-														class="form-control" id="purchaseDateEnd"
-														name="purchaseDateEnd">
+													<label for="purchaseDateEnd"></label> 
+													<input type="date" class="form-control" id="purchaseDateEnd" name="purchaseDateEnd">
 												</div>
-												<!-- 추가 컨텐츠를 위한 공간 -->
-<!-- 												<div class="form-group col-xl-7"> -->
-<!-- 													<input type="button" value="전체" class="btn btn-dark mt-5 "> -->
-<!-- 													<input type="button" value="오늘" class="btn btn-dark mt-5"> -->
-<!-- 													<input type="button" value="1주일" class="btn btn-dark mt-5"> -->
-<!-- 													<input type="button" value="1개월" class="btn btn-dark mt-5"> -->
-<!-- 													<input type="button" value="3개월" class="btn btn-dark mt-5"> -->
-<!-- 													<input type="button" value="6개월" class="btn btn-dark mt-5"> -->
-<!-- 													<input type="button" value="&nbsp;&nbsp;1 년&nbsp;&nbsp;" class="btn btn-dark mt-5"> -->
-<!-- 												</div> -->
 													<div class="form-row member_btn">
 														<input type="button" value="초기화" class="btn btn-info m-1 btn-reset">
 														<input type="button" value="검색" class="btn btn-info m-1 btn-search">
@@ -234,7 +176,7 @@ tbody {
 														    <label><input type="checkbox" value="1-2" class="rating-filter"> 1~2점</label>
 														    <label><input type="checkbox" value="2-3" class="rating-filter"> 2~3점</label>
 														    <label><input type="checkbox" value="3-4" class="rating-filter"> 3~4점</label>
-														    <label><input type="checkbox" value="4-5" class="rating-filter"> 4~5점</label>
+														    <label><input type="checkbox" value="4-5" class="rating-filter"> 4~ 5점</label>
 														    <label><input type="checkbox" value="5" class="rating-filter"> 5점</label>
 														</div>
 													</div>
@@ -257,7 +199,6 @@ tbody {
 					</div>
 				</div>
 			</div>
-			<!-- 		      			  <div class="row"> -->
 			<div class="col-md-12">
 				<div class="card col-md-12">
 					<div class="card-header"></div>
@@ -276,44 +217,95 @@ tbody {
 													<th scope="col">별점</th>
 													<th scope="col">리뷰 내용</th>
 													<th scope="col">리뷰 등록일</th>
-<!-- 													<th scope="col">클래스명</th> -->
-<!-- 													<th scope="col">채팅</th> -->
-<!-- 													<th scope="col">포인트 사용 금액</th> -->
-<!-- 													<th scope="col">수수료</th> -->
-<!-- 													<th scope="col">정산신청</th> -->
 												</tr>
 											</thead>
-											<tbody>
-												<!-- 여기에 각 행을 추가하세요. 예를 들어: -->
+												<tbody>
 													<c:forEach items="${companyReviewDetail}" var="review"  varStatus="status">
-												<tr>
-														<th scope="row">${status.index + 1}</th>
-														<td>${review.class_title}</td> <!-- 클래스명 -->
-														<td>${review.member_id}</td> <!-- 회원아이디 -->
-<!-- 														<td>구승민</td> -->
-														<td>${review.review_score / 2}</td> <!-- 별점 -->
-														<td>${review.review_content }</td> <!-- 리뷰내용 -->
-														<td>${review.review_regdate }</td> <!-- 리뷰등록일 -->
-												</tr>
-	 												</c:forEach>	
-												<!-- 더 많은 행을 추가할 수 있습니다. -->
-											</tbody>
-										</table>
-									</form>
+															<tr class="review-row"
+																data-review-class-title="${review.class_title}"
+																data-review-member-id="${review.member_id}"
+																data-review-score="${review.review_score / 2}"
+																data-review-content="${review.review_content}"
+																data-review-regdate="${review.review_regdate}"
+													            data-review-img-1="${pageContext.request.contextPath}/resources/upload/${review.review_img_1}"
+														        data-review-idx="${review.review_idx}"
+														        > 
+																
+																<th scope="row">${status.index + 1}</th>
+																<td>${review.class_title}</td> <!-- 클래스명 -->
+																<td>${review.member_id}</td> <!-- 회원아이디 -->
+																<td>${review.review_score / 2}</td> <!-- 별점 -->
+																<td>${review.review_content}</td> <!-- 리뷰내용 -->
+																<td>${review.review_regdate}</td> <!-- 리뷰등록일 -->
+															</tr>
+														</c:forEach>	
+												</tbody>
+											</table>
+										</form>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- 		      </div> -->
+	    </div>
+    <!-- Modal -->
+		<div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="memberReviewLabel" aria-hidden="true">
+		<div class="modal-dialog" id="customModalDialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="reviewModalLabel">리뷰 상세 내용</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body text-center">
+		        <!-- 회원 아이디 -->
+<!-- 		        <h5 id="modalMemberId" class="mt-3"></h5> -->
+		        <!-- 회원 상세 정보 테이블 -->
+		        <table class="table mt-3">
+<!-- 		        <input type="hidden" id="modalReviewIdx"> -->
+		          <tbody>
+<!-- 	              <h5 id="modalReviewIdx" class="mt-3"></h5> review_idx를 표시할 요소 -->
+		            <tr>
+		              <th>클래스 명</th>
+		              <td><span id="modalReviewClass"></span></td>
+		            </tr>
+		            <tr>
+		              <th>아이디</th>
+		              <td><span id="modalMemberId"></span></td>
+		            </tr>
+		            <tr>
+		              <th>별점</th>
+		              <td><span id="modalReviewScore"></span></td>
+		            </tr>
+		            <tr>
+		              <th>리뷰<br>사진</th>
+<!-- 		              <td><span id="modalReviewImg1"></span></td> -->
+		       		<td><img id="modalReviewImg1" src="" alt="리뷰 이미지1" style="width: 300px; height: 300px;"/></td>
+		            </tr>
+		            <tr>
+		              <th>리뷰<br>내용</th>
+		              <td><ul id="modalReviewContent"></ul></td>
+		            </tr>
+		            <tr>
+		              <th>등록일</th>
+		              <td><span id="modalReviewRegdate"></span></td>
+		            </tr>
+		          </tbody>
+		        </table>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+		      </div>
+		    </div>
+		  </div>
 		</div>
-    <!--       바텀 -->
+    <!-- 바텀 -->
       <footer class="footer">
        <jsp:include page="../inc/admin_bottom.jsp"/>
      </footer>
-    </div>
-  </div>
   <!--   Core JS Files   -->
   <script src="${pageContext.request.contextPath }/resources/company_assets/js/core/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/company_assets/js/core/popper.min.js"></script>
@@ -326,31 +318,39 @@ tbody {
   <!--  Notifications Plugin    -->
   <script src="${pageContext.request.contextPath }/resources/company_assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="${pageContext.request.contextPath }/resources/company_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
+  <script src="${pageContext.request.contextPath }/resources/company_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script>
   <script src="${pageContext.request.contextPath }/resources/company_assets/demo/demo.js"></script>
   <script>
+	$(document).ready(function() {
+		
+		$('#reviewModal').on('show.bs.modal', function () {
+		    var className = $('#modalReviewClass').text(); // 클래스명을 가져옵니다.
+		    var modalWidth = Math.max(500, Math.min(800, 20 * className.length)); // 클래스명 길이에 따라 너비 계산
 
-</script>
-  <script>
-$(document).ready(function() {
-    // 검색 버튼 클릭 이벤트
-    $('.btn-search').click(function() {
-        var startDate = $('#purchaseDateStart').val();
-        var endDate = $('#purchaseDateEnd').val();
+		    // 모달의 너비를 설정
+		    $(this).find('.modal-dialog').css('max-width', modalWidth + 'px');
+		});
 
-        $('tbody tr').each(function() {
-            // 각 행의 리뷰 등록일 가져오기
-            var reviewDate = $(this).find('td:nth-last-child(1)').text(); // 마지막 열에 리뷰 등록일이 있다고 가정
-            // 등록일이 검색 범위 안에 있는지 확인
-            if (startDate && endDate) {
-                var isVisible = reviewDate >= startDate && reviewDate <= endDate;
-                $(this).toggle(isVisible);
-            } else {
-                // 날짜 필드 중 하나라도 비어있으면 모든 행을 보여줌
-                $(this).show();
-            }
-        });
-    });
+		
+		
+	    // 검색 버튼 클릭 이벤트
+	    $('.btn-search').click(function() {
+	        var startDate = $('#purchaseDateStart').val();
+	        var endDate = $('#purchaseDateEnd').val();
+	
+	        $('tbody tr').each(function() {
+	            // 각 행의 리뷰 등록일 가져오기
+	            var reviewDate = $(this).find('td:nth-last-child(1)').text(); // 마지막 열에 리뷰 등록일이 있다고 가정
+	            // 등록일이 검색 범위 안에 있는지 확인
+	            if (startDate && endDate) {
+	                var isVisible = reviewDate >= startDate && reviewDate <= endDate;
+	                $(this).toggle(isVisible);
+	            } else {
+	                // 날짜 필드 중 하나라도 비어있으면 모든 행을 보여줌
+	                $(this).show();
+	            }
+	        });
+	    });
 
     // 초기화 버튼 클릭 이벤트
     $('.btn-reset').click(function() {
@@ -380,7 +380,33 @@ $(document).ready(function() {
             $(this).toggle(isVisible || checkedValues.length === 0); // 아무것도 선택되지 않았으면 모든 행 표시
         });
     }
-    
+ 
+ // 리뷰 모달
+    $('tr.review-row').click(function() {
+        var reviewClassTitle = $(this).data('review-class-title');
+        var reviewMemberId = $(this).data('review-member-id');
+        var reviewScore = $(this).data('review-score');
+        var reviewContent = $(this).data('review-content');
+        var reviewRegdate = $(this).data('review-regdate');
+        var reviewImg1 = $(this).data('review-img-1');
+        var reviewIdx = $(this).data('review-idx'); // 여기에서 review_idx 값을 가져옵니다.
+
+        // 모달 내용 업데이트
+        $('#modalReviewClass').text(reviewClassTitle);
+        $('#modalMemberId').text(reviewMemberId);
+        $('#modalReviewScore').text(reviewScore);
+        $('#modalReviewContent').text(reviewContent);
+        $('#modalReviewRegdate').text(reviewRegdate);
+        $('#modalReviewImg1').attr('src', reviewImg1);
+        // 여기에 reviewIdx 값을 모달에 표시하는 코드를 추가합니다.
+        // 예를 들어, 모달 안에 id가 'modalReviewIdx'인 요소가 있다면:
+        $('#modalReviewIdx').text(reviewIdx);
+
+        $('#reviewModal').modal('show'); // 모달 표시
+    });
+
+ 
+ 
     
 });
 </script>

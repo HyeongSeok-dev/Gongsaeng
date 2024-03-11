@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8" />
+<!-- favicon  -->
+<link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/img/gs_favi.png">
   <link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath }/resources/company_assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/company_assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     공생 | 클래스 내역
@@ -79,7 +80,6 @@ a {
     -webkit-transition: all .5s ease;
     transition: all .5s ease;
 }
-
 
 .candidate-list-box .favorite-icon {
     position: absolute;
@@ -181,6 +181,32 @@ a {
     display: block; /* 블록 레벨 요소로 만들어 줄바꿈이 일어나게 함 */
 }
 
+    .button-container {
+        align-items: center; /* 버튼들을 수직 중앙에 정렬합니다. */
+    }
+
+    .button-container a, .button-container input[type="button"] {
+        display: inline-block; 
+        text-decoration: none; 
+    }
+
+.delete-btn {
+	margin-left: 7px;
+}
+
+.primary-link {
+    display: inline-block; /* 링크가 인라인 블록 요소처럼 동작하도록 설정 */
+    white-space: nowrap; /* 텍스트가 줄바꿈되지 않도록 설정 */
+    overflow: visible; /* 컨텐츠가 넘쳐도 숨기지 않고 표시 */
+    text-overflow: clip; /* 컨텐츠가 넘칠 때 잘리게 함 */
+}
+
+    .avatar-lg {
+        width: 150px; /* 이미지의 너비 */
+        height: 150px; /* 이미지의 높이 */
+        border-radius: 10%; /* 이미지의 모서리를 둥글게 */
+    }
+
 </style>
 <!-- Global CSS -->
 <link
@@ -188,77 +214,32 @@ a {
 	rel="stylesheet" />    
 </head>
 
-<body class="">
-<!--   <div class="wrapper "> -->
+<body>
     <div class="sidebar" data-color="orange">
-            <jsp:include page="./sidebar_wrapper.jsp"/>
+       <jsp:include page="./sidebar_wrapper.jsp"/>
     </div>
-    
     <div class="main-panel" id="main-panel">
-      <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
-        <div class="container-fluid">
-          <div class="navbar-wrapper">
-            <div class="navbar-toggle">
-              <button type="button" class="navbar-toggler">
-                <span class="navbar-toggler-bar bar1"></span>
-                <span class="navbar-toggler-bar bar2"></span>
-                <span class="navbar-toggler-bar bar3"></span>
-              </button>
-            </div>
-            <a class="navbar-brand" href="#pablo">클래스 내역</a>
-          </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <form>
-              <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <i class="now-ui-icons ui-1_zoom-bold"></i>
-                  </div>
-                </div>
-              </div>
-            </form>
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons media-2_sound-wave"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Stats</span>
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="now-ui-icons location_world"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Some Actions</span>
-                  </p>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="now-ui-icons users_single-02"></i>
-                  <p>
-                    <span class="d-lg-none d-md-block">Account</span>
-                  </p>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <!-- End Navbar -->
+			<!-- Navbar -->
+			<nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
+				<div class="container-fluid">
+					<div class="navbar-wrapper">
+						<a class="navbar-brand" href="#pablo">클래스 내역</a>
+					</div>
+					<div class="collapse navbar-collapse justify-content-end" id="navigation">
+						<ul class="navbar-nav">
+							<li class="nav-item">
+								<a class="nav-link" href="#pablo"> 
+									<i class="now-ui-icons users_single-02"></i>
+									<p>
+										<span class="d-lg-none d-md-block">Account</span>
+									</p>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<!-- End Navbar -->
       	<%-- 페이지네이션 - pageNum 파라미터 가져와서 저장(없을 경우 기본값 1로 설정) --%>
 <%-- 	<c:set var="pageNum" value="1" /> --%>
 <%-- 	<c:if test="${not empty param.pageNum }"> --%>
@@ -296,11 +277,7 @@ a {
 										</div>
 									</div>
 									<div class="col-lg-2">
-										<div class="class_btn">
-<!-- 											<a class="btn btn-primary ml-2 mt-3" href="#"><i class="uil uil-filter"></i>초기화</a>  -->
-<!-- 											<a class="btn btn-success mt-3" href="#"><i class="uil uil-cog"></i>검색</a> -->
-											<!-- <a class="btn btn-success ms-2" href="#"><i class="uil uil-cog"></i>클래스 등록</a> -->
-										</div>
+										<div class="class_btn"></div>
 									</div>
 								</div>
 							</form>
@@ -319,45 +296,32 @@ a {
 								<div class="candidate-list-widgets">
 									<div class="row">
 										<div class="col-lg-6">
-											<div class="selection-widget">
-<!-- 												<select class="form-select" data-trigger="true" name="choices-single-filter-orderby" -->
-<!-- 													id="choices-single-filter-orderby" aria-label="Default select example"> -->
-<!-- 														<option value="df">최신순</option> -->
-<!-- 														<option value="ne"></option> -->
-<!-- 														<option value="od">Oldest</option> -->
-<!-- 														<option value="rd">Random</option> -->
-<!-- 												</select> -->
-											</div>
+											<div class="selection-widget"></div>
 										</div>
 										<div class="col-lg-6">
 											<div class="selection-widget mt-2 mt-lg-0">
-<!-- 												<select class="form-select" data-trigger="true" name="choices-candidate-page" id="choices-candidate-page" aria-label="Default select example"> -->
-<!-- 													<option value="df">All</option> -->
-<!-- 													<option value="ne">8개씩 보기</option> -->
-<!-- 													<option value="ne">12개씩 보기</option> -->
-<!-- 												</select> -->
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-
-									<!-- ==================================================================================== -->
+						<!-- ==================================================================================== -->
 						<c:forEach items="${classList}" var="classInfo">
 							<div class="candidate-list">
 						        <div class="class-item candidate-list-box card mt-4" 
 						             data-status="${classInfo.status}" 
 						             data-category="${classInfo.class_category}">
+						               
 						            <div class="p-4 card-body">
 										<div class="align-items-center row">
 <!-- 											<div class="col-lg-2"> -->
 											<div class="col-auto">
-												<div class="candidate-list-images">
-													<a href="#"> 
-                              						  <img src="${pageContext.request.contextPath }/resources/upload/${classInfo.class_pic1}" alt="Class Image" class="avatar-md img-thumbnail rounded-circle" />
-													</a>
-												</div>
+											    <div class="candidate-list-images">
+											        <a href="#"> 
+											            <img src="${pageContext.request.contextPath}/resources/upload/${classInfo.class_pic1}" alt="Class Image" class="avatar-lg img-thumbnail rounded-circle" />
+											        </a>
+											    </div>
 											</div>
 											<div class="col-lg-5">
 												<div class="candidate-list-content mt-3 mt-lg-0 col-lg-12" >
@@ -378,32 +342,53 @@ a {
 						                                    </c:otherwise>
 						                                </c:choose>
 														</p>
-<%-- 														<a class="primary-link" href="classInfo"> ${classInfo.class_title} </a> --%>
-														<a class="primary-link" href="classModifyForm?class_idx=${classInfo.class_idx}">${classInfo.class_title}
-											            </a>
+														<a class="primary-link" href="classModifyForm?class_idx=${classInfo.class_idx}">${classInfo.class_title}</a>
 													</h5>
-											            <!-- 클래스 상태에 따른 CSS 클래스 적용 -->
-											            
-													<p class="text-muted mb-2">
-														<c:choose>
-															<c:when test="${classInfo.class_main_category == 1}">
-															바닥 시공
-															</c:when>														
-															<c:when test="${classInfo.class_main_category == 2}">
-															벽/천장 시공
-															</c:when>														
-															<c:when test="${classInfo.class_main_category == 3}">
-															부분 인테리어
-															</c:when>														
-															<c:when test="${classInfo.class_main_category == 4}">
-															야외 시공
-															</c:when>														
-															<c:when test="${classInfo.class_main_category == 5}">
-															종합 인테리어
-															</c:when>														
-															<c:when test="${classInfo.class_main_category == 6}">
-															기타시공
-															</c:when>														
+													<p class="text-muted mb-2 pt-1">
+													<c:choose>
+															<c:when test="${classInfo.class_main_category eq 1}">바닥 시공 &gt;
+																<c:if test="${classInfo.class_sub_category eq 1}">바닥재 시공</c:if>
+																<c:if test="${classInfo.class_sub_category eq 2}">장판 시공</c:if>
+																<c:if test="${classInfo.class_sub_category eq 3}">타일 시공</c:if>
+																<c:if test="${classInfo.class_sub_category eq 4}">마루 시공</c:if>
+																<c:if test="${classInfo.class_sub_category eq 5}">카페트 시공</c:if>
+															</c:when>
+															<c:when test="${classInfo.class_main_category eq 2}">벽/천장 시공 &gt;
+																<c:if test="${classInfo.class_sub_category eq 1}">도배 시공</c:if>
+																<c:if test="${classInfo.class_sub_category eq 2}">칸막이 시공</c:if>
+																<c:if test="${classInfo.class_sub_category eq 3}">페인트 시공</c:if>
+																<c:if test="${classInfo.class_sub_category eq 4}">방음 시공</c:if>
+																<c:if test="${classInfo.class_sub_category eq 5}">단열 필름 시공</c:if>
+															</c:when>
+															<c:when test="${classInfo.class_main_category eq 3}">부분 인테리어 &gt;
+																<c:if test="${classInfo.class_sub_category eq 1}">샷시 설치 및 수리</c:if>
+																<c:if test="${classInfo.class_sub_category eq 2}">화장실 리모델링</c:if>
+																<c:if test="${classInfo.class_sub_category eq 3}">주방 리모델링</c:if>
+																<c:if test="${classInfo.class_sub_category eq 4}">가구 리폼</c:if>
+																<c:if test="${classInfo.class_sub_category eq 5}">붙박이장 시공</c:if>
+															</c:when>
+															<c:when test="${classInfo.class_main_category eq 4}">야외 시공 &gt;
+																<c:if test="${classInfo.class_sub_category eq 1}">조경 공사</c:if>
+																<c:if test="${classInfo.class_sub_category eq 2}">옥상 공사</c:if>
+																<c:if test="${classInfo.class_sub_category eq 3}">지붕 공사</c:if>
+																<c:if test="${classInfo.class_sub_category eq 4}">태양광 발전</c:if>
+																<c:if test="${classInfo.class_sub_category eq 5}">외벽 리모델링</c:if>
+															</c:when>
+															<c:when test="${classInfo.class_main_category eq 5}">종합 인테리어 &gt;
+																<c:if test="${classInfo.class_sub_category eq 1}">집 인테리어</c:if>
+																<c:if test="${classInfo.class_sub_category eq 2}">상업공간 인테리어</c:if>
+																<c:if test="${classInfo.class_sub_category eq 3}">주택 리모델링</c:if>
+																<c:if test="${classInfo.class_sub_category eq 4}">집 수리</c:if>
+																<c:if test="${classInfo.class_sub_category eq 5}">인테리어 소품</c:if>
+															</c:when>
+															<c:when test="${classInfo.class_main_category eq 6}">기타 시공 &gt;
+																<c:if test="${classInfo.class_sub_category eq 1}">줄눈 시공</c:if>
+																<c:if test="${classInfo.class_sub_category eq 2}">단열 시공</c:if>
+																<c:if test="${classInfo.class_sub_category eq 3}">미장 시공</c:if>
+															</c:when>
+															<c:otherwise>
+																알수없음
+															</c:otherwise>
 														</c:choose>
 													</p>
 													<ul class="list-inline mb-0 text-muted">
@@ -415,11 +400,20 @@ a {
 														<br>
 														<li class="list-inline-item">
 															<i class="fa fa-clock-o" style="font-size:18px"></i>  
-<%-- 															 ${classInfo.class_start_date} ~ ${classInfo.class_end_date}(${classInfo.class_times}시간/${classInfo.dayString })&nbsp;&nbsp;|&nbsp;&nbsp;<i class="mdi mdi-wallet"></i> ${classInfo.class_price}원 --%>
-															 ${classInfo.class_start_date} ~ ${classInfo.class_end_date}&nbsp;&nbsp;|&nbsp;&nbsp;<i class="mdi mdi-wallet"></i> ${classInfo.class_price}원
+															 ${classInfo.class_start_date} ~ ${classInfo.class_end_date}&nbsp;&nbsp;
+															 |&nbsp;&nbsp;
+															 <i class="mdi mdi-wallet"></i> 
+															 <fmt:formatNumber value="${classInfo.class_price}" type="number" pattern="#,##0" />원
 														</li>
 													</ul>
-													<input type="button" value="클래스 삭제" class="delete-btn" data-pay-num="${classInfo.class_idx}">
+												 <div class="button-container">
+						                            <c:if test="${classInfo.status != '클래스 종료'}">
+					                                    <a class="primary-link" href="classModifyForm?class_idx=${classInfo.class_idx}">
+				                                     	   <input type="button" value="클래스 수정" class="modify-btn">
+					                                    </a>
+						                             </c:if>
+						                                   <input type="button" value="클래스 삭제" class="delete-btn" data-pay-num="${classInfo.class_idx}">
+						                          </div>
 												</div>
 											</div>
 										</div>
@@ -427,81 +421,15 @@ a {
 								</div>
 							</div>
 						</c:forEach>
-<section id="pageList">
-    <!-- 이전 페이지 -->
-<%--     <c:if test="${pageInfo.startPage > 1}"> --%>
-<%--         <a href="${pageContext.request.contextPath}/company/class?pageNum=${pageInfo.startPage - 1}">이전</a> --%>
-<%--     </c:if> --%>
-    
-    <!-- 페이지 번호 -->
-<%--     <c:forEach begin="${pageInfo.startPage}" end="${pageInfo.endPage}" var="i"> --%>
-<%--         <c:choose> --%>
-<%--             <c:when test="${i == pageNum}"> --%>
-<%--                 <b>${i}</b> --%>
-<%--             </c:when> --%>
-<%--             <c:otherwise> --%>
-<%--                 <a href="${pageContext.request.contextPath}/company/class?pageNum=${i}">${i}</a> --%>
-<%--             </c:otherwise> --%>
-<%--         </c:choose> --%>
-<%--     </c:forEach> --%>
-    
-    <!-- 다음 페이지 -->
-<%--     <c:if test="${pageInfo.endPage < pageInfo.maxPage}"> --%>
-<%--         <a href="${pageContext.request.contextPath}/company/class?pageNum=${pageInfo.endPage + 1}">다음</a> --%>
-<%--     </c:if> --%>
-<!-- </section> -->
-
-										<!-- ==================================================================================== -->								
-										<div class="col-lg-4">
-											<div class="mt-2 mt-lg-0 d-flex flex-wrap align-items-start gap-1">
-<!-- 												<span class="badge bg-soft-secondary fs-14 mt-1">Leader</span> -->
-<!-- 												<span class="badge bg-soft-secondary fs-14 mt-1">Manager</span> -->
-<!-- 												<span class="badge bg-soft-secondary fs-14 mt-1">Developer</span> -->
-											</div>
-										</div>
-									</div>
-<!-- 									<div class="favorite-icon"> -->
-<!-- 										<a href="#"> -->
-<!-- 											<i class="mdi mdi-heart fs-18"></i> -->
-<!-- 										</a> -->
-<!-- 									</div> -->
-								</div>
-							</div>
-							<div class="candidate-list-box bookmark-post card mt-4">
-
-							</div>
-						</div>
+					
+			         <!-- 바텀 -->
+			      <footer class="footer">
+			       <jsp:include page="../inc/admin_bottom.jsp"/>
+			     </footer>
 					</div>
-					<div class="row">
-						<div class="mt-4 pt-2 col-lg-12">
-							<nav aria-label="Page navigation example">
-								<div class="pagination job-pagination mb-0 justify-content-center">
-									<li class="page-item disabled"><a class="page-link" tabindex="-1" href="#">
-										<i class="mdi mdi-chevron-double-left fs-15"></i></a></li>
-									<li class="page-item active"><a class="page-link" href="#">1</a></li>
-									<li class="page-item"><a class="page-link" href="#">2</a></li>
-									<li class="page-item"><a class="page-link" href="#">3</a></li>
-									<li class="page-item"><a class="page-link" href="#">4</a></li>
-									<li class="page-item"><a class="page-link" href="#">
-									<i class="mdi mdi-chevron-double-right fs-15"></i></a></li>
-								</div>
-							</nav>
-						</div>
-					</div>
-				</div>
-		</section>
-			<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
-			<script type="text/javascript">
-		</script>
-   <!--       바텀 -->
-      <footer class="footer">
-       <jsp:include page="../inc/admin_bottom.jsp"/>
-     </footer>
-
-    </div>
-  </div>
   <!--   Core JS Files   -->
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/company_assets/js/core/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/company_assets/js/core/popper.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/company_assets/js/core/bootstrap.min.js"></script>
@@ -542,6 +470,20 @@ a {
 	    });    
 	});
   
+	function printDays(class_day) {
+	    var days = ['월', '화', '수', '목', '금', '토', '일'];
+	    var classDays = '';
+	
+	    for (var i = 0; i < class_day.length; i++) {
+	        if (class_day[i] === '1') {
+	            classDays += days[i];
+	        }
+	    }
+	
+	    // 결과를 <h2> 태그에 출력합니다.
+	    document.getElementById('classDays').textContent = "요일 : " + classDays;
+	}
+  
   $(document).ready(function() {
 	    // 체크박스 상태 변경 시 클래스 목록을 필터링하는 함수
 	    function filterClasses() {
@@ -576,8 +518,8 @@ a {
 
 	    // 페이지 로드 시 필터링 초기화
 	    filterClasses();
+	    
 	});
-
 
 
   </script>

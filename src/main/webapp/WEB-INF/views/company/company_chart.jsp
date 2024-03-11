@@ -1,18 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
-
 <!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath }/resources/company_assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/company_assets/img/favicon.png">
+  <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/img/gs_favi.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Now UI Dashboard by Creative Tim
+    반장 CHART
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -99,79 +97,30 @@
         </div>
 	<div class="main-panel" id="main-panel">
 		<!-- Navbar -->
-		<nav
-			class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
-			<div class="container-fluid">
-				<div class="navbar-wrapper">
-					<div class="navbar-toggle">
-						<button type="button" class="navbar-toggler">
-							<span class="navbar-toggler-bar bar1"></span> <span
-								class="navbar-toggler-bar bar2"></span> <span
-								class="navbar-toggler-bar bar3"></span>
-						</button>
+			<nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
+				<div class="container-fluid">
+					<div class="navbar-wrapper">
+						<a class="navbar-brand" href="#pablo">반장 CHART</a>
 					</div>
-					<a class="navbar-brand" href="#pablo">반장 CHART</a>
+					<div class="collapse navbar-collapse justify-content-end" id="navigation">
+						<ul class="navbar-nav">
+							<li class="nav-item">
+								<a class="nav-link" href="#pablo"> 
+									<i class="now-ui-icons users_single-02"></i>
+									<p>
+										<span class="d-lg-none d-md-block">Account</span>
+									</p>
+								</a>
+							</li>
+						</ul>
+					</div>
 				</div>
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navigation" aria-controls="navigation-index"
-					aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-bar navbar-kebab"></span> <span
-						class="navbar-toggler-bar navbar-kebab"></span> <span
-						class="navbar-toggler-bar navbar-kebab"></span>
-				</button>
-				<div class="collapse navbar-collapse justify-content-end"
-					id="navigation">
-					<form>
-						<div class="input-group no-border">
-							<input type="text" value="" class="form-control"
-								placeholder="Search...">
-							<div class="input-group-append">
-								<div class="input-group-text">
-									<i class="now-ui-icons ui-1_zoom-bold"></i>
-								</div>
-							</div>
-						</div>
-					</form>
-					<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link" href="#pablo"> <i
-								class="now-ui-icons media-2_sound-wave"></i>
-								<p>
-									<span class="d-lg-none d-md-block">Stats</span>
-								</p>
-						</a></li>
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<i class="now-ui-icons location_world"></i>
-								<p>
-									<span class="d-lg-none d-md-block">Some Actions</span>
-								</p>
-						</a>
-							<div class="dropdown-menu dropdown-menu-right"
-								aria-labelledby="navbarDropdownMenuLink">
-								<a class="dropdown-item" href="#">Action</a> <a
-									class="dropdown-item" href="#">Another action</a> <a
-									class="dropdown-item" href="#">Something else here</a>
-							</div></li>
-						<li class="nav-item"><a class="nav-link" href="#pablo"> <i
-								class="now-ui-icons users_single-02"></i>
-								<p>
-									<span class="d-lg-none d-md-block">Account</span>
-								</p>
-						</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
+			</nav>
 		<!-- End Navbar -->
 		<div class="panel-header">
 			<div class="header text-center">
 				<h2 class="title">반장 CHART</h2>
 				<p class="category">
-					Handcrafted by our friend <a target="_blank"
-						href="https://github.com/mouse0270">Robert McIntosh</a>. Please
-					checkout the <a href="http://bootstrap-notify.remabledesigns.com/"
-						target="_blank">full documentation.</a>
 				</p>
 			</div>
 		</div>
@@ -179,52 +128,42 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="card">
-<!-- 						<div class="card-header"></div> -->
-<!-- 						<div class="card-body"> -->
 						<div class="content">
-								<div class="row">
-<!-- 									<div class="col-md-12"> -->
-										<div class="card">
-<!-- 											<div class="card-body"> -->
-												<div class="row">
-													<div class="col-md-6">
-														<!-- 일별 매출 차트 -->
-														<canvas id="monthlySalesChart"></canvas>
-													</div>
-													<div class="col-md-6">
-														<!-- 일별 클래스 등록 수 차트 -->
-														<canvas id="classRegisterChart"></canvas>
-													</div>
-												</div>
-												<div class="row">
-													<div class="col-md-6">
-														<!-- 성별 비율 차트 -->
-														<canvas id="genderRatioChart"></canvas>
-													</div>
-													<div class="col-md-6">
-														<!-- 일별 취소 건수 차트 -->
-														<canvas id="cancellationChart"></canvas>
-													</div>
-												</div>
-<!-- 											</div> -->
+							<div class="row">
+								<div class="card">
+									<div class="row">
+										<div class="col-md-6">
+											<!-- 일별 매출 차트 -->
+											<canvas id="monthlySalesChart"></canvas>
 										</div>
-<!-- 									</div> -->
+										<div class="col-md-6">
+											<!-- 일별 클래스 등록 수 차트 -->
+											<canvas id="classRegisterChart"></canvas>
+										</div>
+									</div>
+										<div class="row">
+											<div class="col-md-6">
+												<!-- 성별 비율 차트 -->
+												<canvas id="genderRatioChart"></canvas>
+											</div>
+										<div class="col-md-6">
+										 	<!-- 일별 취소 건수 차트 -->
+											<canvas id="cancellationChart"></canvas>
+										</div>
+									</div>
 								</div>
 							</div>
-<!-- 						</div> -->
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	<footer class="footer">
+		<jsp:include page="../inc/admin_bottom.jsp" />
+	</footer>
 	</div>
-	</div>
-	    <!--       바텀 -->
-      <footer class="footer">
-       <jsp:include page="../inc/admin_bottom.jsp"/>
-     </footer>
-    </div>
-  </div>
-  <!--   Core JS Files   -->
+	<!-- bottom -->
+	<!--   Core JS Files   -->
   <script src="${pageContext.request.contextPath }/resources/company_assets/js/core/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/company_assets/js/core/popper.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/company_assets/js/core/bootstrap.min.js"></script>
@@ -359,12 +298,12 @@ var genderRatioChart = new Chart(ctx, {
             label: '성별 비율',
             data: data, // 수정된 데이터 사용
             backgroundColor: [
+                'rgba(54, 162, 235, 0.2)', // 남성 색상
                 'rgba(255, 99, 132, 0.2)',  // 여성 색상
-                'rgba(54, 162, 235, 0.2)' // 남성 색상
             ],
             borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)'
+                'rgba(54, 162, 235, 0.2)', // 남성 색상
+                'rgba(255, 99, 132, 0.2)',  // 여성 색상
             ],
             borderWidth: 1
         }]
@@ -434,11 +373,6 @@ try {
 });
 </script>
 
-
-
-
-
-  
 
 </body>
 

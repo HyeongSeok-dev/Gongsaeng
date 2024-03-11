@@ -14,7 +14,7 @@ public class ClassVO {
 	private String class_title;
 	private int class_category;
 	private int class_times;
-	private int class_price;
+	private String class_price;
 	private Date class_date;
 	private Time class_start_time;
 	private Time class_end_time;

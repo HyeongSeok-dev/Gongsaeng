@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8" />
+  <!-- favicon  -->
+  <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/img/gs_favi.png">
   <link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath }/resources/company_assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/company_assets/img/favicon.png">
+  <link rel="icon" type="image/png" href="${pageContext.request.contextPath }/resources/img/gs_favi.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Now UI Dashboard by Creative Tim
+  공생 | 반장 공지사항
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -27,12 +27,12 @@
   <!-- global CSS -->
   <link href="${pageContext.request.contextPath }/resources/css/global.css" rel="stylesheet" />	
 	
-
 <style type="text/css">
-    	body{
+
+body {
     background:#f5f5f5;
 /*     margin-top:20px; */
-	text-align: center;
+/* 	text-align: center; */
 
 }
 .card {
@@ -47,6 +47,8 @@
     font-weight: 500;
     color: #827fc0;
     font-size: 15px !important;
+    text-align: center;
+    
 }
 .table thead {
     background-color: #f3f2f7;
@@ -57,6 +59,9 @@
 }
 .table tr td {
     color: #8887a9;
+    text-align: center;    
+    font-size: 15px !important;
+    background-color: #fff;
 }
 .thumb-sm {
     height: 32px;
@@ -76,86 +81,43 @@
     color: #605daf;
 }
 
-
 .content {
 	background-color: #fff!important;
 }
 
-</style>  
-  
+.table tbody tr:hover {
+    cursor: pointer;
+}
+
+</style>
 </head>
 
-<body class="">
-        <div class="sidebar" data-color="orange">
-            <!-- Include sidebar_wrapper.jsp -->
-            <jsp:include page="./sidebar_wrapper.jsp"/>
-        </div>
+<body>
+       <div class="sidebar" data-color="orange">
+           <!-- Include sidebar_wrapper.jsp -->
+           <jsp:include page="./sidebar_wrapper.jsp"/>
+       </div>
 	<div class="main-panel" id="main-panel">
 		<!-- Navbar -->
-		<nav
-			class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
-			<div class="container-fluid">
-				<div class="navbar-wrapper">
-					<div class="navbar-toggle">
-						<button type="button" class="navbar-toggler">
-							<span class="navbar-toggler-bar bar1"></span> <span
-								class="navbar-toggler-bar bar2"></span> <span
-								class="navbar-toggler-bar bar3"></span>
-						</button>
+			<nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
+				<div class="container-fluid">
+					<div class="navbar-wrapper">
+						<a class="navbar-brand" href="#pablo">반장 공지사항</a>
 					</div>
-					<a class="navbar-brand" href="#pablo">반장 공지사항</a>
+					<div class="collapse navbar-collapse justify-content-end" id="navigation">
+						<ul class="navbar-nav">
+							<li class="nav-item">
+								<a class="nav-link" href="#pablo"> 
+									<i class="now-ui-icons users_single-02"></i>
+									<p>
+										<span class="d-lg-none d-md-block">Account</span>
+									</p>
+								</a>
+							</li>
+						</ul>
+					</div>
 				</div>
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navigation" aria-controls="navigation-index"
-					aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-bar navbar-kebab"></span> <span
-						class="navbar-toggler-bar navbar-kebab"></span> <span
-						class="navbar-toggler-bar navbar-kebab"></span>
-				</button>
-				<div class="collapse navbar-collapse justify-content-end"
-					id="navigation">
-					<form>
-						<div class="input-group no-border">
-							<input type="text" value="" class="form-control"
-								placeholder="Search...">
-							<div class="input-group-append">
-								<div class="input-group-text">
-									<i class="now-ui-icons ui-1_zoom-bold"></i>
-								</div>
-							</div>
-						</div>
-					</form>
-					<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link" href="#pablo"> <i
-								class="now-ui-icons media-2_sound-wave"></i>
-								<p>
-									<span class="d-lg-none d-md-block">Stats</span>
-								</p>
-						</a></li>
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<i class="now-ui-icons location_world"></i>
-								<p>
-									<span class="d-lg-none d-md-block">Some Actions</span>
-								</p>
-						</a>
-							<div class="dropdown-menu dropdown-menu-right"
-								aria-labelledby="navbarDropdownMenuLink">
-								<a class="dropdown-item" href="#">Action</a> <a
-									class="dropdown-item" href="#">Another action</a> <a
-									class="dropdown-item" href="#">Something else here</a>
-							</div></li>
-						<li class="nav-item"><a class="nav-link" href="#pablo"> <i
-								class="now-ui-icons users_single-02"></i>
-								<p>
-									<span class="d-lg-none d-md-block">Account</span>
-								</p>
-						</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
+			</nav>
 		<!-- End Navbar -->
 		<div class="panel-header">
 			<div class="header text-center">
@@ -172,45 +134,30 @@
 								<div class="row">
 									<div class="col-xl-12">
 										<div class="card">
-												<form>
-										<table class="table table-bordered">
-											<thead class="thead-dark">
-												<tr>
-													<th scope="col">#</th>
-													<th scope="col">제목</th>
-													<th scope="col">공지 내용</th>
-													<th scope="col">등록일</th>
-<!-- 													<th scope="col">회원명</th> -->
-<!-- 													<th scope="col">클래스 등록일</th> -->
-<!-- 													<th scope="col">클래스명</th> -->
-<!-- 													<th scope="col">성별</th> -->
-<!-- 													<th scope="col">관심정보</th> -->
-<!-- 													<th scope="col">채팅</th> -->
-<!-- 													<th scope="col">포인트 사용 금액</th> -->
-<!-- 													<th scope="col">수수료</th> -->
-<!-- 													<th scope="col">정산신청</th> -->
-												</tr>
-											</thead>
-											<tbody>
-												<!-- 여기에 각 행을 추가하세요. 예를 들어: -->
-													<c:forEach items="${companyBoardList}" var="notification"  varStatus="status">
-												<tr>
-													<td scope="row">${status.index + 1}</td>
-													<th>${notification.board_subject }</th>
-													<td>${notification.board_content}</td>	
-													<td><fmt:formatDate value="${notification.board_date}" pattern="yyyy/MM/dd" /></td>
-<%-- 													<td>${classMember.member_name} </td> --%>
-<%--         											<td class="pay-date">${classMember.pay_date}</td> --%>
-<%-- 													<td>${classMember.class_title} </td> --%>
-<%-- 													<td>${classMember.memeber_gender}</td> --%>
-<!-- 													<td>#인테리어</td> -->
-<!-- 													<td><input type="button" value="채팅 보내기"></td> -->
-												</tr>
-													</c:forEach>
-												<!-- 더 많은 행을 추가할 수 있습니다. -->
-											</tbody>
-										</table>
-									</form>
+											<form>
+												<table class="table table-bordered">
+													<thead class="thead-dark">
+														<tr>
+															<th scope="col">#</th>
+															<th scope="col">제목</th>
+<!-- 															<th scope="col">공지 내용</th> -->
+															<th scope="col">등록일</th>
+														</tr>
+													</thead>
+													<tbody>
+														<c:forEach items="${companyBoardList}" var="notification" varStatus="status">
+															<tr class="notification-row" 
+																data-board-subject="${notification.board_subject}"
+																data-board-content="${notification.board_content}"
+																data-board-date="${notification.board_date}">
+																<td scope="row">${status.index + 1}</td>
+																<td>${notification.board_subject}</td>
+																<td><fmt:formatDate value="${notification.board_date}" pattern="yyyy/MM/dd" /></td>
+															</tr>
+														</c:forEach>
+													</tbody>
+												</table>
+											</form>
 										</div>
 									</div>
 								</div>
@@ -221,13 +168,44 @@
 			</div>
 		</div>
 	</div>
-	</div>
-    <!--       바텀 -->
+	<!-- Modal -->
+		<div class="modal fade" id="boardModal" tabindex="-1" role="dialog" aria-labelledby="boardModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="boardModalLabel">회원 상세 정보</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body text-center">
+		        <table class="table mt-3">
+		          <tbody>
+		            <tr>
+		              <th>제목</th>
+		              <td><span id="modalBoardSubject"></span></td>
+		            </tr>
+		            <tr>
+		              <th>등록일</th>
+		              <td><span id="modalBoardDate"></span></td>
+		            </tr>
+		            <tr>
+		              <th>내용</th>
+		              <td><span id="modalBoardContent"></span></td>
+		            </tr>
+		          </tbody>
+		        </table>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+    <!--   바텀 -->
       <footer class="footer">
        <jsp:include page="../inc/admin_bottom.jsp"/>
      </footer>
-    </div>
-  </div>
   <!--   Core JS Files   -->
   <script src="${pageContext.request.contextPath }/resources/company_assets/js/core/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath }/resources/company_assets/js/core/popper.min.js"></script>
@@ -242,6 +220,25 @@
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="${pageContext.request.contextPath }/resources/company_assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="${pageContext.request.contextPath }/resources/company_assets/demo/demo.js"></script>
+  <script type="text/javascript">
+  
+  $('tr.notification-row').click(function() {
+      var boardSubject = $(this).data('board-subject');
+      var boardContent = $(this).data('board-content');
+      var boardDate = $(this).data('board-date');
+    
+      // Date 포매팅
+      var formattedDate = new Date(boardDate).toISOString().split('T')[0];
+
+      // 모달 내용 업데이트
+      $('#modalBoardSubject').text(boardSubject);
+      $('#modalBoardContent').text(boardContent);
+      $('#modalBoardDate').text(formattedDate); // 포매팅된 날짜로 업데이트
+
+      $('#boardModal').modal('show'); // 모달 표시
+  });
+  
+  </script>
 </body>
 
 </html>

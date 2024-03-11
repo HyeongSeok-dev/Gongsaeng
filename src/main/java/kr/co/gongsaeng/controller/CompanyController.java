@@ -13,13 +13,17 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 import java.time.LocalDateTime;
 
@@ -71,11 +75,16 @@ public class CompanyController {
 	// [ 사업체 메인 페이지 ] 
 	@GetMapping("company/main")
 	public String company_main(Model model, HttpSession session, PaymentVO payment, ReportVO report) {
-	
+		
 		
 		// 사업체 com_idx 산출
 		String sId = (String)session.getAttribute("sId");
 		System.out.println("Current sId from session: >>>>>>>>>>>>> " + sId);
+		
+		// 메인페이지 회사명 출력		
+		String companyName= companyService.getCompanyName(sId);
+		System.out.println("회사명>>>>>>" + companyName);
+		model.addAttribute("companyName",companyName);
 		
 		// 사용자 member_category 확인
 	    Integer memberCategory = companyService.findMemberCategoryBySId(sId);
@@ -100,12 +109,10 @@ public class CompanyController {
 	    
 	    // (1-2) 월간 매출 - 클래스 할인 쿠폰 사용 금액
 		int monthlyCoupons = companyService.calculateMonthlyCouponsBycomIdx(comIdx);
-		
 		model.addAttribute("monthlyCoupons", monthlyCoupons); 
 		
 		// (2-1) 클래스 누적 정산금액(클래스 총 정산금액)
 		Integer totalSales = companyService.calculateTotalSales(comIdx);
-		
 		model.addAttribute("totalSales",totalSales);
 	    
 		// (2-2) 클래스 누적 정산금액(클래스 총 정산금액)
@@ -159,18 +166,10 @@ public class CompanyController {
 		return "company/company_main";
 	}
 	
-	
 	// ==============================================================================================
 	// [ 클래스 등록 ] 
 	@GetMapping("company/classRegisterForm")
 	public String classRegisterForm(HttpSession session, Model model, CompanyVO company) {
-		// 세션 아이디 없을 경우 "로그인이 필요합니다" 처리를 위해 "forward.jsp" 페이지 포워딩
-//		if(session.getAttribute("sId") == null) {
-//			model.addAttribute("msg", "로그인이 필요합니다");
-//			// targetURL 속성명으로 로그인 폼 페이지 서블릿 주소 저장
-//			model.addAttribute("targetURL", "MemberLoginForm");
-//			return "forward";
-//		}
 		
 	    String sId = (String)session.getAttribute("sId");
 //		CompanyVO company = classService.getClassAddress(sId);
@@ -182,20 +181,17 @@ public class CompanyController {
 		// 사용자 member_category 확인
 	    Integer memberCategory = companyService.findMemberCategoryBySId(sId);
 	    if (memberCategory == null || memberCategory != 2) {
-
 	    	model.addAttribute("msg","반장 회원만 접근하실 수 있습니다!");
 			model.addAttribute("targetURL","/gongsaeng/member/login");
 	        return "forward";	   
 	    }
-		
-		
 		
 		return "company/company_register7";
 	}
 	
 	@PostMapping("company/classRegisterPro")
 	public String classRegisterPro(HttpSession session, Model model, HttpServletRequest request, ClassVO gclass, @RequestParam("class_offering") int[] classOfferings,
-	@RequestParam("class_day") String[] classDay) {
+	@RequestParam("class_day") String[] classDays) {
 		//		if(session.getAttribute("sId") == null) {
 //			model.addAttribute("msg", "로그인이 필요합니다");
 //			model.addAttribute("targetURL", "MemberLoginForm");
@@ -215,9 +211,6 @@ public class CompanyController {
 	        return "forward";	 
 	    }
 	    // ------------------------------------------------------------------------
-		
-	    
-	    
 	    String class_post_code = request.getParameter("class_post_code").replace(",", "");
 	    String class_address1 = request.getParameter("class_address1").replace(",", "");
 	    String class_address2 = request.getParameter("class_address2").replace(",", "");
@@ -226,50 +219,72 @@ public class CompanyController {
 	    gclass.setClass_address1(class_address1);
 	    gclass.setClass_address2(class_address2);
 
-
-	    // ------------------------------------------------------
-	    // 기타 제공 사항
+	    // 판매 가격 
+	    String class_price = request.getParameter("class_price").replace(",", ""); // 쉼표 제거
+	    // 숫자로 변환 필요한 경우 Integer.parseInt() 또는 Double.parseDouble() 사용
+	    gclass.setClass_price(class_price);
+	    
+	    
+     // ------------------------------------------------------
+	 // 기타 제공 사항
 	    if (classOfferings != null) {
-	    	
-		    char[] stringArray = new char[7];
-	        for (int i = 0; i < stringArray.length; i++) {
-	            stringArray[i] = '0';
-	        }
-	        for (int elem : classOfferings) {
-	        	if (elem > 0 && elem <= stringArray.length) {
-	                stringArray[elem] = '1'; // 배열 인덱스 조정
+	        
+	        char[] stringArray = new char[7];
+	        Arrays.fill(stringArray, '0'); // 배열을 '0'으로 초기화
+
+	        // 선택된 classOfferings의 값을 기반으로 stringArray 업데이트
+	        for (int offering : classOfferings) {
+	            int index = offering - 1; // 배열 인덱스는 0부터 시작하므로 1을 빼줍니다.
+	            if (index >= 0 && index < stringArray.length) {
+	                stringArray[index] = '1'; // 선택된 값에 해당하는 위치를 '1'로 설정
 	            }
 	        }
-	        String result = new String(stringArray);
 	        
-	        System.out.println(result);
+	        String result = new String(stringArray);
+	        System.out.println("기타제공>>>>>>>>>>" + result);
 	        gclass.setClass_offering(result);
-	    	
+	    }
+
+	    // ------------------------------------------------------
+	    // 요일
+	    if (classDays != null) {
+	        char[] stringArray = new char[7];
+	        Arrays.fill(stringArray, '0'); // 배열을 '0'으로 초기화
+	        for (String day : classDays) {
+	            if (!day.isEmpty()) { // 빈 문자열 체크
+	                int dayIndex = Integer.parseInt(day) - 1;
+	                if (dayIndex >= 0 && dayIndex < stringArray.length) {
+	                    stringArray[dayIndex] = '1'; // 선택된 값에 해당하는 위치를 '1'로 설정
+	                }
+	            }
+	        }
+	        
+	        String resultDays = new String(stringArray);
+	        System.out.println("요일>>>>>>>>>>" + resultDays);
+	        gclass.setClass_day(resultDays);
 	    }
 	    
 	    // ------------------------------------------------------
 	    // 요일
-	    if (classDay != null) {
-	    	
-	    	char[] stringArray = new char[7];
-	    	for (int i = 0; i < stringArray.length; i++) {
-	    		stringArray[i] = '0';
-	    	}
-	    	for (int i = 0; i < stringArray.length; i++) {
-	    		if (classDay[i].equals("on")) {
-	    			stringArray[i] = '1'; // 배열 인덱스 조정
-	    		}
-	    	}
-	    	String result = new String(stringArray);
-	    	
-	    	System.out.println(result);
-	    	gclass.setClass_day(result);
-	    	
-	    }
+//	    if (classDay != null) {
+//	    	
+//	    	char[] stringArray = new char[7];
+//	    	for (int i = 0; i < stringArray.length; i++) {
+//	    		stringArray[i] = '0';
+//	    	}
+//	    	for (int i = 0; i < stringArray.length; i++) {
+//	    		if (classDay[i].equals("on")) {
+//	    			stringArray[i] = '1'; // 배열 인덱스 조정
+//	    		}
+//	    	}
+//	    	String result = new String(stringArray);
+//	    	
+//	    	System.out.println(result);
+//	    	gclass.setClass_day(result);
+//	    	
+//	    }
 	    // ------------------------------------------------------
-	    
 	    // 주소 선택
-	    // ------------------------------------------------------
 		String addressOption = request.getParameter("addressOption");
 		String postCode, address1, address2;
 
@@ -284,9 +299,6 @@ public class CompanyController {
 		}
 		
 		// ------------------------------------------------------
-		
-		
-		
 		// 대표 사진 업로드(최대 3장)
 		
 		// 실제 파일 업로드를 수행하기 위해 프로젝트 상의 가상 업로드 디렉토리(upload) 생성 필요
@@ -345,16 +357,12 @@ public class CompanyController {
 		gclass.setClass_curriculum2("");
 		gclass.setClass_curriculum3("");
 		
-		
-		
 		String fileName1 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile1.getOriginalFilename();
 		String fileName2 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile2.getOriginalFilename();
 		String fileName3 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile3.getOriginalFilename();
 		String fileName4 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile4.getOriginalFilename();
 		String fileName5 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile5.getOriginalFilename();
 		String fileName6 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile6.getOriginalFilename();
-		
-		
 		
 		// 파일이 존재할 경우 BoardVO 객체에 서브디렉토리명(subDir)과 함께 파일명 저장
 		// ex) 2023/12/19/ef3e51e8_1.jpg
@@ -442,16 +450,13 @@ public class CompanyController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			
-		  
-			
-			
+						
 			// 글목록(BoardList) 서블릿 리다이렉트
 			return "redirect:/company/class";
 			
 		} else {
 			// "글쓰기 실패!" 메세지 처리(fail_back)
-			model.addAttribute("msg", "글쓰기 실패!");
+			model.addAttribute("msg", "클래스 등록을 실패하였습니다.");
 			return "fail_back";
 		}
 
@@ -490,7 +495,6 @@ public class CompanyController {
 		// "ClassModifyForm" 서블릿 요청에 대한 글 수정 폼 포워딩 처리
 		@GetMapping("company/classModifyForm")
 		public String boardModifyForm(@RequestParam("class_idx") int classIdx, HttpSession session, Model model) {
-		
 		    // ------------------------------------------------------------------------
 			// 사용자 member_category 확인
 		    String sId = (String)session.getAttribute("sId");
@@ -502,7 +506,6 @@ public class CompanyController {
 		        return "forward";	 
 		    }
 		    // ------------------------------------------------------------------------
-			
 	        // 클래스 상세정보 조회
 	        Map<String, Object> classDetail = classService.getClassDetail(classIdx);
 	        if (classDetail != null) {
@@ -520,7 +523,6 @@ public class CompanyController {
 	                    selectedDays.append(daysOfWeek[i]);
 	                }
 	            }
-	            
 	            
 	    	    // ------------------------------------------------------
 	    	    // 기타 제공 사항
@@ -562,7 +564,6 @@ public class CompanyController {
 //	    	    	
 //	    	    }
 	    	    // ------------------------------------------------------
-
 	            // 선택된 요일 문자열을 모델에 추가
 	            model.addAttribute("selectedDays", selectedDays.toString());
 	            model.addAttribute("classDetail", classDetail);
@@ -656,10 +657,11 @@ public class CompanyController {
 		// [ 클래스 수정페이지 ]
 			// "BoardModifyPro" 서블릿 요청에 대한 글 수정 요청 비즈니스 로직 처리
 			@PostMapping("company/classModifyPro")
-			public String modifyPro(ClassVO gclass, HttpSession session, Model model,@RequestParam("class_idx") int classIdx) {
+			public String modifyPro(ClassVO gclass, HttpSession session, HttpServletRequest request, Model model,@RequestParam("class_idx") int classIdx, @RequestParam("class_offering") int[] classOfferings,
+					@RequestParam(value = "class_day", required = false) String[] classDays) {
+				
 				// 세션 아이디에 따른 차단 처리
-			    // ------------------------------------------------------------------------
-				// 사용자 member_category 확인
+			    // 사용자 member_category 확인
 			    String sId = (String)session.getAttribute("sId");
 			    Integer memberCategory = companyService.findMemberCategoryBySId(sId);
 			    if (memberCategory == null || memberCategory != 2) {
@@ -668,22 +670,90 @@ public class CompanyController {
 					model.addAttribute("targetURL","/gongsaeng/member/login");
 			        return "forward";	 
 			    }
-				
-				// -------------------------------------------------------------------
+			    
+			    // 판매 가격 
+			    String class_price = request.getParameter("class_price").replace(",", ""); // 쉼표 제거
+			    // 숫자로 변환 필요한 경우 Integer.parseInt() 또는 Double.parseDouble() 사용
+			    gclass.setClass_price(class_price); 
+			    
+			    // ------------------------------------------------------
+				 // 기타 제공 사항
+				    if (classOfferings != null) {
+				        
+				        char[] stringArray = new char[7];
+				        Arrays.fill(stringArray, '0'); // 배열을 '0'으로 초기화
+
+				        // 선택된 classOfferings의 값을 기반으로 stringArray 업데이트
+				        for (int offering : classOfferings) {
+				            int index = offering - 1; // 배열 인덱스는 0부터 시작하므로 1을 빼줍니다.
+				            if (index >= 0 && index < stringArray.length) {
+				                stringArray[index] = '1'; // 선택된 값에 해당하는 위치를 '1'로 설정
+				            }
+				        }
+				        
+				        String result = new String(stringArray);
+				        System.out.println("기타제공>>>>>>>>>>" + result);
+				        gclass.setClass_offering(result);
+				    }
+			    
+				    // 요일 처리
+				    if (classDays == null || classDays.length == 0) {
+				        // classDays가 null이거나 비어있을 경우, 기존 데이터를 사용
+				        Map<String, Object> classDetails = classService.getClassDetail(classIdx);
+				        if (classDetails != null) {
+				            String existingClassDay = (String) classDetails.get("class_day");
+				            gclass.setClass_day(existingClassDay);
+				        }
+				    } else {
+				        // 요일 정보를 새롭게 설정하는 로직 유지
+				        char[] stringArray = new char[7];
+				        Arrays.fill(stringArray, '0');
+				        for (String day : classDays) {
+				            if (!day.isEmpty()) {
+				                int dayIndex = Integer.parseInt(day) - 1;
+				                if (dayIndex >= 0 && dayIndex < stringArray.length) {
+				                    stringArray[dayIndex] = '1';
+				                }
+				            }
+				        }
+				     
+				        String resultDays = new String(stringArray);
+				        gclass.setClass_day(resultDays);
+				    }
+			    // ------------------------------------------------------
+			    
+			    // 주소 정보에서 쉼표 제거
+			    if (gclass.getClass_post_code() != null) {
+			        gclass.setClass_post_code(gclass.getClass_post_code().replace(",", ""));
+			    }
+			    
+			    if (gclass.getClass_address1() != null) {
+			    	gclass.setClass_address1(gclass.getClass_address1().replace(",", ""));
+			    }
+			    
+			    if (gclass.getClass_address2() != null) {
+			        gclass.setClass_address2(gclass.getClass_address2().replace(",", ""));
+			    }
+			    
+					// -------------------------------------------------------------------
 				// [ 수정 과정에서 파일 업로드 처리 ]
-				String uploadDir = "/resources/upload"; // 가상의 경로(이클립스 프로젝트 상에 생성한 경로)
-				String saveDir = session.getServletContext().getRealPath(uploadDir); // 또는 
-				
+				// 실제 파일 업로드를 수행하기 위해 프로젝트 상의 가상 업로드 디렉토리(upload) 생성 필요
+				String uploadDir = "/resources/upload";
+				// 가상 디렉토리에 대한 실제 경로 알아내기
+				String saveDir = session.getServletContext().getRealPath(uploadDir);
+				// => 날짜별로 파일들을 분류하면 관리가 매우 편함
 				String subDir = "";
+				
 				LocalDate now = LocalDate.now();
 				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 				subDir = now.format(dtf);
 				
-				saveDir += File.separator + subDir;
+				saveDir += File.separator + subDir; // File.separator 대신 / 또는 \ 지정도 가능
 
 				try {
 					Path path = Paths.get(saveDir); // 파라미터로 업로드 경로 전달
 					Files.createDirectories(path); // 파라미터로 Path 객체 전달
+					
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -718,40 +788,41 @@ public class CompanyController {
 				String fileName5 = "";
 				String fileName6 = "";
 				
+								
 				if(mFile1 != null && !mFile1.getOriginalFilename().equals("")) {
 					System.out.println("원본파일명1 : " + mFile1.getOriginalFilename());
 					fileName1 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile1.getOriginalFilename();
-					gclass.setClass_pic1(fileName1);
+					gclass.setClass_pic1(subDir + "/" +fileName1);
 				}
 				
 				if(mFile2 != null && !mFile2.getOriginalFilename().equals("")) {
 					System.out.println("원본파일명2 : " + mFile2.getOriginalFilename());
 					fileName2 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile2.getOriginalFilename();
-					gclass.setClass_pic2(fileName2);
+					gclass.setClass_pic2(subDir + "/" +fileName2);
 				}
 				
 				if(mFile3 != null && !mFile3.getOriginalFilename().equals("")) {
 					System.out.println("원본파일명3 : " + mFile3.getOriginalFilename());
 					fileName3 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile3.getOriginalFilename();
-					gclass.setClass_pic3(fileName3);
+					gclass.setClass_pic3(subDir + "/" +fileName3);
 				}
 				
 				if(mFile4 != null && !mFile4.getOriginalFilename().equals("")) {
 					System.out.println("원본파일명4 : " + mFile4.getOriginalFilename());
 					fileName4 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile4.getOriginalFilename();
-					gclass.setClass_curriculum1(fileName4);
+					gclass.setClass_curriculum1(subDir + "/" +fileName4);
 				}
 				
 				if(mFile5 != null && !mFile5.getOriginalFilename().equals("")) {
 					System.out.println("원본파일명5 : " + mFile5.getOriginalFilename());
 					fileName5 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile5.getOriginalFilename();
-					gclass.setClass_curriculum2(fileName5);
+					gclass.setClass_curriculum2(subDir + "/" +fileName5);
 				}
 				
 				if(mFile6 != null && !mFile6.getOriginalFilename().equals("")) {
 					System.out.println("원본파일명6 : " + mFile6.getOriginalFilename());
 					fileName6 = UUID.randomUUID().toString().substring(0, 8) + "_" + mFile6.getOriginalFilename();
-					gclass.setClass_curriculum1(fileName6);
+					gclass.setClass_curriculum3(subDir + "/" +fileName6);
 				}
 				
 				System.out.println("실제 업로드 파일명1 : " + gclass.getClass_pic1());
@@ -769,34 +840,31 @@ public class CompanyController {
 				// DB 작업 요청 처리 결과 판별
 				if(updateCount > 0) {
 					try {
-						// 파일명이 존재하는 파일만 이동 처리 작업 수행
+						// 파일 이동 로직 수정
 						if(!gclass.getClass_pic1().equals("")) {
-							mFile1.transferTo(new File(saveDir, fileName1));
+						    mFile1.transferTo(new File(saveDir, fileName1));
 						}
-						
 						if(!gclass.getClass_pic2().equals("")) {
-							mFile1.transferTo(new File(saveDir, fileName2));
+						    mFile2.transferTo(new File(saveDir, fileName2));
 						}
-						
 						if(!gclass.getClass_pic3().equals("")) {
-							mFile1.transferTo(new File(saveDir, fileName3));
+						    mFile3.transferTo(new File(saveDir, fileName3));
 						}
-						
 						if(!gclass.getClass_curriculum1().equals("")) {
-							mFile1.transferTo(new File(saveDir, fileName4));
+						    mFile4.transferTo(new File(saveDir, fileName4));
 						}
-						
 						if(!gclass.getClass_curriculum2().equals("")) {
-							mFile1.transferTo(new File(saveDir, fileName5));
+						    mFile5.transferTo(new File(saveDir, fileName5));
 						}
-						
 						if(!gclass.getClass_curriculum3().equals("")) {
-							mFile1.transferTo(new File(saveDir, fileName6));
+						    // 잘못된 부분: mFile1.transferTo(new File(saveDir, fileName6));
+						    // 올바른 코드:
+						    mFile6.transferTo(new File(saveDir, fileName6)); // 이 부분을 수정합니다.
 						}
-						
-						
+
 					} catch (IllegalStateException e) {
 						e.printStackTrace();
+						
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
@@ -811,7 +879,28 @@ public class CompanyController {
 				}
 				
 			}
-		// ===========================================================
+	// -----------------------------------------------------------		
+//	@PostMapping("/company/deleteFile")
+//	public ResponseEntity<?> deleteFile(@RequestParam("fileType") String fileType, 
+//	                                    @RequestParam("fileName") String fileName,
+//	                                    HttpSession session) {
+//	    // 파일 삭제 로직 구현
+//	    try {
+//	        String uploadDir = session.getServletContext().getRealPath("/resources/upload");
+//	        File file = new File(uploadDir + File.separator + fileName);
+//	        if(file.delete()) {
+//	            // 파일 삭제 성공
+//	            return new ResponseEntity<>("File successfully deleted", HttpStatus.OK);
+//	        } else {
+//	            // 파일이 존재하지 않거나 삭제 실패
+//	            return new ResponseEntity<>("Failed to delete the file", HttpStatus.BAD_REQUEST);
+//	        }
+//	    } catch (Exception e) {
+//	        return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+//	    }
+//	}
+	
+	// ===========================================================
 	// [ 반장회원 전환 신청 ] -> 일반 회원의 기존 정보 가져오기
 	@GetMapping("company/banjang/register")
 	public String company_banjang_register(HttpSession session, Model model) {
@@ -953,7 +1042,6 @@ public class CompanyController {
 	
 	// =============================================================		
 	// [ 클래스 삭제 ]
-	
 	 @PostMapping("company/deleteClass")
 	 public String deleteClass(@RequestParam("class_idx") String class_idx, Model model, HttpSession session) {
 	   
@@ -977,7 +1065,6 @@ public class CompanyController {
 
 		 return "redirect:/company/class";
 	 }
-	
 	
 	
 	// =============================================================		
@@ -1020,7 +1107,6 @@ public class CompanyController {
 	        return "forward";	 
 	    }
 	    // ------------------------------------------------------------------------
-		
 		Integer comIdx = companyService.findComIdxBysId(sId);
 		System.out.println("Current comIdx from session: >>>>>>>>>>>>> " + comIdx);
 		
@@ -1035,11 +1121,14 @@ public class CompanyController {
 	        String class_title = companyService.findClassNameByClassIdx(classIdx);
 	        sale.put("class_title", class_title); // saleList에 class_title 추가
 	        
+	        int comIdxFromSale = (Integer) sale.get("com_idx");
+	        String com_name = companyService.findCompanyNameByComIdx(comIdxFromSale);
+	        sale.put("com_name",com_name); // saleList에 com_name 추가
+	        
 	     // pay_date 포매팅
 	        LocalDateTime payDate = (LocalDateTime) sale.get("pay_date");
 	        String formattedDate = payDate.format(formatter);
 	        sale.put("formatted_pay_date", formattedDate); // 포매팅된 날짜를 새로운 키에 저장
-	        
 	    }
 	    model.addAttribute("saleList", saleList);
 	    
@@ -1078,7 +1167,6 @@ public class CompanyController {
 	        return "forward";	 
 	    }
 	    // ------------------------------------------------------------------------
-
 		
 		Integer comIdx = companyService.findComIdxBysId(sId);
 		System.out.println("Current comIdx from session: >>>>>>>>>>>>> " + comIdx);
@@ -1104,18 +1192,46 @@ public class CompanyController {
 
 		 String sId = (String)session.getAttribute("sId");
 		 System.out.println("Current sId from session: >>>>>>>>>>>>> " + sId);
-		 
-		 
-		 
+		 		 
 		 Integer comIdx = companyService.findComIdxBysId(sId);
 		 System.out.println("Current comIdx from session: >>>>>>>>>>>>> " + comIdx);
 
-		 // payment 테이블 조회
 		 List<PaymentVO> paymentInfo = companyService.getCompanyPaymentInfo(comIdx);
 		 model.addAttribute("paymentInfo",paymentInfo);
 		 
 		 return "company/company_income_list";
 	 }
+	 
+	 // 정산 내역 세부사항
+	 @GetMapping("/company/income/list/detail")
+	 public String company_income_list_detail(HttpSession session, Model model, PaymentVO payment, @RequestParam("payNum") String payNum) {
+		 
+		 PaymentVO paymentDetail = companyService.getPaymentDetailByPayNum(payNum);
+		 model.addAttribute("paymentDetail", paymentDetail);
+
+		 return "company/company_income_list_detail";
+	 }
+	 
+	// 정산 상태 업데이트(세부내역)
+	// 정산 상태 업데이트 처리
+	 @PostMapping("/company/income/updateDetailPayCalStatus")
+	 @ResponseBody
+	 public ResponseEntity<?> updateDetailPayCalStatus(@RequestParam("payNum") String payNum, @RequestParam("payCalStatus") int payCalStatus) {
+	     try {
+	         // 여기에 정산 상태를 업데이트하는 서비스 로직을 호출
+	         int isUpdated = companyService.updatePayCalStatus(payNum, payCalStatus);
+
+	         if (isUpdated > 0) {
+	             return ResponseEntity.ok().body(Map.of("success", true, "message", "정산 상태가 성공적으로 업데이트되었습니다."));
+	         } else {
+	             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("success", false, "message", "정산 상태 업데이트에 실패했습니다."));
+	         }
+	         
+	     } catch (Exception e) {
+	         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("success", false, "message", "서버 에러 발생: " + e.getMessage()));
+	     }
+	 }
+
 	 
 	// 정산 신청
 	 @PostMapping("/company/income/updatePayCalStatusBatch")
@@ -1145,55 +1261,73 @@ public class CompanyController {
 	         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(map);
 	     }
 	 }
+	 
 
+	// 회원 목록 출력
+	    @GetMapping("/company/member")
+	    public String companyMember(HttpSession session, Model model) {
+	        String sId = (String) session.getAttribute("sId");
+	        System.out.println("Current sId from session: >>>>>>>>>>>>> " + sId);
 
-	// 회원목록 출력
-	@GetMapping("company/member")
-	public String companyMember(HttpSession session, Model model) {
-		
-		 String sId = (String)session.getAttribute("sId");
-		 System.out.println("Current sId from session: >>>>>>>>>>>>> " + sId);
-		 
-		    // ------------------------------------------------------------------------
-			// 사용자 member_category 확인
-		    Integer memberCategory = companyService.findMemberCategoryBySId(sId);
-		    if (memberCategory == null || memberCategory != 2) {
-
-		    	model.addAttribute("msg","반장 회원만 접근하실 수 있습니다!");
-				model.addAttribute("targetURL","/gongsaeng/member/login");
-		        return "forward";	 
-		    }
-		    // ------------------------------------------------------------------------
-
-		 
-		 Integer comIdx = companyService.findComIdxBysId(sId);
-		 System.out.println("Current comIdx from session: >>>>>>>>>>>>> " + comIdx);
-		
-		 List<CompanyClassVO> companyClassMember = companyService.getPaymentClassMembers(comIdx);
-		 
-	        Calendar now = Calendar.getInstance();
-	        
-	        for (CompanyClassVO companyClass : companyClassMember) {
-	            Calendar startDate = Calendar.getInstance();
-	            startDate.setTime(new java.util.Date(companyClass.getClass_start_date().getTime()));
-	            
-	            Calendar endDate = Calendar.getInstance();
-	            endDate.setTime(new java.util.Date(companyClass.getClass_end_date().getTime()));
-	            
-	            if (startDate.after(now)) {
-	                companyClass.setClassStatus("진행예정");
-	            } else if (!startDate.after(now) && !endDate.before(now)) {
-	                companyClass.setClassStatus("진행중");
-	            } else if (endDate.before(now)) {
-	                companyClass.setClassStatus("종료");
-	            }
+	        Integer memberCategory = companyService.findMemberCategoryBySId(sId);
+	        if (memberCategory == null || memberCategory != 2) {
+	            model.addAttribute("msg", "반장 회원만 접근하실 수 있습니다!");
+	            model.addAttribute("targetURL", "/gongsaeng/member/login");
+	            return "forward";
 	        }
-		 
-		 model.addAttribute("companyClassMember", companyClassMember);
-    
-			return "company/company_member";
+
+	        Integer comIdx = companyService.findComIdxBysId(sId);
+	        System.out.println("Current comIdx from session: >>>>>>>>>>>>> " + comIdx);
+
+	        List<CompanyClassVO> companyClassMember = companyService.getPaymentClassMembers(comIdx);
+	        Set<String> processedMembers = new HashSet<>();
+	        List<CompanyClassVO> filteredCompanyClassMember = new ArrayList<>();
+	        Map<String, List<String>> memberClassesMap = new HashMap<>();
+
+	        for (CompanyClassVO companyClass : companyClassMember) {
+	            if (processedMembers.add(companyClass.getMember_id())) {
+	                // 클래스 상태 설정 로직
+	                determineClassStatus(companyClass);
+	                
+	                // 필터링된 회원 목록에 추가
+	                filteredCompanyClassMember.add(companyClass);
+	            }
+	            
+	            // 회원별로 클래스명 집계
+	            memberClassesMap.computeIfAbsent(companyClass.getMember_id(), k -> new ArrayList<>())
+	                            .add(companyClass.getClass_title());
+	        }
+
+	        // 회원별 클래스명 문자열로 변환
+	        Map<String, String> memberClassesStringMap = new HashMap<>();
+	        memberClassesMap.forEach((memberId, classesList) -> {
+	            String classesString = String.join(", ", classesList);
+	            memberClassesStringMap.put(memberId, classesString);
+	        });
+
+	        model.addAttribute("companyClassMember", filteredCompanyClassMember);
+	        model.addAttribute("memberClassesStringMap", memberClassesStringMap);
+
+	        return "company/company_member";
 	    }
-	
+
+	    private void determineClassStatus(CompanyClassVO companyClass) {
+	        Calendar now = Calendar.getInstance();
+	        Calendar startDate = Calendar.getInstance();
+	        startDate.setTime(companyClass.getClass_start_date());
+
+	        Calendar endDate = Calendar.getInstance();
+	        endDate.setTime(companyClass.getClass_end_date());
+
+	        if (startDate.after(now)) {
+	            companyClass.setClassStatus("진행예정");
+	        } else if (!startDate.after(now) && !endDate.before(now)) {
+	            companyClass.setClassStatus("진행중");
+	        } else if (endDate.before(now)) {
+	            companyClass.setClassStatus("종료");
+	        }
+	    }
+	 
 	// 리뷰 목록 출력
 	@GetMapping("company/review")
 	public String company_review(HttpSession session, Model model) {
@@ -1210,7 +1344,6 @@ public class CompanyController {
 	        return "forward";	 
 	    }
 	    // ------------------------------------------------------------------------
-
 		
 		Integer comIdx = companyService.findComIdxBysId(sId);
 		System.out.println("Current comIdx from session: >>>>>>>>>>>>> " + comIdx);
@@ -1351,7 +1484,6 @@ public class CompanyController {
 	        return "forward";	 
 	    }
 	    // ------------------------------------------------------------------------
-
 		
 		List<BoardVO> companyBoardList = companyService.getCompanyBoardList(1,2);
 		companyBoardList = companyBoardList == null ? Collections.emptyList() : companyBoardList; // `null` 체크

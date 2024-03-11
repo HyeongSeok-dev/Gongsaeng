@@ -59,7 +59,8 @@ body {
 	bottom: 115px;
 	/* z-index:1; */
 	background-color: rgba(0, 0, 0, 0.5);
-	color: #ffcccc;
+/* 	color: #ffcccc; */
+	color: #fff;
 }
 
 /* 미리보기 삭제 css */
@@ -142,7 +143,7 @@ td {
 }
 
 .form-control search {
-	color: #000;
+/* 	color: #000; */
 }
 
 textarea.form-control {
@@ -288,6 +289,7 @@ button {
 /* 		border: 2px solid black; */
 	
 	}
+	
 	/* 미리보기 삭제버튼 css */
 	#sum_style{
 		text-align:center;
@@ -304,10 +306,10 @@ button {
 	    background-color:rgba(0,0,0,0.5);
 	    color:white;
 	}
+
 	.chk_style{
 		vertical-align: middle;
 		text-align:center;
-		
 		width:28px;
 		height:28px;
 	    position:absolute; 
@@ -319,7 +321,7 @@ button {
 	    bottom:115px;
 	    /* z-index:1; */
 	    background-color:rgba(0,0,0,0.5);
-	    color:#ffcccc;
+	    color:#fff;
 	}
 	
 		
@@ -436,7 +438,7 @@ button {
 	background-color: #fff;
 	border-radius: 10px;
 	padding: 5px;
-	
+	width: 798px;
 }
 
 .form-control {
@@ -445,6 +447,11 @@ button {
 	border-radius: 10px!important;
 	font-family: 'NanumSquareNeo-Variable';
 	color: #666A73;
+	cursor: pointer;
+}
+
+.form-name {
+/* 	width: 200px!important; */
 }
 
 .form-control:focus {
@@ -502,3 +509,185 @@ button {
     background-color: #0069d9;
     border-color: #0062cc;
 }
+
+ 
+ /* 새로운 파일 업로드 버튼 스타일 */
+.custom-file-input {
+    opacity: 1!important; /* 투명도 재설정 */
+    position: relative!important; /* 절대 위치 대신 상대 위치 사용 */
+    z-index: auto!important; /* z-index 재설정 */
+    width: 100%!important; /* Make the file input take up 100% of its parent's width */
+    
+}
+
+.input-group-curri {
+  margin-bottom: 15px; /* 두 입력 필드 사이의 간격 조정 */
+  overflow: visible; /* 스크롤바가 생기지 않도록 overflow 속성 조정 */
+}
+
+.input-group-custom {
+  margin-bottom: 5px; /* 간격 조정을 위한 마진 값 */
+}
+
+.custom-file-input {
+  margin-bottom: 0; /* 기본 마진 제거 */
+}
+
+#scheduleTable {
+    font-size: 15px!important;
+    margin-left: 10px;
+}
+
+.main-panel {
+	background-color: #fff!important;
+}    
+
+.footer {
+    background-color: #ebecf1;
+}
+
+.footer {
+	position: relative; 
+    left: 0;
+    bottom: 0;
+    width: 100%; /* footer의 너비를 화면 전체로 설정 */
+    background-color: #ebecf1; /* 배경 색상 설정, 필요에 따라 변경 가능 */
+    z-index: 1000; /* footer가 다른 요소들 위에 위치하도록 설정 */
+}
+
+.content {
+    margin-bottom: 20px; /* 콘텐츠와 footer 사이의 공간 */
+}
+
+.wrapper {
+	background-color: #fff!important;
+}
+
+.nav-top-tabs {
+	margin-left: 14px;
+}
+
+.card-content {
+	margin-left: 13px;
+}
+    
+.card-content1 {
+	margin-left: 13px;
+}   
+
+.card-content2 {
+	margin-left: 13px;
+}
+
+.card-content3 {
+	margin-left: 13px;
+}
+
+.form-address {
+	width: 400px!important;
+}
+
+.form-postcode {
+	width: 107px!important;
+}
+
+textarea.form-introduction {
+	width: 397px!important;
+	max-width: 397px!important;
+}
+
+#btnSearchAddress {
+    margin-left: -38px;
+    width: 150px;
+}
+
+.form-group.form-modaldate {
+    width: 400px!important;
+}
+
+.input-group-curri {
+    position: relative;
+}
+
+.remove-image {
+    display: inline-block;
+    margin-left: auto; 
+    margin-right: 0; 
+}
+
+.remove-image {
+    position: absolute;
+/*     top: 37px; */
+/*     right: 732px;  */
+	left: 171px;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
+    cursor: pointer;
+}
+
+#previewImg0,#previewImg1,#previewImg2  {
+	border-radius: 20px;
+	margin-bottom: 20px;
+	max-width: 200px;
+	height: auto;
+	display: none;
+}
+
+.input-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.input-wrapper .form-control {
+    padding-right: 30px; /* '원' 텍스트를 위한 공간을 만듭니다 */
+}
+
+.input-wrapper .currency {
+    position: absolute;
+    right: 10px;
+    top: 50%; 
+    transform: translateY(-50%); 
+    pointer-events: none; 
+}
+
+#newPostCode {
+	width: 149px!important;
+}
+
+.terms-hover:hover {
+    cursor: pointer;
+    color: #007bff;
+    text-decoration: underline;
+}
+
+.checkbox_agree {
+     margin-bottom: 10px; 
+}
+
+.search {
+	background-color: rgba(222, 222, 222, 0.3)!important;
+}
+
+.navbar-brand {
+	font-size: 25px!important;
+}
+
+/* 선택되지 않은 탭의 스타일 */
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #495057; /* 활성 탭의 텍스트 색상 */
+    background-color: #f1f3f5; /* 활성 탭의 배경 색상 */
+    border-color: #dee2e6 #dee2e6 #fff; /* 활성 탭의 테두리 색상 */
+}
+
+.nav-tabs .nav-link {
+    color: #6c757d; /* 비활성 탭의 텍스트 색상 */
+/*     background-color: #e9ecef; 비활성 탭의 배경 색상 */
+    border-color: #dee2e6 #dee2e6 #dee2e6; /* 비활성 탭의 테두리 색상 */
+}
+

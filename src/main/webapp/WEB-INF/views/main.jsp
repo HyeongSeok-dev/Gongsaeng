@@ -284,6 +284,7 @@
 													<div class="item_p">
 														<span class="proerty-price pull-right">
 															<fmt:formatNumber value="${recentClass.class_price}" pattern="#,###"/>원
+<%-- 															${recentClass.class_price}원 --%>
 														</span>
 													</div>
 												</div>
@@ -451,6 +452,7 @@
 													<div class="item_p">
 				                                        <span class="proerty-price pull-right">
 				                                        	<fmt:formatNumber value="${popularClass.class_price}" pattern="#,###"/>원
+<%-- 				                                        	${popularClass.class_price}원 --%>
 				                                        </span>
 			                                        </div>
 												</div>
@@ -643,6 +645,7 @@
 	                                                                <div class="item_p">
 	                                                                	<span class="proerty-price pull-right">
 	                                                                    	<fmt:formatNumber value="${deadlineSoonClass.class_price}" pattern="#,###"/>원
+<%-- 	                                                                    	${deadlineSoonClass.class_price}원 --%>
 	                                                               		</span>
 	                                                                </div>
 	                                                            </div>

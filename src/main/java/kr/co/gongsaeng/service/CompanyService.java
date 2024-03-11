@@ -219,6 +219,25 @@ public class CompanyService {
 		return mapper.selectMemberCategory(sId);
 	}
 
+	// 매출내역에서 com_idx로 회사명 출력
+	public String findCompanyNameByComIdx(int comIdxFromSale) {
+
+		return mapper.selectComName(comIdxFromSale);
+	}
+
+	// 정산 세부내역
+	public PaymentVO getPaymentDetailByPayNum(String payNum) {
+
+		return mapper.selectPaymentByPayNum(payNum);
+	}
+
+
+	// 회사명 출력(메인페이지)
+	public String getCompanyName(String sId) {
+
+		return mapper.selectCompanyName(sId);
+	}
+
 
 
 

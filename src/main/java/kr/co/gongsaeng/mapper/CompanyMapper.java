@@ -119,6 +119,14 @@ public interface CompanyMapper {
 	// 세션아이디 사업자 제한
 	Integer selectMemberCategory(String sId);
 
+	// 매출내역 - 회사명 출력
+	String selectComName(int comIdxFromSale);
+
+	// 정산 세부내역
+	PaymentVO selectPaymentByPayNum(String payNum);
+
+	// 메인페이지 회사명 출력
+	String selectCompanyName(String sId);
 
 
 
